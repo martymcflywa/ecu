@@ -1,0 +1,9 @@
+Hi, my name is Marty.
+
+I am a first year, off-campus, mature age student studying Bachelor of Information Technology. I was previously employed as a junior Business Analyst at a local utility company for approximately 16 months. Some day-to-day tasks included documenting and mapping business processes, creating training documents, eliciting business requirements from managers and subject matter experts, and translating those into technical change request documents for the company's in-house developers. I was also involved in developing test scenario scripts to ensure system and process changes were implemented correctly before being deployed into the production environment. During my time as a Business Analyst, I learned the importance of communicating effectively and explicitly so that any messages I deliver is received exactly as I intended, so that it inspires the correct action in the recipient.
+
+Unfortunately, my employment ended, and without any formal certification or relevant tertiary study, I have found it very difficult to secure another Business Analyst role. I have enrolled into ECU to kick start my career as Business Analyst again, or to hopefully open other career avenues in the IT industry.
+
+Outside of work, I have an interest in graphic design and 3D modelling, and am currently freelancing, designing logos and websites for small businesses. I also have an interest in programming, and am currently teaching myself Java, Javascript and Python in my spare time. I look forward to working with you all during this semester.
+
+Self assessment: I believe I have strong written communication skills but lack confidence in my own verbal communication. I am looking forward to improving those skills through this unit.
