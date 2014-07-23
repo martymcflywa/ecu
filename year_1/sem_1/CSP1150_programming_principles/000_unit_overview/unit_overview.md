@@ -22,3 +22,9 @@ You do not require any previous programming experience to undertake this unit - 
 | Lab     | JO 19.108 | Tue | 14:30 | 15:15 |
 
 Timetable updated 20 July - note these are subject to late change - check on SIMO.
+
+## Online resources for students ##
+
+Companion [material](http://wps.aw.com/aw_gaddis_javacso_4s/113/29029/7431666.cw/index.html) for text: Gaddis, T. (2009). Starting out with Java: From control structures through objects. (4th ed.). Boston: Pearson
+
+See [PDF](install_java_bluej.pdf) for instructions on installing Bluej IDE.
