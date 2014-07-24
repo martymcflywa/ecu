@@ -123,30 +123,37 @@ To do...
 - Prior learning - previous experiences.
 
 ##### Task: Dog With Biggest Vocabulary #####
-Watch [Dog with Biggest Vocabulary](http://www.youtube.com/watch?v=M2-1Re6F2UI). Refer to [Interpreting Messages](#interpreting-messages) for further instructions.
+Watch [Dog with Biggest Vocabulary](http://www.youtube.com/watch?v=M2-1Re6F2UI) video. Refer to [Interpreting Messages](#interpreting-messages) for further instructions.
 
 ### Interpreting Messages ###
 
 ##### Task: Interpreting Messages #####
-In your group, what is missing from communications that utilise a virtual environment. Do humans interpret messages and react in a similar way to animals? Add feedback to week 1 discussion forum.
-describe possible issues and influences ie gender, age, nationality - language barrier etc.
+- In your group, what is missing from communications that utilise a virtual environment. Do humans interpret messages and react in a similar way to animals? Add feedback to week 1 discussion forum.
+- Describe possible issues and influences ie gender, age, nationality - language barrier etc.
 
+##### Answer #####
+To do...
 
+### Noise ###
 
-Noise - impedes effective communication
+Noise is anything that impedes effective communication.
 
-- distorts meaning of meaning intended by source
-- syntactic noise produces technical distortion of messages
-- semantic noise distorts the meaning of the message (interpretation and understanding). May be brought about by lack of communication skills, knowledge, attitudes or cultural differences
-- we will looking at techniques to reduce the samntic noise of your communications
+- Distorts meaning of meaning intended by source.
+- Syntactic noise produces technical distortion of messages.
+- Semantic noise distorts the meaning of the message (interpretation and understanding). May be brought about by lack of communication skills, knowledge, attitudes or cultural differences.
+- We will looking at techniques to reduce the semantic noise of **your** communications.
 
-Skills - Information Literacy
+### Skills - Information Literacy ###
 
-- knowing the right questions to ask to solve an information need
-- knowing how to use all the information tools available to meet this need
-- being able to identify good quality, relevant information
-- knowing the scope and boundaries of information systems
-- being able to collate, manage, interpret, analyse and understand this information
-- so that it may be reused to create new information that becomes part of your knowledge base
+- Knowing the right questions to ask to solve an information need.
+- Knowing how to use all the information tools available to meet this need.
+- Being able to identify good quality, relevant information.
+- Knowing the scope and boundaries of information systems.
+- Being able to collate, manage, interpret, analyse and understand this information.
+- So that it may be reused to create new information that becomes part of your knowledge base.
 
-** task - are you an information literate person? if so, what makes you literate? what areas exist for improvement. Add feedback to Week 1 discussion forum.
+##### Task: Interpreting Messages ##### 
+Are you an information literate person? If so, what makes you literate? What areas exist for improvement. Add feedback to Week 1 discussion forum.
+
+##### Answer #####
+To do...
