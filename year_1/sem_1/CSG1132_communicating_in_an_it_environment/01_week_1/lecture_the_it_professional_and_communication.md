@@ -9,7 +9,7 @@ Three kinds of literacy are discussed in this unit:
 - Information literacy: knowledge and skills for finding and evaluating information sources.
 - Statistical literacy: knowledge and skills for evaluating statistical arguments and using statistics.
 
-ICT: information communication technologies
+ICT: Information Communication Technologies
 
 #### Penalties ####
 
@@ -56,7 +56,7 @@ ICT  professionals fail at communication for both written and oral communication
 - Customer relations
 - Need good communication skills to win the argument.
 
-##### Task: IT Crowd Video #####
+##### Task: The IT Crowd #####
 Watch [IT Crowd](http://www.youtube.com/watch?v=RViowXuIRQ8) video: Write a list of keywords that describe how it workers are framed.
 
 ##### Answer: #####
@@ -72,7 +72,7 @@ Watch [IT Crowd](http://www.youtube.com/watch?v=RViowXuIRQ8) video: Write a list
 
 The story of a brilliant engineer vs. a brilliant communicator, Wozniak vs. Jobs. **Who do we remember?**
 
-##### Task: Steve Jobs Video #####
+##### Task: Steve Jobs #####
 Watch [Steve Jobs 2005 Stanford Commencement Address](http://www.youtube.com/watch?v=dwIzCGSdVNA) video: Review the video and decide whether Steve Jobs was effective as a communicator and why. For example, shaping message to event or audience, implying medium effectively, using gesture and tone, underlying reality and personal honesty. What does "stay hungry stay foolish" mean, and what does it mean for good career in ICT?
 
 ##### Answer: #####
@@ -82,38 +82,53 @@ Watch [Steve Jobs 2005 Stanford Commencement Address](http://www.youtube.com/wat
 ### Argumentation ###
 
 Form of communication to persuade with effective reasoning, based on three components:
-- logic: effective reasoning
-- rhetoric: art of oral persuasion
-- dialectic: contest of ideas
-date back to aristotle and plato.
+- Logic - effective reasoning.
+- Rhetoric - art of oral persuasion.
+- Dialectic - contest of ideas.
+These ideas date back to Aristotle and Plato.
 
-Medium is the message:
-McLuhan coined the phrase "the medium is the message to convey how communication channels shape messages"
-Is it any different communicating in a virtual environment? How?
+### Medium is the Message ###
 
-** task - watch the virtual revolution video: write down keywords that describes these differences. Describe implications flowing from these differences for communication. ie sms chat style writing. dumbed down society "de-evolution" What does the image of monkeys infront of computers mean?
+McLuhan coined the phrase "the medium is the message to convey how communication channels shape messages". Is it any different communicating in a virtual environment? How is the internet any different?
+
+##### Task: The Virtual Revolution #####
+Watch [The Virtual Revolution](http://www.youtube.com/watch?v=XADk9tHeJB8) video: Write down keywords that describes these differences. Describe implications flowing from these differences for communication. For example, SMS chat style writing resulting in dumbed down, de-evolving society. What does the image of monkeys infront of computers mean?
+
+##### Answer #####
+To do...
+
+### Effective Communication ###
 
 Why do we need effective communication:
-- solve problems
-- establish relationships and make connections - physical and conceptual
-- self affirmation and validation, feel good about ourselves
-- create understandings
-- disseminate information, understanding and knowledge.
+- Solve problems.
+- Establish relationships and make connections - physical and conceptual.
+- Self affirmation and validation, feel good about ourselves.
+- Create understandings
+- Disseminate information, understanding and knowledge.
 
-** task - which of these fits in a University environment? decide in your group, feedback to lecture group, online students leave feedback on discussion forum 1.
+##### Task: Effective Communication #####
+Which of these fits in a University environment?
+- Decide in your group
+- Provide feedback to lecture group
+- Online students leave feedback on Discussion Forum 1.
 
+##### Answer #####
+To do...
 
+### Understanding messages involves more than words ###
 
-Understanding messages involves more than words
+- How we say it - tone.
+- How we present ourselves - body language.
+- How we smell - pheromones denoting fear, anxiety.
+- Prior learning - previous experiences.
 
-- how we say it, tone
-- how we present ourselves, body language
-- how we smell (to a dog, pheromones denoting fear, anxiety)
-- prior learning, experiences
+##### Task: Dog With Biggest Vocabulary #####
+Watch [Dog with Biggest Vocabulary](http://www.youtube.com/watch?v=M2-1Re6F2UI). Refer to Interpreting Messages for further instructions.
 
-** task - watch 
+### Interpreting Messages ###
 
-** task - in your group, what is missing from communications that utilise a virtual environment. do humans interpret messages and react in a similar way to animals? Add feedback to week 1 discussion forum.
+##### Task: Interpreting Messages #####
+In your group, what is missing from communications that utilise a virtual environment. Do humans interpret messages and react in a similar way to animals? Add feedback to week 1 discussion forum.
 describe possible issues and influences ie gender, age, nationality - language barrier etc.
 
 
