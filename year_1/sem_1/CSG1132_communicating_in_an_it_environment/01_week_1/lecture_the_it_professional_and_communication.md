@@ -1,12 +1,13 @@
-## CSG1132 - Communicating in an IT Environment: Lecture 1 ##
+# CSG1132 - Communicating in an IT Environment #
+## Lecture 1 ##
 
 ### Introduction ###
 
 Three kinds of literacy are discussed in this unit:
 
-- Communications literacy: knowledge and skills for writing and presenting
-- Information literacy: knowledge and skills for finding and evaluating information sources
-- Statistical literacy: knowledge and skills for evaluating statistcal arguements and using statistics
+- Communications literacy: knowledge and skills for writing and presenting.
+- Information literacy: knowledge and skills for finding and evaluating information sources.
+- Statistical literacy: knowledge and skills for evaluating statistical arguments and using statistics.
 
 ICT: information communication technologies
 
@@ -16,48 +17,48 @@ Penalty apply for late submission without extension. 5% per day up to 5 working 
 
 ##### Important Dates #####
 
-- Widthrawal without HECS penalty: end of week 5
-- Withdrawal without academic penalty: end of week 10
-- Dropping out of unit without withdrawing officially, zero mark is used in calculating semester average
+- Withdrawal without HECS penalty: end of week 5.
+- Withdrawal without academic penalty: end of week 10.
+- Dropping out of unit without withdrawing officially, zero mark is used in calculating semester average.
 
 70% average to get into work integrated learning, ACS.
 
-### Outline of Assignments ###
+### Outline of Assessments ###
 
 - Assignment 1: 30%
-	- Stage 1: Map and explor the problem domain for the assignment
-	- Stage 2: Produce literature review. review will be used in assignment 2
-Assignment 1 can be completed during tutorial sessions, otherwise if online, complete the unit materials each week.
+	- Stage 1: Map and explore the problem domain for the assignment.
+	- Stage 2: Produce literature review. review will be used in Assignment 2.
+	- Assignment 1 can be completed during tutorial sessions, otherwise if online, complete the unit materials each week.
 
-assignment 2: 30%
-stage1: refine thesis based on reading of literature and data collected in class
-stage2: analyze and interpret evidence gathered (fromm the literature and through analysis and interpretation of data collected)
-stage3: plan and write research paper
+- Assignment 2: 30%
+	- Stage 1: Refine thesis based on reading of literature and data collected in class.
+	- Stage 2: Analyze and interpret evidence gathered (fromm the literature and through analysis and interpretation of data collected).
+	- Stage 3: Plan and write research paper.
 
-end of sem exam: 40%
-multiple choice, short answer questions and an essay. 2.5hrs long.
-exam preparation will occur at the end of semester.
+- End of semester exam: 40%
+	- Multiple choice, short answer questions and an essay and will be 2.5 hrs long.
+	- Exam preparation will occur at the end of semester.
 
-topic: user motivation - social media/networking
-case study: facebook
+### Semester Topic: User Motivation (Social Media) ###
+#### Case Study: Facebook ####
 
-user motivation occurs in human computer interaction (hci)
-solution providers live or die professionally according to whether your system is accepted or rejected by users
-ie. myspace vs facebook, yahoo vs google.
-love or hate facebook:
-- what factors promote or detract from user acceptance and motivation
-- how do we prove such relationship scientifically?
-for example, connection to size of social network vs patterns of user use.
-facebook use is related to network size etc.
+The topic area this semester is **user motivation in the use of social media**
+- User motivation occurs in Human Computer Interaction (HCI).
+- Solution providers live or die professionally according to whether your system is accepted or rejected by users. For example, Myspace vs Facebook or Yahoo vs. Google.
+- People love or hate Facebook.
+	- What factors promote or detract from user acceptance and motivation.
+	- How do we prove such relationship scientifically? For example, connection to size of social network vs patterns of user use. Facebook use is related to network size etc.
 
-why are we doing this unit?
+### Why are we doing this unit? ###
 
-ict professionals fail at communication for both written and oral communication.
-- business cases
-- customer relations
-need good comms to win the arguement.
+ICT  professionals fail at communication for both written and oral communication.
+- Writing business cases
+- Customer relations
+- Need good communication skills to win the argument.
 
-** task - watch it crowd video: write a list of keywords that describe how it workers are framed.
+#### Task: ####
+
+Watch [IT Crowd](http://www.youtube.com/watch?v=RViowXuIRQ8) video: write a list of keywords that describe how it workers are framed.
 ** answer: selfish, inconsiderate, can't be bothered, condescending, nerds, too technical, speaks another language, short-tempered.
 
 brilliant engineer vs brilliant communicator = wozniak vs steve jobs. who do we remember?
