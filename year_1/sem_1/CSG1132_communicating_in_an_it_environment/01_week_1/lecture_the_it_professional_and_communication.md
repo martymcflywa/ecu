@@ -123,7 +123,7 @@ To do...
 - Prior learning - previous experiences.
 
 ##### Task: Dog With Biggest Vocabulary #####
-Watch [Dog with Biggest Vocabulary](http://www.youtube.com/watch?v=M2-1Re6F2UI). Refer to Interpreting Messages for further instructions.
+Watch [Dog with Biggest Vocabulary](http://www.youtube.com/watch?v=M2-1Re6F2UI). Refer to [Interpreting Messages](#interpreting-messages) for further instructions.
 
 ### Interpreting Messages ###
 
