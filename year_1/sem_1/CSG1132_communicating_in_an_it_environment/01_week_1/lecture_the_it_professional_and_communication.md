@@ -11,7 +11,7 @@ Three kinds of literacy are discussed in this unit:
 
 ICT: information communication technologies
 
-### Penalties ###
+#### Penalties ####
 
 Penalty apply for late submission without extension. 5% per day up to 5 working days, reduced to 0 thereafter.
 
@@ -56,9 +56,8 @@ ICT  professionals fail at communication for both written and oral communication
 - Customer relations
 - Need good communication skills to win the argument.
 
-##### Task: #####
-
-Watch [IT Crowd](http://www.youtube.com/watch?v=RViowXuIRQ8) video: write a list of keywords that describe how it workers are framed.
+##### Task: IT Crowd Video #####
+Watch [IT Crowd](http://www.youtube.com/watch?v=RViowXuIRQ8) video: Write a list of keywords that describe how it workers are framed.
 
 ##### Answer: #####
 - Selfish
@@ -69,18 +68,18 @@ Watch [IT Crowd](http://www.youtube.com/watch?v=RViowXuIRQ8) video: write a list
 - Too technical or speaks another language
 - Short-tempered
 
-brilliant engineer vs brilliant communicator = wozniak vs steve jobs. who do we remember?
+### Stay Hungry, Stay Foolish ###
 
-** task - watch steve jobs 2005 stanford commencement address: review video, decide whether jobs was effective as communicator and why. ie shaping message to event or audience, implying medium effectively, using gesture and tone, underlying reality - personal honesty. What does "stay hungry stay foolish" mean, and what does it mean for good career in ICT?
+The story of a brilliant engineer vs. a brilliant communicator, Wozniak vs. Jobs. **Who do we remember?**
 
-** answer: Effective because the content was relevant to his audience. Used comic irony to engage attention and appeal to rebellious spirit of college students. Split speach in 3 short parts, making it easier to digest and have 3 clear messages. Used personal, down to earth stories that anyone could relate to.
+##### Task: Steve Jobs Video #####
+Watch [Steve Jobs 2005 Stanford Commencement Address](http://www.youtube.com/watch?v=dwIzCGSdVNA) video: Review the video and decide whether Steve Jobs was effective as a communicator and why. For example, shaping message to event or audience, implying medium effectively, using gesture and tone, underlying reality and personal honesty. What does "stay hungry stay foolish" mean, and what does it mean for good career in ICT?
 
-Stay hungry, stay foolish: Always set goals, don't settle for the current status quo, don't censor yourself when coming up with ideas.
+##### Answer: #####
+- The speech was effective because the content was relevant to his audience. He used comic irony to engage attention and appeal to rebellious spirit of college students. Steve Jobs also split speach in 3 short parts, making it easier to digest and have 3 clear messages. He used personal, down to earth stories that anyone could relate to.
+- Stay hungry, stay foolish: Always set goals, don't settle for the current status quo, don't censor yourself when coming up with ideas.
 
-
-
-
-Argumentation
+### Argumentation ###
 
 Form of communication to persuade with effective reasoning, based on three components:
 - logic: effective reasoning
