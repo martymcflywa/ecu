@@ -56,10 +56,18 @@ ICT  professionals fail at communication for both written and oral communication
 - Customer relations
 - Need good communication skills to win the argument.
 
-#### Task: ####
+##### Task: #####
 
 Watch [IT Crowd](http://www.youtube.com/watch?v=RViowXuIRQ8) video: write a list of keywords that describe how it workers are framed.
-** answer: selfish, inconsiderate, can't be bothered, condescending, nerds, too technical, speaks another language, short-tempered.
+
+##### Answer: #####
+- Selfish
+- Inconsiderate
+- Can't be bothered
+- Condescending
+- Nerds
+- Too technical or speaks another language
+- Short-tempered
 
 brilliant engineer vs brilliant communicator = wozniak vs steve jobs. who do we remember?
 
