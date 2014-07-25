@@ -116,3 +116,111 @@ Define the following propositions:
 #### Answer
 
 >Max has caught the bus and either Peter is not driving his own car, or Andrew is not late.
+
+## Truth Tables for Compound Propositions
+
+Construct the truth table for `p ˄ (q ˅ ~r)`.
+There are 8 possible combinations for each proposition. The formula is:
+
+`x = number of propositions; y = number of outcomes (which is two, 0 or 1)`
+
+`x^y = number of possible combinations`
+
+**Step 1:**
+Build the table and list all the possible combinations for the number of existing propositions.
+
+| p | q | r | ~r | q ˅ ~r | p ˄ (q ˅ ~r) |
+|---|---|---|----|--------|--------------|
+| 0 | 0 | 0 |    |        |              |
+| 0 | 0 | 1 |    |        |              |
+| 0 | 1 | 0 |    |        |              |
+| 0 | 1 | 1 |    |        |              |
+| 1 | 0 | 0 |    |        |              |
+| 1 | 0 | 1 |    |        |              |
+| 1 | 1 | 0 |    |        |              |
+| 1 | 1 | 1 |    |        |              |
+
+**Step 2:**
+Fill column by column according to relation defined for the particular column.
+
+| p | q | r | ~r | q ˅ ~r | p ˄ (q ˅ ~r) |
+|---|---|---|----|--------|--------------|
+| 0 | 0 | 0 | 1  |        |              |
+| 0 | 0 | 1 | 0  |        |              |
+| 0 | 1 | 0 | 1  |        |              |
+| 0 | 1 | 1 | 0  |        |              |
+| 1 | 0 | 0 | 1  |        |              |
+| 1 | 0 | 1 | 0  |        |              |
+| 1 | 1 | 0 | 1  |        |              |
+| 1 | 1 | 1 | 0  |        |              |
+
+**Step 3:**
+Continue filling the columns.
+
+| p | q | r | ~r | q ˅ ~r | p ˄ (q ˅ ~r) |
+|---|---|---|----|--------|--------------|
+| 0 | 0 | 0 | 1  | 1      |              |
+| 0 | 0 | 1 | 0  | 0      |              |
+| 0 | 1 | 0 | 1  | 1      |              |
+| 0 | 1 | 1 | 0  | 1      |              |
+| 1 | 0 | 0 | 1  | 1      |              |
+| 1 | 0 | 1 | 0  | 0      |              |
+| 1 | 1 | 0 | 1  | 1      |              |
+| 1 | 1 | 1 | 0  | 1      |              |
+
+**Step 4:**
+Fill in final column.
+
+| p | q | r | ~r | q ˅ ~r | p ˄ (q ˅ ~r) |
+|---|---|---|----|--------|--------------|
+| 0 | 0 | 0 | 1  | 1      | 0            |
+| 0 | 0 | 1 | 0  | 0      | 0            |
+| 0 | 1 | 0 | 1  | 1      | 0            |
+| 0 | 1 | 1 | 0  | 1      | 0            |
+| 1 | 0 | 0 | 1  | 1      | 1            |
+| 1 | 0 | 1 | 0  | 0      | 0            |
+| 1 | 1 | 0 | 1  | 1      | 1            |
+| 1 | 1 | 1 | 0  | 1      | 1            |
+
+>Use data in previous columns to determine proposition of current column
+
+## Tautologies and Contradictions
+
+A proposition that is true for every combination of truth value is called a tautology.
+
+The proposition `(p ˅ q) ˅ (~p ˄ ~q)` is a tautology.
+
+**Step 1:**
+
+| p | q | p ˅ q | ~p ˄ ~q | (p ˅ q) ˅ (~p ˄ ~q) |
+|---|---|-------|---------|---------------------|
+| 0 | 0 |       |         |                     |
+| 0 | 1 |       |         |                     |
+| 1 | 0 |       |         |                     |
+| 1 | 1 |       |         |                     |
+
+**Step 2:**
+
+| p | q | p ˅ q | ~p ˄ ~q | (p ˅ q) ˅ (~p ˄ ~q) |
+|---|---|-------|---------|---------------------|
+| 0 | 0 | 0     | 1       | 1                   |
+| 0 | 1 | 1     | 0       | 1                   |
+| 1 | 0 | 1     | 0       | 1                   |
+| 1 | 1 | 1     | 0       | 1                   |
+
+A proposition that is false for every possible combination of truth values is called a contradiction.
+
+The proposition `(p ˄ q) ˄ (~p ˅ ~q)` is a contradiction.
+
+| p | q | p ˄ q | ~p ˅ ~q | (p ˄ q) ˄ (~p ˅ ~q) |
+|---|---|-------|---------|---------------------|
+| 0 | 0 | 0     | 1       | 0                   |
+| 0 | 1 | 0     | 1       | 0                   |
+| 1 | 0 | 0     | 1       | 0                   |
+| 1 | 1 | 1     | 0       | 0                   |
+
+## Logical Equivalence
+
+We often have different, but equivalent, logical expressions. To determine whether two given propositions have exactly the same logical meaning, we use a truth table to check it. 
+
+Logical equivalence is denoted by the `≡` symbol.
