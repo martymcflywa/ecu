@@ -241,3 +241,98 @@ The truth table shows that `~p ˄ (p ˅ ~q)` and `~(p ˅ q)` are logically equiv
 ## The Negation of an `AND` Statement
 
 One of `de Morgan's laws` define the negation of an `AND` statement.
+
+`NOT(p AND q) ≡ NOT p OR NOT q`
+
+`~(p ˄ q) ≡ ~p ˅ ~q`
+
+| p | q | p ˄ q | ~(p ˄ q) | ~p | ~q | ~p ˅ ~q |
+|:-:|:-:|:-----:|:--------:|:--:|:--:|:-------:|
+| 0 | 0 | 0     |  1       | 1  | 1  | 1       |
+| 0 | 1 | 0     |  1       | 1  | 0  | 1       |
+| 1 | 0 | 0     |  1       | 0  | 1  | 1       |
+| 1 | 1 | 1     |  0       | 0  | 0  | 0       |
+
+## The Negation of an `OR` Statement
+
+The second of `de Morgan's laws`.
+
+`NOT(p OR q) ≡ NOT p AND NOT q`
+
+`~(p ˅ q) ≡ ~p ˄ ~q`
+
+| p | q | p ˅ q | ~(p ˅ q) | ~p | ~q | ~p ˄ ~q |
+|:-:|:-:|:-----:|:--------:|:--:|:--:|:-------:|
+| 0 | 0 | 0     |  1       | 1  | 1  | 1       |
+| 0 | 1 | 1     |  0       | 1  | 0  | 0       |
+| 1 | 0 | 1     |  0       | 0  | 1  | 0       |
+| 1 | 1 | 1     |  0       | 0  | 0  | 0       |
+
+## Laws of Propositional Logic
+
+We frequently need to simplify logical expressions or to check whether given logical expressions are logically equivalent. One way to simplify expressions is to use the laws of logic.
+
+For our purposes, the most important laws are the `distributive laws` and `de Morgan's laws`.
+
+| Distributive Laws                | De Morgan's Laws     |
+|----------------------------------|----------------------|
+| `p ˅ (q ˄ r) = (p ˅ q) ˄ (p ˅ r)`| `~(p ˅ q) = ~p ˄ ~q` |
+| `p ˄ (q ˅ r) = (p ˄ q) ˅ (p ˄ r)`| `~(p ˄ q) = ~p ˅ ~q` |
+| **Alternate Symbols**            |                      |
+| `p + q • r = (p + q) • (p + r)`  | `(p + q)' = p' • q'` |
+| `p • (q + r) = p • q + p • r`    | `(p • q)' = p' + q'` |
+
+## Conditional Statements
+
+In computing we often use conditional statements in the form `if... then...`. In other words, if particular conditions are satisfied, then certain consequences should follow.
+
+A proposition of the form `if p then q` is called a conditional statement, and is represented by `p → q`.
+
+The symbolic statement is usually read as `if p then q` or perhaps as `p implies q`.
+
+For condition `true → false` is false; the other combinations are true.
+
+| p | q | p → q |
+|:-:|:-:|:-----:|
+| 0 | 0 | 1     |
+| 0 | 1 | 1     |
+| 1 | 0 | 0     |
+| 1 | 1 | 1     |
+
+## The Negation of a Conditional Statement
+
+The negation of conditional `p → q` is:
+
+`~(p → q) ≡ p ˄ ~q`
+
+| p | q | p → q | ~(p → q) | p | ~q | p ˄ ~q |
+|:-:|:-:|:-----:|:--------:|:-:|:--:|:------:|
+| 0 | 0 | 1     | 0        | 0 | 1  | 0      |
+| 0 | 1 | 1     | 0        | 0 | 0  | 0      |
+| 1 | 0 | 0     | 1        | 1 | 1  | 1      |
+| 1 | 1 | 1     | 0        | 1 | 0  | 0      |
+
+The conditional `p → q` and its contra-positive `~q → ~p` are logically equivalent.
+
+`p → q ≡ ~q → ~p`
+
+>Compliment of `if` statement produces compound proposition without `if`. A compliment statement that includes an `if` should not contain `if`. Must maintain correct order in `if` statement.
+
+## The Converse of a Conditional Statement
+
+`p → q` is a conditional statement, its converse is `q → p`. These two statements may look similar, bu there is no logical connections.
+
+**The two statements are completely independent of each other.**
+
+One of the most common errors in logic is to confuse a conditional statement and its converse.
+
+**There is no logical connection between:**
+
+`p → q AND q → p`
+
+## Truth Tables Example
+
+Construct truth tables for the following proposition:
+
+`((p ˄ ~q) → r) ˄ (~p → ~r)`
+
