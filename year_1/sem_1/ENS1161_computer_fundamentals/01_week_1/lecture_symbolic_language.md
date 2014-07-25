@@ -17,15 +17,15 @@ Compound propositions are built from simple connectives (aka operators) like in 
 
 ### Examples of compound propositions
 
-1. If the system is ready and red light is on, then file is printed
+- If the system is ready and red light is on, then file is printed
 
 	- `(q ˄ r) → p`
 
-2. If the file is not printed then either the red light is not on or the system is not ready
+- If the file is not printed then either the red light is not on or the system is not ready
 
 	- `~p → (~r ˅ ~q)`
 
-3. Either the red light is on and the file is printed or else the system is not ready
+- Either the red light is on and the file is printed or else the system is not ready
 
 	- `(r ˄ p) ˅ ~q`
 
@@ -44,13 +44,13 @@ To be able to use truth tables as an important tool, we need to first define con
 
 `~p` is read as `not p` or `p is not true`.
 
-For example, if `p = today is saturday`, then `~p` means `it is not true that today is Saturday`. Or in simpler english `Today is not Saturday`.
+For example, if `p = today is saturday`, then `~p = it is not true that today is Saturday`. Or in simpler english `Today is not Saturday`.
 
 Other examples:
 
-- `p: 3 + 4 = 7` || `~p: 3 + 4 ≠ 7`
-- `q: it is raining` || `~q: it is not raining`
-- `r: 8 > 15` || `~r: 8 ≤ 15`
+- `p: 3 + 4 = 7` or `~p: 3 + 4 ≠ 7`
+- `q: it is raining` or `~q: it is not raining`
+- `r: 8 > 15` or `~r: 8 ≤ 15`
 
 #### `NOT` Truth Table Example
 
@@ -94,7 +94,7 @@ An `OR` statement is `true` if at least one part is `true`, and it is also `true
 
 An `OR` statement is `false` if both parts are `false`; otherwise it is `true`.
 
-## Compound Propositions Excercise
+## Compound Propositions Exercises
 
 Define the following propositions:
 
@@ -102,14 +102,14 @@ Define the following propositions:
 - `a` = Andrew is late
 - `m` = Max has caught the bus
 
-Translate a compound proposition below into symbolic notation:
+**Translate a compound proposition below into symbolic notation:**
 >Either Peter is driving his own car and Andrew is late, or else Max has not caught the bus.
 
 #### Answer
 
 `(p ˄ a) ˅ ~m`
 
-Translate the following into simple english:
+**Translate the following into simple english:**
 
 `m ˄ (~p ˅ ~a)`
 
