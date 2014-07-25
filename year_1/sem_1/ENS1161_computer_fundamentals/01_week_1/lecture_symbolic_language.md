@@ -55,7 +55,7 @@ Other examples:
 #### `NOT` Truth Table Example
 
 |  p  |  ~p  |
-|-----|------|
+|:---:|:----:|
 | 0   | 1    |
 | 1   | 0    |
 
@@ -69,7 +69,7 @@ Other examples:
 #### `AND` Truth Table Example
 
 | p | q | p ˄ q |
-|---|---|-------|
+|:-:|:-:|:-----:|
 | 0 | 0 | 0     |
 | 0 | 1 | 0     |
 | 1 | 0 | 0     |
@@ -86,7 +86,7 @@ An `OR` statement is `true` if at least one part is `true`, and it is also `true
 #### `OR` Truth Table Example
 
 | p | q | p ˅ q |
-|---|---|-------|
+|:-:|:-:|:-----:|
 | 0 | 0 | 0     |
 | 0 | 1 | 1     |
 | 1 | 0 | 1     |
@@ -130,7 +130,7 @@ There are 8 possible combinations for each proposition. The formula is:
 Build the table and list all the possible combinations for the number of existing propositions.
 
 | p | q | r | ~r | q ˅ ~r | p ˄ (q ˅ ~r) |
-|---|---|---|----|--------|--------------|
+|:-:|:-:|:-:|:--:|:------:|:------------:|
 | 0 | 0 | 0 |    |        |              |
 | 0 | 0 | 1 |    |        |              |
 | 0 | 1 | 0 |    |        |              |
@@ -144,7 +144,7 @@ Build the table and list all the possible combinations for the number of existin
 Fill column by column according to relation defined for the particular column.
 
 | p | q | r | ~r | q ˅ ~r | p ˄ (q ˅ ~r) |
-|---|---|---|----|--------|--------------|
+|:-:|:-:|:-:|:--:|:------:|:------------:|
 | 0 | 0 | 0 | 1  |        |              |
 | 0 | 0 | 1 | 0  |        |              |
 | 0 | 1 | 0 | 1  |        |              |
@@ -158,7 +158,7 @@ Fill column by column according to relation defined for the particular column.
 Continue filling the columns.
 
 | p | q | r | ~r | q ˅ ~r | p ˄ (q ˅ ~r) |
-|---|---|---|----|--------|--------------|
+|:-:|:-:|:-:|:--:|:------:|:------------:|
 | 0 | 0 | 0 | 1  | 1      |              |
 | 0 | 0 | 1 | 0  | 0      |              |
 | 0 | 1 | 0 | 1  | 1      |              |
@@ -172,7 +172,7 @@ Continue filling the columns.
 Fill in final column.
 
 | p | q | r | ~r | q ˅ ~r | p ˄ (q ˅ ~r) |
-|---|---|---|----|--------|--------------|
+|:-:|:-:|:-:|:--:|:------:|:------------:|
 | 0 | 0 | 0 | 1  | 1      | 0            |
 | 0 | 0 | 1 | 0  | 0      | 0            |
 | 0 | 1 | 0 | 1  | 1      | 0            |
@@ -193,7 +193,7 @@ The proposition `(p ˅ q) ˅ (~p ˄ ~q)` is a tautology.
 **Step 1:**
 
 | p | q | p ˅ q | ~p ˄ ~q | (p ˅ q) ˅ (~p ˄ ~q) |
-|---|---|-------|---------|---------------------|
+|:-:|:-:|:-----:|:-------:|:-------------------:|
 | 0 | 0 |       |         |                     |
 | 0 | 1 |       |         |                     |
 | 1 | 0 |       |         |                     |
@@ -202,7 +202,7 @@ The proposition `(p ˅ q) ˅ (~p ˄ ~q)` is a tautology.
 **Step 2:**
 
 | p | q | p ˅ q | ~p ˄ ~q | (p ˅ q) ˅ (~p ˄ ~q) |
-|---|---|-------|---------|---------------------|
+|:-:|:-:|:-----:|:-------:|:-------------------:|
 | 0 | 0 | 0     | 1       | 1                   |
 | 0 | 1 | 1     | 0       | 1                   |
 | 1 | 0 | 1     | 0       | 1                   |
@@ -213,7 +213,7 @@ A proposition that is false for every possible combination of truth values is ca
 The proposition `(p ˄ q) ˄ (~p ˅ ~q)` is a contradiction.
 
 | p | q | p ˄ q | ~p ˅ ~q | (p ˄ q) ˄ (~p ˅ ~q) |
-|---|---|-------|---------|---------------------|
+|:-:|:-:|:-----:|:-------:|:-------------------:|
 | 0 | 0 | 0     | 1       | 0                   |
 | 0 | 1 | 0     | 1       | 0                   |
 | 1 | 0 | 0     | 1       | 0                   |
