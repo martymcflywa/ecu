@@ -330,9 +330,60 @@ One of the most common errors in logic is to confuse a conditional statement and
 
 `p → q AND q → p`
 
-## Truth Tables Example
+## Truth Table Examples
 
 Construct truth tables for the following proposition:
 
 `((p ˄ ~q) → r) ˄ (~p → ~r)`
 
+| p | q | r | ~q | p ˄ ~q | (p ˄ ~q) → r | ~p | ~r | ~p → ~r | ((p ˄ ~q) → r) ˄ (~p → ~r) |
+|:-:|:-:|:-:|:--:|:------:|:------------:|:--:|:--:|:-------:|:--------------------------:| 
+| 0 | 0 | 0 | 1  | 0      | 1            | 1  | 1  | 1       | 1                          |
+| 0 | 0 | 1 | 1  | 0      | 1            | 1  | 0  | 0       | 0                          |
+| 0 | 1 | 0 | 0  | 0      | 1            | 1  | 1  | 1       | 1                          |
+| 0 | 1 | 1 | 0  | 0      | 1            | 1  | 0  | 0       | 0                          |
+| 1 | 0 | 0 | 1  | 1      | 0            | 0  | 0  | 1       | 0                          |
+| 1 | 0 | 1 | 1  | 1      | 1            | 0  | 0  | 1       | 1                          |
+| 1 | 1 | 0 | 0  | 0      | 1            | 0  | 1  | 1       | 1                          |
+| 1 | 1 | 1 | 0  | 0      | 1            | 0  | 0  | 1       | 1                          |
+
+The last column is the truth table for `((p ˄ ~q) → r) ˄ (~p → ~r)`
+
+Use a truth table to show that `p ˄ (q ˅ r) ≡ (p ˄ q) ˅ (p ˄ r)`
+
+| p | q | r | q ˅ r | p ˄ (q ˅ r) | p ˄ q | p ˄ r | (p ˄ q) ˅ (p ˄ r) |
+|:-:|:-:|:-:|:-----:|:-----------:|:-----:|:-----:|:-----------------:|
+| 0 | 0 | 0 | 0     | 0           | 0     | 0     | 0                 |
+| 0 | 0 | 1 | 1     | 0           | 0     | 0     | 0                 |
+| 0 | 1 | 0 | 1     | 0           | 0     | 0     | 0                 |
+| 0 | 1 | 1 | 1     | 0           | 0     | 0     | 0                 |
+| 1 | 0 | 0 | 0     | 0           | 0     | 0     | 0                 |
+| 1 | 0 | 1 | 1     | 1           | 0     | 1     | 1                 |
+| 1 | 1 | 0 | 1     | 1           | 1     | 0     | 1                 |
+| 1 | 1 | 1 | 1     | 1           | 1     | 1     | 1                 |
+
+Column for `p ˄ (q ˅ r)` and `(p ˄ q) ˅ (p ˄ r)` are identical proving that `p ˄ (q ˅ r) ≡ (p ˄ q) ˅ (p ˄ r)` is `true`.
+
+## Compound Propositions Example
+
+**Define the following propositions:**
+
+- `s` = Sue is a geologist
+- `a` = Anne sells insurance
+- `m` = Mary teaches music
+
+**Convert the following english sentence into a compound proposition:**
+
+- If Mary teaches music then Sue is a geologist and Anne does not sell insurance.
+    -  **Answer:** `m → s ˄ ~a`
+
+- Translate into simple english: `~s → (~m ˄ ~a)`
+    - **Answer:** If Sue is not a geologist then Mary does not teach music and Anne does not sell insurance.
+
+Use `de Morgan's laws` to find the negation of each of the following statements. Give your answers in simple English.
+
+- Peter has long hair and he is not wearing a coat.
+    - **Answer:** Either Peter does not have long hair or else he is wearing a coat.
+    
+- David plays guitar and likes tennis
+    - **Answer:** David does not play guitar or else he does not like tennis.
