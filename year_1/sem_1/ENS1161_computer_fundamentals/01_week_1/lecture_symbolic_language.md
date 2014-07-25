@@ -224,3 +224,20 @@ The proposition `(p ˄ q) ˄ (~p ˅ ~q)` is a contradiction.
 We often have different, but equivalent, logical expressions. To determine whether two given propositions have exactly the same logical meaning, we use a truth table to check it. 
 
 Logical equivalence is denoted by the `≡` symbol.
+
+Create a truth table for the following compound proposition.
+
+`~p ˄ (p ˅ ~q) ≡ ~(p ˅ q)`
+
+| p | q | ~p | ~q | p ˅ ~q | ~p ˄ (p ˅ ~q) | p ˅ q | ~(p ˅ q) |
+|:-:|:-:|:--:|:--:|:------:|:-------------:|:-----:|:--------:|
+| 0 | 0 | 1  | 1  | 1      | 1             | 0     | 1        |
+| 0 | 1 | 1  | 0  | 0      | 0             | 1     | 0        |
+| 1 | 0 | 0  | 1  | 1      | 0             | 1     | 0        |
+| 1 | 1 | 0  | 0  | 1      | 0             | 1     | 0        |
+
+The truth table shows that `~p ˄ (p ˅ ~q)` and `~(p ˅ q)` are logically equivalent.
+
+## The Negation of an `AND` Statement
+
+One of `de Morgan's laws` define the negation of an `AND` statement.
