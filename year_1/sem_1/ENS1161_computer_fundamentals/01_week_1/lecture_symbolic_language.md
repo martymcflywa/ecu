@@ -407,3 +407,50 @@ We write an argument symbolically as `P1, P2, ..., Pn | C`
 To show that the argument `P1, P2, ..., Pn | C` is valid, we check that whenever the premises `P1, P2, ..., Pn` are `true`, the conclusion `C` is also `true`.
 
 Test the validity of the argument: `p → (q ˄ ~r), q, r | ~p`
+
+| p | q | r | ~r | q ˄ ~r | p → (q ˄ ~r) | ~p |
+|:-:|:-:|:-:|:--:|:------:|:------------:|:--:|
+| 0 | 0 | 0 | 1  | 0      | 1            | 1  |
+| 0 | 0 | 1 | 0  | 0      | 1            | 1  |
+| 0 | 1 | 0 | 1  | 1      | 1            | 1  |
+| 0 | 1 | 1 | 0  | 0      | 1            | 1  |
+| 1 | 0 | 0 | 1  | 0      | 0            | 0  |
+| 1 | 0 | 1 | 0  | 0      | 0            | 0  |
+| 1 | 1 | 0 | 1  | 1      | 1            | 0  |
+| 1 | 1 | 1 | 0  | 0      | 0            | 0  |
+
+Columns `q`, `r` and `p → (q ˄ ~r)` are **premises** and column `~p` is the **conclusion**. 
+
+There is only one row in which the premises are all true (row 4), and in this row, the conclusion is also true. **Therefore, the argument is valid**.
+
+Test the validity of the argument: `p ˅ q, p → ~r, ~r | p`
+
+| p | q | r | ~r | p ˅ q | p → ~r | check |
+|:-:|:-:|:-:|:--:|:-----:|:------:|:-----:|
+| 0 | 0 | 0 | 1  | 0     | 1      |       |
+| 0 | 0 | 1 | 0  | 0     | 1      |       |
+| 0 | 1 | 0 | 1  | 1     | 1      | no    |
+| 0 | 1 | 1 | 0  | 1     | 1      |       |
+| 1 | 0 | 0 | 1  | 1     | 1      | yes   |
+| 1 | 0 | 1 | 0  | 1     | 0      |       |
+| 1 | 1 | 0 | 1  | 1     | 1      | yes   |
+| 1 | 1 | 1 | 0  | 1     | 0      |       |
+
+Column `p` is the **conclusion** and columns `~r`, `p ˅ q` and `p → ~r` are **premises**.
+
+There are three rows (see `check` column) in which all the premises are `true`, but in one of these rows, the conclusion is `false`. **Therefore, the argument is invalid**.
+
+## Clarification required
+
+[The Negation of a Conditional Statement](#the-negation-of-a-conditional-statement)
+Confirm with lecturer the following statement at 1:30:20 - 1:33:20 of video: What is the "important" thing to remember? It was hard to understand, mic did not pick it up very well. Is the note below correct?
+>Compliment of `if` statement produces compound proposition without `if`. A compliment statement that includes an `if` should not contain `if`. Must maintain correct order in `if` statement.
+
+Confirm if the following is true regarding `if` statements. Do they function the same way as `if` statements in programming?
+Is `a → b` the same as:
+
+```
+if(a) {
+	b;
+}
+```
