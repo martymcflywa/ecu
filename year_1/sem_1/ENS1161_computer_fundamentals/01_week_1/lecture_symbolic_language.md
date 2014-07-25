@@ -105,7 +105,7 @@ Define the following propositions:
 **Translate a compound proposition below into symbolic notation:**
 >Either Peter is driving his own car and Andrew is late, or else Max has not caught the bus.
 
-#### Answer
+**Answer**
 
 `(p ˄ a) ˅ ~m`
 
@@ -113,7 +113,7 @@ Define the following propositions:
 
 `m ˄ (~p ˅ ~a)`
 
-#### Answer
+**Answer**
 
 >Max has caught the bus and either Peter is not driving his own car, or Andrew is not late.
 
@@ -387,3 +387,23 @@ Use `de Morgan's laws` to find the negation of each of the following statements.
     
 - David plays guitar and likes tennis
     - **Answer:** David does not play guitar or else he does not like tennis.
+    
+## Arguments
+
+An argument consists of a series of statements (called **premises**) and a **conclusion** like in the example shown below. Notice that the premises are listed one after the other and separated from the conclusion by a horizontal or vertical line, as appropriate.
+
+```
+If the printer is online and the file is loaded then the file will be printed (premise)
+The file is loaded (premise)
+The file is not being printed (premise)
+---
+Therefore the printer is not online (conclusion)
+```
+
+We write an argument symbolically as `P1, P2, ..., Pn | C`
+
+`P1, P2, ..., Pn` are the **premises** and `C` is the **conclusion**.
+
+To show that the argument `P1, P2, ..., Pn | C` is valid, we check that whenever the premises `P1, P2, ..., Pn` are `true`, the conclusion `C` is also `true`.
+
+Test the validity of the argument: `p → (q ˄ ~r), q, r | ~p`
