@@ -1,52 +1,55 @@
 Lecture Tasks:
-  ✔ What are the components, connections and purpose of a football team? @done (14-07-28 17:28)
-  ✔ Think of other systems with emergent properties. @done (14-07-28 17:30)
-  ✔ Come up with 3 examples of information systems. @done (14-07-28 17:28)
-  ✔ What kinds of knowledge must a systems analyst have? @done (14-07-28 17:46)
-    List as many as you can think of and organise the list into categories or areas of knowledge
-  ✔ Define the following terms: @done (14-07-28 17:59)
-    - information
-    - system
-    - information systems
-    - systems analysis
-    - human activity system
-    - skill
-    - knowledge
-  ☐ Leave feedback in discussion board.
+  What is Systems Analysis:
+    ✔ What are the components, connections and purpose of a football team? @done (14-07-28 17:28)
+    ✔ Think of other systems with emergent properties. @done (14-07-28 17:30)
+    ✔ Come up with 3 examples of information systems. @done (14-07-28 17:28)
+    ✔ What kinds of knowledge must a systems analyst have? @done (14-07-28 17:46)
+      List as many as you can think of and organise the list into categories or areas of knowledge
+    ✔ Define the following terms: @done (14-07-28 17:59)
+      - information
+      - system
+      - information systems
+      - systems analysis
+      - human activity system
+      - skill
+      - knowledge
+    ☐ Leave feedback in discussion board.
 
-  Answers:
-    Football team:
-      What are the components, connections and purpose of a football team?
-      A football team is made up of players, coaches, support staff like doctors and physiotherapists, managers, owners, sponsors, and fans. Their purpose is to win enough games against other teams to win the championship, which in turn entertains the fans, which in turn raises revenue for the sponsors and the team.
-    Emergent Properties:
-      Another examples of a system with emergent properties is a fridge, without it's key components, a fridge wouldn't be cold
-    Three other examples of information systems:
-      Three other examples of other information systems are git version control, a library database and CRM (customer relationship management) software.
-    Some knowledge a systems analyst should have:
-      - Communication skills
-        - People skills
-        - Ability to translate business needs to technical requirements and vice versa
-        - Requirement gathering
-      - Analysis skills
-        - Data analysis
-        - Process and system mapping
-        - Problem solving skills
-     Define the following terms:
-        - Information: 
-            Any form of communication that provides understandable and useful knowledge to the receiver
-        - System: 
-            A set of things working together as parts of a mechanism or an interconnecting network *wikipedia*.
-        - Information systems: 
-            A means of catering for the flow and storage of information to satisfy requirements of all users.
-        - Systems analysis: 
-            The start of a development process, a group of methods to assist in understanding a problem before solving it, through modelling, abstracting or simplifying problem and/or removing noise from the information. It is also a way of understanding and communicating what a client actually wants done, which includes requirements elicitation and specification.
-        - Human Activity System:
-            What people do with information.
-        - Skill:
-            An ability that is learned (or born with) to carry out a task with pre-determined results *wikipedia*.
-        - Knowledge:
-            Familiarity, awareness or understanding *wikipedia*.
-
+    Answers:
+      Football team:
+        What are the components, connections and purpose of a football team?
+        A football team is made up of players, coaches, support staff like doctors and physiotherapists, managers, owners, sponsors, and fans. Their purpose is to win enough games against other teams to win the championship, which in turn entertains the fans, which in turn raises revenue for the sponsors and the team.
+      Emergent Properties:
+        Another examples of a system with emergent properties is a fridge, without it's key components, a fridge wouldn't be cold
+      Three other examples of information systems:
+        Three other examples of other information systems are git version control, a library database and CRM (customer relationship management) software.
+      Some knowledge a systems analyst should have:
+        - Communication skills
+          - People skills
+          - Ability to translate business needs to technical requirements and vice versa
+          - Requirement gathering
+        - Analysis skills
+          - Data analysis
+          - Process and system mapping
+          - Problem solving skills
+       Define the following terms:
+          - Information: 
+              Any form of communication that provides understandable and useful knowledge to the receiver
+          - System: 
+              A set of things working together as parts of a mechanism or an interconnecting network *wikipedia*.
+          - Information systems: 
+              A means of catering for the flow and storage of information to satisfy requirements of all users.
+          - Systems analysis: 
+              The start of a development process, a group of methods to assist in understanding a problem before solving it, through modelling, abstracting or simplifying problem and/or removing noise from the information. It is also a way of understanding and communicating what a client actually wants done, which includes requirements elicitation and specification.
+          - Human Activity System:
+              What people do with information.
+          - Skill:
+              An ability that is learned (or born with) to carry out a task with pre-determined results *wikipedia*.
+          - Knowledge:
+              Familiarity, awareness or understanding *wikipedia*.
+  Systematic Development:
+    ☐ Recreate missing diagrams from lecture 2014-07-28 21:31
+    ☐ Complete review definitions
 Lab Tasks:
   ✔ Select four of the following identified systems and write the major process of each system in this model. @done (14-07-28 20:34)
     input -> process -> output
