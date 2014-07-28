@@ -1,4 +1,4 @@
-# CSI1241 Lecture 1
+# What Is System Analysis
 
 ## Introduction
 
