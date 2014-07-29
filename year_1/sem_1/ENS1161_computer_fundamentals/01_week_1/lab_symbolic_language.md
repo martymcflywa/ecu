@@ -194,11 +194,11 @@ The statement `~p ˄ (p ˅ ~q) ≡ ~(p ˅ q)` is `true`.
 
 ## 8. Bill tried for a job where the requirement was that you must have a B-class licence and be over 20 years of age. He failed to meet the requirement. What conclusion can we draw?
 
-- `l` = Has B-class licence
+- `b` = Has B-class licence
 - `y` = Over 20 years old
-- `b` = Bill got the job
+- `j` = Bill got the job
 
-~(l ˄ y) → ~b
+~(b ˄ y) → ~j
 
 **The answer, per solutions sheet:**
 >Either he did not have a B-class licence or else he was not over 20 years of age (or perhaps both) 
