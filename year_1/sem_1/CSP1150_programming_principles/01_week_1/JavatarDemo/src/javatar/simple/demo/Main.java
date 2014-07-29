@@ -8,5 +8,6 @@ public class Main {
 		System.out.print("Hey! What's your name: ");
 		String name = sc.nextLine();
 		System.out.println("Hello, " + name + "!");
+		sc.close();
 	}
 }
