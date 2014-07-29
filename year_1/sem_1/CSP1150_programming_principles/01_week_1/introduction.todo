@@ -3,3 +3,5 @@ Lecture Tasks:
 
 Clarification required:
   ☐ Procedural Programming pp. 28: Confirm what it means when data formats might change. Does that mean int to String for example?
+  ☐ Is it ok to use a different IDE? I already have Eclipse installed and used to how it works.
+  ☐ I was under the impression that a main method is always required. But in the tutorial example, the method is called `print` instead.
