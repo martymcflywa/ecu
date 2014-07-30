@@ -1,4 +1,5 @@
 Lecture Tasks:
+
   What is Systems Analysis:
     ✔ What are the components, connections and purpose of a football team? @done (14-07-28 17:28)
     ✔ Think of other systems with emergent properties. @done (14-07-28 17:30)
@@ -50,7 +51,9 @@ Lecture Tasks:
   Systematic Development:
     ☐ Recreate missing diagrams from lecture 2014-07-28 21:31
     ☐ Complete review definitions
+
 Lab Tasks:
+
   ✔ Select four of the following identified systems and write the major process of each system in this model. @done (14-07-28 20:34)
     input -> process -> output
     - website
@@ -61,7 +64,134 @@ Lab Tasks:
     - milky way galaxy
     - systems analysis lecture
     - person holding glass of water
+
   Answer:
+
     See http://i.imgur.com/oVn6Osn.png
+
 Clarification Required:
+  
   ☐ *A taxonomy of systems analysis methods (Wood-Harper and Fitzgerald, 1982)* pp 9. What does 'fuzzy/soft' refer to in the System paradigm?
+
+Reading Notes - Systems Analysis and Design: People, Processes, and Projects:
+  
+  Siau, K., Chiang, R. H. L., & Hardgrave, B. C. (2010). Systems Analysis and Design: People, Processes, and Projects. Siau, Keng Chiang, Roger H. L. Hardgrave, Bill C. (p. 241). Armonk, NY, USA: M. E. Sharpe Incorporated.
+  
+  Chapter 1:
+    
+    Introduction:
+
+      - Overall success rates of systems development projects historically have been very low.
+      - Much research has been devoted to examining why systems fail so often and how they can be improved (Avison and Fitzgerald, 2003; Hardgrave et al., 2003; Schmidt et al., 2001; Smith et al., 2001; Siau et al., 1997).
+      - [B]etween 1989 and 1994, the number of object-oriented development approaches grew from around ten to more than fifty (Booch et al., 2005).
+      - [B]etween 1994 and 2008, have not seen a drop in the number of proposals regarding how best to build systems.
+      - Systems from late 90's to early 2000's:
+        - Pair programming (Williams and Kessler, 2002)[.]
+        - [E]xtreme programming (Beck, 1999)[.]
+        - [A]gile development(Erickson et al., 2005; Fowler and Highsmith, 2001)[.]
+      - Recent trends:
+        - [S]ervice-oriented architecture (Erickson and Siau, 2008)[.]
+        - [C]loud computing[.]
+        - Web 2.0[.]
+        - [O]pen source systems (Long and Siau, 2007)[.]
+          - [O]pen source development can be connected to sociotechnical systems[.]
+          - [U]sers can meaningfully contribute to technical systems development[.]
+          - [P]roposes that users should be more closely connected to systems building[.]
+          - Traditionally [...] the developing company owns the source code, and keeps it closed [...] to outside programmers or users.
+          - Open source [...] allows users from outside [...] to contribute to code writing [and to] programming improvement initiatives.
+          - Peer-based collaboration efforts, including open source and pair programming, that are aimed at improving applications and systems represent a fundamental divergence in thought regarding how systems should be built.
+        - Technical approaches and practice combined with those of social and behavioral sciences have become important to ensuring business success.
+        - [A] sociotechnical approach can provide insight into better organizational and process design and practice[.]
+    
+    Cherns' Principles for Social-Technical Design:
+
+      Social-Technical Design (Cherns 1976, 1987)
+      - Sociotechnical theory assumes that an organization or subcomponent can be viewed as a sociotechnical system. A sociotechnical system is composed of two interindependent, closely relatedand interacting systems, social and technical (Bostrom and Heinen, 1977a).
+      - Cherns (1976, 1987) insisted that if systems builders failed to account for the social requirements or needs of the system being constructed, those needs would be met in “some other way,” [which] would likely impede the organization as much as help it.
+      - Table 1.1 summarizes Cherns’s ten principles (1987).
+
+      *Table 1.1: pp. 4* 
+
+        | No. | Principle                      |
+        |:---:|:-------------------------------|
+        | 1   | Compatibility                  |
+        | 2   | Minimal Critical Specification |
+        | 3   | Variance Control               |
+        | 4   | Boundary Location              |
+        | 5   | Information Flow               |
+        | 6   | Power and Authority            |
+        | 7   | Multifunctional                |
+        | 8   | Support Congruence             |
+        | 9   | Transitional Organization      |
+        | 10  | Forth Bridge                   |
+    
+      1. Compatibility: 
+        [D]esign execution should be in alignment with the design goal for the system itself. [M]ust be willing to put [...]assumptions on the table.
+
+      2. Minimal Critical Specification: 
+        [E]essential characteristics of the systems must be identified. [B]uilders should specify the minimum design necessary to meet the objectives. [A]dherence to this principle is a way to deal with project scope creep.
+
+      3. Variance Control:
+        [V]ariance control is the basic assumption that variances should not be moved across organizational boundaries. [T]his principle is interdependent with boundary location (the fourth principle) and information flow (the fifth principle).
+
+      4. Boundary Location:
+        [B]oundaries should not be drawn in ways that impede information flow. [Boundaries] should be carefully drawn and managed as organizational needs and boundaries change through business pressure.
+
+      5. Information Flow:
+        [S]ome processes are transfunctional, meaning they cross functional boundaries by definition and necessity. [I]nternal boundaries can block the flow of information.
+
+      6. Power and Authority:
+        [T]hose who need resources or inputs should have access to acquire and use them. [T]his also means that with the authority comes responsibility for appropriate use. This principle can be closely associated with information flow and boundary issues (the fourth and fifth principles).
+
+      7. Multifunctional:
+        [P]roposes that organizations must adapt to their environments. [D]evelopers and organizations must also realize that many of the boundaries are internal and that as a result, so are some of the “environments” that they must adapt to.
+
+      8. Support Congruence:
+        It proposes that support for humanbased processes, such as human resources, marketing, and planning, should be conceived and delivered similarly to support for concrete processes typically found in a manufacturing company. [C]an mean a significant change to policies, some of which may have been in place for a long time. Thus, resistance to change is possible or even likely.
+
+      9. Transitional Organization:
+        [P]resumes that transitions from legacy systems to new systems must be designed and planned. This includes training and other means of obtaining buy-in from end users and other constituents.
+
+      10. Forth Bridge:
+        This name refers to a famous railroad bridge in Scotland that can never be freshly painted in its entirety at one time. This principle states that systems are never really static, but rather are continually changing and dynamic, and require more or less continuous maintenance and repair. Maintenance and support continue over the life of a system, and change is continuous and/or incremental rather than all at once or not at all.
+
+    Other Social-Technical Frameworks and Theories:
+
+      Markus (1983):
+
+        - [Markus' (1983) theory] was based on the idea that resistance to change (identified as a primary reason that systems development efforts fail) could emerge from the human or behavioral perspective. In other words, resistance to change is an internal phenomenon originating in individuals or in their groups.
+        - The second theory presumed that resistance to change, or user nonacceptance of the system, is driven primarily by the quality and design of the system itself (Markus, 1983). [E]ven if a system was well constructed from a technical perspective and accomplished everything the developers wanted, but included a very poorly designed interface, then the system was still likely to fail.
+        - The third theoretical approach was to include the human and technology-based elements as actors or components of the system.
+        - Markus (1983) arrived at three conclusions:
+          - One conclusion was that technical systems by themselves cannot induce large changes to the organizations. The people tasked to use the systems will tend not to accept the system if it is simply imposed upon them. On the other hand, technical systems cannot operate themselves, and people must be included in the building and productions phases.
+          - [N]o single set of approaches would work in every situation, when speaking of information systems development projects. Markus also proposed that the specific systems designs arrived at were closely related to the interactions between users and designers.
+          - Markus (1983) claimed [...] a complete and thorough design process was essential to the success of the system. Further, she said that the design must include human elements such as social and political considerations.
+
+      Lamb and Kling (2003):
+
+        - Lamb and Kling (2003) conducted research developing and extending the “social actor” model.
+        - Those that use information systems are more than “. . . a socially thin concept of users . . .” (p. 28)[.]
+        - [D]efined four dimensions of social actors: 
+            - Affiliations
+            - Environments
+            - Interactions
+            - Identities
+          - Affiliations and relationships:
+            - [R]elationships between the actors are modified and determined to some extent by the demands of the client or other stakeholders. [I]nteractions and relationships are dynamic and vary with various resources.
+            - Relationships are assumed to cross boundaries among various interested groups.
+            - Relationships change in response to the dynamics described above, moving across the organization (Lamb and Kling, 2003).
+          - Environments:
+            - [E]nvironments influence the internal systems and people of the organization.
+            - [E]nvironments differ across industries, especially with regard to dynamics.
+            - [I]t is assumed that some technical systems are located in the environment[.]
+            - [O]ther technical systems are located in the industry or in other environmental entities (Lamb and Kling, 2003).
+          - Interactions:
+            - [A]ctors communicate through standard and existing channels[.]
+            - [A]ctors create new communication channels as necessary to ease communications.
+            - [T]echnical systems must be included as part of the interactions.
+            - [A]ctors are assumed to perform their functions as representatives or agents of the organization (Lamb and Kling, 2003).
+          - Identities:
+            - [T]he actors’ identities are represented by a built-in part of the technical systems.
+            - [T]he technical systems and networks enhance many identities, such as gender identities, within the system.
+            - [T]he connections heightened by the technical system include more than the roles. [T]he identities are seen and recognized across functional and other boundaries in the various components.
+            - [T]he actors create identities via the technical system.
