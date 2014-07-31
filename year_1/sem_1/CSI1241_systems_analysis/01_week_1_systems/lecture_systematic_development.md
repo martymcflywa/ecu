@@ -17,11 +17,11 @@
 ## Pre-Specified Approach
 
 - In the pre-specified approach, an attempt is made to anticipate all requirements in an information system before any coding begins
-- These requirements then form the specification of the information system and they are then implemented onto the hardware/software plateform as specified
+- These requirements then form the specification of the information system and they are then implemented onto the hardware/software platform as specified
 
 ## Example of Traditional Pre-Specified Lifecycle
 
-`Systems Analysis -> Design -> Program -> Construction -> Test/Verify -> Document`
+![Waterfall Method](http://i.imgur.com/NHNYPv0.png)
 
 - Definite bounded phases
 - Linear sequential progression
@@ -29,7 +29,11 @@
 - Likely to have frozen specifications
 - Sometimes called the Waterfall model
 
-*See diagram on pp 7 titled* **The Reality of the Waterfall Model**
+### The Reality of the Waterfall Method
+
+![The Real Waterfall Method](http://i.imgur.com/2iNc2du.png)
+
+- Constant feedback to other phases as work progresses
 
 ## Variants to the Pre-Specified Approach
 
@@ -83,7 +87,14 @@
 
 ## Prototyping Lifecycle
 
-*See diagram on pp 12*
+![Prototyping Lifecycle](http://i.imgur.com/9DRGTD4.png)
+
+- Personal note: I compare it to early access for video games being released in alpha or beta stage
+- Extreme Programming: 
+	- Part of Agile family
+	- Build each requirement into functionality one at a time
+	- Always dealing with a live, working product
+	- Will use Agile method in later units
 
 ## The Reality of Systems Development
 
@@ -134,7 +145,7 @@
 
 ## The Province of Systems Analysis
 
-*See diagram on pp 19*
+![Province of Systems Analysis](http://i.imgur.com/bEYnLSj.png)
 
 ## Or Put In Another Way
 
@@ -161,6 +172,9 @@
 - Requirements are statements about what functions or services the system will provide
 	- Through providing functions, there is a belief that the expectations will emerge
 - Do not confuse the two
+	- Personal:
+		- Expectation 'System will increase productivity'
+		- Requirement 'System needs to do x and y' which in turn increases productivity
 
 ## Clarification
 
@@ -175,14 +189,25 @@
 **Define the following:**
 
 - Systematic development
+	- The process of developing an information system in an organised and professional way
 - SDLC
+	- Software Development Life Cycle
 - Evolutionary approach
+	- To gradually develop an information system over time, allowing both users and systems analysts time to come to terms with what the requirements of the information system really are, ie. Agile methodology or Extreme programming
 - Pre-specified approach
+	- To anticipate all requirements in an information system before any coding begins, ie. Waterfall model
 - Waterfall model
+	- Definite bounded phases
+	- Linear sequential progression
+	- Lack of iteration
+	- Likely to have frozen specifications
 - Prototyping
+	- There is a continuous cycle between implementation/maintenance to testing/prototyping that allows the system to be further developed and improved after the final working system is constructed
 - Methodology
+	- A set of integrated techniques which support the development of an information system at every stage
 - Technique
+	- Olle et al. (1991) define a technique as 'a part of an information systems development methodology which may employ a well-defined set of concents and a way of handling them in a step of the work'
 - Requirements specification
+	- Statements about what functions or services the system will provide
 - Systems specification
-
-*See systems.todo*
+	- Contain all the information necessary to develop an information system
