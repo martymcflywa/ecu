@@ -10,7 +10,7 @@ public class HiVietnamese {
 		
 		System.out.println("Hi Everyone!");
 		System.out.println("or as they say in Vietnam...");
-		// Xin chào mọi người!
+
 		System.out.println("Xin ch\u00E0o m\u1ECDi ng\u01B0\u1EDDi!");
 	}
 }
