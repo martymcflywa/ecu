@@ -3,11 +3,10 @@
  * Also rounds result to two decimal places
  * 
  * @author Martin Ponce ID# 10371381
- * @version 20140802
+ * @version 20140802.1
  */
-
-public class TaxTipCalc {
-
+public class RestaurantBill {
+	
 // import java.util.Scanner;
 
 // creating method that rounds result to two decimals
@@ -22,7 +21,7 @@ private static double roundTwo(double a) {
 					TIP_RATE = 15.00 / 100.00;
 		
 		// declare meal, will try to add Scanner input here	
-		double meal = 5000;
+		double meal = 100;
 		
 		// calculate tax
 		double tax = meal * TAX_RATE;

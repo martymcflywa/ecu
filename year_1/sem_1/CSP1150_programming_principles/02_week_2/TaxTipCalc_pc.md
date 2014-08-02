@@ -15,7 +15,7 @@ BEGIN TaxTipCalc
 
 	meal = meal cost
 	tax = meal * tax rate
-	tip = (meal * tax rate) * tip rate
+	tip = (meal + tax) * tip rate
 	total = meal + tax + tip
 
 	print tax
