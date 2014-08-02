@@ -1,0 +1,11 @@
+Task:
+  ☐ Create Java program that calculates tax, tip and total for meal
+    ☐ tax = 6.75%
+    ☐ tip = 15%
+  ☐ Display following output
+    ☐ meal charge
+    ☐ tax amount
+    ☐ tip amount
+    ☐ total amount
+  ☐ Start with $100, but try to add user input for meal cost
+  ☐ Create pseudocode
