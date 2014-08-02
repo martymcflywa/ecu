@@ -9,7 +9,7 @@ public class RestaurantBill {
 	
 // import java.util.Scanner;
 
-// creating method that rounds result to two decimals
+// create method that rounds result to two decimals
 private static double roundTwo(double a) {
 	return Math.round(a * 100.0) / 100.0;
 }
@@ -17,8 +17,8 @@ private static double roundTwo(double a) {
 	public static void main(String[] args) {
 		
 		// declare tax and tip constants
-		final double TAX_RATE = 6.75 / 100.00,
-					TIP_RATE = 15.00 / 100.00;
+		final double TAX_RATE = 6.75 / 100.0,
+					TIP_RATE = 15 / 100.0;
 		
 		// declare meal, will try to add Scanner input here	
 		double meal = 100;
