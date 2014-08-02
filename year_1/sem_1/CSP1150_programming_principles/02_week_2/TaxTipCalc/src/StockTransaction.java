@@ -4,6 +4,7 @@
  * @author Martin Ponce ID# 10371381
  * @version 20140802
  */
+
 public class StockTransaction {
 
 // create method to calculate commission, rather than typing it out twice
@@ -41,7 +42,7 @@ private static double commissionCalc(double b, double c) {
 		System.out.println("Joe paid $" + buyCommission + " of commission to his stockbroker.");
 		System.out.println("Two weeks later, Joe decided to sell...");
 		System.out.println("Joe sold 1000 stocks for $" + sellTotal);
-		System.out.println("Joe paid $" + sellCommission + " of commission to his stockbroker");
+		System.out.println("Joe paid $" + sellCommission + " of commission to his stockbroker.");
 		System.out.println("Joe ran off with a profit of $" + profit);
 	}
 }

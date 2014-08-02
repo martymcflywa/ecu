@@ -48,7 +48,6 @@ private static double roundTwo(double a) {
 		System.out.println("Meal: $" + roundTwo(meal));
 		System.out.println("Tax: $" + roundTwo(tax));
 		System.out.println("Tip: $" + roundTwo(tip));
-		System.out.println("Total: $" + roundTwo(total));
-		
+		System.out.println("Total: $" + roundTwo(total));	
 	}
 }
