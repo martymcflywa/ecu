@@ -124,7 +124,7 @@ There are 8 possible combinations for each proposition. The formula is:
 
 `x = number of propositions; y = number of outcomes (which is two, 0 or 1)`
 
-`x^y = number of possible combinations`
+`x ˄ y = number of possible combinations`
 
 **Step 1:**
 Build the table and list all the possible combinations for the number of existing propositions.
