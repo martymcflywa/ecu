@@ -1,12 +1,12 @@
 # Gathering Requirements
 
-*Notes taken from [lynda.com:](http://www.lynda.com/Programming-tutorials/Foundations-of-Programming-Object-Oriented-Design/96949-2.html) Foundations of Programming - Object Oriented Design*
+*Notes taken while watching [lynda.com](http://www.lynda.com/Programming-tutorials/Foundations-of-Programming-Object-Oriented-Design/96949-2.html) Foundations of Programming - Object Oriented Design*
 
 - What is the application / system required to do? 
 - What must it do?
 - Define the scope, only add what the app / system **must** do
 	- Nothing optional
-	- Do not be exhaustive
+	- Do not be too exhaustive
 - Requirements will change
 - Start with bullet points
 
