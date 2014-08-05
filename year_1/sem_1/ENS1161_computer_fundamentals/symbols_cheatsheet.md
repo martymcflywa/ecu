@@ -57,3 +57,22 @@
 ```
 ~(∀y ∈ M, ∀x ∈ P, S(x, y)) ≡ ∃y ∈ M, ∃x ∈ P, ~S(x, y)
 ```
+
+## Laws of Sets
+
+The laws are in pairs, and can swap from a law to its dual (matching pair) by swapping `∪` with `∩`, and `U` with `∅`.
+
+### Distributive Laws
+
+```
+A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
+A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
+```
+
+### de Morgan's Laws:
+
+```
+(A ∪ B)' = A' ∩ B'
+(A ∩ B)'' = A' ∪ B'
+```
+

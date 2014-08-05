@@ -679,7 +679,7 @@ A poll of three TV shows, Rodeo, Starburst and Totem showed that in a group of 6
 - Referring to the diagram
 	- `n(R ∩ S' ∩ T') + (7 - x) + (8 - x) + x = 26`
 		- `11 + 7 + 8 = 26`
-	- So `n(R ∩ S' ∩ T') = 26 - (7 - x) - (8 - x) - x = 11 + x
+	- So `n(R ∩ S' ∩ T') = 26 - (7 - x) - (8 - x) - x = 11 + x`
 	- Similarly `n(R' ∩ S' ∩ T) = 4 + x`
 	- And `n(R' ∩ S ∩ T') = 9 + x`
 	- Adding all the expressions in the diagram
@@ -694,6 +694,44 @@ A poll of three TV shows, Rodeo, Starburst and Totem showed that in a group of 6
 	4. 36 watch only one of the three shows
 
 ![venn tv shows 2](http://i.imgur.com/wMPy6wf.png)
+
+## Laws of Sets
+
+The laws are in pairs, and can swap from a law to its dual (matching pair) by swapping `∪` with `∩`, and `U` with `∅`.
+
+### Distributive Laws
+
+```
+A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
+A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
+```
+
+### de Morgan's Laws:
+
+```
+(A ∪ B)' = A' ∩ B'
+(A ∩ B)'' = A' ∪ B'
+```
+
+## Illustration of Laws using Venn Diagrams
+
+Consider the law:
+
+```
+A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
+```
+
+We represent each side using a Venn diagram, and then check that the diagrams match.
+
+![venn law 1](http://i.imgur.com/tEvjVEr.png)
+
+
+
+
+
+
+
+
 
 ## Things to remember
 
