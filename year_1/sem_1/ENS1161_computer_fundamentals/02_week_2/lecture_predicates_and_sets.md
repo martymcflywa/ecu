@@ -547,7 +547,7 @@ A' = {x | x ∈ U ˄ x ∉ A}
 
 ## The Addition Principle
 
-Let `n(A)` denote the number of elements in set `A`.
+Let `n(A)` denote the **number** of elements in set `A`.
 
 If set `A` has `n(A)` elements and set `B` has `n(B)` elements, then the number of elements in the union `A ∪ B` is:
 
@@ -578,9 +578,126 @@ Example:
 - Then `A ∪ B = {3, 5, 6, 9, 10, 12, 15, 18, 20, 21, 24, 25, 27, 30}`
 	- By counting `n(A ∪ B) = 14`
 
-### The Addition Principle Examples
+### Addition Principle Examples
 
-- Using the addition principle
+Using the addition principle:
+
+- Example 1
 	- `A = {3, 6, 9, 12, 15, 18, 21, 24, 27, 30}`
 	- `B = {5, 10, 20, 25, 30}`
 	- `A ∩ B = {15, 30}; n(A) = 10, n(B) = 6, n(A ∩ B) = 2`
+
+- Example 2
+	- `A = {3, 6, 9, 12, 15, 18, 21, 24, 27, 30}`
+	- `B = {5, 10, 15, 20, 25, 30}`
+	- `A ∩ B = {15, 30}; n(A) = 10, n(B) = 6, n(A ∩ B) = 2`
+
+```
+n(A ∪ B) = n(A) + n(B) - n(A ∩ B) = 2
+n(A ∪ B) = 10 + 6 - 2
+n(A ∪ B) = 14
+```
+
+- Example 3
+	- `A = {multiples of 7 less than 50}` or `A = {7, 12, 14, 21, 24, 28, 35, 36, 42, 48, 49}`
+	- `B = {multiples of 12 less than 50}` or `B = {12, 24, 36, 48}`
+	- `A ∪ B = {7, 12, 14, 21, 24, 28, 35, 36, 42, 48, 49}`
+	- `n(A ∪ B) = 11`
+
+- Example 4
+	- `A = {7, 14, 21, 28, 35, 42, 49}`
+	- `B = {12, 24, 36, 48}`
+	- `A ∩ B = {}, n(A) = 7, n(B) = 4, n(A ∩ B) = 0`
+
+```
+n(A ∪ B) = n(A) + n(B) - n(A ∩ B)
+n(A ∪ B) = 7 + 4 - 0
+n(A ∪ B) = 11
+```
+
+### Addition Principle Exercises
+
+#### Exercise 1
+
+In a group of 80 students, 27 play cricket, 45 play basketball, and 20 play neither sport.
+
+- Find out how many play:
+	1. Both cricket and basketball
+	2. either cricket and basketball
+	3. basketball, but not cricket
+	4. cricket, but not basketball
+
+- `n(C ∩ B) = x`
+- Since `n(C) = 27` then `n(C ∩ B) = 27 - x`
+- And since `n(B) = 45` then `n(C' ∩ B) = 45 - x`
+- Adding the expressions in the diagram, we get `(27 - x) + x + (45 - x) + 20 = 80`
+- `x = (27 + 45 + 20) - 80`
+- `x = 12`
+
+![venn cricket basketball](http://i.imgur.com/8lLJ9Hj.png)
+
+- Results:
+	1. Plays both cricket and basketball = `12`
+		- `(27 + 45 + 20) - 80 = 12`
+		- `n(C) + n(B) + n(C' ∩ B') - n(U) = 12`
+	2. Plays either cricket and basketball = `60`
+		- `(27 - 12) + 12 + (45 - 12) = 60`
+		- `(n(C) - x) + x + (n(B) - x) = 60`
+	3. Plays basketball, but not cricket = `33`
+		- `45 - 12 = 33`
+		- `n(B) - x = 33`
+	4. Plays cricket but not basketball = `15`
+		- `27 - 12 = 15`
+		- `n(C) - x = 15` 
+
+#### Excercise 2
+
+A poll of three TV shows, Rodeo, Starburst and Totem showed that in a group of 60 people, 26 watched Rodeo, 27 watched Starburst, 23 watched Totem, 7 watched Rodeo and Starburst, 8 watched Rodeo and Totem, 11 watched Starburst and Totem, and 6 watched none of the shows.
+
+- Find out how many people watched:
+	1. All three shows
+	2. Rodeo and Starburst but not Totem
+	3. Starburst, but not the other two shows
+	4. Only one of the three shows
+
+- `n(U) = 60`
+- `n(R) = 26, n(S) = 27, n(T) = 23`
+- `n(R ∩ S) = 7, n(R ∩ T) = 8, n(S ∩ T) = 11`
+- `n(R' ∩ S' ∩ T') = 6`
+
+- To determine `x`, those that watch all three shows:
+	- Since `n(R ∩ S) = 7`, it follows that
+	- `n(R ∩ S ∩ T') = 7 - x`
+		- intersect of `R` and `S` but exclude intersect of `T`
+	- `n(R ∩ S' ∩ T) = 8 - x`
+		- intersect of `R` and `T` but exclude intersect of `S`
+	- `n(R' ∩ S ∩ T) = 11 - x`
+		- intersect of `S` and `T` but exclude intersect of `R`
+
+![venn tv shows 1](http://i.imgur.com/0Uxtswm.png)
+
+- Referring to the diagram
+	- `n(R ∩ S' ∩ T') + (7 - x) + (8 - x) + x = 26`
+		- `11 + 7 + 8 = 26`
+	- So `n(R ∩ S' ∩ T') = 26 - (7 - x) - (8 - x) - x = 11 + x
+	- Similarly `n(R' ∩ S' ∩ T) = 4 + x`
+	- And `n(R' ∩ S ∩ T') = 9 + x`
+	- Adding all the expressions in the diagram
+		- `(11 + x) + (7 - x) + (4 + x) + (8 - x) + x + (11 - x) + (9 + x) + 6 = 60`
+		- Simplified to `56 + x = 60`
+		- `x = 4`
+
+- Results:
+	1. 4 watch all three shows
+	2. 3 watch Rodeo and Starburst but not Totem
+	3. 13 watch Starburst only
+	4. 36 watch only one of the three shows
+
+![venn tv shows 2](http://i.imgur.com/wMPy6wf.png)
+
+## Things to remember
+
+- To isolate the number of elements inside the set, subtract any intersects from the set 
+	- ie. Exercise 2: `n(R) = n(R ∩ S' ∩ T') - n(R ∩ S) - n(R ∩ T)`
+- Anything outside the intersect is `+ x` ie. `11 + x`
+- Anything inside the intersect is `- x` ie. `8 - x`
