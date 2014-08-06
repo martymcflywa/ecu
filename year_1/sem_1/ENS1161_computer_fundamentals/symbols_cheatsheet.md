@@ -29,8 +29,21 @@
 | `∪`    | `union`                  | the set of elements that are in **all** `sets`, except the `universal set` |
 | `'`     | `complement`             | the set of elements that are in the `universal set`, but not in `A` for example |
 | `n(A)`  | `number of elements`     | count how many elements are a member of `A` |
+| `A × B` | `cartesian product`      | the `×` denotes cartesian product of A then B |
 
+# Analogy with logic concepts
 
+The laws are essentially the same, but are just presented differently.
+
+`~(A ˅ B) ≡ ~A ˄ ~B` corresponds to `(A ∪ B)' = A' ∩ B'`
+
+| Logic   | Set  |
+|---------|------|
+| `~`     | `'`  |
+| `˄`     | `∩`  |
+| `˅`     | `∪` |
+| `true`  | `U`  |
+| `false` | `∅`  |
 
 ## Negations
 

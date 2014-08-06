@@ -438,7 +438,7 @@ Example 1:
 
 Place each number in the appropriate region.
 
-![venn UET](http://i.imgur.com/sdYEhJ2.png)
+![venn UET](http://i.imgur.com/0x24i6a.png)
 
 Example 2:
 
@@ -449,7 +449,7 @@ Example 2:
 
 Place animals in the appropriate sub-set: cow, horse, lion, tiger, zebra.
 
-![venn UHMS](http://i.imgur.com/ao9FD80.png)
+![venn UHMS](http://i.imgur.com/yX9yzoI.png)
 
 ## Subsets
 
@@ -459,7 +459,7 @@ Example:
 
 Let `A = {1, 2, 3, 4, 5}`, `B = {1, 3, 4}`, `C = {2, 4, 6}`
 
-![venn AB1](http://i.imgur.com/I9Ltz7b.png)
+![venn subset](http://i.imgur.com/fMu0wjw.png)
 
 Clearly `B ⊆ A` since each element of `B` is also an element of `A`. Also, `C` is not a subset of `A` since `6 ∈ C` but `6 ∉ A`.
 
@@ -481,7 +481,7 @@ Translates to:
 
 If `A` and `B` have no elements in common, that is if `A ∩ B = ∅`, then `A` and `B` are said to be disjoint.
 
-![venn intersect](http://i.imgur.com/xakbqsF.png)
+![venn intersect](http://i.imgur.com/9Cu0iZp.png)
 
 ### Union
 
@@ -493,7 +493,7 @@ That is:
 A ∪ B = {x | x ∈ A ˅ x ∈ B}
 ```
 
-![venn union](http://i.imgur.com/QleKOzl.png)
+![venn union](http://i.imgur.com/WnJCckI.png)
 
 ### Complement
 
@@ -715,6 +715,8 @@ A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
 
 ## Illustration of Laws using Venn Diagrams
 
+### Example 1
+
 Consider the law:
 
 ```
@@ -725,13 +727,75 @@ We represent each side using a Venn diagram, and then check that the diagrams ma
 
 ![venn law 1](http://i.imgur.com/tEvjVEr.png)
 
+![venn law 2](http://i.imgur.com/UTpWO4k.png)
 
+### Example 2
 
+```
+(A ∩ B)' = A' ∪ B'
+```
 
+![venn law 3](http://i.imgur.com/ZOnanML.png)
 
+![venn law 4](http://i.imgur.com/ubraqXa.png)
 
+## Analogy with logic concepts
 
+The laws are essentially the same, but are just presented differently.
 
+`~(A ˅ B) ≡ ~A ˄ ~B` corresponds to `(A ∪ B)' = A' ∩ B'`
+
+| Logic   | Set  |
+|---------|------|
+| `~`     | `'`  |
+| `˄`     | `∩`  |
+| `˅`     | `∪` |
+| `true`  | `U`  |
+| `false` | `∅`  |
+
+## Power of a Set
+
+The power set of a set is the set of all subsets of the set
+
+For example if `S = {a, b}` then **the power set of** `S` is
+
+```
+P(S) = {{}, {a}, {b}, {a, b}}`
+```
+
+When creating a subset of a set, with each element we have the choice of whether to include it or not. So if the set **has** `n` **elements**, then it **has** `2^n` **subsets**.
+
+Example:
+
+Suppose that there is a festival of three Shakespearian plays, Romeo & Juliet `RJ`, Julius Caesar `JC` and Anthony & Cleopatra `AC`.
+
+You could choose to attend some, all or none of the plays. The possibilities are:
+
+`none`, `RJ`, `JC`, `AC`, `RJ` & `JC`, `RJ & AC`, `JC` & `AC`, `all`
+
+In terms of sets, the choices are:
+
+`{}`, `{RJ}`, `{JC}`, `{AC}`, `{RJ, JC}`, `{RJ, AC}`, `{JC, AC}`, `{RJ, JC, AC}`
+
+These are all the possible subsets of the set `{RJ, JC, AC}` and therefore they comprise the power set of `{RJ, JC, AC}`.
+
+## Cartesian Product
+
+When working with graphs we talk about **Cartesian coordinates**. Each point is represented by an **ordered** pair of numbers. The order of the pair is important. For example, `point(2, 5)` is **different** from `point(5, 2)`.
+
+The Cartesian product of sets `A` and `B`, denoted by `A x B`, is the set of ordered pairs where the first member of the pair comes from `A` and the second from `B`.
+
+```
+A × B = {(x, y) | x ∈ A and y ∈ B}
+A = {Mon, Tues, Wed}
+B = {am, pm}
+```
+
+See diagram on `pp. 70`
+
+```
+A × B = {(Mon, am), (Mon, pm), (Tues, am ), ..., (Wed, pm)}
+```
 
 ## Things to remember
 
