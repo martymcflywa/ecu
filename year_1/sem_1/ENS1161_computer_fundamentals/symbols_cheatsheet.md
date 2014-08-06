@@ -47,6 +47,15 @@ The laws are essentially the same, but are just presented differently.
 
 ## Negations
 
+### Statement Negations
+
+| Statement   | Negation        |
+|-------------|-----------------|
+| All do...   | Some don't...   |
+| All are...  | Some are not... |
+| Some do...  | None do...      |
+| Some are... | None are...     |
+
 ### Negation of `∀∃`
 
 ```
