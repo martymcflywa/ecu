@@ -30,6 +30,7 @@
 | `'`     | `complement`             | the set of elements that are in the `universal set`, but not in `A` for example |
 | `n(A)`  | `number of elements`     | count how many elements are a member of `A` |
 | `A × B` | `cartesian product`      | the `×` denotes cartesian product of A then B |
+| `P(A)   | `POWER SET`              | `P` denotes the power set of `A` |
 
 # Analogy with logic concepts
 
@@ -98,3 +99,12 @@ A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
 (A ∩ B)'' = A' ∪ B'
 ```
 
+## Power Sets
+
+Is a collection of all the possible combinations of subsets, including `∅`, the empty set.
+
+If `A = {1, 2, 3}` 
+
+Then `P(A) = {{`∅`}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}}`
+
+Formula to work it out is `2^n`, where `n = number of subsets`
