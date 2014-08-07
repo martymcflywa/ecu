@@ -2,22 +2,24 @@
 
 ## Preferred Intellegence
 
-- Think about the IT industry. Where might your learning profile suggest a best fit? Discuss with group and report back
+- Think about the IT industry. 
+- Where might your learning profile suggest a best fit? 
+- Discuss with group and report back
 - Associate the preferred intellignences with the Job Description
 
-| Job                 | Preferred Intelligences
-|---------------------|-------------------------|
-| Network Engineer    |  
-| C# Programmer       |
-| Business Analyst    |
-| Project Manager     |
-| Help Desk & Support |
+| Job                 | Preferred Intelligences        |
+|---------------------|--------------------------------|
+| Network Engineer    | Spatial, Logic / Math          |
+| C# Programmer       | Spatial, Logic / Math          |
+| Business Analyst    | Language, Social, Logic / Math |
+| Project Manager     | Language, Social, Logic / Math |
+| Help Desk & Support | Language, Social               |
 
 ## Churning career
 
 - Understanding cognitive style and formulating learning plans is key to survival
 - It is a cycle of invention and re-invention.
-- http://www.ictcareersweek.info 23-29 July
+- Check out [ICT Careers Week](http://www.ictcareersweek.info)
 
 ## Communicating / Learning
 
