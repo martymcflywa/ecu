@@ -7,8 +7,7 @@
 | `˅`    | `OR`                  | Or                                             |
 | `→`    | `IF THEN`             | Conditional                                    |
 | `≡`    | `LOGICAL EQUIVALENCE` | Is equal to                                    |
-
-`|` = `CONCLUSION` = Anything to the right of `|` is the conclusion
+| `├`    | `CONCLUSION`          | Anything to the right of `├` is the conclusion |
 
 # Lecture 2
 
