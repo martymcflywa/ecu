@@ -6,7 +6,7 @@
 
 ``` java
 String name = "Marty"
-stringSize = name.length();
+int stringSize = name.length();
 ```
 
 `stringSize = 5`

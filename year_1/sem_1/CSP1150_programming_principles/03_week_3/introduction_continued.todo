@@ -1,21 +1,21 @@
 Lecture:
-  ☐ Read Gaddis Chapter 2.9 - 2.15
+  ✔ Read Gaddis Chapter 2.9 - 2.15 @done (14-08-10 11:28)
 Lab:
   ☐ Do review questions
   String manipulator:
-    ☐ Write a program that asks the user to enter the name of favourite city. Use `String` variable to store input. The program should display the following:
-      ☐ The number of characters in the city name
-      ☐ The name of the city in all uppercase 
-      ☐ The name of the city in all lower case
-      ☐ The first character in the name of the city
+    ✔ Write a program that asks the user to enter the name of favourite city. Use `String` variable to store input. The program should display the following: @done (14-08-10 12:30)
+      ✔ The number of characters in the city name @done (14-08-10 12:30)
+      ✔ The name of the city in all uppercase @done (14-08-10 12:30)
+      ✔ The name of the city in all lower case @done (14-08-10 12:30)
+      ✔ The first character in the name of the city @done (14-08-10 12:31)
   Word game:
-    ☐ Write a program that plays a word game with the user. The program should ask the user to enter the following:
-      ☐ Name
-      ☐ Age
-      ☐ City
-      ☐ College
-      ☐ Profession
-      ☐ Animal
-      ☐ Pet's name
-      ☐ After user has entered the details, program should display the following story:
+    ✔ Write a program that plays a word game with the user. The program should ask the user to enter the following: @done (14-08-10 12:31)
+      ✔ Name @done (14-08-10 12:31)
+      ✔ Age @done (14-08-10 12:31)
+      ✔ City @done (14-08-10 12:31)
+      ✔ College @done (14-08-10 12:31)
+      ✔ Profession @done (14-08-10 12:32)
+      ✔ Animal @done (14-08-10 12:32)
+      ✔ Pet's name @done (14-08-10 12:32)
+      ✔ After user has entered the details, program should display the following story: @done (14-08-10 12:32)
           There once was a person named **NAME** who lived in **CITY**. At the age of **AGE**, **NAME** went to college at **COLLEGE**. **NAME** graduated and went to work as a **PROFESSION**. Then, **NAME** adopted a(n) **ANIMAL** named **PETNAME**. They both lived happily ever after.
