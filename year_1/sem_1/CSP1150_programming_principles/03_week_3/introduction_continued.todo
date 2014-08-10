@@ -1,0 +1,21 @@
+Lecture:
+  ☐ Read Gaddis Chapter 2.9 - 2.15
+Lab:
+  ☐ Do review questions
+  String manipulator:
+    ☐ Write a program that asks the user to enter the name of favourite city. Use `String` variable to store input. The program should display the following:
+      ☐ The number of characters in the city name
+      ☐ The name of the city in all uppercase 
+      ☐ The name of the city in all lower case
+      ☐ The first character in the name of the city
+  Word game:
+    ☐ Write a program that plays a word game with the user. The program should ask the user to enter the following:
+      ☐ Name
+      ☐ Age
+      ☐ City
+      ☐ College
+      ☐ Profession
+      ☐ Animal
+      ☐ Pet's name
+      ☐ After user has entered the details, program should display the following story:
+          There once was a person named **NAME** who lived in **CITY**. At the age of **AGE**, **NAME** went to college at **COLLEGE**. **NAME** graduated and went to work as a **PROFESSION**. Then, **NAME** adopted a(n) **ANIMAL** named **PETNAME**. They both lived happily ever after.
