@@ -2,7 +2,7 @@
 
 ## Question 1
 
-### A: Consider the following argument **NEED CONFIRMATION**
+### A: Consider the following argument
 
 >If bears are brown then giraffes are not green. If bears are not brown then rabbits are red. Rabbits are red. Therefore giraffes are not green.
 
@@ -28,7 +28,7 @@
 | 1   | 1   | 1   | 0        | 0    | 1               |
 
 4. State whether the argument is valid.
-	- **NEED TO CONFIRM** if my proposition is correct
+	- *proposition is equal to argument, therefore argument is valid*
 
 ### B: The propositions below can be arranged in three groups so that each member of a group is logically equivalent to the other two. Find the three groups.
 
