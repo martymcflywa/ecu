@@ -1,0 +1,99 @@
+# Parking lot
+
+## Pai2013 
+
+- Peer pressure
+- Impediments / barriers
+	- Surveillance
+	- Privacy
+- Means
+	- Objects that facilitate actions and activities which people engage in
+	- What SNS functions do users frequently use?
+		- Interpersonal communication
+			- Interactive games
+			- Browsing others' pages
+				- Consequences
+					- Satisfies curiosity
+					- Gain useful thoughts
+					- Reading gossip
+						- Hedonism
+					- Getting feedback from posts
+						- Reciprocity
+			- Instant responses
+				- Consequences
+					- Meet with friends online
+						- Need for belonging
+					- Helping friends
+						- Self-esteem
+		- Impression management
+			- Uploading pictures
+				- Consequences
+					- Self-disclosure
+						- Need for belonging
+						- Hedonism
+			- Customizability
+				- Consequences
+					- Being unique
+					- Desire for popularity
+					- Respect from others
+						- Hedonism
+						- Self esteem
+- End
+	- Valued states of being
+	- What consequences do user seek to achieve by using these functions?
+	- What are the gratifications of SNS adoption?
+- Publicly private vs. privately public (Lange, 2008)
+	- Publicly private
+		- User identity is revealed
+		- Content is privately and not widely accessed
+	- Privately public
+		- Sharing widely accessable content with many viewers
+		- Limiting access to detailed information about user's identities
+
+### Categories
+
+- Attributes
+	- Well-designed interface
+	- Interesting, interactive games
+	- Customizability
+	- Ease of use
+	- Privacy/control others' access
+	- Simultaneous communication
+	- Browsing other's pages
+	- Instant responses
+	- Uploading pictures
+	- Posting articles
+	- Many connections/friends
+	- Keeping diaries
+	- Leaving messages
+	- Staying anonymous
+	- Recommendations to join
+- Consequences
+	- Being unique
+	- Desire for popularity
+	- High responsiveness
+	- Intention to give feedback
+	- Easy self expression
+	- Breaking the ice
+	- Shared topics of conversation
+	- Getting to know new friends
+	- Convenience
+	- Keeping in contact
+	- Meeting with friends online
+	- Helping friends
+	- Gaining useful thoughts/insights
+	- Respect from others
+	- Quick solutions to problems
+	- Satisfying curiosity
+	- Killing time
+	- Connecting friends to friends
+	- Arranging meetings
+	- Looking for gossip
+- Values
+	- Self-actualization
+	- Self-estem
+	- Belonging
+	- Hedonism
+	- Self-direction/control
+	- Reciprocity
+	- Conformity
