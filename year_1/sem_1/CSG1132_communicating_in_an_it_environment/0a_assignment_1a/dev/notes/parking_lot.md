@@ -91,9 +91,11 @@
 	- Looking for gossip
 - Values
 	- Self-actualization
-	- Self-estem
+	- Self-esteem
 	- Belonging
 	- Hedonism
 	- Self-direction/control
 	- Reciprocity
 	- Conformity
+
+- Belongingness is not significant to SNS use but predicted addiction (Pelling & White, 2009)
