@@ -17,7 +17,7 @@ public class AnnulusCalculator {
 		Annulus annulus = new Annulus();
 		AnnulusGrid annulusGrid = new AnnulusGrid();
 		
-		// get user input for annRadius1 and annRadius2
+		// get user input for annRadius1 and annRadius2 via JOptionPane
 		String inputRadius1 = JOptionPane.showInputDialog("Enter the OUTER radius:");
 		double annRadius1 = Double.parseDouble(inputRadius1);
 		String inputRadius2 = JOptionPane.showInputDialog("Enter the INNER radius:");
@@ -52,6 +52,8 @@ public class AnnulusCalculator {
 
 		// calculates annulus area from for loop results, also calls methods from annulusGrid
 		double area = annulusGrid.columnDelta() * annulusGrid.rowDelta() * counter / annulusGrid.gridSizeSq();
+		
+		// prints results via JOptionPane
 		JOptionPane.showMessageDialog(null, "The area of the Annulus is: " + area);
 		
 		// ensures JOptionPane is closed
