@@ -17,30 +17,30 @@ package annulus.calculator;
 
 class Annulus {
 
-	private double annRadius1,
+	private static double annRadius1,
 			annRadius2;
 	
-	void setAnnRadius1(double annRadius1) {
-		this.annRadius1 = annRadius1;
+	static void setRadius1(double annRadius1) {
+		Annulus.annRadius1 = annRadius1;
 	}
 	
-	void setAnnRadius2(double annRadius2) {
-		this.annRadius2 = annRadius2;
+	static void setRadius2(double annRadius2) {
+		Annulus.annRadius2 = annRadius2;
 	}
 	
-	double getAnnRadius1() {
+	static double getRadius1() {
 		return annRadius1;
 	}
 	
-	double getAnnRadius2() {
+	static double getRadius2() {
 		return annRadius2;
 	}
 
-	double rad1Sq() {
+	static double rad1Sq() {
 		return annRadius1 * annRadius1;
 	}
 	
-	double rad2Sq() {
+	static double rad2Sq() {
 		return annRadius2 * annRadius2;
 	}
 }

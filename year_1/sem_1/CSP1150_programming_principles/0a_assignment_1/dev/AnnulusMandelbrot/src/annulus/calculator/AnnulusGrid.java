@@ -6,8 +6,6 @@
  * @version 20140814
  * 
  * @param setGridSize		sets int gridSize
- * @param setCol			sets int column
- * @param setRow			sets int row
  * @param setMinX			sets double minX as negative value
  * @param setMaxX			sets double maxX as positive value
  * @param setMinY			sets double minY as negative value
@@ -29,9 +27,7 @@ package annulus.calculator;
 class AnnulusGrid {
 
 	// might turn gridSize into final, or ask for user input for desired accuracy
-	private int gridSize = 100,
-				col,
-				row;
+	private int gridSize = 100;
 	
 	private double minX,
 					maxX,
@@ -40,14 +36,6 @@ class AnnulusGrid {
 	
 	void setGridSize(int gridSize) {
 		this.gridSize = gridSize;
-	}
-	
-	void setCol(int col) {
-		this.col = col;
-	}
-	
-	void setRow(int row) {
-		this.row = row;
 	}
 	
 	void setMinX(double minX) {
@@ -104,5 +92,22 @@ class AnnulusGrid {
 	
 	double rowDelta() {
 		return maxY - minY;
+	}
+	
+	double iteration() {
+		int counter = 0;
+		for(int col = 0; col < getGridSize(); col ++){
+			double x = getCol(col);
+			
+			for(int row = 0; row < getGridSize(); row ++) {
+				double y = getRow(row);
+				double test = x * x + y * y;
+				
+				if(test < Annulus.rad1Sq() && test > Annulus.rad2Sq()) {
+					counter ++;
+				}
+			}
+		}
+		return counter;
 	}
 }

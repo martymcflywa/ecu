@@ -14,7 +14,7 @@ public class AnnulusCalculator {
 	public static void main(String[] args) {
 		
 		// instantiate new annulus and annulusGrid objects
-		Annulus annObj = new Annulus();
+		// Annulus annObj = new Annulus();
 		AnnulusGrid annGridObj = new AnnulusGrid();
 		
 		// get user input for annRadius1 and annRadius2 via JOptionPane
@@ -24,8 +24,8 @@ public class AnnulusCalculator {
 		double annRadius2 = Double.parseDouble(inputRadius2);
 		
 		// set annRadius1 and annRadius2 to annulus object
-		annObj.setAnnRadius1(annRadius1);
-		annObj.setAnnRadius2(annRadius2);
+		Annulus.setRadius1(annRadius1);
+		Annulus.setRadius2(annRadius2);
 		
 		// set annRadius1 to minX, maxX, minY and maxY to annulusGrid object
 		annGridObj.setMinX(annRadius1);
@@ -34,21 +34,11 @@ public class AnnulusCalculator {
 		annGridObj.setMaxY(annRadius1);
 		
 		// declare counter
-		double counter = 0.0;
+		// double counter = 0.0;
 		
 		// nested for loops and conditional to calculate area for annulus using grid, calls methods from annulus and annulusGrid
-		for(int col = 0; col < annGridObj.getGridSize(); col ++){
-			double x = annGridObj.getCol(col);
-			
-			for(int row = 0; row < annGridObj.getGridSize(); row ++) {
-				double y = annGridObj.getRow(row);
-				double test = x * x + y * y;
-				
-				if(test < annObj.rad1Sq() && test > annObj.rad2Sq()) {
-					counter ++;
-				}
-			}
-		}
+
+		double counter = annGridObj.iteration();
 
 		// calculates annulus area from for loop results, also calls methods from annulusGrid
 		double area = annGridObj.colDelta() * annGridObj.rowDelta() * counter / annGridObj.gridSizeSq();
