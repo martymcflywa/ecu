@@ -1,5 +1,5 @@
 /**
- * Defines Annulus class. Includes getters/setters and other methods used for calculation.
+ * Defines static Annulus class. Includes getters/setters and other methods used for calculation.
  * Executes from AnnulusCalculator
  * 
  * @author Martin Ponce ID# 10371381
@@ -12,35 +12,44 @@
  * @return getAnnRadius2	get inner radius
  * @return rad1Sq			calculate outer radius squared
  * @return rad2Sq			calculate inner radius squared
+ * 
+ * @void areaCalc			calculate area of annulus with counter as arg, prints results
  */
 package annulus.calculator;
 
+import javax.swing.JOptionPane;
+
 class Annulus {
 
-	private static double annRadius1,
-			annRadius2;
+	private static double radius1,
+			radius2;
 	
-	static void setRadius1(double annRadius1) {
-		Annulus.annRadius1 = annRadius1;
+	static void setRadius1(double radius1) {
+		Annulus.radius1 = radius1;
 	}
 	
-	static void setRadius2(double annRadius2) {
-		Annulus.annRadius2 = annRadius2;
+	static void setRadius2(double radius2) {
+		Annulus.radius2 = radius2;
 	}
 	
 	static double getRadius1() {
-		return annRadius1;
+		return radius1;
 	}
 	
 	static double getRadius2() {
-		return annRadius2;
+		return radius2;
 	}
 
 	static double rad1Sq() {
-		return annRadius1 * annRadius1;
+		return radius1 * radius1;
 	}
 	
 	static double rad2Sq() {
-		return annRadius2 * annRadius2;
+		return radius2 * radius2;
+	}
+	
+	static void areaCalc(double counter) {
+		double area = AnnulusGrid.colDelta() * AnnulusGrid.rowDelta() * counter / AnnulusGrid.gridSizeSq();
+		JOptionPane.showMessageDialog(null, "The area of the Annulus is: " + area);
 	}
 }
