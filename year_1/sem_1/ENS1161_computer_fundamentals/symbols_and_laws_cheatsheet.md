@@ -45,9 +45,9 @@ The laws are essentially the same, but are just presented differently.
 | `true`  | `U`  | `1`     |
 | `false` | `∅`  | `0`     |
 
-## Negations
+# Negations
 
-### Statement Negations
+## Statement Negations
 
 | Statement   | Negation        |
 |-------------|-----------------|
@@ -56,49 +56,49 @@ The laws are essentially the same, but are just presented differently.
 | Some do...  | None do...      |
 | Some are... | None are...     |
 
-### Negation of `∀∃`
+## Negation of `∀∃`
 
 ```
 ~(∀x ∈ P, ∃y ∈ M, S(x, y)) ≡ ∃x ∈ P, ∀y ∈ M, ~S(x, y)
 ```
 
-### Negation of `∃∀`
+## Negation of `∃∀`
 
 ```
 ~(∃y ∈ M, ∀x ∈ P, S(x, y)) ≡ ∀y ∈ M, ∃x ∈ P, ~S(x, y)
 ```
 
-### Negation of `∃∃`
+## Negation of `∃∃`
 
 ```
 ~(∃x ∈ P, ∃y ∈ M, S(x, y)) ≡ ∀x ∈ P, ∀y ∈ M, ~S(x, y)
 ```
 
-### Negation of `∀∀`
+## Negation of `∀∀`
 
 ```
 ~(∀y ∈ M, ∀x ∈ P, S(x, y)) ≡ ∃y ∈ M, ∃x ∈ P, ~S(x, y)
 ```
 
-## Laws of Sets
+# Laws of Sets
 
 The laws are in pairs, and can swap from a law to its dual (matching pair) by swapping `∪` with `∩`, and `U` with `∅`.
 
-### Distributive Laws
+## Distributive Laws
 
 ```
 A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
 A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
 ```
 
-### de Morgan's Laws:
+## de Morgan's Laws:
 
 ```
 (A ∪ B)' = A' ∩ B'
 (A ∩ B)' = A' ∪ B'
 ```
 
-## Power Sets
+# Power Sets
 
 Is a collection of all the possible combinations of subsets, including `∅`, the empty set.
 
@@ -108,62 +108,62 @@ Then `P(A) = {{`∅`}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}}`
 
 Formula to work it out is `2^n`, where `n = number of subsets`
 
-## Boolean Algebra Laws
+# Boolean Algebra Laws
 
-### Laws for Multiplication
+## Laws for Multiplication
 
 `0 • 0 = 0` `0 • 1 = 0` `1 • 0 = 0` `1 • 1 = 1`
 
-### Laws for Addition
+## Laws for Addition
 
 `0 + 0 = 0` `0 + 1 = 1` `1 + 0 = 1` `1 + 1 = 1`
 
-### Laws for Complementation
+## Laws for Complementation
 
 `0' = 1` `1' = 0`
 
-### Idempotent Laws
+## Idempotent Laws
 
 - `a + a = a`
 - `a • a = a`
 
-### Complement Laws
+## Complement Laws
 
 - `a + a' = 1`
 - `a • a' = 0`
 
-### Involution Law
+## Involution Law
 
 - `(a')' = a`
 
-### Associative Laws
+## Associative Laws
 
 - `(a + b) + c = a + (b + c)`
 - (a • b) • c = a • (b • c)`
 
-### Commutative Laws
+## Commutative Laws
 
 - `a + b = b + a`
 - `a • b = b • a`
 
-### Distributive Laws
+## Distributive Laws
 
 - `a + b • c = (a + b) • (a + c)`
 - `a • (b + c) = a • b + a • c`
 
-### de Morgan's Laws
+## de Morgan's Laws
 
 - `(a + b)' = a' • b'`
 - `(a • b)' = a' + b'`
 
-### Identity Laws
+## Identity Laws
 
 - `a + 0 = a`
 - `a • 1 = a`
 - `a + 1 = 1`
 - `a • 0 = 0`
 
-## Fundamental Products
+# Fundamental Products
 
 Formula to work out is how many fundamental products is `2^n`, where `n = number of variables`
 
