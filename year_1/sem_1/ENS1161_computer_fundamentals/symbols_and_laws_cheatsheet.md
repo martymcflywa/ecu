@@ -112,11 +112,17 @@ Formula to work it out is `2^n`, where `n = number of subsets`
 
 ## Laws for Multiplication
 
-`0 • 0 = 0` `0 • 1 = 0` `1 • 0 = 0` `1 • 1 = 1`
+- `0 • 0 = 0` 
+- `0 • 1 = 0` 
+- `1 • 0 = 0`
+- `1 • 1 = 1`
 
 ## Laws for Addition
 
-`0 + 0 = 0` `0 + 1 = 1` `1 + 0 = 1` `1 + 1 = 1`
+- `0 + 0 = 0` 
+- `0 + 1 = 1`
+- `1 + 0 = 1`
+- `1 + 1 = 1`
 
 ## Laws for Complementation
 
@@ -139,7 +145,7 @@ Formula to work it out is `2^n`, where `n = number of subsets`
 ## Associative Laws
 
 - `(a + b) + c = a + (b + c)`
-- (a • b) • c = a • (b • c)`
+- `(a • b) • c = a • (b • c)`
 
 ## Commutative Laws
 
