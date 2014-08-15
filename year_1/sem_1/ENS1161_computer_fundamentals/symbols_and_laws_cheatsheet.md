@@ -104,7 +104,7 @@ Is a collection of all the possible combinations of subsets, including `∅`, th
 
 If `A = {1, 2, 3}` 
 
-Then `P(A) = [{`∅`}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}]`
+Then `P(A) = [`∅`, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}]`
 
 Formula to work it out is `2^n`, where `n = number of subsets`
 
