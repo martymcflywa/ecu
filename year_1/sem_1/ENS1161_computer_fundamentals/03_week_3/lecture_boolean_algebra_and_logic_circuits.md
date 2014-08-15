@@ -221,3 +221,220 @@ When you are first learning about circuits it is helpful to write the appropriat
 
 #### Example 3:
 
+![gate example 3](http://i.imgur.com/OfYqw23.png)
+
+### From Boolean Expression to Logic Circuit
+
+#### Example 1: `(y' + z)(x' + yz')`
+
+![gate exptocirc1](http://i.imgur.com/SMQW6YG.png)
+
+#### Example 2: `xy'z + x'z'`
+
+![gate exptocirc2](http://i.imgur.com/1bQfhxe.png)
+
+#### Example 3: `(xyz' + x'y')' + y'`
+
+![gate exptocirc2](http://i.imgur.com/X0GVEAb.png)
+
+## Truth Tables and Boolean Expressions
+
+It is important to be able to transfer between truth tables, Boolean expressions and circuits.
+
+`truth table -> expression -> circuit`
+
+We have looked at links between expressions and circuits, now we will consider expressions and truth tables. There are two points to note:
+
+- In constructing truth tables for expressions, we will confine our attention to so called *sums of products* since these correspond to `AND` `OR` circuits.
+- The link from truth tables to expressions is important for the design of circuits, and here we will need the concept of *fundamental product*.
+
+### From Sums of Products to Truth Tables
+
+A **product** is an expression such as `xy'` or `x'yz'` which consists of variables combined using the `AND` operation. In other words, the variables are **multiplied** together.
+
+A **sum of products (SOP)** consists of products combined using the `OR` operation. The products are **added** together.
+
+To construct a truth table for a sum of products, we use one column for each product and then one for the sum of the products, as shown in the examples below.
+
+#### Example 1: Find the truth table for `L = x'yz + xy' + x'z'`
+
+| `x` | `y` | `z` | `x'yz` | `xy'` | `x'z'` | `L` |
+|:---:|:---:|:---:|:------:|:-----:|:------:|:---:|
+| 0   | 0   | 0   | 0      | 0     | 1      | 1   |
+| 0   | 0   | 1   | 0      | 0     | 0      | 0   |
+| 0   | 1   | 0   | 0      | 0     | 1      | 1   |
+| 0   | 1   | 1   | 1      | 0     | 0      | 1   |
+| 1   | 0   | 0   | 0      | 1     | 0      | 1   |
+| 1   | 0   | 1   | 0      | 1     | 0      | 1   |
+| 1   | 1   | 0   | 0      | 0     | 0      | 0   |
+| 1   | 1   | 1   | 0      | 0     | 0      | 0   |
+
+#### Example 2: Find the truth table for `P = xyz' + x'y'`
+
+| `x` | `y` | `z` | `xyz'` | `x'y'` | `P` |
+|:---:|:---:|:---:|:------:|:------:|:---:|
+| 0   | 0   | 0   | 0      | 1      | 1   |
+| 0   | 0   | 1   | 0      | 1      | 1   |
+| 0   | 1   | 0   | 0      | 0      | 0   |
+| 0   | 1   | 1   | 0      | 0      | 0   |
+| 1   | 0   | 0   | 0      | 0      | 0   |
+| 1   | 0   | 1   | 0      | 0      | 0   |
+| 1   | 1   | 0   | 1      | 0      | 1   |
+| 1   | 1   | 1   | 0      | 0      | 0   |
+
+### Fundamental Products
+
+In order to find a Boolean expression corresponding to a given truth table, we need the concept of **fundamental product**.
+
+For two variables `x` and `y`, there are **four** fundamental products. They are:
+
+```
+xy
+xy'
+x'y
+x'y'
+```
+
+For three variables `x`, `y` and `z`, there are **eight** fundamental products:
+
+```
+xyz
+xyz'
+xy'z
+x'yz
+x'yz'
+x'y'z
+x'y'z'
+```
+
+For four variables `w`, `x`, `y` and `z`, there are **sixteen** fundamental products:
+
+```
+wxyz
+wxyz'
+wxy'z
+...
+w'x'y'z'
+```
+
+>Which is the same as the possible combinations for each proposition. The formula is:
+
+>`x = number of outcomes (which is two, 0 or 1); y = number of variables`
+
+>`2 ˄ y = number of possible combinations`
+
+There are two key concepts to remember:
+
+- In a fundamental product, each variable must be present, with or without `'`
+- Each fundamental product is equal to 1 for one and only one combination of the variables
+
+As an example of the first concept, `x'yz` **is** a fundamental product if we are dealing with three variables `x` `y` and `z`, but **not** if we are dealing with four variables `w` `x` `y` and `z` (because `w` is missing).
+
+Suppose we are only dealing with three variables `x` `y` and `z`:
+
+`xy'z'` is equal to `1` only if `x = 1` `y = 0` and `z = 0`
+
+`xy'z` is equal to `1` only if `x = 1` `y = 0` and `z = 1`
+
+### From Truth Table to Boolean Expression
+
+We are now ready to find a Boolean expression corresponding to a given truth table.
+
+#### Example 1:
+
+| `x` | `y` | `z` | `L` |
+|:---:|:---:|:---:|:---:|
+| 0   | 0   | 0   | 0   |
+| 0   | 0   | 1   | 0   |
+| 0   | 1   | 0   | 1   |
+| 0   | 1   | 1   | 0   |
+| 1   | 0   | 0   | 1   |
+| 1   | 0   | 1   | 1   |
+| 1   | 1   | 0   | 0   |
+| 1   | 1   | 1   | 1   |
+
+`L = x'yz' + xy'z' + xy'z + xyz`
+
+#### Example 2:
+
+| `a` | `b` | `c` | `P` |
+|:---:|:---:|:---:|:---:|
+| 0   | 0   | 0   | 1   |
+| 0   | 0   | 1   | 0   |
+| 0   | 1   | 0   | 0   |
+| 0   | 1   | 1   | 1   |
+| 1   | 0   | 0   | 1   |
+| 1   | 0   | 1   | 0   |
+| 1   | 1   | 0   | 1   |
+| 1   | 1   | 1   | 0   |
+
+`P = a'b'c' + a'bc + ab'c' + abc'`
+
+#### Example 3:
+
+| `w` | `x` | `y` | `z` | `L` |
+|:---:|:---:|:---:|:---:|:---:|
+| 0   | 0   | 0   | 0   | 0   |
+| 0   | 0   | 0   | 1   | 0   |
+| 0   | 0   | 1   | 0   | 1   |
+| 0   | 0   | 1   | 1   | 0   |
+| 0   | 1   | 0   | 0   | 0   |
+| 0   | 1   | 0   | 1   | 1   |
+| 0   | 1   | 1   | 0   | 1   |
+| 0   | 1   | 1   | 1   | 0   |
+| 1   | 0   | 0   | 0   | 0   |
+| 1   | 0   | 0   | 1   | 0   |
+| 1   | 0   | 1   | 0   | 1   |
+| 1   | 0   | 1   | 1   | 0   |
+| 1   | 1   | 0   | 0   | 0   |
+| 1   | 1   | 0   | 1   | 1   |
+| 1   | 1   | 1   | 0   | 0   |
+| 1   | 1   | 1   | 1   | 0   |
+
+`L = w'x'yz' + w'xy'z + w'xyz' + wx'yz' + wxy'z`
+
+## Laws of Boolean Algebra
+
+It is important to be familiar with these laws because they can help to simplify complicated expressions.
+
+### Idempotent Laws
+
+- `a + a = a`
+- `a • a = a`
+
+### Complement Laws
+
+- `a + a' = 1`
+- `a • a' = 0`
+
+### Involution Law
+
+- `(a')' = a`
+
+### Associative Laws
+
+- `(a + b) + c = a + (b + c)`
+- (a • b) • c = a • (b • c)`
+
+### Commutative Laws
+
+- `a + b = b + a`
+- `a • b = b • a`
+
+### Distributive Laws
+
+- `a + b • c = (a + b) • (a + c)`
+- `a • (b + c) = a • b + a • c`
+
+### de Morgan's Laws
+
+- `(a + b)' = a' • b'`
+- `(a • b)' = a' + b'`
+
+### Identity Laws
+
+- `a + 0 = a`
+- `a • 1 = a`
+- `a + 1 = 1`
+- `a • 0 = 0`
+
