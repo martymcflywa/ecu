@@ -39,6 +39,9 @@ public class AnnulusCalculator {
 		// calls Annuls.areaCalc and passes counter as arg to perform area calculation and print result
 		Annulus.areaCalc(counter);
 		
+		// part 2, calls hitsCounter **not working**
+		// double hitsCounter = AnnulusGrid.hitsIterator();
+		
 		// ensures JOptionPane is closed
 		System.exit(0);
 	}

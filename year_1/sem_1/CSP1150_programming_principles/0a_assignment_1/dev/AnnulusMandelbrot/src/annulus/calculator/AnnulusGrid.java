@@ -13,19 +13,23 @@
  * @return getGridSq		gets gridSize squared
  * @return getCol			gets centre of column
  * @return getRow			gets centre of row
+ * @return getColRandom		gets column random hitpoints
+ * @return getRowRandom		gets row random hitpoints
  * @return getMinX			gets minX
  * @return getMaxX			gets maxX
  * @return getMinY			gets minY
  * @return getMaxY			gets maxY
  * @return getColDelta		gets colDelta
  * @return getRowDelta		gets rowDelta
+ * @return iterator			iterates through fixed centred hitpoint
+ * @return hitsIterator		iterates through random hitpoints
  */
 package annulus.calculator;
 
 class AnnulusGrid {
 
-	// might turn gridSize into final, or ask for user input for desired accuracy
-	private static int gridSize = 100;
+	private static int gridSize = 100,
+						samples = 100;
 	
 	private static double minX,
 					maxX,
@@ -56,11 +60,19 @@ class AnnulusGrid {
 	}
 	
 	static double getCol(int col) {
-		return minY + (col + 0.5) * ((maxX - minX) / gridSize);
+		return minX + (col + 0.5) * ((maxX - minX) / gridSize);
+	}
+	
+	static double getColRandom(int col) {
+		return minX + (col + Math.random()) * ((maxX - minX) / gridSize);
 	}
 
 	static double getRow(int row) {
 		return minY + (row + 0.5) * ((maxY - minY) / gridSize);
+	}
+	
+	static double getRowRandom(int row) {
+		return minY + (row + Math.random()) * ((maxY - minY) / gridSize);
 	}
 	
 	static double getMinX() {
@@ -90,10 +102,10 @@ class AnnulusGrid {
 	static int iterator() {
 		int counter = 0;
 		
-		for(int col = 0; col < getGridSize(); col ++){
+		for(int col = 0; col < gridSize; col ++) {
 			double x = getCol(col);
 			
-			for(int row = 0; row < getGridSize(); row ++) {
+			for(int row = 0; row < gridSize; row ++) {
 				double y = getRow(row);
 				double test = x * x + y * y;
 				
@@ -103,5 +115,28 @@ class AnnulusGrid {
 			}
 		}
 		return counter;
+	}
+	
+	// need to figure out how to expand array
+	static double hitsIterator() {
+		double counter = 0;
+		int col = 0,
+			row = 0;
+		double[][] hits = new double[col][row];
+		
+		for(int i = 0; i < samples; i ++) {
+			for(int j = 0; j < gridSize ; j ++) {
+				for(int k = 0; k < gridSize ; k ++) {
+					double x = getColRandom(j);
+					double y = getRowRandom(k);
+					double test = x * x + y * y;
+					if(test < Annulus.rad1Sq() && test > Annulus.rad2Sq()) {
+						hits[col][row] ++;
+					}
+				}
+			}
+		}
+		hits[col][row] = hits[col][row] / samples;
+		return counter + hits[col][row];
 	}
 }

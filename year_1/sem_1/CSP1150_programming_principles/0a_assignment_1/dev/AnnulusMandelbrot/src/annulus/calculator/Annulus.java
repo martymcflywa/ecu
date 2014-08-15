@@ -33,19 +33,19 @@ class Annulus {
 	}
 	
 	static double getRadius1() {
-		return radius1;
+		return Annulus.radius1;
 	}
 	
 	static double getRadius2() {
-		return radius2;
+		return Annulus.radius2;
 	}
 
 	static double rad1Sq() {
-		return radius1 * radius1;
+		return Annulus.radius1 * Annulus.radius1;
 	}
 	
 	static double rad2Sq() {
-		return radius2 * radius2;
+		return Annulus.radius2 * Annulus.radius2;
 	}
 	
 	static void areaCalc(double counter) {
