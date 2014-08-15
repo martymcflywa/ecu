@@ -4,33 +4,73 @@
  * 
  * @author Martin Ponce ID# 10371381
  * @version 20140814
+ * 
+ * @param setGridSize		sets int gridSize
+ * @param setCol			sets int column
+ * @param setRow			sets int row
+ * @param setMinX			sets double minX as negative value
+ * @param setMaxX			sets double maxX as positive value
+ * @param setMinY			sets double minY as negative value
+ * @param setMaxY			sets double maxY as positive value
+ * 
+ * @return getGridSize		gets gridSize
+ * @return getCol			gets centre of column
+ * @return getRow			gets centre of row
  */
 package annulus.calculator;
 
 class AnnulusGrid {
 
 	// might turn gridSize into final, or ask for user input for desired accuracy
-	private double gridSize = 100.0,
-			minX,
-			maxX,
-			minY,
-			maxY,
-			column,
-			row;
-
-	/**
-	 * @return get gridSize
-	 */
+	private int gridSize = 100,
+				col,
+				row;
+	
+	private double minX,
+					maxX,
+					minY,
+					maxY;
+	
+	void setGridSize(int gridSize) {
+		this.gridSize = gridSize;
+	}
+	
+	void setCol(int col) {
+		this.col = col;
+	}
+	
+	void setRow(int row) {
+		this.row = row;
+	}
+	
+	void setMinX(double minX) {
+		this.minX = -minX;
+	}
+	
+	void setMaxX(double maxX) {
+		this.maxX = maxX;
+	}
+	
+	void setMinY(double minY) {
+		this.minY = -minY;
+	}
+	
+	void setMaxY(double maxY) {
+		this.maxY = maxY;
+	}
+	
 	double getGridSize() {
 		return gridSize;
 	}
-
-	/**
-	 * @param set gridSize
-	 */
-	void setGridSize(double gridSize) {
-		this.gridSize = gridSize;
+	
+	double getCol(int col) {
+		return minY + (col + 0.5) * ((maxX - minX) / gridSize);
 	}
+
+	double getRow(int row) {
+		return minY + (row + 0.5) * ((maxY - minY) / gridSize);
+	}
+	
 
 	/**
 	 * @return get minX
@@ -39,12 +79,7 @@ class AnnulusGrid {
 		return minX;
 	}
 
-	/**
-	 * @param set minX
-	 */
-	void setMinX(double minX) {
-		this.minX = -minX;
-	}
+
 
 	/**
 	 * @return get maxx
@@ -53,12 +88,6 @@ class AnnulusGrid {
 		return maxX;
 	}
 
-	/**
-	 * @param set maxX
-	 */
-	void setMaxX(double maxX) {
-		this.maxX = maxX;
-	}
 
 	/**
 	 * @return get minY
@@ -67,12 +96,6 @@ class AnnulusGrid {
 		return minY;
 	}
 
-	/**
-	 * @param set minY
-	 */
-	void setMinY(double minY) {
-		this.minY = -minY;
-	}
 
 	/**
 	 * @return get maxY
@@ -81,59 +104,21 @@ class AnnulusGrid {
 		return maxY;
 	}
 
-	/**
-	 * @param set maxY
-	 */
-	void setMaxY(double maxY) {
-		this.maxY = maxY;
-	}
-
-	/**
-	 * @return get column
-	 */
-	double getColumn() {
-		return column;
-	}
-
-	/**
-	 * @param set column
-	 */
-	void setColumn(double column) {
-		this.column = column;
-	}
-
-	/**
-	 * @return get row
-	 */
-	double getRow() {
-		return row;
-	}
-
-	/**
-	 * @param set row
-	 */
-	void setRow(double row) {
-		this.row = row;
-	}
 	
 	/**
 	 * @return get column
 	 */
-	double getColumn(double column) {
-		return minY + (column + 0.5) * ((maxX - minX) / gridSize);
-	}
+
 	
 	/**
 	 * @return get row
 	 */
-	double getRow(double row) {
-		return minY + (row + 0.5) * ((maxY - minY) / gridSize);
-	}
+
 	
 	/**
 	 * @return get columnDelta
 	 */
-	double columnDelta() {
+	double colDelta() {
 		return maxX - minX;
 	}
 	
