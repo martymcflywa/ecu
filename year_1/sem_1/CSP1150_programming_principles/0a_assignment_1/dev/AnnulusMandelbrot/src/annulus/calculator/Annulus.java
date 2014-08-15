@@ -5,8 +5,9 @@
  * @author Martin Ponce ID# 10371381
  * @version 20140814
  * 
- * @param setAnnRadius1		set the outer radius for annulus
- * @param setAnnRadius2		set the inner radius for annulus
+ * @param setAnnRadius1		set outer radius
+ * @param setAnnRadius2		set inner radius
+ * 
  * @return getAnnRadius1	get outer radius
  * @return getAnnRadius2	get inner radius
  * @return rad1Sq			calculate outer radius squared

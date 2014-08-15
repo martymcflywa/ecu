@@ -14,8 +14,15 @@
  * @param setMaxY			sets double maxY as positive value
  * 
  * @return getGridSize		gets gridSize
+ * @return getGridSq		gets gridSize squared
  * @return getCol			gets centre of column
  * @return getRow			gets centre of row
+ * @return getMinX			gets minX
+ * @return getMaxX			gets maxX
+ * @return getMinY			gets minY
+ * @return getMaxY			gets maxY
+ * @return getColDelta		gets colDelta
+ * @return getRowDelta		gets rowDelta
  */
 package annulus.calculator;
 
@@ -63,6 +70,10 @@ class AnnulusGrid {
 		return gridSize;
 	}
 	
+	double gridSizeSq() {
+		return gridSize * gridSize;
+	}
+	
 	double getCol(int col) {
 		return minY + (col + 0.5) * ((maxX - minX) / gridSize);
 	}
@@ -71,68 +82,27 @@ class AnnulusGrid {
 		return minY + (row + 0.5) * ((maxY - minY) / gridSize);
 	}
 	
-
-	/**
-	 * @return get minX
-	 */
 	double getMinX() {
 		return minX;
 	}
 
-
-
-	/**
-	 * @return get maxx
-	 */
 	double getMaxX() {
 		return maxX;
 	}
 
-
-	/**
-	 * @return get minY
-	 */
 	double getMinY() {
 		return minY;
 	}
 
-
-	/**
-	 * @return get maxY
-	 */
 	double getMaxY() {
 		return maxY;
 	}
 
-	
-	/**
-	 * @return get column
-	 */
-
-	
-	/**
-	 * @return get row
-	 */
-
-	
-	/**
-	 * @return get columnDelta
-	 */
 	double colDelta() {
 		return maxX - minX;
 	}
 	
-	/**
-	 * @return get rowDelta
-	 */
 	double rowDelta() {
 		return maxY - minY;
-	}
-	
-	/**
-	 * @return get gridSize squared
-	 */
-	double gridSizeSq() {
-		return gridSize * gridSize;
 	}
 }
