@@ -49,11 +49,17 @@ One major advantage of using a notation with symbols `•` and `+` is that many 
 
 #### Laws for Multiplication
 
-`0 • 0 = 0` `0 • 1 = 0` `1 • 0 = 0` `1 • 1 = 1`
+- `0 • 0 = 0`
+- `0 • 1 = 0`
+- `1 • 0 = 0`
+- `1 • 1 = 1`
 
 #### Laws for Addition
 
-`0 + 0 = 0` `0 + 1 = 1` `1 + 0 = 1` `1 + 1 = 1`
+- `0 + 0 = 0`
+- `0 + 1 = 1`
+- `1 + 0 = 1`
+- `1 + 1 = 1`
 
 #### Laws for Complementation
 
@@ -139,7 +145,7 @@ x'y' + xy'z + xz
 
 ### Exercise 3:
 
-For each expression, what values of `x` `y` and `z` will make the expression equal to `1`?
+For each expression, what values of `x` `y` and `z` will make the expression equal to `1`
 
 - `xyz'`
 	- `x = 1`
@@ -160,7 +166,7 @@ For each expression, what values of `x` `y` and `z` will make the expression equ
 
 ### Exercise 4:
 
-For each of the following combinations of values, which product of `x` `y` and `z` (with or without the dashes) is equal to `1`?
+For each of the following combinations of values, which product of `x` `y` and `z` (with or without the dashes) is equal to `1`
 
 - `x = 0, y = 1, z = 0`
 	- `x'yz'`
@@ -189,7 +195,7 @@ An `OR` gate has two or more inputs, and its output is the Boolean sum of the in
 
 ![gate OR](http://i.imgur.com/ujDl3G7.png)
 
-The output of an `OR` is `0` if all the inputs are `0`, otherwise the output is `1`/
+The output of an `OR` is `0` if all the inputs are `0`, otherwise the output is `1`
 
 Hence the rule: an `OR` gives `0` if all inputs are `0`, otherwise it is `1`.
 
@@ -414,7 +420,7 @@ It is important to be familiar with these laws because they can help to simplify
 ### Associative Laws
 
 - `(a + b) + c = a + (b + c)`
-- (a • b) • c = a • (b • c)`
+- `(a • b) • c = a • (b • c)`
 
 ### Commutative Laws
 
@@ -438,3 +444,161 @@ It is important to be familiar with these laws because they can help to simplify
 - `a + 1 = 1`
 - `a • 0 = 0`
 
+### Laws Involving 0 and 1
+
+#### `0`
+
+- `xx' = 0`
+- `0x = 0`
+- `0 + x = x`
+
+#### `1`
+
+- `x + 1 = 1`
+- `1x = x`
+- `x + x' = 1`
+
+### Other Useful Laws
+
+- `x'' = x`
+- `x + x = x`
+- `x + x' = 1`
+
+## Using the Laws
+
+Laws of Boolean algebra can be used to reduce expressions to their simplest form. We will use a combination of Boolean algebra and Karanugh maps to simplify expressions.
+
+The most useful for that purpose are:
+
+### Commutative laws for `•` and `+`
+
+- `x • y = y • x`
+- `x + y = y + x`
+
+### Associative laws for `•` and `+`
+
+- `(x • y) • z = x • (y • z)`
+- `(x + y) + z = x + (y + z)`
+
+- The practical value of Commutative and Associative laws is that
+	- In any product, the order of multiplication is unimportant
+		- `xy'z = y'xz = zy'x = ... etc`
+	- In any sum, the order of addition is unimportant
+		- `x' + y' + z = y' + x' + z = z + y' + x' = ... etc`
+
+### Distributive laws
+
+Are used to remove brackets.
+
+- `x(y + z) = xy + xz`
+- `(w + x)(y + z) = wy + wz + xy + xz`
+- `x(w + y + z) = xw + xy + xz`
+
+### Laws involving 0 and 1
+
+#### `0`
+
+- `xx' = 0`
+- `0x = 0`
+- `0 + x = x`
+
+#### `1`
+
+- `x + 1 = 1`
+- `1x = x`
+- `x + x' = 1`
+
+Examples of use
+
+- `y'(yz + xz') = y'yz + xy'z' = 0z + xy'z' = 0 + xy'z' = xy'z'`
+
+### Other Useful Laws
+
+- `x'' = x`
+- `x + x = x`
+- `x + x' = 1`
+
+Example
+
+- `xy + xy + wz = xy + wz`
+- `wx'ywz = wx'yz`
+
+## Using de Morgan's Laws
+
+- `(x + y)' = x'y'`
+- `(xy)' = x' + y'`
+
+Can also be used on cases like:
+
+- `(w + x + y + z)' = w'x'y'z'`
+- `(wxyz)' =  w' + x' + y' z'`
+
+Typically, de Morgan's law is used to remove brackets from certain expressions to obtain a sum of products.
+
+- Law: `(pq)' = p' + q'`
+	- `(x' yz)' = x + y ' +z'`
+	- `(wxy'z')' = w' + x' + y + z`
+- Law: `(p + q)' = p'q'`
+	- `(x + y' + z)' = x'yz'`
+	- `(w' + x' + y + z') = wxy'z`
+
+The following examples use both de Morgan's laws. In each case, the task is to reduce the given expression to a sum of products. **Notice** that sometimes it is necessary to introduce brackets during the simplifaction.
+
+### Examples
+
+```
+1. (x + y'z)' = x'(y'z)' = x'(y + z') = x'y + x'z'
+
+2. (xy' + yz')' = (xy')'(yz')' = (x' + y)(y' + z) = x'y' + x'z + 0 + yz = x'y' + x'z + yz
+
+3. (x' + xy'z + yz')'	= x(xy'z)'(yz')' = x(x' + y + z')(y' + z)
+						= x(x'y' + x'z + 0 + yz + z'y' + 0)
+						= 0 + 0 + xyz + xy'z' = xyz + xy'z'
+
+4. (xy' + x'z + yz')'	= (xy')'(x'z)'(yz')' = (x' + y)(x + z')(y' + z)
+						= (x' + y)(xy' + xz + y'z') = x'y'z' + xyz
+
+5. (x' + yz)'(wy' + xz')'	= x(yz)'(wy')'(xz')'
+							= x(y' + z')(w' + y)(x' + z)
+							= (xy' + xz')(w'x' + w'z + x'y + yz)
+							= 0 + w'xy'z + 0 + 0 + 0 + 0 + 0 + 0
+							= w'xy'z
+```
+
+## Expanding SOP into a Complete Sum of Products
+
+Sometimes it is desirable to expand a sum of products intoa complete sum of products.
+
+In a complete sum of products, each term must be a fundamental product, that is in each term, every variable **must** be present, with or without the `'`.
+
+If any term of a sum of products has a variable missing, we multiply the term by `1` in the form `(var + var')`.
+
+Since the sum `(var + var') = 1`, we are multiplying by 1, which does not alter the value of the original expression.
+
+### Examples
+
+```
+1. P(x,y,z) = xy' = xy'(z + z') = xy'z + xy'z'
+
+2. M(x,y,z)	= z = z(x + x') = xz + x'z = xz(y + y') + x'z(y + y')
+			= xyz + xy'z + x'yz + x'y'z
+
+3. L(w,x,y,z)	= wxy'z + xyz' + w'yz
+				= wxy'z + wxyz' + w'xyz' + w'xyz + w'x'yz 
+```
+
+### Exercise
+
+For which combinations of `x` `y` and `z` will `M` be equal to `1`?
+
+![gate soptoproduct](http://i.imgur.com/WqpR7MA.png)
+
+#### Solution
+
+Expand `M` into a complete sum of products
+
+`M = x'z + yz' = x'yz + x'y'z + xyz' + x'yz'`
+
+So
+
+`M = 1 for (x,y,z) = (0,1,1), (0,0,1), (1,1,0) and (0,1,0)`

@@ -45,6 +45,19 @@ The laws are essentially the same, but are just presented differently.
 | `true`  | `U`  | `1`     |
 | `false` | `∅`  | `0`     |
 
+# Laws
+
+| Distributive Laws                    | De Morgan's Laws      |
+|--------------------------------------|-----------------------|
+| `p ˅ (q ˄ r) = (p ˅ q) ˄ (p ˅ r)`    | `~(p ˅ q) = ~p ˄ ~q`  |
+| `p ˄ (q ˅ r) = (p ˄ q) ˅ (p ˄ r)`    | `~(p ˄ q) = ~p ˅ ~q`  |
+| `p + q • r = (p + q) • (p + r)`      | `(p + q)' = p' • q'`  |
+| `p • (q + r) = p • q + p • r`        | `(p • q)' = p' + q'`  |
+| `A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)`   | `(A ∪ B)' = A' ∩ B'` |
+| `A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)`  | `(A ∩ B)' = A' ∪ B'` |
+| `(w + x)(y + z) = wy + wz + xy + xz` | `(x + y)' = x'y'`     |
+| `x(w + y + z) = xw + xy + xz`        | `(xy)' = x' + y'`     |
+
 # Negations
 
 ## Statement Negations
