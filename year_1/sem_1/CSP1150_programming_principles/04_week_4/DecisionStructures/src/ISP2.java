@@ -17,12 +17,12 @@ static final double B_MONTHLY = 13.95;
 static final double B_HOURLY = 1.0;
 static final double C_MONTHLY = 19.95;
 
-//declare plan, stores user input for chosen plan
+// declare plan, stores user input for chosen plan
 static String plan;
-//declare hours, stores user input for hours used
+// declare hours, stores user input for hours used
 static double hours;
 
-//define decimalPattern and create decimalFormat object
+// define decimalPattern and create decimalFormat object
 static String decimalPattern = "###,###.##";
 static DecimalFormat decimalFormat = new DecimalFormat(decimalPattern);
 	
