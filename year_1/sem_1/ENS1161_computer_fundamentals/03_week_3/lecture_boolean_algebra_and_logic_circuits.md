@@ -589,7 +589,7 @@ Is a three-step process when used for simplifying.
 
 ## Expanding SOP into a Complete Sum of Products
 
-Sometimes it is desirable to expand a sum of products intoa complete sum of products.
+Sometimes it is desirable to expand a sum of products into a complete sum of products.
 
 In a complete sum of products, each term must be a fundamental product, that is in each term, every variable **must** be present, with or without the `'`.
 

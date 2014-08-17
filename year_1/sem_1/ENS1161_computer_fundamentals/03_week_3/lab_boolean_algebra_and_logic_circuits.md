@@ -192,3 +192,22 @@
 - `P = x'y'z' + x'yz' + xy'z`
 - `Q = x'y'z + x'yz + xy'z' + xyz'`
 - `R = x'y'z + x'yz' + xy'z' + xy'z + xyz'`
+
+## 16: Expand each of the following Boolean expressions into a complete sum of products
+
+1. `L(x, y) = x + y'`
+	- `L(x, y) = x + y' = xy + x'y + x'y'`
+2. `M(x, y, z) = xy' + yz'`
+	- `M(x, y, z) = xy' + yz' = xy'z + xy'z' + xyz' + x'yz'`
+3. `P(x, y, z) = x'y + yz`
+	- `P(x, y, z) = x'y + yz = x'yz + x'yz' + xyz`
+4. `Q(x, y, z) = yz' + z`
+	- `Q(x, y, z) = yz' + z = xyz' + x'yz' + xyz + xy'z + x'yz + x'y'z`
+5. `L(w, x, y) = wxy + wy'`
+	- `L(w, x, y) = wxy + wy' = wxy + wxy' + wx'y'`
+6. `M(w, x, y, z) = xy'z + wx'y`
+	- `M(w, x, y, z) = xy'z + wx'y = wxy'z + w'xy'z + wx'yz + wx'yz'`
+7. `P(w, x, y, z) = xz' + wy`
+	- `P(w, x, y, z) = xz' + wy = wxyz' + wxy'z' + w'xyz' + w'xy'z' + wxyz + wx'yz + wx'yz'`
+8. `Q(w, x, y, z) = wxy + wyz`
+	- `Q(w, x, y, z) = wxy + wyz = wxyz + wxyz' + wx'yz`
