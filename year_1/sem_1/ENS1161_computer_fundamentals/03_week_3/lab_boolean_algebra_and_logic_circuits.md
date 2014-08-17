@@ -160,9 +160,14 @@
 - L: `(wx' + yz')'`
 	- `w'y + w'z + xy' + xz`
 - M: `wx'y(xy + w'yz + wyz)`
-	- `
+	- `wx'yz`
 - N: `(xy + x'y'z)'`
+	- `x'y + x'z' + xy' + y'z'`
 - O: `(x + yz)' + y'(xy + z)`
+	- `x'y' + x'z' + y'z`
 - P: `(xyz' + x'y' + z)'`
+	- `x'yz' + xy'z'`
 - Q: `(xy' + yz')'`
-- R: `(y + z')'(x' + y)'` 
+	- `x'y' + x'z + yz`
+- R: `(y + z')'(x' + y)'`
+	- `

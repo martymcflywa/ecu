@@ -510,7 +510,12 @@ Are used to remove brackets.
 
 Examples of use
 
-- `y'(yz + xz') = y'yz + xy'z' = 0z + xy'z' = 0 + xy'z' = xy'z'`
+```
+`y'(yz + xz')	= y'yz + xy'z' 
+				= 0z + xy'z' 
+				= 0 + xy'z' 
+				= xy'z'`
+```
 
 ### Other Useful Laws
 
@@ -555,16 +560,25 @@ Is a three-step process when used for simplifying.
 ### Examples
 
 ```
-1. (x + y'z)' = x'(y'z)' = x'(y + z') = x'y + x'z'
+1. (x + y'z)'				= x'(y'z)'
+							= x'(y + z')
+							= x'y + x'z'
 
-2. (xy' + yz')' = (xy')'(yz')' = (x' + y)(y' + z) = x'y' + x'z + 0 + yz = x'y' + x'z + yz
+2. (xy' + yz')'				= (xy')'(yz')'
+							= (x' + y)(y' + z)
+							= x'y' + x'z + 0 + yz
+							= x'y' + x'z + yz
 
-3. (x' + xy'z + yz')'	= x(xy'z)'(yz')' = x(x' + y + z')(y' + z)
-						= x(x'y' + x'z + 0 + yz + z'y' + 0)
-						= 0 + 0 + xyz + xy'z' = xyz + xy'z'
+3. (x' + xy'z + yz')'		= x(xy'z)'(yz')'
+							= x(x' + y + z')(y' + z)
+							= x(x'y' + x'z + 0 + yz + z'y' + 0)
+							= 0 + 0 + xyz + xy'z'
+							= xyz + xy'z'
 
-4. (xy' + x'z + yz')'	= (xy')'(x'z)'(yz')' = (x' + y)(x + z')(y' + z)
-						= (x' + y)(xy' + xz + y'z') = x'y'z' + xyz
+4. (xy' + x'z + yz')'		= (xy')'(x'z)'(yz')' 
+							= (x' + y)(x + z')(y' + z)
+							= (x' + y)(xy' + xz + y'z')
+							= x'y'z' + xyz
 
 5. (x' + yz)'(wy' + xz')'	= x(yz)'(wy')'(xz')'
 							= x(y' + z')(w' + y)(x' + z)
@@ -586,10 +600,15 @@ Since the sum `(var + var') = 1`, we are multiplying by 1, which does not alter 
 ### Examples
 
 ```
-1. P(x,y,z) = xy' = xy'(z + z') = xy'z + xy'z'
+1. P(x,y,z)		= xy'
+				= xy'(z + z')
+				= xy'z + xy'z'
 
-2. M(x,y,z)	= z = z(x + x') = xz + x'z = xz(y + y') + x'z(y + y')
-			= xyz + xy'z + x'yz + x'y'z
+2. M(x,y,z)		= z 
+				= z(x + x') 
+				= xz + x'z
+				= xz(y + y') + x'z(y + y')
+				= xyz + xy'z + x'yz + x'y'z
 
 3. L(w,x,y,z)	= wxy'z + xyz' + w'yz
 				= wxy'z + wxyz' + w'xyz' + w'xyz + w'x'yz 
