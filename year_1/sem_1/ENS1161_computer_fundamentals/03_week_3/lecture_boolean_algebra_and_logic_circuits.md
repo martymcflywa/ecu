@@ -548,7 +548,7 @@ The following examples use both de Morgan's laws. In each case, the task is to r
 
 Is a three-step process when used for simplifying.
 
-- If `(a + b)'`, then convert to product with `a'b'`
+- If `(a + b)'`, then convert to product with `a'b`
 - Then for each element, `(xy)' = x' + y'` to convert to sum outside brackets
 - Then complete **expansion of brackets** to convert from `(a + b)(a + b)` to `aa + ab + ba + bb`
 

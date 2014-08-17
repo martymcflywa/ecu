@@ -148,17 +148,19 @@
 - F: `(yz' + x'z)'`
 	- `xy' + xz + y'z`
 - G: `(x' + y'z + xz')'`
-	- `STUCK`
+	- `xyz`
 - H: `(y + xy'z)'`
 	- `x'y + y'z'`
 - I: `x'(x + y'z) + (y' + z)'`
 	- `x'y'z + yz'`
 - J: `y'(xz' + y'z)'`
-	- `x'y'z` **answer** is `x'y'z'` but should `z'` be `z`?
-- K: `(x'y + xz') (y' + x'z)`
-	- `STUCK`
+	- `x'y'z'`
+- K: `(x'y + xz')(y' + x'z)`
+	- `x'yz + xy'z'`
 - L: `(wx' + yz')'`
+	- `w'y + w'z + xy' + xz`
 - M: `wx'y(xy + w'yz + wyz)`
+	- `
 - N: `(xy + x'y'z)'`
 - O: `(x + yz)' + y'(xy + z)`
 - P: `(xyz' + x'y' + z)'`
