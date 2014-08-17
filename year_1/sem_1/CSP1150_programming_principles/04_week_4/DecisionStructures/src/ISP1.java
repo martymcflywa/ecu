@@ -72,6 +72,7 @@ static DecimalFormat decimalFormat = new DecimalFormat(decimalPattern);
 					String totalAFormat = decimalFormat.format(totalA);
 					JOptionPane.showMessageDialog(null, "You have chosen Plan A, and your total bill for the month is: $" + totalAFormat);
 				}
+				// otherwise just show the monthly fee as total
 				else {
 					JOptionPane.showMessageDialog(null, "You have chosen Plan A, and your total bill for the month is: $" + A_MONTHLY);
 				}
@@ -85,11 +86,13 @@ static DecimalFormat decimalFormat = new DecimalFormat(decimalPattern);
 					String totalBFormat = decimalFormat.format(totalB);
 					JOptionPane.showMessageDialog(null, "You have chosen Plan B, and your total bill for the month is: $" + totalBFormat);
 				}
+				// otherwise just show the monthly fee as total
 				else {
 					JOptionPane.showMessageDialog(null, "You have chosen Plan B, and your total bill for the month is: $" + B_MONTHLY);
 				}
 				break;
 			case "c":
+				// for plan C, show the monthly fee as total
 				JOptionPane.showMessageDialog(null, "You have chosen plan C, and your total bill for the month is: $" + C_MONTHLY);
 				break;
 		}
