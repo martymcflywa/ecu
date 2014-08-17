@@ -1,15 +1,11 @@
 import java.util.Scanner;
 
 /**
- * Asks for user input for three names
- * then sorts those names in alphabetical order.
+ * Asks for user input for three names then sorts those names in alphabetical order.
  * Note: case ignored
  * 
  * @author Martin Ponce ID# 10371381
  * @version 20140817
- * 
- * @return userInput	asks user for three names which are stored in name1, name2 and name3.
- * @return nameSort		performs name sorting and output to console
  */
 public class SortedNames {
 	public static void main(String[] args) {

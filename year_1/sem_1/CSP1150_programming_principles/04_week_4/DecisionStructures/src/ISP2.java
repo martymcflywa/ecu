@@ -2,10 +2,8 @@ import javax.swing.JOptionPane;
 import java.text.DecimalFormat;
 
 /**
- * Calculates customer's monthly bill
- * depending on chosen package and usage.
- * Also notifies customer of possible savings
- * on other plan/s
+ * Calculates customer's monthly bill depending on chosen package and usage.
+ * Also notifies customer of possible savings on other plan/s.
  * 
  * @author Martin Ponce ID# 10371381
  * @version 20140817
@@ -19,10 +17,12 @@ static final double B_MONTHLY = 13.95;
 static final double B_HOURLY = 1.0;
 static final double C_MONTHLY = 19.95;
 
+//declare plan, stores user input for chosen plan
 static String plan;
+//declare hours, stores user input for hours used
 static double hours;
 
-// define decimal format
+//define decimalPattern and create decimalFormat object
 static String decimalPattern = "###,###.##";
 static DecimalFormat decimalFormat = new DecimalFormat(decimalPattern);
 	
@@ -56,8 +56,7 @@ static DecimalFormat decimalFormat = new DecimalFormat(decimalPattern);
 	// asks for user input for how many hours used
 	static void getHoursInput() {
 		String inputHours = JOptionPane.showInputDialog("How many hours have you used this month?");
-		double hours = Double.parseDouble(inputHours);
-		ISP2.hours = hours;
+		hours = Double.parseDouble(inputHours);
 	}
 	
 	// determines total cost for month depending which plan is purchased, output result to JOptionPane
@@ -66,9 +65,9 @@ static DecimalFormat decimalFormat = new DecimalFormat(decimalPattern);
 			case "a":
 				// for plan A, if usage is over 10 hours, calculate how much extra to pay and display total
 				if(hours > 10) {
-					double extraAHours = hours - 10;
-					double extraACost = extraAHours * A_HOURLY;
-					double totalA = extraACost + A_MONTHLY;
+					double extraHoursA = hours - 10;
+					double extraCostA = extraHoursA * A_HOURLY;
+					double totalA = extraCostA + A_MONTHLY;
 					String totalAFormat = decimalFormat.format(totalA);
 					JOptionPane.showMessageDialog(null, "You have chosen Plan A, and your total bill for the month is: $" + totalAFormat);
 					// calls compareAToBAndC() to determine if savings are possible on another plan
@@ -82,9 +81,9 @@ static DecimalFormat decimalFormat = new DecimalFormat(decimalPattern);
 			case "b":
 				// for plan B, if usage is over 20 hours, calculate how much extra to pay
 				if(hours > 20) {
-					double extraBHours = hours - 20;
-					double extraBCost = extraBHours * B_HOURLY;
-					double totalB = extraBCost + B_MONTHLY;
+					double extraHoursB = hours - 20;
+					double extraCostB = extraHoursB * B_HOURLY;
+					double totalB = extraCostB + B_MONTHLY;
 					String totalBFormat = decimalFormat.format(totalB);
 					JOptionPane.showMessageDialog(null, "You have chosen Plan B, and your total bill for the month is: $" + totalBFormat);
 					// calls compareBToC() to determine if savings are possible on another plan
