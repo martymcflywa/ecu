@@ -343,7 +343,7 @@ See `StringCompare.java` and `StringCompareTo.java`
 
 ### Ignoring Case in `String` Comparisons
 
-- The the `String` class, the `.equals()` and `.compareTo()` methods are case sensitive.
+- The `String` class, the `.equals()` and `.compareTo()` methods are case sensitive.
 - In order to compare two `String` objects that might have different case, use
 	- `.equalsIgnoreCase()`
 	- `.compareToIgnoreCase()`
