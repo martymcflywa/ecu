@@ -142,14 +142,21 @@
 - C: `x'(z + yz') + y'z`
 	- `x'z + x'yz' + y'z`
 - D: `xz + z'(xz + y')`
-	- `xz + z'x + z'y'`
+	- `xz + z'y`
 - E: `x'z(xy + y'z' + yz)`
+	- `x'yz`
 - F: `(yz' + x'z)'`
+	- `xy' + xz + y'z`
 - G: `(x' + y'z + xz')'`
+	- `STUCK`
 - H: `(y + xy'z)'`
+	- `x'y + y'z'`
 - I: `x'(x + y'z) + (y' + z)'`
+	- `x'y'z + yz'`
 - J: `y'(xz' + y'z)'`
+	- `x'y'z` **answer** is `x'y'z'` but should `z'` be `z`?
 - K: `(x'y + xz') (y' + x'z)`
+	- `STUCK`
 - L: `(wx' + yz')'`
 - M: `wx'y(xy + w'yz + wyz)`
 - N: `(xy + x'y'z)'`

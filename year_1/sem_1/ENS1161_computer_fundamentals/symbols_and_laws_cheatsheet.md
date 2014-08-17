@@ -47,7 +47,7 @@ The laws are essentially the same, but are just presented differently.
 
 # Laws
 
-| Distributive Laws                    | De Morgan's Laws      |
+| Distributive Laws                    | de Morgan's Laws      |
 |--------------------------------------|-----------------------|
 | `p ˅ (q ˄ r) = (p ˅ q) ˄ (p ˅ r)`    | `~(p ˅ q) = ~p ˄ ~q`  |
 | `p ˄ (q ˅ r) = (p ˄ q) ˅ (p ˄ r)`    | `~(p ˄ q) = ~p ˅ ~q`  |
@@ -57,6 +57,14 @@ The laws are essentially the same, but are just presented differently.
 | `A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)`  | `(A ∩ B)' = A' ∪ B'` |
 | `(w + x)(y + z) = wy + wz + xy + xz` | `(x + y)' = x'y'`     |
 | `x(w + y + z) = xw + xy + xz`        | `(xy)' = x' + y'`     |
+
+## de Morgan's Laws
+
+Is a three-step process when used for simplifying.
+
+- If `(a + b)'`, then convert to product with `a'b'`
+- Then for each element, `(xy)' = x' + y'` to convert to sum outside brackets
+- Then complete expansion of brackets from `(a + b)(a + b)` to `aa + ab + ba + bb`
 
 # Negations
 
