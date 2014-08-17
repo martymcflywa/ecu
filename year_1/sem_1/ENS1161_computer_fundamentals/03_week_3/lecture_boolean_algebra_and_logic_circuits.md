@@ -508,10 +508,10 @@ Are used to remove brackets.
 - `1x = x`
 - `x + x' = 1`
 
-Examples of use
+Example of use:
 
 ```
-`y'(yz + xz')	= y'yz + xy'z' 
+y'(yz + xz')	= y'yz + xy'z' 
 				= 0z + xy'z' 
 				= 0 + xy'z' 
 				= xy'z'`

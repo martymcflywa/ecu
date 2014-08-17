@@ -170,4 +170,25 @@
 - Q: `(xy' + yz')'`
 	- `x'y' + x'z + yz`
 - R: `(y + z')'(x' + y)'`
-	- `
+	- `xy'z` **had trouble with this**
+
+## 15: The truth tables for Boolean functions `M` `F` `G` `H` `P` `Q` and `R` are shown below. Express each as a complete sum of products.
+
+| `x` | `y` | `z` | `M` | `F` | `G` | `H` | `P` | `Q` | `R` |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0   | 0   | 0   | 1   | 0   | 1   | 0   | 1   | 0   | 0   |
+| 0   | 0   | 1   | 0   | 1   | 0   | 1   | 0   | 1   | 1   |
+| 0   | 1   | 0   | 1   | 1   | 0   | 1   | 1   | 0   | 1   |
+| 0   | 1   | 1   | 0   | 0   | 1   | 0   | 0   | 1   | 0   |
+| 1   | 0   | 0   | 0   | 1   | 0   | 1   | 0   | 1   | 1   |
+| 1   | 0   | 1   | 1   | 0   | 0   | 1   | 1   | 0   | 1   |
+| 1   | 1   | 0   | 0   | 1   | 1   | 0   | 0   | 1   | 1   |
+| 1   | 1   | 1   | 1   | 0   | 0   | 1   | 0   | 0   | 0   |
+
+- `M = x'y'z' + x'yz' + xy'z + xyz`
+- `F = x'y'z + x'yz' + xy'z' + xy'z`
+- `G = x'y'z' + x'yz + xyz'`
+- `H = xyz' + x'yz' + xy'z' + xy'z + xyz`
+- `P = x'y'z' + x'yz' + xy'z`
+- `Q = x'y'z + x'yz + xy'z' + xyz'`
+- `R = x'y'z + x'yz' + xy'z' + xy'z + xyz'`
