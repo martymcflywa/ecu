@@ -540,7 +540,7 @@ Typically, de Morgan's law is used to remove brackets from certain expressions t
 	- `(wxy'z')' = w' + x' + y + z`
 - Law: `(p + q)' = p'q'`
 	- `(x + y' + z)' = x'yz'`
-	- `(w' + x' + y + z') = wxy'z`
+	- `(w' + x' + y + z')' = wxy'z`
 
 The following examples use both de Morgan's laws. In each case, the task is to reduce the given expression to a sum of products. **Notice** that sometimes it is necessary to introduce brackets during the simplifaction.
 
