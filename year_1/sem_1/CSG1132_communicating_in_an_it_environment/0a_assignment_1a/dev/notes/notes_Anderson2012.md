@@ -120,7 +120,7 @@ Anderson, B., Fagan, P., Woodnutt, T., & Chamorro-Premuzic, T. (2012). Facebook 
 - Network size predicts time spent using the site (Acar, 2008)
 - Women spend more time online than men overall, regardless of network size (Acar, 2008)
 - Extraversion related to network size (Acar, 2008)
-- Number of friends deems popularity to until perception is less credible or realistic (Tom Tong et al., 2008)
+- Number of friends deems popularity to until perception is less credible or realistic (Tong et al., 2008)
 	- Limit is 302 friends until social attractiveness decreases
 - Users judge attractiveness based on friends in their network 
 	- Profile owners viewed more favourably if their friends are physically attractive 
