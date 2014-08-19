@@ -18,7 +18,7 @@ The system to be developed is a medical device that allows an anaesthetist to se
 
 The use case states that memory test only occurs on start up, and should be reflected on the use case diagram. At the moment, 'perform memory test' is a separate use case to 'Turn machine on'. Also, the `«uses»` stereotype is incorrect. It should either be `«include»` or `«extend»` with the correct arrow type, or have no label and use the current arrow for generalisation.
 
-My proposed amended use case diagram:
+**Proposed amended use case diagram:**
 
 ![lab_badusecasediag_corrected](http://i.imgur.com/DZ4IjL6.png)
 

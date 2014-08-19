@@ -59,6 +59,7 @@
 
 - A relationship in which one use case (the base use case) includes the functionality of another use case (the inclusion use case)
 - A way to show the reuse of functionality
+- A use case **must** be used if `«included»`
 
 ![part_include](http://i.imgur.com/PYY56Y0.png)
 
@@ -68,6 +69,8 @@
 ### The `«extend»` Stereotype
 
 - Used when there is some additional behaviour that should be added, possibly conditionally, to the behaviour defined in another use case
+- The direction is opposite to `«include»`
+- A use case is **optional** if `«extended»`
 
 ![part_extend](http://i.imgur.com/J6uP9cO.png)
 
