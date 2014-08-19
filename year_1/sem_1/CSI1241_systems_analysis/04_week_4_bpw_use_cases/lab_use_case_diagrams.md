@@ -44,4 +44,4 @@ The system to be developed is a GUI that allows a passenger to purchase a train 
 
 ### Proposed Use Case Diagram for Ticket Machine GUI
 
-![lab_usecase_ticketgui](http://i.imgur.com/UcPdDOf.png)
+![lab_usecase_ticketgui](http://i.imgur.com/rDxiaab.png)
