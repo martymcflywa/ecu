@@ -514,7 +514,7 @@ Example of use:
 y'(yz + xz')	= y'yz + xy'z' 
 				= 0z + xy'z' 
 				= 0 + xy'z' 
-				= xy'z'`
+				= xy'z'
 ```
 
 ### Other Useful Laws
