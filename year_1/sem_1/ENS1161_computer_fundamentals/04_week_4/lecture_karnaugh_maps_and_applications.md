@@ -437,5 +437,3 @@ L 	= (xy'z + x'y)
 The resulting circuit with `NAND` gates:
 
 ![gate NAND convert](http://i.imgur.com/LXLprBP.png)
-
-
