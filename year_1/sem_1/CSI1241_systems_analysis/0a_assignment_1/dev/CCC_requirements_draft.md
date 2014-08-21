@@ -114,7 +114,7 @@
 - Mobile development must use [Corona SDK](http://coronalabs.com/products/corona-sdk/)
 - Credit card payments are only accepted via MasterCard or Visa
 - Security requirements
-	- Client account managers can only access
+	- Client Account Managers can only access
 		- Client details
 	- Lab technicians can only access
 		- Sample data
@@ -187,3 +187,38 @@
 		- CSC position
 	- Medical information
 		- Test log
+
+# iOS Application
+
+- Client requirements
+	- The application must allow a client to register and apply for sample storage as specified in section ...
+	- The application must allow a client to log into their account
+	- The application must allow a client to view the services offered by CCC
+	- The application must allow a client to request sample destruction as specified in section ...
+	- The application must allow a client to view and pay invoices
+	- The application must allow a client to check on the status of their sample, accessing their sample status as specified in section ...
+	- The application must allow a client to send enquiries
+- Employee requirements
+	- The application must allow employee to log in to their user account
+	- The application must allow Client Account Manager to search and retrieve the client database as specified in section ...
+	- The application must allow Laboratory Technician to search and retrieve the sample database as specified in section ...
+	- The application must allow the Laboratory Manager to search and retrieve the Internal system functions database as specified in section ...
+
+# iOS Non-functional
+
+- The application provides functionality for both clients and employees and must provide security for both account types.
+	- A client account must not be able to access an employee account
+	- An employee account must not be able to access a client account
+
+# iOS Assumptions
+
+- Functions for client and functions for employee are bundled into the same app
+- Client registration can also occur on the iOS App
+- iOS App will be Universal (both iPad and iPhone)
+- The sample destruction process via iOS App is similar to that of section ..., however instead of emailing the client a link to the secure form, the secure form will be sent to the customer via the App, and can be completed via the App.
+- 
+
+# iOS Out of Scope
+
+- The creation of an Android App
+- 
