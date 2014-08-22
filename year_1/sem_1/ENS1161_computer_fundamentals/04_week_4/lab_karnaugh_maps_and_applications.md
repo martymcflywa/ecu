@@ -56,6 +56,18 @@ xy'z
 
 But how is the `x` in the answer not a `x'` ?
 
+#### Correct Law
+
+```
+(y + xz' + x'y')'
+y'(xz')'(x'y')'
+y'(x' + z)(x + y)
+y'(x'x + x'y + zx + zy)
+y'x'x + y'x'y + y'zx + y'zy
+0 + 0 + xy'z + 0
+xy'z
+```
+
 ### 8: `(xy' + x'z)'`
 
 ![kmap lab q2-8 3var](http://i.imgur.com/p1npvIk.png)
