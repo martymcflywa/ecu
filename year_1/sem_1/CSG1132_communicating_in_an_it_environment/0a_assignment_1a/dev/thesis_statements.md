@@ -8,7 +8,10 @@ Can a user's relationship status affect their usage of Facebook?
 
 ### Statement:
 
-The relationship status: Changing men's behaviour on Facebook. (McAndrew & Jeong, 2012)
+1. The relationship status: Modifying user behaviour on Facebook. (McAndrew & Jeong, 2012)
+2. A user's relationship status as a behaviour modifier on Facebook. (McAndrew & Jeong, 2012)
+3. The relationship status as a predicator of Facebook use. (McAndrew & Jeong, 2012)
+4. The relationship status impacting user behaviour on Facebook. (McAndrew & Jeong, 2012)
 
 ## Analysis
 
@@ -18,7 +21,8 @@ What are the motivations for self-disclosure on Facebook?
 
 ### Statement:
 
-Self-disclosure in Facebook fulfills the human need for affiliation. (Park, Jin, & Annie Jin, 2011)
+1. Self-disclosure in Facebook fulfills the human need for affiliation. (Park, Jin, & Annie Jin, 2011)
+2. Facebook self-disclosure and it's relation to the human need for affiliation. (Park, Jin, & Annie Jin, 2011)
 
 ## Exposition
 
@@ -28,7 +32,8 @@ What are the psychological benefits in using SNSs (social networking sites) like
 
 ### Statement:
 
-The positive psychological effects in Facebook use. (Toma & Hancock, 2013)
+1. The positive psychological effects in Facebook use. (Toma & Hancock, 2013)
+2. The positive psychological effects of Facebook use are increased perceptions of self-worth and self-integrity. (Toma & Hancock, 2013)
 
 ## References
 
