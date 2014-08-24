@@ -11,3 +11,11 @@
 
 # Self Assessments
 SelfAssessment
+
+# LaTeX
+.aux
+.bbl
+.blg
+.log
+.out
+.gz
