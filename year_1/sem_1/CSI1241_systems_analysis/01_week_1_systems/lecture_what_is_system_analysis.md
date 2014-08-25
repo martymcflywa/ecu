@@ -178,13 +178,21 @@ Analysts are required to learn how the business works, to understand what the cl
 
 **Define the following terms:**
 
-- information
-- system
-- information systems
-- systems analysis
-- human activity system
-- skill
-- knowledge
+- Information
+	- Information is any form of communication that provides understandable and useful knowledge to the receiver.
+	- Behind communication there is usually data which has been presented in a way which is intended to be meaningful to the beholder.
+- System
+	- A set of things working together as parts of a mechanism or an interconnecting network *wikipedia*.
+- Information systems
+	- An information system is a means of catering for the flow and storage of information to satisfy the requirements of all users. As well as storing data, it typically generates, manipulates and communicates information.
+- Systems analysis
+	- Translates users' information needs into instructions for programmers to follow.
+- Human activity system
+	- What people do with information.
+- Skill
+	- An ability that is learned (or born with) to carry out a task with pre-determined results *wikipedia*.
+- Knowledge
+	- Familiarity, awareness or understanding *wikipedia*.
 
 See `systems.todo`
 
