@@ -4,6 +4,10 @@
 # Visio
 *.~vsdx
 
+# Word
+*~$*.*
+
+
 # Eclipse
 .classpath
 .project
