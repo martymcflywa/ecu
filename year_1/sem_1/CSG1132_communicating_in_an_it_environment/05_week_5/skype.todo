@@ -1,0 +1,34 @@
+Skype:
+  ☐ Keep thesis statements short
+  ☐ Exposition
+    Example: The main reasons for facebook use are social connection, communication and web publishing
+
+  Stats Analysis:
+    Normal distribution test
+
+    1. Clean up data, remove missing data, remove erroneous data
+    2. Make column "bins"
+    3. decide increments (5, 10 etc)
+    4. Histogram
+      Arguments
+        Input range = hours
+        Bin range = bin column
+        Output range = draw rectangle
+     Chart output ticked
+
+     Normal distribution would be bell curve
+     Not normal characterized by skew
+
+     Positive skew large skew:
+       Tail is running off to the right of the mean
+
+       Need to use correct formula
+       Either for non normal distribution or normal distribution
+
+      Correlation
+      =CORREL(arg1, arg2)
+      highest value 1, lowest 0
+
+      Weak correlation
+
+      Null hypothesis applies
