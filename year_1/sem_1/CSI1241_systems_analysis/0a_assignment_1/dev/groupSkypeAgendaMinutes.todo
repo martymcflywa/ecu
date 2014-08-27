@@ -1,26 +1,69 @@
 2014-08-27:
   Agenda:
-    ☐ Discuss CCC case study
+    ✔ Discuss CCC case study @done (14-08-27 21:13)
       Questions etc.
       Does everyone agree with requirements so far
-    ☐ Check assignment outline and list of deliverables, due dates
+    ✔ Check assignment outline and list of deliverables, due dates @done (14-08-27 21:13)
       Need to stick to this to stay on track
-    ☐ Cover the individual tasks, each person needs to submit:
+    ✔ Cover the individual tasks, each person needs to submit: @done (14-08-27 21:13)
       - One elaborated use case diagram each, due Week 7
       - One app screen each, due Week 9
         ☐ Decide on who is doing the start screen
       - One business rule diagram each, due Week 11
       - One corresponding event specification table each, due Week 11
-    ☐ Who is responsible for Section 1.0: Introduction
-    ☐ Who is responsible for Section 3.0: Project Scope
-    ☐ Formatting
+    ✔ Who is responsible for Section 1.0: Introduction @done (14-08-27 21:13)
+    ✔ Who is responsible for Section 3.0: Project Scope @done (14-08-27 21:13)
+    ✔ Formatting @done (14-08-27 21:13)
       Use Heading 1, Heading 2, Heading 3 and numbered lists. Leave red remarks there until submission
       Need to stick to format so that numbering and TOC is generated automatically.
-      ☐ Track changes so we can see what's been added or deleted
-    ☐ Don't forget to log changes in the Modification History
-    ☐ Does simultaneous editing work well in Word?
+      ✔ Track changes so we can see what's been added or deleted @done (14-08-27 21:13)
+    ✔ Don't forget to log changes in the Modification History @done (14-08-27 21:13)
+    ✔ Does simultaneous editing work well in Word? @done (14-08-27 21:13)
       Should we just stick to separate sections each to avoid deleting or overwriting each others work
-    ☐ How are we going to check that stuff is getting done?
+    ✔ How are we going to check that stuff is getting done? @done (14-08-27 21:13)
       Maybe with that weekly update that is in our team contract
-  Minutes:
+  Notes:
+    Fine tune requirements, assumptions.
+    Introduction, Scope -> Adam
 
+    Make updates on separate file, someone will be responsible for updating the main file.
+    Use headings to mark out where updates should go.
+    Description and name 
+
+    Use case diagram, split up functional requirements, will be shared amongst team to complete and then joined up together at the end.
+    Functional requirements to be confirmed first.
+
+    Frank added assumption and intro
+
+    Adam: Confirm functional and non-functional before moving on to Case Diagram
+
+    Preferred email catch-up rather than Skype
+
+    By Friday close of business, we will have Section 1.0 - 3.2 shown to Priya
+
+    Ask Priya about individual deliverables, send in source document or send through separately.
+  
+  Minutes:
+    ​1. To avoid formatting dramas, we agreed that the master draft file should be updated by one person. I've nominated myself to maintain the file. All updates are to be made on a separate file in the Dropbox folder, and will be updated to the master draft file. Please include the following information:
+        - The section that you are updating
+        - Your name
+        - A brief description of what you've done (I'll add this to the Modification History with your name and date)
+        - Flick me an email when you've got an update ready to go and I'll add it to the master file straight away
+
+    2. Take some time to read the Case Study, and the current Functional and Non-functional requirements and make sure you are happy with what we have. This section will be submitted to Priya for feedback by COB 29-AUG so please review it by then.
+
+    3. We agreed that 3.3 Out of Scope Items and 4.0 Assumptions sections need to be fleshed out more.
+
+    4. The objective this week is to send the Functional and Non-functional requirements to Priya for feedback by COB 29-AUG. Adam will be looking into completing 1.0 Introduction (which Frank has made a start on) and 3.0 Project Scope.
+
+    5. The next section due will be the Case Study Diagram. Once we have Priya's feedback, we have agreed to split the requirements up so each team member will be responsible for a part of the Diagram. Then we'll stitch them together into one Diagram when we're done.
+
+    6. Confirmation from Priya required for the "per team member" deliverables. Do we include these into the document itself or submit them separately? We can add this to the email when we send our Functional/Non-functional requirements for feedback.
+
+    7. We agreed that Skype might not be the best way to catch up on a weekly basis, hassle getting everyone online at the same time. We agreed to provide regular updates on email, although less frequent Skype catch ups will be necessary down the track.
+
+    8. Thanks Frank for getting a start on the Introduction and additions to the Assumptions. Don't forget to log your changes to the Modification History so your contributions are recorded.
+
+
+    No shows:
+      Ben
