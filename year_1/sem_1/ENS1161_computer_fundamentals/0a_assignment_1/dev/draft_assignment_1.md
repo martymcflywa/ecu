@@ -17,7 +17,7 @@
 3. Construct a truth table for the proposition
 
 | `b` | `r` | `g` | `~b ˄ r` | `~g` | `(~b ˄ r) → ~g` |
-|:---:|:---:|:---:|---------:|:----:|:---------------:|
+|:---:|:---:|:---:|:--------:|:----:|:---------------:|
 | 0   | 0   | 0   | 0        | 1    | 1               |
 | 0   | 0   | 1   | 0        | 0    | 1               |
 | 0   | 1   | 0   | 1        | 1    | 1               |
@@ -28,7 +28,7 @@
 | 1   | 1   | 1   | 0        | 0    | 1               |
 
 4. State whether the argument is valid.
-	- *proposition is equal to argument, therefore argument is valid*
+	- Proposition is equal to argument, therefore argument is valid
 
 ### B: The propositions below can be arranged in three groups so that each member of a group is logically equivalent to the other two. Find the three groups.
 
@@ -105,7 +105,7 @@ A group of 100 students is polled to see how many watched three TV shows, Action
 ### B: Hence find how many students watched
 
 1. Action and Calypso, but not Buzz
-	- 12 **CONFIRM** (could be 21)
+	- 12
 2. Buzz only
 	- 11
 3. Only two of the three shows
@@ -230,3 +230,67 @@ U = {Argentina, Australia, Belgium, Brazil, Cameroon, Chile, Cuba, Denmark, Egyp
 | `R' ∩ S` | 1  | 0  | 0  | 0  | 0  | 0  | 1  | 0  | 0  | 1  | 1  | 0  | 0  | 0  | 0  | 0  |
 | `T`      | 1  | 0  | 0  | 0  | 0  | 0  | 1  | 0  | 1  | 0  | 1  | 0  | 0  | 1  | 0  | 0  |
 
+## Question 5
+
+In the lecture notes there is an application of Karnaugh maps to a 7-segment display that is used in some calculators and similar digital devices. The display is sometimes **extended** to include **all** hexadecimal digits. A typical extended display is:
+
+![7-seg chars](http://i.imgur.com/imIMmWD.png)
+
+Notice the display for the hexidecimal digits for 10 through 15. Some are shown as upper case and some lower case: `A` `b` `c` `d` `E` `F`. As in the lecture notes we label each of the seven segments as shown:
+
+![7-seg segments](http://i.imgur.com/6LR9QDm.png)
+
+When any of the keys, `0` `1` `2` `3` `4` `5` `6` `7` `8` `9` `0` `A` `B` `C` `D` `E` `F` is pressed, a 4-bit binary signal `wxyz` is generated, as shown in the table below.
+
+For each of the seven segments, there is a corresponding Boolean function and a circuit that has output `0` or `1` as the various keys are pressed. Denote these functions by `a(w,x,y,z)`, `b(w,x,y,z)`, ..., `g(w,x,y,z)`.
+
+### Task:
+
+Your task concerns the two segments `d` and `g`, and is as follows. For **each** of the two functions `d(w,x,y,z)` and `g(w,x,y,z)`:
+
+#### 1: Construct a truth table for functions `d(w,x,y,z)` and `g(w,x,y,z)`
+
+| Key | `w` | `x` | `y` | `z` | `a` | `b` | `c` | `d` | `e` | `f` | `g` |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0   | 0   | 0   | 0   | 0   | 1   | 1   | 1   | 1   | 1   | 1   | 0   |
+| 1   | 0   | 0   | 0   | 1   | 0   | 1   | 1   | 0   | 0   | 0   | 0   |
+| 2   | 0   | 0   | 1   | 0   | 1   | 1   | 0   | 1   | 1   | 0   | 1   |
+| 3   | 0   | 0   | 1   | 1   | 1   | 1   | 1   | 1   | 0   | 0   | 1   |
+| 4   | 0   | 1   | 0   | 0   | 0   | 1   | 1   | 0   | 0   | 1   | 1   |
+| 5   | 0   | 1   | 0   | 1   | 1   | 0   | 1   | 1   | 0   | 1   | 1   |
+| 6   | 0   | 1   | 1   | 0   | 1   | 0   | 1   | 1   | 1   | 1   | 1   |
+| 7   | 0   | 1   | 1   | 1   | 1   | 1   | 1   | 0   | 0   | 0   | 0   |
+| 8   | 1   | 0   | 0   | 0   | 1   | 1   | 1   | 1   | 1   | 1   | 1   |
+| 9   | 1   | 0   | 0   | 1   | 1   | 1   | 1   | 0   | 0   | 1   | 1   |
+| A   | 1   | 0   | 1   | 0   | 1   | 1   | 1   | 0   | 1   | 1   | 1   |
+| B   | 1   | 0   | 1   | 1   | 0   | 0   | 1   | 1   | 1   | 1   | 1   |
+| C   | 1   | 1   | 0   | 0   | 0   | 0   | 0   | 1   | 1   | 0   | 1   |
+| D   | 1   | 1   | 0   | 1   | 0   | 1   | 1   | 1   | 1   | 0   | 1   |
+| E   | 1   | 1   | 1   | 0   | 1   | 0   | 0   | 1   | 1   | 1   | 1   |
+| F   | 1   | 1   | 1   | 1   | 1   | 0   | 0   | 0   | 1   | 1   | 1   |
+
+#### 2: Construct the corresponding Karnaugh Map
+
+Use the *simple* labelling on the Karnaugh maps and show your groups clearly.
+
+##### `d(w,x,y,z)`
+
+Sum of products:
+
+`d(w,x,y,z) = w'x'y'z' + w'x'yz' + w'x'yz + w'xy'z + w'xyz' + wx'y'z' + wx'yz + wxy'z' + wxy'z + wxyz'`
+
+![kmap d](http://i.imgur.com/8C1UC4S.png)
+
+##### `g(w,x,y,z)`
+
+Sum of products:
+
+`g(w,x,y,z) = w'x'yz' + w'x'yz + w'xy'z' + w'xy'z + w'xyz' + wx'y'z' + wx'y'z + wx'yz' + wx'yz + wxy'z' + wxy'z + wxyz' + wxyz`
+
+![kmap g](http://i.imgur.com/vF9umxI.png)
+
+#### 3. Find a **minimal** sum of products for the function
+
+`d(w,x,y,z) = x'y'z' + x'yz + w'x'y + wxy' + xy'z + xyz'`
+
+`g(w,x,y,z) = w + xy' + yz' + w'x'y`
