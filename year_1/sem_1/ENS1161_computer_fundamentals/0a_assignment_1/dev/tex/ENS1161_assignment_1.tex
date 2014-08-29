@@ -68,7 +68,7 @@
 \usepackage{lastpage}
 
 % front matter
-\title{Edith Cowan University\\ENS1161\\Assignment 1}
+\title{Edith Cowan University\\ENS1161: Computer Fundamentals\\Assignment 1}
 \author{Martin Ponce\\ID: 10371381}
 \date{August 28, 2014}
 
@@ -136,7 +136,6 @@ $b$ & $r$ & $g$ & $\sim{b} \wedge r$ & $\sim{g}$ & $(\sim{b} \wedge r) \rightarr
 1 & 1 & 0 & 0 & 1 & 1 \\
 \hline
 1 & 1 & 1 & 0 & 0 & 1 \\
-\hline
 \end{tabular}
 \end{table}
 
@@ -203,7 +202,6 @@ $s$ & $l$ & $\sim{s}$ & $\sim{l}$ & $\sim{l} \vee s$ & $s \rightarrow l$ & $l \r
 1 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 1 \\
 \hline
 1 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 1 & 1 & 0 & 0 \\
-\hline
 \end{tabular}
 \end{table}
 \end{landscape}
@@ -217,12 +215,11 @@ $s$ & $l$ & $\sim{s}$ & $\sim{l}$ & $\sim{l} \vee s$ & $s \rightarrow l$ & $l \r
 \begin{tabular}{c|l}
 Proposition number & Symbolic \\
 \hline
-1 & $\sim{l} \vee s$\\
+1 & $\sim{l} \vee s$ \\
 \hline
-5 & $\sim{s} \rightarrow \sim{l}$\\
+5 & $\sim{s} \rightarrow \sim{l}$ \\
 \hline
-7 & $l \rightarrow s$\\
-\hline
+7 & $l \rightarrow s$ \\
 \end{tabular}
 \end{table}
 
@@ -251,7 +248,6 @@ Proposition number & Symbolic \\
 8 & $s \rightarrow \sim{l}$ \\
 \hline
 9 & $\sim{s} \vee \sim{l}$ \\
-\hline
 \end{tabular}
 \end{table}
 
@@ -418,7 +414,6 @@ $A \cup B$ & 1 & 1 & 0 & 1 & 1 & 1 \\
 $A \cap B$ & 0 & 0 & 0 & 1 & 1 & 0 \\
 \hline
 $A'$ & 1 & 0 & 1 & 0 & 0 & 1 \\
-\hline
 \end{tabular}
 \end{table}
 From the table we get:
@@ -461,7 +456,7 @@ U = \{Argentina, Australia, Belgium, Brazil, Cameroon, Chile, Cuba, Denmark, Egy
 	\end{itemize}
 \item List the countries in the set $T$
 	\begin{itemize}
-	\item T = $\{Argentina, Cuba, Egypt, Fiji, Ghana\}$
+	\item $T = \{Argentina, Cuba, Egypt, Fiji, Ghana\}$
 	\end{itemize}
 \end{enumerate}
 
@@ -566,6 +561,15 @@ F & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 \\
 \end{tabular}
 \end{table}
 
+\subsubsection{Complete sum of products}
+\begin{align*}
+d(w,x,y,z) = w'x'y'z' &+ w'x'yz' + w'x'yz + w'xy'z + w'xyz' + wx'y'z' + wx'yz \\
+&+ wxy'z' + wxy'z + wxyz' \\
+\\*
+g(w,x,y,z) = w'x'yz' &+ w'x'yz + w'xy'z' + w'xy'z + w'xyz' + wx'y'z' + wx'y'z \\
+&+ wx'yz' + wx'yz + wxy'z' + wxy'z + wxyz' + wxyz
+\end{align*}
+
 \newpage
 \subsubsection{Construct the corresponding Karnaugh map}
 Use the \emph{simple} labelling on the Karnaugh maps and show your groups clearly.
@@ -585,7 +589,8 @@ Use the \emph{simple} labelling on the Karnaugh maps and show your groups clearl
 \subsubsection{Find the minimal sum of products for the functions}
 \begin{align*}
 d(w,x,y,z) &= x'y'z' + x'yz + w'x'y + wxy' + xy'z + xyz' \\
-g(w,x,y,z) &= w + xy' + yz' + w'x'y
+\\*
+g(w,x,y,z) &= w + x'y + xy' + yz'
 \end{align*}
 
 \end{document}
