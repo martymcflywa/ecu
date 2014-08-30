@@ -1,35 +1,32 @@
 # Lecture 1
 
-| Symbol | Name                  | Function
-|--------|-----------------------|------------------------------------------------| 
-| `~`    | `NOT`                 | Negates                                        |
-| `˄`    | `AND`                 | And                                            |
-| `˅`    | `OR`                  | Or                                             |
-| `→`    | `IF THEN`             | Conditional                                    |
-| `≡`    | `LOGICAL EQUIVALENCE` | Is equal to                                    |
-| `├`    | `CONCLUSION`          | Anything to the right of `├` is the conclusion |
+| Symbol  | Name                     | LaTeX           |Function
+|---------|--------------------------|-----------------|--------------------------------------| 
+| `~`     | `NOT`                    | `\sim{x}`       | Negates
+| `˄`     | `AND`                    | `\wedge`        | And
+| `˅`     | `OR`                     | `\vee`          | Or
+| `→`     | `IF THEN`                | `\rightarrow`   | Conditional
+| `≡`     | `LOGICAL EQUIVALENCE`    | `\equiv`        | Is equal to
+| `├`     | `CONCLUSION`             | `\mid`          | Anything to the right of `├` is the conclusion
+| `P(x):` | `Predicate`              |                 | A statement with one or more variables, I see it as a function
+| `R`     | `SET` of real numbers    | `\mathbb{R}`    | 1.5, 2.5, 3.5
+| `N`     | `SET` of natural numbers | `\mathbb{N}`    | 1, 2, 3
+| `∈`    | `element of`             | `\in`           | sets membership
+| `∉`     | `not element of`         | `\notin`        | negative of `∈`
+| `∀`    | `for all`                | `\forall`       | quantifier "for every"
+| `∃`    | `there exists`           | `\exists`       | quantifier "for some"
+| `U`     | `universal set`          |                 | the `set` of all things that contains working parts of a problem
+| `∅`     | `empty set`              | `\varnothing`   | self explanatory, null
+| `{}`    | `empty set`              | `\{\}`          | self explanatory, null
+| `⊆`    | `subset`                 | `\subseteq`     | a set of elements within another `set`
+| `∩`     | `intersect`              | `\cap`          | the set of elements that are in common with...
+| `∪`    | `union`                  | `\cup`          | the set of elements that are in **all** `sets`, except the `universal set`
+| `'`     | `complement`             | `'`             | the set of elements that are in the `universal set`, but not in `A` for example
+| `n(A)`  | `number of elements`     |                 | count how many elements are a member of `A`
+| `A × B` | `cartesian product`      | `\times`        | the `×` denotes cartesian product of `A` then `B`
+| `P(A)`  | `POWER SET`              |                 | `P` denotes the power set of `A`
+| `R ○ S` | `followed by`            | `\bigcirc`      | The composition of `R` followed by `S`
 
-# Lecture 2
-
-| Symbol  | Name                     | Function
-|---------|--------------------------|------------------|
-| `P(x):` | `Predicate`              | a statement with one or more variables, I see it as a function |
-| `R`     | `SET` of real numbers    | 1.5, 2.5, 3.5    |
-| `N`     | `SET` of natural numbers | 1, 2, 3          |
-| `∈`    | `element of`             | sets membership  |
-| `∉`     | `not element of`         | negative of `∈` |
-| `∀`    | `for all`                | quantifier "for every"      |
-| `∃`    | `there exists`           | quantifier "for some"       |
-| `U`     | `universal set`          | the `set` of all things that contains working parts of a problem |
-| `∅`     | `empty set`              | self explanatory, null |
-| `{}`    | `empty set`              | self explanatory, null |
-| `⊆`    | `subset`                 | a set of elements within another `set` |
-| `∩`     | `intersect`              | the set of elements that are in common with... |
-| `∪`    | `union`                  | the set of elements that are in **all** `sets`, except the `universal set` |
-| `'`     | `complement`             | the set of elements that are in the `universal set`, but not in `A` for example |
-| `n(A)`  | `number of elements`     | count how many elements are a member of `A` |
-| `A × B` | `cartesian product`      | the `×` denotes cartesian product of A then B |
-| `P(A)`   | `POWER SET`              | `P` denotes the power set of `A` |
 
 # Analogy with logic concepts
 
@@ -37,10 +34,10 @@ The laws are essentially the same, but are just presented differently.
 
 `~(A ˅ B) ≡ ~A ˄ ~B` corresponds to `(A ∪ B)' = A' ∩ B'`
 
-| Logic   | Set  | Boolean |
-|---------|------|---------|
+| Logic   | Set  | Boolean | LaTeX   
+|---------|------|---------|-----------
 | `~`     | `'`  | `'`     |         
-| `˄`     | `∩`  | `•`     |
+| `˄`     | `∩`  | `•`     | `\bullet`
 | `˅`     | `∪` | `+`     |
 | `true`  | `U`  | `1`     |
 | `false` | `∅`  | `0`     |
@@ -125,29 +122,23 @@ Is a collection of all the possible combinations of subsets, including `∅`, th
 
 If `A = {1, 2, 3}` 
 
-Then `P(A) = [`∅`, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}]`
+Then `P(A) = [∅, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}]`
 
 Formula to work it out is `2^n`, where `n = number of subsets`
 
 # Boolean Algebra Laws
 
-## Laws for Multiplication
-
-- `0 • 0 = 0` 
-- `0 • 1 = 0` 
-- `1 • 0 = 0`
-- `1 • 1 = 1`
-
-## Laws for Addition
-
-- `0 + 0 = 0` 
-- `0 + 1 = 1`
-- `1 + 0 = 1`
-- `1 + 1 = 1`
+| Multiplication | Addition    |
+|:--------------:|:-----------:|
+| `0 x 0 = 0`    | `0 + 0 = 0` |
+| `0 x 1 = 0`    | `0 + 1 = 1` |
+| `1 x 0 = 0`    | `1 + 0 = 1` |
+| `1 x 1 = 1`    | `1 + 1 = 1` |
 
 ## Laws for Complementation
 
-`0' = 1` `1' = 0`
+- `0' = 1`
+- `1' = 0`
 
 ## Idempotent Laws
 
