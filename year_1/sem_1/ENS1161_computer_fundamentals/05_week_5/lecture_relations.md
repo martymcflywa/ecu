@@ -100,7 +100,7 @@ In real applications, the other representations are more convenient.
 
 These different methods of representing a relation is shown diagrammatically in the following example.
 
-![different methods](http://i.imgur.com/mFR97aW.png)
+![different methods](http://i.imgur.com/sMorjZG.png)
 
 ## Why use ordered pairs?
 
@@ -391,3 +391,180 @@ Suppose our query is:
 - `U`<sup>-1</sup> will tell us which units this person is enrolled in
 - `U` will tell us which students are enrolled in these units
 - `B` will tell us which books have been borrowed by these students
+
+![application 1](http://i.imgur.com/dJwtqdY.png)
+
+![application 2](http://i.imgur.com/NmGPAB9.png)
+
+Following the arrows from `k`, we see that the titles are `j`, `k`, `m` and `n`.
+
+## Relation on a set
+
+A relation between sets `A` and `B` is a subset of `A × B`.
+
+A relation on a set `A` is a relation between `A` and `A` and so is a subset of `A × A`.
+
+### Example
+
+- `A = {1, 2, 3, 4}`
+- `G` is the relation "is greater than"
+	- `2 G 1`
+	- `3 G 1`
+	- `4 G 1`
+	- `4 G 2`
+	- `4 G 3`
+- Or in terms of ordered pairs:
+	- `G = {(2, 1), (3, 1), (3, 2), (4, 1), (4, 2), (4, 3)}`
+
+The graph and arrow diagrams:
+
+![relation set 1](http://i.imgur.com/Kphv9pP.png)
+
+### Exercise
+
+- `S = {Anne, Bob, Cathy, Dave}`
+- `Y` is the relation "is the same age as"
+- Suppose the respective ages are `18`, `20`, `19`, `18`
+
+Then we have:
+
+`Anne Y Anne`, `Bob Y Bob`, ..., `Anne Y Dave`, `Dave Y Anne`
+
+In terms of ordered pairs, the relation is:
+
+`Y = {(Anne, Anne), (Bob, Bob), (Cathy, Cathy), ..., (Anne, Dave), (Dave, Anne)}`
+
+The graph and arrow diagrams:
+
+![relation set 2](http://i.imgur.com/ZERYeKe.png)
+
+## Properties of relations
+
+Relations on a set can be classified according to certain properties. We look at only three of these:
+
+- Reflexivity
+- Symmetry
+- Transitivity
+
+Suppose `R` is a relation on a set `S`.
+
+- `R` **reflexive** means:
+	- `∀x ∈ S, x R x`
+- `R` **symmetric** means:
+	- `∀x, y ∈ S, x R y → y R x`
+- `R` **transitive** means:
+	- `∀x, y, z ∈ S, ( x R y ) ˄ ( y R z ) → ( x R z )`
+
+### Reflexive relation
+
+`x R x` for **all** `x`
+
+![reflexive](http://i.imgur.com/SvS2GpC.png)
+
+### Symmetric relation
+
+**If** `x R y` **then** `y R x`, **for all** `x` **and** `y`
+
+![symmetric](http://i.imgur.com/17Xmod1.png)
+
+### Transitive relation
+
+**If** `x R y` **and** `y R z`, **then** `x R z`, **for all** `x`, `y` and `z`
+
+![transitive](http://i.imgur.com/uw0ikMT.png)
+
+### Example 1
+
+- Suppose that `S` is the set of all Australian males, and consider the relations:
+	- `B` is the brother of
+	- `H` is the same height as
+	- `Y` is younger than
+	- `M` has met
+
+#### `B` is the brother of
+
+- Not reflexive
+	- I am not the brother of myself
+- Is symmetric
+	- I am John's brother, John is my brother
+- Is transitive
+	- I am John's brother, Matt is John's brother, so Matt is my brother
+
+#### `H` is the same height as
+
+- Is reflexive
+- Is symmetric
+- Is transitive
+
+#### `Y` is younger than
+
+- Not reflexive
+- Not symmetric
+- Is transitive
+
+#### `M` has met
+
+- Is reflexive
+- Is symmetric
+- Not transitive
+
+### Example 2
+
+Consider the following sets and relations:
+
+- Case 1
+	- Natural numbers
+	- Is divisible by
+- Case 2
+	- People
+	- Lives in the house next to
+- Case 3
+	- Towns
+	- Is not more than 50km from
+- Case 4
+	- People
+	- Has the same blood type as
+
+For each case we ask:
+
+>Is the relation reflexive?  
+>Is it symmetric?  
+>Is it transitive?
+
+| Case   | Reflexive | Symmetric | Transitive |
+|-------:|:---------:|:---------:|:----------:|
+| Case 1 | Yes       | No        | Yes        |
+| Case 2 | No        | Yes       | No         |
+| Case 3 | Yes       | Yes       | No         |
+| Case 4 | Yes       | Yes       | Yes        |
+
+## Equivalence relations
+
+If a relation on a set is **reflexive**, **symmetric** and **transitive**, then it is called an **equivalence relation**.
+
+So, for example, "has the same blood type as" is an equivalence relation.
+
+Some other examples are:
+
+>Is the same age as  
+>Starts with the same letter as  
+>Has the same number of letters as  
+>Leaves the same remainder, when divided by 2, as
+
+## Multiplication of matrices
+
+If we were multiplying an `m × n` matrix `A` by an `n × q` matrix `B` to obtain an `m × q` matrix `C`, the formula for the typical element `c`<sub>ij</sub> of `C` is:
+
+![formula](http://i.imgur.com/Ly4sPfK.png)
+
+Logical multiplication of matrices is exactly the same as multiplication except that, instead of ordinary arithmetic, we use Boolean arithmetic.
+
+You will recall that in Boolean arithmetic we only use the numbers 0 and 1, and the rules for multiplication and addition are:
+
+| Multiplication | Addition    |
+|:--------------:|:-----------:|
+| `0 x 0 = 0`    | `0 + 0 = 0` |
+| `0 x 1 = 0`    | `0 + 1 = 1` |
+| `1 x 0 = 0`    | `1 + 0 = 1` |
+| `1 x 1 = 1`    | `1 + 1 = 1` |
+
