@@ -200,7 +200,7 @@ There are two key concepts to remember:
 6. Move to next row on left side, rinse and repeat
 7. Remember Boolean laws for addition and multiplication
 
-### Example
+## Example
 
 Here we are multiplying `A` with `B`
 
