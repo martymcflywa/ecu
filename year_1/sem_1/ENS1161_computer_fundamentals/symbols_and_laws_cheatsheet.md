@@ -189,3 +189,35 @@ There are two key concepts to remember:
 
 - In a fundamental product, each variable must be present, with or without `'`
 - Each fundamental product is equal to 1 for one and only one combination of the variables
+
+# Multiplying matrices
+
+1. The matrix on the left must have equal amount of columns as there is rows on the right hand side
+2. The product will be `left side rows x right side columns`
+3. Multiply each cell from row from left side with each cell in column from right side
+4. Each product must then be added together to calculate the data for that cell
+5. Repeat steps 3 and 4 until all cells have been covered for that particular row for the right side
+6. Move to next row on left side, rinse and repeat
+7. Remember Boolean laws for addition and multiplication
+
+### Example
+
+Here we are multiplying `A` with `B`
+
+![multiply matrix 1](http://i.imgur.com/yse4TiD.png)
+
+When each cell in rows from `A` is multiplied with each cell in columns from `B`, we get the following table:
+
+| `AB` 1st row    | `AB` 2nd row    | `AB` 3rd row    | `AB` 4th row    | `AB` 5th row    |
+|:---------------:|:---------------:|:---------------:|:---------------:|:---------------:|
+| `0 + 0 + 0 + 0` | `1 + 0 + 0 + 0` | `1 + 0 + 0 + 1` | `0 + 0 + 0 + 0` | `0 + 0 + 0 + 1` |
+| `0 + 0 + 0 + 0` | `0 + 1 + 0 + 0` | `0 + 0 + 0 + 0` | `0 + 1 + 0 + 0` | `0 + 0 + 0 + 0` |
+| `0 + 0 + 1 + 0` | `0 + 0 + 1 + 0` | `0 + 0 + 0 + 0` | `0 + 0 + 0 + 0` | `0 + 0 + 0 + 0` |
+
+Because of the Boolean laws of addition, any cell that has a `1` will become a `1`.  
+
+Any cell without a `1` will become `0`.
+
+Which results in the following Boolean product:
+
+![multiply matrix 2](http://i.imgur.com/YNFw86Q.png)
