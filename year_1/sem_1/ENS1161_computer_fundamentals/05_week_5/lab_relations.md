@@ -400,7 +400,7 @@ Q = {(a, f), (a, g), (b, e), (b, f), (c, e), (d, e), (d, g)}
 P = {(a, d), (a, g), (b, e), (b, f), (c, f), (c, h)}
 ```
 
-![lab q17-1]()
+![lab q17-1](http://i.imgur.com/NwDTZaL.png)
 
 ### 2: Find the matrix `M(Q)` for `Q`
 
@@ -408,12 +408,133 @@ P = {(a, d), (a, g), (b, e), (b, f), (c, f), (c, h)}
 Q = {(a, g), (b, d), (b, f), (b, h), (c, e), (c, g)}
 ```
 
-![lab q17-2]()
+![lab q17-2](http://i.imgur.com/6Dxjat9.png)
 
 ### 3: Express the set of ordered pairs in relation to `S` represented by the matrix
 
-![lab q17-3]()
+![lab q17-3](http://i.imgur.com/AGuSBlN.png)
+
+```
+S = {(a, d), (a, e), (b, e), (b, f), (b, h), (c, e), (c, h)}
+```
 
 ### 4: Express the set of ordered pairs in relation to `T` represented by the matrix
 
-![lab q17-4]()
+![lab q17-4](http://i.imgur.com/UVMS1uQ.png)
+
+```
+T = {(a, g), (a, h), (b, d), (b, e), (b, g), (c, h)}
+```
+
+## Question 18
+
+- `A = {a, b, c, d}`
+- `B = {e, f}`
+- `R` is relation between `A` and `B`
+
+### 1: Find the matrix `M(R)` that represents the relation
+
+```
+R = {(a, e), (b, e), (b, f), (d, f)}
+```
+
+![lab q18-1](http://i.imgur.com/PQ9kwiT.png)
+
+### 2: Find the matrix `M(R)`<sup>T</sup> that represents `R`<sup>-1</sup>
+
+Express `R`<sup>-1</sup> as a set of ordered pairs.
+
+![lab q18-2](http://i.imgur.com/Giko9mX.png)
+
+```
+R^-1 = {(e, a), (e, b), (f, b), (f, d)}
+```
+
+## Question 19
+
+- `A = {a, b, c, d}`
+- `B = {e, f, g, h}`
+- `C = {m, n, p, q}`
+- `R` is relation between `A` and `B`
+	- `R = {(a, f), (a, g), (b, h), (c, e), (c, h), (d, f)}`
+- `S` is relation between `B` and `C`
+	- `S = {(e, n), (f, m), (f, n), (g, n), (g, q), (h, q)}`
+
+### 1: Find matrices `M(R)`, `M(S)` and `M(R)M(S)`
+
+`M(R)M(S)` represents `R o S`. Express `R o S` as a set of ordered pairs.
+
+![lab q19-1](http://i.imgur.com/bCOAROC.png)
+
+```
+R o S = {(a, m), (a, n), (a, q), (b, q), (c, n), (c, q), (d, m), (d, n)}
+```
+
+### 2: Find matrices `M(R)`<sup>T</sup> and `M(S)`<sup>T</sup> and `M(S)`<sup>T</sup>`M(R)`<sup>T</sup>
+
+`M(S)`<sup>T</sup>`M(R)`<sup>T</sup> represents `S`<sup>-1</sup>`o R`<sup>-1</sup>. Express `S`<sup>-1</sup>`o R`<sup>-1</sup> as a set of ordered pairs.
+
+![lab q19-2](http://i.imgur.com/r5DIcIL.png)
+
+```
+S^-1 o R^-1 = {(m, a), (m, d), (n, a), (n, c), (n, d), (q, a), (q, b), (q, c)}
+```
+
+### 3: Verify that `(M(R)M(S))`<sup>T</sup> = `M(S)`<sup>T</sup>`M(R)`<sup>T</sup>
+
+![lab q19-3](http://i.imgur.com/6js6RkW.png)
+
+For this exercise, multiplying matrices `M(S)`<sup>T</sup>`M(R)`<sup>T</sup> is the same as transposing `(M(R)M(S))`<sup>T</sup>
+
+## Question 20
+
+- `H = {a, b, c, d}`
+- `K = {e, f}`
+- `L = {g, h, k}`
+- `U` is relation between `H` and `K`
+	- `U = {(a, e), (b, e), (b, f), (c, e), (d, f)}`
+- `V` is relation between `K` and `L`
+	- `V = {(e, h), (f, g), (f, k)}`
+
+### 1: Find matrices `M(U)`, `M(V)` and `M(U)M(V)`
+
+`M(U)M(V)` represents `U o V`. Express `U o V` as a set of ordered pairs.
+
+![lab q20-1](http://i.imgur.com/cMzWAwO.png)
+
+```
+U o V = {(a, h), (b, g), (b, h), (b, k), (c, h), (d, g), (d, k)}
+```
+
+### 2: Find matrices `M(U)`<sup>T</sup> and `M(V)`<sup>T</sup> and `M(V)`<sup>T</sup>`M(U)`<sup>T</sup>
+
+`M(V)`<sup>T</sup>`M(U)`<sup>T</sup> represents `V`<sup>-1</sup>`o U`<sup>-1</sup>. Express `V`<sup>-1</sup>`o U`<sup>-1</sup> as a set of ordered pairs.
+
+![lab q20-2](http://i.imgur.com/bnMJPqU.png)
+
+```
+V^-1 o U^-1 = {(g, b), (g, d), (h, a), (h, b), (h, c), (k, b), (k, d)}
+```
+
+### 3: Verify that `(M(U)M(V))`<sup>T</sup> = `M(V)`<sup>T</sup>`M(U)`<sup>T</sup>
+
+![lab q20-3](http://i.imgur.com/YdOWiIx.png)
+
+For this exercise, multiplying matrices `M(V)`<sup>T</sup>`M(U)`<sup>T</sup> is the same as transposing `(M(U)M(V))`<sup>T</sup>
+
+## Question 21
+
+In each of the following exercises, you are given a set and a relation defined on that set. In each case, decide whether the relation is reflexive, symmetric or transitive and whether it is an equivalence relation.
+
+| Ex | Set      | Relation                     | Reflex | Symm | Trans | Equiv |
+|:--:|----------|------------------------------|:------:|:----:|:-----:|:-----:|
+| a  | integers | is a multiple of             | Y      | N    | Y     | N     |
+| b  | girls    | is the sister of             | N      | Y    | Y     | N     |
+| c  | people   | drives the same make of car  | Y      | Y    | Y     | Y     |
+| d  | words    | has the same first letter as | Y      | Y    | Y     | Y     |
+| e  | people   | lives no more than 1 km from | Y      | Y    | N     | N     |
+| f  | people   | is not older than            | Y      | N    | Y     | N     |
+| g  | students | attends the same class as    | Y      | Y    | Y     | Y     |
+| h  | towns    | lie to the East of           | N      | N    | Y     | N     |
+| i  | cars     | can travel faster than       | N      | N    | Y     | N     |
+| j  | people   | likes to play chess with     | N      | N    | N     | N     |
