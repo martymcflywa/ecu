@@ -30,7 +30,7 @@ static ArrayList<Integer> numberArray = new ArrayList<Integer>();
 		if(numberArray.isEmpty()) {
 			
 			// numberArray is empty as user entered SENTINEL as first input, program ends and asks user to start again
-			System.out.println("You entered -99 as your first integer and there are no numbers to sort. Restart the program.");
+			System.out.println("You entered -99 as your first integer and there are no numbers to sort.\nRestart the program.");
 			
 		// else numberArray is not empty, continue with sortUserInput() method
 		} else {
