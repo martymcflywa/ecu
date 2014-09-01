@@ -310,7 +310,7 @@ Create elementary and composite data dictionary definitions for the following we
 
 # Review
 
-Define the following:
+- Define the following:
 	- Elementary data item
 		- Single piece of data at the lowest level of abstraction
 			- Customer number
