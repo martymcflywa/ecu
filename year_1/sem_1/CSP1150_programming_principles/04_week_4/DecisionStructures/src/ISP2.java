@@ -50,7 +50,7 @@ static DecimalFormat decimalFormat = new DecimalFormat(decimalPattern);
 	// asks for user input for purchased plan
 	static void getPlanInput() {
 		String inputPlan = JOptionPane.showInputDialog("Which internet plan did you purchase - A,B or C?");
-		plan = inputPlan;
+		plan = inputPlan.toLowerCase();
 	}
 	
 	// asks for user input for how many hours used
