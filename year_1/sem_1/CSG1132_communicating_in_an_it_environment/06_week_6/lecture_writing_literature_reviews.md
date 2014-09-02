@@ -21,7 +21,12 @@
 ### Your literature review should
 
 - Place your study in a historical perspective
+	- A sense of knowledge regarding topic over the last few years
+	- Where things have gone with what we know about the topic over the last few years
 - Evaluate promising research methods
+	- Looking at data that has been collected
+	- Different ways to collect data
+	- Is it reliable?
 - Define and limit the problem you are working on
 - Identify the gap your research will fill
 - It also justifies why your essay should be written
@@ -29,7 +34,10 @@
 ## Reading & research tips
 
 - Read and consider titles & abstracts first
-- Use *key terms* and *subjects* functions
+- Use *key terms* and *subjects* search functions in Library One
+	- Find a different range of articles
+		- Different research methods
+		- Different approaches to topic
 - Use discipline-specific databases to narrow your scope
 - Don't get lured in to informal/un-academic web sources
 - Skim for what you need
@@ -69,6 +77,8 @@
 	- Covers your general topic area
 	- Has attempted to grapple with the various elements of your research question
 	- Is of landmark importance in your topic area
+		- Survey articles
+		- Find articles that are cited a lot
 	- Justifies your own research study
 
 ### 2: Critical review for each article
