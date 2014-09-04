@@ -105,7 +105,7 @@ characteristics. **pp. 1**
 		- "My wife"
 	- "Suggests male preference for possesive words is partially due to lack of talking about others' partners" (pp. 9)
 - Study findings contradict with previous studies relating to computer mediated communication and language (pp. 9)
-	- Huffaker et al. (getyear) found males use more emoticons than females
+	- Huffaker et al. (2005) found males use more emoticons than females
 
 
 # My commentary

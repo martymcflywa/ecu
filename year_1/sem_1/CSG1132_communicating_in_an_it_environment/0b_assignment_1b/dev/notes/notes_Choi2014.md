@@ -61,7 +61,7 @@ year = {2014}
 
 ===
 
->Haferkamp et al. (2012) found that women are more likely to use SNSs to compare them-selves with other people. **pp. 2**
+>Haferkamp et al. (2012) found that women are more likely to use SNSs to compare themselves with other people. **pp. 2**
 
 # Methods and sample
 
@@ -102,6 +102,7 @@ year = {2014}
 - Relates to Tifferet2014: male's tendency to express status through objects and formal wear
 	- Could also use brand-related word-of-mouth as another means to express status
 - Quote about women more likely to compare themselves with other people supports McAndrew2012: Women spend more time looking at profiles of same-age others
+	- Also backed up by Fogel2009
 - Uses frequency of visits as well as time spent on Facebook as variable
 - Could be a potential approach to explore the gender role of advertising on Facebook
 

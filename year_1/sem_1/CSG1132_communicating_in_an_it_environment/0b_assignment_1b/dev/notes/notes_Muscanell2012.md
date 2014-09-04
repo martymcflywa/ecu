@@ -86,7 +86,7 @@ year = {2012}
 # Discussion and results
 
 - Men more likely to use Facebook for
-	- Seeking potential dates
+	- Dating purposes
 	- Career networking
 	- Making friends
 	- Playing games

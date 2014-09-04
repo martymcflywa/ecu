@@ -93,8 +93,47 @@
 	- International usage
 	- Have terms had historical changes
 
-
 # Search queries
 
 1. ("Facebook" OR "social network*" OR "social media") AND ("motivation*" OR "impulse") AND ("behavio*" OR "habit" OR "participation" OR "protocol" OR "custom*" OR "conduct") AND ("outcome*" OR "effect*" OR "consequence*") AND "privac*" AND demograph*
 2. ("Facebook" OR "social network*" OR "social media") AND ("motivation*" OR "impulse") AND ("demograph*" OR "gender" OR "sex")
+
+# Recurring theme
+
+## Gratifications
+
+- Women use Facebook to compare themselves with other people more than men
+	- McAndrew2012
+	- Choi2014 (Haferkamp2012)
+		- Need to read Haferkamp2012
+	- Fogel2009
+- Women more concerned about privacy than men
+	- Mathiyalakan2014
+	- Raacke2008
+	- Fogel2009
+- Men use Facebook for dating purposes
+	- Muscanell2012
+	- Raacke2008
+	- Tifferet2014
+		- Mens' profile photos express masculinity or status to appear more attractive
+	- McAndrew2012
+		- Men express less emotion in photos to express masculinity
+	- Choi2014
+		- Men more likely to engage in brand-related word-of-mouth discussions, possibly to increase status
+- Men use Facebook for information-gathering purposes
+	- Raacke2008
+	- Choi2014
+		- Men are more open to advertising on Facebook
+		- Could be due to fact men are more inclined to use the internet for information purposes
+	- Muscanell2012
+		- "men are more likely to spend their time online engaging in more task-focused activities (e.g., reading the news, getting financial information) and are more likely to engage in behavior consistent with their gender role norm that promotes achievement-orientation" **pp. 108**
+	- Countered by Park2009
+		- Need to read Park2009
+- Men have more friends than women
+	- Asserted by Raacke2008, might have been the case in 2008
+	- Countered by McAndrew2012
+		- Women have more friends than men
+
+# Plan of attack
+
+- Use Weiser (2000) to introduce differences between men and women in general internet use
