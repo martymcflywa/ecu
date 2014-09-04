@@ -35,12 +35,33 @@ year = {2012}
 - Sample of 238 undergrad students
 - Men use SNS to create new relationships
 - Women use SNS to maintain current relationships
+- Hargittai (2008) found that women were more likely to use MySpace than men
+	- But found that gender was not correlated to Facebook adoption
+	- May not be the case these days, recent studies show that more women use Facebook than men
 
 # Landmark
 
 # Quotes
 
 *Include page numbers.*
+
+>women were more likely than men to regularly change various aspects of their profile pages (Raacke & Bonds-Raacke, 2008) **pp. 108**
+
+===
+
+>Men, however, were more likely to display more risky photos or information (e.g., comments or photos involving sex or alcohol; Peluchette & Karl, 2008). **pp. 108**
+
+===
+
+>women are more likely to use the Internet to assuage social interaction and are also more likely to engage in behavior consistent with feminine gender role norms that promote relationship maintenance **pp. 108**
+
+===
+
+>men are more likely to spend their time online engaging in more task-focused activities (e.g., reading the news, getting financial information) and are more likely to engage in behavior consistent with their gender role norm that promotes achievement-orientation **pp. 108**
+
+===
+
+>Men were also found to be more likely to use social networking sites for dating and to learn about new events compared to women (Raacke & Bonds-Raacke, 2008). **pp. 108**
 
 # Methods and sample
 
@@ -51,8 +72,13 @@ year = {2012}
 *About the content, how this might support my arguments.*
 
 - Men use SNS to create new relationships, women use it to maintain current relationships could be used to support Tifferet2014: Facebook used as a platform to attact mates
-	- Are men more inclined to do this?
+	- See quote that refers to Raacke & Bonds-Raacke (2008)
+- Uses comscore for [Facebook](http://www.comscore.com/) analytics
+- Check Peluchette & Karl 2008, reinforces Tifferet2014
 
 # References
 
 *Any references that the author cited that is included in my notes*
+
+- Raacke, J., & Bonds-Raacke, J. (2008). MySpace and Facebook: Applying the uses and gratifications theory to exploring friend-networking sites. CyberPsychology & Behavior, 11(2), 169–174.
+- Peluchette, J., & Karl, K. (2008). Social networking profiles: An examination of student attitudes regarding use and appropriateness of content. CyberPsychology & Behavior, 11(1), 95–97.
