@@ -8,7 +8,7 @@ Muscanell, N. L., & Guadagno, R. E. (2012). Make new friends or keep the old: Ge
 
 ## Bibtex
 
-``` bibtex
+``` tex
 @article{Muscanell2012,
 author = {Muscanell, Nicole L. and Guadagno, Rosanna E.},
 doi = {10.1016/j.chb.2011.08.016},
@@ -63,9 +63,40 @@ year = {2012}
 
 >Men were also found to be more likely to use social networking sites for dating and to learn about new events compared to women (Raacke & Bonds-Raacke, 2008). **pp. 108**
 
+===
+
+>[Women] more likely interact with individuals they already know and trust. **pp. 111**
+
 # Methods and sample
 
+- 238 participants
+	- 135 men
+	- 103 women
+	- undergrad psych students
+- Online survey, self reporting
+	- 50 items
+	- Estimated time spent on SNS
+	- Frequency of engagement in SNS activities
+		- 7 point scale
+- Limitations
+	- Aged between 18-21
+	- Did not measure competency
+	- Did not measure privacy concerns
+
 # Discussion and results
+
+- Men more likely to use Facebook for
+	- Seeking potential dates
+	- Career networking
+	- Making friends
+	- Playing games
+- Women more likely to use Facebook for
+	- Sending public messages
+		- Status updates
+		- Wall posts
+	- Sending private messages
+	- Post photos
+	- Sending friend requests
 
 # My commentary
 
@@ -75,6 +106,7 @@ year = {2012}
 	- See quote that refers to Raacke & Bonds-Raacke (2008)
 - Uses comscore for [Facebook](http://www.comscore.com/) analytics
 - Check Peluchette & Karl 2008, reinforces Tifferet2014
+- Claim about men using SNS to create new relationships while women use it to maintain current relationships contradicts findings that women send more friend requests in Facebook
 
 # References
 
