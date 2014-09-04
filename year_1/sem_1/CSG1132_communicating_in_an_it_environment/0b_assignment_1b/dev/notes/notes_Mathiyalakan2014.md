@@ -8,7 +8,7 @@ Mathiyalakan, S., Heilman, G., & White, S. (2014). Gender Differences in Student
 
 ## Bibtex
 
-``` bibtex
+``` tex
 @article{Mathiyalakan2014,
 author = {Mathiyalakan, Sathasivam and Heilman, George and White, Sharon},
 file = {:E$\backslash$:/Documents/eBooks/mendeley/Mathiyalakan, Heilman, White/Gender Differences in Student Attitude toward Privacy in Facebook/Mathiyalakan, Heilman, White - 2014 - Gender Differences in Student Attitude toward Privacy in Facebook.pdf:pdf},

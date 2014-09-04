@@ -8,7 +8,7 @@ McAndrew, F. T., & Jeong, H. S. (2012). Who does what on Facebook? Age, sex, and
 
 ## Bibtex
 
-``` bibtex
+``` tex
 @article{McAndrew2012,
 author = {McAndrew, Francis T. and Jeong, Hye Sun},
 doi = {10.1016/j.chb.2012.07.007},

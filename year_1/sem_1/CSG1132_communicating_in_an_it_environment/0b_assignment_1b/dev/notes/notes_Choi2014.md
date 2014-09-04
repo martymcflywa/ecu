@@ -8,7 +8,7 @@ Choi, J., & Kim, Y. (2014). The moderating effects of gender and number of frien
 
 ## Bibtex
 
-``` bibtex
+``` tex
 @article{Choi2014,
 author = {Choi, Jayoung and Kim, Yongbum},
 doi = {10.1016/j.paid.2014.03.040},

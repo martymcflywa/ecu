@@ -6,7 +6,7 @@ What is the role of gender on Facebook user acceptance / rejection?
 
 Schwartz, H. A., Eichstaedt, J. C., Kern, M. L., Dziurzynski, L., Ramones, S. M., Agrawal, M., … Ungar, L. H. (2013). Personality, gender, and age in the language of social media: the open-vocabulary approach. PloS One, 8(9), e73791. doi:10.1371/journal.pone.0073791
 
-``` bibtex
+``` tex
 @article{Schwartz2013,
 author = {Schwartz, H Andrew and Eichstaedt, Johannes C and Kern, Margaret L and Dziurzynski, Lukasz and Ramones, Stephanie M and Agrawal, Megha and Shah, Achal and Kosinski, Michal and Stillwell, David and Seligman, Martin E P and Ungar, Lyle H},
 doi = {10.1371/journal.pone.0073791},

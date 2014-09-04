@@ -8,7 +8,7 @@ Tifferet, S., & Vilnai-Yavetz, I. (2014). Gender differences in Facebook self-pr
 
 ## Bibtex
 
-``` bibtex
+``` tex
 @article{Tifferet2014,
 author = {Tifferet, Sigal and Vilnai-Yavetz, Iris},
 doi = {10.1016/j.chb.2014.03.016},
