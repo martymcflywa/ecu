@@ -335,6 +335,8 @@ Therefore the rule for `g`<sup>-1</sup> is `g`<sup>-1</sup>`(x) = (5x - 7) / 3`
 
 ### Method 2: Turn inside out and swap labels
 
+**Need to understand this better.**
+
 Again consider the function `f` with the rule:
 
 `f(x) = √x + 2`
@@ -354,6 +356,8 @@ Therefore the inverse rule is `f`<sup>-1</sup>`(x) = x^2 - 2`
 **Note:** Method 2 is more general because it can be applied to any function, whereas the first method is useful only for very simple functions.
 
 ## How to check that the formula for inverse is correct?
+
+**Need to understand this better.**
 
 Suppose for some function `f`, we have found what we believe is the formula for its inverse `f`<sup>-1</sup>. In order to verify that the formula for `f`<sup>-1</sup> is correct, we must check that:
 
@@ -375,4 +379,141 @@ Let `h(x) = √x - 5`.
 
 Find `h`<sup>-1</sup>`(x)` and check that `h`<sup>-1</sup>`(h(x)) = x`.
 
+```
+h^-1(x) = (x + 5)^2
 
+h^-1(h(x))
+= (h(x) + 5)^2
+= (√x - 5 + 5)^2 
+= x
+```
+
+### Exercise 2
+
+Let `g(x) = 4x - 3`
+
+Find `g`<sup>-1</sup>`(x)` and check that `g`<sup>-1</sup>`(g(x)) = x`
+
+```
+g^-1(x) = (x + 3) / 4
+
+g^-1(g(x))
+= (g(x) + 3) / 4
+= (4x - 3 + 3) / 4
+= x
+```
+
+## Inverse of functions defined by tables
+
+Consider function `g` defined by table:
+
+| `x`    | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
+|-------:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| `g(x)` | 0 | 4 | 1 | 5 | 2 | 6 | 3 |
+
+The function `g` has an inverse `g`<sup>-1</sup>, which we can find as follows:
+
+For `g`, input `3` gives output `5`, ie. `g(3) = 5`.
+
+Therefore for `g`<sup>-1</sup>, input `5` must give output `3`, ie. `g`<sup>-1</sup>`(5) = 3`.
+
+Similarly, for `g`, input `2` gives output `1`, ie. `g(2) = 1`.
+
+Therefore for `g`<sup>-1</sup>, input `1` must give output `2`, ie `g`<sup>-1</sup>`(1) = 2`.
+
+### Example 1
+
+Consider the function `g` defined by the table:
+
+| `x`    | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
+|-------:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| `g(x)` | 0 | 4 | 1 | 5 | 2 | 6 | 3 |
+
+We can enter these on a table for `g`<sup>-1</sup>:
+
+| `x`      | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
+|---------:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| `g^1(x)` | 0 | 2 | 4 | 6 | 1 | 3 | 5 |
+
+### Example 2
+
+Consider the function `h` and its inverse `h`<sup>-1</sup>:
+
+| `x`    | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+|-------:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| `h(x)` | 0 | 5 | 1 | 6 | 2 | 7 | 3 | 8 | 4 |
+
+| `x`       | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+|----------:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| `h^-1(x)` | 0 | 2 | 4 | 6 | 8 | 1 | 3 | 5 | 7 |
+
+## Examples with bit strings
+
+### Example 1
+
+Let `H` bet the set of all bit strings of length `4`.
+
+`H = {0000, 0001, 0010, 0011, ..., 1111}`
+
+Let `c: H → H, c(s) = bit string obtained by replacing each 0 by 1 and each 1 by 0 in the bit string s`:
+
+ie. `c(0111) = 1000` and `c(1001) = 0110`
+
+- Is `c` one-to-one?
+	- Yes
+- Is `c` onto?
+	- Yes
+- Does `c` have an inverse, if so what is it?
+	- `c` is its own inverse
+
+### Example 2
+
+Let `H` be the set of all bit strings of length `4`.
+
+`H = {0000, 0001, 0010, 0011, ..., 1111}`
+
+Let `d: H → H, d(s) = the bit string obtained by reversing the order of the bits in the bit string s`
+
+ie. `d(1010) = 0101` and `d(0001) = 1000`
+
+- Is `d` one-to-one?
+	- Yes
+- Is `d` onto?
+	- Yes
+- Does `d` have an inverse, if so what is it?
+	- `d` is its own inverse
+
+## Inverse functions
+
+### Which functions have inverses?
+
+Here are representations of two functions.
+
+If each relation is inversed, will the result be a function?
+
+![inverse func 1](http://i.imgur.com/nCBBB38.png)
+
+### Conditions for inverse
+
+Suppose `f: A → B`.
+
+![inverse func conditions](http://i.imgur.com/pn9euTa.png)
+
+A function `f` has an inverse `f`<sup>-1</sup> **only** if `f` is "one-to-one" **and** "onto".
+
+## ASCII code
+
+ASCII (American Standard Code for Information Interchange) is a seven-bit code that allows digital devices, such as computers, to communicate with each other.
+
+ASCII uses the binary bit strings from `0000000` to `1111111` to represent numbers and letters and other symbols.
+
+For example:
+
+010 0101<sub>2</sub> = 25<sub>16</sub> represents `%`  
+100 0001<sub>2</sub> = 41<sub>16</sub> represents `A`  
+101 0011<sub>2</sub> = 53<sub>16</sub> represents `S`  
+110 0111<sub>2</sub> = 67<sub>16</sub> represents `g`
+
+See [ascii-code.com](http://www.ascii-code.com/) for extended table including binary.
+
+![ascii table](http://web.alfredstate.edu/weimandn/miscellaneous/ascii/ASCII%20Conversion%20Chart.gif)
