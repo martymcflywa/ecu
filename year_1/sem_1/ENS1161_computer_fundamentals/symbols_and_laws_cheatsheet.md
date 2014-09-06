@@ -221,3 +221,84 @@ Any cell without a `1` will become `0`.
 Which results in the following Boolean product:
 
 ![multiply matrix 2](http://i.imgur.com/YNFw86Q.png)
+
+# Functions
+
+## Syntax
+
+`f: A → B, f(x) = ...`  
+`domain → codomain, rule`
+
+## Range
+
+When asked for range, provide all possible answers for function/s. Do not include duplicates.
+
+## Onto and one-to-one
+
+### Onto
+
+![onto](http://i.imgur.com/YEcjGmr.png)
+
+### One-to-one
+
+![one-to-one](http://i.imgur.com/5Z3oozp.png)
+
+## Composite functions
+
+Composite functions are nested inside each other within parenthesis, with the first function inside and the last function outside.
+
+`h(g(f(x)))`
+
+![comp func](http://i.imgur.com/5gCxcVt.png)
+
+## Inverse functions
+
+### Conditions
+
+A function `f` has an inverse `f`<sup>-1</sup> **only** if `f` is "one-to-one" **and** "onto".
+
+### Methods
+
+- Two methods:
+	1. `Take off shoes, then take off socks`
+		- Reversing each function individually in reverse order
+	2. `Turn inside out and swap labels`
+		- Breaking the function apart then swapping `x` for `y`
+		- Can be applied to complex functions
+		- I need to understand this better
+
+#### Method 2: Turn inside out and swap labels
+
+```
+f(x) = √x + 2
+
+y = √x + 2 // introduce arbritrary variable to help break formula apart
+y^2 = x + 2 // reverse sq. root and move it left of equals
+y^2 - 2 = x // reverse addition and move it left of equals
+y = x^2 - 2 // move operations right of equals back to x
+f^-1(x) = x^2 - 2 // replace y with f^-1 
+```
+
+## Checking inverse formula for function
+
+Nest original function inside inverse function. Result should equal to `x` (the argument).
+
+```
+f(x) // original function
+f^-1(x) // inverse function
+
+f^-1(f(x)) // nested original function inside inverse function
+f^-1(f(x)) =  x // result should equal to argument
+```
+
+### Example
+
+```
+h(x) = √x - 5 // original function
+h^-1(x) = (x + 5)^2 // inverse function
+
+= (h(x) + 5)^2 // nested original function inside inverse function
+= (√x - 5 + 5)^2 // expanding original function to show formula
+= x // result is equal to x, the original argument
+```
+
