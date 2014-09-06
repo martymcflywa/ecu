@@ -233,13 +233,24 @@ Which results in the following Boolean product:
 
 When asked for range, provide all possible answers for function/s. Do not include duplicates.
 
+## Conditions for functions
+
+1. `∀a ∈ A, ∃b ∈ B, b = f(a)`
+	- All items from domain must connect to something in sub-domain
+2. `∀a, α ∈ A, a = α → f(a) = f(α)`
+	- Item from domain cannot be used twice to connect to something in sub-domain
+
 ## Onto and one-to-one
 
 ### Onto
 
+Function links to all objects of codomain.
+
 ![onto](http://i.imgur.com/YEcjGmr.png)
 
 ### One-to-one
+
+Function links each object from domain once, and once only.
 
 ![one-to-one](http://i.imgur.com/5Z3oozp.png)
 
@@ -253,7 +264,7 @@ Composite functions are nested inside each other within parenthesis, with the fi
 
 ## Inverse functions
 
-### Conditions
+### Conditions for inversion
 
 A function `f` has an inverse `f`<sup>-1</sup> **only** if `f` is "one-to-one" **and** "onto".
 
@@ -262,6 +273,10 @@ A function `f` has an inverse `f`<sup>-1</sup> **only** if `f` is "one-to-one" *
 - Two methods:
 	1. `Take off shoes, then take off socks`
 		- Reversing each function individually in reverse order
+		- Remember to reverse the order rules for
+			- Multiplication / Division
+			- Addition / Subtraction
+			- Parenthesis
 	2. `Turn inside out and swap labels`
 		- Breaking the function apart then swapping `x` for `y`
 		- Can be applied to complex functions
@@ -302,3 +317,19 @@ h^-1(x) = (x + 5)^2 // inverse function
 = x // result is equal to x, the original argument
 ```
 
+# Converting Binary to Hex
+
+Every 4 bits is 1 hex digit.
+
+```
+4 2 1 8 4 2 1
+1 0 0 1 0 0 0 = 48
+1 1 0 0 1 0 1 = 65
+1 1 0 1 1 0 0 = 6C
+1 1 0 1 1 1 1 = 6F
+0 1 0 0 0 0 0 = 20
+1 0 1 0 1 1 1 = 57
+1 1 1 0 0 1 0 = 72
+1 1 0 0 1 0 0 = 64
+0 1 0 0 0 0 1 = 21
+```
