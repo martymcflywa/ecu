@@ -43,7 +43,7 @@ year = {2014}
 
 # Landmark
 
-- Not much existing research on word-of-mouth in Facebook
+- According to author, not much existing research on word-of-mouth in Facebook
 
 # Quotes
 
