@@ -100,7 +100,7 @@ public class WordCount {
      * Count the number of characters in a file, and print out the result.
      * Don't forget to close the file when done.
      */
-    public static void characters(String filename)  throws FileNotFoundException {
+    public static void characters(String filename) throws FileNotFoundException {
     	
     	// open file
     	File file = new File(filename);
