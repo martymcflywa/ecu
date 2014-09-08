@@ -106,10 +106,10 @@ class AnnulusGrid {
 	static int iterator() {
 		int counter = 0;
 		
-		for(int col = 0; col < gridSize; col ++) {
+		for(int col = 0; col < gridSize - 1; col ++) {
 			double x = getCol(col);
 			
-			for(int row = 0; row < gridSize; row ++) {
+			for(int row = 0; row < gridSize - 1; row ++) {
 				double y = getRow(row);
 				double test = x * x + y * y;
 				
@@ -123,21 +123,25 @@ class AnnulusGrid {
 	
 	// need to figure out how to expand array
 	static double hitsIterator() {
-		double counter = 0;
-		int[][] hits = new int[gridSize][gridSize];
+		double counter = 0.0;
+		double[][] hits = new double[gridSize][gridSize];
 		
-		for(int i = 0; i < gridSize; i ++) {
-			for(int j = 0; j < gridSize; j ++) {
+		for(int i = 0; i < gridSize - 1; i ++) {
+			
+			for(int j = 0; j < gridSize - 1; j ++) {
+				
 				for(int k = 0; k < samples; k ++) {
+					
 					double x = getColRandom(i);
 					double y = getRowRandom(j);
 					double test = x * x + y * y;
+					
 					if(test < Annulus.rad1Sq() && test > Annulus.rad2Sq()) {
 						hits[i][j] = 1;
-					}
+					}			
 				}
-				hits[col][row] = hits[col][row] / samples;
-				counter = counter + hits[col][row];
+				//hits[i][j] = hits[i][j] / samples;
+				counter = counter + hits[i][j];	
 			}
 		}
 		return counter;

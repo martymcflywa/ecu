@@ -34,10 +34,10 @@ public class AnnulusCalculator {
 		AnnulusGrid.setMax(outRadius1);
 		
 		// calls AnnulusGrid.iterator() to perform grid iteration and stores result to counter
-		// int counter = AnnulusGrid.iterator();
+		int counter = AnnulusGrid.iterator();
 		
 		// calls Annuls.areaCalc and passes counter as arg to perform area calculation and print result
-		// Annulus.areaCalc(counter);
+		Annulus.areaCalc(counter);
 		
 		// part 2, calls hitsCounter **not working**
 		double hitsCounter = AnnulusGrid.hitsIterator();
