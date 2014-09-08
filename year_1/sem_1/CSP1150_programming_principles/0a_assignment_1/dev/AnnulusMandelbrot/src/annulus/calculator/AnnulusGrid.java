@@ -29,7 +29,9 @@ package annulus.calculator;
 class AnnulusGrid {
 
 	private static int gridSize = 100,
-						samples = 100;
+						samples = 100,
+						col,
+						row;
 	
 	private static double minX,
 					maxX,
@@ -64,6 +66,7 @@ class AnnulusGrid {
 	}
 	
 	static double getColRandom(int col) {
+		AnnulusGrid.col = AnnulusGrid.col ++;
 		return minX + (col + Math.random()) * ((maxX - minX) / gridSize);
 	}
 
@@ -72,6 +75,7 @@ class AnnulusGrid {
 	}
 	
 	static double getRowRandom(int row) {
+		AnnulusGrid.row = AnnulusGrid.row ++;
 		return minY + (row + Math.random()) * ((maxY - minY) / gridSize);
 	}
 	
@@ -120,23 +124,22 @@ class AnnulusGrid {
 	// need to figure out how to expand array
 	static double hitsIterator() {
 		double counter = 0;
-		int col = 0,
-			row = 0;
-		double[][] hits = new double[col][row];
+		int[][] hits = new int[gridSize][gridSize];
 		
-		for(int i = 0; i < samples; i ++) {
-			for(int j = 0; j < gridSize ; j ++) {
-				for(int k = 0; k < gridSize ; k ++) {
-					double x = getColRandom(j);
-					double y = getRowRandom(k);
+		for(int i = 0; i < gridSize; i ++) {
+			for(int j = 0; j < gridSize; j ++) {
+				for(int k = 0; k < samples; k ++) {
+					double x = getColRandom(i);
+					double y = getRowRandom(j);
 					double test = x * x + y * y;
 					if(test < Annulus.rad1Sq() && test > Annulus.rad2Sq()) {
-						hits[col][row] ++;
+						hits[i][j] = 1;
 					}
 				}
+				hits[col][row] = hits[col][row] / samples;
+				counter = counter + hits[col][row];
 			}
 		}
-		hits[col][row] = hits[col][row] / samples;
-		return counter + hits[col][row];
+		return counter;
 	}
 }
