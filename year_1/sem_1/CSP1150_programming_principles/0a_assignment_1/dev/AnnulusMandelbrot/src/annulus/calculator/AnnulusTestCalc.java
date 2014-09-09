@@ -45,7 +45,7 @@ public class AnnulusTestCalc {
 		// declare counter
 		int counter = 0;
 		
-		// declare max/mins
+		// declare grid max/mins
 		double maxX = r1;
 		double minX = -r1;
 		double maxY = r1;
@@ -86,7 +86,7 @@ public class AnnulusTestCalc {
 		// declare counter
 		double counter = 0.0;
 		
-		// declare max/mins
+		// declare grid max/mins
 		double maxX = r1;
 		double minX = -r1;
 		double maxY = r1;
@@ -112,7 +112,11 @@ public class AnnulusTestCalc {
 					if(test < outRad * outRad && test > inRad * inRad) {
 						hits[col][row] = 1;
 					}
+					
+				// divide each cell by samples
 				hits[col][row] = hits[col][row] / samples;
+				
+				// add cell value to counter
 				counter = counter + hits[col][row];
 				}
 			}
