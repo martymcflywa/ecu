@@ -14,6 +14,12 @@ import javax.swing.JOptionPane;
 
 public class AnnulusCalc {
 	
+	/**
+	 * This is the main method. Program calls getUserInput,
+	 * which in turn calls other methods until program calculates
+	 * result and terminates. 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		getUserInput();
 	}

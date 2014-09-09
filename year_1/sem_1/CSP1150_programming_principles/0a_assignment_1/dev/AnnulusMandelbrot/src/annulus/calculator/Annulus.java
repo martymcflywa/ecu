@@ -32,7 +32,7 @@ public class Annulus {
 	}
 	
 	/**
-	 * This method allows other classes to get private variable outRad.
+	 * This method allows other classes to get outRad value.
 	 * @return double outRad - The outer radius.
 	 */
 	static double getOutRad() {
@@ -40,7 +40,7 @@ public class Annulus {
 	}
 	
 	/**
-	 * This method allows other classes to get private variable inRad.
+	 * This method allows other classes to get private variable inRad value.
 	 * @return double inRad - The inner radius.
 	 */
 	static double getInRad() {

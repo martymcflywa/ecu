@@ -11,7 +11,7 @@ package annulus.calculator;
 
 public class AnnulusGrid {
 	
-	// declare constants GRIDSIZE and SAMPLES
+	// declare constants SIZE and SAMPLES
 	private static final int SIZE = 100;
 	private static final int SAMPLES = 100;
 	
@@ -30,7 +30,7 @@ public class AnnulusGrid {
 	
 	/**
 	 * This method sets the max/min X and Y coordinates for the grid.
-	 * @param double maxRad The incoming parsed outer radius
+	 * @param double maxRad - Pass outer radius as arg to set max/mins.
 	 */
 	static void setMaxMin(double maxRad){
 		
@@ -42,7 +42,7 @@ public class AnnulusGrid {
 	}
 	
 	/**
-	 * This method calculates the column and row deltas
+	 * This method calculates the column and row deltas.
 	 * @param args unused
 	 */
 	static void setDelta() {
@@ -53,7 +53,7 @@ public class AnnulusGrid {
 	}
 	
 	/**
-	 * This method allows other classes to get SIZE
+	 * This method allows other classes to get SIZE value.
 	 * @return int SIZE
 	 */
 	static int gridSize() {
@@ -61,7 +61,7 @@ public class AnnulusGrid {
 	}
 	
 	/**
-	 * This method allows other classes to get SAMPLES
+	 * This method allows other classes to get SAMPLES value.
 	 * @return int SAMPLES
 	 */
 	static int getSamples() {
