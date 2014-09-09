@@ -1,55 +1,81 @@
-/**
- * Defines static Annulus class. Includes getters/setters and other methods used for calculation.
- * Executes from AnnulusCalculator
- * 
- * @author Martin Ponce ID# 10371381
- * @version 20140814
- * 
- * @param setAnnRadius1		set outer radius
- * @param setAnnRadius2		set inner radius
- * 
- * @return getAnnRadius1	get outer radius
- * @return getAnnRadius2	get inner radius
- * @return rad1Sq			calculate outer radius squared
- * @return rad2Sq			calculate inner radius squared
- * 
- * @void areaCalc			calculate area of annulus with counter as arg, prints results
- */
 package annulus.calculator;
 
-import javax.swing.JOptionPane;
+/**
+ * Annulus static class
+ * Contains attributes and methods related to the Annulus itself.
+ * 
+ * @author Martin Ponce ID# 10371381
+ * @version 2.0.0
+ * @since 20140909 
+ */
 
-class Annulus {
-
-	private static double radius1,
-			radius2;
+public class Annulus {
 	
-	static void setRadius1(double radius1) {
-		Annulus.radius1 = radius1;
+	// declare variables to store outer and inner radius of annulus
+	private static double outRad;
+	private static double inRad;
+	
+	// declare area
+	private static double area;
+	
+	/**
+	 * This method passes user input radius values as args,
+	 * parses them as double, then stores as variables.
+	 * @param String r1 - Parse String user input for outer radius value as double.
+	 * @param String r2 - Parse String user input for inner radius value as double.
+	 */
+	static void setRadius(String r1, String r2) {
+		
+		// store args to private variables
+		outRad = Double.parseDouble(r1);
+		inRad = Double.parseDouble(r2);;
 	}
 	
-	static void setRadius2(double radius2) {
-		Annulus.radius2 = radius2;
+	/**
+	 * This method allows other classes to get private variable outRad.
+	 * @return double outRad - The outer radius.
+	 */
+	static double getOutRad() {
+		return outRad;
 	}
 	
-	static double getRadius1() {
-		return Annulus.radius1;
+	/**
+	 * This method allows other classes to get private variable inRad.
+	 * @return double inRad - The inner radius.
+	 */
+	static double getInRad() {
+		return inRad;
 	}
 	
-	static double getRadius2() {
-		return Annulus.radius2;
-	}
-
-	static double rad1Sq() {
-		return Annulus.radius1 * Annulus.radius1;
-	}
-	
-	static double rad2Sq() {
-		return Annulus.radius2 * Annulus.radius2;
+	/**
+	 * This method squares outer radius value.
+	 * @return double - Outer radius * Outer radius.
+	 */
+	static double outRadSq() {
+		return outRad * outRad;
 	}
 	
-	static void areaCalc(double counter) {
-		double area = AnnulusGrid.colDelta() * AnnulusGrid.rowDelta() * counter / AnnulusGrid.gridSizeSq();
-		JOptionPane.showMessageDialog(null, "The area of the Annulus is: " + area);
+	/**
+	 * This method squares inner radius value.
+	 * @return double - Inner radius * inner radius.
+	 */
+	static double inRadSq() {
+		return inRad * inRad;
+	}
+	
+	/**
+	 * This method sets the area of the Annulus.
+	 * @param counter - Pass counter value from iterations as arg.
+	 */
+	static void setArea(double counter) {
+		area = AnnulusGrid.getDelta('x') * AnnulusGrid.getDelta('y') * counter / AnnulusGrid.sizeSq();
+	}
+	
+	/**
+	 * This method allows other classes to get private variable area.
+	 * @return double area
+	 */
+	static double getArea() {
+		return area;
 	}
 }

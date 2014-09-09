@@ -15,7 +15,7 @@ package annulus.calculator;
 
 import javax.swing.JOptionPane;
 
-public class AnnulusCalculator {
+public class AnnulusCalculatorOriginal {
 
 	public static void main(String[] args) {
 		
@@ -26,24 +26,24 @@ public class AnnulusCalculator {
 		double outRadius2 = Double.parseDouble(inRadius2);
 		
 		// calls Annulus.setRadius1() and .setRadius2() to set radius to Annulus class
-		Annulus.setRadius1(outRadius1);
-		Annulus.setRadius2(outRadius2);
+		AnnulusOriginal.setRadius1(outRadius1);
+		AnnulusOriginal.setRadius2(outRadius2);
 		
 		// calls AnnulusGrid.setMin() and .setMax() to set max/min grid values to AnnulusGrid class
-		AnnulusGrid.setMin(outRadius1);
-		AnnulusGrid.setMax(outRadius1);
+		AnnulusGridOriginal.setMin(outRadius1);
+		AnnulusGridOriginal.setMax(outRadius1);
 		
 		// calls AnnulusGrid.iterator() to perform grid iteration and stores result to counter
-		int counter = AnnulusGrid.iterator();
+		int counter = AnnulusGridOriginal.iterator();
 		
 		// calls Annuls.areaCalc and passes counter as arg to perform area calculation and print result
-		Annulus.areaCalc(counter);
+		AnnulusOriginal.areaCalc(counter);
 		
 		// part 2, calls hitsCounter **not working**
-		double hitsCounter = AnnulusGrid.hitsIterator();
+		double hitsCounter = AnnulusGridOriginal.hitsIterator();
 		
 		// calls Annuls.areaCalc and passes counter as arg to perform area calculation and print result
-		Annulus.areaCalc(hitsCounter);
+		AnnulusOriginal.areaCalc(hitsCounter);
 		
 		// ensures JOptionPane is closed
 		System.exit(0);
