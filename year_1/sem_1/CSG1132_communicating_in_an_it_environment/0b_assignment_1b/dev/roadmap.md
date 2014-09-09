@@ -102,11 +102,27 @@
 
 ## Gratifications
 
+
+- Amount of male and female Facebook users
+	- Kimbrough2013
+		- Hargittai (2008) equal amount of men and women
+		- Taylor (2009) 57% women 43% men
+	- Refer to Facebook.com for total users
 - Women use Facebook to compare themselves with other people more than men
 	- McAndrew2012
 	- Choi2014 (Haferkamp2012)
-		- Need to read Haferkamp2012
 	- Fogel2009
+	- Haferkamp2012
+		- Females more likely to look at others' profiles to find out more about that person
+		- Females more likely to compare themselves with others more often than men
+- Women use Facebook for relationship maintenance
+	- Kimbrough2013
+	- Muscanell2012
+	- Raacke2008
+	- Tifferet2014
+	- Mazman2011
+		- Women use Facebook for maintaining existing relationships more than men
+		- Also more likely to look for old friends through Facebook
 - Women more concerned about privacy than men
 	- Mathiyalakan2014
 	- Raacke2008
@@ -120,6 +136,12 @@
 		- Men express less emotion in photos to express masculinity
 	- Choi2014
 		- Men more likely to engage in brand-related word-of-mouth discussions, possibly to increase status
+	- Haferkamp2012
+		- Men use SNS for relationship seeking more than females
+		- Men are more common to edit profile picture more than women
+- Men use Facebook to create new relationships
+	- Mazman2011
+		- Men use Facebook for creating new relationships more than women
 - Men use Facebook for information-gathering purposes
 	- Raacke2008
 	- Choi2014
@@ -127,13 +149,35 @@
 		- Could be due to fact men are more inclined to use the internet for information purposes
 	- Muscanell2012
 		- "men are more likely to spend their time online engaging in more task-focused activities (e.g., reading the news, getting financial information) and are more likely to engage in behavior consistent with their gender role norm that promotes achievement-orientation" **pp. 108**
+	- Kimbrough2013
 	- Countered by Park2009
-		- Need to read Park2009
+		- Women were more likely to use Facebook Groups for obtaining information **pp. 731**
+			- But the study only examines Facebook Groups and not Facebook as a whole
+	- Countered by Haferkamp2012
+		- No difference in gender for task and information-oriented behaviour
 - Men have more friends than women
 	- Asserted by Raacke2008, might have been the case in 2008
 	- Countered by McAndrew2012
 		- Women have more friends than men
+- Impression management / self-presentation
+	- Haferkamp2012
+		- Women prefer to use portrait shots, emphasise facial features
+		- Men prefer to use full body shots, including environment and other people
+			- Linked to risk taking, outdoors <- find this again in the notes
 
 # Plan of attack
 
 - Use Weiser (2000) to introduce differences between men and women in general internet use
+
+# Questions about the dataset
+
+- Power analysis
+	- Is the effect size 80%?
+- Can i perform t-tests, ANOVA?
+
+
+# More sources
+
+- http://www.webuse.org/pubs/index.html
+- http://firstmonday.org/
+- http://www.danah.org/papers/

@@ -1,5 +1,7 @@
 # Research topic
 
+What is the role of gender on Facebook user acceptance / rejection?
+
 # Bibliographic information
 
 ## Bibtex
@@ -12,9 +14,15 @@
 
 *Use keywords, phrases, dot points.*
 
+# Landmark
+
 # Quotes
 
 *Include page numbers.*
+
+# Methods and sample
+
+# Discussion and results
 
 # My commentary
 
