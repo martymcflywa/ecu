@@ -112,12 +112,9 @@ public class AnnulusTestCalc {
 					if(test < outRad * outRad && test > inRad * inRad) {
 						hits[col][row] = 1;
 					}
+				hits[col][row] = hits[col][row] / samples;
+				counter = counter + hits[col][row];
 				}
-			
-			// **ISSUE** Dividing hits to samples throws out decimal point. 
-			// Expecting result ~975.50. Instead, result is ~9.75
-			hits[col][row] = hits[col][row] / samples;
-			counter = counter + hits[col][row];
 			}
 		}
 		
