@@ -5,8 +5,8 @@ package annulus.calculator;
  * Contains attributes and methods related to the Annulus itself.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 2.0.0
- * @since 20140909 
+ * @version 2.1.0
+ * @since 20140910
  */
 
 public class Annulus {
@@ -33,6 +33,7 @@ public class Annulus {
 	
 	/**
 	 * This method allows other classes to get outRad value.
+	 * @param args unused.
 	 * @return double outRad - The outer radius.
 	 */
 	static double getOutRad() {
@@ -41,6 +42,7 @@ public class Annulus {
 	
 	/**
 	 * This method allows other classes to get private variable inRad value.
+	 * @param args unused.
 	 * @return double inRad - The inner radius.
 	 */
 	static double getInRad() {
@@ -49,6 +51,7 @@ public class Annulus {
 	
 	/**
 	 * This method squares outer radius value.
+	 * @param args unused.
 	 * @return double - Outer radius * Outer radius.
 	 */
 	static double outRadSq() {
@@ -73,7 +76,8 @@ public class Annulus {
 	
 	/**
 	 * This method allows other classes to get private variable area.
-	 * @return double area
+	 * @param args unused.
+	 * @return double area.
 	 */
 	static double getArea() {
 		return area;

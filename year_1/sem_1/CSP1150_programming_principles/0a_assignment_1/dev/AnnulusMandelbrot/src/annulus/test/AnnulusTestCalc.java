@@ -1,23 +1,24 @@
-package annulus.calculator;
+package annulus.test;
 import annulus.view.*;
 
 /**
- * Test class, experimenting with multidimensional array.
+ * Test class, experimenting with view.
  * 		
- * 		To do:
- * 			- resolve issue line 118
- * 			- add user input
- * 			- split attributes and methods to separate classes
- * 			- add javadocs
+ * 		Issues:
+ * 		- greyscale viewer not functioning correctly
+ * 		- lower samples results in darker image but less anti-aliasing
+ * 		- samples = 1 results in black image, jagged edges
+ * 		- samples = 100 results in very light grey image, smooth edges
  * 
  * @author Martin Ponce ID# 10371381
- * @version 20140908 
+ * @version 2.1.0
+ * @since 20140910 
  */
 
 public class AnnulusTestCalc {
 
 	// declare grid size, samples
-	static int gridSize = 400;
+	static int gridSize = 600;
 	static int samples = 100;
 	
 	// declare 2d array
@@ -38,7 +39,6 @@ public class AnnulusTestCalc {
 		// call methods to calculate area, pass outRad/inRad as arguments
 		calcApprox(outRad, inRad);
 		calcMonte(outRad, inRad);
-		(new GreyscaleHitViewerFrame("Annulus", gridSize, gridSize)).viewHits(hits);
 	}
 	
 	// approximate estimation method
@@ -129,5 +129,8 @@ public class AnnulusTestCalc {
 		
 		// print area value
 		System.out.println("Monte Carlo Estimation: " + area);
+		
+		// generates view **ISSUE:** image is lighter when samples are HIGH, darker when samples are LOW
+		(new GreyscaleHitViewerFrame("Annulus", gridSize, gridSize)).viewHits(hits);
 	}
 }

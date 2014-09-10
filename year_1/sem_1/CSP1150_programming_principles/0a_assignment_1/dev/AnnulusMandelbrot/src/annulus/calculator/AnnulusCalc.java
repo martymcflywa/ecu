@@ -1,5 +1,5 @@
 package annulus.calculator;
-//import annulus.view.*;
+import annulus.view.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -9,8 +9,8 @@ import javax.swing.JOptionPane;
  * The program executes from this class.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 2.0.0
- * @since 20140909 
+ * @version 2.1.0
+ * @since 20140910 
  */
 
 public class AnnulusCalc {
@@ -23,9 +23,6 @@ public class AnnulusCalc {
 	 */
 	public static void main(String[] args) {
 		getUserInput();
-		
-		// supposed to add this to main
-		//(new GreyscaleHitViewerFrame("Annulus", AnnulusGrid.gridSize(), AnnulusGrid.gridSize())).viewHits(AnnulusGrid.viewHits());
 	}
 	
 	/**
@@ -56,6 +53,9 @@ public class AnnulusCalc {
 			
 			// start monte carlo estimation grid iteration
 			iterateMonte();
+			
+			// generates view **ISSUE:** image is lighter when samples are HIGH, darker when samples are LOW
+			(new GreyscaleHitViewerFrame("Annulus", AnnulusGrid.gridSize(), AnnulusGrid.gridSize())).viewHits(AnnulusGrid.returnHits());
 		
 		// else outer radius is less than inner radius, display error message and recall method
 		} else {
@@ -137,6 +137,7 @@ public class AnnulusCalc {
 	
 	/**
 	 * This method prints approximate area result via JOptionPane.
+	 * @param args unused.
 	 */
 	static void calcApprox() {
 		
@@ -191,6 +192,7 @@ public class AnnulusCalc {
 	
 	/**
 	 * This method prints monte carlo estimation result via JOptionPane.
+	 * @param args unused.
 	 */
 	static void calcMonte() {
 	

@@ -5,14 +5,14 @@ package annulus.calculator;
  * Contains attributes and methods that assist in calculating Annulus area.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 2.0.0
- * @since 20140909 
+ * @version 2.1.0
+ * @since 20140910 
  */
 
 public class AnnulusGrid {
 	
 	// declare constants SIZE and SAMPLES
-	private static final int SIZE = 400;
+	private static final int SIZE = 600;
 	private static final int SAMPLES = 100;
 	
 	// declare grid max/mins for X and Y co-ordinates
@@ -34,7 +34,7 @@ public class AnnulusGrid {
 	 */
 	static void setMaxMin(double maxRad){
 		
-		// init the declared variables with max/min values
+		// init declared variables with max/min values
 		maxX = maxRad;
 		maxY = maxRad;
 		minX = -maxRad;
@@ -47,14 +47,15 @@ public class AnnulusGrid {
 	 */
 	static void setDelta() {
 		
-		// init the declared variables with delta values
+		// init declared variables with delta values
 		deltaX = maxX - minX;
 		deltaY = maxY - minY;
 	}
 	
 	/**
 	 * This method allows other classes to get SIZE value.
-	 * @return int SIZE
+	 * @param args unused.
+	 * @return int SIZE.
 	 */
 	static int gridSize() {
 		return SIZE;
@@ -62,7 +63,8 @@ public class AnnulusGrid {
 	
 	/**
 	 * This method allows other classes to get SAMPLES value.
-	 * @return int SAMPLES
+	 * @param args unused.
+	 * @return int SAMPLES.
 	 */
 	static int getSamples() {
 		return SAMPLES;
@@ -116,9 +118,10 @@ public class AnnulusGrid {
 	
 	/**
 	 * This method returns the hits array to be used for the viewer.
-	 * @return double[][] hits
+	 * @param args unused.
+	 * @return double[][] hits.
 	 */
-	static double[][] viewHits() {
+	static double[][] returnHits() {
 		return hits;
 	}
 	
