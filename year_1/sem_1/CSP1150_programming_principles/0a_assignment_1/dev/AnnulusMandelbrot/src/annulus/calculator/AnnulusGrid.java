@@ -12,7 +12,7 @@ package annulus.calculator;
 public class AnnulusGrid {
 	
 	// declare constants SIZE and SAMPLES
-	private static final int SIZE = 100;
+	private static final int SIZE = 400;
 	private static final int SAMPLES = 100;
 	
 	// declare grid max/mins for X and Y co-ordinates
@@ -112,6 +112,14 @@ public class AnnulusGrid {
 		
 		// return randomHits
 		return randomHits;
+	}
+	
+	/**
+	 * This method returns the hits array to be used for the viewer.
+	 * @return double[][] hits
+	 */
+	static double[][] viewHits() {
+		return hits;
 	}
 	
 	/**

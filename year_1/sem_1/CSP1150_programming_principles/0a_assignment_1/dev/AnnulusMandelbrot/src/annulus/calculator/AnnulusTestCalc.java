@@ -1,4 +1,5 @@
 package annulus.calculator;
+import annulus.view.*;
 
 /**
  * Test class, experimenting with multidimensional array.
@@ -16,7 +17,7 @@ package annulus.calculator;
 public class AnnulusTestCalc {
 
 	// declare grid size, samples
-	static int gridSize = 100;
+	static int gridSize = 400;
 	static int samples = 100;
 	
 	// declare 2d array
@@ -37,6 +38,7 @@ public class AnnulusTestCalc {
 		// call methods to calculate area, pass outRad/inRad as arguments
 		calcApprox(outRad, inRad);
 		calcMonte(outRad, inRad);
+		(new GreyscaleHitViewerFrame("Annulus", gridSize, gridSize)).viewHits(hits);
 	}
 	
 	// approximate estimation method

@@ -1,4 +1,5 @@
 package annulus.calculator;
+//import annulus.view.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +23,9 @@ public class AnnulusCalc {
 	 */
 	public static void main(String[] args) {
 		getUserInput();
+		
+		// supposed to add this to main
+		//(new GreyscaleHitViewerFrame("Annulus", AnnulusGrid.gridSize(), AnnulusGrid.gridSize())).viewHits(AnnulusGrid.viewHits());
 	}
 	
 	/**
@@ -135,7 +139,7 @@ public class AnnulusCalc {
 	 * This method prints approximate area result via JOptionPane.
 	 */
 	static void calcApprox() {
-				
+		
 		// display approximate area result
 		JOptionPane.showMessageDialog(null, "The Approximate Area of the Annulus is: " + Annulus.getArea());
 	}
@@ -189,7 +193,7 @@ public class AnnulusCalc {
 	 * This method prints monte carlo estimation result via JOptionPane.
 	 */
 	static void calcMonte() {
-		
+	
 		// display monte carlo estimation result
 		JOptionPane.showMessageDialog(null, "The Monte Carlo Estimated area of the Annulus is: " + Annulus.getArea());
 	}
