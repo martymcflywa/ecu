@@ -105,7 +105,10 @@
 
 - Amount of male and female Facebook users
 	- Kimbrough2013
-		- Hargittai (2008) equal amount of men and women
+		- Hargittai (2007) equal amount of men and women in SNS use in general
+			- Specifically for Facebook, women Facebook users = 56%
+			- Not exactly equal
+			- See Hargittai2013 results, contradicts this statement
 		- Taylor (2009) 57% women 43% men
 	- Refer to Facebook.com for total users
 - Women use Facebook to compare themselves with other people more than men
@@ -175,6 +178,14 @@
 	- Is the effect size 80%?
 - Can i perform t-tests, ANOVA?
 
+# Criticisms of article
+
+- Does it measure CMC competency?
+	- This could cause biased results which can't be identified if not measured
+- Online questionnaire
+	- Might be biased towards those who spend more time online
+	- More inclined to fill out
+	- More inclined to use SNS
 
 # More sources
 
