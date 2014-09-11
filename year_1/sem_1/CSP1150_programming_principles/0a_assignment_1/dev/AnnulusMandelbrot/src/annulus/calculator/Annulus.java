@@ -60,6 +60,7 @@ public class Annulus {
 	
 	/**
 	 * This method squares inner radius value.
+	 * @param args unused.
 	 * @return double - Inner radius * inner radius.
 	 */
 	public static double inRadSq() {
