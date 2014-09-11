@@ -167,6 +167,9 @@
 		- Women prefer to use portrait shots, emphasise facial features
 		- Men prefer to use full body shots, including environment and other people
 			- Linked to risk taking, outdoors <- find this again in the notes
+- Language differences
+	- Schwartz2013
+	- Joiner2014
 
 # Plan of attack
 
@@ -186,6 +189,8 @@
 	- Might be biased towards those who spend more time online
 	- More inclined to fill out
 	- More inclined to use SNS
+- Is it observed data or self-reported?
+
 
 # More sources
 

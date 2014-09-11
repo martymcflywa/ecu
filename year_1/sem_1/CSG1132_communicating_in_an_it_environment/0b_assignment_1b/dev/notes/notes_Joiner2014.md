@@ -34,7 +34,7 @@ year = {2014}
 - Study investigates gender differences in language use on Facebook
 - Findings show differences in gender in relation to public responses to Facebook status updates
 	- Females use "like" feature on status updates more than men
-	- Females more likely to post a public reqply to a Facebook status update than men
+	- Females more likely to post a public reply to a Facebook status update than men
 	- Females show higher levels of emotional support than men
 - No gender differences in the use of private messages on Facebook
 
