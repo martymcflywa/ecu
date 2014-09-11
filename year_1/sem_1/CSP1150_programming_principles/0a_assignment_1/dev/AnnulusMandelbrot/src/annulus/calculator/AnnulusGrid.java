@@ -5,8 +5,8 @@ package annulus.calculator;
  * Contains attributes and methods that assist in calculating Annulus area.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 2.1.0
- * @since 20140910 
+ * @version 2.2.0
+ * @since 20140911
  */
 
 public class AnnulusGrid {
@@ -32,7 +32,7 @@ public class AnnulusGrid {
 	 * This method sets the max/min X and Y coordinates for the grid.
 	 * @param double maxRad - Pass outer radius as arg to set max/mins.
 	 */
-	static void setMaxMin(double maxRad){
+	public static void setMaxMin(double maxRad){
 		
 		// init declared variables with max/min values
 		maxX = maxRad;
@@ -45,7 +45,7 @@ public class AnnulusGrid {
 	 * This method calculates the column and row deltas.
 	 * @param args unused
 	 */
-	static void setDelta() {
+	public static void setDelta() {
 		
 		// init declared variables with delta values
 		deltaX = maxX - minX;
@@ -57,7 +57,7 @@ public class AnnulusGrid {
 	 * @param args unused.
 	 * @return int SIZE.
 	 */
-	static int gridSize() {
+	public static int gridSize() {
 		return SIZE;
 	}
 	
@@ -66,7 +66,7 @@ public class AnnulusGrid {
 	 * @param args unused.
 	 * @return int SAMPLES.
 	 */
-	static int getSamples() {
+	public static int getSamples() {
 		return SAMPLES;
 	}
 	
@@ -77,7 +77,7 @@ public class AnnulusGrid {
 	 * @param int iteration - Expected args current col/row iteration.
 	 * @return double center - The center point of the column or row.
 	 */
-	static double getCenter(char axis, int iteration) {
+	public static double getCenter(char axis, int iteration) {
 		
 		// declare center
 		double center = 0.0;
@@ -100,7 +100,7 @@ public class AnnulusGrid {
 	 * @param int iteration - Expected args current col/row iteration.
 	 * @return double randomHits - The random hits used for monte carlo estimation
 	 */
-	static double getHits(char axis, int iteration) {
+	public static double getHits(char axis, int iteration) {
 		
 		// declare randomHits
 		double randomHits = 0.0;
@@ -121,7 +121,7 @@ public class AnnulusGrid {
 	 * @param args unused.
 	 * @return double[][] hits.
 	 */
-	static double[][] returnHits() {
+	public static double[][] returnHits() {
 		return hits;
 	}
 	
@@ -131,7 +131,7 @@ public class AnnulusGrid {
 	 * @param char axis - Expected args either chars 'x' or 'y'.
 	 * @return double delta - The delta value for either x or y.
 	 */
-	static double getDelta(char axis) {
+	public static double getDelta(char axis) {
 		
 		// declare delta
 		double delta = 0.0;
@@ -152,7 +152,7 @@ public class AnnulusGrid {
 	 * @param args unused.
 	 * @return double - SIZE * SIZE.
 	 */
-	static double sizeSq() {
+	public static double sizeSq() {
 		
 		// return SIZE * SIZE
 		return SIZE * SIZE;
@@ -162,18 +162,19 @@ public class AnnulusGrid {
 	 * This method sets the current array cell value to 1.
 	 * @param int currentCol - Current column iteration.
 	 * @param int currentRow - Current row iteration.
+	 * @param int n - integer to store in array.
 	 */
-	static void setArray(int currentCol, int currentRow) {
-		hits[currentCol][currentRow] = 1;
+	public static void setArray(int currentCol, int currentRow, int n) {
+		hits[currentCol][currentRow] = n;
 	}
 	
 	/**
-	 * This method divides current array cell value by SAMPLES.
-	 * @param int currentCol - Current column iteration.
-	 * @param int currentRow - Current row iteration.
+	 * This method divides array sum by SAMPLES.
+	 * @param double sum - Pass arraySum as arg to divide by SAMPLES.
+	 * @return double - Returns division result.
 	 */
-	static void divideArray(int currentCol, int currentRow) {
-		hits[currentCol][currentRow] = hits[currentCol][currentRow] / SAMPLES;
+	public static double divideBySamples(double sum) {
+		return sum / SAMPLES;
 	}
 	
 	/**
@@ -182,7 +183,7 @@ public class AnnulusGrid {
 	 * @param int currentRow - Current row iteration.
 	 * @return double - Get hits value for the current col/row.
 	 */
-	static double getArray(int currentCol, int currentRow) {
+	public static double getArray(int currentCol, int currentRow) {
 		return hits[currentCol][currentRow];
 	}
 }

@@ -3,16 +3,10 @@ import annulus.view.*;
 
 /**
  * Test class, experimenting with view.
- * 		
- * 		Issues:
- * 		- greyscale viewer not functioning correctly
- * 		- lower samples results in darker image but less anti-aliasing
- * 		- samples = 1 results in black image, jagged edges
- * 		- samples = 100 results in very light grey image, smooth edges
  * 
  * @author Martin Ponce ID# 10371381
- * @version 2.1.0
- * @since 20140910 
+ * @version 2.2.0
+ * @since 20140911
  */
 
 public class AnnulusTestCalc {
@@ -88,6 +82,9 @@ public class AnnulusTestCalc {
 		// declare counter
 		double counter = 0.0;
 		
+		// declare arraySum
+		double arraySum = 0.0;
+		
 		// declare grid max/mins
 		double maxX = r1;
 		double minX = -r1;
@@ -113,16 +110,17 @@ public class AnnulusTestCalc {
 					// if test pass, set current cell value to 1
 					if(test < outRad * outRad && test > inRad * inRad) {
 						hits[col][row] = 1;
+						arraySum++;
 					}
-					
-				// divide each cell by samples
-				hits[col][row] = hits[col][row] / samples;
-				
-				// add cell value to counter
-				counter = counter + hits[col][row];
 				}
 			}
 		}
+		
+		// divide sum of array to samples
+		arraySum = arraySum / samples;
+		
+		// add sum of array to counter
+		counter = counter + arraySum;
 		
 		// calculate area
 		double area = (maxX - minX) * (maxY - minY) * counter / (gridSize * gridSize);
