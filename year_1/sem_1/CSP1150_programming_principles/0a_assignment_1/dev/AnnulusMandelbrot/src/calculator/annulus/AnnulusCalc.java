@@ -1,5 +1,5 @@
-package annulus.calculator;
-import annulus.view.*;
+package calculator.annulus;
+import calculator.view.*;
 import javax.swing.JOptionPane;
 
 /**

@@ -1,4 +1,4 @@
-package annulus.calculator;
+package calculator.annulus;
 
 /**
  * Annulus static class

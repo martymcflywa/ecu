@@ -1,4 +1,4 @@
-package annulus.view;
+package calculator.view;
 
 /**
  * Interface for something that can view a greyscale array

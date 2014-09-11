@@ -1,4 +1,4 @@
-package annulus.view;
+package calculator.view;
 
 import javax.swing.JFrame;
 
