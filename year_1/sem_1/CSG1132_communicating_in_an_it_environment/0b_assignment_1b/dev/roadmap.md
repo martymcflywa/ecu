@@ -108,7 +108,7 @@
 		- Hargittai (2007) equal amount of men and women in SNS use in general
 			- Specifically for Facebook, women Facebook users = 56%
 			- Not exactly equal
-			- See Hargittai2013 results, contradicts this statement
+			- See Hargittai2007 results, contradicts this statement
 		- Taylor (2009) 57% women 43% men
 	- Refer to Facebook.com for total users
 - Women use Facebook to compare themselves with other people more than men
