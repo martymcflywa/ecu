@@ -53,6 +53,9 @@ public class AnnulusCalc {
 			
 			// start monte carlo estimation grid iteration
 			iterateMonte();
+			
+			// generate greyscale image
+			(new GreyscaleHitViewerFrame("Annulus", AnnulusGrid.gridSize(), AnnulusGrid.gridSize())).viewHits(AnnulusGrid.returnHits());
 		
 		// else outer radius is less than inner radius, display error message and recall method
 		} else {
@@ -198,9 +201,6 @@ public class AnnulusCalc {
 	 * @param args unused.
 	 */
 	private static void calcMonte() {
-		
-		// generate image
-		(new GreyscaleHitViewerFrame("Annulus", AnnulusGrid.gridSize(), AnnulusGrid.gridSize())).viewHits(AnnulusGrid.returnHits());
 	
 		// display monte carlo estimation result
 		JOptionPane.showMessageDialog(null, "The Monte Carlo Estimated area of the Annulus is: " + Annulus.getArea());
