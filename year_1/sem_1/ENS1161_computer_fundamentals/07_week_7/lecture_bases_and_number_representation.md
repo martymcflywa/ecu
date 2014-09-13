@@ -571,11 +571,13 @@ So 0.453125<sub>10</sub> = 0.011101<sub>2</sub>
 
 #### Example 3: Convert the decimal fraction 0.65625 to binary
 
-![bin frac convert 2](http://i.imgur.com/qj6WD9A.png)
+![bin frac convert 3](http://i.imgur.com/qj6WD9A.png)
 
 So 0.65625<sub>10</sub> = 0.10101<sub>2</sub>
 
-### Simplified method
+### Converting binary fractions to decimal
+
+#### Simplified method
 
 Ignore the point and convert the fractional part to decimal number. Then divide this by the appropriate power of 2 as given by the number of places in the fractional part.
 
