@@ -379,6 +379,18 @@ z = remainder
 
 = 5349<sub>10</sub>
 
+#### Calculator shortcut
+
+Wrap each base<sub>8</sub> digit inside parenthesis, and multiply by 8. The last digit should not be wrapped as it is multiplied by 8<sup>0</sup> (which is 1).
+
+Convert 12345<sub>8</sub> to base<sub>10</sub>
+
+```
+((((1 * 8) + 2) * 8 + 3) * 8 + 4) * 8 + 5
+```
+
+= 5349<sub>10</sub>
+
 ## Base<sub>2</sub>
 
 ### Convert base<sub>10</sub> to base<sub>2</sub>
