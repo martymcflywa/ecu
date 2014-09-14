@@ -200,7 +200,10 @@
 
 ## 5: Convert the following hexadecimal numbers to binary
 
-Make groups of 4 digits. Replace each digit with its binary equivalent. Remove leading 0's. For tests, write out the table for binary equivalents for 0 through F, just like a truth table.
+- Rule to convert hex to binary
+	- Replace each digit with its binary equivalent
+	- Remove leading 0's
+	- For tests, write out the table for binary equivalents for 0 through F, just like a truth table.
 
 1. 3D
 	- 00111101
@@ -223,7 +226,9 @@ Make groups of 4 digits. Replace each digit with its binary equivalent. Remove l
 
 ## 6: Convert the following binary numbers to hexadecimal
 
-Make groups of 4 digits. Add leading 0's to create a group if 4 if not enough digits.
+- Rule to convert binary to hex
+	- Make groups of 4 digits
+	- Add leading 0's to create a group if 4 if not enough digits.
 
 1. 100101
 	- 25<sub>16</sub>
@@ -250,7 +255,9 @@ Make groups of 4 digits. Add leading 0's to create a group if 4 if not enough di
 |----:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:---:|:---:|
 | dec | 37 | 49 | 68 | 29 | 82 | 79 | 99 | 42 | 145 | 119 |
 
-To convert decimal to hex, divide decimal number by 16 then the whole number becomes the first digit, and the remainder becomes the 2nd.
+- Rule to convert decimal to hex
+	- Divide decimal number by 16 then the whole number becomes the first digit
+		- The remainder becomes the 2nd.
 
 For example: 90<sub>10</sub>
 
@@ -316,7 +323,11 @@ For example: 90<sub>10</sub>
 
 ## 9: Convert the decimal fractions into binary
 
-Multiply numbers to the right of decimal by 2 until no more decimal numbers appear. Count integers as the answer resulting in binary number but is read from top down, which is reverse of when converting integers to binary. Do not include the integers when multiplying by 2.
+- Rules to convert decimal fraction into binary
+	- Multiply numbers to the right of decimal by 2 until no more decimal numbers appear
+	- Count integers as the answer resulting in binary number but is read from top down
+		- Which is reverse of when converting integers to binary
+	- Do not include the integers when multiplying by 2
 
 1. 0.34375
 	- 0.34375 * 2 = 0.6875
@@ -377,14 +388,291 @@ Multiply numbers to the right of decimal by 2 until no more decimal numbers appe
 	- = 0.00011<sub>2</sub>
 
 ## 10: Convert the following binary fractions to decimal
-	
+
+- Rules to convert binary fraction to decimal
+	- Ignore decimal point
+	- Convert base<sub>2</sub> to base<sub>10</sub>
+	- x = converted base<sub>10</sub>, y = decimal places
+	- x / 2<sup>y</sup> = answer
+
 1. 0.10001
-	- stuck here
+	- 10001 = 17<sub>10</sub>
+	- 17 / 2<sup>5</sup>
+	- = 0.53125<sub>10</sub>
 2. 0.1111
-	- 1111 = 15<sub>8</sub>
+	- 1111 = 15<sub>10</sub>
 	- 15 / 2<sup>4</sup>
 	- = 0.9375<sub>10</sub>
 3. 0.01101
+	- 01101 = 13<sub>10</sub>
+	- 13 / 2<sup>5</sup>
+	- = 0.40625<sub>10</sub>
 4. 0.101111
+	- 101111 = 47<sub>10</sub>
+	- 47 / 2<sup>6</sup>
+	- = 0.734375<sub>10</sub>
 5. 0.11101
+	- 11101 = 29
+	- 29 / 2<sup>5</sup>
+	- = 0.90625<sub>10</sub>
 6. 0.111
+	- 111 = 7<sub>10</sub>
+	- 7 / 2<sup>3</sup>
+	- 0.875<sub>10</sub>
+
+## 11: Perform the following octal additions
+
+Then check your calculations by converting each pair of numbers and the sum to base<sub>10</sub>. For example, the first calculation in base<sub>10</sub> is: 39 + 29 = 68.
+
+- Rule for octal addition
+	- If sum is => 8, subtract 8, carry 1.
+
+1. 47 + 35
+	- 7 + 5 = 12 - 8 = 4 carry 1
+	- 1 + 4 + 3 = 8 - 8 = 0 carry 1
+	- 1 + 0 = 1
+	- = 104<sub>8</sub>
+		- = 68<sub>10</sub>
+		- = 39<sub>10</sub> + 29<sub>10</sub>
+2. 23 + 41
+	- 3 + 1 = 4
+	- 2 + 4 = 6
+	- = 64<sub>8</sub>
+		- = 52<sub>10</sub>
+		- = 19<sub>10</sub> + 33<sub>10</sub>
+3. 56 + 72
+	- 6 + 2 = 8 - 8 = 0 carry 1
+	- 1 + 5 + 7 = 13 - 8 = 5 carry 1
+	- 1 + 0 = 1
+	- = 150<sub>8</sub>
+		- = 104<sub>10</sub>
+		- = 46<sub>10</sub> + 58<sub>10</sub>
+4. 61 + 54
+	- 1 + 4 = 5
+	- 6 + 5 = 11 - 8 = 3 carry 1
+	- 1 + 0 = 1
+	- = 135<sub>8</sub>
+		- = 93<sub>10</sub>
+		- = 49<sub>10</sub> + 44<sub>10</sub>
+5. 236 + 567
+	- 6 + 7 = 13 - 8 = 5 carry 1
+	- 1 + 3 + 6 = 10 - 8 = 2 carry 1
+	- 1 + 2 + 5 = 8 - 8 = 0 carry 1
+	- 1 + 0 = 1
+	- = 1025<sub>8</sub>
+		- = 533<sub>10</sub>
+		- = 158<sub>10</sub> + 375<sub>10</sub>
+6. 445 + 176
+	- 5 + 6 = 11 - 8 = 3 carry 1
+	- 1 + 4 + 7 = 12 - 8 = 4 carry 1
+	- 1 + 4 + 1 = 6
+	- = 643<sub>8</sub>
+		- = 419<sub>10</sub>
+		- = 293<sub>10</sub> + 126<sub>10</sub>
+7. 666 + 222
+	- 6 + 2 = 8 - 8 = 0 carry 1
+	- 1 + 6 + 2 = 9 - 8 = 1 carry 1
+	- 1 + 6 + 2 = 9 - 8 = 1 carry 1
+	- 1 + 0 = 1
+	- = 1110<sub>8</sub>
+		- = 584<sub>10</sub>
+		- = 438<sub>10</sub> + 146<sub>10</sub>
+8. 2536 + 7714
+	- 6 + 4 = 10 - 8 = 2 carry 1
+	- 1 + 3 + 1 = 5
+	- 5 + 7 = 12 - 8 = 4 carry 1
+	- 1 + 2 + 7 = 10 - 8 = 2 carry 1
+	- 1 + 0 = 1
+	- = 12452<sub>8</sub>
+		- = 5418<sub>10</sub>
+		- = 1374<sub>10</sub> + 4044<sub>10</sub>
+
+## 12: Perform the following binary additions
+
+Then check your calculations by converting each pair of numbers and the sum to base<sub>10</sub>. For example, the first calculation in base<sub>10</sub> is: 13 + 7 = 20.
+
+- Some rules for binary addition:
+	- 1 + 1 = 0 carry 1
+	- 1 + 1 + 1 = 1 carry 1
+	- 1 + 0 = 1
+	- 0 + 1 = 1
+	- 0 + 0 = 0
+
+1. 1101 + 111
+	- = 10100<sub>2</sub>
+		- = 20<sub>10</sub>
+		- = 13<sub>10</sub> + 7<sub>10</sub>
+2. 101001 + 1101
+	- = 110110<sub>2</sub>
+3. 11001100 + 111001
+	- = 100000101<sub>2</sub>
+4. 11011 + 1110
+	- = 101001<sub>2</sub>
+5. 11011 + 1111
+	- = 101010<sub>2</sub>
+6. 10001011 + 01111111
+	- = 100001010<sub>2</sub>
+
+## 13: Perform the following hexadecimal additions
+
+Then check your calculations by converting each pair of numbers and the sum to base<sub>10</sub>. For example, the first calculation in base<sub>10</sub> is: 44 + 58 = 102.
+
+- Rule for hex addition
+	- If sum is > 15, subtract 16, carry 1.
+	- Use A - F for sums between 10 - 15
+
+1. 2C + 3A
+	- 12 + 10 = 22 - 16 = 6 carry 1
+	- 1 + 2 + 3 = 6
+	- = 66<sub>16</sub>
+		- = 102<sub>10</sub>
+		- 44<sub>10</sub> + 58<sub>10</sub>
+2. 4B + AA
+	- 11 + 10 = 21 - 16 = 5 carry 1
+	- 1 + 4 + 10 = F
+	- = F5<sub>16</sub>
+3. EF + 4C
+	- F + C = 27 - 16 = B carry 1
+	- 1 + E + 4 = 19 - 16 = 3 carry 1
+	- 1 + 0 = 1
+	- = 13B<sub>16</sub>
+4. 72 + 28
+	- 8 + 2 = A
+	- 7 + 2 = 9
+	- = 9A<sub>16</sub>
+5. A5A + 2F5
+	- A + 5 = F
+	- 5 + F = 20 - 16 = 4 carry 1
+	- 1 + A + 2 = D
+	- = D4F<sub>2</sub>
+6. 3E5 + DDC
+	- 5 + C = 17 - 16 = 1 carry 1
+	- 1 + E + D = 28 - 16 = C carry 1
+	- 1 + 3 + D = 17 - 16 = 1 carry 1
+	- 1 + 0 = 1
+	- = 11C1<sub>16</sub>
+7. 5B8 + FA6
+	- 8 + 6 = E
+	- B + A = 21 - 16 = 5 carry 1
+	- 1 + 5 + F = 21 - 16 = 5 carry 1
+	- 1 + 0 = 1
+	- = 155E<sub>16</sub>
+8. 20B6 + AE49
+	- 6 + 9 = F
+	- B + 4 = F
+	- 0 + E = E
+	- 2 + A = C
+	- = CEFF<sub>16</sub>
+
+## 14: Convert the following base<sub>10</sub> numbers to BCD
+
+1. 2981
+	- 0010 1001 1000 0001
+2. 487
+	- 0100 1000 0111
+3. 5603
+	- 0101 0110 0000 0011
+
+## Question 15
+
+Interpret each of the following as BCD numbers, and convert each into its decimal equivalent. Indicate any invalid BCD codes.
+
+1. 1001 1000 0000 0101 0110
+	- 98056
+2. 0011 0011 0111 0001
+	- 3371
+3. 0100 0101 1100 0111
+	- 45?7
+	- 1100 invalid
+4. 1110 0111 0011
+	- ?73
+	- 1110 invalid
+5. 0010 1001 0110 0011
+	- 2963
+
+## Question 16
+
+Suppose the following are all hexadecimal numbers. Carry out the additions and make an *adjustments* that are needed to obtain answers that are correct when interpreted as BCD.
+
+- Rule to fix sum as BCD
+	- If sum > 9 (or had to carry), add 6, carry 1
+		- If sum > 15, subtract 16 carry 1
+	- If sum =< 9, add 0
+
+1. 35 + 61
+	- 5 + 1 = 6
+	- 3 + 6 = 9
+		- 6 + 0 = 6
+		- 9 + 0 = 9
+	- 96<sub>8</sub>
+2. 62 + 43
+	- 2 + 3 = 5
+	- 6 + 4 = A
+		- 5 + 0 = 5
+		- A + 6 = 16 - 16 = 0 carry 1
+		- 1 + 0 = 1
+	- 105<sub>8</sub>
+3. 87 + 75
+	- 7 + 5 = C
+	- 8 + 7 = F
+		- C + 6 = 18 - 16 = 2 carry 1
+		- 1 + F + 6 = 22 - 16 = 6 carry 1
+		- 1 + 0 = 1
+	- 162<sub>16</sub>
+4. 45 + 38
+	- 5 + 8 = D
+	- 4 + 3 = 7
+		- D + 6 = 19 - 16 = 3 carry 1
+		- 1 + 7 + 0 = 8
+	- 83<sub>16</sub>
+5. 59 + 28
+	- 9 + 8 = 17 - 16 = 1 carry 1
+	- 1 + 5 + 2 = 8
+		- 1 + 6 = 7
+		- 8 + 0 = 8
+	- = 87<sub>16</sub>
+6. 72 + 91
+	- 2 + 1 = 3
+	- 7 + 9 = 16 - 16 = 0 carry 1
+	- 1 + 0 = 1
+		- 3 + 0 = 3
+		- 0 + 6 = 6
+		- 1 + 0 = 1
+	- = 163<sub>16</sub>
+7. 278 + 575
+	- 8 + 5 = D
+	- 7 + 7 = E
+	- 2 + 5 = 7
+		- D + 6 = 19 - 16 = 3 carry 1
+		- 1 + 14 + 6 = 21 - 16 = 5 carry 1
+		- 1 + 7 + 0 = 8
+	- = 853<sub>16</sub>
+8. 288 + 593
+	- 8 + 3 = B
+	- 8 + 9 = 17 - 16 = 1 carry 1
+	- 1 + 2 + 5 = 8
+		- B + 6 = 17 - 16 = 1 carry 1
+		- 1 + 1 + 6 = 8
+		- 8 + 0 = 8
+	- = 881<sub>16</sub>
+9. 762 + 942
+	- 2 + 2 = 4
+	- 6 + 4 = A
+	- 7 + 9 = 16 - 16 = 0 carry 1
+	- 1 + 0 = 1
+		- 4 + 0 = 4
+		- A + 6 = 16 - 16 = 0 carry 1
+		- 1 + 6 = 7
+		- 1 + 0 = 1
+	- = 1704<sub>16</sub>
+10. 5886 + 4938
+	- 6 + 8 = E
+	- 8 + 3 = B
+	- 8 + 9 = 17 - 16 = 1 carry 1
+	- 1 + 5 + 4 = A
+		- E + 6 = 20 - 16 = 4 carry 1
+		- 1 + B + 6 = 18 - 16 = 2 carry 1
+		- 1 + 1 + 6 = 8
+		- 10 + 6 = 16 - 16 = 0 carry 1
+		- 1 + 0 = 1
+	- = 10824<sub>16</sub>
