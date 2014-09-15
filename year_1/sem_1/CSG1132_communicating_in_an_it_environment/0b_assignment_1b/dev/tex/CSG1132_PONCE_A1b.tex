@@ -68,6 +68,9 @@
 \usepackage[sectionbib, natbibapa]{apacite}
 \usepackage{chbibref}
 
+% \citetapos for possesive citations
+\newcommand{\citetapos}[1]{\citeauthor{#1}{\textcolor{blue}{'s}} \citeyearpar{#1}}
+
 % front matter
 \title{Edith Cowan University\\CSG1132\\Communicating in an IT Environment\\Assignment 1b}
 \author{Literature review:\\Factors and attitudes that shape personal use of social media\\\\
@@ -93,8 +96,10 @@
 \tableofcontents
 \thispagestyle{fancy}
 
-\include{./sections/01_introduction}
-\include{./sections/02_literature_review}
+\newpage
+\input{./sections/01_introduction}
+\newpage
+\input{./sections/02_literature_review}
 \include{./sections/plan/litreview_plan}
 
 \urlstyle{rm}
