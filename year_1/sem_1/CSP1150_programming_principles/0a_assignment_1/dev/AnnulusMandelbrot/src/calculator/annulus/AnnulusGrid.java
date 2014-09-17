@@ -62,6 +62,13 @@ public class AnnulusGrid {
 	}
 	
 	/**
+	 * This method allows other classes to get hits.length
+	 */
+	public static int hitsLength() {
+		return hits.length;
+	}
+	
+	/**
 	 * This method allows other classes to get SAMPLES value.
 	 * @param args unused.
 	 * @return int SAMPLES.
@@ -100,7 +107,7 @@ public class AnnulusGrid {
 	 * @param int iteration - Expected args current col/row iteration.
 	 * @return double randomHits - The random hits used for monte carlo estimation
 	 */
-	public static double getHits(char axis, int iteration) {
+	public static double getHitPoints(char axis, int iteration) {
 		
 		// declare randomHits
 		double randomHits = 0.0;
@@ -159,7 +166,7 @@ public class AnnulusGrid {
 	}
 	
 	/**
-	 * This method sets the current array cell value to 1.
+	 * This method sets the current array index value to 1.
 	 * @param int currentCol - Current column iteration.
 	 * @param int currentRow - Current row iteration.
 	 * @param int n - integer to store in array.

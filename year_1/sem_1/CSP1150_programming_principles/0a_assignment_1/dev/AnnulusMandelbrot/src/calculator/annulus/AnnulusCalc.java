@@ -92,7 +92,7 @@ public class AnnulusCalc {
 				// set y to row center
 				double y = AnnulusGrid.getCenter('y', row);
 				
-				// if cell center is within Annulus perimeter, set counter + 1
+				// if grid center is within Annulus perimeter, set counter + 1
 				if(isInside(x, y)) {
 					counter++;
 				}
@@ -116,27 +116,27 @@ public class AnnulusCalc {
 		double counter = 0.0;
 		
 		// iterate columns
-		for(int col = 0; col < AnnulusGrid.gridSize() - 1; col++) {
+		for(int col = 0; col < AnnulusGrid.hitsLength(); col++) {
 			
 			// iterate rows
-			for(int row = 0; row < AnnulusGrid.gridSize() - 1; row++) {
+			for(int row = 0; row < AnnulusGrid.hitsLength(); row++) {
 				
-				// init current array cell to 0
+				// init current array index to 0
 				AnnulusGrid.setArray(col, row, 0);
 				
 				// iterate samples
 				for(int s = 0; s < AnnulusGrid.getSamples(); s++) {
 					
-					// set x to random hitpoints for current cell
-					double x = AnnulusGrid.getHits('x', col);
+					// set x to random hitpoints for current index
+					double x = AnnulusGrid.getHitPoints('x', col);
 					
-					// set y to random hitpoints for current cell
-					double y = AnnulusGrid.getHits('y', row);
+					// set y to random hitpoints for current index
+					double y = AnnulusGrid.getHitPoints('y', row);
 					
 					// if random hitpoints are within Annulus perimeter
 					if(isInside(x, y)) {
 						
-						// set current array cell to 1
+						// set current array index to 1
 						AnnulusGrid.setArray(col, row, 1);
 						
 						// and add 1 to counter, summing array elements
@@ -157,7 +157,7 @@ public class AnnulusCalc {
 	}
 	
 	/**
-	 * This method tests current cell center or random hitpoints are within Annulus perimeter.
+	 * This method tests current grid center or random hitpoints are within Annulus perimeter.
 	 * @param double x - The center value of row.
 	 * @param double y - The center value of column.
 	 * @return boolean testBool - State whether grid center is within Annulus perimeter.
