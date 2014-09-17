@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ dealHands()
+comment0.text=\n\ Method\ to\ deal\ out\ 4\ Bridge\ hands\n
+comment1.params=suit\ value
+comment1.target=java.lang.String\ cardName(int,\ int)
+comment1.text=\n\ Helper\ method\ to\ get\ the\ name\ of\ a\ card\n\ \n\ @param\ suit\ -\ the\ suit\ 0\ \=\ spades,\ 1\ \=\ clubs,\ 2\ \=\ diamonds,\ 3\ \=\ hearts\n\ @param\ value\ -\ 1\ up\ to\ 13,\ 11\ is\ jack,\ 12\ is\ queen,\ 13\ is\ king\n\ \n\ @return\ the\ name\ of\ the\ card\ e.g.\ "ace\ of\ diamonds"\n
+numComments=2

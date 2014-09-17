@@ -1,0 +1,25 @@
+#BlueJ package file
+objectbench.height=76
+objectbench.width=662
+package.editor.height=400
+package.editor.width=560
+package.editor.x=20
+package.editor.y=42
+package.numDependencies=0
+package.numTargets=1
+package.showExtends=true
+package.showUses=true
+project.charset=x-MacRoman
+target1.editor.height=715
+target1.editor.width=1163
+target1.editor.x=60
+target1.editor.y=62
+target1.height=50
+target1.name=BridgeHands
+target1.naviview.expanded=true
+target1.showInterface=false
+target1.type=ClassTarget
+target1.typeParameters=
+target1.width=100
+target1.x=70
+target1.y=10
