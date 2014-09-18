@@ -48,22 +48,41 @@ public class BridgeHands {
 		
 		/*********** insert your code here to fill the arrays ***************/
 		
-		// iterate every card, value and suit
-		for(int cardIndex = 0, valIndex = 0, suitIndex = 0; cardIndex < values.length && valIndex < CARDS_PER_SUIT + 1 && suitIndex < SUITS + 1; cardIndex++, valIndex++, suitIndex++) {
+		// card index counter
+		int cardIndexFill = 0;
+		// suit counter
+		int suitIndexFill = 0;
+		
+		// iterate over suits
+		for(int loopSuits = 0; loopSuits < SUITS; loopSuits++) {
 			
-			// if valIndex == CARDS_PER_SUIT, set valIndex to 0
-			if(valIndex == CARDS_PER_SUIT) {
-				valIndex = 0;
-			
-			// else if suitIndex == SUITS, set suitIndex to 0
-			} else if(suitIndex == SUITS) {
-				suitIndex = 0;
+			// iterate over cards
+			for(int loopCards = 0; loopCards < CARDS_PER_SUIT; loopCards++) {
+				
+				// set current values[] to loopCards + 1
+				values[cardIndexFill] = loopCards + 1;
+				
+				// set current suits[] to suit counter + 1
+				suits[cardIndexFill] = suitIndexFill + 1;
+				
+				// add 1 to card counter
+				cardIndexFill++;
+				
+				// if suit counter == SUITS
+				if(suitIndexFill == SUITS - 1) {
+					
+					// set suit counter to 0
+					suitIndexFill = 0;
+				
+				// else if suit counter < SUITS
+				} else if(suitIndexFill < SUITS) {
+					
+					// add 1 to suit counter
+					suitIndexFill++;
+				}
 			}
-			
-			// over every card iteration, set values and suits to counter value + 1
-			values[cardIndex] += valIndex + 1;
-			suits[cardIndex] += suitIndex + 1;
 		}
+		
 		
 		/*
          *  shuffle the deck into randomised order
