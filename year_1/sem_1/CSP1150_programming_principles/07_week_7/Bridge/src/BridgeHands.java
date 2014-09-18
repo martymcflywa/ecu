@@ -133,7 +133,7 @@ public class BridgeHands {
 		
 		/************** insert your code here to deal out the hands (print them out) ****/
 		
-		// counting the card index
+		// declare the cardIndex for dealing
 		int cardIndexDeal = 0;
 		
 		// iterate over HANDS
@@ -154,7 +154,7 @@ public class BridgeHands {
 			// iterate CARDS_PER_HAND
 			for(int cardsPerHandIndex = 0; cardsPerHandIndex < CARDS_PER_HAND; cardsPerHandIndex++) {
 				
-				// set dealValues and dealSuits to dealCardIndex
+				// set dealValues and dealSuits to cardIndexDeal
 				int dealValues = values[cardIndexDeal];
 				// minus 1 for dealSuits to account for ArrayIndexOutOfBoundsException in SUIT_NAMES[]
 				int dealSuits = suits[cardIndexDeal] - 1;
@@ -163,7 +163,7 @@ public class BridgeHands {
 				cardIndexDeal++;
 				
 				// print each card, call cardName() to convert array values to card names
-				if(cardsPerHandIndex == 12) {
+				if(cardsPerHandIndex == CARDS_PER_HAND - 1) {
 					System.out.println(cardName(dealSuits, dealValues));
 					System.out.println("-----------------");
 				} else {
