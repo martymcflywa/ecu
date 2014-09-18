@@ -55,10 +55,26 @@ public class CalculatorModel {
 				// calculate row center
 				double y = minY + (row + 0.5) * ((maxY - minY) / GRIDSIZE);
 				
+				// calculate test value
+				double test = x * x + y * y;
+				
 				// if test pass, set counter + 1
-				if(isInside(x, y)) {
+				if(test < r1 * r1 && test > r2 * r2) {
 					counter ++;
 				}
+				
+				/*
+				 * Something wrong with isInside()
+				 * Isn't passing the boolean value when called,
+				 * resulting in counter not being incremented
+				 * 
+				 * // if test pass, set counter + 1
+				 * if(isInside(x, y)) {
+				 * 		counter++;
+				 * }
+				 * 
+				 */
+
 			}
 		}
 		
@@ -81,7 +97,7 @@ public class CalculatorModel {
 		boolean testBool;
 		
 		// if test value less than outer radius squared and greater than inner radius squared
-		if(test < Annulus.outRadSq() && test > Annulus.inRadSq()) {
+		if(test < outRad * outRad && test > inRad * inRad) {
 			
 			// set boolean to true
 			testBool = true;

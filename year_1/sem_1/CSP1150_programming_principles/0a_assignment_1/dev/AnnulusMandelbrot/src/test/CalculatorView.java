@@ -1,4 +1,5 @@
 package test;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
@@ -14,12 +15,12 @@ public class CalculatorView extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JLabel labelOutRadius = new JLabel("Outer Radius:");
-	private JTextField fieldOutRadius = new JTextField(10);
+	private JTextField fieldOutRadius = new JTextField(5);
 	private JLabel labelInRadius = new JLabel("Inner Radius:");
-	private JTextField fieldInRadius = new JTextField(10);
+	private JTextField fieldInRadius = new JTextField(5);
 	private JButton calcButton = new JButton("Calculate");
 	private JLabel labelArea = new JLabel("Approximate Area:");
-	private JTextField fieldAreaApprox = new JTextField(10);
+	private JTextField fieldAreaApprox = new JTextField(15);
 	
 	/**
 	 * The view constructor
