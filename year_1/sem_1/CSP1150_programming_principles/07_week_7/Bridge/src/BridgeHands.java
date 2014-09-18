@@ -49,20 +49,20 @@ public class BridgeHands {
 		/*********** insert your code here to fill the arrays ***************/
 		
 		// iterate every card, value and suit
-		for(int indexCount = 0, valCount = 0, suitCount = 0; indexCount < values.length && valCount < CARDS_PER_SUIT + 1 && suitCount < SUITS + 1; indexCount++, valCount++, suitCount++) {
+		for(int cardIndex = 0, valIndex = 0, suitIndex = 0; cardIndex < values.length && valIndex < CARDS_PER_SUIT + 1 && suitIndex < SUITS + 1; cardIndex++, valIndex++, suitIndex++) {
 			
-			// if valCount is equal to CARDS_PER_SUIT, set valCount to 0
-			if(valCount == CARDS_PER_SUIT) {
-				valCount = 0;
+			// if valIndex == CARDS_PER_SUIT, set valIndex to 0
+			if(valIndex == CARDS_PER_SUIT) {
+				valIndex = 0;
 			
-			// else if suitCount is equal to SUITS, set suitCount to 0
-			} else if(suitCount == SUITS) {
-				suitCount = 0;
+			// else if suitIndex == SUITS, set suitIndex to 0
+			} else if(suitIndex == SUITS) {
+				suitIndex = 0;
 			}
 			
 			// over every card iteration, set values and suits to counter value + 1
-			values[indexCount] += valCount + 1;
-			suits[indexCount] += suitCount + 1;
+			values[cardIndex] += valIndex + 1;
+			suits[cardIndex] += suitIndex + 1;
 		}
 		
 		/*
@@ -103,8 +103,92 @@ public class BridgeHands {
 		
 		// repeat while count > 1
 		while(count > 1) {
-			random.nextInt()
+			
+			// generate random position integers within values.length
+			int randomIndex1 = random.nextInt(values.length);
+			int randomIndex2 = random.nextInt(values.length);
+			
+			// swap values with random positions
+			int keepValues = values[randomIndex1];
+			values[randomIndex1] = values[randomIndex2];
+			values[randomIndex2] = keepValues;
+			
+			// swap suits with random positions
+			int keepSuits = suits[randomIndex1];
+			suits[randomIndex1] = suits[randomIndex2];
+			suits[randomIndex2] = keepSuits;
+			
+			// decrease count by 1
+			count--;
 		}
 		
+		// deal the cards
+		
+		// some useful constants
+		final int HANDS = 4;
+		final int CARDS_PER_HAND = CARDS / HANDS;
+		
+		// to do this, loop over hands
+		// and for each hand, loop over cards in the hand
+		
+		/************** insert your code here to deal out the hands (print them out) ****/
+		
+		// counting the card index
+		int cardIndexDeal = 0;
+		
+		// iterate over HANDS
+		for(int handIndex = 0; handIndex < HANDS; handIndex++) {
+			
+			// set playerNumber
+			int playerNumber = handIndex + 1;
+			
+			// print each playerNumber before printing cards
+			if(playerNumber == 1) {
+				System.out.println("Player " + playerNumber + "'s hand:");
+				System.out.println("=================");
+			} else {
+				System.out.println("\nPlayer " + playerNumber + "'s hand:");
+				System.out.println("=================");
+			}
+			
+			// iterate CARDS_PER_HAND
+			for(int cardsPerHandIndex = 0; cardsPerHandIndex < CARDS_PER_HAND; cardsPerHandIndex++) {
+				
+				// set dealValues and dealSuits to dealCardIndex
+				int dealValues = values[cardIndexDeal];
+				// minus 1 for dealSuits to account for ArrayIndexOutOfBoundsException in SUIT_NAMES[]
+				int dealSuits = suits[cardIndexDeal] - 1;
+				
+				// add 1 to dealCardIndex
+				cardIndexDeal++;
+				
+				// print each card, call cardName() to convert array values to card names
+				if(cardsPerHandIndex == 12) {
+					System.out.println(cardName(dealSuits, dealValues));
+					System.out.println("-----------------");
+				} else {
+					System.out.println(cardName(dealSuits, dealValues));
+				}
+				
+			}
+		}
 	}
+	
+    /**
+     * Helper method to get the name of a card
+     * 
+     * @param suit - the suit 0 = spades, 1 = clubs, 2 = diamonds, 3 = hearts
+     * @param value - 1 up to 13, 11 is jack, 12 is queen, 13 is king
+     * 
+     * @return the name of the card e.g. "ace of diamonds"
+     */
+    public static String cardName(int suit, int value)
+    {
+        final String[] CARD_NAMES =
+            {"not used", "ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king"};
+        final String[] SUIT_NAMES = 
+            {"spades", "clubs", "diamonds", "hearts"};
+            
+        return CARD_NAMES[value] + " of " + SUIT_NAMES[suit];
+    }
 }
