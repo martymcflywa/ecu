@@ -5,15 +5,9 @@ import javax.swing.*;
 
 public class CalculatorView extends JFrame {
 	
-//	// only for testing
-//	public static void main(String[] args) {
-//		new CalculatorView();
-//	}
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
+	// defining labels, fields and buttons for panel
 	private JLabel labelOutRadius = new JLabel("Outer Radius:");
 	private JTextField fieldOutRadius = new JTextField(5);
 	private JLabel labelInRadius = new JLabel("Inner Radius:");
@@ -23,19 +17,25 @@ public class CalculatorView extends JFrame {
 	private JTextField fieldAreaApprox = new JTextField(15);
 	
 	/**
-	 * The view constructor
+	 * The view constructor.
+	 * Configuring frame options.
 	 */
 	CalculatorView() {
+		
+		// create panel
 		JPanel calcPanel = new JPanel();
+		// set title
 		this.setTitle("Annulus and Mandelbrot Calculator");
+		// set default action on close
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// set size
 		this.setSize(600, 600);
+		// set window location
 		this.setLocationRelativeTo(null);
+		// cannot resize window
 		this.setResizable(false);
 		
-//		// only for testing
-//		this.setVisible(true);
-		
+		// adding labels and fields to panel
 		calcPanel.add(labelOutRadius);
 		calcPanel.add(fieldOutRadius);
 		calcPanel.add(labelInRadius);
@@ -44,6 +44,7 @@ public class CalculatorView extends JFrame {
 		calcPanel.add(labelArea);
 		calcPanel.add(fieldAreaApprox);
 		
+		// adding panel to frame
 		this.add(calcPanel);
 	}
 	
