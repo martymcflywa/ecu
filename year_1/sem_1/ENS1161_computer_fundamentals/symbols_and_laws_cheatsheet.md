@@ -660,8 +660,8 @@ Convert 0.01011<sub>2</sub> to base<sub>10</sub>
 ### Base<sub>2</sub> addition
 
 - Rules for binary addition:
-	- 1 + 1 = 0 carry 1
-	- 1 + 1 + 1 = 1 carry 1
+	- 1 + 1 = 10 carry 1
+	- 1 + 1 + 1 = 11 carry 1
 	- 1 + 0 = 1
 	- 0 + 1 = 1
 	- 0 + 0 = 0
