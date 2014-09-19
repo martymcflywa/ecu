@@ -2,6 +2,7 @@ package test;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.awt.FlowLayout;
 
 public class CalculatorView extends JFrame {
 	
@@ -15,13 +16,13 @@ public class CalculatorView extends JFrame {
 	private JLabel labelOutRadius = new JLabel("Outer Radius:");
 	
 	// text field: outer radius input
-	private JTextField fieldOutRadius = new JTextField(5);
+	private JTextField fieldOutRadius = new JTextField(3);
 	
 	// label: inner radius
 	private JLabel labelInRadius = new JLabel("Inner Radius:");
 	
 	// text field: inner radius input
-	private JTextField fieldInRadius = new JTextField(5);
+	private JTextField fieldInRadius = new JTextField(3);
 	
 	// button: calc button
 	private JButton calcButton = new JButton("Calculate");
@@ -30,13 +31,13 @@ public class CalculatorView extends JFrame {
 	private JLabel labelApproxArea = new JLabel("Approximate Area:");
 	
 	// text field: approximate area result
-	private JTextField approxAreaResult = new JTextField(15);
+	private JTextField approxAreaResult = new JTextField(11);
 	
 	// label: monte carlo area
 	private JLabel labelMonteArea = new JLabel("Monte Carlo Area:");
 	
 	// text field: monte carlo area result
-	private JTextField monteAreaResult = new JTextField(15);
+	private JTextField monteAreaResult = new JTextField(11);
 	
 	/**
 	 * The view constructor.
@@ -46,6 +47,8 @@ public class CalculatorView extends JFrame {
 		
 		// create panel
 		JPanel theWindow = new JPanel();
+		
+		theWindow.setLayout(new FlowLayout(FlowLayout.LEFT, 30, 20));
 		
 		// set title
 		this.setTitle("Annulus and Mandelbrot Calculator");
