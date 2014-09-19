@@ -1,7 +1,5 @@
 package test;
 
-import calculator.annulus.Annulus;
-
 public class CalculatorModel {
 
 	// declare grid size, samples
