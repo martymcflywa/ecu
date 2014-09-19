@@ -1,20 +1,42 @@
 package test;
-import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.border.Border;
 
 public class CalculatorView extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	
-	// defining labels, fields and buttons for panel
+	/**
+	 * Defining labels, fields and buttons for panel.
+	 */
+	
+	// label: outer radius
 	private JLabel labelOutRadius = new JLabel("Outer Radius:");
+	
+	// text field: outer radius input
 	private JTextField fieldOutRadius = new JTextField(5);
+	
+	// label: inner radius
 	private JLabel labelInRadius = new JLabel("Inner Radius:");
+	
+	// text field: inner radius input
 	private JTextField fieldInRadius = new JTextField(5);
+	
+	// button: calc button
 	private JButton calcButton = new JButton("Calculate");
-	private JLabel labelArea = new JLabel("Approximate Area:");
-	private JTextField fieldAreaApprox = new JTextField(15);
+	
+	// label: approximate area
+	private JLabel labelApproxArea = new JLabel("Approximate Area:");
+	
+	// text field: approximate area result
+	private JTextField approxAreaResult = new JTextField(15);
+	
+	// label: monte carlo area
+	private JLabel labelMonteArea = new JLabel("Monte Carlo Area:");
+	
+	// text field: monte carlo area result
+	private JTextField monteAreaResult = new JTextField(15);
 	
 	/**
 	 * The view constructor.
@@ -23,34 +45,45 @@ public class CalculatorView extends JFrame {
 	CalculatorView() {
 		
 		// create panel
-		JPanel calcPanel = new JPanel();
+		JPanel theWindow = new JPanel();
+		
 		// set title
 		this.setTitle("Annulus and Mandelbrot Calculator");
+		
 		// set default action on close
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		// set size
 		this.setSize(600, 600);
+		
 		// set window location
 		this.setLocationRelativeTo(null);
+		
 		// cannot resize window
 		this.setResizable(false);
 		
 		// adding labels and fields to panel
-		calcPanel.add(labelOutRadius);
-		calcPanel.add(fieldOutRadius);
-		calcPanel.add(labelInRadius);
-		calcPanel.add(fieldInRadius);
-		calcPanel.add(calcButton);
-		calcPanel.add(labelArea);
-		calcPanel.add(fieldAreaApprox);
+		theWindow.add(labelOutRadius);
+		theWindow.add(fieldOutRadius);
+		theWindow.add(labelInRadius);
+		theWindow.add(fieldInRadius);
+		theWindow.add(calcButton);
+		theWindow.add(labelApproxArea);
+		theWindow.add(approxAreaResult);
+		theWindow.add(labelMonteArea);
+		theWindow.add(monteAreaResult);
 		
 		// adding panel to frame
-		this.add(calcPanel);
+		this.add(theWindow);
+		
+		// set up border
+		Border calcBorder = BorderFactory.createTitledBorder("Annulus Calculator");
+		theWindow.setBorder(calcBorder);
 	}
 	
 	/**
 	 * Gets outer radius user input.
-	 * @return double - Outer radius
+	 * @return double - Outer radius.
 	 */
 	public double getOutRadius() {
 		return Double.parseDouble(fieldOutRadius.getText());
@@ -58,7 +91,7 @@ public class CalculatorView extends JFrame {
 	
 	/**
 	 * Gets inner radius user input.
-	 * @return double - Inner radius
+	 * @return double - Inner radius.
 	 */
 	public double getInRadius() {
 		return Double.parseDouble(fieldInRadius.getText());
@@ -68,29 +101,34 @@ public class CalculatorView extends JFrame {
 	 * Gets calculated area.
 	 * @return double - Area.
 	 */
-	public double getAreaApprox() {
-		return Double.parseDouble(fieldAreaApprox.getText());
+	public double getAreaCalc() {
+		return Double.parseDouble(approxAreaResult.getText());
 	}
 	
 	/**
-	 * Sets area by controller
-	 * @param double area
+	 * Sets area by controller.
+	 * @param double area.
 	 */
-	public void setAreaApprox(double area) {
-		fieldAreaApprox.setText(Double.toString(area));
+	public void setAreaCalc(double area) {
+		approxAreaResult.setText(Double.toString(area));
+	}
+	
+	public void setMonteCalc(double area) {
+		monteAreaResult.setText(Double.toString(area));
 	}
 	
 	/**
-	 * Adds listener for the calculate button 
-	 * @param listenForCalcButton
+	 * Adds listener for the calculate button.
+	 * @param listenForCalcButton.
 	 */
 	void addCalcListener(ActionListener listenForCalcButton) {
 		calcButton.addActionListener(listenForCalcButton);
 	}
 	
 	/**
-	 * Displays error message for incorrect user input
-	 * @param errorMessage
+	 * Displays error message for incorrect user input,
+	 * as JOptionPane window.
+	 * @param String errorMessage.
 	 */
 	void displayErrorMessage(String errorMessage) {
 		JOptionPane.showMessageDialog(this, errorMessage);

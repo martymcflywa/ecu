@@ -30,11 +30,15 @@ public class CalculatorModel {
 	}
 	
 	/**
-	 * Gets the area calculated using approximate estimation.
+	 * Get the area calculated using approximate estimation.
 	 * @return double areaApprox
 	 */
-	public double getAreaApprox() {
-		return areaApprox;
+	public double getAreaCalc() {
+		return this.areaApprox;
+	}
+	
+	public double getMonteCalc() {
+		return this.areaMonte;
 	}
 	
 	/**
@@ -74,6 +78,53 @@ public class CalculatorModel {
 		
 		// set calculated area to areaApprox
 		this.areaApprox = (maxX - minX) * (maxY - minY) * counter / (this.GRIDSIZE * this.GRIDSIZE);
+	}
+	
+	// monte carlo estimation method
+	public void calcMonte(double r1, double r2) {
+		
+		// declare counter
+		double counter = 0.0;
+		
+		// declare arraySum
+		double arraySum = 0.0;
+		
+		// declare grid max/mins
+		double maxX = r1;
+		double minX = -r1;
+		double maxY = r1;
+		double minY = -r1;
+		
+		// iterate through columns
+		for(int col = 0; col < this.GRIDSIZE - 1; col++) {
+			
+			// iterate through rows
+			for(int row = 0; row < this.GRIDSIZE - 1; row++) {
+				
+				// iterate through samples
+				for(int i = 0; i < this.SAMPLES; i++) {
+					
+					// generate random scatter points per cell
+					double x = minX + (col + Math.random()) * ((maxX - minX) / this.GRIDSIZE);
+					double y = minY + (row + Math.random()) * ((maxY - minY) /  this.GRIDSIZE);
+					
+					// if test pass, set counter + 1
+					if(isInside(x, y)) {
+						this.hits[col][row] = 1;
+						arraySum++;
+					}
+				}
+			}
+		}
+		
+		// divide sum of array to samples
+		arraySum = arraySum / this.SAMPLES;
+		
+		// add sum of array to counter
+		counter = counter + arraySum;
+		
+		// calculate area
+		this.areaMonte = (maxX - minX) * (maxY - minY) * counter / (this.GRIDSIZE * this.GRIDSIZE);
 	}
 	
 	/**
