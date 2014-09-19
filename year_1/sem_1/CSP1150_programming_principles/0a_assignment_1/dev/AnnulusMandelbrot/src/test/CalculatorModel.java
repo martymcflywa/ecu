@@ -12,12 +12,22 @@ public class CalculatorModel {
 	private double[][] hits = new double[GRIDSIZE][GRIDSIZE];
 	
 	// save user input here
-	private double outRad;
-	private double inRad;
+	private double outRadius;
+	private double inRadius;
 	
 	// save calculated area here
 	private double areaApprox;
 	private double areaMonte;
+	
+	/**
+	 * Set the radius.
+	 * @param double r1 - The outer radius.
+	 * @param double r2 - The inner radius.
+	 */
+	public void setRadius(double r1, double r2) {
+		this.outRadius = r1;
+		this.inRadius = r2;
+	}
 	
 	/**
 	 * Gets the area calculated using approximate estimation.
@@ -44,42 +54,26 @@ public class CalculatorModel {
 		double minY = -r1;
 		
 		// iterate through columns
-		for(int col = 0; col < GRIDSIZE - 1; col++) {
+		for(int col = 0; col < this.GRIDSIZE - 1; col++) {
 			
 			// calculate column center
-			double x = minX + (col + 0.5) * ((maxX - minX) / GRIDSIZE);
+			double x = minX + (col + 0.5) * ((maxX - minX) / this.GRIDSIZE);
 			
 			// iterate through rows
-			for(int row = 0; row < GRIDSIZE - 1; row++) {
+			for(int row = 0; row < this.GRIDSIZE - 1; row++) {
 				
 				// calculate row center
-				double y = minY + (row + 0.5) * ((maxY - minY) / GRIDSIZE);
+				double y = minY + (row + 0.5) * ((maxY - minY) / this.GRIDSIZE);
 				
-				// calculate test value
-				double test = x * x + y * y;
-				
-				// if test pass, set counter + 1
-				if(test < r1 * r1 && test > r2 * r2) {
-					counter ++;
-				}
-				
-				/*
-				 * Something wrong with isInside()
-				 * Isn't passing the boolean value when called,
-				 * resulting in counter not being incremented
-				 * 
-				 * // if test pass, set counter + 1
-				 * if(isInside(x, y)) {
-				 * 		counter++;
-				 * }
-				 * 
-				 */
-
+				 // if test pass, set counter + 1
+				 if(isInside(x, y)) {
+				  		counter++;
+				 }
 			}
 		}
 		
-		// calculate area
-		areaApprox = (maxX - minX) * (maxY - minY) * counter / (GRIDSIZE * GRIDSIZE);
+		// set calculated area to areaApprox
+		this.areaApprox = (maxX - minX) * (maxY - minY) * counter / (this.GRIDSIZE * this.GRIDSIZE);
 	}
 	
 	/**
@@ -88,7 +82,7 @@ public class CalculatorModel {
 	 * @param double y - The y-axis value.
 	 * @return boolean testBool
 	 */
-	private boolean isInside(double x, double y) {
+	protected boolean isInside(double x, double y) {
 		
 		// calculate test value
 		double test = x * x + y * y;
@@ -97,7 +91,7 @@ public class CalculatorModel {
 		boolean testBool;
 		
 		// if test value less than outer radius squared and greater than inner radius squared
-		if(test < outRad * outRad && test > inRad * inRad) {
+		if(test < this.outRadius * this.outRadius && test > this.inRadius * this.inRadius) {
 			
 			// set boolean to true
 			testBool = true;

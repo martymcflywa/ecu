@@ -18,7 +18,7 @@ public class CalculatorView extends JFrame {
 	
 	/**
 	 * The view constructor.
-	 * Configuring frame options.
+	 * Configuring frame and panel parameters here.
 	 */
 	CalculatorView() {
 		

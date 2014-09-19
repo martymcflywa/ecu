@@ -23,6 +23,8 @@ public class CalculatorController {
 				outRadius = theView.getOutRadius();
 				inRadius = theView.getInRadius();
 				
+				theModel.setRadius(outRadius, inRadius);
+				
 				theModel.calcApprox(outRadius, inRadius);
 				
 				theView.setAreaApprox(theModel.getAreaApprox());
