@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1"
+	 id="Layer_1" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="708.786px"
+	 height="227.021px" viewBox="56.693 28.223 708.786 227.021" enable-background="new 56.693 28.223 708.786 227.021"
+	 xml:space="preserve">
+<v:documentProperties  v:viewMarkup="false" v:metric="true" v:langID="3081">
+	<v:userDefs>
+		<v:ud  v:val="VT0(1):26" v:nameU="msvNoAutoConnect"></v:ud>
+	</v:userDefs>
+</v:documentProperties>
+<g>
+	<title>Page-1</title>
+	
+		<v:pageProperties  v:shadowOffsetY="-8.50394" v:shadowOffsetX="8.50394" v:drawingUnits="24" v:pageScale="0.0393701" v:drawingScale="0.0393701">
+		</v:pageProperties>
+	<g id="shape16-1" transform="translate(354.331,-425.197)">
+		<title>Rectangle.16</title>
+		<desc>M(B) =</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="127.56" height="56.6929" cy="566.929" cx="63.7795"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="127.559" height="56.693"/>
+		<text transform="matrix(1 0 0 1 25.2999 577.7305)" enable-background="new    " font-family="'Calibri'" font-size="36">M(B) =<v:paragraph  v:horizAlign="2"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape1-4" transform="translate(56.6929,-425.197)">
+		<title>Rectangle.1968</title>
+		<desc>M(A) =</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="127.56" height="56.6929" cy="566.929" cx="63.7795"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="127.559" height="56.693"/>
+		<text transform="matrix(1 0 0 1 24.0498 577.7305)" enable-background="new    " font-family="'Calibri'" font-size="36">M(A) =<v:paragraph  v:horizAlign="2"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape2-7" transform="translate(184.252,-396.85)">
+		<title>Square.1954</title>
+		<desc>0</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.584" fill="#FFFFFF" width="56.693" height="56.692"/>
+		<text transform="matrix(1 0 0 1 19.2202 577.7301)" enable-background="new    " font-family="'Calibri'" font-size="36">0<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape3-10" transform="translate(240.945,-396.85)">
+		<title>Square.1955</title>
+		<desc>1</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.584" fill="#FFFFFF" width="56.693" height="56.692"/>
+		<text transform="matrix(1 0 0 1 19.22 577.7301)" enable-background="new    " font-family="'Calibri'" font-size="36">1<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape4-13" transform="translate(184.252,-340.157)">
+		<title>Square.1956</title>
+		<desc>1</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="56.693" height="56.693"/>
+		<text transform="matrix(1 0 0 1 19.2202 577.7305)" enable-background="new    " font-family="'Calibri'" font-size="36">1<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape5-16" transform="translate(240.945,-340.157)">
+		<title>Square.1957</title>
+		<desc>0</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="56.693" height="56.693"/>
+		<text transform="matrix(1 0 0 1 19.22 577.7305)" enable-background="new    " font-family="'Calibri'" font-size="36">0<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape6-19" transform="translate(184.252,-453.543)">
+		<title>Square.1958</title>
+		<desc>0</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="56.693" height="56.693"/>
+		<text transform="matrix(1 0 0 1 19.2202 577.7297)" enable-background="new    " font-family="'Calibri'" font-size="36">0<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape7-22" transform="translate(240.945,-453.543)">
+		<title>Square.1959</title>
+		<desc>1</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="56.693" height="56.693"/>
+		<text transform="matrix(1 0 0 1 19.22 577.7297)" enable-background="new    " font-family="'Calibri'" font-size="36">1<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape8-25" transform="translate(184.252,-510.236)">
+		<title>Square.1960</title>
+		<desc>1</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="56.693" height="56.693"/>
+		<text transform="matrix(1 0 0 1 19.2202 577.7303)" enable-background="new    " font-family="'Calibri'" font-size="36">1<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape9-28" transform="translate(240.945,-510.236)">
+		<title>Square.1961</title>
+		<desc>0</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="56.693" height="56.693"/>
+		<text transform="matrix(1 0 0 1 19.22 577.7303)" enable-background="new    " font-family="'Calibri'" font-size="36">0<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape10-31" transform="translate(184.252,-340.157)">
+		<title>Left Parenthesis.1962</title>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion" v:prompt=""></v:ud>
+		</v:userDefs>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.24" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M28.35,595.28c-13.44-0.419-24.991-9.659-28.35-22.68v-181.42c3.359-13.021,14.91-22.262,28.35-22.681"/>
+	</g>
+	<g id="shape11-34" transform="translate(297.638,-396.85)">
+		<title>Square.1963</title>
+		<desc>1</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.584" fill="#FFFFFF" width="56.693" height="56.692"/>
+		<text transform="matrix(1 0 0 1 19.2199 577.7301)" enable-background="new    " font-family="'Calibri'" font-size="36">1<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape12-37" transform="translate(297.638,-340.157)">
+		<title>Square.1964</title>
+		<desc>0</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="56.693" height="56.693"/>
+		<text transform="matrix(1 0 0 1 19.2199 577.7305)" enable-background="new    " font-family="'Calibri'" font-size="36">0<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape13-40" transform="translate(297.638,-453.543)">
+		<title>Square.1965</title>
+		<desc>0</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="56.693" height="56.693"/>
+		<text transform="matrix(1 0 0 1 19.2199 577.7297)" enable-background="new    " font-family="'Calibri'" font-size="36">0<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape14-43" transform="translate(297.638,-510.236)">
+		<title>Square.1966</title>
+		<desc>1</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="56.693" height="56.693"/>
+		<text transform="matrix(1 0 0 1 19.2199 577.7303)" enable-background="new    " font-family="'Calibri'" font-size="36">1<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape15-46" transform="translate(325.984,-340.157)">
+		<title>Right Parenthesis.1967</title>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion" v:prompt=""></v:ud>
+		</v:userDefs>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.24" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M0,595.28c13.44-0.419,24.991-9.659,28.35-22.68v-181.42C24.991,378.159,13.44,368.919,0,368.5"/>
+	</g>
+	<g id="shape17-49" transform="translate(481.89,-368.504)">
+		<title>Square.17</title>
+		<desc>1</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="56.693" height="56.692"/>
+		<text transform="matrix(1 0 0 1 19.2203 577.7299)" enable-background="new    " font-family="'Calibri'" font-size="36">1<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape18-52" transform="translate(538.583,-368.504)">
+		<title>Square.18</title>
+		<desc>0</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect y="538.583" fill="#FFFFFF" width="56.692" height="56.692"/>
+		<text transform="matrix(1 0 0 1 19.2197 577.7299)" enable-background="new    " font-family="'Calibri'" font-size="36">0<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape21-55" transform="translate(481.89,-425.197)">
+		<title>Square.21</title>
+		<desc>0</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="56.693" height="56.693"/>
+		<text transform="matrix(1 0 0 1 19.2203 577.7305)" enable-background="new    " font-family="'Calibri'" font-size="36">0<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape22-58" transform="translate(538.583,-425.197)">
+		<title>Square.22</title>
+		<desc>0</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect y="538.583" fill="#FFFFFF" width="56.692" height="56.693"/>
+		<text transform="matrix(1 0 0 1 19.2197 577.7305)" enable-background="new    " font-family="'Calibri'" font-size="36">0<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape23-61" transform="translate(481.89,-481.89)">
+		<title>Square.23</title>
+		<desc>0</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.584" fill="#FFFFFF" width="56.693" height="56.692"/>
+		<text transform="matrix(1 0 0 1 19.2203 577.7301)" enable-background="new    " font-family="'Calibri'" font-size="36">0<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape24-64" transform="translate(538.583,-481.89)">
+		<title>Square.24</title>
+		<desc>1</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect y="538.584" fill="#FFFFFF" width="56.692" height="56.692"/>
+		<text transform="matrix(1 0 0 1 19.2197 577.7301)" enable-background="new    " font-family="'Calibri'" font-size="36">1<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape25-67" transform="translate(481.89,-368.504)">
+		<title>Left Parenthesis.25</title>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion" v:prompt=""></v:ud>
+		</v:userDefs>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.24" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M28.35,595.281C14.91,594.966,3.359,588.036,0,578.27V442.201c3.364-9.762,14.914-16.688,28.351-17"/>
+	</g>
+	<g id="shape26-70" transform="translate(595.276,-368.504)">
+		<title>Square.26</title>
+		<desc>0</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="56.692" height="56.692"/>
+		<text transform="matrix(1 0 0 1 19.2201 577.7299)" enable-background="new    " font-family="'Calibri'" font-size="36">0<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape28-73" transform="translate(595.276,-425.197)">
+		<title>Square.28</title>
+		<desc>1</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="56.692" height="56.693"/>
+		<text transform="matrix(1 0 0 1 19.2201 577.7305)" enable-background="new    " font-family="'Calibri'" font-size="36">1<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape29-76" transform="translate(595.276,-481.89)">
+		<title>Square.29</title>
+		<desc>0</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.584" fill="#FFFFFF" width="56.692" height="56.692"/>
+		<text transform="matrix(1 0 0 1 19.2201 577.7301)" enable-background="new    " font-family="'Calibri'" font-size="36">0<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape31-79" transform="translate(651.969,-368.504)">
+		<title>Square.31</title>
+		<desc>0</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="56.693" height="56.692"/>
+		<text transform="matrix(1 0 0 1 19.2195 577.7299)" enable-background="new    " font-family="'Calibri'" font-size="36">0<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape32-82" transform="translate(651.969,-425.197)">
+		<title>Square.32</title>
+		<desc>0</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="56.693" height="56.693"/>
+		<text transform="matrix(1 0 0 1 19.2195 577.7305)" enable-background="new    " font-family="'Calibri'" font-size="36">0<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape33-85" transform="translate(651.969,-481.89)">
+		<title>Square.33</title>
+		<desc>1</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.584" fill="#FFFFFF" width="56.693" height="56.692"/>
+		<text transform="matrix(1 0 0 1 19.2195 577.7301)" enable-background="new    " font-family="'Calibri'" font-size="36">1<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape34-88" transform="translate(708.661,-368.504)">
+		<title>Square.34</title>
+		<desc>1</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="56.692" height="56.692"/>
+		<text transform="matrix(1 0 0 1 19.2198 577.7299)" enable-background="new    " font-family="'Calibri'" font-size="36">1<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape35-91" transform="translate(708.661,-425.197)">
+		<title>Square.35</title>
+		<desc>0</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.583" fill="#FFFFFF" width="56.692" height="56.693"/>
+		<text transform="matrix(1 0 0 1 19.2198 577.7305)" enable-background="new    " font-family="'Calibri'" font-size="36">0<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape36-94" transform="translate(708.661,-481.89)">
+		<title>Square.36</title>
+		<desc>0</desc>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion"></v:ud>
+		</v:userDefs>
+		<v:textBlock  v:tabSpace="42.5197" v:margins="rect(4,4,4,4)"></v:textBlock>
+		<v:textRect  width="56.7" height="56.6929" cy="566.929" cx="28.3465"></v:textRect>
+		<rect x="0" y="538.584" fill="#FFFFFF" width="56.692" height="56.692"/>
+		<text transform="matrix(1 0 0 1 19.2198 577.7301)" enable-background="new    " font-family="'Calibri'" font-size="36">0<v:paragraph  v:horizAlign="1"></v:paragraph><v:tabList></v:tabList></text>
+	</g>
+	<g id="shape30-97" transform="translate(737.008,-368.504)">
+		<title>Right Parenthesis.30</title>
+		<v:userDefs>
+			<v:ud  v:val="VT0(15):26" v:nameU="visVersion" v:prompt=""></v:ud>
+		</v:userDefs>
+		
+			<path fill="none" stroke="#000000" stroke-width="0.24" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="3" d="
+			M0,595.281c13.44-0.314,24.991-7.245,28.351-17.011V442.201c-3.364-9.762-14.914-16.688-28.351-17"/>
+	</g>
+</g>
+</svg>
