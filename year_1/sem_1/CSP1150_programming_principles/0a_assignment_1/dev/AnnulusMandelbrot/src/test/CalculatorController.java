@@ -4,6 +4,9 @@ package test;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// import greyscale view
+import view.*;
+
 /**
  * This class defines the calculator controller,
  * and communicates the information from the view
@@ -18,8 +21,12 @@ public class CalculatorController {
 
 	// instantiate the view
 	private CalculatorView theView;
+	
 	// instantiate the model
 	private CalculatorModel theModel;
+	
+	// instantiate annulus greyscale for hitviewer method
+	private GreyscaleHitViewerPanel greyScaleAnnulus;
 	
 	/**
 	 * This defines the CalculatorController constructor
@@ -68,6 +75,11 @@ public class CalculatorController {
 				
 				// get the calculated monte carlo estimate value from the model
 				theView.setMonteCalc(theModel.getMonteCalc());
+				
+				// **** causing errors
+				//greyScaleAnnulus.viewHits(theModel.returnHits());
+				
+				theView.showGreyScaleAnnulus();
 			}
 			
 			// if no values are set, display error message

@@ -163,4 +163,13 @@ public class CalculatorModel {
 		// return boolean value
 		return testBool;
 	}
+	
+	/**
+	 * This method returns the hits array to be used for the viewer.
+	 * @param args unused.
+	 * @return double[][] hits.
+	 */
+	public double[][] returnHits() {
+		return hits;
+	}
 }

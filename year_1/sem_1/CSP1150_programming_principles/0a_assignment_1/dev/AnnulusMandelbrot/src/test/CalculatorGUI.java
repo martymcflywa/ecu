@@ -182,6 +182,7 @@ public class CalculatorGUI {
 		JLabel monteAreaResult = new JLabel("---");
 		GridBagConstraints gbc_monteAreaResult = new GridBagConstraints();
 		gbc_monteAreaResult.gridwidth = 6;
+		gbc_monteAreaResult.anchor = GridBagConstraints.NORTH;
 		gbc_monteAreaResult.gridx = 0;
 		gbc_monteAreaResult.gridy = 8;
 		borderAnnulus.add(monteAreaResult, gbc_monteAreaResult);
@@ -208,6 +209,18 @@ public class CalculatorGUI {
 		gbc_panelAnnulusGraphic.gridx = 0;
 		gbc_panelAnnulusGraphic.gridy = 0;
 		panelParentRight.add(panelAnnulusGraphic, gbc_panelAnnulusGraphic);
+		GridBagLayout gbl_panelAnnulusGraphic = new GridBagLayout();
+		gbl_panelAnnulusGraphic.columnWidths = new int[]{0, 0};
+		gbl_panelAnnulusGraphic.rowHeights = new int[]{0, 0};
+		gbl_panelAnnulusGraphic.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panelAnnulusGraphic.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		panelAnnulusGraphic.setLayout(gbl_panelAnnulusGraphic);
+		
+		JButton greyScaleAnnulus = new JButton("New button");
+		GridBagConstraints gbc_greyScaleAnnulus = new GridBagConstraints();
+		gbc_greyScaleAnnulus.gridx = 0;
+		gbc_greyScaleAnnulus.gridy = 0;
+		panelAnnulusGraphic.add(greyScaleAnnulus, gbc_greyScaleAnnulus);
 		
 		JPanel panelMandelbrotGraphic = new JPanel();
 		GridBagConstraints gbc_panelMandelbrotGraphic = new GridBagConstraints();

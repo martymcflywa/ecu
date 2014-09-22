@@ -2,11 +2,20 @@ package test;
 
 // importing action listener, java swing, and layout classes
 import java.awt.event.ActionListener;
+
 import javax.swing.*;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+
 import javax.swing.border.TitledBorder;
+
 import java.awt.Insets;
+
+
+
+// import greyscale hitviewer panel
+import view.*;
 
 /**
  * This class defines the calculator view
@@ -39,6 +48,12 @@ public class CalculatorView extends JFrame {
 	
 	// label that displays monte area result
 	private JLabel monteAreaResult = new JLabel("---");
+	
+	// **** creating panel out here so showGreyScaleAnnulus can get to it
+	private JPanel panelParentRight = new JPanel();
+	
+	// **** creating GreyscaleHitViewer out here so showGreyScaleAnnulus can get to it
+	GreyscaleHitViewerPanel greyScaleAnnulus = new GreyscaleHitViewerPanel(600, 600);
 	
 	/**
 	 * The view constructor.
@@ -309,7 +324,6 @@ public class CalculatorView extends JFrame {
 		borderAnnulusCalculator.add(monteAreaResult, gbc_monteAreaResult);
 		
 		// create right parent panel, container for graphics
-		JPanel panelParentRight = new JPanel();
 		GridBagConstraints gbc_panelParentRight = new GridBagConstraints();
 		gbc_panelParentRight.gridheight = 2;
 		gbc_panelParentRight.insets = new Insets(0, 0, 5, 0);
@@ -317,6 +331,31 @@ public class CalculatorView extends JFrame {
 		gbc_panelParentRight.gridx = 1;
 		gbc_panelParentRight.gridy = 0;
 		frame.getContentPane().add(panelParentRight, gbc_panelParentRight);
+	}
+	
+	/**
+	 * Trying to add method for controller to call to add greyscale annulus
+	 */
+	public void showGreyScaleAnnulus() {
+		// trying to add greyscale annulus here
+		JPanel panelAnnulusGraphic = new JPanel();
+		GridBagConstraints gbc_panelAnnulusGraphic = new GridBagConstraints();
+		gbc_panelAnnulusGraphic.insets = new Insets(0, 0, 5, 0);
+		gbc_panelAnnulusGraphic.fill = GridBagConstraints.BOTH;
+		gbc_panelAnnulusGraphic.gridx = 0;
+		gbc_panelAnnulusGraphic.gridy = 0;
+		panelParentRight.add(panelAnnulusGraphic, gbc_panelAnnulusGraphic);
+		GridBagLayout gbl_panelAnnulusGraphic = new GridBagLayout();
+		gbl_panelAnnulusGraphic.columnWidths = new int[]{0};
+		gbl_panelAnnulusGraphic.rowHeights = new int[]{0};
+		gbl_panelAnnulusGraphic.columnWeights = new double[]{Double.MIN_VALUE};
+		gbl_panelAnnulusGraphic.rowWeights = new double[]{Double.MIN_VALUE};
+		panelAnnulusGraphic.setLayout(gbl_panelAnnulusGraphic);
+		
+		GridBagConstraints gbc_greyScaleAnnulus = new GridBagConstraints();
+		gbc_greyScaleAnnulus.gridx = 0;
+		gbc_greyScaleAnnulus.gridy = 0;
+		panelAnnulusGraphic.add(greyScaleAnnulus, gbc_greyScaleAnnulus);
 	}
 	
 	/**
