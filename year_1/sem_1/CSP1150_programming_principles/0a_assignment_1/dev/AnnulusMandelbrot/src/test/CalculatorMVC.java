@@ -1,11 +1,13 @@
 package test;
 
 /**
- * This class instantiates all the MVC classes together
+ * This class instantiates all the calculator MVC classes together
  * and executes the program to calculate the area of
  * an annulus and mandelbrot.
  * 
- * @author marty
+ * @author Martin Ponce ID# 10371381
+ * @version 3.1.0
+ * @since 20140922
  */
 public class CalculatorMVC {
 
@@ -23,8 +25,5 @@ public class CalculatorMVC {
 		
 		// instantiate the controller
 		CalculatorController theController = new CalculatorController(theView, theModel);
-		
-		// set the view to visible
-		theView.setVisible(true);
 	}
 }

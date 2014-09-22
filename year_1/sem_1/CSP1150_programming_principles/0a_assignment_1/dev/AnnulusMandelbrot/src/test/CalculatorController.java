@@ -1,7 +1,19 @@
 package test;
+
+// import event listeners
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This class defines the calculator controller,
+ * and communicates the information from the view
+ * to the model and vice versa. This class also
+ * handles exceptions.
+ * 
+ * @author Martin Ponce ID# 10371381
+ * @version 3.1.0
+ * @since 20140922
+ */
 public class CalculatorController {
 
 	// instantiate the view
@@ -10,7 +22,7 @@ public class CalculatorController {
 	private CalculatorModel theModel;
 	
 	/**
-	 * Define the CalculatorController constructor
+	 * This defines the CalculatorController constructor
 	 * @param theView
 	 * @param theModel
 	 */
@@ -24,7 +36,7 @@ public class CalculatorController {
 	
 	/**
 	 * This class defines exception handling
-	 * for when the calculate button is pressed
+	 * when the calculate button is pressed
 	 * 
 	 * @author Martin Ponce
 	 */

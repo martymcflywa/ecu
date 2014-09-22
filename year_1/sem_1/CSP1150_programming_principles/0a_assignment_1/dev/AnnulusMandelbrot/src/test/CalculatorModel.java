@@ -1,5 +1,15 @@
 package test;
 
+/**
+ * This class defines the calculator model.
+ * The shape's attributes are saved here,
+ * and all calculation is handled by the methods
+ * in this class.
+ * 
+ * @author Martin Ponce ID# 10371381
+ * @version 3.1.0
+ * @since 20140922
+ */
 public class CalculatorModel {
 
 	// declare grid size, samples
@@ -18,7 +28,7 @@ public class CalculatorModel {
 	private double areaMonte;
 	
 	/**
-	 * Set the radius.
+	 * This method sets the radius.
 	 * @param double r1 - The outer radius.
 	 * @param double r2 - The inner radius.
 	 */
@@ -28,7 +38,7 @@ public class CalculatorModel {
 	}
 	
 	/**
-	 * Get the area calculated using approximate estimation.
+	 * This method returns the area calculated using approximate estimation.
 	 * @return double areaApprox
 	 */
 	public double getAreaCalc() {
@@ -40,7 +50,7 @@ public class CalculatorModel {
 	}
 	
 	/**
-	 * Calculates area of shape using approximate estimation.
+	 * This method calculates the annulus area using approximate estimation.
 	 * @param double r1 - The outer radius. 
 	 * @param double r2 - The inner radius.
 	 */
@@ -126,7 +136,7 @@ public class CalculatorModel {
 	}
 	
 	/**
-	 * Checks if center of cell, or hitpoints are within shape perimeter.
+	 * This method checks if center of cell, or hitpoints are within shape perimeter.
 	 * @param double x - The x-axis value.
 	 * @param double y - The y-axis value.
 	 * @return boolean testBool
