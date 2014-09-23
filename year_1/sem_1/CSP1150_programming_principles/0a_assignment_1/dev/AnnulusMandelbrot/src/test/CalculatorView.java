@@ -333,7 +333,8 @@ public class CalculatorView extends JFrame {
 	 * Trying to add method for controller to call to add greyscale annulus
 	 */
 	public void showGreyScaleAnnulus() {
-		// trying to add greyscale annulus here
+		
+		// setting up the parent panel for greyscale view
 		JPanel panelAnnulusGraphic = new JPanel();
 		GridBagConstraints gbc_panelAnnulusGraphic = new GridBagConstraints();
 		gbc_panelAnnulusGraphic.insets = new Insets(0, 0, 5, 0);
@@ -351,6 +352,8 @@ public class CalculatorView extends JFrame {
 		GridBagConstraints gbc_greyScaleAnnulus = new GridBagConstraints();
 		gbc_greyScaleAnnulus.gridx = 0;
 		gbc_greyScaleAnnulus.gridy = 0;
+		
+		// trying to add greyscale annulus here
 		panelAnnulusGraphic.add(greyScaleAnnulus, gbc_greyScaleAnnulus);
 	}
 	
