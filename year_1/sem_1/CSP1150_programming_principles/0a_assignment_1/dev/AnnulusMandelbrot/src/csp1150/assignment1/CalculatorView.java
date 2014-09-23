@@ -2,11 +2,17 @@ package csp1150.assignment1;
 
 // importing action listener, java swing, and layout classes
 import java.awt.event.ActionListener;
+
 import javax.swing.*;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+
 import javax.swing.border.TitledBorder;
+
 import java.awt.Insets;
+
+
 
 // import greyscale view
 import view.*;
@@ -346,8 +352,8 @@ public class CalculatorView extends JFrame {
 		GridBagLayout gbl_panelAnnulusGraphic = new GridBagLayout();
 		gbl_panelAnnulusGraphic.columnWidths = new int[]{0};
 		gbl_panelAnnulusGraphic.rowHeights = new int[]{0};
-		gbl_panelAnnulusGraphic.columnWeights = new double[]{Double.MIN_VALUE};
-		gbl_panelAnnulusGraphic.rowWeights = new double[]{Double.MIN_VALUE};
+		gbl_panelAnnulusGraphic.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panelAnnulusGraphic.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		panelAnnulusGraphic.setLayout(gbl_panelAnnulusGraphic);
 		
 		GridBagConstraints gbc_greyScaleAnnulus = new GridBagConstraints();
