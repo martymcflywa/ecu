@@ -1,5 +1,6 @@
-package test;
-import calculator.view.*;
+package csp1150.assignment1;
+
+import view.*;
 
 /**
  * Test class, experimenting with view.

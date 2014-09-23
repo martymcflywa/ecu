@@ -1,4 +1,6 @@
-package test;
+package csp1150.assignment1;
+
+//import greyscale view
 import view.*;
 
 /**

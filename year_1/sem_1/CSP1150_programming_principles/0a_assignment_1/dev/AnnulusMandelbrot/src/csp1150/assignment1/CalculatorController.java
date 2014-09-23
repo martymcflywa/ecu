@@ -1,4 +1,4 @@
-package test;
+package csp1150.assignment1;
 
 // import event listeners
 import java.awt.event.ActionEvent;

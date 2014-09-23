@@ -1,4 +1,4 @@
-package test;
+package csp1150.assignment1;
 
 /**
  * This class defines the calculator model.
