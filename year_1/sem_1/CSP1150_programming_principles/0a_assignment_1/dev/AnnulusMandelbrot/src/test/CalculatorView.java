@@ -155,6 +155,7 @@ public class CalculatorView extends JFrame {
 		GridBagConstraints gbc_borderAnnulus = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for annulus calculator border panel
+		gbc_borderAnnulus.insets = new Insets(0, 0, 0, 0);
 		gbc_borderAnnulus.anchor = GridBagConstraints.WEST;
 		gbc_borderAnnulus.fill = GridBagConstraints.VERTICAL;
 		gbc_borderAnnulus.gridx = 1;
@@ -183,7 +184,7 @@ public class CalculatorView extends JFrame {
 		
 		// define gridbag constraints parameters for instructions
 		gbc_labelAnnulusInstructions.fill = GridBagConstraints.BOTH;
-		gbc_labelAnnulusInstructions.insets = new Insets(0, 0, 5, 5);
+		gbc_labelAnnulusInstructions.insets = new Insets(0, 15, 5, 5);
 		gbc_labelAnnulusInstructions.gridwidth = 5;
 		gbc_labelAnnulusInstructions.gridx = 0;
 		gbc_labelAnnulusInstructions.gridy = 0;
@@ -199,7 +200,7 @@ public class CalculatorView extends JFrame {
 		
 		// define gridbag constraints parameters for outer radius label
 		gbc_labelOutRadius.anchor = GridBagConstraints.WEST;
-		gbc_labelOutRadius.insets = new Insets(0, 0, 5, 5);
+		gbc_labelOutRadius.insets = new Insets(0, 15, 5, 5);
 		gbc_labelOutRadius.gridx = 0;
 		gbc_labelOutRadius.gridy = 1;
 		
@@ -231,7 +232,7 @@ public class CalculatorView extends JFrame {
 		
 		// define gridbag constraints parameters for inner radius input field
 		gbc_labelInRadius.anchor = GridBagConstraints.WEST;
-		gbc_labelInRadius.insets = new Insets(0, 0, 5, 5);
+		gbc_labelInRadius.insets = new Insets(0, 15, 5, 5);
 		gbc_labelInRadius.gridx = 0;
 		gbc_labelInRadius.gridy = 2;
 		
@@ -256,10 +257,11 @@ public class CalculatorView extends JFrame {
 		GridBagConstraints gbc_calcButton = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for calculate button
-		gbc_calcButton.anchor = GridBagConstraints.NORTHWEST;
+		gbc_calcButton.anchor = GridBagConstraints.EAST;
+		gbc_calcButton.gridwidth = 3;
 		gbc_calcButton.insets = new Insets(0, 0, 5, 5);
-		gbc_calcButton.gridx = 4;
-		gbc_calcButton.gridy = 2;
+		gbc_calcButton.gridx = 1;
+		gbc_calcButton.gridy = 3;
 		
 		// add calculate button and gridbag constraints to annulus calculator calculator border panel
 		borderAnnulusCalculator.add(calcButton, gbc_calcButton);
@@ -270,7 +272,7 @@ public class CalculatorView extends JFrame {
 		// create gridbag constraints parameters for approximate area result label
 		GridBagConstraints gbc_labelApproxArea = new GridBagConstraints();
 		gbc_labelApproxArea.anchor = GridBagConstraints.WEST;
-		gbc_labelApproxArea.insets = new Insets(0, 0, 5, 5);
+		gbc_labelApproxArea.insets = new Insets(20, 15, 5, 5);
 		gbc_labelApproxArea.gridwidth = 2;
 		gbc_labelApproxArea.gridx = 0;
 		gbc_labelApproxArea.gridy = 4;
@@ -295,7 +297,7 @@ public class CalculatorView extends JFrame {
 		
 		// create gridbag constraints for monte carlo result label
 		GridBagConstraints gbc_labelMonteArea = new GridBagConstraints();
-		gbc_labelMonteArea.insets = new Insets(0, 0, 5, 5);
+		gbc_labelMonteArea.insets = new Insets(0, 15, 5, 5);
 		gbc_labelMonteArea.anchor = GridBagConstraints.NORTH;
 		gbc_labelMonteArea.fill = GridBagConstraints.HORIZONTAL;
 		gbc_labelMonteArea.gridwidth = 5;
@@ -320,7 +322,7 @@ public class CalculatorView extends JFrame {
 		// create right parent panel, container for graphics
 		GridBagConstraints gbc_panelParentRight = new GridBagConstraints();
 		gbc_panelParentRight.gridheight = 2;
-		gbc_panelParentRight.insets = new Insets(0, 0, 5, 0);
+		gbc_panelParentRight.insets = new Insets(0, 0, 5, 5);
 		gbc_panelParentRight.fill = GridBagConstraints.BOTH;
 		gbc_panelParentRight.gridx = 1;
 		gbc_panelParentRight.gridy = 0;

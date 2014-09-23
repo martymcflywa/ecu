@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
+import javax.swing.UIManager;
+import java.awt.Color;
 
 public class CalculatorGUI {
 
@@ -77,19 +79,20 @@ public class CalculatorGUI {
 		gbc_panelAnnulus.gridy = 0;
 		panelParentLeft.add(panelAnnulus, gbc_panelAnnulus);
 		GridBagLayout gbl_panelAnnulus = new GridBagLayout();
-		gbl_panelAnnulus.columnWidths = new int[]{18, 0, 0};
-		gbl_panelAnnulus.rowHeights = new int[]{21, 294, 0};
-		gbl_panelAnnulus.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		gbl_panelAnnulus.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_panelAnnulus.columnWidths = new int[]{0, 0};
+		gbl_panelAnnulus.rowHeights = new int[]{294, 0};
+		gbl_panelAnnulus.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panelAnnulus.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panelAnnulus.setLayout(gbl_panelAnnulus);
 		
 		JPanel borderAnnulus = new JPanel();
-		borderAnnulus.setBorder(new TitledBorder(null, "Annulus Calculator", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		borderAnnulus.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Annulus Calculator", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagConstraints gbc_borderAnnulus = new GridBagConstraints();
+		gbc_borderAnnulus.insets = new Insets(15, 15, 0, 0);
 		gbc_borderAnnulus.anchor = GridBagConstraints.WEST;
 		gbc_borderAnnulus.fill = GridBagConstraints.VERTICAL;
-		gbc_borderAnnulus.gridx = 1;
-		gbc_borderAnnulus.gridy = 1;
+		gbc_borderAnnulus.gridx = 0;
+		gbc_borderAnnulus.gridy = 0;
 		panelAnnulus.add(borderAnnulus, gbc_borderAnnulus);
 		GridBagLayout gbl_borderAnnulus = new GridBagLayout();
 		gbl_borderAnnulus.columnWidths = new int[]{63, 22, 39, 47, 77, 0};
@@ -101,7 +104,7 @@ public class CalculatorGUI {
 		JLabel labelAnnulusInstructions = new JLabel("Enter the outer and inner radius:");
 		GridBagConstraints gbc_labelAnnulusInstructions = new GridBagConstraints();
 		gbc_labelAnnulusInstructions.fill = GridBagConstraints.BOTH;
-		gbc_labelAnnulusInstructions.insets = new Insets(0, 0, 5, 5);
+		gbc_labelAnnulusInstructions.insets = new Insets(0, 15, 5, 5);
 		gbc_labelAnnulusInstructions.gridwidth = 5;
 		gbc_labelAnnulusInstructions.gridx = 0;
 		gbc_labelAnnulusInstructions.gridy = 0;
@@ -146,10 +149,11 @@ public class CalculatorGUI {
 		
 		JButton calcButton = new JButton("Calculate");
 		GridBagConstraints gbc_calcButton = new GridBagConstraints();
-		gbc_calcButton.anchor = GridBagConstraints.NORTHWEST;
+		gbc_calcButton.anchor = GridBagConstraints.EAST;
+		gbc_calcButton.gridwidth = 3;
 		gbc_calcButton.insets = new Insets(0, 0, 5, 5);
-		gbc_calcButton.gridx = 4;
-		gbc_calcButton.gridy = 2;
+		gbc_calcButton.gridx = 1;
+		gbc_calcButton.gridy = 3;
 		borderAnnulus.add(calcButton, gbc_calcButton);
 		
 		JLabel labelApproxArea = new JLabel("Approximate Area:");
