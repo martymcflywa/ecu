@@ -32,6 +32,7 @@ public class CalculatorController {
 	 * This defines the CalculatorController constructor
 	 * @param theView
 	 * @param theModel
+	 * @param greyScaleAnnulus
 	 */
 	public CalculatorController(CalculatorView theView, CalculatorModel theModel, GreyscaleHitViewerPanel greyScaleAnnulus) {
 		this.theView = theView;
