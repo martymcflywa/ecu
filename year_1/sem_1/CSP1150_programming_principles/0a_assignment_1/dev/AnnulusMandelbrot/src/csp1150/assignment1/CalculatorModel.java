@@ -45,6 +45,10 @@ public class CalculatorModel {
 		return this.areaApprox;
 	}
 	
+	/**
+	 * This method returns the area calculated using monte carlo method.
+	 * @return double areaMonte
+	 */
 	public double getMonteCalc() {
 		return this.areaMonte;
 	}
