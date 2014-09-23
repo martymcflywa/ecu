@@ -311,6 +311,7 @@ public class CalculatorView extends JFrame {
 		GridBagConstraints gbc_monteAreaResult = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for monte carlo result output
+		gbc_monteAreaResult.insets = new Insets(0, 0, 5, 5);
 		gbc_monteAreaResult.gridwidth = 6;
 		gbc_monteAreaResult.anchor = GridBagConstraints.NORTH;
 		gbc_monteAreaResult.gridx = 0;

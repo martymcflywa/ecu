@@ -185,6 +185,7 @@ public class CalculatorGUI {
 		
 		JLabel monteAreaResult = new JLabel("---");
 		GridBagConstraints gbc_monteAreaResult = new GridBagConstraints();
+		gbc_monteAreaResult.insets = new Insets(0, 0, 5, 5);
 		gbc_monteAreaResult.gridwidth = 6;
 		gbc_monteAreaResult.anchor = GridBagConstraints.NORTH;
 		gbc_monteAreaResult.gridx = 0;
