@@ -2,17 +2,11 @@ package test;
 
 // importing action listener, java swing, and layout classes
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
-
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-
 import javax.swing.border.TitledBorder;
-
 import java.awt.Insets;
-
-
 
 // import greyscale hitviewer panel
 import view.*;

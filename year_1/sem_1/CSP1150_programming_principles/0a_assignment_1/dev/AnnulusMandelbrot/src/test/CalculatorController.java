@@ -33,9 +33,10 @@ public class CalculatorController {
 	 * @param theView
 	 * @param theModel
 	 */
-	public CalculatorController(CalculatorView theView, CalculatorModel theModel) {
+	public CalculatorController(CalculatorView theView, CalculatorModel theModel, GreyscaleHitViewerPanel greyScaleAnnulus) {
 		this.theView = theView;
 		this.theModel = theModel;
+		this.greyScaleAnnulus = greyScaleAnnulus;
 		
 		// create listener for the calculate button
 		this.theView.addCalcListener(new CalcListener());
@@ -76,8 +77,8 @@ public class CalculatorController {
 				// get the calculated monte carlo estimate value from the model
 				theView.setMonteCalc(theModel.getMonteCalc());
 				
-				// **** causing errors
-				//greyScaleAnnulus.viewHits(theModel.returnHits());
+				// call viewhits to get data from array
+				greyScaleAnnulus.viewHits(theModel.returnHits());
 				
 				theView.showGreyScaleAnnulus();
 			}

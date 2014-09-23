@@ -1,4 +1,5 @@
 package test;
+import view.*;
 
 /**
  * This class instantiates all the calculator MVC classes together
@@ -20,10 +21,13 @@ public class CalculatorMVC {
 		// instantiate the view
 		CalculatorView theView = new CalculatorView();
 		
+		//
+		GreyscaleHitViewerPanel greyScaleAnnulus = new GreyscaleHitViewerPanel(600, 600);
+		
 		// instantiate the model
 		CalculatorModel theModel = new CalculatorModel();
 		
 		// instantiate the controller
-		CalculatorController theController = new CalculatorController(theView, theModel);
+		CalculatorController theController = new CalculatorController(theView, theModel, greyScaleAnnulus);
 	}
 }
