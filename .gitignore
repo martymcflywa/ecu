@@ -24,3 +24,4 @@ SelfAssessment
 *.out
 *.gz
 *.toc
+.Rproj.user
