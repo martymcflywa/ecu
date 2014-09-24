@@ -169,3 +169,8 @@ Provide definitions of each of the following common measures of central tendency
 		- Where in the possible range between minus infinity and plus infinity the scores tend to fall
 	- Can be described by the mean or median
 		- Median is used when the scores are skewed
+
+## Activity 4 - Centrality and variablity
+
+Now for the variables you selected in Activity 1, describe the summary stats in the Facebook workshop.
+
