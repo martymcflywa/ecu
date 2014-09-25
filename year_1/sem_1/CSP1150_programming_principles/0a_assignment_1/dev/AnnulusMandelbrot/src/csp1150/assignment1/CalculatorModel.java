@@ -13,7 +13,7 @@ package csp1150.assignment1;
 public class CalculatorModel {
 
 	// declare grid size, samples
-	private final int GRIDSIZE = 600;
+	private final int GRIDSIZE = 400;
 	private final int SAMPLES = 100;
 	
 	// declare 2d array

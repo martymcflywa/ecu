@@ -20,11 +20,12 @@ public class CalculatorMVC {
 	 */
 	public static void main(String[] args) {
 		
-		// instantiate the view
-		CalculatorView theView = new CalculatorView();
-		
 		//
-		GreyscaleHitViewerPanel greyScaleAnnulus = new GreyscaleHitViewerPanel(600, 600);
+		GreyscaleHitViewerPanel greyScaleAnnulus = new GreyscaleHitViewerPanel(400, 400);
+		
+		// instantiate the view
+		CalculatorView theView = new CalculatorView(greyScaleAnnulus);
+		
 		
 		// instantiate the model
 		CalculatorModel theModel = new CalculatorModel();

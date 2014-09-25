@@ -14,7 +14,7 @@ import view.*;
  * handles exceptions.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 3.1.0
+ * @version 4.0.0
  * @since 20140922
  */
 public class CalculatorController {
@@ -78,10 +78,9 @@ public class CalculatorController {
 				// get the calculated monte carlo estimate value from the model
 				theView.setMonteCalc(theModel.getMonteCalc());
 				
+				theView.showGreyScaleAnnulus(greyScaleAnnulus);
 				// call viewhits to get data from array
 				greyScaleAnnulus.viewHits(theModel.returnHits());
-				
-				theView.showGreyScaleAnnulus();
 			}
 			
 			// if no values are set, display error message
