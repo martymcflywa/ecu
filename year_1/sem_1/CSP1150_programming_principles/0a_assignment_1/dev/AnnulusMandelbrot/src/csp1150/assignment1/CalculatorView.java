@@ -57,7 +57,7 @@ public class CalculatorView extends JFrame {
 	// **** creating panel out here so showGreyScaleAnnulus can get to it
 	private JPanel panelParentRight = new JPanel();
 	
-	private JLabel imageLabel;
+	private JLabel imageAnnulus;
 	
 	// **** creating GreyscaleHitViewer out here so showGreyScaleAnnulus can get to it
 	GreyscaleHitViewerPanel greyScaleAnnulus;
@@ -373,16 +373,15 @@ public class CalculatorView extends JFrame {
 		//panelAnnulusGraphic.add(greyScaleAnnulus, gbc_greyScaleAnnulus);
 
 		if(imageExists) {
-			getContentPane().remove(imageLabel);
+			getContentPane().remove(imageAnnulus);
 			panelParentRight.remove(panelAnnulusGraphic);
-			repaint();
 		}
 		
 		repaint();
 		BufferedImage image = greyScaleAnnulus.getImage();
-		imageLabel = new JLabel(new ImageIcon(image));
-		getContentPane().add(imageLabel);
-		panelAnnulusGraphic.add(imageLabel);
+		imageAnnulus = new JLabel(new ImageIcon(image));
+		getContentPane().add(imageAnnulus);
+		panelAnnulusGraphic.add(imageAnnulus);
 		imageExists = true;
 	}	
 	
