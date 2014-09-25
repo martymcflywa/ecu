@@ -2,6 +2,7 @@ package csp1150.assignment1;
 
 // importing action listener, java swing, and layout classes
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
@@ -11,6 +12,9 @@ import java.awt.GridBagConstraints;
 import javax.swing.border.TitledBorder;
 
 import java.awt.Insets;
+
+
+
 
 
 
@@ -30,6 +34,7 @@ public class CalculatorView extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	
+	private static boolean imageExists = false;
 	/**
 	 * Defining labels, fields and buttons for Annulus calculator panel.
 	 */
@@ -52,14 +57,19 @@ public class CalculatorView extends JFrame {
 	// **** creating panel out here so showGreyScaleAnnulus can get to it
 	private JPanel panelParentRight = new JPanel();
 	
+	private JLabel imageLabel;
+	
 	// **** creating GreyscaleHitViewer out here so showGreyScaleAnnulus can get to it
-	GreyscaleHitViewerPanel greyScaleAnnulus = new GreyscaleHitViewerPanel(600, 600);
+	GreyscaleHitViewerPanel greyScaleAnnulus;
+	
+	
 	
 	/**
 	 * The view constructor.
 	 * Calls initialize to create view.
 	 */
-	CalculatorView() {
+	CalculatorView(GreyscaleHitViewerPanel greyScaleAnnulus) {
+		this.greyScaleAnnulus = greyScaleAnnulus;
 		initialize();
 	}
 	
@@ -69,17 +79,15 @@ public class CalculatorView extends JFrame {
 	 */
 	private void initialize() {
 		
-		// create frame JFrame object
-		JFrame frame = new JFrame();
 		
 		/**
 		 * Define JFrame parameters.
 		 */
-		frame.setBounds(100, 100, 800, 900);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		frame.setLocationRelativeTo(null);
-		frame.setTitle("Annulus & Mandelbrot Calculator: Martin Ponce");
+		setBounds(100, 100, 800, 900);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+		setLocationRelativeTo(null);
+		setTitle("Annulus & Mandelbrot Calculator: Martin Ponce");
 		
 		// create GridBagLayout object
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -93,7 +101,7 @@ public class CalculatorView extends JFrame {
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		
 		// set frame's layout manager to gridBagLayout
-		frame.getContentPane().setLayout(gridBagLayout);
+		getContentPane().setLayout(gridBagLayout);
 		
 		/**
 		 * Defining UI elements here, using GridBagLayout to manage layout.
@@ -113,7 +121,7 @@ public class CalculatorView extends JFrame {
 		gbc_panelParentLeft.gridy = 0;
 		
 		// add left parent panel and gridbag constraints to frame
-		frame.getContentPane().add(panelParentLeft, gbc_panelParentLeft);
+		getContentPane().add(panelParentLeft, gbc_panelParentLeft);
 		
 		// define gridbag layout parameters for left parent panel
 		GridBagLayout gbl_panelParentLeft = new GridBagLayout();
@@ -333,16 +341,16 @@ public class CalculatorView extends JFrame {
 		gbc_panelParentRight.fill = GridBagConstraints.BOTH;
 		gbc_panelParentRight.gridx = 1;
 		gbc_panelParentRight.gridy = 0;
-		frame.getContentPane().add(panelParentRight, gbc_panelParentRight);
+		getContentPane().add(panelParentRight, gbc_panelParentRight);
 	}
 	
 	/**
 	 * Trying to add method for controller to call to add greyscale annulus
 	 */
-	public void showGreyScaleAnnulus() {
-		
+	public void showGreyScaleAnnulus(GreyscaleHitViewerPanel greyScaleAnnulus) {
 		// setting up the parent panel for greyscale view
-		JPanel panelAnnulusGraphic = new JPanel();
+		/*JPanel panelAnnulusGraphic = new JPanel();
+		
 		GridBagConstraints gbc_panelAnnulusGraphic = new GridBagConstraints();
 		gbc_panelAnnulusGraphic.insets = new Insets(0, 0, 5, 0);
 		gbc_panelAnnulusGraphic.fill = GridBagConstraints.BOTH;
@@ -361,8 +369,19 @@ public class CalculatorView extends JFrame {
 		gbc_greyScaleAnnulus.gridy = 0;
 		
 		// trying to add greyscale annulus here
+		frame.getContentPane().add(greyScaleAnnulus);
 		panelAnnulusGraphic.add(greyScaleAnnulus, gbc_greyScaleAnnulus);
-	}
+		*/
+		if(imageExists)
+		{
+			getContentPane().remove(imageLabel);
+		}
+		BufferedImage image = greyScaleAnnulus.getImage();
+		imageLabel = new JLabel(new ImageIcon(image));
+		getContentPane().add(imageLabel);
+		imageExists = true;
+		//greyScaleAnnulus.viewHits(theModel.returnHits());
+	}	
 	
 	/**
 	 * This method returns user input for outer radius
