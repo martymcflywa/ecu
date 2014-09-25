@@ -176,4 +176,12 @@ public class CalculatorModel {
 	public double[][] returnHits() {
 		return hits;
 	}
+	
+	/**
+	 * This method returns the GRIDSIZE constant.
+	 * @return int GRIDSIZE.
+	 */
+	public int getGridSize() {
+		return GRIDSIZE;
+	}
 }

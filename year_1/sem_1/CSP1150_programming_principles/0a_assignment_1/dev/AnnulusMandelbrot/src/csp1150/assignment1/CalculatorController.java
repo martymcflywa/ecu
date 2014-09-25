@@ -79,6 +79,7 @@ public class CalculatorController {
 				theView.setMonteCalc(theModel.getMonteCalc());
 				
 				theView.showGreyScaleAnnulus(greyScaleAnnulus);
+				
 				// call viewhits to get data from array
 				greyScaleAnnulus.viewHits(theModel.returnHits());
 			}

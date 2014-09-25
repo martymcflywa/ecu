@@ -349,7 +349,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public void showGreyScaleAnnulus(GreyscaleHitViewerPanel greyScaleAnnulus) {
 		// setting up the parent panel for greyscale view
-		/*JPanel panelAnnulusGraphic = new JPanel();
+		JPanel panelAnnulusGraphic = new JPanel();
 		
 		GridBagConstraints gbc_panelAnnulusGraphic = new GridBagConstraints();
 		gbc_panelAnnulusGraphic.insets = new Insets(0, 0, 5, 0);
@@ -369,18 +369,21 @@ public class CalculatorView extends JFrame {
 		gbc_greyScaleAnnulus.gridy = 0;
 		
 		// trying to add greyscale annulus here
-		frame.getContentPane().add(greyScaleAnnulus);
-		panelAnnulusGraphic.add(greyScaleAnnulus, gbc_greyScaleAnnulus);
-		*/
-		if(imageExists)
-		{
+		//getContentPane().add(greyScaleAnnulus);
+		//panelAnnulusGraphic.add(greyScaleAnnulus, gbc_greyScaleAnnulus);
+
+		if(imageExists) {
 			getContentPane().remove(imageLabel);
+			panelParentRight.remove(panelAnnulusGraphic);
+			repaint();
 		}
+		
+		repaint();
 		BufferedImage image = greyScaleAnnulus.getImage();
 		imageLabel = new JLabel(new ImageIcon(image));
 		getContentPane().add(imageLabel);
+		panelAnnulusGraphic.add(imageLabel);
 		imageExists = true;
-		//greyScaleAnnulus.viewHits(theModel.returnHits());
 	}	
 	
 	/**

@@ -109,8 +109,11 @@ public class GreyscaleHitViewerPanel extends JPanel implements HitViewerInterfac
         g.drawImage(image, 0, 0, null);
     }
     
-    public BufferedImage getImage()
-    {
+    /**
+     * This method returns the image.
+     * @return image.
+     */
+    public BufferedImage getImage() {
     	return image;
     }
 }

@@ -20,17 +20,16 @@ public class CalculatorMVC {
 	 */
 	public static void main(String[] args) {
 		
-		//
-		GreyscaleHitViewerPanel greyScaleAnnulus = new GreyscaleHitViewerPanel(400, 400);
-		
-		// instantiate the view
-		CalculatorView theView = new CalculatorView(greyScaleAnnulus);
-		
-		
-		// instantiate the model
+		// create the model object
 		CalculatorModel theModel = new CalculatorModel();
 		
-		// instantiate the controller
+		// create a greyscaleview object for the annulus
+		GreyscaleHitViewerPanel greyScaleAnnulus = new GreyscaleHitViewerPanel(theModel.getGridSize(), theModel.getGridSize());
+		
+		// create the view object
+		CalculatorView theView = new CalculatorView(greyScaleAnnulus);
+		
+		// create the controller object
 		CalculatorController theController = new CalculatorController(theView, theModel, greyScaleAnnulus);
 	}
 }
