@@ -368,15 +368,15 @@ public class CalculatorView extends JFrame {
 		gbc_greyScaleAnnulus.gridx = 0;
 		gbc_greyScaleAnnulus.gridy = 0;
 		
-		// trying to add greyscale annulus here
-		//getContentPane().add(greyScaleAnnulus);
-		//panelAnnulusGraphic.add(greyScaleAnnulus, gbc_greyScaleAnnulus);
-
+		// if image exists,
 		if(imageExists) {
+			
+			// remove image and panel from parent panel container
 			getContentPane().remove(imageAnnulus);
 			panelParentRight.remove(panelAnnulusGraphic);
 		}
 		
+		// get the image, 
 		repaint();
 		BufferedImage image = greyScaleAnnulus.getImage();
 		imageAnnulus = new JLabel(new ImageIcon(image));
