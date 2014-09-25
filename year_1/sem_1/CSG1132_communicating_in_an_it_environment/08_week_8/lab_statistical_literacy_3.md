@@ -174,3 +174,4 @@ Provide definitions of each of the following common measures of central tendency
 
 Now for the variables you selected in Activity 1, describe the summary stats in the Facebook workshop.
 
+See Rstudio A2.
