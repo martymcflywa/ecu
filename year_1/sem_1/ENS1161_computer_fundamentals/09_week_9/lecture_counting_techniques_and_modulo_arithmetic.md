@@ -211,3 +211,15 @@ Solve for `x`, `x + 3 ≡ 1 (mod 7)`
 We could try `x ≡ 0`, `x ≡ 1`, ... etc, and we would find that `x = 5` is a solution.
 
 Alternatively, since we can replace a number by another that is congruent to it, we can replace 1 by 8, and consider `x + 3 ≡ 8 (mod 7)`
+
+So `x ≡ 5` is a solution.
+
+### Example 2
+
+Solve `x`, `x + 4 ≡ 1 (mod 11)`
+
+Using the *fail-safe* method, we could try `x ≡ 0`, `x ≡ 1`, ... etc, and we would find that `x ≡ 8` is a solution.
+
+Alternatively, we could replace 1 by 12, and consider `x + 4 ≡ 12 (mod 11)`
+
+So `x ≡ 8` is a solution.
