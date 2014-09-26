@@ -14,10 +14,6 @@ import javax.swing.border.TitledBorder;
 import java.awt.Insets;
 
 
-
-
-
-
 // import greyscale view
 import view.*;
 
@@ -30,9 +26,9 @@ import view.*;
  * @version 3.1.0
  * @since 20140922
  */
+
+@SuppressWarnings("serial")
 public class CalculatorView extends JFrame {
-	
-	private static final long serialVersionUID = 1L;
 	
 	private static boolean imageExists = false;
 	/**
@@ -53,16 +49,18 @@ public class CalculatorView extends JFrame {
 	
 	// label that displays monte area result
 	private JLabel monteAreaResult = new JLabel("---");
+		
+	// the annulus greyscale image will be added to this JLabel
+	private JLabel imageAnnulus;
 	
 	// **** creating panel out here so showGreyScaleAnnulus can get to it
 	private JPanel panelParentRight = new JPanel();
 	
-	private JLabel imageAnnulus;
+	// the parent panel for annulus greyscale image
+	private JPanel panelAnnulusGraphic;
 	
-	// **** creating GreyscaleHitViewer out here so showGreyScaleAnnulus can get to it
-	GreyscaleHitViewerPanel greyScaleAnnulus;
-	
-	
+	// reference to GreyscaleHitViewerPanel for greyscale annulus
+	private GreyscaleHitViewerPanel greyScaleAnnulus;
 	
 	/**
 	 * The view constructor.
@@ -345,29 +343,42 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
-	 * Trying to add method for controller to call to add greyscale annulus
+	 * This method creates the layout for greyscale annulus image,
+	 * and adds it to the frame.
+	 * @param greyScaleAnnulus
 	 */
 	public void showGreyScaleAnnulus(GreyscaleHitViewerPanel greyScaleAnnulus) {
-		// setting up the parent panel for greyscale view
-		JPanel panelAnnulusGraphic = new JPanel();
 		
+		// setting up the parent panel for greyscale annulus image
+		panelAnnulusGraphic = new JPanel();
+		
+		// create gridbag constraints for parent panel
 		GridBagConstraints gbc_panelAnnulusGraphic = new GridBagConstraints();
+		
+		// define gridbag constraints parameters for parent panel
 		gbc_panelAnnulusGraphic.insets = new Insets(0, 0, 5, 0);
 		gbc_panelAnnulusGraphic.fill = GridBagConstraints.BOTH;
 		gbc_panelAnnulusGraphic.gridx = 0;
 		gbc_panelAnnulusGraphic.gridy = 0;
+		
+		// add parent panel and gridbag constraints to container panel
 		panelParentRight.add(panelAnnulusGraphic, gbc_panelAnnulusGraphic);
+		
+		// create gridbag layout
 		GridBagLayout gbl_panelAnnulusGraphic = new GridBagLayout();
 		gbl_panelAnnulusGraphic.columnWidths = new int[]{0};
 		gbl_panelAnnulusGraphic.rowHeights = new int[]{0};
 		gbl_panelAnnulusGraphic.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_panelAnnulusGraphic.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		
+		// set layout to parent panel for greyscale annulus image
 		panelAnnulusGraphic.setLayout(gbl_panelAnnulusGraphic);
 		
+		// create gridbag constraints
 		GridBagConstraints gbc_greyScaleAnnulus = new GridBagConstraints();
 		gbc_greyScaleAnnulus.gridx = 0;
 		gbc_greyScaleAnnulus.gridy = 0;
-		
+
 		// if image exists,
 		if(imageExists) {
 			
@@ -380,10 +391,10 @@ public class CalculatorView extends JFrame {
 		repaint();
 		BufferedImage image = greyScaleAnnulus.getImage();
 		imageAnnulus = new JLabel(new ImageIcon(image));
-		getContentPane().add(imageAnnulus);
+		getContentPane().add(imageAnnulus, gbc_greyScaleAnnulus);
 		panelAnnulusGraphic.add(imageAnnulus);
 		imageExists = true;
-	}	
+	}
 	
 	/**
 	 * This method returns user input for outer radius

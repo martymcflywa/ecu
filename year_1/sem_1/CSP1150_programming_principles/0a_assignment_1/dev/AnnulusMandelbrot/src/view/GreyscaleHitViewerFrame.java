@@ -6,6 +6,7 @@ import javax.swing.JFrame;
  * A class to display a shape based on a 2D array of greyscale values
  * @author phi
  */
+@SuppressWarnings("serial")
 public class GreyscaleHitViewerFrame extends JFrame implements HitViewerInterface
 {
     /**

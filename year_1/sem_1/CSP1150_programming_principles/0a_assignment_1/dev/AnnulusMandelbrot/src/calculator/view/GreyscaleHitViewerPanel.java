@@ -12,6 +12,7 @@ import javax.swing.JPanel;
  *
  * @author phi
  */
+@SuppressWarnings("serial")
 public class GreyscaleHitViewerPanel extends JPanel implements HitViewerInterface
 {
     /**
