@@ -78,9 +78,8 @@ public class CalculatorController {
 				// get the calculated monte carlo estimate value from the model
 				theView.setMonteCalc(theModel.getMonteCalc());
 				
-				//
+				greyScaleAnnulus.clearImage();
 				theView.showGreyScaleAnnulus(greyScaleAnnulus);
-				
 				// call viewhits to get data from array
 				greyScaleAnnulus.viewHits(theModel.returnHits());
 			}
