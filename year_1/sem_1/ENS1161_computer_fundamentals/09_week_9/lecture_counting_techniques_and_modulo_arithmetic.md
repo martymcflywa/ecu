@@ -774,3 +774,213 @@ There are unlimited supplies of 10 types of food available. You have 3 vouchers,
 
 So this type of problem involves *multisets*.
 
+#### Problem type table
+
+![problem types](http://i.imgur.com/J838e9z.png)
+
+### Example 1
+
+There are 15 people and 10 free parking vouchers. The vouchers are allocated by drawing names from a hat. How many possible outcomes are there?
+
+#### Solution
+
+- What type of problem is it?
+	- Order is not important
+	- Repetitions are not allowed
+	- The problem involves subsets
+
+The number of 10-subsets of 15 objects is
+
+><sup>15</sup>C<sub>10</sub> = 15! / (10! * (15 - 10)!)  
+= 15! / 10! * 5!  
+= 3003
+
+### Example 2
+
+A combination lock has 4 rollers, each with 8 digits (from 1 to 8). How many different possible combinations are there?
+
+#### Solution
+
+- What type of problem is it?
+	- Order is important
+	- Repetition is allowed
+	- The problem involves sequences
+
+The number of 4-sequences of 8 objects is
+
+>8<sup>4</sup> = 4096
+
+### Example 3
+
+There are 12 teams in afootball tipping competition. To win, you must correctly predict the teams that will be in 1st, 2nd, 3rd and 4th places. How many different ways are there of filling the first four places?
+
+#### Solution
+
+- What type of problem is it?
+	- Order is important
+	- Repetition is not allowed
+	- The problem involves permutations
+
+The number of 4-permutations of 12 objects is
+
+><sup>12</sup>P<sub>4</sub> = 12! / (12 - 4)!  
+= 12! / 8!  
+= 11880
+
+```
+12! = 12 * 11 * 10 * 9 * 8 * 7 * 6 * 5 * 4 * 3 * 2 * 1
+12! = 479001600
+
+8! = 8 * 7 * 6 * 5 * 4 * 3 * 2 * 1
+8! = 40320
+
+12! / 8!
+= 479001600 / 40320
+= 11880
+```
+
+### Example 4
+
+Five committee members are to be seated in 5 chairs at a table on a platform facing an audience of members. How many different seating arrangements are there?
+
+#### Solution
+
+- What type of problem is it?
+	- Order is important
+	- Repetition is not allowed
+	- The problem involves permutations
+
+The number of 5-permutations of 5 obects is
+
+><sup>5</sup>P<sub>5</sub> = 5!  
+= 1 * 2 * 3 * 4 * 5  
+= 120
+
+### Example 5
+
+How many 4-digit hexadecimal numbers are there from 0000 to FFFF?
+
+#### Solution
+
+- What type of problem is it?
+	- Order is important
+	- Repetition is allowed
+	- The problem involves sequences
+
+The number of 4-sequences of 16 objects is
+
+>16<sup>4</sup> = 65536
+
+### Example 6
+
+A student must choose to enrol in any three units from a list of eight
+
+#### Solution
+
+- What type of problem is it?
+	- Order is not important
+	- Repetition is not allowed
+	- The problem involves subsets
+
+The number of 3-subsets of 8 objects is
+
+><sup>8</sup>C<sub>3</sub> = 8! / (3! * (8 - 3)!)  
+= 8! / (3! * 5!)  
+= 6 * 7 * 8 / 1 * 2 * 3  
+= 2 * 7 * 8  
+= 56
+
+```
+8! = 8 * 7 * 6 * 4 * 3 * 2 * 1 = 40320
+3! = 3 * 2 * 1 = 6
+5! = 5 * 4 * 3 * 2 * 1 = 120
+
+3! * 5! 
+= 6 * 120
+= 720
+
+8! / (3! * 5!)
+= 40320 / 720
+= 56
+```
+
+## Including addition and de Morgan's law
+
+The following example involves sequences and the addition principle, and also one of de Morgan's laws
+
+### Example 7
+
+Consider the set *S* of 3-digit numbers from 100 to 999.
+
+**1:** How many of the numbers begin with 2?  
+**2:** How many of the numbers end with 5?  
+**3:** How many of the numbers begin with 2 and end with 5?  
+**4:** How many of the numbers begin with 2 or end with 5, or both?  
+**5:** How many of the numbers begin with 2 or end with 5, but not both?  
+**6:** How many of the numbers neither begin with 2 nor end with 5?
+
+#### Solution
+
+- To simplify the discussion: 
+	- *T* denotes the set of elements of *S* that begin with 2
+	- *F* denotes the set of elements of *S* that end with 5
+
+##### 1: How many of the numbers begin with 2?
+
+The members of *T* are 200, 201, ..., 299
+
+>n(T) = 100
+
+Or again, we could say that the first digit is 2, and there are 10 choices for each of the 2nd and 3rd digits. So using the multiplication principle:
+
+>n(T) = 10 * 10  
+= 100
+
+##### 2: How many of the numbers end with 5?
+
+The members of *F* are 105, 115, ..., 195 (obviously there are 10 of these) and then 205, 215, ..., 295, and so on until we get to 905, 915, ..., 995. So there are 9 * 10 altogether, therefore: n(F) = 90.
+
+Alternatively, the last digit is fixed, and there are 9 choices for the first digit and 10 choices for the second digit. So by the multiplication principle there are 90 possibilities, so:
+
+>n(F) = 90
+
+##### 3: How many of the numbers begin with 2 and end with 5?
+
+The members of T ∩ F are 205, 215, ..., 295, therefore: n(T∩F) = 10.
+
+Alternatively, since the 1st and 3rd digits are fixed, the only choice is for the 2nd digit, and there are 10 possibilities, so:
+
+>n(T ∩ F) = 10
+
+##### 4: How many of the numbers begin with 2 or end with 5, or both?
+
+Using the addition principle:
+
+>n(T ∪ F) = n(T) + n(F) – n(T ∩ F) = 100 + 90 – 10 = 180
+
+##### 5: How many of the numbers begin with 2 or end with 5, but not both?
+
+From a Venn diagram, if necessary
+
+>n(T ∩ F') = 100 – 10 = 90  
+and n(T'∩F) = 90 – 10 = 80  
+
+So 
+
+>n((T ∩ F') ∪ (T' ∩ F))  
+= 90 + 80  
+= 170
+
+![venn](http://i.imgur.com/qQZxGq0.png)
+
+##### 6: How many of the numbers neither begin with 2 nor end with 5?
+
+T' ∩ F' is the same as (T ∪ F)' using de Morgan's law.
+
+Now n(S) = 900, and n(T∪F) = 180,
+
+So:
+
+>n(T' ∩ F')  
+= 900 – 180  
+= 720
