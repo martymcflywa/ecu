@@ -664,3 +664,279 @@ Consider the set of whole numbers from 1 - 100
 ### 5: How many of the numbers are neither multiples of 5 nor multiples of 8?
 
 >n(F' ∪ E') = S - (n(F ∩ E') + n(F' ∩ E)) = 100 - 30 = 70
+
+## Question 15
+
+Consider a 100-page book with pages numbered from 1 to 100
+
+- Z denotes the set of pages that contain a 0
+- E denotes the set of pages that contain an 8
+
+### 1: On how many pages would the page number contain a 0?
+
+>n(Z) = 10
+
+### 2: How many times would the digit 0 be printed?
+
+11
+
+### 3: On how many pages would the page number contain an 8?
+
+>n(E) = 19
+
+### 4: How many times would the digit 8 be printed?
+
+20
+
+## Question 16
+
+How many 8-bit binary numbers are there? From 0000 0000 to 1111 1111
+
+8 sequences of 2 objects.
+
+```
+2^8 = 256
+```
+
+## Question 17
+
+Suppose an assembly langauge uses o-codes with 3 letters such as LDA, ADA, DEB, INX etc. If all 26 letters of the alphabet are used, how many different op-codes can be represented.
+
+3 sequences of 26 objects.
+
+```
+26^3 = 17576
+```
+
+## Question 18
+
+A salesperson has to visit 8 different towns exactly once. In how many ways can this be done? Assume that each town is connected directly to every other town.
+
+```
+Because there is only one permutation of 8 objects...
+8! = 8 * 7 * 6 * 5 * 4 * 3 * 2 * 1
+= 40320
+```
+
+## Question 19
+
+Numbers are to be formed from the digits 1, 2, 3 and 4, and repititions are not permitted.
+
+### 1: How many possible 3-digit numbers are there?
+
+4 permutations of 3 objects.
+
+```
+4! = 4 * 3 * 2 * 1
+= 24
+```
+
+### 2: How many possible even 3-digit numbers are there?
+
+Only numbers ending with 2 or 4 are even.  
+The first 2 digits can be permutations, the last digit is fixed.
+
+```
+4 objects minus 1 because the last digit is fixed
+
+Numbers ending with 2
+3! = 3 * 2 * 1
+= 6
+
+Numbers ending with 4
+3! = 3 * 2 * 1
+= 6
+
+6 + 6
+= 12
+```
+
+### 3: How many possible 3-digit numbers are there that are not greater than 200?
+
+First digit has to be 1 to be less than 200.  
+The first digit is fixed, the last two digits can be permutations.
+
+```
+4 objects minus 1 because the first digit is fixed
+
+Numbers under 200
+3! = 3 * 2 * 1
+= 6
+```
+
+### 4: How many possible 3-digit numbers are there that are not greater than 400?
+
+The first digit can only either 1, 2 or 3
+
+```
+1 as first digit
+3! = 3 * 2 * 1
+= 6
+
+2 as first digit
+3! = 3 * 2 * 1
+= 6
+
+3 as first digit
+3! = 3 * 2 * 1
+= 6
+
+6 + 6 + 6 = 18
+```
+
+## Question 20
+
+Repeat Question 19 assuming repetitions are permitted.
+
+### 1: How many possible 3-digit numbers are there?
+
+3 digit number, 4 possible numbers for each digit.
+
+```
+4^3 = 64
+```
+
+### 2: How many possible even 3-digit numbers are there?
+
+Only numbers ending with 2 or 4 are even.
+
+```
+Numbers ending with 2
+4^2 = 16
+
+Numbers ending with 4
+4^2 = 16
+
+16 + 16 = 32
+```
+
+### 3: How many possible 3-digit numbers are there that are not greater than 200?
+
+Only numbers beginning with 1 are less than 200.
+
+```
+Numbers beginning with 1
+4^2 = 16
+```
+
+### 4: How many possible 3-digit numbers are there that are not greater than 400?
+
+Only numbers beginning with 1, 2 or 3 are less than 400.
+
+```
+Numbers beginning with 1
+4^2 = 16
+
+Numbers beginning with 2
+4^2 = 16
+
+Numbers beginning with 3
+4^2 = 16
+
+16 + 16 + 16 = 48
+```
+
+## Question 21
+
+How many permutations are there of the letters DYNAMO?
+
+```
+P(6, 4) 
+= 6! / (6 - 4)! 
+= 6! / 2! 
+= 720 / 2
+= 360
+```
+
+## Question 22
+
+There are 16 teams in a competition. At the end of the season, how many different arrangements could there be for the top 6?
+
+```
+P(16, 4)
+= 16! / (16 - 6)!
+= 16! / 10!
+= 20922789888000 / 3628800
+= 5765760
+```
+
+## Question 23
+
+How many permutations are there of the letters in the word ORANGE?
+
+```
+6! = 720
+```
+
+## Question 24
+
+How many 5-subsets are there of {a, b, c, d, e, f}?
+
+```
+P(6, 5)
+= 6! / 5! * (6 - 5)!
+= 6! / 5!
+= 720 / 120
+= 6
+```
+
+## Question 25
+
+In a lottery, a player must select 6 numbers from 36. The winning draw is made by a mechanical selection of 6 marbles from a barrel of 36 marbles, numbered 1 to 36. If the player's selection matches the draw in any order, s/he wins. How many possible selections can a player make?
+
+```
+P(36, 6)
+= 36! / 6! * (36 - 6)!
+= 36! / 6! * 30!
+
+In calculator:
+36! / (6! * 30!) = 1947792
+
+Do the factorials as they come, not after any operations,
+otherwise answer will be wrong.
+```
+
+## Question 26
+
+A and B are points on opposite corners of the grid as shown:
+
+![grid q26](http://i.imgur.com/hs4QQCO.png)
+
+How many shortest paths aret here from A to B?
+
+Hint: For the shortest path you can only travel North or East. So there must be 6 steps to the East and 4 steps to the North. If you choose which four steps will be to the North, there will be no choice for the 6 steps to the East.
+
+Total squares to travel is 10 = objects 
+Steps North dictates steps East = 4 permutations
+
+```
+P(10, 4)
+= 10! / 4! * (10 - 4)!
+= 10! / 4! * 6!
+= 3628800 / (24 * 720)
+= 21
+```
+
+## Question 27
+
+In a certain programming language, variable names must start with a letter and the subsequent characters may be upper case letters or decimal digits.
+
+### 1: Find the number of possible 2-character variable names
+
+```
+1st character = 26
+2nd character = 36
+
+26 * 36 = 936
+```
+
+### 2: Find the number of possible 3-character variable names
+
+```
+1st character = 26
+2nd character = 36
+3rd character = 36
+
+26 * 36^2 = 33696
+```
+
