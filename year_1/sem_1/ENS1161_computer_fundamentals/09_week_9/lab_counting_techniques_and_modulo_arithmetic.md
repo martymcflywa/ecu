@@ -906,6 +906,8 @@ How many shortest paths aret here from A to B?
 
 Hint: For the shortest path you can only travel North or East. So there must be 6 steps to the East and 4 steps to the North. If you choose which four steps will be to the North, there will be no choice for the 6 steps to the East.
 
+Problem is permutation.
+
 Total squares to travel is 10 = objects 
 Steps North dictates steps East = 4 permutations
 
@@ -920,6 +922,8 @@ P(10, 4)
 ## Question 27
 
 In a certain programming language, variable names must start with a letter and the subsequent characters may be upper case letters or decimal digits.
+
+Problem is sequence.
 
 ### 1: Find the number of possible 2-character variable names
 
@@ -940,3 +944,122 @@ In a certain programming language, variable names must start with a letter and t
 26 * 36^2 = 33696
 ```
 
+## Question 28
+
+A student must answer 3 out of 5 questions in a test.
+
+Problem is subset.
+
+### 1: How many choices does she have?
+
+```
+P(5, 3)
+= 5! / 3! * (5 - 3)!
+= 5! / 3! * 2!
+= 120 / 6 * 2
+= 120 / 12
+= 10
+```
+
+### 2: How many choices does she have if she must answer the first question and two of the remaining questions?
+
+```
+P(4, 2)
+= 4! / 2! * (4 - 2)!
+= 4! / 2! * 2!
+= 24 / 2 * 2
+= 24 / 4
+= 6
+```
+
+### 3: How many choices does she have if she must answer one of the first two questions and two of the remaining questions?
+
+```
+2 choices * 3 choices
+= 6
+```
+
+## Question 29
+
+Passwords for a certain computer system are of two types, restricted and unrestricted. The first character of a restricted password is R, and the first character of an unrestricted password is U. If restricted, the password has 3 more characters, all alphabetic. If unrestricted, the password has 4 more characters, which are decimal digits. How many possible passwords are there?
+
+Problem is subset.
+
+```
+// restricted passwords
+26^3 = 17576
+
+// unrestricted
+10^4 = 10000
+
+17576 + 10000 = 27576
+```
+
+## Question 30
+
+How many 8-bit binary numbers begin with 001
+
+Problem is sequence.
+
+```
+2 objects, 5 sequences
+2^5 = 32
+```
+
+## Question 31
+
+How many 4-digit numbers from 1000 to 4999 are multiples of 5? Multiples of 5 end in 5 or 0.
+
+Problem is sequence.
+
+```
+1st digit = 4 choices
+2nd digit = 10 choices
+3rd digit = 10 choices
+4th digit = 2
+
+4 * 10 * 10 * 2 = 800
+```
+
+## Question 32
+
+Find the number of 7-permutations of HEXAGON that start with A, or end with NX, or start with A and end with NX.
+
+Problem is permutation.
+
+7 objects.
+
+```
+// starting with A
+6! = 720
+
+// ending with NX
+5! = 120
+
+// start with A and end with NX
+!4 = 24
+
+720 + 120 - 24 = 816
+Minus 24 else counting them twice!
+```
+
+## Question 33
+
+Find the number of 16-bit binary strings that start with 0101, or end with 001110, or start with 0101 and end with 001110.
+
+```
+// start with 0101
+16 - 4 = 12
+2^12 = 4096
+
+// end with 001110
+16 - 6 = 10
+2^10 = 1024
+
+// start with 0101 and end with 001110
+16 - 10 = 6
+2^6 = 64
+
+4096 + 1024 - 64 = 5056
+Minus 64 else counting them twice!
+```

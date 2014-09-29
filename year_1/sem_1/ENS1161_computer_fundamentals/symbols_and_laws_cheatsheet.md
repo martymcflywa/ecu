@@ -713,20 +713,406 @@ Invalid codes are base<sub>2</sub> equivalents for A - F.
 5886<sub>16</sub> + 4938<sub>16</sub>
 
 ```
-5886 + 4938
-6 + 8 					= E
-8 + 3 					= B
-8 + 9 		= 17 - 16 	= 1 carry 1
-1 + 5 + 4 				= A
-
-//converting hex as BCD here
-
-E + 6 		= 20 - 16 	= 4 carry 1
-1 + B + 6 	= 18 - 16 	= 2 carry 1
-1 + 1 + 6 				= 8
-10 + 6 		= 16 - 16 	= 0 carry 1
-1 + 0 					= 1
+1111  // carry
+ 5886
+ 4938 +
+-----
+1A2CE // no carry when adding 6 or 0
+ 6666
+-----
+10824
 ```
 
 = 10824<sub>16</sub>
 
+To check work, just add the two numbers normally as decimal, should also == to answer.
+
+# Signed and unsigned integers
+
+## Range
+
+### Unsigned
+
+8-bit unsigned binary has range between:
+
+0000 0000 to 1111 1111  
+or  
+0<sub>10</sub> - 255<sub>10</sub>
+
+16-bit unsigned binary has range between:
+
+0000 0000 0000 0000 to 1111 1111 1111 1111  
+or  
+0<sub>10</sub> to 65535<sub>10</sub>
+
+### Signed
+
+8-bit signed integers have a negative number range and a positive number range. The MSB determines if integer is positive or negative.
+
+MSB 0 = positive number  
+MSB 1 = negative number
+
+0000 0000 to 0111 1111 = positive number  
+1000 0000 to 1111 1111 = negative number
+
+Range is between -128<sub>10</sub> to +127<sub>10</sub>
+
+## Converting negative integer to 2's complement
+
+1. Drop minus sign
+2. Convert decimal to 8-bit binary
+3. Find 1's complement
+4. Add 1.
+
+```
+ -48
+= 48            // dropped minus sign
+= 60_8          // converted to b8
+= 0011 0000     // converted to b2
+= 1100 0000 + 1 // 1's complement + 1
+= 1100 0001     // result in 2's complement form
+```
+
+## Convert 2's complement to integers
+
+### Positive number (starting with 0)
+
+Just use normal method to convert to decimal
+
+### Negative number (starting with 1)
+
+1. Find 1's complement
+2. Add 1
+3. Convert result to binary
+3. Add minus sign
+
+```
+  1101 0111
+= 0010 1000 + 1 // 1's complement + 1
+= 0010 1001
+= 29_16         // convert b2 to b16
+= 41_10         // convert b16 to b10
+= -41_10        // add minus sign
+```
+
+## C, N and V flags
+
+Flag positions:
+
+![cnv positions](http://i.imgur.com/JbMWPqv.png)
+
+### C flag
+
+C Flag only used for unsigned integers.
+
+| Flag | Byte | Description                        |
+|:----:|:----:|------------------------------------|
+| C    | 0    | No overflow, output remains 8-bit  |
+| C    | 1    | Overflow, extend output to 16-bit  |
+
+### N and V flags
+
+N and V flags only used for signed integers.
+
+| Flag | Byte | Description                        |
+|:----:|:----:|:-----------------------------------|
+| N    | 0    | Not negative                       |
+| N    | 1    | Is negative                        |
+| V    | 0    | N = true, output remains 8-bit     |
+| V    | 1    | N = false, extend output to 16-bit |
+
+As seen in the flag positions above, the V flag XOR's the carry in and the carry out.
+
+Use the following table to determine the V flag value:
+
+| Carry out | Carry in | Flag | Result |
+|:---------:|:--------:|:----:|--------|
+| 0         | 0        | V    | 0      |
+| 0         | 1        | V    | 1      |
+| 1         | 0        | V    | 1      |
+| 1         | 1        | V    | 0      |
+
+# Modulo arithmetic
+
+## Calculate modulo (least residue)
+
+`a - b * c = x`
+
+Find 1583 mod 7
+
+```
+1583 / 7 = 226 + remainder
+1583 - 7 * 226
+= 1
+```
+
+## Solving congruences
+
+### Examples
+
+#### Is n ≡ x (mod y) true or false
+
+During the calculation, we are looking for mod 0 for true
+
+##### Is 22 ≡ 40 (mod 9) true or false
+
+```
+40 - 22 = 18
+18 mod 9 = 0
+True
+```
+
+##### Is 34 ≡ 44 (mod 6) true or false
+
+```
+44 - 34 = 10
+10 mod 6 = 4
+False
+```
+
+#### Involving addition
+
+Formula I found, only works for addition.
+
+>x + a ≡ b (mod c)  
+(c + b - a) (mod c)  
+= x
+
+##### x + 7 ≡ 4 (mod 9)
+
+```
+9 + 4 - 7 = 6
+6 (mod 9) = 6
+
+x = 6
+```
+
+#### Involving multiplication
+
+Just go through all the possible answers.  
+Number of possible answers will be (mod x) - 1.
+
+##### 5x ≡ 3 (mod 11)
+
+```
+x = 0: 0 mod 11 = 0
+x = 1: 5 mod 11 = 5
+x = 2: 10 mod 11 = 10
+x = 3: 15 mod 11 = 4
+x = 4: 20 mod 11 = 9
+x = 5: 25 mod 11 = 3 ** answer
+x = 6: 30 mod 11 = 8
+x = 7: 35 mod 11 = 2
+x = 8: 40 mod 11 = 7
+x = 9: 45 mod 11 = 1
+x = 10: 50 mod 11 = 6
+
+x = 5
+```
+
+#### Involving powers
+
+Just go through all the possible answers.  
+Number of possible answers will be (mod x) - 1.  
+There could be multiple answers here.
+
+##### x<sup>2</sup> ≡ 5 (mod 11)
+
+```
+x = 0: 0 mod 11 = 0
+x = 1: 1 mod 11 = 1
+x = 2: 4 mod 11 = 4
+x = 3: 9 mod 11 = 9
+x = 4: 16 mod 11 = 5 ** answer
+x = 5: 25 mod 11 = 3
+x = 6: 36 mod 11 = 3
+x = 7: 49 mod 11 = 5 ** answer
+x = 8: 64 mod 11 = 9
+x = 9: 81 mod 11 = 4
+x = 10: 100 mod 11 = 1
+
+x = 4 and 7
+```
+
+## Generating pseudo-random numbers
+
+### Example
+
+Start with the seed x0 = 47 and generate 10 pseudo-random numbers using the formula.
+
+>x<sub>n</sub> = 47 x<sub>-1</sub> (mod 100)
+
+```
+ x_1 ≡ 47 x_0 ≡ 47 * 47 ≡ 2209 ≡ 9 (mod 100)
+ x_2 ≡ 47 x_1 ≡ 47 * 2209 ≡ 103823 ≡ 23 (mod 100)
+ x_3 ≡ 47 x_2 ≡ 47 * 103823 ≡ 4879681 ≡ 81 (mod 100)
+ x_4 ≡ 47 x_3 ≡ 47 * 4879681 ≡ 229345007 ≡ 7 (mod 100)
+ x_5 ≡ 47 x_4 ≡ 47 * 229345007 ≡ 10779215329 ≡ 29 (mod 100)
+ x_6 ≡ 47 x_5 ≡ 47 * 10779215329 ≡ 506623120463 ≡ 63 (mod 100)
+ x_7 ≡ 47 x_6 ≡ 47 * 506623120463 ≡ 23811286661761 ≡ 61 (mod 100)
+ x_8 ≡ 47 x_7 ≡ 47 * 23811286661761 ≡ 1119130473102767 ≡ 67 (mod 100)
+ x_9 ≡ 47 x_8 ≡ 47 * 1119130473102767 ≡ 52599132235830049 ≡ 49 (mod 100)
+x_10 ≡ 47 x_9 ≡ 47 * 52599132235830049 ≡ 2472159215084012303 ≡ 3 (mod 100)
+```
+
+## Addition principle
+
+To find the union `n(A ∪ B)`:
+
+>n(A ∪ B) = n(A) + n(B) – n(A ∩ B)
+
+Minus the intersect, otherwise will be counting it twice.
+
+## Multiplication principle
+
+The number of ways a series of tasks can be done * the number of ways a series of choices can be made.
+
+>n<sub>1</sub> * n<sub>2</sub> * n<sub>3</sub> ...
+
+### Example
+
+Suppose there are two roads from town A to town B and three roads from town B to town C, how many different ways to travel from town A to town C?
+
+```
+2 * 3
+= 6
+```
+
+## Four types of problems
+
+| Type         | Order important | Repetition allowed |
+|--------------|:---------------:|:------------------:|
+| Sequences    | Yes             | Yes                |
+| Permutations | Yes             | No                 |
+| Subsets      | No              | No                 |
+| Multisets    | No              | Yes                |
+
+### Sequences
+
+Order is important.  
+Repitition is allowed.
+
+#### Formula
+
+*n* = number of objects  
+*r* = number of sequences
+
+>n<sup>r</sup>
+
+#### Example
+
+>How many 3-digit decimal numbers are there, that is from 000 to 999?
+
+10 objects, 3 sequences.
+
+```
+10^3 = 1000
+```
+
+### Permutations
+
+Order is important.  
+Repetition is not allowed.
+
+#### Formula
+
+*n* = number of objects  
+*r* = number of permutations
+
+##### Multiple permutations
+
+>P(n, r)  
+= <sup>n</sup>P<sub>r</sub>  
+= n! / (n - r)!
+
+##### Single permutation
+
+>P(r, r)  
+= <sup>r</sup>P<sub>r</sub>  
+= r!
+
+#### Example: Multiple permutations
+
+There are 16 teams in a competition. At the end of the season, how many different arrangements could there be for the top 6?
+
+```
+P(16, 4)
+= 16! / (16 - 6)!
+= 16! / 10!
+= 20922789888000 / 3628800
+= 5765760
+```
+
+#### Example: Single permutation
+
+A salesperson has to visit 8 different towns exactly once. In how many ways can this be done? Assume that each town is connected directly to every other town.
+
+```
+8! = 8 * 7 * 6 * 5 * 4 * 3 * 2 * 1
+= 40320
+```
+
+### Subsets
+
+Order is not important.  
+Repetition is not allowed.  
+
+#### Formula
+
+*n* = number of objects  
+*r* = number of subsets
+
+><sup>n</sup>C<sub>r</sub>  
+= C(n, r)  
+= n! / (r! * (n - r)!)
+
+#### Example
+
+How many 5-subsets are there of {a, b, c, d, e, f}?
+
+Objects = 6  
+Subsets = 5
+
+```
+C(6, 5)  
+= 6! / (5! * (6 - 5)!)
+= 6! / (5! * 1!)
+= 6! / 5!
+= 720 / 120
+= 6
+```
+
+## Factorials
+
+**n!**
+
+When solving problems above, do the factorials as they come before any operations.
+
+For example, 5! * 2!.
+
+Solve 5! first, then 2!. Then multiply the result.
+
+```
+5! * 2!
+
+5! = 120
+2! = 4
+
+120 * 4 = 480
+```
+
+If multiplication before factorials occured first, the answer would be wrong:
+
+```
+5! * 2!
+= 10!
+= 3628800 // way off!
+```
+
+### Example
+
+n = 5
+
+```
+5! = 5 * 4 * 3 * 2 * 1
+```
