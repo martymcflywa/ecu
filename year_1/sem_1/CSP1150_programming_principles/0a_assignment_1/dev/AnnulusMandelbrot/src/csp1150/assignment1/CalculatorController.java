@@ -65,13 +65,7 @@ public class CalculatorController {
 				
 				// set radius to the model
 				theModel.setRadius(outRadius, inRadius);
-				
-				// call the model's approximate calculation method
-				theModel.calcApprox(outRadius, inRadius);
-				
-				// call the model's monte carlo calculation method
-				theModel.calcMonte(outRadius, inRadius);
-				
+
 				// get the calculated area approximate value from the model
 				theView.setAreaCalc(theModel.getAreaCalc());
 				

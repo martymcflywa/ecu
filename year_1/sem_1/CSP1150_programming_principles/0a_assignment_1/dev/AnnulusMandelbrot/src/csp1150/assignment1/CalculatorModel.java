@@ -12,18 +12,24 @@ package csp1150.assignment1;
  */
 public class CalculatorModel {
 
-	// declare grid size, samples
+	// declare constant grid size & samples
 	private final int GRIDSIZE = 400;
 	private final int SAMPLES = 100;
 	
 	// declare 2d array
 	private double[][] hits = new double[GRIDSIZE][GRIDSIZE];
 	
-	// save user input here
+	// these variables hold user input values
 	private double outRadius;
 	private double inRadius;
 	
-	// save calculated area here
+	// these variables hold the max-min values
+	private double maxX;
+	private double minX;
+	private double maxY;
+	private double minY;
+	
+	// these variables hold the calculated values
 	private double areaApprox;
 	private double areaMonte;
 	
@@ -33,8 +39,22 @@ public class CalculatorModel {
 	 * @param double r2 - The inner radius.
 	 */
 	public void setRadius(double r1, double r2) {
+		
+		// set incoming radius values to their respective variables
 		this.outRadius = r1;
 		this.inRadius = r2;
+		
+		// set incoming radius values to their respective max-min variables
+		this.maxX = r1;
+		this.minX = -r1;
+		this.maxY = r1;
+		this.minY = -r1;
+		
+		// do Area calculation
+		calcApprox(this.outRadius, this.inRadius);
+		
+		// do Monte calculation
+		calcMonte(this.outRadius, this.inRadius);
 	}
 	
 	/**
@@ -64,10 +84,10 @@ public class CalculatorModel {
 		int counter = 0;
 		
 		// declare grid max/mins
-		double maxX = r1;
-		double minX = -r1;
-		double maxY = r1;
-		double minY = -r1;
+//		double maxX = r1;
+//		double minX = -r1;
+//		double maxY = r1;
+//		double minY = -r1;
 		
 		// iterate through columns
 		for(int col = 0; col < this.GRIDSIZE - 1; col++) {
@@ -89,7 +109,7 @@ public class CalculatorModel {
 		}
 		
 		// set calculated area to areaApprox
-		this.areaApprox = (maxX - minX) * (maxY - minY) * counter / (this.GRIDSIZE * this.GRIDSIZE);
+		this.areaApprox = (maxX - minX) * (maxY - minY) * counter / Math.pow(this.GRIDSIZE, 2); //(this.GRIDSIZE * this.GRIDSIZE);
 	}
 	
 	// monte carlo estimation method
@@ -102,10 +122,10 @@ public class CalculatorModel {
 		double arraySum = 0.0;
 		
 		// declare grid max/mins
-		double maxX = r1;
-		double minX = -r1;
-		double maxY = r1;
-		double minY = -r1;
+//		double maxX = r1;
+//		double minX = -r1;
+//		double maxY = r1;
+//		double minY = -r1;
 		
 		// iterate through columns
 		for(int col = 0; col < this.GRIDSIZE - 1; col++) {
@@ -136,7 +156,7 @@ public class CalculatorModel {
 		counter = counter + arraySum;
 		
 		// calculate area
-		this.areaMonte = (maxX - minX) * (maxY - minY) * counter / (this.GRIDSIZE * this.GRIDSIZE);
+		this.areaMonte = (maxX - minX) * (maxY - minY) * counter / Math.pow(this.GRIDSIZE, 2); //(this.GRIDSIZE * this.GRIDSIZE);
 	}
 	
 	/**
