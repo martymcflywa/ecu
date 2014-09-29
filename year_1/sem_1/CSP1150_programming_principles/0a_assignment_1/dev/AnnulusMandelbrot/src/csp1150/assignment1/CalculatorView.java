@@ -169,7 +169,7 @@ public class CalculatorView extends JFrame {
 		this.greyScaleAnnulus = greyScaleAnnulus;
 		initialize();
 		createLeftElement();
-		createRightElement();
+		//createRightElement();
 	}
 	
 	/**
@@ -210,35 +210,8 @@ public class CalculatorView extends JFrame {
 	 */
 	public void showGreyScaleAnnulus(GreyscaleHitViewerPanel greyScaleAnnulus) {
 		
-		// setting up the parent panel for greyscale annulus image
-		panelAnnulusGraphic = new JPanel();
-		
-		// create gridbag constraints for parent panel
-		gbc_panelAnnulusGraphic = new GridBagConstraints();
-		
-		// define gridbag constraints parameters for parent panel
-		gbc_panelAnnulusGraphic.insets = new Insets(0, 0, 5, 0);
-		gbc_panelAnnulusGraphic.fill = GridBagConstraints.BOTH;
-		gbc_panelAnnulusGraphic.gridx = 0;
-		gbc_panelAnnulusGraphic.gridy = 0;
-		
-		// add parent panel and gridbag constraints to container panel
-		panelParentRight.add(panelAnnulusGraphic, gbc_panelAnnulusGraphic);
-		
-		// create gridbag layout
-		gbl_panelAnnulusGraphic = new GridBagLayout();
-		gbl_panelAnnulusGraphic.columnWidths = new int[]{0};
-		gbl_panelAnnulusGraphic.rowHeights = new int[]{0};
-		gbl_panelAnnulusGraphic.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panelAnnulusGraphic.rowWeights = new double[]{1.0, Double.MIN_VALUE};
-		
-		// set layout to parent panel for greyscale annulus image
-		panelAnnulusGraphic.setLayout(gbl_panelAnnulusGraphic);
-		
-		// create gridbag constraints
-		gbc_greyScaleAnnulus = new GridBagConstraints();
-		gbc_greyScaleAnnulus.gridx = 0;
-		gbc_greyScaleAnnulus.gridy = 0;
+		// create the panels for the right side
+		createRightElement();
 
 		// if image exists,
 		if(imageExists) {
@@ -522,6 +495,36 @@ public class CalculatorView extends JFrame {
 		gbc_panelParentRight.gridx = 1;
 		gbc_panelParentRight.gridy = 0;
 		getContentPane().add(panelParentRight, gbc_panelParentRight);
+		
+		// setting up the parent panel for greyscale annulus image
+		panelAnnulusGraphic = new JPanel();
+		
+		// create gridbag constraints for parent panel
+		gbc_panelAnnulusGraphic = new GridBagConstraints();
+		
+		// define gridbag constraints parameters for parent panel
+		gbc_panelAnnulusGraphic.insets = new Insets(0, 0, 5, 0);
+		gbc_panelAnnulusGraphic.fill = GridBagConstraints.BOTH;
+		gbc_panelAnnulusGraphic.gridx = 0;
+		gbc_panelAnnulusGraphic.gridy = 0;
+		
+		// add parent panel and gridbag constraints to container panel
+		panelParentRight.add(panelAnnulusGraphic, gbc_panelAnnulusGraphic);
+		
+		// create gridbag layout
+		gbl_panelAnnulusGraphic = new GridBagLayout();
+		gbl_panelAnnulusGraphic.columnWidths = new int[]{0};
+		gbl_panelAnnulusGraphic.rowHeights = new int[]{0};
+		gbl_panelAnnulusGraphic.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panelAnnulusGraphic.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		
+		// set layout to parent panel for greyscale annulus image
+		panelAnnulusGraphic.setLayout(gbl_panelAnnulusGraphic);
+		
+		// create gridbag constraints
+		gbc_greyScaleAnnulus = new GridBagConstraints();
+		gbc_greyScaleAnnulus.gridx = 0;
+		gbc_greyScaleAnnulus.gridy = 0;
 	}
 	
 	/**

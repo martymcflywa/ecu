@@ -51,7 +51,7 @@ public class CalculatorController {
 	
 	/**
 	 * This class defines exception handling
-	 * when the calculate button is pressed
+	 * when the calculate button is pressed.
 	 * 
 	 * @author Martin Ponce
 	 */
