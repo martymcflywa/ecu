@@ -9,8 +9,8 @@ import view.*;
  * an annulus and mandelbrot.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 3.1.0
- * @since 20140922
+ * @version 3.2.0
+ * @since 20140929
  */
 public class CalculatorMVC {
 

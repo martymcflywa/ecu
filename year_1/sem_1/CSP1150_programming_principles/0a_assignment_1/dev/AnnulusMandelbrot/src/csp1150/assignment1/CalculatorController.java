@@ -14,8 +14,8 @@ import view.*;
  * handles exceptions.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 4.0.0
- * @since 20140922
+ * @version 3.2.0
+ * @since 20140929
  */
 public class CalculatorController {
 
