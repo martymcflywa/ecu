@@ -12,12 +12,16 @@ import javax.swing.JPanel;
  *
  * @author phi
  */
+@SuppressWarnings("serial")
 public class GreyscaleHitViewerPanel extends JPanel implements HitViewerInterface
 {
     /**
      * image to display
      */
     private BufferedImage image;
+    
+    private Graphics2D g2;
+    
     /**
      * width of the image (and the array)
      */
@@ -42,7 +46,8 @@ public class GreyscaleHitViewerPanel extends JPanel implements HitViewerInterfac
         image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
         // make it all white to start with
-        Graphics2D g2 = image.createGraphics();
+        //Graphics2D g2 = image.createGraphics();
+        g2 = image.createGraphics();
         g2.setColor(Color.WHITE);
         g2.fillRect(0, 0, width, height);
     }
@@ -109,8 +114,18 @@ public class GreyscaleHitViewerPanel extends JPanel implements HitViewerInterfac
         g.drawImage(image, 0, 0, null);
     }
     
-    public BufferedImage getImage()
-    {
+    /**
+     * This method returns the image.
+     * @return image.
+     */
+    public BufferedImage getImage() {
     	return image;
+    }
+    
+    public void clearImage() {
+    	g2 = image.createGraphics();
+        g2.setColor(Color.WHITE);
+        g2.fillRect(0, 0, width, height);
+    	repaint();
     }
 }
