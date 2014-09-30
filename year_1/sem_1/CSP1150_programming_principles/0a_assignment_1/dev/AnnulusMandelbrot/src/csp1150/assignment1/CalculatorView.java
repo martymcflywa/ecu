@@ -33,41 +33,72 @@ public class CalculatorView extends JFrame {
 	private static boolean imageExists = false;
 	
 	/**
-	 * Defining labels, fields and buttons.
+	 * Defining Annulus Calculator user controls.
 	 */
 	
 	// label: annulus calculator instructions
 	private JLabel labelAnnulusInstructions;
 	
-	// label: outer radius user input title
+	// label: annulus outer radius user input title
 	private JLabel labelOutRadius;
 	
-	// text field: outer radius user input field
+	// text field: annulus outer radius user input field
 	private JTextField fieldOutRadius = new JTextField();
 	
-	// label: inner radius user input title
+	// label: annulus inner radius user input title
 	private JLabel labelInRadius;
 	
-	// text field: inner radius user input field
+	// text field: annulus inner radius user input field
 	private JTextField fieldInRadius = new JTextField();
 	
-	// button: calculate
+	// button: annulus calculate
 	private JButton buttonCalcAnnulus = new JButton("Calculate");
 	
-	// label: approx area result title
-	private JLabel labelApproxArea;
+	// label: annulus approx area result title
+	private JLabel labelAnnulusApproxArea;
 	
-	// label: approx area result output
-	private JLabel approxAreaResult = new JLabel("---");
+	// label: annulus approx area result output
+	private JLabel resultAnnulusApproxArea = new JLabel("---");
 	
-	// label: monte area result title
-	private JLabel labelMonteArea;
+	// label: annulus monte area result title
+	private JLabel labelAnnulusMonteArea;
 	
-	// label: monte area result output
-	private JLabel monteAreaResult = new JLabel("---");
+	// label: annulus monte area result output
+	private JLabel resultAnnulusMonteArea = new JLabel("---");
 		
 	// label: greyscale annulus displays as label
 	private JLabel imageAnnulus;
+	
+	/**
+	 * Defining Mandelbrot Calculator controls.
+	 */
+	
+	// label: mandelbrot instructions part 1
+	private JLabel labelMandInstructA;
+	
+	// label: mandelbrot instructions part 2
+	private JLabel labelMandInstructB;
+	
+	// label: mandelbrot radio button normal view
+	private JRadioButton radioMandNormalView;
+	
+	// label: mandelbrot radio button trippy view
+	private JRadioButton radioMandTrippyView;
+	
+	// button: mandelbrot view image button
+	private JButton buttonMandView;
+	
+	// label: mandelbrot monte area result title
+	private JLabel labelMandMonteArea;
+	
+	// label: mandelbrot monte area result output
+	private JLabel resultMandMonteArea;
+	
+	// label: mandelbrot zoom instruction part 1
+	private JLabel labelMandZoomInstructA;
+	
+	// label: mandelbrot zoom instruction part 2
+	private JLabel labelMandZoomInstructB;
 	
 	/**
 	 * Defining left side panels.
@@ -93,7 +124,7 @@ public class CalculatorView extends JFrame {
 	private JPanel panelAnnulusGraphic;
 	
 	// reference to GreyscaleHitViewerPanel for greyscale annulus
-	private GreyscaleHitViewerPanel greyScaleAnnulus;
+	private GreyscaleHitViewerPanel greyscaleAnnulus;
 	
 	/**
 	 * Defining GridBagLayout and GridBagConstraints
@@ -165,8 +196,8 @@ public class CalculatorView extends JFrame {
 	 * Then createLeftElement and createRightElement
 	 * to create the panels inside the frame.
 	 */
-	CalculatorView(GreyscaleHitViewerPanel greyScaleAnnulus) {
-		this.greyScaleAnnulus = greyScaleAnnulus;
+	CalculatorView(GreyscaleHitViewerPanel greyscaleAnnulus) {
+		this.greyscaleAnnulus = greyscaleAnnulus;
 		initFrame();
 		initLeftPanel();
 	}
@@ -218,12 +249,12 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method creates the layout for greyscale annulus image,
 	 * and adds it to the frame.
-	 * @param greyScaleAnnulus
+	 * @param greyscaleAnnulus
 	 */
-	public void showGreyscaleAnnulus(GreyscaleHitViewerPanel greyScaleAnnulus) {
+	public void showGreyscaleAnnulus(GreyscaleHitViewerPanel greyscaleAnnulus) {
 		
 		// create the panels for the right side
-		createRightElement();
+		initRightPanel();
 
 		// if image exists,
 		if(imageExists) {
@@ -239,7 +270,7 @@ public class CalculatorView extends JFrame {
 		
 		// get the image
 		repaint();
-		BufferedImage image = greyScaleAnnulus.getImage();
+		BufferedImage image = greyscaleAnnulus.getImage();
 		
 		// image will be displayed as JLabel
 		imageAnnulus = new JLabel(new ImageIcon(image));
@@ -439,7 +470,7 @@ public class CalculatorView extends JFrame {
 		borderAnnulusCalculator.add(buttonCalcAnnulus, gbc_buttonCalcAnnulus);
 		
 		// create approximate area result label
-		labelApproxArea = new JLabel("Approximate Area:");
+		labelAnnulusApproxArea = new JLabel("Approximate Area:");
 		
 		// create gridbag constraints parameters for approximate area result label
 		gbc_labelApproxArea = new GridBagConstraints();
@@ -450,7 +481,7 @@ public class CalculatorView extends JFrame {
 		gbc_labelApproxArea.gridy = 4;
 		
 		// add approximate area result label and gridbag constraints to annulus calculator border panel
-		borderAnnulusCalculator.add(labelApproxArea, gbc_labelApproxArea);
+		borderAnnulusCalculator.add(labelAnnulusApproxArea, gbc_labelApproxArea);
 		
 		// create gridbag constraints for approximate area result output
 		gbc_approxAreaResult = new GridBagConstraints();
@@ -462,10 +493,10 @@ public class CalculatorView extends JFrame {
 		gbc_approxAreaResult.gridy = 5;
 		
 		// add approximate area result output and gridbag constraints to annulus calculator border panel
-		borderAnnulusCalculator.add(approxAreaResult, gbc_approxAreaResult);
+		borderAnnulusCalculator.add(resultAnnulusApproxArea, gbc_approxAreaResult);
 		
 		// create monte carlo result label
-		labelMonteArea = new JLabel("Monte Carlo Estimation:");
+		labelAnnulusMonteArea = new JLabel("Monte Carlo Estimation:");
 		
 		// create gridbag constraints for monte carlo result label
 		gbc_labelMonteArea = new GridBagConstraints();
@@ -477,7 +508,7 @@ public class CalculatorView extends JFrame {
 		gbc_labelMonteArea.gridy = 7;
 		
 		// add monte carlo result label and gridbag constraints to annulus calculator border panel
-		borderAnnulusCalculator.add(labelMonteArea, gbc_labelMonteArea);
+		borderAnnulusCalculator.add(labelAnnulusMonteArea, gbc_labelMonteArea);
 		
 		// create gridbag constraints for monte carlo result output
 		gbc_monteAreaResult = new GridBagConstraints();
@@ -490,14 +521,14 @@ public class CalculatorView extends JFrame {
 		gbc_monteAreaResult.gridy = 8;
 		
 		// add monte carlo result output and gridbag constraints to annulus calculator border panel
-		borderAnnulusCalculator.add(monteAreaResult, gbc_monteAreaResult);
+		borderAnnulusCalculator.add(resultAnnulusMonteArea, gbc_monteAreaResult);
 	}
 	
 	/**
 	 * This method creates the right side of the GUI,
 	 * which contains the greyscale images.
 	 */
-	private void createRightElement() {
+	private void initRightPanel() {
 		
 		// create right parent panel, container for graphics
 		gbc_panelParentRight = new GridBagConstraints();
@@ -563,7 +594,7 @@ public class CalculatorView extends JFrame {
 	 * @return double - Area of annulus.
 	 */
 	public double getAreaCalc() {
-		return Double.parseDouble(approxAreaResult.getText());
+		return Double.parseDouble(resultAnnulusApproxArea.getText());
 	}
 	
 	/**
@@ -572,7 +603,7 @@ public class CalculatorView extends JFrame {
 	 * @param double area.
 	 */
 	public void setAreaCalc(double area) {
-		approxAreaResult.setText(Double.toString(area));
+		resultAnnulusApproxArea.setText(Double.toString(area));
 	}
 	
 	/**
@@ -581,7 +612,7 @@ public class CalculatorView extends JFrame {
 	 * @param area
 	 */
 	public void setMonteCalc(double area) {
-		monteAreaResult.setText(Double.toString(area));
+		resultAnnulusMonteArea.setText(Double.toString(area));
 	}
 	
 	/**

@@ -322,13 +322,13 @@ public class CalculatorGUI {
 		gbc_labelMandMonteArea.gridy = 5;
 		borderMandelbrot.add(labelMandMonteArea, gbc_labelMandMonteArea);
 		
-		JLabel label = new JLabel("---");
-		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.gridwidth = 5;
-		gbc_label.insets = new Insets(0, 0, 5, 5);
-		gbc_label.gridx = 0;
-		gbc_label.gridy = 6;
-		borderMandelbrot.add(label, gbc_label);
+		JLabel mandMonteAreaResult = new JLabel("---");
+		GridBagConstraints gbc_mandMonteAreaResult = new GridBagConstraints();
+		gbc_mandMonteAreaResult.gridwidth = 5;
+		gbc_mandMonteAreaResult.insets = new Insets(0, 0, 5, 5);
+		gbc_mandMonteAreaResult.gridx = 0;
+		gbc_mandMonteAreaResult.gridy = 6;
+		borderMandelbrot.add(mandMonteAreaResult, gbc_mandMonteAreaResult);
 		
 		JLabel labelMandZoomInstructA = new JLabel("Left click and drag on mandelbrot image to zoom in,");
 		GridBagConstraints gbc_labelMandZoomInstructA = new GridBagConstraints();
