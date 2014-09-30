@@ -13,6 +13,9 @@ import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JCheckBox;
 
 public class CalculatorGUI {
 
@@ -80,7 +83,7 @@ public class CalculatorGUI {
 		panelParentLeft.add(panelAnnulus, gbc_panelAnnulus);
 		GridBagLayout gbl_panelAnnulus = new GridBagLayout();
 		gbl_panelAnnulus.columnWidths = new int[]{0, 0};
-		gbl_panelAnnulus.rowHeights = new int[]{294, 0};
+		gbl_panelAnnulus.rowHeights = new int[]{391, 0};
 		gbl_panelAnnulus.columnWeights = new double[]{0.0, Double.MIN_VALUE};
 		gbl_panelAnnulus.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panelAnnulus.setLayout(gbl_panelAnnulus);
@@ -96,9 +99,9 @@ public class CalculatorGUI {
 		panelAnnulus.add(borderAnnulus, gbc_borderAnnulus);
 		GridBagLayout gbl_borderAnnulus = new GridBagLayout();
 		gbl_borderAnnulus.columnWidths = new int[]{63, 22, 39, 47, 77, 0};
-		gbl_borderAnnulus.rowHeights = new int[]{44, 20, 23, 31, 14, 1, 1, 1, 0, 0};
+		gbl_borderAnnulus.rowHeights = new int[]{44, 20, 23, 31, 14, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0};
 		gbl_borderAnnulus.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_borderAnnulus.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_borderAnnulus.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		borderAnnulus.setLayout(gbl_borderAnnulus);
 		
 		JLabel labelAnnulusInstructions = new JLabel("Enter the outer and inner radius:");
@@ -113,7 +116,7 @@ public class CalculatorGUI {
 		JLabel labelOutRadius = new JLabel("Outer Radius");
 		GridBagConstraints gbc_labelOutRadius = new GridBagConstraints();
 		gbc_labelOutRadius.anchor = GridBagConstraints.WEST;
-		gbc_labelOutRadius.insets = new Insets(0, 0, 5, 5);
+		gbc_labelOutRadius.insets = new Insets(0, 15, 5, 5);
 		gbc_labelOutRadius.gridx = 0;
 		gbc_labelOutRadius.gridy = 1;
 		borderAnnulus.add(labelOutRadius, gbc_labelOutRadius);
@@ -132,7 +135,7 @@ public class CalculatorGUI {
 		JLabel labelInRadius = new JLabel("Inner Radius");
 		GridBagConstraints gbc_labelInRadius = new GridBagConstraints();
 		gbc_labelInRadius.anchor = GridBagConstraints.WEST;
-		gbc_labelInRadius.insets = new Insets(0, 0, 5, 5);
+		gbc_labelInRadius.insets = new Insets(0, 15, 5, 5);
 		gbc_labelInRadius.gridx = 0;
 		gbc_labelInRadius.gridy = 2;
 		borderAnnulus.add(labelInRadius, gbc_labelInRadius);
@@ -147,19 +150,19 @@ public class CalculatorGUI {
 		borderAnnulus.add(fieldInRadius, gbc_fieldInRadius);
 		fieldInRadius.setColumns(10);
 		
-		JButton calcButton = new JButton("Calculate");
-		GridBagConstraints gbc_calcButton = new GridBagConstraints();
-		gbc_calcButton.anchor = GridBagConstraints.EAST;
-		gbc_calcButton.gridwidth = 3;
-		gbc_calcButton.insets = new Insets(0, 0, 5, 5);
-		gbc_calcButton.gridx = 1;
-		gbc_calcButton.gridy = 3;
-		borderAnnulus.add(calcButton, gbc_calcButton);
+		JButton buttonCalcAnnulus = new JButton("Calculate");
+		GridBagConstraints gbc_buttonCalcAnnulus = new GridBagConstraints();
+		gbc_buttonCalcAnnulus.anchor = GridBagConstraints.EAST;
+		gbc_buttonCalcAnnulus.gridwidth = 3;
+		gbc_buttonCalcAnnulus.insets = new Insets(0, 0, 5, 5);
+		gbc_buttonCalcAnnulus.gridx = 1;
+		gbc_buttonCalcAnnulus.gridy = 3;
+		borderAnnulus.add(buttonCalcAnnulus, gbc_buttonCalcAnnulus);
 		
 		JLabel labelApproxArea = new JLabel("Approximate Area:");
 		GridBagConstraints gbc_labelApproxArea = new GridBagConstraints();
 		gbc_labelApproxArea.anchor = GridBagConstraints.WEST;
-		gbc_labelApproxArea.insets = new Insets(0, 0, 5, 5);
+		gbc_labelApproxArea.insets = new Insets(0, 15, 5, 5);
 		gbc_labelApproxArea.gridwidth = 2;
 		gbc_labelApproxArea.gridx = 0;
 		gbc_labelApproxArea.gridy = 4;
@@ -175,7 +178,7 @@ public class CalculatorGUI {
 		
 		JLabel labelMonteArea = new JLabel("Monte Carlo Estimation:");
 		GridBagConstraints gbc_labelMonteArea = new GridBagConstraints();
-		gbc_labelMonteArea.insets = new Insets(0, 0, 5, 5);
+		gbc_labelMonteArea.insets = new Insets(0, 15, 5, 5);
 		gbc_labelMonteArea.anchor = GridBagConstraints.NORTH;
 		gbc_labelMonteArea.fill = GridBagConstraints.HORIZONTAL;
 		gbc_labelMonteArea.gridwidth = 5;
@@ -185,12 +188,51 @@ public class CalculatorGUI {
 		
 		JLabel monteAreaResult = new JLabel("---");
 		GridBagConstraints gbc_monteAreaResult = new GridBagConstraints();
-		gbc_monteAreaResult.insets = new Insets(0, 0, 5, 5);
+		gbc_monteAreaResult.insets = new Insets(0, 0, 5, 0);
 		gbc_monteAreaResult.gridwidth = 6;
 		gbc_monteAreaResult.anchor = GridBagConstraints.NORTH;
 		gbc_monteAreaResult.gridx = 0;
 		gbc_monteAreaResult.gridy = 8;
 		borderAnnulus.add(monteAreaResult, gbc_monteAreaResult);
+		
+		JLabel labelAnnulusImageInstructionsA = new JLabel("Left click and drag on annulus image to zoom in,");
+		GridBagConstraints gbc_labelAnnulusImageInstructionsA = new GridBagConstraints();
+		gbc_labelAnnulusImageInstructionsA.anchor = GridBagConstraints.WEST;
+		gbc_labelAnnulusImageInstructionsA.gridwidth = 5;
+		gbc_labelAnnulusImageInstructionsA.insets = new Insets(0, 15, 5, 5);
+		gbc_labelAnnulusImageInstructionsA.gridx = 0;
+		gbc_labelAnnulusImageInstructionsA.gridy = 10;
+		borderAnnulus.add(labelAnnulusImageInstructionsA, gbc_labelAnnulusImageInstructionsA);
+		
+		JLabel lblRightClickTo = new JLabel("Right click to zoom out to original size.");
+		GridBagConstraints gbc_lblRightClickTo = new GridBagConstraints();
+		gbc_lblRightClickTo.anchor = GridBagConstraints.WEST;
+		gbc_lblRightClickTo.gridwidth = 5;
+		gbc_lblRightClickTo.insets = new Insets(0, 15, 5, 5);
+		gbc_lblRightClickTo.gridx = 0;
+		gbc_lblRightClickTo.gridy = 11;
+		borderAnnulus.add(lblRightClickTo, gbc_lblRightClickTo);
+		
+		JCheckBox cbSaveAnnulusImage = new JCheckBox("Save Image");
+		GridBagConstraints gbc_cbSaveAnnulusImage = new GridBagConstraints();
+		gbc_cbSaveAnnulusImage.gridwidth = 2;
+		gbc_cbSaveAnnulusImage.insets = new Insets(0, 0, 5, 5);
+		gbc_cbSaveAnnulusImage.gridx = 0;
+		gbc_cbSaveAnnulusImage.gridy = 13;
+		borderAnnulus.add(cbSaveAnnulusImage, gbc_cbSaveAnnulusImage);
+		
+		JButton buttonSaveAnnulusImage = new JButton("Save");
+		buttonSaveAnnulusImage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		GridBagConstraints gbc_buttonSaveAnnulusImage = new GridBagConstraints();
+		gbc_buttonSaveAnnulusImage.anchor = GridBagConstraints.EAST;
+		gbc_buttonSaveAnnulusImage.gridwidth = 2;
+		gbc_buttonSaveAnnulusImage.insets = new Insets(0, 0, 5, 5);
+		gbc_buttonSaveAnnulusImage.gridx = 2;
+		gbc_buttonSaveAnnulusImage.gridy = 13;
+		borderAnnulus.add(buttonSaveAnnulusImage, gbc_buttonSaveAnnulusImage);
 		
 		JPanel panelParentRight = new JPanel();
 		GridBagConstraints gbc_panelParentRight = new GridBagConstraints();
@@ -223,6 +265,7 @@ public class CalculatorGUI {
 		
 		JButton greyScaleAnnulus = new JButton("New button");
 		GridBagConstraints gbc_greyScaleAnnulus = new GridBagConstraints();
+		gbc_greyScaleAnnulus.fill = GridBagConstraints.BOTH;
 		gbc_greyScaleAnnulus.gridx = 0;
 		gbc_greyScaleAnnulus.gridy = 0;
 		panelAnnulusGraphic.add(greyScaleAnnulus, gbc_greyScaleAnnulus);

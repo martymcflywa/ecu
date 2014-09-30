@@ -52,7 +52,7 @@ public class CalculatorView extends JFrame {
 	private JTextField fieldInRadius = new JTextField();
 	
 	// button: calculate
-	private JButton calcButton = new JButton("Calculate");
+	private JButton buttonCalcAnnulus = new JButton("Calculate");
 	
 	// label: approx area result title
 	private JLabel labelApproxArea;
@@ -115,7 +115,7 @@ public class CalculatorView extends JFrame {
 	private GridBagConstraints gbc_fieldInRadius;
 	
 	// gbc: calculate button
-	private GridBagConstraints gbc_calcButton;
+	private GridBagConstraints gbc_buttonCalcAnnulus;
 	
 	// gbc: approx area result title
 	private GridBagConstraints gbc_labelApproxArea;
@@ -220,7 +220,7 @@ public class CalculatorView extends JFrame {
 	 * and adds it to the frame.
 	 * @param greyScaleAnnulus
 	 */
-	public void showGreyScaleAnnulus(GreyscaleHitViewerPanel greyScaleAnnulus) {
+	public void showGreyscaleAnnulus(GreyscaleHitViewerPanel greyScaleAnnulus) {
 		
 		// create the panels for the right side
 		createRightElement();
@@ -231,7 +231,7 @@ public class CalculatorView extends JFrame {
 			/* 
 			 * remove image and panel from parent panel,
 			 * stops image from showing up multiple times
-			 * whenever calcButton is pressed
+			 * whenever buttonCalcAnnulus is pressed
 			 */
 			getContentPane().remove(imageAnnulus);
 			panelParentRight.remove(panelAnnulusGraphic);
@@ -426,17 +426,17 @@ public class CalculatorView extends JFrame {
 		fieldInRadius.setColumns(10);
 		
 		// create gridbag constraints for calculate button
-		gbc_calcButton = new GridBagConstraints();
+		gbc_buttonCalcAnnulus = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for calculate button
-		gbc_calcButton.anchor = GridBagConstraints.EAST;
-		gbc_calcButton.gridwidth = 3;
-		gbc_calcButton.insets = new Insets(0, 0, 5, 5);
-		gbc_calcButton.gridx = 1;
-		gbc_calcButton.gridy = 3;
+		gbc_buttonCalcAnnulus.anchor = GridBagConstraints.EAST;
+		gbc_buttonCalcAnnulus.gridwidth = 3;
+		gbc_buttonCalcAnnulus.insets = new Insets(0, 0, 5, 5);
+		gbc_buttonCalcAnnulus.gridx = 1;
+		gbc_buttonCalcAnnulus.gridy = 3;
 		
 		// add calculate button and gridbag constraints to annulus calculator calculator border panel
-		borderAnnulusCalculator.add(calcButton, gbc_calcButton);
+		borderAnnulusCalculator.add(buttonCalcAnnulus, gbc_buttonCalcAnnulus);
 		
 		// create approximate area result label
 		labelApproxArea = new JLabel("Approximate Area:");
@@ -586,10 +586,10 @@ public class CalculatorView extends JFrame {
 	
 	/**
 	 * This method adds an action listener for the calculate button.
-	 * @param listenForCalcButton.
+	 * @param listenForButtonCalcAnnulus.
 	 */
-	public void addCalcListener(ActionListener listenForCalcButton) {
-		calcButton.addActionListener(listenForCalcButton);
+	public void addCalcListener(ActionListener listenForButtonCalcAnnulus) {
+		buttonCalcAnnulus.addActionListener(listenForButtonCalcAnnulus);
 	}
 	
 	/**

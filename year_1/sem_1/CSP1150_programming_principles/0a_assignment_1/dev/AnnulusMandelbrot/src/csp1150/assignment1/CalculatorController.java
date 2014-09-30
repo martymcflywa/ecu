@@ -36,9 +36,9 @@ public class CalculatorController {
 	 * @param theView
 	 * @param theAnnulus
 	 * @param theMandelbrot
-	 * @param greyScaleAnnulus
+	 * @param greyscaleAnnulus
 	 */
-	public CalculatorController(CalculatorView theView, CalculatorModel theAnnulus, MandelModel theMandelbrot, GreyscaleHitViewerPanel greyScaleAnnulus) {
+	public CalculatorController(CalculatorView theView, CalculatorModel theAnnulus, MandelModel theMandelbrot, GreyscaleHitViewerPanel greyscaleAnnulus) {
 		
 		// assign this class view to the incoming view
 		this.theView = theView;
@@ -50,7 +50,7 @@ public class CalculatorController {
 		this.theMandelbrot = theMandelbrot;
 		
 		// assign this class greyScaleAnnulus to the incoming greyScaleAnnulus
-		this.greyscaleAnnulus = greyScaleAnnulus;
+		this.greyscaleAnnulus = greyscaleAnnulus;
 		
 		// create listener for the calculate button
 		this.theView.addCalcListener(new CalcListener());
@@ -89,7 +89,7 @@ public class CalculatorController {
 				greyscaleAnnulus.viewHits(theModel.returnHits());
 				
 				// get the view to display greyscale annulus image
-				theView.showGreyScaleAnnulus(greyscaleAnnulus);
+				theView.showGreyscaleAnnulus(greyscaleAnnulus);
 			}
 			
 			// if no values are set, display error message
