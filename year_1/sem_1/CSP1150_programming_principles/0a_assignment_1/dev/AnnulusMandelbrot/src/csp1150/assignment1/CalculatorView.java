@@ -29,14 +29,23 @@ import view.*;
 @SuppressWarnings("serial")
 public class CalculatorView extends JFrame {
 	
-	// declare boolean that tests if image exists
-	private static boolean imageExists = false;
+	// declare boolean to test if annulus image exists
+	private static boolean annulusImageExists = false;
+	
+	// declare boolean to test if mandelbrot image exists
+	private static boolean mandelbrotImageExists = false;
 	
 	// reference to GreyscaleHitViewerPanel for greyscale annulus
 	private GreyscaleHitViewerPanel greyscaleAnnulus;
 	
+	// reference to GreyscaleHitViewerPanel for greyscale mandelbrot
+	private GreyscaleHitViewerPanel greyscaleMandelbrot;
+	
 	// gbc: annulus greyscale image
 	private GridBagConstraints gbc_greyscaleAnnulus;
+	
+	// gbc: mandelbrot greyscale image
+	private GridBagConstraints gbc_greyscaleMandelbrot;
 	
 	/**
 	 * Defining Annulus Calculator user controls.
@@ -109,6 +118,9 @@ public class CalculatorView extends JFrame {
 	// label: mandelbrot zoom instruction part 2
 	private JLabel labelMandZoomInstructB;
 	
+	// label: greyscale mandelbrot displays as label
+	private JLabel imageMandelbrot;
+	
 	/**
 	 * Defining left side panels.
 	 */
@@ -138,13 +150,17 @@ public class CalculatorView extends JFrame {
 	// panel: annulus graphic container
 	private JPanel panelAnnulusGraphic;
 	
+	// panel: mandelbrot graphic container
+	private JPanel panelMandelbrotGraphic;
+	
 	/**
 	 * The view constructor.
 	 * Calls various init* methods to create the view.
 	 * @param greyscaleAnnulus - The greyscale image object
 	 */
-	CalculatorView(GreyscaleHitViewerPanel greyscaleAnnulus) {
+	CalculatorView(GreyscaleHitViewerPanel greyscaleAnnulus, GreyscaleHitViewerPanel greyscaleMandelbrot) {
 		this.greyscaleAnnulus = greyscaleAnnulus;
+		this.greyscaleMandelbrot = greyscaleMandelbrot;
 		initFrame();
 		initLeftPanel();
 		initAnnulusCalcPanel();
@@ -158,7 +174,6 @@ public class CalculatorView extends JFrame {
 	 * @param args unused
 	 */
 	private void initFrame() {
-		
 		
 		/*
 		 * Defining JFrame parameters
@@ -205,11 +220,11 @@ public class CalculatorView extends JFrame {
 	 */
 	public void showGreyscaleAnnulus(GreyscaleHitViewerPanel greyscaleAnnulus) {
 		
-		// create the panels for the right side
+		// create the parent panel for greyscale annulus image
 		initAnnulusImagePanel();
 
 		// if image exists,
-		if(imageExists) {
+		if(annulusImageExists) {
 			
 			/* 
 			 * remove image and panel from parent panel,
@@ -233,8 +248,43 @@ public class CalculatorView extends JFrame {
 		// add to panelAnnulusGraphic panel
 		panelAnnulusGraphic.add(imageAnnulus);
 		
-		// set imageExists to true
-		imageExists = true;
+		// set annulusImageExists to true
+		annulusImageExists = true;
+	}
+	
+	public void showGreyscaleMandelbrot(GreyscaleHitViewerPanel greyscaleMandelbrot) {
+		
+		// create the parent panel for greyscale mandelbrot image
+		initMandelbrotImagePanel();
+		
+		// if image exists,
+		if(mandelbrotImageExists) {
+			
+			/*
+			 * remove image and panel from parent panel,
+			 * stops image from showing up multiple times
+			 * whenever the View button is pressed
+			 */
+			getContentPane().remove(imageMandelbrot);
+			panelParentRight.remove(panelMandelbrotGraphic);
+		}
+		
+		// get the image
+		repaint();
+		BufferedImage image = greyscaleMandelbrot.getImage();
+		
+		// image will be displayed as JLabel
+		imageMandelbrot = new JLabel(new ImageIcon(image));
+
+		
+		// get content pane
+		getContentPane().add(imageMandelbrot, gbc_greyscaleMandelbrot);
+		
+		// add to panelMandelbrotGraphic panel
+		panelMandelbrotGraphic.add(imageMandelbrot, gbc_greyscaleMandelbrot);
+		
+		// set mandelbrotImageExists to true
+		mandelbrotImageExists = true;
 	}
 	
 	/**
@@ -738,7 +788,7 @@ public class CalculatorView extends JFrame {
 		// create gridbag layout
 		GridBagLayout gbl_panelAnnulusGraphic = new GridBagLayout();
 		
-		// define gridbag layout for greyscale annulus image panel
+		// define gridbag layout for greyscale annulus container panel
 		gbl_panelAnnulusGraphic.columnWidths = new int[]{0};
 		gbl_panelAnnulusGraphic.rowHeights = new int[]{0};
 		gbl_panelAnnulusGraphic.columnWeights = new double[]{1.0, Double.MIN_VALUE};
@@ -747,10 +797,49 @@ public class CalculatorView extends JFrame {
 		// set layout to parent panel for greyscale annulus image
 		panelAnnulusGraphic.setLayout(gbl_panelAnnulusGraphic);
 		
-		// create gridbag constraints
+		// create gridbag constraints for the image itself
 		gbc_greyscaleAnnulus = new GridBagConstraints();
 		gbc_greyscaleAnnulus.gridx = 0;
 		gbc_greyscaleAnnulus.gridy = 0;
+	}
+	
+	/**
+	 * 
+	 */
+	
+	private void initMandelbrotImagePanel() {
+		
+		// setting up parent panel for greyscale mandelbrot image
+		panelMandelbrotGraphic = new JPanel();
+		
+		// create gridbag constraints for the parent panel
+		GridBagConstraints gbc_panelMandelbrotGraphic = new GridBagConstraints();
+		
+		// define gridbag constraints parameters for parent panel
+		gbc_panelMandelbrotGraphic.insets = new Insets(0, 0, 5, 0);
+		gbc_panelMandelbrotGraphic.fill = GridBagConstraints.BOTH;
+		gbc_panelMandelbrotGraphic.gridx = 0;
+		gbc_panelMandelbrotGraphic.gridy = 1;
+		
+		// add parent panel and gridbag constraints to container panel
+		panelParentRight.add(panelMandelbrotGraphic, gbc_panelMandelbrotGraphic);
+		
+		// create gridbag layout
+		GridBagLayout gbl_panelMandelbrotGraphic = new GridBagLayout();
+		
+		// define gridbag layout for greyscale mandelbrot container panel
+		gbl_panelMandelbrotGraphic.columnWidths = new int[]{0};
+		gbl_panelMandelbrotGraphic.rowHeights = new int[]{0};
+		gbl_panelMandelbrotGraphic.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panelMandelbrotGraphic.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		
+		// set layout to parent panel for greyscale annulus image
+		panelMandelbrotGraphic.setLayout(gbl_panelMandelbrotGraphic);
+		
+		// create gridbag constraints for the image itself
+		gbc_greyscaleMandelbrot = new GridBagConstraints();
+		gbc_greyscaleMandelbrot.gridx = 0;
+		gbc_greyscaleMandelbrot.gridy = 0;
 	}
 	
 	/**

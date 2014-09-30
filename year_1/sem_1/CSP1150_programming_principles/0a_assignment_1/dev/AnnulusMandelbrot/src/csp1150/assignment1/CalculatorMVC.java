@@ -20,17 +20,20 @@ public class CalculatorMVC {
 	 */
 	public static void main(String[] args) {
 		
-		// create the model object
+		// create the annulus model object
 		CalculatorModel theAnnulus = new CalculatorModel();
 		
-		//
+		// create the mandelbrot model object
 		MandelbrotModel theMandelbrot = new MandelbrotModel();
 		
-		// create a greyscaleview object for the annulus
+		// create annulus greyscaleview object
 		GreyscaleHitViewerPanel greyscaleAnnulus = new GreyscaleHitViewerPanel(theAnnulus.getGridSize(), theAnnulus.getGridSize());
 		
+		// create mandelbrot greyscaleview object
+		GreyscaleHitViewerPanel greyscaleMandelbrot = new GreyscaleHitViewerPanel(theMandelbrot.getGridSize(), theMandelbrot.getGridSize());
+		
 		// create the view object
-		CalculatorView theView = new CalculatorView(greyscaleAnnulus);
+		CalculatorView theView = new CalculatorView(greyscaleAnnulus, greyscaleMandelbrot);
 		
 		// create the controller object
 		CalculatorController theController = new CalculatorController(theView, theAnnulus, theMandelbrot, greyscaleAnnulus);
