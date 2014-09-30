@@ -1,13 +1,13 @@
 package csp1150.assignment1;
 
 /**
- * This class defines the calculator model.
+ * This super class defines the calculator model.
  * The shape's attributes are saved here,
  * and all calculation is handled by the methods
  * in this class.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 3.2.0
+ * @version 4.0.0
  * @since 20140930
  */
 public class CalculatorModel {
@@ -24,10 +24,10 @@ public class CalculatorModel {
 	private double inRadius;
 	
 	// these variables hold the max-min values
-	private double maxX;
-	private double minX;
-	private double maxY;
-	private double minY;
+	protected double maxX;
+	protected double minX;
+	protected double maxY;
+	protected double minY;
 	
 	// these variables hold the calculated values
 	private double areaApprox;
@@ -38,7 +38,7 @@ public class CalculatorModel {
 	 * @param double r1 - The outer radius.
 	 * @param double r2 - The inner radius.
 	 */
-	public void setRadius(double r1, double r2) {
+	public final void setRadius(double r1, double r2) {
 		
 		// set incoming radius values to their respective variables
 		outRadius = r1;
@@ -51,17 +51,17 @@ public class CalculatorModel {
 		minY = -r1;
 		
 		// do Area calculation
-		calcApprox(outRadius, inRadius);
+		calcApprox();
 		
 		// do Monte calculation
-		calcMonte(outRadius, inRadius);
+		calcMonte();
 	}
 	
 	/**
 	 * This method returns the area calculated using approximate estimation.
 	 * @return double areaApprox
 	 */
-	public double getAreaCalc() {
+	public final double getAreaCalc() {
 		return areaApprox;
 	}
 	
@@ -69,16 +69,15 @@ public class CalculatorModel {
 	 * This method returns the area calculated using monte carlo method.
 	 * @return double areaMonte
 	 */
-	public double getMonteCalc() {
+	public final double getMonteCalc() {
 		return areaMonte;
 	}
 	
 	/**
-	 * This method calculates the annulus area using approximate estimation.
-	 * @param double r1 - The outer radius. 
-	 * @param double r2 - The inner radius.
+	 * This method calculates the area using approximate estimation.
+	 * @param args unused
 	 */
-	public void calcApprox(double r1, double r2) {
+	protected final void calcApprox() {
 		
 		// declare counter
 		int counter = 0;
@@ -106,8 +105,11 @@ public class CalculatorModel {
 		areaApprox = (maxX - minX) * (maxY - minY) * counter / Math.pow(GRIDSIZE, 2);
 	}
 	
-	// monte carlo estimation method
-	public void calcMonte(double r1, double r2) {
+	/**
+	 * This method calculates the area using monte carlo estimation.
+	 * @param args unused
+	 */
+	protected final void calcMonte() {
 		
 		// declare counter
 		double counter = 0.0;
@@ -121,6 +123,7 @@ public class CalculatorModel {
 			// iterate through rows
 			for(int row = 0; row < GRIDSIZE - 1; row++) {
 				
+				// reset current cell value to 0
 				hits[col][row] = 0;
 				
 				// iterate through samples
@@ -153,7 +156,7 @@ public class CalculatorModel {
 	 * This method checks if center of cell, or hitpoints are within shape perimeter.
 	 * @param double x - The x-axis value.
 	 * @param double y - The y-axis value.
-	 * @return boolean testBool
+	 * @return boolean inside
 	 */
 	protected boolean isInside(double x, double y) {
 		
@@ -161,21 +164,21 @@ public class CalculatorModel {
 		double test = x * x + y * y;
 		
 		// declare boolean variable to be returned
-		boolean testBool;
+		boolean inside;
 		
 		// if test value less than outer radius squared and greater than inner radius squared
 		if(test < outRadius * outRadius && test > inRadius * inRadius) {
 			
 			// set boolean to true
-			testBool = true;
+			inside = true;
 			
 		// else set boolean value to false
 		} else {
-			testBool = false;
+			inside = false;
 		}
 		
 		// return boolean value
-		return testBool;
+		return inside;
 	}
 	
 	/**
@@ -183,7 +186,7 @@ public class CalculatorModel {
 	 * @param args unused.
 	 * @return double[][] hits.
 	 */
-	public double[][] returnHits() {
+	public final double[][] returnHits() {
 		return hits;
 	}
 	
@@ -191,7 +194,7 @@ public class CalculatorModel {
 	 * This method returns the GRIDSIZE constant.
 	 * @return int GRIDSIZE.
 	 */
-	public int getGridSize() {
+	public final int getGridSize() {
 		return GRIDSIZE;
 	}
 }

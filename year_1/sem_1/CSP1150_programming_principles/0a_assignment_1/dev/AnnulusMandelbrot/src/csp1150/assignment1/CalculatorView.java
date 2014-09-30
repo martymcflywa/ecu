@@ -23,7 +23,7 @@ import view.*;
  * to the GUI is defined here.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 3.2.0
+ * @version 4.0.0
  * @since 20140930
  */
 
@@ -169,7 +169,6 @@ public class CalculatorView extends JFrame {
 		this.greyScaleAnnulus = greyScaleAnnulus;
 		initialize();
 		createLeftElement();
-		//createRightElement();
 	}
 	
 	/**
@@ -182,10 +181,20 @@ public class CalculatorView extends JFrame {
 		/**
 		 * Define JFrame parameters.
 		 */
+		
+		// set frame size
 		setBounds(100, 100, 800, 900);
+		
+		// set default action when window is closed
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// set frame to visible
 		setVisible(true);
+		
+		// set frame to appear in the center of the desktop
 		setLocationRelativeTo(null);
+		
+		// set frame's title
 		setTitle("Annulus & Mandelbrot Calculator: Martin Ponce");
 		
 		// create GridBagLayout object

@@ -9,7 +9,7 @@ import view.*;
  * an annulus and mandelbrot.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 3.2.0
+ * @version 4.0.0
  * @since 20140930
  */
 public class CalculatorMVC {
@@ -21,15 +21,18 @@ public class CalculatorMVC {
 	public static void main(String[] args) {
 		
 		// create the model object
-		CalculatorModel theModel = new CalculatorModel();
+		CalculatorModel theAnnulus = new CalculatorModel();
+		
+		//
+		MandelModel theMandelbrot = new MandelModel();
 		
 		// create a greyscaleview object for the annulus
-		GreyscaleHitViewerPanel greyScaleAnnulus = new GreyscaleHitViewerPanel(theModel.getGridSize(), theModel.getGridSize());
+		GreyscaleHitViewerPanel greyscaleAnnulus = new GreyscaleHitViewerPanel(theAnnulus.getGridSize(), theAnnulus.getGridSize());
 		
 		// create the view object
-		CalculatorView theView = new CalculatorView(greyScaleAnnulus);
+		CalculatorView theView = new CalculatorView(greyscaleAnnulus);
 		
 		// create the controller object
-		CalculatorController theController = new CalculatorController(theView, theModel, greyScaleAnnulus);
+		CalculatorController theController = new CalculatorController(theView, theAnnulus, theMandelbrot, greyscaleAnnulus);
 	}
 }

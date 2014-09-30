@@ -14,7 +14,7 @@ import view.*;
  * handles exceptions.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 3.3.0
+ * @version 4.0.0
  * @since 20140930
  */
 public class CalculatorController {
@@ -25,25 +25,32 @@ public class CalculatorController {
 	// create reference to theModel
 	private CalculatorModel theModel;
 	
+	// create reference to the mandelbrot model
+	private MandelModel theMandelbrot;
+	
 	// create reference to greyScaleAnnulus;
-	private GreyscaleHitViewerPanel greyScaleAnnulus;
+	private GreyscaleHitViewerPanel greyscaleAnnulus;
 		
 	/**
 	 * This defines the CalculatorController constructor
 	 * @param theView
-	 * @param theModel
+	 * @param theAnnulus
+	 * @param theMandelbrot
 	 * @param greyScaleAnnulus
 	 */
-	public CalculatorController(CalculatorView theView, CalculatorModel theModel, GreyscaleHitViewerPanel greyScaleAnnulus) {
+	public CalculatorController(CalculatorView theView, CalculatorModel theAnnulus, MandelModel theMandelbrot, GreyscaleHitViewerPanel greyScaleAnnulus) {
 		
 		// assign this class view to the incoming view
 		this.theView = theView;
 		
 		// assign this class model to the incoming model
-		this.theModel = theModel;
+		this.theModel = theAnnulus;
+		
+		// assign this mandelmodel to the incoming model
+		this.theMandelbrot = theMandelbrot;
 		
 		// assign this class greyScaleAnnulus to the incoming greyScaleAnnulus
-		this.greyScaleAnnulus = greyScaleAnnulus;
+		this.greyscaleAnnulus = greyScaleAnnulus;
 		
 		// create listener for the calculate button
 		this.theView.addCalcListener(new CalcListener());
@@ -79,10 +86,10 @@ public class CalculatorController {
 				theView.setMonteCalc(theModel.getMonteCalc());
 				
 				// call viewhits to get data from array
-				greyScaleAnnulus.viewHits(theModel.returnHits());
+				greyscaleAnnulus.viewHits(theModel.returnHits());
 				
 				// get the view to display greyscale annulus image
-				theView.showGreyScaleAnnulus(greyScaleAnnulus);
+				theView.showGreyScaleAnnulus(greyscaleAnnulus);
 			}
 			
 			// if no values are set, display error message
