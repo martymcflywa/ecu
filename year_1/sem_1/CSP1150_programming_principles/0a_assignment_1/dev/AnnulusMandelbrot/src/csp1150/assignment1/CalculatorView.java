@@ -142,77 +142,12 @@ public class CalculatorView extends JFrame {
 	 * Left side
 	 */
 	
-	// gbl: left side container
-	private GridBagLayout gbl_panelParentLeft;
-	
 	// gbc: left side container
 	private GridBagConstraints gbc_panelParentLeft;
 	
 	/*
-	 * Annulus calculator
-	 */
-	
-	// gbl: annulus calculator
-	private GridBagLayout gbl_panelAnnulusCalculator;
-	
-	// gbc: annulus calculator
-	private GridBagConstraints gbc_panelAnnulusCalculator;
-	
-	// gbc: annulus calculator border
-	private GridBagConstraints gbc_borderAnnulus;
-	
-	// gbl: annulus calculator border
-	private GridBagLayout gbl_borderAnnulus;
-	
-	// gbc: annulus calculator instructions
-	private GridBagConstraints gbc_labelAnnulusInstructions;
-	
-	// gbc: outer radius user input title
-	private GridBagConstraints gbc_labelOutRadius;
-	
-	// gbc: outer radius user input field
-	private GridBagConstraints gbc_fieldOutRadius;
-	
-	// gbc: inner radius user input title
-	private GridBagConstraints gbc_labelInRadius;
-	
-	// gbc: inner radius user input field
-	private GridBagConstraints gbc_fieldInRadius;
-	
-	// gbc: calculate button
-	private GridBagConstraints gbc_buttonCalcAnnulus;
-	
-	// gbc: approx area result title
-	private GridBagConstraints gbc_labelApproxArea;
-	
-	// gbc: approx area result output
-	private GridBagConstraints gbc_approxAreaResult;
-	
-	// gbc: monte area result title
-	private GridBagConstraints gbc_labelMonteArea;
-	
-	// gbc: monte area result output
-	private GridBagConstraints gbc_monteAreaResult;
-	
-	/*
-	 * Mandelbrot calculator
-	 */
-	
-	// gbc: 
-	private GridBagConstraints gbc_panelMandelbrotCalculator;
-	
-	/*
 	 * Right side
 	 */
-	
-	// gbc: right side container
-	private GridBagConstraints gbc_panelParentRight;
-	
-	// gbc: annulus greyscale container
-	private GridBagConstraints gbc_panelAnnulusGraphic;
-	
-	// gbl: annulus greyscale container
-	private GridBagLayout gbl_panelAnnulusGraphic;
 	
 	// gbc: annulus greyscale image
 	private GridBagConstraints gbc_greyscaleAnnulus;
@@ -339,8 +274,10 @@ public class CalculatorView extends JFrame {
 		// add left parent panel and gridbag constraints to frame
 		getContentPane().add(panelParentLeft, gbc_panelParentLeft);
 		
+		// create gridbag layout for left parent panel
+		GridBagLayout gbl_panelParentLeft = new GridBagLayout();
+		
 		// define gridbag layout parameters for left parent panel
-		gbl_panelParentLeft = new GridBagLayout();
 		gbl_panelParentLeft.columnWidths = new int[]{283, 0};
 		gbl_panelParentLeft.rowHeights = new int[]{300, 0};
 		gbl_panelParentLeft.columnWeights = new double[]{0.0, Double.MIN_VALUE};
@@ -352,7 +289,8 @@ public class CalculatorView extends JFrame {
 	
 	/**
 	 * This method creates the Annulus Calculator panel,
-	 * which is inside the left container.
+	 * which is inside the left container. Also sets up
+	 * the user controls.
 	 */
 	private void initAnnulusCalcPanel() {
 		
@@ -360,7 +298,7 @@ public class CalculatorView extends JFrame {
 		panelAnnulusCalculator = new JPanel();
 		
 		// create gridbag constraints for annulus calculator panel
-		gbc_panelAnnulusCalculator = new GridBagConstraints();
+		GridBagConstraints gbc_panelAnnulusCalculator = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for annulus calculator panel
 		gbc_panelAnnulusCalculator.fill = GridBagConstraints.BOTH;
@@ -371,7 +309,7 @@ public class CalculatorView extends JFrame {
 		panelParentLeft.add(panelAnnulusCalculator, gbc_panelAnnulusCalculator);
 		
 		// create gridbag layout for annulus calculator panel
-		gbl_panelAnnulusCalculator = new GridBagLayout();
+		GridBagLayout gbl_panelAnnulusCalculator = new GridBagLayout();
 		
 		// define gridbag layout parameters for annulus calculator panel
 		gbl_panelAnnulusCalculator.columnWidths = new int[]{18, 0, 0};
@@ -389,35 +327,35 @@ public class CalculatorView extends JFrame {
 		borderAnnulusCalculator.setBorder(new TitledBorder(null, "Annulus Calculator", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
 		// create gridbag constraints for annulus calculator border panel
-		gbc_borderAnnulus = new GridBagConstraints();
+		GridBagConstraints gbc_borderAnnulusCalculator = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for annulus calculator border panel
-		gbc_borderAnnulus.insets = new Insets(0, 0, 0, 0);
-		gbc_borderAnnulus.anchor = GridBagConstraints.WEST;
-		gbc_borderAnnulus.fill = GridBagConstraints.VERTICAL;
-		gbc_borderAnnulus.gridx = 1;
-		gbc_borderAnnulus.gridy = 1;
+		gbc_borderAnnulusCalculator.insets = new Insets(0, 0, 0, 0);
+		gbc_borderAnnulusCalculator.anchor = GridBagConstraints.WEST;
+		gbc_borderAnnulusCalculator.fill = GridBagConstraints.VERTICAL;
+		gbc_borderAnnulusCalculator.gridx = 1;
+		gbc_borderAnnulusCalculator.gridy = 1;
 		
 		// add annulus calculator border panel and gridbag constraints to annulus calculator border panel
-		panelAnnulusCalculator.add(borderAnnulusCalculator, gbc_borderAnnulus);
+		panelAnnulusCalculator.add(borderAnnulusCalculator, gbc_borderAnnulusCalculator);
 		
 		// create gridbag layout for annulus calculator panel
-		gbl_borderAnnulus = new GridBagLayout();
+		GridBagLayout gbl_borderAnnulusCalculator = new GridBagLayout();
 		
 		// define gridbag layout parameters for annulus calculator border panel
-		gbl_borderAnnulus.columnWidths = new int[]{63, 22, 39, 47, 77, 0};
-		gbl_borderAnnulus.rowHeights = new int[]{44, 20, 23, 31, 14, 1, 1, 1, 0, 0};
-		gbl_borderAnnulus.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_borderAnnulus.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_borderAnnulusCalculator.columnWidths = new int[]{63, 22, 39, 47, 77, 0};
+		gbl_borderAnnulusCalculator.rowHeights = new int[]{44, 20, 23, 31, 14, 1, 1, 1, 0, 0};
+		gbl_borderAnnulusCalculator.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_borderAnnulusCalculator.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		
 		// set annulus calculator border panel's layout manager to gridbag layout
-		borderAnnulusCalculator.setLayout(gbl_borderAnnulus);
+		borderAnnulusCalculator.setLayout(gbl_borderAnnulusCalculator);
 		
 		// create label for instructions
 		labelAnnulusInstructions = new JLabel("Enter the outer and inner radius:");
 		
 		// create gridbag constraints for instructions
-		gbc_labelAnnulusInstructions = new GridBagConstraints();
+		GridBagConstraints gbc_labelAnnulusInstructions = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for instructions
 		gbc_labelAnnulusInstructions.fill = GridBagConstraints.BOTH;
@@ -433,7 +371,7 @@ public class CalculatorView extends JFrame {
 		labelOutRadius = new JLabel("Outer Radius");
 		
 		// create gridbag constraints for outer radius label
-		gbc_labelOutRadius = new GridBagConstraints();
+		GridBagConstraints gbc_labelOutRadius = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for outer radius label
 		gbc_labelOutRadius.anchor = GridBagConstraints.WEST;
@@ -445,7 +383,7 @@ public class CalculatorView extends JFrame {
 		borderAnnulusCalculator.add(labelOutRadius, gbc_labelOutRadius);
 		
 		// create gridbag constraints for outer radius input field
-		gbc_fieldOutRadius = new GridBagConstraints();
+		GridBagConstraints gbc_fieldOutRadius = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for outer radius input field
 		gbc_fieldOutRadius.anchor = GridBagConstraints.NORTH;
@@ -465,7 +403,7 @@ public class CalculatorView extends JFrame {
 		labelInRadius = new JLabel("Inner Radius");
 		
 		// create gridbag constraints for inner radius input field
-		gbc_labelInRadius = new GridBagConstraints();
+		GridBagConstraints gbc_labelInRadius = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for inner radius input field
 		gbc_labelInRadius.anchor = GridBagConstraints.WEST;
@@ -477,7 +415,7 @@ public class CalculatorView extends JFrame {
 		borderAnnulusCalculator.add(labelInRadius, gbc_labelInRadius);
 		
 		// create gridbag constraints for inner radius input field
-		gbc_fieldInRadius = new GridBagConstraints();
+		GridBagConstraints gbc_fieldInRadius = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for inner radius input field
 		gbc_fieldInRadius.fill = GridBagConstraints.HORIZONTAL;
@@ -491,7 +429,7 @@ public class CalculatorView extends JFrame {
 		fieldInRadius.setColumns(10);
 		
 		// create gridbag constraints for calculate button
-		gbc_buttonCalcAnnulus = new GridBagConstraints();
+		GridBagConstraints gbc_buttonCalcAnnulus = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for calculate button
 		gbc_buttonCalcAnnulus.anchor = GridBagConstraints.EAST;
@@ -507,7 +445,9 @@ public class CalculatorView extends JFrame {
 		labelAnnulusApproxArea = new JLabel("Approximate Area:");
 		
 		// create gridbag constraints parameters for approximate area result label
-		gbc_labelApproxArea = new GridBagConstraints();
+		GridBagConstraints gbc_labelApproxArea = new GridBagConstraints();
+		
+		// define gridbag constraints parameters for approximate area result label
 		gbc_labelApproxArea.anchor = GridBagConstraints.WEST;
 		gbc_labelApproxArea.insets = new Insets(20, 15, 5, 5);
 		gbc_labelApproxArea.gridwidth = 2;
@@ -518,7 +458,7 @@ public class CalculatorView extends JFrame {
 		borderAnnulusCalculator.add(labelAnnulusApproxArea, gbc_labelApproxArea);
 		
 		// create gridbag constraints for approximate area result output
-		gbc_approxAreaResult = new GridBagConstraints();
+		GridBagConstraints gbc_approxAreaResult = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for approximate area result output
 		gbc_approxAreaResult.gridwidth = 5;
@@ -533,7 +473,9 @@ public class CalculatorView extends JFrame {
 		labelAnnulusMonteArea = new JLabel("Monte Carlo Estimation:");
 		
 		// create gridbag constraints for monte carlo result label
-		gbc_labelMonteArea = new GridBagConstraints();
+		GridBagConstraints gbc_labelMonteArea = new GridBagConstraints();
+		
+		// define gridbag constraints parameters for monte carlo result label
 		gbc_labelMonteArea.insets = new Insets(0, 15, 5, 5);
 		gbc_labelMonteArea.anchor = GridBagConstraints.NORTH;
 		gbc_labelMonteArea.fill = GridBagConstraints.HORIZONTAL;
@@ -545,7 +487,7 @@ public class CalculatorView extends JFrame {
 		borderAnnulusCalculator.add(labelAnnulusMonteArea, gbc_labelMonteArea);
 		
 		// create gridbag constraints for monte carlo result output
-		gbc_monteAreaResult = new GridBagConstraints();
+		GridBagConstraints gbc_monteAreaResult = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for monte carlo result output
 		gbc_monteAreaResult.insets = new Insets(0, 0, 5, 5);
@@ -559,7 +501,7 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
-	 * 
+	 * This method creates the Mandelbrot 
 	 */
 	private void initMandCalcPanel() {
 		
@@ -567,29 +509,77 @@ public class CalculatorView extends JFrame {
 		panelMandelbrotCalculator = new JPanel();
 				
 		// create gridbag constraints for annulus calculator panel
-		gbc_panelMandelbrotCalculator = new GridBagConstraints();
+		GridBagConstraints gbc_panelMandelbrotCalculator = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for annulus calculator panel
 		gbc_panelMandelbrotCalculator.fill = GridBagConstraints.BOTH;
+		gbc_panelMandelbrotCalculator.insets = new Insets(100, 0, 0, 0);
 		gbc_panelMandelbrotCalculator.gridx = 0;
 		gbc_panelMandelbrotCalculator.gridy = 1;
 		
+		// add mandelbrot calculator panel and gridbag constraints to left parent pane
 		panelParentLeft.add(panelMandelbrotCalculator, gbc_panelMandelbrotCalculator);
 		
-//		// create annulus calculator panel, goes inside left parent panel
-//		panelAnnulusCalculator = new JPanel();
-//		
-//		// create gridbag constraints for annulus calculator panel
-//		gbc_panelAnnulusCalculator = new GridBagConstraints();
-//		
-//		// define gridbag constraints parameters for annulus calculator panel
-//		gbc_panelAnnulusCalculator.fill = GridBagConstraints.BOTH;
-//		gbc_panelAnnulusCalculator.gridx = 0;
-//		gbc_panelAnnulusCalculator.gridy = 0;
-//		
-//		// add annulus calculator panel and gridbag constraints to left parent panel
-//		panelParentLeft.add(panelAnnulusCalculator, gbc_panelAnnulusCalculator);
+		// create gridbag layout for annulus calculator panel
+		GridBagLayout gbl_panelMandelbrotCalculator = new GridBagLayout();
 		
+		// define gridbag layout parameters for annulus calculator panel
+		gbl_panelMandelbrotCalculator.columnWidths = new int[]{18, 0, 0};
+		gbl_panelMandelbrotCalculator.rowHeights = new int[]{21, 294, 0};
+		gbl_panelMandelbrotCalculator.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_panelMandelbrotCalculator.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		
+		// set annulus calculator panel's layout manager as gridbag layout
+		panelMandelbrotCalculator.setLayout(gbl_panelMandelbrotCalculator);
+		
+		// create annulus calculator panel's border
+		borderMandelbrotCalculator = new JPanel();
+		
+		// define annulus calculator panel's border parameters
+		borderMandelbrotCalculator.setBorder(new TitledBorder(null, "Mandelbrot Calculator", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
+		// create gridbag constraints for annulus calculator border panel
+		GridBagConstraints gbc_borderMandelbrotCalculator = new GridBagConstraints();
+		
+		// define gridbag constraints parameters for annulus calculator border panel
+		gbc_borderMandelbrotCalculator.insets = new Insets(0, 0, 0, 0);
+		gbc_borderMandelbrotCalculator.anchor = GridBagConstraints.WEST;
+		gbc_borderMandelbrotCalculator.fill = GridBagConstraints.VERTICAL;
+		gbc_borderMandelbrotCalculator.gridx = 1;
+		gbc_borderMandelbrotCalculator.gridy = 1;
+		
+		// add annulus calculator border panel and gridbag constraints to annulus calculator border panel
+		panelMandelbrotCalculator.add(borderMandelbrotCalculator, gbc_borderMandelbrotCalculator);
+		
+		// create gridbag layout for annulus calculator panel
+		GridBagLayout gbl_borderMandelbrotCalculator = new GridBagLayout();
+		
+		// define gridbag layout parameters for annulus calculator border panel
+		gbl_borderMandelbrotCalculator.columnWidths = new int[]{63, 22, 39, 47, 77, 0};
+		gbl_borderMandelbrotCalculator.rowHeights = new int[]{44, 20, 23, 31, 14, 1, 1, 1, 0, 0};
+		gbl_borderMandelbrotCalculator.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_borderMandelbrotCalculator.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		
+		// set annulus calculator border panel's layout manager to gridbag layout
+		borderMandelbrotCalculator.setLayout(gbl_borderMandelbrotCalculator);
+		
+		/************/
+		
+		// create label for instructions
+		labelMandInstructA = new JLabel("What is a mandelbrot?");
+		
+		// create gridbag constraints for instructions
+		GridBagConstraints gbc_labelMandInstructA = new GridBagConstraints();
+		
+		// define gridbag constraints parameters for instructions
+		gbc_labelMandInstructA.fill = GridBagConstraints.BOTH;
+		gbc_labelMandInstructA.insets = new Insets(0, 15, 5, 5);
+		gbc_labelMandInstructA.gridwidth = 5;
+		gbc_labelMandInstructA.gridx = 0;
+		gbc_labelMandInstructA.gridy = 0;
+		
+		// add instructions and gridbag constraints parameters to annulus calculator border panel
+		borderMandelbrotCalculator.add(labelMandInstructA, gbc_labelMandInstructA);
 	}
 	
 	/**
@@ -601,8 +591,10 @@ public class CalculatorView extends JFrame {
 		// create right parent panel, container for graphics
 		panelParentRight = new JPanel();
 		
+		// create gridbag constraints for right parent panel
+		GridBagConstraints gbc_panelParentRight = new GridBagConstraints();
+		
 		// define gridbag constraints parameters for right parent panel
-		gbc_panelParentRight = new GridBagConstraints();
 		gbc_panelParentRight.gridheight = 2;
 		gbc_panelParentRight.insets = new Insets(0, 0, 5, 5);
 		gbc_panelParentRight.fill = GridBagConstraints.BOTH;
@@ -621,7 +613,7 @@ public class CalculatorView extends JFrame {
 		panelAnnulusGraphic = new JPanel();
 		
 		// create gridbag constraints for parent panel
-		gbc_panelAnnulusGraphic = new GridBagConstraints();
+		GridBagConstraints gbc_panelAnnulusGraphic = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for parent panel
 		gbc_panelAnnulusGraphic.insets = new Insets(0, 0, 5, 0);
@@ -633,7 +625,9 @@ public class CalculatorView extends JFrame {
 		panelParentRight.add(panelAnnulusGraphic, gbc_panelAnnulusGraphic);
 		
 		// create gridbag layout
-		gbl_panelAnnulusGraphic = new GridBagLayout();
+		GridBagLayout gbl_panelAnnulusGraphic = new GridBagLayout();
+		
+		// define gridbag layout for greyscale annulus image panel
 		gbl_panelAnnulusGraphic.columnWidths = new int[]{0};
 		gbl_panelAnnulusGraphic.rowHeights = new int[]{0};
 		gbl_panelAnnulusGraphic.columnWeights = new double[]{1.0, Double.MIN_VALUE};
