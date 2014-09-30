@@ -3,7 +3,7 @@ package csp1150.assignment1;
 /**
  * Subclass of CalculatorModel.
  * The mandelbrot's attributes are saved here,
- * with default max-min values and overriding
+ * with modified max-min values and overrides
  * CalculatorModel's isInside() method.
  * 
  * @author Martin Ponce ID# 10371381
@@ -15,11 +15,17 @@ public class MandelbrotModel extends CalculatorModel {
 	// declaring constant
 	private final int MAX_STEPS = 255;
 	
-	// these variables hold the max-min values
-	private double maxX = 2;
-	private double minX = -2;
-	private double maxY = 2;
-	private double minY = -2;
+	/**
+	 * This constructor modifies the max-min values,
+	 * so that it can be used to calculate an area
+	 * of a mandelbrot.
+	 */
+	public MandelbrotModel() {
+		this.maxX = 2;
+		this.minX = -2;
+		this.maxY = 2;
+		this.minY = -2;
+	}
 	
 	/**
 	 * This method checks if hitpoints are within shape perimeter.
@@ -30,9 +36,10 @@ public class MandelbrotModel extends CalculatorModel {
 	 */
 	protected boolean isInside(double x, double y) {
 		
-		// declare boolean value
 		boolean inside = true;
+		
 		int steps = 0;
+		
 		double px = 0;
 		double py = 0;
 		

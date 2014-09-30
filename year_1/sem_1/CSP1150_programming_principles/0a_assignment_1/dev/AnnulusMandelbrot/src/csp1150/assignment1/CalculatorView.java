@@ -778,7 +778,7 @@ public class CalculatorView extends JFrame {
 	 * from the view, parse as double.
 	 * @return double - Area of annulus.
 	 */
-	public double getAreaCalc() {
+	public double getAnnulusAreaCalc() {
 		return Double.parseDouble(resultAnnulusApproxArea.getText());
 	}
 	
@@ -787,7 +787,7 @@ public class CalculatorView extends JFrame {
 	 * from the controller, parse as String.
 	 * @param double area.
 	 */
-	public void setAreaCalc(double area) {
+	public void setAnnulusAreaCalc(double area) {
 		resultAnnulusApproxArea.setText(Double.toString(area));
 	}
 	
@@ -796,16 +796,34 @@ public class CalculatorView extends JFrame {
 	 * from the controller, parse as String.
 	 * @param area
 	 */
-	public void setMonteCalc(double area) {
+	public void setAnnulusMonteCalc(double area) {
 		resultAnnulusMonteArea.setText(Double.toString(area));
+	}
+	
+	//
+	
+	/**
+	 * This method sets the monte carlo result to the view
+	 * from the controller, parse as String.
+	 * @param area
+	 */
+	public void setMandMonteCalc(double area) {
+		resultMandMonteArea.setText(Double.toString(area));
 	}
 	
 	/**
 	 * This method adds an action listener for the calculate button.
 	 * @param listenForButtonCalcAnnulus.
 	 */
-	public void addCalcListener(ActionListener listenForButtonCalcAnnulus) {
-		buttonCalcAnnulus.addActionListener(listenForButtonCalcAnnulus);
+	public void addAnnulusCalcListener(ActionListener theListener) {
+		buttonCalcAnnulus.addActionListener(theListener);
+	}
+	
+	/**
+	 * 
+	 */
+	public void addMandelbrotViewListener(ActionListener theListener) {
+		buttonMandView.addActionListener(theListener);
 	}
 	
 	/**

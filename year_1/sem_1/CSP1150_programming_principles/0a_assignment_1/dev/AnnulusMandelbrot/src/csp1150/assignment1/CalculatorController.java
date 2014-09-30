@@ -23,7 +23,7 @@ public class CalculatorController {
 	private CalculatorView theView;
 	
 	// create reference to theModel
-	private CalculatorModel theModel;
+	private CalculatorModel theAnnulus;
 	
 	// create reference to the mandelbrot model
 	private MandelbrotModel theMandelbrot;
@@ -44,7 +44,7 @@ public class CalculatorController {
 		this.theView = theView;
 		
 		// assign this class model to the incoming model
-		this.theModel = theAnnulus;
+		this.theAnnulus = theAnnulus;
 		
 		// assign this mandelmodel to the incoming model
 		this.theMandelbrot = theMandelbrot;
@@ -53,7 +53,9 @@ public class CalculatorController {
 		this.greyscaleAnnulus = greyscaleAnnulus;
 		
 		// create listener for the calculate button
-		this.theView.addCalcListener(new CalcListener());
+		this.theView.addAnnulusCalcListener(new AnnulusCalcListener());
+		
+		this.theView.addMandelbrotViewListener(new MandelbrotCalcListener());
 	}
 	
 	/**
@@ -62,7 +64,8 @@ public class CalculatorController {
 	 * 
 	 * @author Martin Ponce
 	 */
-	class CalcListener implements ActionListener {
+	class AnnulusCalcListener implements ActionListener {
+		
 		public void actionPerformed(ActionEvent arg0) {
 			
 			// declare default values for input fields
@@ -77,16 +80,16 @@ public class CalculatorController {
 				inRadius = theView.getInRadius();
 				
 				// set radius to the model
-				theModel.setRadius(outRadius, inRadius);
+				theAnnulus.setRadius(outRadius, inRadius);
 
 				// get the calculated area approximate value from the model
-				theView.setAreaCalc(theModel.getAreaCalc());
+				theView.setAnnulusAreaCalc(theAnnulus.getAreaCalc());
 				
 				// get the calculated monte carlo estimate value from the model
-				theView.setMonteCalc(theModel.getMonteCalc());
+				theView.setAnnulusMonteCalc(theAnnulus.getMonteCalc());
 				
 				// call viewhits to get data from array
-				greyscaleAnnulus.viewHits(theModel.returnHits());
+				greyscaleAnnulus.viewHits(theAnnulus.returnHits());
 				
 				// get the view to display greyscale annulus image
 				theView.showGreyscaleAnnulus(greyscaleAnnulus);
@@ -98,6 +101,15 @@ public class CalculatorController {
 			}
 			
 			// todo: add catch when outer radius is lower than inner radius
+		}
+	}
+	
+	class MandelbrotCalcListener implements ActionListener {
+		
+		public void actionPerformed(ActionEvent arg1) {
+			
+			theMandelbrot.calcMonte();
+			theView.setMandMonteCalc(theMandelbrot.getMonteCalc());
 		}
 	}
 }
