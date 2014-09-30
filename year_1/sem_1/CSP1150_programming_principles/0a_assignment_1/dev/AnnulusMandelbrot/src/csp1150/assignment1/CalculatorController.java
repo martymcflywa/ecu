@@ -14,8 +14,8 @@ import view.*;
  * handles exceptions.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 3.2.0
- * @since 20140929
+ * @version 3.3.0
+ * @since 20140930
  */
 public class CalculatorController {
 
@@ -77,9 +77,6 @@ public class CalculatorController {
 				
 				// get the calculated monte carlo estimate value from the model
 				theView.setMonteCalc(theModel.getMonteCalc());
-				
-				// **NOT WORKING** trying to clear the image before it gets generated again
-				greyScaleAnnulus.clearImage();
 				
 				// call viewhits to get data from array
 				greyScaleAnnulus.viewHits(theModel.returnHits());

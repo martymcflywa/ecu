@@ -8,7 +8,7 @@ package csp1150.assignment1;
  * 
  * @author Martin Ponce ID# 10371381
  * @version 3.2.0
- * @since 20140929
+ * @since 20140930
  */
 public class CalculatorModel {
 
@@ -121,8 +121,10 @@ public class CalculatorModel {
 			// iterate through rows
 			for(int row = 0; row < GRIDSIZE - 1; row++) {
 				
+				hits[col][row] = 0;
+				
 				// iterate through samples
-				for(int i = 0; i < this.SAMPLES; i++) {
+				for(int i = 0; i < SAMPLES; i++) {
 					
 					// generate random scatter points per cell
 					double x = minX + (col + Math.random()) * ((maxX - minX) / GRIDSIZE);
@@ -130,7 +132,7 @@ public class CalculatorModel {
 					
 					// if test pass, set counter + 1
 					if(isInside(x, y)) {
-						this.hits[col][row] = 1;
+						hits[col][row] = 1;
 						arraySum++;
 					}
 				}

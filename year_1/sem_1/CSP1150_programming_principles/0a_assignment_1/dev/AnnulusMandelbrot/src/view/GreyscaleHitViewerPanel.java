@@ -121,15 +121,4 @@ public class GreyscaleHitViewerPanel extends JPanel implements HitViewerInterfac
     public BufferedImage getImage() {
     	return image;
     }
-    
-    /**
-     * This method clears the image.
-     * **DOES NOT WORK**
-     */
-    public void clearImage() {
-    	g2 = image.createGraphics();
-        g2.setColor(Color.WHITE);
-        g2.fillRect(0, 0, width, height);
-    	repaint();
-    }
 }
