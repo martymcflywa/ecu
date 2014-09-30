@@ -270,9 +270,9 @@ public class CalculatorGUI {
 		GridBagConstraints gbc_labelMandInstructA = new GridBagConstraints();
 		gbc_labelMandInstructA.fill = GridBagConstraints.HORIZONTAL;
 		gbc_labelMandInstructA.gridwidth = 4;
-		gbc_labelMandInstructA.insets = new Insets(0, 20, 5, 5);
+		gbc_labelMandInstructA.insets = new Insets(6, 20, 5, 5);
 		gbc_labelMandInstructA.gridx = 0;
-		gbc_labelMandInstructA.gridy = 1;
+		gbc_labelMandInstructA.gridy = 0;
 		borderMandelbrot.add(labelMandInstructA, gbc_labelMandInstructA);
 		
 		JLabel labelMandInstructB = new JLabel("Click view to find out.");
@@ -281,7 +281,7 @@ public class CalculatorGUI {
 		gbc_labelMandInstructB.gridwidth = 4;
 		gbc_labelMandInstructB.insets = new Insets(0, 20, 5, 5);
 		gbc_labelMandInstructB.gridx = 0;
-		gbc_labelMandInstructB.gridy = 2;
+		gbc_labelMandInstructB.gridy = 1;
 		borderMandelbrot.add(labelMandInstructB, gbc_labelMandInstructB);
 		
 		JRadioButton radioMandNormalView = new JRadioButton("Normal view");
@@ -292,7 +292,7 @@ public class CalculatorGUI {
 		gbc_radioMandNormalView.gridwidth = 2;
 		gbc_radioMandNormalView.insets = new Insets(0, 20, 5, 5);
 		gbc_radioMandNormalView.gridx = 0;
-		gbc_radioMandNormalView.gridy = 3;
+		gbc_radioMandNormalView.gridy = 2;
 		borderMandelbrot.add(radioMandNormalView, gbc_radioMandNormalView);
 		
 		JRadioButton radioMandTrippyView = new JRadioButton("Back to the 60s");
@@ -302,7 +302,7 @@ public class CalculatorGUI {
 		gbc_radioMandTrippyView.gridwidth = 3;
 		gbc_radioMandTrippyView.insets = new Insets(0, 20, 5, 5);
 		gbc_radioMandTrippyView.gridx = 0;
-		gbc_radioMandTrippyView.gridy = 4;
+		gbc_radioMandTrippyView.gridy = 3;
 		borderMandelbrot.add(radioMandTrippyView, gbc_radioMandTrippyView);
 		
 		JButton buttonMandView = new JButton("View");
@@ -310,7 +310,7 @@ public class CalculatorGUI {
 		gbc_buttonMandView.anchor = GridBagConstraints.EAST;
 		gbc_buttonMandView.insets = new Insets(0, 0, 5, 5);
 		gbc_buttonMandView.gridx = 3;
-		gbc_buttonMandView.gridy = 4;
+		gbc_buttonMandView.gridy = 3;
 		borderMandelbrot.add(buttonMandView, gbc_buttonMandView);
 		
 		JLabel labelMandMonteArea = new JLabel("Monte Carlo Estimation:");
@@ -319,7 +319,7 @@ public class CalculatorGUI {
 		gbc_labelMandMonteArea.gridwidth = 4;
 		gbc_labelMandMonteArea.insets = new Insets(0, 20, 5, 5);
 		gbc_labelMandMonteArea.gridx = 0;
-		gbc_labelMandMonteArea.gridy = 6;
+		gbc_labelMandMonteArea.gridy = 5;
 		borderMandelbrot.add(labelMandMonteArea, gbc_labelMandMonteArea);
 		
 		JLabel label = new JLabel("---");
@@ -327,7 +327,7 @@ public class CalculatorGUI {
 		gbc_label.gridwidth = 5;
 		gbc_label.insets = new Insets(0, 0, 5, 5);
 		gbc_label.gridx = 0;
-		gbc_label.gridy = 7;
+		gbc_label.gridy = 6;
 		borderMandelbrot.add(label, gbc_label);
 		
 		JLabel labelMandZoomInstructA = new JLabel("Left click and drag on mandelbrot image to zoom in,");
@@ -336,7 +336,7 @@ public class CalculatorGUI {
 		gbc_labelMandZoomInstructA.gridwidth = 6;
 		gbc_labelMandZoomInstructA.insets = new Insets(0, 20, 5, 0);
 		gbc_labelMandZoomInstructA.gridx = 0;
-		gbc_labelMandZoomInstructA.gridy = 9;
+		gbc_labelMandZoomInstructA.gridy = 8;
 		borderMandelbrot.add(labelMandZoomInstructA, gbc_labelMandZoomInstructA);
 		
 		JLabel labelMandZoomInstructB = new JLabel("Right click to zoom out to original size.");
@@ -345,7 +345,7 @@ public class CalculatorGUI {
 		gbc_labelMandZoomInstructB.anchor = GridBagConstraints.WEST;
 		gbc_labelMandZoomInstructB.insets = new Insets(0, 20, 5, 0);
 		gbc_labelMandZoomInstructB.gridx = 0;
-		gbc_labelMandZoomInstructB.gridy = 10;
+		gbc_labelMandZoomInstructB.gridy = 9;
 		borderMandelbrot.add(labelMandZoomInstructB, gbc_labelMandZoomInstructB);
 		
 		JPanel panelParentRight = new JPanel();
