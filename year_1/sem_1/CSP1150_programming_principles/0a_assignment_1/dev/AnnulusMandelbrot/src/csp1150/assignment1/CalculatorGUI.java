@@ -16,12 +16,15 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
 public class CalculatorGUI {
 
 	private JFrame frame;
 	private JTextField fieldOutRadius;
 	private JTextField fieldInRadius;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -55,7 +58,7 @@ public class CalculatorGUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{300, 0, 0};
-		gridBagLayout.rowHeights = new int[]{456, 0, 0};
+		gridBagLayout.rowHeights = new int[]{437, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
@@ -70,13 +73,14 @@ public class CalculatorGUI {
 		frame.getContentPane().add(panelParentLeft, gbc_panelParentLeft);
 		GridBagLayout gbl_panelParentLeft = new GridBagLayout();
 		gbl_panelParentLeft.columnWidths = new int[]{283, 0};
-		gbl_panelParentLeft.rowHeights = new int[]{300, 0};
-		gbl_panelParentLeft.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gbl_panelParentLeft.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panelParentLeft.rowHeights = new int[]{300, 37, 0, 0};
+		gbl_panelParentLeft.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panelParentLeft.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		panelParentLeft.setLayout(gbl_panelParentLeft);
 		
 		JPanel panelAnnulus = new JPanel();
 		GridBagConstraints gbc_panelAnnulus = new GridBagConstraints();
+		gbc_panelAnnulus.insets = new Insets(0, 0, 5, 0);
 		gbc_panelAnnulus.fill = GridBagConstraints.BOTH;
 		gbc_panelAnnulus.gridx = 0;
 		gbc_panelAnnulus.gridy = 0;
@@ -195,31 +199,31 @@ public class CalculatorGUI {
 		gbc_monteAreaResult.gridy = 8;
 		borderAnnulus.add(monteAreaResult, gbc_monteAreaResult);
 		
-		JLabel labelAnnulusImageInstructionsA = new JLabel("Left click and drag on annulus image to zoom in,");
-		GridBagConstraints gbc_labelAnnulusImageInstructionsA = new GridBagConstraints();
-		gbc_labelAnnulusImageInstructionsA.anchor = GridBagConstraints.WEST;
-		gbc_labelAnnulusImageInstructionsA.gridwidth = 5;
-		gbc_labelAnnulusImageInstructionsA.insets = new Insets(0, 15, 5, 5);
-		gbc_labelAnnulusImageInstructionsA.gridx = 0;
-		gbc_labelAnnulusImageInstructionsA.gridy = 10;
-		borderAnnulus.add(labelAnnulusImageInstructionsA, gbc_labelAnnulusImageInstructionsA);
+		JLabel labelAnnulusZoomInstructA = new JLabel("Left click and drag on annulus image to zoom in,");
+		GridBagConstraints gbc_labelAnnulusZoomInstructA = new GridBagConstraints();
+		gbc_labelAnnulusZoomInstructA.anchor = GridBagConstraints.WEST;
+		gbc_labelAnnulusZoomInstructA.gridwidth = 5;
+		gbc_labelAnnulusZoomInstructA.insets = new Insets(0, 15, 5, 5);
+		gbc_labelAnnulusZoomInstructA.gridx = 0;
+		gbc_labelAnnulusZoomInstructA.gridy = 10;
+		borderAnnulus.add(labelAnnulusZoomInstructA, gbc_labelAnnulusZoomInstructA);
 		
-		JLabel lblRightClickTo = new JLabel("Right click to zoom out to original size.");
-		GridBagConstraints gbc_lblRightClickTo = new GridBagConstraints();
-		gbc_lblRightClickTo.anchor = GridBagConstraints.WEST;
-		gbc_lblRightClickTo.gridwidth = 5;
-		gbc_lblRightClickTo.insets = new Insets(0, 15, 5, 5);
-		gbc_lblRightClickTo.gridx = 0;
-		gbc_lblRightClickTo.gridy = 11;
-		borderAnnulus.add(lblRightClickTo, gbc_lblRightClickTo);
+		JLabel labelAnnulusZoomInstructB = new JLabel("Right click to zoom out to original size.");
+		GridBagConstraints gbc_labelAnnulusZoomInstructB = new GridBagConstraints();
+		gbc_labelAnnulusZoomInstructB.anchor = GridBagConstraints.WEST;
+		gbc_labelAnnulusZoomInstructB.gridwidth = 5;
+		gbc_labelAnnulusZoomInstructB.insets = new Insets(0, 15, 5, 5);
+		gbc_labelAnnulusZoomInstructB.gridx = 0;
+		gbc_labelAnnulusZoomInstructB.gridy = 11;
+		borderAnnulus.add(labelAnnulusZoomInstructB, gbc_labelAnnulusZoomInstructB);
 		
-		JCheckBox cbSaveAnnulusImage = new JCheckBox("Save Image");
-		GridBagConstraints gbc_cbSaveAnnulusImage = new GridBagConstraints();
-		gbc_cbSaveAnnulusImage.gridwidth = 2;
-		gbc_cbSaveAnnulusImage.insets = new Insets(0, 0, 5, 5);
-		gbc_cbSaveAnnulusImage.gridx = 0;
-		gbc_cbSaveAnnulusImage.gridy = 13;
-		borderAnnulus.add(cbSaveAnnulusImage, gbc_cbSaveAnnulusImage);
+		JCheckBox cboxSaveAnnulusImage = new JCheckBox("Save Image");
+		GridBagConstraints gbc_cboxSaveAnnulusImage = new GridBagConstraints();
+		gbc_cboxSaveAnnulusImage.gridwidth = 2;
+		gbc_cboxSaveAnnulusImage.insets = new Insets(0, 0, 5, 5);
+		gbc_cboxSaveAnnulusImage.gridx = 0;
+		gbc_cboxSaveAnnulusImage.gridy = 13;
+		borderAnnulus.add(cboxSaveAnnulusImage, gbc_cboxSaveAnnulusImage);
 		
 		JButton buttonSaveAnnulusImage = new JButton("Save");
 		buttonSaveAnnulusImage.addActionListener(new ActionListener() {
@@ -233,6 +237,99 @@ public class CalculatorGUI {
 		gbc_buttonSaveAnnulusImage.gridx = 2;
 		gbc_buttonSaveAnnulusImage.gridy = 13;
 		borderAnnulus.add(buttonSaveAnnulusImage, gbc_buttonSaveAnnulusImage);
+		
+		JPanel panelMandelbrot = new JPanel();
+		GridBagConstraints gbc_panelMandelbrot = new GridBagConstraints();
+		gbc_panelMandelbrot.fill = GridBagConstraints.BOTH;
+		gbc_panelMandelbrot.gridx = 0;
+		gbc_panelMandelbrot.gridy = 2;
+		panelParentLeft.add(panelMandelbrot, gbc_panelMandelbrot);
+		GridBagLayout gbl_panelMandelbrot = new GridBagLayout();
+		gbl_panelMandelbrot.columnWidths = new int[]{0, 0};
+		gbl_panelMandelbrot.rowHeights = new int[]{0, 0};
+		gbl_panelMandelbrot.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panelMandelbrot.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		panelMandelbrot.setLayout(gbl_panelMandelbrot);
+		
+		JPanel borderMandelbrot = new JPanel();
+		borderMandelbrot.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Mandelbrot Calculator", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		GridBagConstraints gbc_borderMandelbrot = new GridBagConstraints();
+		gbc_borderMandelbrot.insets = new Insets(15, 15, 15, 0);
+		gbc_borderMandelbrot.fill = GridBagConstraints.BOTH;
+		gbc_borderMandelbrot.gridx = 0;
+		gbc_borderMandelbrot.gridy = 0;
+		panelMandelbrot.add(borderMandelbrot, gbc_borderMandelbrot);
+		GridBagLayout gbl_borderMandelbrot = new GridBagLayout();
+		gbl_borderMandelbrot.columnWidths = new int[]{57, 22, 28, 64, 77, -39, 0};
+		gbl_borderMandelbrot.rowHeights = new int[]{44, 20, 23, 31, 14, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0};
+		gbl_borderMandelbrot.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 4.9E-324, Double.MIN_VALUE};
+		gbl_borderMandelbrot.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		borderMandelbrot.setLayout(gbl_borderMandelbrot);
+		
+		JLabel labelMandInstructA = new JLabel("What is a mandelbrot?");
+		GridBagConstraints gbc_labelMandInstructA = new GridBagConstraints();
+		gbc_labelMandInstructA.fill = GridBagConstraints.HORIZONTAL;
+		gbc_labelMandInstructA.gridwidth = 4;
+		gbc_labelMandInstructA.insets = new Insets(0, 20, 5, 5);
+		gbc_labelMandInstructA.gridx = 0;
+		gbc_labelMandInstructA.gridy = 1;
+		borderMandelbrot.add(labelMandInstructA, gbc_labelMandInstructA);
+		
+		JLabel labelMandInstructB = new JLabel("Click view to find out.");
+		GridBagConstraints gbc_labelMandInstructB = new GridBagConstraints();
+		gbc_labelMandInstructB.fill = GridBagConstraints.HORIZONTAL;
+		gbc_labelMandInstructB.gridwidth = 4;
+		gbc_labelMandInstructB.insets = new Insets(0, 20, 5, 5);
+		gbc_labelMandInstructB.gridx = 0;
+		gbc_labelMandInstructB.gridy = 2;
+		borderMandelbrot.add(labelMandInstructB, gbc_labelMandInstructB);
+		
+		JRadioButton radioMandNormalView = new JRadioButton("Normal view");
+		buttonGroup.add(radioMandNormalView);
+		radioMandNormalView.setSelected(true);
+		GridBagConstraints gbc_radioMandNormalView = new GridBagConstraints();
+		gbc_radioMandNormalView.anchor = GridBagConstraints.WEST;
+		gbc_radioMandNormalView.gridwidth = 2;
+		gbc_radioMandNormalView.insets = new Insets(0, 20, 5, 5);
+		gbc_radioMandNormalView.gridx = 0;
+		gbc_radioMandNormalView.gridy = 3;
+		borderMandelbrot.add(radioMandNormalView, gbc_radioMandNormalView);
+		
+		JRadioButton radioMandTrippyView = new JRadioButton("Back to the 60s");
+		buttonGroup.add(radioMandTrippyView);
+		GridBagConstraints gbc_radioMandTrippyView = new GridBagConstraints();
+		gbc_radioMandTrippyView.anchor = GridBagConstraints.WEST;
+		gbc_radioMandTrippyView.gridwidth = 3;
+		gbc_radioMandTrippyView.insets = new Insets(0, 20, 5, 5);
+		gbc_radioMandTrippyView.gridx = 0;
+		gbc_radioMandTrippyView.gridy = 4;
+		borderMandelbrot.add(radioMandTrippyView, gbc_radioMandTrippyView);
+		
+		JButton buttonMandView = new JButton("View");
+		GridBagConstraints gbc_buttonMandView = new GridBagConstraints();
+		gbc_buttonMandView.anchor = GridBagConstraints.EAST;
+		gbc_buttonMandView.insets = new Insets(0, 0, 5, 5);
+		gbc_buttonMandView.gridx = 3;
+		gbc_buttonMandView.gridy = 4;
+		borderMandelbrot.add(buttonMandView, gbc_buttonMandView);
+		
+		JLabel lblLeftClickAnd = new JLabel("Left click and drag on mandelbrot image to zoom in,");
+		GridBagConstraints gbc_lblLeftClickAnd = new GridBagConstraints();
+		gbc_lblLeftClickAnd.anchor = GridBagConstraints.WEST;
+		gbc_lblLeftClickAnd.gridwidth = 6;
+		gbc_lblLeftClickAnd.insets = new Insets(0, 20, 5, 0);
+		gbc_lblLeftClickAnd.gridx = 0;
+		gbc_lblLeftClickAnd.gridy = 8;
+		borderMandelbrot.add(lblLeftClickAnd, gbc_lblLeftClickAnd);
+		
+		JLabel lblRightClickTo = new JLabel("Right click to zoom out to original size.");
+		GridBagConstraints gbc_lblRightClickTo = new GridBagConstraints();
+		gbc_lblRightClickTo.gridwidth = 6;
+		gbc_lblRightClickTo.anchor = GridBagConstraints.WEST;
+		gbc_lblRightClickTo.insets = new Insets(0, 20, 5, 0);
+		gbc_lblRightClickTo.gridx = 0;
+		gbc_lblRightClickTo.gridy = 9;
+		borderMandelbrot.add(lblRightClickTo, gbc_lblRightClickTo);
 		
 		JPanel panelParentRight = new JPanel();
 		GridBagConstraints gbc_panelParentRight = new GridBagConstraints();
@@ -263,12 +360,12 @@ public class CalculatorGUI {
 		gbl_panelAnnulusGraphic.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		panelAnnulusGraphic.setLayout(gbl_panelAnnulusGraphic);
 		
-		JButton greyScaleAnnulus = new JButton("New button");
-		GridBagConstraints gbc_greyScaleAnnulus = new GridBagConstraints();
-		gbc_greyScaleAnnulus.fill = GridBagConstraints.BOTH;
-		gbc_greyScaleAnnulus.gridx = 0;
-		gbc_greyScaleAnnulus.gridy = 0;
-		panelAnnulusGraphic.add(greyScaleAnnulus, gbc_greyScaleAnnulus);
+		JButton greyscaleAnnulus = new JButton("New button");
+		GridBagConstraints gbc_greyscaleAnnulus = new GridBagConstraints();
+		gbc_greyscaleAnnulus.fill = GridBagConstraints.BOTH;
+		gbc_greyscaleAnnulus.gridx = 0;
+		gbc_greyscaleAnnulus.gridy = 0;
+		panelAnnulusGraphic.add(greyscaleAnnulus, gbc_greyscaleAnnulus);
 		
 		JPanel panelMandelbrotGraphic = new JPanel();
 		GridBagConstraints gbc_panelMandelbrotGraphic = new GridBagConstraints();
@@ -276,6 +373,19 @@ public class CalculatorGUI {
 		gbc_panelMandelbrotGraphic.gridx = 0;
 		gbc_panelMandelbrotGraphic.gridy = 1;
 		panelParentRight.add(panelMandelbrotGraphic, gbc_panelMandelbrotGraphic);
+		GridBagLayout gbl_panelMandelbrotGraphic = new GridBagLayout();
+		gbl_panelMandelbrotGraphic.columnWidths = new int[]{0, 0};
+		gbl_panelMandelbrotGraphic.rowHeights = new int[]{0, 0};
+		gbl_panelMandelbrotGraphic.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panelMandelbrotGraphic.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		panelMandelbrotGraphic.setLayout(gbl_panelMandelbrotGraphic);
+		
+		JButton btnNewButton = new JButton("New button");
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
+		gbc_btnNewButton.gridx = 0;
+		gbc_btnNewButton.gridy = 0;
+		panelMandelbrotGraphic.add(btnNewButton, gbc_btnNewButton);
 	}
 
 }
