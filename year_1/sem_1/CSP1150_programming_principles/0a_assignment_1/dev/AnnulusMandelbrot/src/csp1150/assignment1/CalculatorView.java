@@ -167,15 +167,15 @@ public class CalculatorView extends JFrame {
 	 */
 	CalculatorView(GreyscaleHitViewerPanel greyScaleAnnulus) {
 		this.greyScaleAnnulus = greyScaleAnnulus;
-		initialize();
-		createLeftElement();
+		initFrame();
+		initLeftPanel();
 	}
 	
 	/**
 	 * Initialize the contents of the frame.
 	 * Using gridBagLayout to create layout.
 	 */
-	private void initialize() {
+	private void initFrame() {
 		
 		
 		/**
@@ -184,6 +184,9 @@ public class CalculatorView extends JFrame {
 		
 		// set frame size
 		setBounds(100, 100, 800, 900);
+		
+		// disable frame resize
+		setResizable(false);
 		
 		// set default action when window is closed
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -195,7 +198,7 @@ public class CalculatorView extends JFrame {
 		setLocationRelativeTo(null);
 		
 		// set frame's title
-		setTitle("Annulus & Mandelbrot Calculator: Martin Ponce");
+		setTitle("Annulus & Mandelbrot Calculator: Martin Ponce ID# 10371381");
 		
 		// create GridBagLayout object
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -256,7 +259,7 @@ public class CalculatorView extends JFrame {
 	 * which contains all the user input fields and controls.
 	 * @param args unused
 	 */
-	private void createLeftElement() {
+	private void initLeftPanel() {
 		
 		/**
 		 * Defining UI elements here, using GridBagLayout to manage layout.
@@ -585,7 +588,7 @@ public class CalculatorView extends JFrame {
 	 * This method adds an action listener for the calculate button.
 	 * @param listenForCalcButton.
 	 */
-	void addCalcListener(ActionListener listenForCalcButton) {
+	public void addCalcListener(ActionListener listenForCalcButton) {
 		calcButton.addActionListener(listenForCalcButton);
 	}
 	
@@ -594,7 +597,7 @@ public class CalculatorView extends JFrame {
 	 * as JOptionPane window.
 	 * @param String errorMessage.
 	 */
-	void displayErrorMessage(String errorMessage) {
+	public void displayErrorMessage(String errorMessage) {
 		JOptionPane.showMessageDialog(this, errorMessage);
 	}
 }
