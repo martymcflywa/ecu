@@ -23,6 +23,7 @@ public class MandelbrotModel extends CalculatorModel {
 	
 	/**
 	 * This method checks if hitpoints are within shape perimeter.
+	 * Overriding CalculatorModel's original method.
 	 * @param double x - The x-axis value.
 	 * @param double y - The y-axis value.
 	 * @return boolean inside
