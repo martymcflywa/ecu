@@ -313,13 +313,30 @@ public class CalculatorGUI {
 		gbc_buttonMandView.gridy = 4;
 		borderMandelbrot.add(buttonMandView, gbc_buttonMandView);
 		
+		JLabel labelMandMonteArea = new JLabel("Monte Carlo Estimation:");
+		GridBagConstraints gbc_labelMandMonteArea = new GridBagConstraints();
+		gbc_labelMandMonteArea.anchor = GridBagConstraints.WEST;
+		gbc_labelMandMonteArea.gridwidth = 4;
+		gbc_labelMandMonteArea.insets = new Insets(0, 20, 5, 5);
+		gbc_labelMandMonteArea.gridx = 0;
+		gbc_labelMandMonteArea.gridy = 6;
+		borderMandelbrot.add(labelMandMonteArea, gbc_labelMandMonteArea);
+		
+		JLabel label = new JLabel("---");
+		GridBagConstraints gbc_label = new GridBagConstraints();
+		gbc_label.gridwidth = 5;
+		gbc_label.insets = new Insets(0, 0, 5, 5);
+		gbc_label.gridx = 0;
+		gbc_label.gridy = 7;
+		borderMandelbrot.add(label, gbc_label);
+		
 		JLabel labelMandZoomInstructA = new JLabel("Left click and drag on mandelbrot image to zoom in,");
 		GridBagConstraints gbc_labelMandZoomInstructA = new GridBagConstraints();
 		gbc_labelMandZoomInstructA.anchor = GridBagConstraints.WEST;
 		gbc_labelMandZoomInstructA.gridwidth = 6;
 		gbc_labelMandZoomInstructA.insets = new Insets(0, 20, 5, 0);
 		gbc_labelMandZoomInstructA.gridx = 0;
-		gbc_labelMandZoomInstructA.gridy = 8;
+		gbc_labelMandZoomInstructA.gridy = 9;
 		borderMandelbrot.add(labelMandZoomInstructA, gbc_labelMandZoomInstructA);
 		
 		JLabel labelMandZoomInstructB = new JLabel("Right click to zoom out to original size.");
@@ -328,7 +345,7 @@ public class CalculatorGUI {
 		gbc_labelMandZoomInstructB.anchor = GridBagConstraints.WEST;
 		gbc_labelMandZoomInstructB.insets = new Insets(0, 20, 5, 0);
 		gbc_labelMandZoomInstructB.gridx = 0;
-		gbc_labelMandZoomInstructB.gridy = 9;
+		gbc_labelMandZoomInstructB.gridy = 10;
 		borderMandelbrot.add(labelMandZoomInstructB, gbc_labelMandZoomInstructB);
 		
 		JPanel panelParentRight = new JPanel();
