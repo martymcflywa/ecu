@@ -10,7 +10,7 @@ package csp1150.assignment1;
  * @version 4.0.0
  * @since 20140930
  */
-public class MandelModel extends CalculatorModel {
+public class MandelbrotModel extends CalculatorModel {
 	
 	// declaring constant
 	private final int MAX_STEPS = 255;

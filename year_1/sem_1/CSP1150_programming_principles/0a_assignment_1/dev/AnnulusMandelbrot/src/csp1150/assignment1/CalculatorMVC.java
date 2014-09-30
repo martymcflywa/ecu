@@ -24,7 +24,7 @@ public class CalculatorMVC {
 		CalculatorModel theAnnulus = new CalculatorModel();
 		
 		//
-		MandelModel theMandelbrot = new MandelModel();
+		MandelbrotModel theMandelbrot = new MandelbrotModel();
 		
 		// create a greyscaleview object for the annulus
 		GreyscaleHitViewerPanel greyscaleAnnulus = new GreyscaleHitViewerPanel(theAnnulus.getGridSize(), theAnnulus.getGridSize());
