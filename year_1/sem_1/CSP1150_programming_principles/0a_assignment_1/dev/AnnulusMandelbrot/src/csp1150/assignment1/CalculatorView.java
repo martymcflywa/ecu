@@ -138,11 +138,7 @@ public class CalculatorView extends JFrame {
 	 * Defining GridBagLayout and GridBagConstraints
 	 */
 	
-	/*
-	 * Left side
-	 */
-	
-	// gbc: left side container
+	// gbc: left side container - reference for showGreyscaleAnnulus
 	private GridBagConstraints gbc_panelParentLeft;
 	
 	/*
