@@ -200,6 +200,8 @@ public class CalculatorView extends JFrame {
 		this.greyscaleAnnulus = greyscaleAnnulus;
 		initFrame();
 		initLeftPanel();
+		initAnnulusCalcPanel();
+		initRightPanel();
 	}
 	
 	/**
@@ -210,7 +212,7 @@ public class CalculatorView extends JFrame {
 		
 		
 		/**
-		 * Define JFrame parameters.
+		 * Defining JFrame parameters.
 		 */
 		
 		// set frame size
@@ -235,7 +237,7 @@ public class CalculatorView extends JFrame {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		
 		/**
-		 * Define gridBagLayout parameters.
+		 * Defining gridBagLayout parameters.
 		 */
 		gridBagLayout.columnWidths = new int[]{300, 0, 0};
 		gridBagLayout.rowHeights = new int[]{434, 0, 0};
@@ -248,13 +250,13 @@ public class CalculatorView extends JFrame {
 	
 	/**
 	 * This method creates the layout for greyscale annulus image,
-	 * and adds it to the frame.
+	 * and adds it to the parent frame.
 	 * @param greyscaleAnnulus
 	 */
 	public void showGreyscaleAnnulus(GreyscaleHitViewerPanel greyscaleAnnulus) {
 		
 		// create the panels for the right side
-		initRightPanel();
+		initAnnulusImagePanel();
 
 		// if image exists,
 		if(imageExists) {
@@ -286,15 +288,12 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
-	 * This method creates the left side of the GUI,
-	 * which contains all the user input fields and controls.
+	 * This method creates the left container of the GUI,
+	 * which contains all the user input fields and controls
+	 * for both the Annulus and Mandelbrot calculator.
 	 * @param args unused
 	 */
 	private void initLeftPanel() {
-		
-		/**
-		 * Defining UI elements here, using GridBagLayout to manage layout.
-		 */
 	
 		// create left parent panel
 		panelParentLeft = new JPanel();
@@ -321,7 +320,13 @@ public class CalculatorView extends JFrame {
 		
 		// set left parent panel's layout manager to gridbag layout
 		panelParentLeft.setLayout(gbl_panelParentLeft);
-		
+	}
+	
+	/**
+	 * This method creates the Annulus Calculator panel,
+	 * which is inside the left container.
+	 */
+	private void initAnnulusCalcPanel() {
 		// create annulus calculator panel, goes inside left parent panel
 		panelAnnulusCalculator = new JPanel();
 		
@@ -525,7 +530,7 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
-	 * This method creates the right side of the GUI,
+	 * This method creates the right container of the GUI,
 	 * which contains the greyscale images.
 	 */
 	private void initRightPanel() {
@@ -538,6 +543,13 @@ public class CalculatorView extends JFrame {
 		gbc_panelParentRight.gridx = 1;
 		gbc_panelParentRight.gridy = 0;
 		getContentPane().add(panelParentRight, gbc_panelParentRight);
+	}
+	
+	/**
+	 * This method creates the Annulus image panel,
+	 * which is inside the right container.
+	 */
+	private void initAnnulusImagePanel() {
 		
 		// setting up the parent panel for greyscale annulus image
 		panelAnnulusGraphic = new JPanel();
