@@ -313,23 +313,23 @@ public class CalculatorGUI {
 		gbc_buttonMandView.gridy = 4;
 		borderMandelbrot.add(buttonMandView, gbc_buttonMandView);
 		
-		JLabel lblLeftClickAnd = new JLabel("Left click and drag on mandelbrot image to zoom in,");
-		GridBagConstraints gbc_lblLeftClickAnd = new GridBagConstraints();
-		gbc_lblLeftClickAnd.anchor = GridBagConstraints.WEST;
-		gbc_lblLeftClickAnd.gridwidth = 6;
-		gbc_lblLeftClickAnd.insets = new Insets(0, 20, 5, 0);
-		gbc_lblLeftClickAnd.gridx = 0;
-		gbc_lblLeftClickAnd.gridy = 8;
-		borderMandelbrot.add(lblLeftClickAnd, gbc_lblLeftClickAnd);
+		JLabel labelMandZoomInstructA = new JLabel("Left click and drag on mandelbrot image to zoom in,");
+		GridBagConstraints gbc_labelMandZoomInstructA = new GridBagConstraints();
+		gbc_labelMandZoomInstructA.anchor = GridBagConstraints.WEST;
+		gbc_labelMandZoomInstructA.gridwidth = 6;
+		gbc_labelMandZoomInstructA.insets = new Insets(0, 20, 5, 0);
+		gbc_labelMandZoomInstructA.gridx = 0;
+		gbc_labelMandZoomInstructA.gridy = 8;
+		borderMandelbrot.add(labelMandZoomInstructA, gbc_labelMandZoomInstructA);
 		
-		JLabel lblRightClickTo = new JLabel("Right click to zoom out to original size.");
-		GridBagConstraints gbc_lblRightClickTo = new GridBagConstraints();
-		gbc_lblRightClickTo.gridwidth = 6;
-		gbc_lblRightClickTo.anchor = GridBagConstraints.WEST;
-		gbc_lblRightClickTo.insets = new Insets(0, 20, 5, 0);
-		gbc_lblRightClickTo.gridx = 0;
-		gbc_lblRightClickTo.gridy = 9;
-		borderMandelbrot.add(lblRightClickTo, gbc_lblRightClickTo);
+		JLabel labelMandZoomInstructB = new JLabel("Right click to zoom out to original size.");
+		GridBagConstraints gbc_labelMandZoomInstructB = new GridBagConstraints();
+		gbc_labelMandZoomInstructB.gridwidth = 6;
+		gbc_labelMandZoomInstructB.anchor = GridBagConstraints.WEST;
+		gbc_labelMandZoomInstructB.insets = new Insets(0, 20, 5, 0);
+		gbc_labelMandZoomInstructB.gridx = 0;
+		gbc_labelMandZoomInstructB.gridy = 9;
+		borderMandelbrot.add(labelMandZoomInstructB, gbc_labelMandZoomInstructB);
 		
 		JPanel panelParentRight = new JPanel();
 		GridBagConstraints gbc_panelParentRight = new GridBagConstraints();
@@ -380,12 +380,12 @@ public class CalculatorGUI {
 		gbl_panelMandelbrotGraphic.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		panelMandelbrotGraphic.setLayout(gbl_panelMandelbrotGraphic);
 		
-		JButton btnNewButton = new JButton("New button");
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton.gridx = 0;
-		gbc_btnNewButton.gridy = 0;
-		panelMandelbrotGraphic.add(btnNewButton, gbc_btnNewButton);
+		JButton greyscaleMandelbrot = new JButton("New button");
+		GridBagConstraints gbc_greyscaleMandelbrot = new GridBagConstraints();
+		gbc_greyscaleMandelbrot.fill = GridBagConstraints.BOTH;
+		gbc_greyscaleMandelbrot.gridx = 0;
+		gbc_greyscaleMandelbrot.gridy = 0;
+		panelMandelbrotGraphic.add(greyscaleMandelbrot, gbc_greyscaleMandelbrot);
 	}
 
 }
