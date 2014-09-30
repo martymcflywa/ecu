@@ -16,6 +16,9 @@ import java.awt.Insets;
 
 
 
+
+
+
 // import greyscale view
 import view.*;
 
@@ -88,7 +91,7 @@ public class CalculatorView extends JFrame {
 	private JRadioButton radioMandTrippyView;
 	
 	// button: mandelbrot view image button
-	private JButton buttonMandView;
+	private JButton buttonMandView = new JButton("View");
 	
 	// label: mandelbrot monte area result title
 	private JLabel labelMandMonteArea;
@@ -101,6 +104,9 @@ public class CalculatorView extends JFrame {
 	
 	// label: mandelbrot zoom instruction part 2
 	private JLabel labelMandZoomInstructB;
+	
+	// button group: mandelbrot radio buttons
+	private final ButtonGroup GROUP_MAND_RADIOS = new ButtonGroup();
 	
 	/**
 	 * Defining left side panels.
@@ -441,59 +447,59 @@ public class CalculatorView extends JFrame {
 		labelAnnulusApproxArea = new JLabel("Approximate Area:");
 		
 		// create gridbag constraints parameters for approximate area result label
-		GridBagConstraints gbc_labelApproxArea = new GridBagConstraints();
+		GridBagConstraints gbc_labelAnnulusApproxArea = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for approximate area result label
-		gbc_labelApproxArea.anchor = GridBagConstraints.WEST;
-		gbc_labelApproxArea.insets = new Insets(20, 15, 5, 5);
-		gbc_labelApproxArea.gridwidth = 2;
-		gbc_labelApproxArea.gridx = 0;
-		gbc_labelApproxArea.gridy = 4;
+		gbc_labelAnnulusApproxArea.anchor = GridBagConstraints.WEST;
+		gbc_labelAnnulusApproxArea.insets = new Insets(20, 15, 5, 5);
+		gbc_labelAnnulusApproxArea.gridwidth = 2;
+		gbc_labelAnnulusApproxArea.gridx = 0;
+		gbc_labelAnnulusApproxArea.gridy = 4;
 		
 		// add approximate area result label and gridbag constraints to annulus calculator border panel
-		borderAnnulusCalculator.add(labelAnnulusApproxArea, gbc_labelApproxArea);
+		borderAnnulusCalculator.add(labelAnnulusApproxArea, gbc_labelAnnulusApproxArea);
 		
 		// create gridbag constraints for approximate area result output
-		GridBagConstraints gbc_approxAreaResult = new GridBagConstraints();
+		GridBagConstraints gbc_resultAnnulusApproxArea = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for approximate area result output
-		gbc_approxAreaResult.gridwidth = 5;
-		gbc_approxAreaResult.insets = new Insets(0, 0, 5, 5);
-		gbc_approxAreaResult.gridx = 0;
-		gbc_approxAreaResult.gridy = 5;
+		gbc_resultAnnulusApproxArea.gridwidth = 5;
+		gbc_resultAnnulusApproxArea.insets = new Insets(0, 0, 5, 5);
+		gbc_resultAnnulusApproxArea.gridx = 0;
+		gbc_resultAnnulusApproxArea.gridy = 5;
 		
 		// add approximate area result output and gridbag constraints to annulus calculator border panel
-		borderAnnulusCalculator.add(resultAnnulusApproxArea, gbc_approxAreaResult);
+		borderAnnulusCalculator.add(resultAnnulusApproxArea, gbc_resultAnnulusApproxArea);
 		
 		// create monte carlo result label
 		labelAnnulusMonteArea = new JLabel("Monte Carlo Estimation:");
 		
 		// create gridbag constraints for monte carlo result label
-		GridBagConstraints gbc_labelMonteArea = new GridBagConstraints();
+		GridBagConstraints gbc_labelAnnulusMonteArea = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for monte carlo result label
-		gbc_labelMonteArea.insets = new Insets(0, 15, 5, 5);
-		gbc_labelMonteArea.anchor = GridBagConstraints.NORTH;
-		gbc_labelMonteArea.fill = GridBagConstraints.HORIZONTAL;
-		gbc_labelMonteArea.gridwidth = 5;
-		gbc_labelMonteArea.gridx = 0;
-		gbc_labelMonteArea.gridy = 7;
+		gbc_labelAnnulusMonteArea.insets = new Insets(0, 15, 5, 5);
+		gbc_labelAnnulusMonteArea.anchor = GridBagConstraints.NORTH;
+		gbc_labelAnnulusMonteArea.fill = GridBagConstraints.HORIZONTAL;
+		gbc_labelAnnulusMonteArea.gridwidth = 5;
+		gbc_labelAnnulusMonteArea.gridx = 0;
+		gbc_labelAnnulusMonteArea.gridy = 7;
 		
 		// add monte carlo result label and gridbag constraints to annulus calculator border panel
-		borderAnnulusCalculator.add(labelAnnulusMonteArea, gbc_labelMonteArea);
+		borderAnnulusCalculator.add(labelAnnulusMonteArea, gbc_labelAnnulusMonteArea);
 		
 		// create gridbag constraints for monte carlo result output
-		GridBagConstraints gbc_monteAreaResult = new GridBagConstraints();
+		GridBagConstraints gbc_resultAnnulusMonteArea = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for monte carlo result output
-		gbc_monteAreaResult.insets = new Insets(0, 0, 5, 5);
-		gbc_monteAreaResult.gridwidth = 6;
-		gbc_monteAreaResult.anchor = GridBagConstraints.NORTH;
-		gbc_monteAreaResult.gridx = 0;
-		gbc_monteAreaResult.gridy = 8;
+		gbc_resultAnnulusMonteArea.insets = new Insets(0, 0, 5, 5);
+		gbc_resultAnnulusMonteArea.gridwidth = 6;
+		gbc_resultAnnulusMonteArea.anchor = GridBagConstraints.NORTH;
+		gbc_resultAnnulusMonteArea.gridx = 0;
+		gbc_resultAnnulusMonteArea.gridy = 8;
 		
 		// add monte carlo result output and gridbag constraints to annulus calculator border panel
-		borderAnnulusCalculator.add(resultAnnulusMonteArea, gbc_monteAreaResult);
+		borderAnnulusCalculator.add(resultAnnulusMonteArea, gbc_resultAnnulusMonteArea);
 	}
 	
 	/**
@@ -559,8 +565,6 @@ public class CalculatorView extends JFrame {
 		// set annulus calculator border panel's layout manager to gridbag layout
 		borderMandelbrotCalculator.setLayout(gbl_borderMandelbrotCalculator);
 		
-		/************/
-		
 		// create label for instructions
 		labelMandInstructA = new JLabel("What is a mandelbrot?");
 		
@@ -576,6 +580,93 @@ public class CalculatorView extends JFrame {
 		
 		// add instructions and gridbag constraints parameters to annulus calculator border panel
 		borderMandelbrotCalculator.add(labelMandInstructA, gbc_labelMandInstructA);
+		
+		// create label for outer radius user input field
+		labelMandInstructB = new JLabel("Click view to find out.");
+		
+		// create gridbag constraints for outer radius label
+		GridBagConstraints gbc_labelMandInstructB = new GridBagConstraints();
+		
+		// define gridbag constraints parameters for outer radius label
+		gbc_labelMandInstructB.anchor = GridBagConstraints.WEST;
+		gbc_labelMandInstructB.insets = new Insets(0, 15, 5, 5);
+		gbc_labelMandInstructB.gridwidth = 5;
+		gbc_labelMandInstructB.gridx = 0;
+		gbc_labelMandInstructB.gridy = 1;
+		
+		// add outer radius label and gridbag constraints to annulus calculator border panel
+		borderMandelbrotCalculator.add(labelMandInstructB, gbc_labelMandInstructB);
+		
+		// create mandelbrot normal view radio button
+		radioMandNormalView = new JRadioButton("Normal view");
+		
+		// make this button the default selection
+		radioMandNormalView.setSelected(true);
+		
+		// add radio button to group
+		GROUP_MAND_RADIOS.add(radioMandNormalView);
+		
+		// create gridbag constraints for mandelbrot normal view radio button
+		GridBagConstraints gbc_radioMandNormalView = new GridBagConstraints();
+		
+		// define gridbag constraints parameters for mandelbrot normal view radio button
+		gbc_radioMandNormalView.anchor = GridBagConstraints.WEST;
+		gbc_radioMandNormalView.insets = new Insets(15, 15, 5, 5);
+		gbc_radioMandNormalView.gridx = 0;
+		gbc_radioMandNormalView.gridy = 2;
+		
+		// add mandelbrot normal view radio button and gridbag constraints to mandelbrot calculator border panel
+		borderMandelbrotCalculator.add(radioMandNormalView, gbc_radioMandNormalView);
+		
+		// create mandelbrot trippy view radio button
+		radioMandTrippyView = new JRadioButton("Trippy view");
+		
+		// add radio button to group
+		GROUP_MAND_RADIOS.add(radioMandTrippyView);
+		
+		// create gridbag constraints for mandelbrot trippy view radio button
+		GridBagConstraints gbc_radioMandTrippyView = new GridBagConstraints();
+		
+		// define gridbag constraints parameters for mandelbrot normal view radio button
+		gbc_radioMandTrippyView.anchor = GridBagConstraints.WEST;
+		gbc_radioMandTrippyView.insets = new Insets(0, 15, 5, 5);
+		gbc_radioMandTrippyView.gridx = 0;
+		gbc_radioMandTrippyView.gridy = 3;
+		
+		// add mandelbrot trippy view radio button and gridbag constraints to mandelbrot calculator border panel
+		borderMandelbrotCalculator.add(radioMandTrippyView, gbc_radioMandTrippyView);
+		
+		// create gridbag constraints for mandelbrot view button
+		GridBagConstraints gbc_buttonMandView = new GridBagConstraints();
+		
+		// define gridbag constraints parameters for mandelbrot view button
+		gbc_buttonMandView.anchor = GridBagConstraints.EAST;
+		gbc_buttonMandView.gridwidth = 3;
+		gbc_buttonMandView.insets = new Insets(0, 0, 5, 5);
+		gbc_buttonMandView.gridx = 1;
+		gbc_buttonMandView.gridy = 3;
+		
+		// add mandelbrot view button and gridbag constraints to mandelbrot calculator border panel
+		borderMandelbrotCalculator.add(buttonMandView, gbc_buttonMandView);
+		
+		/************/
+		
+		// create monte carlo result label
+		labelAnnulusMonteArea = new JLabel("Monte Carlo Estimation:");
+		
+		// create gridbag constraints for monte carlo result label
+		GridBagConstraints gbc_labelMonteArea = new GridBagConstraints();
+		
+		// define gridbag constraints parameters for monte carlo result label
+		gbc_labelMonteArea.insets = new Insets(0, 15, 5, 5);
+		gbc_labelMonteArea.anchor = GridBagConstraints.NORTH;
+		gbc_labelMonteArea.fill = GridBagConstraints.HORIZONTAL;
+		gbc_labelMonteArea.gridwidth = 5;
+		gbc_labelMonteArea.gridx = 0;
+		gbc_labelMonteArea.gridy = 7;
+		
+		// add monte carlo result label and gridbag constraints to annulus calculator border panel
+		borderAnnulusCalculator.add(labelAnnulusMonteArea, gbc_labelMonteArea);
 	}
 	
 	/**
