@@ -689,8 +689,6 @@ public class CalculatorView extends JFrame {
 		
 		// add mandelbrot monte carlo result output and gridbag constraints to mandelbrot calculator border panel
 		borderMandelbrotCalculator.add(resultMandMonteArea, gbc_resultMandMonteArea);
-		
-		/************/
 	}
 	
 	/**

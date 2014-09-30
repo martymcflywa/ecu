@@ -40,29 +40,30 @@ public class CalculatorController {
 	 */
 	public CalculatorController(CalculatorView theView, CalculatorModel theAnnulus, MandelbrotModel theMandelbrot, GreyscaleHitViewerPanel greyscaleAnnulus) {
 		
-		// assign this class view to the incoming view
+		// assign this view object to the incoming view
 		this.theView = theView;
 		
-		// assign this class model to the incoming model
+		// assign this model object to the incoming model
 		this.theAnnulus = theAnnulus;
 		
-		// assign this mandelmodel to the incoming model
+		// assign this model object to the incoming model
 		this.theMandelbrot = theMandelbrot;
 		
-		// assign this class greyScaleAnnulus to the incoming greyScaleAnnulus
+		// assign this image object to the incoming image
 		this.greyscaleAnnulus = greyscaleAnnulus;
 		
-		// create listener for the calculate button
+		// create listener for the annulus calculate button
 		this.theView.addAnnulusCalcListener(new AnnulusCalcListener());
 		
+		// create listener for the mandelbrot view button
 		this.theView.addMandelbrotViewListener(new MandelbrotCalcListener());
 	}
 	
 	/**
-	 * This class defines exception handling
-	 * when the calculate button is pressed.
-	 * 
+	 * This class defines the listener for
+	 * the Annulus Calculator calculate button.
 	 * @author Martin Ponce
+	 * 
 	 */
 	class AnnulusCalcListener implements ActionListener {
 		
@@ -104,11 +105,20 @@ public class CalculatorController {
 		}
 	}
 	
+	/**
+	 * This class defines the listener for
+	 * the Mandelbrot Calculator view button. 
+	 * @author Martin Ponce
+	 *
+	 */
 	class MandelbrotCalcListener implements ActionListener {
 		
 		public void actionPerformed(ActionEvent arg1) {
 			
+			// do the mandelbrot calculation
 			theMandelbrot.calcMonte();
+			
+			// set the result in the view
 			theView.setMandMonteCalc(theMandelbrot.getMonteCalc());
 		}
 	}
