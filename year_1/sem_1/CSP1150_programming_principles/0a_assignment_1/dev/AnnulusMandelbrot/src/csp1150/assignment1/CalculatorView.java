@@ -14,6 +14,8 @@ import javax.swing.border.TitledBorder;
 import java.awt.Insets;
 
 
+
+
 // import greyscale view
 import view.*;
 
@@ -113,12 +115,18 @@ public class CalculatorView extends JFrame {
 	// panel: annulus calculator border
 	private JPanel borderAnnulusCalculator;
 	
+	// panel: mandelbrot calculator container
+	private JPanel panelMandelbrotCalculator;
+	
+	// panel: mandelbrot calculator border
+	private JPanel borderMandelbrotCalculator;
+	
 	/**
 	 * Defining right side panels.
 	 */
 	
 	// panel: right side container
-	private JPanel panelParentRight = new JPanel();
+	private JPanel panelParentRight;
 	
 	// panel: annulus graphic container
 	private JPanel panelAnnulusGraphic;
@@ -129,6 +137,32 @@ public class CalculatorView extends JFrame {
 	/**
 	 * Defining GridBagLayout and GridBagConstraints
 	 */
+	
+	/*
+	 * Left side
+	 */
+	
+	// gbl: left side container
+	private GridBagLayout gbl_panelParentLeft;
+	
+	// gbc: left side container
+	private GridBagConstraints gbc_panelParentLeft;
+	
+	/*
+	 * Annulus calculator
+	 */
+	
+	// gbl: annulus calculator
+	private GridBagLayout gbl_panelAnnulusCalculator;
+	
+	// gbc: annulus calculator
+	private GridBagConstraints gbc_panelAnnulusCalculator;
+	
+	// gbc: annulus calculator border
+	private GridBagConstraints gbc_borderAnnulus;
+	
+	// gbl: annulus calculator border
+	private GridBagLayout gbl_borderAnnulus;
 	
 	// gbc: annulus calculator instructions
 	private GridBagConstraints gbc_labelAnnulusInstructions;
@@ -160,23 +194,16 @@ public class CalculatorView extends JFrame {
 	// gbc: monte area result output
 	private GridBagConstraints gbc_monteAreaResult;
 	
-	// gbc: left side container
-	private GridBagConstraints gbc_panelParentLeft;
+	/*
+	 * Mandelbrot calculator
+	 */
 	
-	// gbl: left side container
-	private GridBagLayout gbl_panelParentLeft;
+	// gbc: 
+	private GridBagConstraints gbc_panelMandelbrotCalculator;
 	
-	// gbc: annulus calculator
-	private GridBagConstraints gbc_panelAnnulusCalculator;
-	
-	// gbl: annulus calculator
-	private GridBagLayout gbl_panelAnnulusCalculator;
-	
-	// gbc: annulus calculator border
-	private GridBagConstraints gbc_borderAnnulus;
-	
-	// gbl: annulus calculator border
-	private GridBagLayout gbl_borderAnnulus;
+	/*
+	 * Right side
+	 */
 	
 	// gbc: right side container
 	private GridBagConstraints gbc_panelParentRight;
@@ -188,7 +215,7 @@ public class CalculatorView extends JFrame {
 	private GridBagLayout gbl_panelAnnulusGraphic;
 	
 	// gbc: annulus greyscale image
-	private GridBagConstraints gbc_greyScaleAnnulus;
+	private GridBagConstraints gbc_greyscaleAnnulus;
 	
 	/**
 	 * The view constructor.
@@ -201,6 +228,7 @@ public class CalculatorView extends JFrame {
 		initFrame();
 		initLeftPanel();
 		initAnnulusCalcPanel();
+		initMandCalcPanel();
 		initRightPanel();
 	}
 	
@@ -278,7 +306,7 @@ public class CalculatorView extends JFrame {
 		imageAnnulus = new JLabel(new ImageIcon(image));
 		
 		// get content pane
-		getContentPane().add(imageAnnulus, gbc_greyScaleAnnulus);
+		getContentPane().add(imageAnnulus, gbc_greyscaleAnnulus);
 		
 		// add to panelAnnulusGraphic panel
 		panelAnnulusGraphic.add(imageAnnulus);
@@ -327,6 +355,7 @@ public class CalculatorView extends JFrame {
 	 * which is inside the left container.
 	 */
 	private void initAnnulusCalcPanel() {
+		
 		// create annulus calculator panel, goes inside left parent panel
 		panelAnnulusCalculator = new JPanel();
 		
@@ -530,12 +559,49 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
+	 * 
+	 */
+	private void initMandCalcPanel() {
+		
+		// create annulus calculator panel, goes inside left parent panel
+		panelMandelbrotCalculator = new JPanel();
+				
+		// create gridbag constraints for annulus calculator panel
+		gbc_panelMandelbrotCalculator = new GridBagConstraints();
+		
+		// define gridbag constraints parameters for annulus calculator panel
+		gbc_panelMandelbrotCalculator.fill = GridBagConstraints.BOTH;
+		gbc_panelMandelbrotCalculator.gridx = 0;
+		gbc_panelMandelbrotCalculator.gridy = 1;
+		
+		panelParentLeft.add(panelMandelbrotCalculator, gbc_panelMandelbrotCalculator);
+		
+//		// create annulus calculator panel, goes inside left parent panel
+//		panelAnnulusCalculator = new JPanel();
+//		
+//		// create gridbag constraints for annulus calculator panel
+//		gbc_panelAnnulusCalculator = new GridBagConstraints();
+//		
+//		// define gridbag constraints parameters for annulus calculator panel
+//		gbc_panelAnnulusCalculator.fill = GridBagConstraints.BOTH;
+//		gbc_panelAnnulusCalculator.gridx = 0;
+//		gbc_panelAnnulusCalculator.gridy = 0;
+//		
+//		// add annulus calculator panel and gridbag constraints to left parent panel
+//		panelParentLeft.add(panelAnnulusCalculator, gbc_panelAnnulusCalculator);
+		
+	}
+	
+	/**
 	 * This method creates the right container of the GUI,
 	 * which contains the greyscale images.
 	 */
 	private void initRightPanel() {
 		
 		// create right parent panel, container for graphics
+		panelParentRight = new JPanel();
+		
+		// define gridbag constraints parameters for right parent panel
 		gbc_panelParentRight = new GridBagConstraints();
 		gbc_panelParentRight.gridheight = 2;
 		gbc_panelParentRight.insets = new Insets(0, 0, 5, 5);
@@ -577,9 +643,9 @@ public class CalculatorView extends JFrame {
 		panelAnnulusGraphic.setLayout(gbl_panelAnnulusGraphic);
 		
 		// create gridbag constraints
-		gbc_greyScaleAnnulus = new GridBagConstraints();
-		gbc_greyScaleAnnulus.gridx = 0;
-		gbc_greyScaleAnnulus.gridy = 0;
+		gbc_greyscaleAnnulus = new GridBagConstraints();
+		gbc_greyscaleAnnulus.gridx = 0;
+		gbc_greyscaleAnnulus.gridy = 0;
 	}
 	
 	/**
