@@ -1,16 +1,16 @@
 package csp1150.assignment1;
 
-// importing action listener, java swing, and layout classes
+// import action listener
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
+// import swing gui components
 import javax.swing.*;
-
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-
 import javax.swing.border.TitledBorder;
 
+// import layout componenets
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 // import greyscale view
@@ -94,7 +94,7 @@ public class CalculatorView extends JFrame {
 	// label: mandelbrot instructions part 2
 	private JLabel labelMandInstructB = new JLabel("Click view to find out.");
 	
-	// button group: mandelbrot radio buttons
+	// button group: mandelbrot radio buttons, so only one of two can be selected at a time
 	private final ButtonGroup GROUP_MAND_RADIOS = new ButtonGroup();
 	
 	// label: mandelbrot radio button normal view
@@ -778,7 +778,9 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
-	 * 
+	 * This method creates the Mandelbrot image panel,
+	 * which is inside the right container.
+	 * @param args unused
 	 */
 	
 	private void initMandelbrotImagePanel() {
@@ -855,18 +857,16 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method sets the monte carlo result to the view
 	 * from the controller, parse as String.
-	 * @param area
+	 * @param double area.
 	 */
 	public void setAnnulusMonteCalc(double area) {
 		resultAnnulusMonteArea.setText(Double.toString(area));
 	}
 	
-	//
-	
 	/**
 	 * This method sets the monte carlo result to the view
 	 * from the controller, parse as String.
-	 * @param area
+	 * @param double area.
 	 */
 	public void setMandMonteCalc(double area) {
 		resultMandMonteArea.setText(Double.toString(area));
@@ -874,14 +874,15 @@ public class CalculatorView extends JFrame {
 	
 	/**
 	 * This method adds an action listener for the calculate button.
-	 * @param listenForButtonCalcAnnulus.
+	 * @param theListener.
 	 */
 	public void addAnnulusCalcListener(ActionListener theListener) {
 		buttonCalcAnnulus.addActionListener(theListener);
 	}
 	
 	/**
-	 * 
+	 * This method adds an action listener for the view button.
+	 * @param theListener.
 	 */
 	public void addMandelbrotViewListener(ActionListener theListener) {
 		buttonMandView.addActionListener(theListener);
