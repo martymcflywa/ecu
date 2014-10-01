@@ -18,16 +18,16 @@ public class GreyscaleHitViewerPanel extends JPanel implements HitViewerInterfac
     /**
      * image to display
      */
-    private BufferedImage image;
+    protected BufferedImage image;
     
     /**
      * width of the image (and the array)
      */
-    private int width;
+    protected int width;
     /**
      * height of the image (and the array)
      */
-    private int height;
+    protected int height;
 
     /**
      * Construct the panel
@@ -48,6 +48,14 @@ public class GreyscaleHitViewerPanel extends JPanel implements HitViewerInterfac
         g2 = image.createGraphics();
         g2.setColor(Color.WHITE);
         g2.fillRect(0, 0, width, height);
+    }
+    
+    /**
+     * Added default constructor, allows inheritance
+     * of ColourHitViewerPanel.
+     */
+    public GreyscaleHitViewerPanel() {
+    	
     }
 
     /**
@@ -77,7 +85,7 @@ public class GreyscaleHitViewerPanel extends JPanel implements HitViewerInterfac
      * @param green 0-255
      * @param blue 0-255
      */
-    private void setPixel(int x, int y, int red, int green, int blue)
+    protected void setPixel(int x, int y, int red, int green, int blue)
     {
         int pixel = (blue << 0) | (green << 8) | (red << 16) | (255 << 24);
 

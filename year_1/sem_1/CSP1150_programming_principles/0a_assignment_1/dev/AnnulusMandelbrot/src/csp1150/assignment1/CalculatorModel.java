@@ -13,11 +13,11 @@ package csp1150.assignment1;
 public class CalculatorModel {
 
 	// declare constant grid size & samples
-	private final int GRIDSIZE = 400;
-	private final int SAMPLES = 100;
+	protected final int GRIDSIZE = 400;
+	protected final int SAMPLES = 100;
 	
 	// declare 2d array
-	private double[][] hits = new double[GRIDSIZE][GRIDSIZE];
+	protected double[][] hits = new double[GRIDSIZE][GRIDSIZE];
 	
 	// these variables hold user input values
 	private double outRadius;
@@ -31,7 +31,7 @@ public class CalculatorModel {
 	
 	// these variables hold the calculated values
 	private double areaApprox;
-	private double areaMonte;
+	protected double areaMonte;
 	
 	/**
 	 * This method sets the radius.
@@ -77,7 +77,7 @@ public class CalculatorModel {
 	 * This method calculates the area using approximate estimation.
 	 * @param args unused
 	 */
-	protected final void calcApprox() {
+	private final void calcApprox() {
 		
 		// declare counter
 		int counter = 0;
