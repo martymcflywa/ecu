@@ -202,7 +202,7 @@ public class CalculatorView extends JFrame {
 		showAnnulusImage(greyscaleAnnulus);
 		
 		// show empty mandelbrot image
-		showMandelbrotImage(colourMandelbrot);
+		//showMandelbrotImage(colourMandelbrot);
 	}
 	
 	/**
@@ -261,7 +261,8 @@ public class CalculatorView extends JFrame {
 		
 		// create the parent panel for greyscale annulus image
 		initAnnulusImagePanel();
-
+		
+		// resetImagePanel if image exists
 		resetImagePanel(annulusImageExists, greyscaleAnnulus, panelParentRight, panelAnnulusGraphic);
 		
 		// get the image
@@ -293,6 +294,7 @@ public class CalculatorView extends JFrame {
 		// create the parent panel for mandelbrot image
 		initMandelbrotImagePanel();
 		
+		// resetImagePanel if image exists
 		resetImagePanel(mandelbrotImageExists, theImage, panelParentRight, panelMandelbrotGraphic);
 		
 		// get the image
@@ -328,7 +330,7 @@ public class CalculatorView extends JFrame {
 		if(thisImageExists) {
 			getContentPane().remove(theImage);
 			theParentPanel.remove(theChildPanel);
-			repaint();
+			theParentPanel.repaint();
 		}
 	}
 	
@@ -448,10 +450,7 @@ public class CalculatorView extends JFrame {
 		
 		// add instructions and gridbag constraints parameters to annulus calculator border panel
 		borderAnnulusCalculator.add(labelAnnulusInstructions, gbc_labelAnnulusInstructions);
-		
-		// create label for outer radius user input field
-		
-		
+
 		// create gridbag constraints for outer radius label
 		GridBagConstraints gbc_labelOutRadius = new GridBagConstraints();
 		
