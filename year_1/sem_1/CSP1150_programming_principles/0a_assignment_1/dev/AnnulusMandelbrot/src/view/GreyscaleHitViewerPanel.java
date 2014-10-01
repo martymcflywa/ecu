@@ -20,8 +20,6 @@ public class GreyscaleHitViewerPanel extends JPanel implements HitViewerInterfac
      */
     private BufferedImage image;
     
-    private Graphics2D g2;
-    
     /**
      * width of the image (and the array)
      */
@@ -46,7 +44,7 @@ public class GreyscaleHitViewerPanel extends JPanel implements HitViewerInterfac
         image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
         // make it all white to start with
-        //Graphics2D g2 = image.createGraphics();
+        Graphics2D g2 = image.createGraphics();
         g2 = image.createGraphics();
         g2.setColor(Color.WHITE);
         g2.fillRect(0, 0, width, height);
