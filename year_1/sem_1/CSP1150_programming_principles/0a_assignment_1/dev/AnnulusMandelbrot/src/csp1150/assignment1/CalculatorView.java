@@ -202,7 +202,7 @@ public class CalculatorView extends JFrame {
 		showAnnulusImage(greyscaleAnnulus);
 		
 		// show empty mandelbrot image
-		//showMandelbrotImage(colourMandelbrot);
+		showMandelbrotImage(colourMandelbrot);
 	}
 	
 	/**
@@ -280,6 +280,7 @@ public class CalculatorView extends JFrame {
 		// set annulusImageExists to true
 		annulusImageExists = true;
 		
+		imageAnnulus.validate();
 		imageAnnulus.repaint();
 	}
 	
@@ -312,6 +313,7 @@ public class CalculatorView extends JFrame {
 		// set mandelbrotImageExists to true
 		mandelbrotImageExists = true;
 		
+		imageMandelbrot.validate();
 		imageMandelbrot.repaint();
 	}
 	
@@ -330,6 +332,7 @@ public class CalculatorView extends JFrame {
 		if(thisImageExists) {
 			getContentPane().remove(theImage);
 			theParentPanel.remove(theChildPanel);
+			theParentPanel.validate();
 			theParentPanel.repaint();
 		}
 	}
