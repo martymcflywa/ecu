@@ -36,7 +36,7 @@ public class CalculatorMVC {
 		ColourHitViewerPanel colourMandelbrot = new ColourHitViewerPanel(theMandelbrot.getGridSize(), theMandelbrot.getGridSize());
 		
 		// create the view object
-		CalculatorView theView = new CalculatorView(greyscaleAnnulus, greyscaleMandelbrot);
+		CalculatorView theView = new CalculatorView(greyscaleAnnulus, greyscaleMandelbrot, colourMandelbrot);
 		
 		// create the controller object
 		CalculatorController theController = new CalculatorController(theView, theAnnulus, theMandelbrot, greyscaleAnnulus, greyscaleMandelbrot, colourMandelbrot);

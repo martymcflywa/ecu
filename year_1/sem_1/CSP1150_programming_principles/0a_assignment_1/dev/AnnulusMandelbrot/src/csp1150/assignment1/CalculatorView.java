@@ -159,15 +159,19 @@ public class CalculatorView extends JFrame {
 	/**
 	 * The view constructor.
 	 * Calls various init* methods to create the view.
+	 * 
 	 * @param greyscaleAnnulus - The greyscale image object
 	 */
-	CalculatorView(GreyscaleHitViewerPanel greyscaleAnnulus, GreyscaleHitViewerPanel greyscaleMandelbrot) {
+	CalculatorView(GreyscaleHitViewerPanel greyscaleAnnulus, GreyscaleHitViewerPanel greyscaleMandelbrot, ColourHitViewerPanel colourMandelbrot) {
 		
 		// assign this greyscale annulus to incoming object
 		this.greyscaleAnnulus = greyscaleAnnulus;
 		
 		// assign this greyscale mandelbrot to incoming object
 		this.greyscaleMandelbrot = greyscaleMandelbrot;
+		
+		// assign this colour mandelbrot to incoming object
+		this.colourMandelbrot = colourMandelbrot;
 		
 		// set up frame
 		initFrame();
@@ -185,15 +189,16 @@ public class CalculatorView extends JFrame {
 		initRightPanel();
 		
 		// show empty annulus image
-		showGreyscaleAnnulus(greyscaleAnnulus);
+		showAnnulusImage(greyscaleAnnulus);
 		
 		// show empty mandelbrot image
-		showGreyscaleMandelbrot(greyscaleMandelbrot);
+		showMandelbrotImage(colourMandelbrot);
 	}
 	
 	/**
 	 * This method creates the frame and sets up the layout
 	 * with GridBagLayout.
+	 * 
 	 * @param args unused
 	 */
 	private void initFrame() {
@@ -239,27 +244,17 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method creates the layout for greyscale annulus image,
 	 * adds it to the parent frame, and displays image.
-	 * @param greyscaleAnnulus - The greyscale image object
+	 * 
+	 * @param greyscaleAnnulus - The greyscale image object.
 	 */
-	public void showGreyscaleAnnulus(GreyscaleHitViewerPanel greyscaleAnnulus) {
+	public void showAnnulusImage(GreyscaleHitViewerPanel greyscaleAnnulus) {
 		
 		// create the parent panel for greyscale annulus image
 		initAnnulusImagePanel();
 
-		// if image exists,
-		if(annulusImageExists) {
-			
-			/* 
-			 * remove image and panel from parent panel,
-			 * stops image from showing up multiple times
-			 * whenever buttonCalcAnnulus is pressed
-			 */
-			getContentPane().remove(imageAnnulus);
-			panelParentRight.remove(panelAnnulusGraphic);
-		}
+		resetImagePanel(annulusImageExists, greyscaleAnnulus, panelParentRight, panelAnnulusGraphic);
 		
 		// get the image
-		repaint();
 		BufferedImage image = greyscaleAnnulus.getImage();
 		
 		// image will be displayed as JLabel
@@ -273,33 +268,25 @@ public class CalculatorView extends JFrame {
 		
 		// set annulusImageExists to true
 		annulusImageExists = true;
+		
+		imageAnnulus.repaint();
 	}
 	
 	/**
 	 * This method creates the layout for greyscale mandelbrot image,
 	 * adds it to the parent frame, and displays image.
-	 * @param greyscaleMandelbrot - The greyscale image object
+	 * 
+	 * @param greyscaleMandelbrot - The greyscale image object.
 	 */
-	public void showGreyscaleMandelbrot(GreyscaleHitViewerPanel greyscaleMandelbrot) {
+	public void showMandelbrotImage(GreyscaleHitViewerPanel theImage) {
 		
 		// create the parent panel for mandelbrot image
 		initMandelbrotImagePanel();
 		
-		// if image exists,
-		if(mandelbrotImageExists) {
-			
-			/*
-			 * remove image and panel from parent panel,
-			 * stops image from showing up multiple times
-			 * whenever the View button is pressed
-			 */
-			getContentPane().remove(imageMandelbrot);
-			panelParentRight.remove(panelMandelbrotGraphic);
-		}
+		resetImagePanel(mandelbrotImageExists, theImage, panelParentRight, panelMandelbrotGraphic);
 		
 		// get the image
-		repaint();
-		BufferedImage image = greyscaleMandelbrot.getImage();
+		BufferedImage image = theImage.getImage();
 		
 		// image will be displayed as JLabel
 		imageMandelbrot = new JLabel(new ImageIcon(image));
@@ -312,51 +299,34 @@ public class CalculatorView extends JFrame {
 		
 		// set mandelbrotImageExists to true
 		mandelbrotImageExists = true;
+		
+		imageMandelbrot.repaint();
 	}
 	
 	/**
-	 * This method creates the layout for colour mandelbrot image,
-	 * adds it to the parent frame, and displays image.
-	 * @param colourMandelbrot - The colour image object
+	 * This method checks if the image exists,
+	 * if it does, it removes the image and the panel from the parent panel
+	 * so the image doesn't appear multiple times in the frame when they are drawn.
+	 * 
+	 * @param thisImageExists - Either annulusImageExists or mandelbrotImageExists.
+	 * @param theImage - Any object from GreyscaleHitViewerPanel or its subclasses.
+	 * @param theParentPanel - The parent panel that contains the image panel.
+	 * @param theChildPanel - The child panel that contains the image.
 	 */
-	public void showColourMandelbrot(ColourHitViewerPanel colourMandelbrot) {
+	public void resetImagePanel(boolean thisImageExists, GreyscaleHitViewerPanel theImage, JPanel theParentPanel, JPanel theChildPanel) {
 		
-		// create the parent panel for mandelbrot image
-		initMandelbrotImagePanel();
-		
-		// if image exists,
-		if(mandelbrotImageExists) {
-			
-			/*
-			 * remove image and panel from parent panel,
-			 * stops image from showing up multiple times
-			 * whenever the View button is pressed
-			 */
-			getContentPane().remove(imageMandelbrot);
-			panelParentRight.remove(panelMandelbrotGraphic);
+		if(thisImageExists) {
+			getContentPane().remove(theImage);
+			theParentPanel.remove(theChildPanel);
+			repaint();
 		}
-		
-		// get the image
-		repaint();
-		BufferedImage image = colourMandelbrot.getImage();
-		
-		// image will be displayed as JLabel
-		imageMandelbrot = new JLabel(new ImageIcon(image));
-
-		// get content pane
-		getContentPane().add(imageMandelbrot, gbc_imageMandelbrot);
-		
-		// add to panelMandelbrotGraphic panel
-		panelMandelbrotGraphic.add(imageMandelbrot, gbc_imageMandelbrot);
-		
-		// set mandelbrotImageExists to true
-		mandelbrotImageExists = true;
 	}
 	
 	/**
 	 * This method creates the left container of the GUI,
 	 * which contains all the user input fields and controls
 	 * for both the Annulus and Mandelbrot calculator.
+	 * 
 	 * @param args unused
 	 */
 	private void initLeftPanel() {
@@ -394,6 +364,7 @@ public class CalculatorView extends JFrame {
 	 * This method creates the Annulus Calculator panel,
 	 * which is inside the left container. Also sets up
 	 * the user controls.
+	 * 
 	 * @param args unused
 	 */
 	private void initAnnulusCalcPanel() {
@@ -599,6 +570,7 @@ public class CalculatorView extends JFrame {
 	 * This method creates the Mandelbrot Calculator panel,
 	 * which is inside the left container. Also sets up
 	 * the user controls.
+	 * 
 	 * @param args unused
 	 */
 	private void initMandCalcPanel() {
@@ -765,6 +737,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method creates the right container of the GUI,
 	 * which contains the greyscale images.
+	 * 
 	 * @param args unused
 	 */
 	private void initRightPanel() {
@@ -787,6 +760,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method creates the Annulus image panel,
 	 * which is inside the right container.
+	 * 
 	 * @param args unused
 	 */
 	private void initAnnulusImagePanel() {
@@ -827,6 +801,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method creates the Mandelbrot image panel,
 	 * which is inside the right container.
+	 * 
 	 * @param args unused
 	 */
 	
@@ -868,6 +843,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns user input for outer radius
 	 * from the view, parse as double.
+	 * 
 	 * @return double - Outer radius.
 	 */
 	public double getOutRadius() {
@@ -877,6 +853,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns user input for inner radius
 	 * from the view, parse as double.
+	 * 
 	 * @return double - Inner radius.
 	 */
 	public double getInRadius() {
@@ -886,6 +863,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns the approx area result
 	 * from the view, parse as double.
+	 * 
 	 * @return double - Area of annulus.
 	 */
 	public double getAnnulusAreaCalc() {
@@ -895,6 +873,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method sets the approx area result to the view
 	 * from the controller, parse as String.
+	 * 
 	 * @param double area.
 	 */
 	public void setAnnulusAreaCalc(double area) {
@@ -904,6 +883,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method sets the monte carlo result to the view
 	 * from the controller, parse as String.
+	 * 
 	 * @param double area.
 	 */
 	public void setAnnulusMonteCalc(double area) {
@@ -913,6 +893,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method sets the monte carlo result to the view
 	 * from the controller, parse as String.
+	 * 
 	 * @param double area.
 	 */
 	public void setMandMonteCalc(double area) {
@@ -921,6 +902,7 @@ public class CalculatorView extends JFrame {
 	
 	/**
 	 * This method adds an action listener for the calculate button.
+	 * 
 	 * @param theListener.
 	 */
 	public void addAnnulusCalcListener(ActionListener theListener) {
@@ -929,6 +911,7 @@ public class CalculatorView extends JFrame {
 	
 	/**
 	 * This method adds an action listener for the view button.
+	 * 
 	 * @param theListener.
 	 */
 	public void addMandelbrotCalcListener(ActionListener theListener) {
@@ -938,6 +921,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method displays an error message for incorrect user input,
 	 * as JOptionPane window.
+	 * 
 	 * @param String errorMessage.
 	 */
 	public void displayErrorMessage(String errorMessage) {

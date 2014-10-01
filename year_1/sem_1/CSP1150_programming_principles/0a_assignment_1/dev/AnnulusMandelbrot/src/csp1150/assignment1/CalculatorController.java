@@ -44,6 +44,7 @@ public class CalculatorController {
 	 * @param theMandelbrot
 	 * @param greyscaleAnnulus
 	 * @param greyscaleMandelbrot
+	 * @param colourMandelbrot
 	 */
 	public CalculatorController(CalculatorView theView, CalculatorModel theAnnulus, MandelbrotModel theMandelbrot, GreyscaleHitViewerPanel greyscaleAnnulus, GreyscaleHitViewerPanel greyscaleMandelbrot, ColourHitViewerPanel colourMandelbrot) {
 		
@@ -115,7 +116,7 @@ public class CalculatorController {
 					greyscaleAnnulus.viewHits(theAnnulus.returnHits());
 					
 					// get the view to display greyscale annulus image
-					theView.showGreyscaleAnnulus(greyscaleAnnulus);
+					theView.showAnnulusImage(greyscaleAnnulus);
 				}
 			}
 			
@@ -149,7 +150,7 @@ public class CalculatorController {
 				greyscaleMandelbrot.viewHits(theMandelbrot.returnHits());
 				
 				// show the image in the view
-				theView.showGreyscaleMandelbrot(greyscaleMandelbrot);
+				theView.showMandelbrotImage(greyscaleMandelbrot);
 				
 			// else if back to the 60s view is selected	
 			} else if(theView.radioMandTrippyView.isSelected()) {
@@ -167,7 +168,7 @@ public class CalculatorController {
 				colourMandelbrot.viewHits(theMandelbrot.returnEscapeArray());
 				
 				// show image in the view
-				theView.showColourMandelbrot(colourMandelbrot);
+				theView.showMandelbrotImage(colourMandelbrot);
 			}
 		}
 	}
