@@ -202,7 +202,7 @@ public class CalculatorView extends JFrame {
 		showAnnulusImage(greyscaleAnnulus);
 		
 		// show empty mandelbrot image
-		showMandelbrotImage(colourMandelbrot);
+		showMandelbrotImage(greyscaleMandelbrot);
 	}
 	
 	/**
@@ -327,7 +327,7 @@ public class CalculatorView extends JFrame {
 	 * @param theParentPanel - The parent panel that contains the image panel.
 	 * @param theChildPanel - The child panel that contains the image.
 	 */
-	public void resetImagePanel(boolean thisImageExists, GreyscaleHitViewerPanel theImage, JPanel theParentPanel, JPanel theChildPanel) {
+	private void resetImagePanel(boolean thisImageExists, GreyscaleHitViewerPanel theImage, JPanel theParentPanel, JPanel theChildPanel) {
 		
 		if(thisImageExists) {
 			getContentPane().remove(theImage);
