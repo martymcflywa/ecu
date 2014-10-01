@@ -94,12 +94,6 @@ public class MandelbrotModel extends CalculatorModel {
 	 */
 	public final void calcEscape() {
 		
-//		// declare counter
-//		double counter = 0.0;
-//		
-//		// declare arraySum
-//		double arraySum = 0.0;
-		
 		// iterate through columns
 		for(int col = 0; col < GRIDSIZE - 1; col++) {
 			
@@ -116,24 +110,10 @@ public class MandelbrotModel extends CalculatorModel {
 					double x = minX + (col + Math.random()) * ((maxX - minX) / GRIDSIZE);
 					double y = minY + (row + Math.random()) * ((maxY - minY) / GRIDSIZE);
 					
-					
+					// calculate escape time for each cell
 					getEscapeTime(x, y, col, row);
-//					// if test pass, set counter + 1
-//					if(isInside(x, y)) {
-//						hits[col][row] = 1;
-//						arraySum++;
-//					}
 				}
 			}
 		}
-		
-//		// divide sum of array to samples
-//		arraySum = arraySum / SAMPLES;
-//		
-//		// add sum of array to counter
-//		counter = counter + arraySum;
-//		
-//		// calculate area
-//		areaMonte = (maxX - minX) * (maxY - minY) * counter / Math.pow(GRIDSIZE, 2);
 	}
 }
