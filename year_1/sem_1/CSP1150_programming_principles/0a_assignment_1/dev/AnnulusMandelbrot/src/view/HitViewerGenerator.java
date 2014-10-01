@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  * @author phi
  */
 @SuppressWarnings("serial")
-public class GreyscaleHitViewerPanel extends JPanel implements HitViewerInterface
+public class HitViewerGenerator extends JPanel implements HitViewerInterface
 {
     /**
      * image to display
@@ -35,7 +35,7 @@ public class GreyscaleHitViewerPanel extends JPanel implements HitViewerInterfac
      * @param width of the image (and array)
      * @param height of the image (and array)
      */
-    public GreyscaleHitViewerPanel(int width, int height)
+    public HitViewerGenerator(int width, int height)
     {
         this.width = width;
         this.height = height;
@@ -54,7 +54,7 @@ public class GreyscaleHitViewerPanel extends JPanel implements HitViewerInterfac
      * Added default constructor, allows inheritance
      * of ColourHitViewerPanel.
      */
-    public GreyscaleHitViewerPanel() {
+    public HitViewerGenerator() {
     	
     }
 

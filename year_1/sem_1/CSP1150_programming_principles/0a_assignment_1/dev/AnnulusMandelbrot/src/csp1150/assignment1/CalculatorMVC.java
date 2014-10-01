@@ -28,13 +28,13 @@ public class CalculatorMVC {
 		MandelbrotModel theMandelbrot = new MandelbrotModel();
 		
 		// create annulus greyscaleview object
-		GreyscaleHitViewerPanel greyscaleAnnulus = new GreyscaleHitViewerPanel(theAnnulus.getGridSize(), theAnnulus.getGridSize());
+		HitViewerGenerator greyscaleAnnulus = new HitViewerGenerator(theAnnulus.getGridSize(), theAnnulus.getGridSize());
 		
 		// create mandelbrot greyscaleview object
-		GreyscaleHitViewerPanel greyscaleMandelbrot = new GreyscaleHitViewerPanel(theMandelbrot.getGridSize(), theMandelbrot.getGridSize());
+		HitViewerGenerator greyscaleMandelbrot = new HitViewerGenerator(theMandelbrot.getGridSize(), theMandelbrot.getGridSize());
 		
 		// create mandelbrot colourview object
-		ColourHitViewerPanel colourMandelbrot = new ColourHitViewerPanel(theMandelbrot.getGridSize(), theMandelbrot.getGridSize());
+		ColourHitViewer colourMandelbrot = new ColourHitViewer(theMandelbrot.getGridSize(), theMandelbrot.getGridSize());
 		
 		// create the view object
 		CalculatorView theView = new CalculatorView(greyscaleAnnulus, greyscaleMandelbrot, colourMandelbrot);

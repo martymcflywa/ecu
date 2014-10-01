@@ -36,13 +36,13 @@ public class CalculatorView extends JFrame {
 	private static boolean mandelbrotImageExists = false;
 	
 	// reference to GreyscaleHitViewerPanel for greyscale annulus
-	private GreyscaleHitViewerPanel greyscaleAnnulus;
+	private HitViewerGenerator greyscaleAnnulus;
 	
 	// reference to GreyscaleHitViewerPanel for greyscale mandelbrot
-	private GreyscaleHitViewerPanel greyscaleMandelbrot;
+	private HitViewerGenerator greyscaleMandelbrot;
 	
 	// reference to ColourHitViewerPanel for colour mandelbrot
-	private ColourHitViewerPanel colourMandelbrot;
+	private ColourHitViewer colourMandelbrot;
 	
 	// gbc: annulus image
 	private GridBagConstraints gbc_imageAnnulus;
@@ -172,7 +172,7 @@ public class CalculatorView extends JFrame {
 	 * @param greyscaleMandelbrot - The greyscale mandelbrot image object
 	 * @param colourMandelbrot - The colour mandelbrot image object
 	 */
-	CalculatorView(GreyscaleHitViewerPanel greyscaleAnnulus, GreyscaleHitViewerPanel greyscaleMandelbrot, ColourHitViewerPanel colourMandelbrot) {
+	CalculatorView(HitViewerGenerator greyscaleAnnulus, HitViewerGenerator greyscaleMandelbrot, ColourHitViewer colourMandelbrot) {
 		
 		// assign this greyscale annulus to incoming object
 		this.greyscaleAnnulus = greyscaleAnnulus;
@@ -257,7 +257,7 @@ public class CalculatorView extends JFrame {
 	 * 
 	 * @param greyscaleAnnulus - The greyscale image object.
 	 */
-	public void showAnnulusImage(GreyscaleHitViewerPanel greyscaleAnnulus) {
+	public void showAnnulusImage(HitViewerGenerator greyscaleAnnulus) {
 		
 		// create the parent panel for greyscale annulus image
 		initAnnulusImagePanel();
@@ -290,7 +290,7 @@ public class CalculatorView extends JFrame {
 	 * 
 	 * @param greyscaleMandelbrot - The greyscale image object.
 	 */
-	public void showMandelbrotImage(GreyscaleHitViewerPanel theImage) {
+	public void showMandelbrotImage(HitViewerGenerator theImage) {
 		
 		// create the parent panel for mandelbrot image
 		initMandelbrotImagePanel();
@@ -327,7 +327,7 @@ public class CalculatorView extends JFrame {
 	 * @param theParentPanel - The parent panel that contains the image panel.
 	 * @param theChildPanel - The child panel that contains the image.
 	 */
-	private void resetImagePanel(boolean thisImageExists, GreyscaleHitViewerPanel theImage, JPanel theParentPanel, JPanel theChildPanel) {
+	private void resetImagePanel(boolean thisImageExists, HitViewerGenerator theImage, JPanel theParentPanel, JPanel theChildPanel) {
 		
 		if(thisImageExists) {
 			getContentPane().remove(theImage);

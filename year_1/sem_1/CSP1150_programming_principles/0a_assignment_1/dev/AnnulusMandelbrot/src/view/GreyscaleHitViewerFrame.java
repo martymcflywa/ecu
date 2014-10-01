@@ -12,7 +12,7 @@ public class GreyscaleHitViewerFrame extends JFrame implements HitViewerInterfac
     /**
      * a panel to display the image
      */
-    private GreyscaleHitViewerPanel panel;
+    private HitViewerGenerator panel;
 
     /**
      * Construct a frame for viewing a shape
@@ -25,7 +25,7 @@ public class GreyscaleHitViewerFrame extends JFrame implements HitViewerInterfac
     {
         super(title);
 
-        panel = new GreyscaleHitViewerPanel(width, height);
+        panel = new HitViewerGenerator(width, height);
         getContentPane().add(panel);
 
         setBounds(0, 0, width+20, height+50);

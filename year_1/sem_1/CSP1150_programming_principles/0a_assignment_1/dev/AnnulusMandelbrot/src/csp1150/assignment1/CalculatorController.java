@@ -29,13 +29,13 @@ public class CalculatorController {
 	private MandelbrotModel theMandelbrot;
 	
 	// create reference to greyscaleAnnulus;
-	private GreyscaleHitViewerPanel greyscaleAnnulus;
+	private HitViewerGenerator greyscaleAnnulus;
 	
 	// create reference to greyscaleMandelbrot
-	private GreyscaleHitViewerPanel greyscaleMandelbrot;
+	private HitViewerGenerator greyscaleMandelbrot;
 	
 	// create reference to colourMandelbrot
-	private ColourHitViewerPanel colourMandelbrot;
+	private ColourHitViewer colourMandelbrot;
 		
 	/**
 	 * This defines the CalculatorController constructor.
@@ -47,7 +47,7 @@ public class CalculatorController {
 	 * @param greyscaleMandelbrot
 	 * @param colourMandelbrot
 	 */
-	public CalculatorController(CalculatorView theView, CalculatorModel theAnnulus, MandelbrotModel theMandelbrot, GreyscaleHitViewerPanel greyscaleAnnulus, GreyscaleHitViewerPanel greyscaleMandelbrot, ColourHitViewerPanel colourMandelbrot) {
+	public CalculatorController(CalculatorView theView, CalculatorModel theAnnulus, MandelbrotModel theMandelbrot, HitViewerGenerator greyscaleAnnulus, HitViewerGenerator greyscaleMandelbrot, ColourHitViewer colourMandelbrot) {
 		
 		// assign this view object to the incoming view
 		this.theView = theView;

@@ -18,7 +18,7 @@ import view.*;
  * @since 20140930
  */
 @SuppressWarnings("serial")
-public class ColourHitViewerPanel extends GreyscaleHitViewerPanel {
+public class ColourHitViewer extends HitViewerGenerator {
 	
     /**
      * Construct the panel, copied from GreyscaleHitViewerPanel.
@@ -26,7 +26,7 @@ public class ColourHitViewerPanel extends GreyscaleHitViewerPanel {
      * @param width of the image (and array)
      * @param height of the image (and array)
      */
-    public ColourHitViewerPanel(int width, int height) {
+    public ColourHitViewer(int width, int height) {
     	
         this.width = width;
         this.height = height;
