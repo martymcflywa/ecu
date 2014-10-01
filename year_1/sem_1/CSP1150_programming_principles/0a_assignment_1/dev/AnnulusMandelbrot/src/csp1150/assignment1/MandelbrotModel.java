@@ -116,4 +116,12 @@ public class MandelbrotModel extends CalculatorModel {
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public int[][] returnEscapeArray() {
+		return escapeArray;
+	}
 }

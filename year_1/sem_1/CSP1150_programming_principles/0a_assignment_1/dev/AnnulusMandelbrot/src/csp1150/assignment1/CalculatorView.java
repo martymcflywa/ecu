@@ -41,11 +41,14 @@ public class CalculatorView extends JFrame {
 	// reference to GreyscaleHitViewerPanel for greyscale mandelbrot
 	private GreyscaleHitViewerPanel greyscaleMandelbrot;
 	
-	// gbc: annulus greyscale image
-	private GridBagConstraints gbc_greyscaleAnnulus;
+	// reference to ColourHitViewerPanel for colour mandelbrot
+	private ColourHitViewerPanel colourMandelbrot;
 	
-	// gbc: mandelbrot greyscale image
-	private GridBagConstraints gbc_greyscaleMandelbrot;
+	// gbc: annulus image
+	private GridBagConstraints gbc_imageAnnulus;
+	
+	// gbc: mandelbrot image
+	private GridBagConstraints gbc_imageMandelbrot;
 	
 	/**
 	 * Defining Annulus Calculator user controls.
@@ -98,10 +101,10 @@ public class CalculatorView extends JFrame {
 	private final ButtonGroup GROUP_MAND_RADIOS = new ButtonGroup();
 	
 	// label: mandelbrot radio button normal view
-	private JRadioButton radioMandNormalView = new JRadioButton("Normal view");
+	protected JRadioButton radioMandNormalView = new JRadioButton("Normal view");
 	
 	// label: mandelbrot radio button trippy view
-	private JRadioButton radioMandTrippyView = new JRadioButton("Back to the 60s");
+	protected JRadioButton radioMandTrippyView = new JRadioButton("Back to the 60s");
 	
 	// button: mandelbrot view image button
 	private JButton buttonMandView = new JButton("View");
@@ -235,7 +238,7 @@ public class CalculatorView extends JFrame {
 	
 	/**
 	 * This method creates the layout for greyscale annulus image,
-	 * and adds it to the parent frame.
+	 * adds it to the parent frame, and displays image.
 	 * @param greyscaleAnnulus - The greyscale image object
 	 */
 	public void showGreyscaleAnnulus(GreyscaleHitViewerPanel greyscaleAnnulus) {
@@ -263,7 +266,7 @@ public class CalculatorView extends JFrame {
 		imageAnnulus = new JLabel(new ImageIcon(image));
 		
 		// get content pane
-		getContentPane().add(imageAnnulus, gbc_greyscaleAnnulus);
+		getContentPane().add(imageAnnulus, gbc_imageAnnulus);
 		
 		// add to panelAnnulusGraphic panel
 		panelAnnulusGraphic.add(imageAnnulus);
@@ -272,9 +275,14 @@ public class CalculatorView extends JFrame {
 		annulusImageExists = true;
 	}
 	
+	/**
+	 * This method creates the layout for greyscale mandelbrot image,
+	 * adds it to the parent frame, and displays image.
+	 * @param greyscaleMandelbrot - The greyscale image object
+	 */
 	public void showGreyscaleMandelbrot(GreyscaleHitViewerPanel greyscaleMandelbrot) {
 		
-		// create the parent panel for greyscale mandelbrot image
+		// create the parent panel for mandelbrot image
 		initMandelbrotImagePanel();
 		
 		// if image exists,
@@ -297,10 +305,49 @@ public class CalculatorView extends JFrame {
 		imageMandelbrot = new JLabel(new ImageIcon(image));
 
 		// get content pane
-		getContentPane().add(imageMandelbrot, gbc_greyscaleMandelbrot);
+		getContentPane().add(imageMandelbrot, gbc_imageMandelbrot);
 		
 		// add to panelMandelbrotGraphic panel
-		panelMandelbrotGraphic.add(imageMandelbrot, gbc_greyscaleMandelbrot);
+		panelMandelbrotGraphic.add(imageMandelbrot, gbc_imageMandelbrot);
+		
+		// set mandelbrotImageExists to true
+		mandelbrotImageExists = true;
+	}
+	
+	/**
+	 * This method creates the layout for colour mandelbrot image,
+	 * adds it to the parent frame, and displays image.
+	 * @param colourMandelbrot - The colour image object
+	 */
+	public void showColourMandelbrot(ColourHitViewerPanel colourMandelbrot) {
+		
+		// create the parent panel for mandelbrot image
+		initMandelbrotImagePanel();
+		
+		// if image exists,
+		if(mandelbrotImageExists) {
+			
+			/*
+			 * remove image and panel from parent panel,
+			 * stops image from showing up multiple times
+			 * whenever the View button is pressed
+			 */
+			getContentPane().remove(imageMandelbrot);
+			panelParentRight.remove(panelMandelbrotGraphic);
+		}
+		
+		// get the image
+		repaint();
+		BufferedImage image = colourMandelbrot.getImage();
+		
+		// image will be displayed as JLabel
+		imageMandelbrot = new JLabel(new ImageIcon(image));
+
+		// get content pane
+		getContentPane().add(imageMandelbrot, gbc_imageMandelbrot);
+		
+		// add to panelMandelbrotGraphic panel
+		panelMandelbrotGraphic.add(imageMandelbrot, gbc_imageMandelbrot);
 		
 		// set mandelbrotImageExists to true
 		mandelbrotImageExists = true;
@@ -772,9 +819,9 @@ public class CalculatorView extends JFrame {
 		panelAnnulusGraphic.setLayout(gbl_panelAnnulusGraphic);
 		
 		// create gridbag constraints for the image itself
-		gbc_greyscaleAnnulus = new GridBagConstraints();
-		gbc_greyscaleAnnulus.gridx = 0;
-		gbc_greyscaleAnnulus.gridy = 0;
+		gbc_imageAnnulus = new GridBagConstraints();
+		gbc_imageAnnulus.gridx = 0;
+		gbc_imageAnnulus.gridy = 0;
 	}
 	
 	/**
@@ -813,9 +860,9 @@ public class CalculatorView extends JFrame {
 		panelMandelbrotGraphic.setLayout(gbl_panelMandelbrotGraphic);
 		
 		// create gridbag constraints for the image itself
-		gbc_greyscaleMandelbrot = new GridBagConstraints();
-		gbc_greyscaleMandelbrot.gridx = 0;
-		gbc_greyscaleMandelbrot.gridy = 0;
+		gbc_imageMandelbrot = new GridBagConstraints();
+		gbc_imageMandelbrot.gridx = 0;
+		gbc_imageMandelbrot.gridy = 0;
 	}
 	
 	/**
@@ -884,7 +931,7 @@ public class CalculatorView extends JFrame {
 	 * This method adds an action listener for the view button.
 	 * @param theListener.
 	 */
-	public void addMandelbrotViewListener(ActionListener theListener) {
+	public void addMandelbrotCalcListener(ActionListener theListener) {
 		buttonMandView.addActionListener(theListener);
 	}
 	

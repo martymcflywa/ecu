@@ -32,10 +32,13 @@ public class CalculatorMVC {
 		// create mandelbrot greyscaleview object
 		GreyscaleHitViewerPanel greyscaleMandelbrot = new GreyscaleHitViewerPanel(theMandelbrot.getGridSize(), theMandelbrot.getGridSize());
 		
+		// create mandelbrot colourview object
+		ColourHitViewerPanel colourMandelbrot = new ColourHitViewerPanel(theMandelbrot.getGridSize(), theMandelbrot.getGridSize());
+		
 		// create the view object
 		CalculatorView theView = new CalculatorView(greyscaleAnnulus, greyscaleMandelbrot);
 		
 		// create the controller object
-		CalculatorController theController = new CalculatorController(theView, theAnnulus, theMandelbrot, greyscaleAnnulus, greyscaleMandelbrot);
+		CalculatorController theController = new CalculatorController(theView, theAnnulus, theMandelbrot, greyscaleAnnulus, greyscaleMandelbrot, colourMandelbrot);
 	}
 }

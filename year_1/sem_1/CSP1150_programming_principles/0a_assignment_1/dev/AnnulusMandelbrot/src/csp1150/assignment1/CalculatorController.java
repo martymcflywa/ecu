@@ -33,6 +33,9 @@ public class CalculatorController {
 	
 	// create reference to greyscaleMandelbrot
 	private GreyscaleHitViewerPanel greyscaleMandelbrot;
+	
+	// create reference to colourMandelbrot
+	private ColourHitViewerPanel colourMandelbrot;
 		
 	/**
 	 * This defines the CalculatorController constructor
@@ -42,7 +45,7 @@ public class CalculatorController {
 	 * @param greyscaleAnnulus
 	 * @param greyscaleMandelbrot
 	 */
-	public CalculatorController(CalculatorView theView, CalculatorModel theAnnulus, MandelbrotModel theMandelbrot, GreyscaleHitViewerPanel greyscaleAnnulus, GreyscaleHitViewerPanel greyscaleMandelbrot) {
+	public CalculatorController(CalculatorView theView, CalculatorModel theAnnulus, MandelbrotModel theMandelbrot, GreyscaleHitViewerPanel greyscaleAnnulus, GreyscaleHitViewerPanel greyscaleMandelbrot, ColourHitViewerPanel colourMandelbrot) {
 		
 		// assign this view object to the incoming view
 		this.theView = theView;
@@ -59,11 +62,14 @@ public class CalculatorController {
 		// assign this image object to the incoming image
 		this.greyscaleMandelbrot = greyscaleMandelbrot;
 		
+		// assign this image object to the incoming image
+		this.colourMandelbrot = colourMandelbrot;
+		
 		// create listener for the annulus calculate button
 		this.theView.addAnnulusCalcListener(new AnnulusCalcListener());
 		
 		// create listener for the mandelbrot view button
-		this.theView.addMandelbrotViewListener(new MandelbrotCalcListener());
+		this.theView.addMandelbrotCalcListener(new MandelbrotCalcListener());
 	}
 	
 	/**
@@ -130,17 +136,39 @@ public class CalculatorController {
 		
 		public void actionPerformed(ActionEvent e) {
 			
-			// do the mandelbrot calculation
-			theMandelbrot.calcMonte();
-			
-			// set the result in the view
-			theView.setMandMonteCalc(theMandelbrot.getMonteCalc());
-			
-			//
-			greyscaleMandelbrot.viewHits(theMandelbrot.returnHits());
-			
-			// 
-			theView.showGreyscaleMandelbrot(greyscaleMandelbrot);
+			// if normal view is selected
+			if(theView.radioMandNormalView.isSelected()) {
+				
+				// do the monte calculation
+				theMandelbrot.calcMonte();
+				
+				// set the result in the view
+				theView.setMandMonteCalc(theMandelbrot.getMonteCalc());
+				
+				// generate image with viewhits
+				greyscaleMandelbrot.viewHits(theMandelbrot.returnHits());
+				
+				// show the image in the view
+				theView.showGreyscaleMandelbrot(greyscaleMandelbrot);
+				
+			// else if back to the 60s view is selected	
+			} else if(theView.radioMandTrippyView.isSelected()) {
+				
+				// do the monte calculation
+				//theMandelbrot.calcMonte();
+				
+				// do the escape time calculation
+				theMandelbrot.calcEscape();
+				
+				// set the monte result in the view
+				//theView.setMandMonteCalc(theMandelbrot.getMonteCalc());
+				
+				// generate image with viewhits, use escapearray values instead
+				colourMandelbrot.viewHits(theMandelbrot.returnEscapeArray());
+				
+				// show image in the view
+				theView.showColourMandelbrot(colourMandelbrot);
+			}
 		}
 	}
 }
