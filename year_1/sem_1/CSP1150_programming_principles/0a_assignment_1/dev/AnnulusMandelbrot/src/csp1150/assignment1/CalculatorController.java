@@ -74,7 +74,7 @@ public class CalculatorController {
 	 */
 	class AnnulusCalcListener implements ActionListener {
 		
-		public void actionPerformed(ActionEvent arg0) {
+		public void actionPerformed(ActionEvent e) {
 			
 			// declare default values for input fields
 			double outRadius = 0.0;
@@ -87,28 +87,36 @@ public class CalculatorController {
 				outRadius = theView.getOutRadius();
 				inRadius = theView.getInRadius();
 				
-				// set radius to the model
-				theAnnulus.setRadius(outRadius, inRadius);
+				// if outer radius < inner radius,
+				if(outRadius < inRadius) {
+					
+					// display error message
+					theView.displayErrorMessage("Outer radius must be greater than inner radius!");
+					
+				// else,
+				} else {
+					
+					// set radius to the model
+					theAnnulus.setRadius(outRadius, inRadius);
 
-				// get the calculated area approximate value from the model
-				theView.setAnnulusAreaCalc(theAnnulus.getAreaCalc());
-				
-				// get the calculated monte carlo estimate value from the model
-				theView.setAnnulusMonteCalc(theAnnulus.getMonteCalc());
-				
-				// call viewhits to get data from array
-				greyscaleAnnulus.viewHits(theAnnulus.returnHits());
-				
-				// get the view to display greyscale annulus image
-				theView.showGreyscaleAnnulus(greyscaleAnnulus);
+					// get the calculated area approximate value from the model
+					theView.setAnnulusAreaCalc(theAnnulus.getAreaCalc());
+					
+					// get the calculated monte carlo estimate value from the model
+					theView.setAnnulusMonteCalc(theAnnulus.getMonteCalc());
+					
+					// call viewhits to get data from array
+					greyscaleAnnulus.viewHits(theAnnulus.returnHits());
+					
+					// get the view to display greyscale annulus image
+					theView.showGreyscaleAnnulus(greyscaleAnnulus);
+				}
 			}
 			
 			// if no values are set, display error message
 			catch(NumberFormatException exception1) {
 				theView.displayErrorMessage("Enter two values.");
 			}
-			
-			// todo: add catch when outer radius is lower than inner radius
 		}
 	}
 	
@@ -120,7 +128,7 @@ public class CalculatorController {
 	 */
 	class MandelbrotCalcListener implements ActionListener {
 		
-		public void actionPerformed(ActionEvent arg1) {
+		public void actionPerformed(ActionEvent e) {
 			
 			// do the mandelbrot calculation
 			theMandelbrot.calcMonte();

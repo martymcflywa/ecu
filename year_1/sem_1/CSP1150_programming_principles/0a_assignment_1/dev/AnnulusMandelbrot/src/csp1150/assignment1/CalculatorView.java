@@ -894,6 +894,6 @@ public class CalculatorView extends JFrame {
 	 * @param String errorMessage.
 	 */
 	public void displayErrorMessage(String errorMessage) {
-		JOptionPane.showMessageDialog(this, errorMessage);
+		JOptionPane.showMessageDialog(this, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
 	}
 }
