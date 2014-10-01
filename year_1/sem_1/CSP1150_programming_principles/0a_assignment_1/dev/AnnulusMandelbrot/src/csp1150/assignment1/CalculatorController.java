@@ -28,8 +28,11 @@ public class CalculatorController {
 	// create reference to the mandelbrot model
 	private MandelbrotModel theMandelbrot;
 	
-	// create reference to greyScaleAnnulus;
+	// create reference to greyscaleAnnulus;
 	private GreyscaleHitViewerPanel greyscaleAnnulus;
+	
+	// create reference to greyscaleMandelbrot
+	private GreyscaleHitViewerPanel greyscaleMandelbrot;
 		
 	/**
 	 * This defines the CalculatorController constructor
@@ -37,8 +40,9 @@ public class CalculatorController {
 	 * @param theAnnulus
 	 * @param theMandelbrot
 	 * @param greyscaleAnnulus
+	 * @param greyscaleMandelbrot
 	 */
-	public CalculatorController(CalculatorView theView, CalculatorModel theAnnulus, MandelbrotModel theMandelbrot, GreyscaleHitViewerPanel greyscaleAnnulus) {
+	public CalculatorController(CalculatorView theView, CalculatorModel theAnnulus, MandelbrotModel theMandelbrot, GreyscaleHitViewerPanel greyscaleAnnulus, GreyscaleHitViewerPanel greyscaleMandelbrot) {
 		
 		// assign this view object to the incoming view
 		this.theView = theView;
@@ -51,6 +55,9 @@ public class CalculatorController {
 		
 		// assign this image object to the incoming image
 		this.greyscaleAnnulus = greyscaleAnnulus;
+		
+		// assign this image object to the incoming image
+		this.greyscaleMandelbrot = greyscaleMandelbrot;
 		
 		// create listener for the annulus calculate button
 		this.theView.addAnnulusCalcListener(new AnnulusCalcListener());
@@ -120,6 +127,12 @@ public class CalculatorController {
 			
 			// set the result in the view
 			theView.setMandMonteCalc(theMandelbrot.getMonteCalc());
+			
+			//
+			greyscaleMandelbrot.viewHits(theMandelbrot.returnHits());
+			
+			// 
+			theView.showGreyscaleMandelbrot(greyscaleMandelbrot);
 		}
 	}
 }

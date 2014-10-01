@@ -36,6 +36,6 @@ public class CalculatorMVC {
 		CalculatorView theView = new CalculatorView(greyscaleAnnulus, greyscaleMandelbrot);
 		
 		// create the controller object
-		CalculatorController theController = new CalculatorController(theView, theAnnulus, theMandelbrot, greyscaleAnnulus);
+		CalculatorController theController = new CalculatorController(theView, theAnnulus, theMandelbrot, greyscaleAnnulus, greyscaleMandelbrot);
 	}
 }
