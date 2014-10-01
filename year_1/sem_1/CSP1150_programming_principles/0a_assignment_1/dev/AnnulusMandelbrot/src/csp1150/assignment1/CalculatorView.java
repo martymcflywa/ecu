@@ -202,7 +202,7 @@ public class CalculatorView extends JFrame {
 		showAnnulusImage(greyscaleAnnulus);
 		
 		// show empty mandelbrot image
-		showMandelbrotImage(greyscaleMandelbrot);
+		showMandelbrotImage(colourMandelbrot);
 	}
 	
 	/**
