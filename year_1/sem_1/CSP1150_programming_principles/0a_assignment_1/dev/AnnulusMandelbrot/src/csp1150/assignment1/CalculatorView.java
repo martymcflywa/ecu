@@ -817,7 +817,7 @@ public class CalculatorView extends JFrame {
 	 * @param args unused
 	 */
 	
-	private void initMandelbrotImagePanel() {
+	public void initMandelbrotImagePanel() {
 		
 		// setting up parent panel for greyscale mandelbrot image
 		panelMandelbrotGraphic = new JPanel();
@@ -850,6 +850,12 @@ public class CalculatorView extends JFrame {
 		gbc_imageMandelbrot = new GridBagConstraints();
 		gbc_imageMandelbrot.gridx = 0;
 		gbc_imageMandelbrot.gridy = 0;
+	}
+	
+	public void removeMandelbrotImagePanel() {
+		panelParentRight.remove(panelMandelbrotGraphic);
+		panelParentRight.revalidate();
+		panelParentRight.repaint();
 	}
 	
 	/**
