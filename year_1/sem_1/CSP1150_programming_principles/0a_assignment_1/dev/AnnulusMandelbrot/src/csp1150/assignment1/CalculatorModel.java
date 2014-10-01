@@ -35,6 +35,7 @@ public class CalculatorModel {
 	
 	/**
 	 * This method sets the radius.
+	 * 
 	 * @param double r1 - The outer radius.
 	 * @param double r2 - The inner radius.
 	 */
@@ -59,6 +60,8 @@ public class CalculatorModel {
 	
 	/**
 	 * This method returns the area calculated using approximate estimation.
+	 * 
+	 * @param args unused
 	 * @return double areaApprox
 	 */
 	public final double getAreaCalc() {
@@ -67,6 +70,8 @@ public class CalculatorModel {
 	
 	/**
 	 * This method returns the area calculated using monte carlo method.
+	 * 
+	 * @param args unused
 	 * @return double areaMonte
 	 */
 	public final double getMonteCalc() {
@@ -75,6 +80,7 @@ public class CalculatorModel {
 	
 	/**
 	 * This method calculates the area using approximate estimation.
+	 * 
 	 * @param args unused
 	 */
 	private final void calcApprox() {
@@ -107,6 +113,7 @@ public class CalculatorModel {
 	
 	/**
 	 * This method calculates the area using monte carlo estimation.
+	 * 
 	 * @param args unused
 	 */
 	protected final void calcMonte() {
@@ -154,9 +161,10 @@ public class CalculatorModel {
 	
 	/**
 	 * This method checks if center of cell, or hitpoints are within shape perimeter.
+	 * 
 	 * @param double x - The x-axis value.
 	 * @param double y - The y-axis value.
-	 * @return boolean inside
+	 * @return boolean inside.
 	 */
 	protected boolean isInside(double x, double y) {
 		
@@ -183,7 +191,8 @@ public class CalculatorModel {
 	
 	/**
 	 * This method returns the hits array to be used for the viewer.
-	 * @param args unused.
+	 * 
+	 * @param args unused
 	 * @return double[][] hits.
 	 */
 	public final double[][] returnHits() {
@@ -192,6 +201,8 @@ public class CalculatorModel {
 	
 	/**
 	 * This method returns the GRIDSIZE constant.
+	 * 
+	 * @param args unused
 	 * @return int GRIDSIZE.
 	 */
 	public final int getGridSize() {

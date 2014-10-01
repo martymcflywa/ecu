@@ -43,9 +43,10 @@ public class ColourHitViewerPanel extends GreyscaleHitViewerPanel {
 
 	/**
 	 * This method overrides GreyscaleHitViewerPanel's
-	 * viewHits method in order to use the colour version
+	 * viewHits method which uses the colour version
 	 * of setPixel() instead.
-	 * @param escapeArray
+	 * 
+	 * @param int[][] escapeArray
 	 */
 	public void viewHits(int[][] escapeArray) {
 		for(int x = 0; x < width; x++) {

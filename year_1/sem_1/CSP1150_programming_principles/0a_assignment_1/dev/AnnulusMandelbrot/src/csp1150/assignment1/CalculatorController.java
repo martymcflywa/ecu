@@ -38,7 +38,8 @@ public class CalculatorController {
 	private ColourHitViewerPanel colourMandelbrot;
 		
 	/**
-	 * This defines the CalculatorController constructor
+	 * This defines the CalculatorController constructor.
+	 * 
 	 * @param theView
 	 * @param theAnnulus
 	 * @param theMandelbrot
@@ -76,8 +77,8 @@ public class CalculatorController {
 	/**
 	 * This class defines the listener for
 	 * the Annulus Calculator calculate button.
-	 * @author Martin Ponce
 	 * 
+	 * @author Martin Ponce
 	 */
 	class AnnulusCalcListener implements ActionListener {
 		
@@ -130,8 +131,8 @@ public class CalculatorController {
 	/**
 	 * This class defines the listener for
 	 * the Mandelbrot Calculator view button. 
+	 * 
 	 * @author Martin Ponce
-	 *
 	 */
 	class MandelbrotCalcListener implements ActionListener {
 		

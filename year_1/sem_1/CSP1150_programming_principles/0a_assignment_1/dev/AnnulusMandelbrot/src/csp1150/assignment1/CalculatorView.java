@@ -83,12 +83,16 @@ public class CalculatorView extends JFrame {
 	
 	// label: annulus monte area result output
 	private JLabel resultAnnulusMonteArea = new JLabel("---");
-		
+	
+	/**
+	 * The Annulus image
+	 */
+	
 	// label: greyscale annulus displays as label
 	private JLabel imageAnnulus;
 	
 	/**
-	 * Defining Mandelbrot Calculator controls.
+	 * Defining Mandelbrot Calculator user controls.
 	 */
 	
 	// label: mandelbrot instructions part 1
@@ -120,6 +124,10 @@ public class CalculatorView extends JFrame {
 	
 	// label: mandelbrot zoom instruction part 2
 	private JLabel labelMandZoomInstructB;
+	
+	/**
+	 * The Mandelbrot image
+	 */
 	
 	// label: greyscale mandelbrot displays as label
 	private JLabel imageMandelbrot;
@@ -160,7 +168,9 @@ public class CalculatorView extends JFrame {
 	 * The view constructor.
 	 * Calls various init* methods to create the view.
 	 * 
-	 * @param greyscaleAnnulus - The greyscale image object
+	 * @param greyscaleAnnulus - The greyscale annulus image object
+	 * @param greyscaleMandelbrot - The greyscale mandelbrot image object
+	 * @param colourMandelbrot - The colour mandelbrot image object
 	 */
 	CalculatorView(GreyscaleHitViewerPanel greyscaleAnnulus, GreyscaleHitViewerPanel greyscaleMandelbrot, ColourHitViewerPanel colourMandelbrot) {
 		
@@ -844,6 +854,7 @@ public class CalculatorView extends JFrame {
 	 * This method returns user input for outer radius
 	 * from the view, parse as double.
 	 * 
+	 * @param args unused
 	 * @return double - Outer radius.
 	 */
 	public double getOutRadius() {
@@ -854,6 +865,7 @@ public class CalculatorView extends JFrame {
 	 * This method returns user input for inner radius
 	 * from the view, parse as double.
 	 * 
+	 * @param args unused
 	 * @return double - Inner radius.
 	 */
 	public double getInRadius() {
@@ -864,6 +876,7 @@ public class CalculatorView extends JFrame {
 	 * This method returns the approx area result
 	 * from the view, parse as double.
 	 * 
+	 * @param args unused
 	 * @return double - Area of annulus.
 	 */
 	public double getAnnulusAreaCalc() {

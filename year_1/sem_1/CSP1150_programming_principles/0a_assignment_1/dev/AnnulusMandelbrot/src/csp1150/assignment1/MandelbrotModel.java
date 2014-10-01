@@ -33,6 +33,7 @@ public class MandelbrotModel extends CalculatorModel {
 	/**
 	 * This method checks if hitpoints are within shape perimeter.
 	 * Overriding CalculatorModel's original method.
+	 * 
 	 * @param double x - The x-axis value.
 	 * @param double y - The y-axis value.
 	 * @return boolean inside
@@ -62,6 +63,7 @@ public class MandelbrotModel extends CalculatorModel {
 	/**
 	 * This method checks if hitpoints are within shape perimeter.
 	 * Overriding CalculatorModel's original method.
+	 * 
 	 * @param double x - The x-axis value.
 	 * @param double y - The y-axis value.
 	 * @return boolean inside
@@ -90,6 +92,7 @@ public class MandelbrotModel extends CalculatorModel {
 	
 	/**
 	 * This method calculates the escape time using monte carlo estimation.
+	 * 
 	 * @param args unused
 	 */
 	public final void calcEscape() {
@@ -118,8 +121,9 @@ public class MandelbrotModel extends CalculatorModel {
 	}
 	
 	/**
+	 * This method returns the escape array.
 	 * 
-	 * @return
+	 * @return int[][] escapeArray.
 	 */
 	public int[][] returnEscapeArray() {
 		return escapeArray;
