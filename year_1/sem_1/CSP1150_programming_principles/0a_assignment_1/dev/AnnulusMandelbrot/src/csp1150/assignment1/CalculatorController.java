@@ -139,7 +139,7 @@ public class CalculatorController {
 		public void actionPerformed(ActionEvent e) {
 			
 			// if normal view is selected
-			if(theView.radioMandNormalView.isSelected()) {
+			if(theView.radioMandCalculate.isSelected()) {
 				
 				// do the monte calculation
 				theMandelbrot.calcMonte();
@@ -154,7 +154,7 @@ public class CalculatorController {
 				theView.showMandelbrotImage(greyscaleMandelbrot);
 				
 			// else if back to the 60s view is selected	
-			} else if(theView.radioMandTrippyView.isSelected()) {
+			} else if(theView.radioMandViewImage.isSelected()) {
 				
 				// do the monte calculation
 				//theMandelbrot.calcMonte();
@@ -166,7 +166,7 @@ public class CalculatorController {
 				//theView.setMandMonteCalc(theMandelbrot.getMonteCalc());
 				
 				// generate image with viewhits, use escapearray values instead
-				colourMandelbrot.viewHits(theMandelbrot.returnEscapeArray());
+				colourMandelbrot.viewHitsRandomColour(theMandelbrot.returnEscapeArray());
 				
 				// show image in the view
 				theView.showMandelbrotImage(colourMandelbrot);

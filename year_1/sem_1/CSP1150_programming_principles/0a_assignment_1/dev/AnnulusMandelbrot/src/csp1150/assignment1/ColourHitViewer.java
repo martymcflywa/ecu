@@ -1,8 +1,12 @@
 package csp1150.assignment1;
 
+// import graphics classes
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+
+// import random class to generate random colours
+import java.util.Random;
 
 // import view
 import view.*;
@@ -58,4 +62,26 @@ public class ColourHitViewer extends HitViewerGenerator {
             }
         }
     }
+	
+	/**
+	 * This method generates a random coloured image.
+	 * 
+	 * @param int[][] escapeArray
+	 */
+	public void viewHitsRandomColour(int[][] escapeArray) {
+		
+		Random randomRGB = new Random();
+		int randomRed = randomRGB.nextInt(255 - 0) + 1;
+		int randomGreen = randomRGB.nextInt(255 - 0) + 1;
+		int randomBlue = randomRGB.nextInt(255 - 0) + 1;
+		
+		for(int x = 0; x < width; x++) {
+			for(int y = 0; y < height; y++) {
+                
+				int pixel = escapeArray[x][y];
+
+				setPixel(x, y, pixel * randomRed / 25, pixel * randomGreen / 25, pixel * randomBlue / 25);
+            }
+        }
+	}
 }

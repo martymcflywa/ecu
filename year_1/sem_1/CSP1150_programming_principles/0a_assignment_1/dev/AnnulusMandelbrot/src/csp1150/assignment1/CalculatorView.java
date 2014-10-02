@@ -96,22 +96,22 @@ public class CalculatorView extends JFrame {
 	 */
 	
 	// label: mandelbrot instructions part 1
-	private JLabel labelMandInstructA = new JLabel("What is a mandelbrot?");
+	private JLabel labelMandInstruct = new JLabel("Select calculate or view image.");
 	
 	// label: mandelbrot instructions part 2
-	private JLabel labelMandInstructB = new JLabel("Click view to find out.");
+	//private JLabel labelMandInstructB = new JLabel("or view image.");
 	
 	// button group: mandelbrot radio buttons, so only one of two can be selected at a time
 	private final ButtonGroup GROUP_MAND_RADIOS = new ButtonGroup();
 	
 	// label: mandelbrot radio button normal view
-	protected JRadioButton radioMandNormalView = new JRadioButton("Normal view");
+	protected JRadioButton radioMandCalculate = new JRadioButton("Calculate Area");
 	
 	// label: mandelbrot radio button trippy view
-	protected JRadioButton radioMandTrippyView = new JRadioButton("Back to the 60s");
+	protected JRadioButton radioMandViewImage = new JRadioButton("View Image");
 	
 	// button: mandelbrot view image button
-	private JButton buttonMandView = new JButton("View");
+	private JButton buttonMandOK = new JButton("OK");
 	
 	// label: mandelbrot monte area result title
 	private JLabel labelMandMonteArea = new JLabel("Monte Carlo Estimation:");
@@ -646,77 +646,65 @@ public class CalculatorView extends JFrame {
 		borderMandelbrotCalculator.setLayout(gbl_borderMandelbrotCalculator);
 
 		// create gridbag constraints for mandelbrot calculator instructions part 1
-		GridBagConstraints gbc_labelMandInstructA = new GridBagConstraints();
+		GridBagConstraints gbc_labelMandInstruct = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for mandelbrot calculator instructions part 1
-		gbc_labelMandInstructA.fill = GridBagConstraints.BOTH;
-		gbc_labelMandInstructA.insets = new Insets(0, 15, 5, 5);
-		gbc_labelMandInstructA.gridwidth = 5;
-		gbc_labelMandInstructA.gridx = 0;
-		gbc_labelMandInstructA.gridy = 0;
+		gbc_labelMandInstruct.fill = GridBagConstraints.BOTH;
+		gbc_labelMandInstruct.insets = new Insets(0, 15, 5, 5);
+		gbc_labelMandInstruct.gridwidth = 5;
+		gbc_labelMandInstruct.gridx = 0;
+		gbc_labelMandInstruct.gridy = 0;
 		
 		// add instructions and gridbag constraints parameters to mandelbrot calculator border panel
-		borderMandelbrotCalculator.add(labelMandInstructA, gbc_labelMandInstructA);
-		
-		// create gridbag constraints for mandelbrot calculator instructions part 2
-		GridBagConstraints gbc_labelMandInstructB = new GridBagConstraints();
-		
-		// define gridbag constraints parameters for mandelbrot calculator instructions part 2
-		gbc_labelMandInstructB.anchor = GridBagConstraints.WEST;
-		gbc_labelMandInstructB.insets = new Insets(0, 15, 5, 5);
-		gbc_labelMandInstructB.gridwidth = 5;
-		gbc_labelMandInstructB.gridx = 0;
-		gbc_labelMandInstructB.gridy = 1;
-		
-		// add mandelbrot calculator instructions part 2 and gridbag constraints to mandelbrot calculator border panel
-		borderMandelbrotCalculator.add(labelMandInstructB, gbc_labelMandInstructB);
+		borderMandelbrotCalculator.add(labelMandInstruct, gbc_labelMandInstruct);
 		
 		// make this button the default selection
-		radioMandNormalView.setSelected(true);
+		radioMandCalculate.setSelected(true);
 		
 		// add radio button to group
-		GROUP_MAND_RADIOS.add(radioMandNormalView);
+		GROUP_MAND_RADIOS.add(radioMandCalculate);
 		
 		// create gridbag constraints for mandelbrot normal view radio button
-		GridBagConstraints gbc_radioMandNormalView = new GridBagConstraints();
+		GridBagConstraints gbc_radioMandCalculate = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for mandelbrot normal view radio button
-		gbc_radioMandNormalView.anchor = GridBagConstraints.WEST;
-		gbc_radioMandNormalView.insets = new Insets(15, 15, 5, 5);
-		gbc_radioMandNormalView.gridx = 0;
-		gbc_radioMandNormalView.gridy = 2;
+		gbc_radioMandCalculate.anchor = GridBagConstraints.WEST;
+		gbc_radioMandCalculate.insets = new Insets(0, 15, 5, 5);
+		gbc_radioMandCalculate.gridwidth = 2;
+		gbc_radioMandCalculate.gridx = 0;
+		gbc_radioMandCalculate.gridy = 1;
 		
 		// add mandelbrot normal view radio button and gridbag constraints to mandelbrot calculator border panel
-		borderMandelbrotCalculator.add(radioMandNormalView, gbc_radioMandNormalView);
+		borderMandelbrotCalculator.add(radioMandCalculate, gbc_radioMandCalculate);
 		
 		// add radio button to group
-		GROUP_MAND_RADIOS.add(radioMandTrippyView);
+		GROUP_MAND_RADIOS.add(radioMandViewImage);
 		
 		// create gridbag constraints for mandelbrot trippy view radio button
-		GridBagConstraints gbc_radioMandTrippyView = new GridBagConstraints();
+		GridBagConstraints gbc_radioMandViewImage = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for mandelbrot trippy view radio button
-		gbc_radioMandTrippyView.anchor = GridBagConstraints.WEST;
-		gbc_radioMandTrippyView.insets = new Insets(0, 15, 5, 5);
-		gbc_radioMandTrippyView.gridwidth = 5;
-		gbc_radioMandTrippyView.gridx = 0;
-		gbc_radioMandTrippyView.gridy = 3;
+		gbc_radioMandViewImage.anchor = GridBagConstraints.WEST;
+		gbc_radioMandViewImage.insets = new Insets(0, 15, 5, 5);
+		gbc_radioMandViewImage.gridwidth = 5;
+		gbc_radioMandViewImage.gridx = 0;
+		gbc_radioMandViewImage.gridy = 2;
 		
 		// add mandelbrot trippy view radio button and gridbag constraints to mandelbrot calculator border panel
-		borderMandelbrotCalculator.add(radioMandTrippyView, gbc_radioMandTrippyView);
+		borderMandelbrotCalculator.add(radioMandViewImage, gbc_radioMandViewImage);
 		
 		// create gridbag constraints for mandelbrot view button
-		GridBagConstraints gbc_buttonMandView = new GridBagConstraints();
+		GridBagConstraints gbc_buttonMandOK = new GridBagConstraints();
 		
 		// define gridbag constraints parameters for mandelbrot view button
-		gbc_buttonMandView.anchor = GridBagConstraints.WEST;
-		gbc_buttonMandView.gridwidth = 3;
-		gbc_buttonMandView.insets = new Insets(0, 0, 5, 5);
-		gbc_buttonMandView.gridx = 2;
-		gbc_buttonMandView.gridy = 3;
+		gbc_buttonMandOK.anchor = GridBagConstraints.EAST;
+		gbc_buttonMandOK.gridwidth = 2;
+		gbc_buttonMandOK.insets = new Insets(0, 0, 5, 5);
+		gbc_buttonMandOK.gridx = 2;
+		gbc_buttonMandOK.gridy = 3;
 		
 		// add mandelbrot view button and gridbag constraints to mandelbrot calculator border panel
-		borderMandelbrotCalculator.add(buttonMandView, gbc_buttonMandView);
+		borderMandelbrotCalculator.add(buttonMandOK, gbc_buttonMandOK);
 
 		// create gridbag constraints for mandelbrot monte carlo result label
 		GridBagConstraints gbc_labelMandMonteArea = new GridBagConstraints();
@@ -817,7 +805,7 @@ public class CalculatorView extends JFrame {
 	 * @param args unused
 	 */
 	
-	public void initMandelbrotImagePanel() {
+	private void initMandelbrotImagePanel() {
 		
 		// setting up parent panel for greyscale mandelbrot image
 		panelMandelbrotGraphic = new JPanel();
@@ -850,12 +838,6 @@ public class CalculatorView extends JFrame {
 		gbc_imageMandelbrot = new GridBagConstraints();
 		gbc_imageMandelbrot.gridx = 0;
 		gbc_imageMandelbrot.gridy = 0;
-	}
-	
-	public void removeMandelbrotImagePanel() {
-		panelParentRight.remove(panelMandelbrotGraphic);
-		panelParentRight.revalidate();
-		panelParentRight.repaint();
 	}
 	
 	/**
@@ -936,7 +918,7 @@ public class CalculatorView extends JFrame {
 	 * @param theListener.
 	 */
 	public void addMandelbrotCalcListener(ActionListener theListener) {
-		buttonMandView.addActionListener(theListener);
+		buttonMandOK.addActionListener(theListener);
 	}
 	
 	/**
