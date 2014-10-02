@@ -104,11 +104,14 @@ public class CalculatorView extends JFrame {
 	// button group: mandelbrot radio buttons, so only one of two can be selected at a time
 	private final ButtonGroup GROUP_MAND_RADIOS = new ButtonGroup();
 	
-	// label: mandelbrot radio button normal view
+	// label: mandelbrot radio button calculate area
 	protected JRadioButton radioMandCalculate = new JRadioButton("Calculate Area");
 	
-	// label: mandelbrot radio button trippy view
+	// label: mandelbrot radio button view image
 	protected JRadioButton radioMandViewImage = new JRadioButton("View Image");
+	
+	// checkbox: mandelbrot random colour selector
+	protected JCheckBox cboxMandRandomColour = new JCheckBox("Random colour");
 	
 	// button: mandelbrot view image button
 	private JButton buttonMandOK = new JButton("OK");
@@ -693,17 +696,30 @@ public class CalculatorView extends JFrame {
 		// add mandelbrot trippy view radio button and gridbag constraints to mandelbrot calculator border panel
 		borderMandelbrotCalculator.add(radioMandViewImage, gbc_radioMandViewImage);
 		
-		// create gridbag constraints for mandelbrot view button
+		//cboxMandRandomColour
+		GridBagConstraints gbc_cboxMandRandomColour = new GridBagConstraints();
+		
+		// define gridbag constraints parameters for checbox mandelbrot random colour
+		gbc_cboxMandRandomColour.anchor = GridBagConstraints.WEST;
+		gbc_cboxMandRandomColour.gridwidth = 2;
+		gbc_cboxMandRandomColour.insets = new Insets(0, 15, 5, 5);
+		gbc_cboxMandRandomColour.gridx = 0;
+		gbc_cboxMandRandomColour.gridy = 3;
+		
+		//
+		borderMandelbrotCalculator.add(cboxMandRandomColour, gbc_cboxMandRandomColour);
+		
+		// create gridbag constraints for mandelbrot OK button
 		GridBagConstraints gbc_buttonMandOK = new GridBagConstraints();
 		
-		// define gridbag constraints parameters for mandelbrot view button
+		// define gridbag constraints parameters for mandelbrot OK button
 		gbc_buttonMandOK.anchor = GridBagConstraints.EAST;
 		gbc_buttonMandOK.gridwidth = 2;
 		gbc_buttonMandOK.insets = new Insets(0, 0, 5, 5);
 		gbc_buttonMandOK.gridx = 2;
 		gbc_buttonMandOK.gridy = 3;
 		
-		// add mandelbrot view button and gridbag constraints to mandelbrot calculator border panel
+		// add mandelbrot OK button and gridbag constraints to mandelbrot calculator border panel
 		borderMandelbrotCalculator.add(buttonMandOK, gbc_buttonMandOK);
 
 		// create gridbag constraints for mandelbrot monte carlo result label

@@ -138,7 +138,7 @@ public class CalculatorController {
 		
 		public void actionPerformed(ActionEvent e) {
 			
-			// if normal view is selected
+			// if calculate radio is selected
 			if(theView.radioMandCalculate.isSelected()) {
 				
 				// do the monte calculation
@@ -147,29 +147,33 @@ public class CalculatorController {
 				// set the result in the view
 				theView.setMandMonteCalc(theMandelbrot.getMonteCalc());
 				
-				// generate image with viewhits
-				greyscaleMandelbrot.viewHits(theMandelbrot.returnHits());
-				
-				// show the image in the view
-				theView.showMandelbrotImage(greyscaleMandelbrot);
-				
-			// else if back to the 60s view is selected	
+			// else if view image radio is selected	
 			} else if(theView.radioMandViewImage.isSelected()) {
 				
-				// do the monte calculation
-				//theMandelbrot.calcMonte();
-				
-				// do the escape time calculation
-				theMandelbrot.calcEscape();
-				
-				// set the monte result in the view
-				//theView.setMandMonteCalc(theMandelbrot.getMonteCalc());
-				
-				// generate image with viewhits, use escapearray values instead
-				colourMandelbrot.viewHitsRandomColour(theMandelbrot.returnEscapeArray());
-				
-				// show image in the view
-				theView.showMandelbrotImage(colourMandelbrot);
+				// if random colour checkbox is ticked
+				if(theView.cboxMandRandomColour.isSelected()) {
+					
+					// calculate area using escape time
+					theMandelbrot.calcEscape();
+					
+					// do view hits using random colours
+					colourMandelbrot.viewHitsRandomColour(theMandelbrot.returnEscapeArray());
+					
+					// get the view to display random colour image
+					theView.showMandelbrotImage(colourMandelbrot);
+					
+				// else checkbox is unticked
+				} else {
+					
+					// calculate area using escape time
+					theMandelbrot.calcEscape();
+					
+					// do normal viewhits
+					colourMandelbrot.viewHits(theMandelbrot.returnEscapeArray());
+					
+					// get the view to display image
+					theView.showMandelbrotImage(colourMandelbrot);
+				}
 			}
 		}
 	}

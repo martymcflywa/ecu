@@ -58,7 +58,8 @@ public class ColourHitViewer extends HitViewerGenerator {
                 
 				int pixel = escapeArray[x][y];
 
-				setPixel(x, y, pixel * 3, pixel + 5, pixel + 120);
+				//setPixel(x, y, pixel * 3, pixel + 5, pixel + 120);
+				setPixel(x, y, pixel, pixel, pixel);
             }
         }
     }
