@@ -53,12 +53,14 @@ public class ColourHitViewer extends HitViewerGenerator {
 	 * @param int[][] escapeArray
 	 */
 	public void viewHits(int[][] escapeArray) {
+		
 		for(int x = 0; x < width; x++) {
+			
 			for(int y = 0; y < height; y++) {
                 
 				int pixel = escapeArray[x][y];
 
-				//setPixel(x, y, pixel * 3, pixel + 5, pixel + 120);
+				// backup colour way: setPixel(x, y, pixel * 3, pixel + 5, pixel + 120);
 				setPixel(x, y, pixel, pixel, pixel);
             }
         }
@@ -71,16 +73,22 @@ public class ColourHitViewer extends HitViewerGenerator {
 	 */
 	public void viewHitsRandomColour(int[][] escapeArray) {
 		
+		// create Random object
 		Random randomRGB = new Random();
+		
+		// get a random number for red, green and blue
 		int randomRed = randomRGB.nextInt(255 - 0) + 1;
 		int randomGreen = randomRGB.nextInt(255 - 0) + 1;
 		int randomBlue = randomRGB.nextInt(255 - 0) + 1;
 		
 		for(int x = 0; x < width; x++) {
+			
 			for(int y = 0; y < height; y++) {
                 
+				// set pixel to current escapetime value
 				int pixel = escapeArray[x][y];
-
+				
+				// call setPixel to draw, using random numbers generated
 				setPixel(x, y, pixel * randomRed / 25, pixel * randomGreen / 25, pixel * randomBlue / 25);
             }
         }
