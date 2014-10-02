@@ -2,7 +2,6 @@ package csp1150.assignment1;
 
 // import action listener
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 
 // import swing gui components
 import javax.swing.*;
@@ -12,6 +11,9 @@ import javax.swing.border.TitledBorder;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+
+// import buffered image to handle graphics
+import java.awt.image.BufferedImage;
 
 // import greyscale view
 import view.*;
@@ -946,4 +948,20 @@ public class CalculatorView extends JFrame {
 	public void displayErrorMessage(String errorMessage) {
 		JOptionPane.showMessageDialog(this, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
 	}
+	
+//	/**
+//	 * This method adds mouse listeners to the graphic panels,
+//	 * to enable the user to zoom in.
+//	 * 
+//	 * @param theMouseClicks
+//	 * @param theMouseMotion
+//	 */
+//	public void addMouseActions(MouseListener theMouseClicks, MouseMotionListener theMouseMotion) {
+//		
+//		panelAnnulusGraphic.addMouseListener(theMouseClicks);
+//		panelAnnulusGraphic.addMouseMotionListener(theMouseMotion);
+//		
+//		panelMandelbrotGraphic.addMouseListener(theMouseClicks);
+//		panelMandelbrotGraphic.addMouseMotionListener(theMouseMotion);
+//	}
 }
