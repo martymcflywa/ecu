@@ -1,5 +1,7 @@
 package rewrite.view;
 
+import java.awt.GridLayout;
+
 import javax.swing.JFrame;
 
 /**
@@ -18,7 +20,7 @@ public class CalculatorFrame extends JFrame {
 		super("Annulus & Mandelbrot Calculator: Martin Ponce ID# 10371381");
 		
 		// set frame size
-		this.setBounds(100, 100, 800, 900);
+		this.setBounds(100, 100, 900, 900);
 		
 		// disable frame resize
 		this.setResizable(false);
@@ -31,5 +33,8 @@ public class CalculatorFrame extends JFrame {
 		
 		// set frame to appear in the center of the desktop
 		this.setLocationRelativeTo(null);
+		
+		// use gridlayout to divide frame into 2 columns with 5px padding
+		this.getContentPane().setLayout(new GridLayout(0, 2, 5, 5));
 	}
 }
