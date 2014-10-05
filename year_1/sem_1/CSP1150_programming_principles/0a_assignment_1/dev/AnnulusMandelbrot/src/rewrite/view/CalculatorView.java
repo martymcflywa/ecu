@@ -2,9 +2,12 @@ package rewrite.view;
 
 // for debugging only
 import java.awt.Color;
-
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
+
+
+
 
 // import gui component classes
 import javax.swing.*;
@@ -141,16 +144,16 @@ public class CalculatorView extends JFrame {
 		 */
 		
 		// create labelAnnulusCalcInstructions
-		this.labelAnnulusCalcInstructions = new CalculatorLabel("Enter the outer and inner radius.", "west", 2, 20, 40, 5, 5, 0, 0);
+		this.labelAnnulusCalcInstructions = new CalculatorLabel("Enter the outer and inner radius.", "west", 2, 0, 40, 5, 5, 0, 1);
 
 		// create labelAnnulusOutRadius
-		this.labelAnnulusOutRadius = new CalculatorLabel("Outer radius:", "west", 1, 20, 40, 5, 5, 0, 2);
+		this.labelAnnulusOutRadius = new CalculatorLabel("Outer radius:", "west", 1, 0, 40, 5, 5, 0, 3);
 
 		// create labelAnnulusInRadius
-		this.labelAnnulusInRadius = new CalculatorLabel("Inner radius:", "west", 1, 0, 40, 5, 5, 0, 3);
+		this.labelAnnulusInRadius = new CalculatorLabel("Inner radius:", "west", 1, 0, 40, 5, 5, 0, 4);
 		
 		// create labelAnnulusApproxTitle
-		this.labelAnnulusApproxTitle = new CalculatorLabel("Approximate area:", "west", 2, 0, 40, 5, 5, 0, 6);
+		this.labelAnnulusApproxTitle = new CalculatorLabel("Approximate area:", "west", 2, 0, 40, 5, 5, 0, 7);
 		
 		/*
 		 * Add labels to container panel

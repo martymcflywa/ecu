@@ -65,13 +65,13 @@ public class PanelGridBagLayout extends PanelGridLayout {
 		// create gridbag constraints
 		this.gbc_panel = new GridBagConstraints();
 		
-		// define gbl parameters, gbcSettings array holding values
+		// define gridbag constraints parameters
 		this.gbc_panel.insets = new Insets(insetTop, insetLeft, insetRight, insetBottom);
 		this.gbc_panel.fill = GridBagConstraints.BOTH;
 		this.gbc_panel.gridx = gridx;
 		this.gbc_panel.gridy = gridy;
 		
-		// create gridbag layout
+		// create gridbaglayout
 		this.gbl_panel = new GridBagLayout();
 		
 		// use these gridbaglayout parameters
