@@ -14,7 +14,7 @@ import javax.swing.*;
  * @since 20141004
  */
 @SuppressWarnings("serial")
-public class CalculatorLabel extends CalculatorUserControl {
+public class CalculatorLabel extends CalculatorComponents {
 
 	protected JLabel theLabel;
 	protected GridBagConstraints gbc_label;

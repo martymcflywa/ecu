@@ -6,9 +6,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-
-
-
 // import gui component classes
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -153,7 +150,16 @@ public class CalculatorView extends JFrame {
 		this.labelAnnulusInRadius = new CalculatorLabel("Inner radius:", "west", 1, 0, 40, 5, 5, 0, 4);
 		
 		// create labelAnnulusApproxTitle
-		this.labelAnnulusApproxTitle = new CalculatorLabel("Approximate area:", "west", 2, 0, 40, 5, 5, 0, 7);
+		this.labelAnnulusApproxTitle = new CalculatorLabel("Approximate area:", "west", 2, 0, 40, 5, 5, 0, 6);
+		
+		// create labelAnnulusApproxOutput
+		this.labelAnnulusApproxOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 7);
+		
+		// create labelAnnulusMonteTitle
+		this.labelAnnulusMonteTitle = new CalculatorLabel("Monte Carlo estimate:", "west", 2, 0, 40, 5, 5, 0, 8);
+		
+		// create labelAnnulusMonteOutput
+		this.labelAnnulusMonteOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 9);
 		
 		/*
 		 * Add labels to container panel
@@ -170,6 +176,15 @@ public class CalculatorView extends JFrame {
 		
 		// add labelAnnulusApproxTitle to panelAnnulusBorder
 		this.panelAnnulusBorder.add(this.labelAnnulusApproxTitle.theLabel, this.labelAnnulusApproxTitle.gbc_label);
+		
+		// add labelAnnulusApproxOutput to panelAnnulusBorder
+		this.panelAnnulusBorder.add(this.labelAnnulusApproxOutput.theLabel, this.labelAnnulusApproxOutput.gbc_label);
+		
+		// add labelAnnulusMonteTitle to panelAnnulusBorder
+		this.panelAnnulusBorder.add(this.labelAnnulusMonteTitle.theLabel, this.labelAnnulusMonteTitle.gbc_label);
+		
+		// add labelAnnulusMonteOutput to panelAnnulusBorder
+		this.panelAnnulusBorder.add(this.labelAnnulusMonteOutput.theLabel, this.labelAnnulusMonteOutput.gbc_label);
 	}
 	
 	/**
