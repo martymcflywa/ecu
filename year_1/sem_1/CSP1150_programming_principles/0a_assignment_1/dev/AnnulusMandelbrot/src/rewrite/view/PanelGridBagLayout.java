@@ -12,9 +12,6 @@ import javax.swing.border.TitledBorder;
 
 @SuppressWarnings("serial")
 public class PanelGridBagLayout extends PanelGridLayout {
-
-	// declare border title
-	protected String borderTitle;
 	
 	// declare panel and layout manager
 	protected JPanel panel;
@@ -56,20 +53,10 @@ public class PanelGridBagLayout extends PanelGridLayout {
 	 * @param int gridx - The column position.
 	 * @param int gridy - The row position.
 	 */
-	public PanelGridBagLayout(String borderTitle, int insetTop, int insetLeft, int insetRight, int insetBottom, int gridx, int gridy) {
+	public PanelGridBagLayout(int insetTop, int insetLeft, int insetRight, int insetBottom, int gridx, int gridy) {
 		
 		// create panel
 		this.panel = new JPanel();
-		
-		// set String borderTitle
-		this.borderTitle = borderTitle;
-		
-		// **DEBUGGING**
-		//this.panel.setBackground(Color.WHITE);
-		//this.panel.setOpaque(true);
-		
-		// set up titleborder
-		this.panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), borderTitle, TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
 		// create gridbag constraints
 		this.gbc_panel = new GridBagConstraints();
@@ -80,12 +67,7 @@ public class PanelGridBagLayout extends PanelGridLayout {
 		this.gbc_panel.gridx = gridx;
 		this.gbc_panel.gridy = gridy;
 		
-		// **NEED TO TEST THIS** add panel and gbc to parent
-		// add to parent panel
-		//theParent.add(this.panel, this.gbc_panel);
-		//theFrame.getContentPane().add(this.panel, this.gbc_panel);
-		System.out.println(this.panel.getParent());
-		
+		// create gridbag layout
 		this.gbl_panel = new GridBagLayout();
 		
 		// use these gridbaglayout parameters
@@ -93,18 +75,5 @@ public class PanelGridBagLayout extends PanelGridLayout {
 		this.gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		this.gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		this.gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		
-		// set the panel's layout to gbl
-		//this.panel.setLayout(this.gbl_panel);
-	}
-	
-	public GridBagLayout getGridBagLayout() {
-		
-		return this.gbl_panel;
-	}
-	
-	public GridBagConstraints getGridBagConstraints() {
-		
-		return this.gbc_panel;
 	}
 }
