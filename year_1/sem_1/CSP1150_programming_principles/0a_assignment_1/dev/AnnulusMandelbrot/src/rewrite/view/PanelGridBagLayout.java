@@ -11,7 +11,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 @SuppressWarnings("serial")
-public class PanelGridBagLayout extends JPanel {
+public class PanelGridBagLayout extends PanelGridLayout {
 
 	// declare border title
 	protected String borderTitle;
@@ -36,8 +36,8 @@ public class PanelGridBagLayout extends JPanel {
 		this.panel.setBackground(Color.GREEN);
 		
 		// add panel to parent
-		theParent.add(this.panel);
-		theFrame.getContentPane().add(this.panel);
+		//theParent.add(this.panel);
+		//theFrame.getContentPane().add(this.panel);
 		
 		// create gridbag constraints
 		this.gbl_panel = new GridBagLayout();
@@ -48,8 +48,12 @@ public class PanelGridBagLayout extends JPanel {
 		this.gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		this.gbl_panel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		
-		// set the panel's layout to gbl
+		// set the panel's layout to gbl - doing this in view now
 		this.panel.setLayout(this.gbl_panel);
+		
+		// doing this in view now
+		//theParent.add(this.panel);
+		//theFrame.getContentPane().add(theParent);
 	}
 	
 	/**
@@ -89,8 +93,8 @@ public class PanelGridBagLayout extends JPanel {
 		
 		// **NEED TO TEST THIS** add panel and gbc to parent
 		// add to parent panel
-		theParent.add(this.panel, this.gbc_panel);
-		theFrame.getContentPane().add(this.panel, this.gbc_panel);
+		//theParent.add(this.panel, this.gbc_panel);
+		//theFrame.getContentPane().add(this.panel, this.gbc_panel);
 		System.out.println(this.panel.getParent());
 		
 		this.gbl_panel = new GridBagLayout();
@@ -103,5 +107,15 @@ public class PanelGridBagLayout extends JPanel {
 		
 		// set the panel's layout to gbl
 		this.panel.setLayout(this.gbl_panel);
+	}
+	
+	public GridBagLayout getGridBagLayout() {
+		
+		return this.gbl_panel;
+	}
+	
+	public GridBagConstraints getGridBagConstraints() {
+		
+		return this.gbc_panel;
 	}
 }

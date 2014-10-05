@@ -13,6 +13,13 @@ public class PanelGridLayout extends JPanel {
 	protected JPanel panel = new JPanel();
 	
 	/**
+	 * The default constructor.
+	 */
+	public PanelGridLayout() {
+		
+	}
+	
+	/**
 	 * The panel constructor, to be used for panels
 	 * that are direct children of JFrame.
 	 * 
@@ -30,11 +37,11 @@ public class PanelGridLayout extends JPanel {
 		// **DEBUGGING**
 		this.panel.setBackground(Color.WHITE);
 		
-		// add panel to the frame **might need to delete this**
-		theFrame.getContentPane().add(this.panel);
-		
 		// use gridlayout, set the rows, columns and gaps
 		this.panel.setLayout(new GridLayout(rows, cols, hgap, vgap));
+		
+		// add panel to the frame **might need to delete this**
+		theFrame.getContentPane().add(this.panel);
 	}
 	
 	/**
@@ -55,10 +62,19 @@ public class PanelGridLayout extends JPanel {
 		// **DEBUGGING**
 		this.panel.setBackground(Color.BLUE);
 		
+		// use gridlayout, set the rows, columns and gaps
+		this.panel.setLayout(new GridLayout(rows, cols, hgap, vgap));
+		
 		// add panel to the parent panel **might need to delete this**
 		thePanel.add(this.panel);
 		
-		// use gridlayout, set the rows, columns and gaps
-		this.panel.setLayout(new GridLayout(rows, cols, hgap, vgap));
+	}
+	
+	/**
+	 * This method returns the panel.
+	 * @return JPanel panel
+	 */
+	public JPanel getPanel() {
+		return panel;
 	}
 }
