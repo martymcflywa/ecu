@@ -27,17 +27,13 @@ public class PanelGridBagLayout extends PanelGridLayout {
 	 * 
 	 * @param args unused.
 	 */
-	public PanelGridBagLayout(JFrame theFrame, JPanel theParent) {
+	public PanelGridBagLayout() {
 		
 		// create panel
 		this.panel = new JPanel();
 		
 		// **DEBUGGING**
-		this.panel.setBackground(Color.GREEN);
-		
-		// add panel to parent
-		//theParent.add(this.panel);
-		//theFrame.getContentPane().add(this.panel);
+		this.panel.setBackground(Color.ORANGE);
 		
 		// create gridbag constraints
 		this.gbl_panel = new GridBagLayout();
@@ -46,14 +42,7 @@ public class PanelGridBagLayout extends PanelGridLayout {
 		this.gbl_panel.columnWidths = new int[]{0, 0};
 		this.gbl_panel.rowHeights = new int[]{0, 0};
 		this.gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		this.gbl_panel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
-		
-		// set the panel's layout to gbl - doing this in view now
-		this.panel.setLayout(this.gbl_panel);
-		
-		// doing this in view now
-		//theParent.add(this.panel);
-		//theFrame.getContentPane().add(theParent);
+		this.gbl_panel.rowWeights = new double[]{1.0, Double.MIN_VALUE};	
 	}
 	
 	/**
@@ -67,7 +56,7 @@ public class PanelGridBagLayout extends PanelGridLayout {
 	 * @param int gridx - The column position.
 	 * @param int gridy - The row position.
 	 */
-	public PanelGridBagLayout(JFrame theFrame, JPanel theParent, String borderTitle, int insetTop, int insetLeft, int insetRight, int insetBottom, int gridx, int gridy) {
+	public PanelGridBagLayout(String borderTitle, int insetTop, int insetLeft, int insetRight, int insetBottom, int gridx, int gridy) {
 		
 		// create panel
 		this.panel = new JPanel();
@@ -77,7 +66,7 @@ public class PanelGridBagLayout extends PanelGridLayout {
 		
 		// **DEBUGGING**
 		//this.panel.setBackground(Color.WHITE);
-		this.panel.setOpaque(true);
+		//this.panel.setOpaque(true);
 		
 		// set up titleborder
 		this.panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), borderTitle, TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -106,7 +95,7 @@ public class PanelGridBagLayout extends PanelGridLayout {
 		this.gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		
 		// set the panel's layout to gbl
-		this.panel.setLayout(this.gbl_panel);
+		//this.panel.setLayout(this.gbl_panel);
 	}
 	
 	public GridBagLayout getGridBagLayout() {

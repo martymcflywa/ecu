@@ -12,6 +12,9 @@ public class PanelGridLayout extends JPanel {
 	// declare panel
 	protected JPanel panel = new JPanel();
 	
+	// declare GridLayout
+	protected GridLayout theGridLayout;
+	
 	/**
 	 * The default constructor.
 	 */
@@ -29,7 +32,7 @@ public class PanelGridLayout extends JPanel {
 	 * @param int hgap - Horizontal padding, pixels.
 	 * @param int vgap - Vertical padding, pixels.
 	 */
-	public PanelGridLayout(JFrame theFrame, int rows, int cols, int hgap, int vgap) {
+	public PanelGridLayout(int rows, int cols, int hgap, int vgap) {
 		
 		// create panel
 		this.panel = new JPanel();
@@ -38,10 +41,7 @@ public class PanelGridLayout extends JPanel {
 		this.panel.setBackground(Color.WHITE);
 		
 		// use gridlayout, set the rows, columns and gaps
-		this.panel.setLayout(new GridLayout(rows, cols, hgap, vgap));
-		
-		// add panel to the frame **might need to delete this**
-		theFrame.getContentPane().add(this.panel);
+		this.panel.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
 	}
 	
 	/**
@@ -63,7 +63,7 @@ public class PanelGridLayout extends JPanel {
 		this.panel.setBackground(Color.BLUE);
 		
 		// use gridlayout, set the rows, columns and gaps
-		this.panel.setLayout(new GridLayout(rows, cols, hgap, vgap));
+		this.panel.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
 		
 		// add panel to the parent panel **might need to delete this**
 		thePanel.add(this.panel);

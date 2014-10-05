@@ -16,7 +16,7 @@ import javax.swing.border.TitledBorder;
 public class CalculatorView extends JFrame {
 	
 	private CalculatorFrame theFrame;
-	//private PanelGridLayout panelLeft;
+	private PanelGridLayout panelLeft;
 	private PanelGridLayout panelRight;
 	private PanelGridBagLayout panelAnnulusCalc;
 	private PanelGridBagLayout panelAnnulusBorder;
@@ -26,48 +26,47 @@ public class CalculatorView extends JFrame {
 		// create frame
 		this.theFrame = new CalculatorFrame();
 		
-//		// create panelLeft
-//		this.panelLeft = new PanelGridLayout(this.theFrame, 2, 1, 20, 5);
-//		
-//		// create panelRight
-//		this.panelRight = new PanelGridLayout(this.theFrame, 2, 1, 20, 5);
-//		
-//		this.panelLeft.add(this.panelAnnulusCalc = new PanelGridBagLayout(this.theFrame, this.panelLeft));
+		// create panelLeft and add to the frame
+		this.theFrame.getContentPane().add(this.panelLeft = new PanelGridLayout(2, 1, 20, 5));
 		
-		JPanel panelLeft = new JPanel();
-		panelLeft.setBackground(Color.WHITE);
-		panelLeft.setLayout(new GridLayout(2, 1, 20, 5));
-		this.theFrame.getContentPane().add(panelLeft);
+		// set panelLeft layout
+		this.panelLeft.setLayout(this.panelLeft.theGridLayout);
 		
-		JPanel panelRight = new JPanel();
-		panelRight.setBackground(Color.WHITE);
-		panelRight.setLayout(new GridLayout(2, 1, 20, 5));
-		this.theFrame.getContentPane().add(panelRight);
+		// create panelRight and add to the frame
+		this.theFrame.getContentPane().add(this.panelRight = new PanelGridLayout(2, 1, 20, 5));
 		
-		JPanel panelAnnulusCalc = new JPanel();
-		panelAnnulusCalc.setBackground(Color.ORANGE);
-		panelLeft.add(panelAnnulusCalc);
-		GridBagLayout gbl_panelAnnulusCalc = new GridBagLayout();
-		gbl_panelAnnulusCalc.columnWidths = new int[]{0, 0};
-		gbl_panelAnnulusCalc.rowHeights = new int[]{0, 0};
-		gbl_panelAnnulusCalc.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panelAnnulusCalc.rowWeights = new double[]{1.0, Double.MIN_VALUE};
-		panelAnnulusCalc.setLayout(gbl_panelAnnulusCalc);
+		// set panelRight layout
+		this.panelRight.setLayout(this.panelRight.theGridLayout);
 		
-		JPanel panelAnnulusBorder = new JPanel();
-		panelAnnulusBorder.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Annulus Calculator", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		GridBagConstraints gbc_panelAnnulusBorder = new GridBagConstraints();
-		gbc_panelAnnulusBorder.insets = new Insets(20, 20, 10, 0);
-		gbc_panelAnnulusBorder.fill = GridBagConstraints.BOTH;
-		gbc_panelAnnulusBorder.gridx = 0;
-		gbc_panelAnnulusBorder.gridy = 0;
-		panelAnnulusCalc.add(panelAnnulusBorder, gbc_panelAnnulusBorder);
-		GridBagLayout gbl_panelAnnulusBorder = new GridBagLayout();
-		gbl_panelAnnulusBorder.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_panelAnnulusBorder.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panelAnnulusBorder.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panelAnnulusBorder.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panelAnnulusBorder.setLayout(gbl_panelAnnulusBorder);
+		// create panelAnnulusCalc container
+		this.panelLeft.add(this.panelAnnulusCalc = new PanelGridBagLayout());
+		
+		// set panelAnnulusCalc layout to gbl
+		this.panelAnnulusCalc.setLayout(this.panelAnnulusCalc.gbl_panel);
+		
+		// create panelAnnulusBorder (use overloading constructor)
+		this.panelAnnulusBorder = new PanelGridBagLayout("Annulus Calculator", 20, 20, 10, 0, 0, 0);
+		
+		// create panelAnnulusBorder (use overloading constructor) and add to container
+		this.panelAnnulusCalc.add(this.panelAnnulusBorder, this.panelAnnulusBorder.gbc_panel);
+		
+		// set panelAnnulus layout to gbl
+		this.panelAnnulusBorder.setLayout(this.panelAnnulusBorder.gbl_panel);
+		
+//		JPanel panelAnnulusBorder = new JPanel();
+//		panelAnnulusBorder.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Annulus Calculator", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+//		GridBagConstraints gbc_panelAnnulusBorder = new GridBagConstraints();
+//		gbc_panelAnnulusBorder.insets = new Insets(20, 20, 10, 0);
+//		gbc_panelAnnulusBorder.fill = GridBagConstraints.BOTH;
+//		gbc_panelAnnulusBorder.gridx = 0;
+//		gbc_panelAnnulusBorder.gridy = 0;
+//		panelAnnulusCalc.add(panelAnnulusBorder, gbc_panelAnnulusBorder);
+//		GridBagLayout gbl_panelAnnulusBorder = new GridBagLayout();
+//		gbl_panelAnnulusBorder.columnWidths = new int[]{0, 0, 0, 0, 0};
+//		gbl_panelAnnulusBorder.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+//		gbl_panelAnnulusBorder.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+//		gbl_panelAnnulusBorder.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+//		panelAnnulusBorder.setLayout(gbl_panelAnnulusBorder);
 		
 		
 		JPanel panelMandelbrotCalc = new JPanel();
