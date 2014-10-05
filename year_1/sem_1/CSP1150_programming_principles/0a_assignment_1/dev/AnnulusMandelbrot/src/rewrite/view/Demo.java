@@ -224,7 +224,7 @@ public class Demo {
 		
 		JPanel panelImageAnnulus = new JPanel();
 		panelRight.add(panelImageAnnulus);
-		panelImageAnnulus.setLayout(new GridLayout(1, 0, 0, 0));
+		panelImageAnnulus.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JButton imageAnnulus = new JButton("Annulus image");
 		panelImageAnnulus.add(imageAnnulus);

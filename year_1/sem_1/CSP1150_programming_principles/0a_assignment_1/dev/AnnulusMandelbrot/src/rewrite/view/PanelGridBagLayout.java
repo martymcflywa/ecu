@@ -1,21 +1,26 @@
 package rewrite.view;
 
+// for debugging only
 import java.awt.Color;
+
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
+
 
 @SuppressWarnings("serial")
 public class PanelGridBagLayout extends PanelGridLayout {
 	
-	// declare panel and layout manager
+	// declare panel
 	protected JPanel panel;
+	
+	// store the gridbaglayout in this variable
 	protected GridBagLayout gbl_panel;
+	
+	// store the gridbagconstraints in this variable
 	protected GridBagConstraints gbc_panel;
 	
 	/**
@@ -45,7 +50,6 @@ public class PanelGridBagLayout extends PanelGridLayout {
 	/**
 	 * Overloading the panel constructor, to be used for border panels.
 	 * 
-	 * @param String borderTitle - What appears as the border title.
 	 * @param int insetTop - Padding top.
 	 * @param int insetLeft - Padding left.
 	 * @param int insetRight - Padding right.
