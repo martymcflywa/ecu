@@ -5,12 +5,13 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 @SuppressWarnings("serial")
-public class PanelGridBagLayout extends JPanel{
+public class PanelGridBagLayout extends JPanel {
 
 	// declare border title
 	protected String borderTitle;
@@ -26,13 +27,17 @@ public class PanelGridBagLayout extends JPanel{
 	 * 
 	 * @param args unused.
 	 */
-	public PanelGridBagLayout() {
+	public PanelGridBagLayout(JFrame theFrame, JPanel theParent) {
 		
 		// create panel
 		this.panel = new JPanel();
 		
 		// **DEBUGGING**
 		this.panel.setBackground(Color.GREEN);
+		
+		// add panel to parent
+		theParent.add(this.panel);
+		theFrame.getContentPane().add(this.panel);
 		
 		// create gridbag constraints
 		this.gbl_panel = new GridBagLayout();
@@ -58,7 +63,7 @@ public class PanelGridBagLayout extends JPanel{
 	 * @param int gridx - The column position.
 	 * @param int gridy - The row position.
 	 */
-	public PanelGridBagLayout(String borderTitle, int insetTop, int insetLeft, int insetRight, int insetBottom, int gridx, int gridy) {
+	public PanelGridBagLayout(JFrame theFrame, JPanel theParent, String borderTitle, int insetTop, int insetLeft, int insetRight, int insetBottom, int gridx, int gridy) {
 		
 		// create panel
 		this.panel = new JPanel();
@@ -67,7 +72,7 @@ public class PanelGridBagLayout extends JPanel{
 		this.borderTitle = borderTitle;
 		
 		// **DEBUGGING**
-		this.panel.setBackground(Color.GRAY);
+		//this.panel.setBackground(Color.WHITE);
 		this.panel.setOpaque(true);
 		
 		// set up titleborder
@@ -83,7 +88,9 @@ public class PanelGridBagLayout extends JPanel{
 		this.gbc_panel.gridy = gridy;
 		
 		// **NEED TO TEST THIS** add panel and gbc to parent
-		//this.panel.getParent().add(this.panel, this.gbc_panel);
+		// add to parent panel
+		theParent.add(this.panel, this.gbc_panel);
+		theFrame.getContentPane().add(this.panel, this.gbc_panel);
 		System.out.println(this.panel.getParent());
 		
 		this.gbl_panel = new GridBagLayout();

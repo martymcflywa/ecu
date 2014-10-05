@@ -1,8 +1,10 @@
 package rewrite.view;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
-public class CalculatorView {
+@SuppressWarnings("serial")
+public class CalculatorView extends JFrame {
 	
 	private CalculatorFrame theFrame;
 	private PanelGridLayout panelLeft;
@@ -19,16 +21,19 @@ public class CalculatorView {
 		this.panelLeft = new PanelGridLayout(this.theFrame, 2, 1, 20, 5);
 		
 		// add panelAnnulusCalc to panelLeft
-		this.panelLeft.add(this.panelAnnulusCalc = new PanelGridBagLayout());
+		this.panelAnnulusCalc = new PanelGridBagLayout(this.theFrame, this.panelLeft);
+		this.panelAnnulusBorder = new PanelGridBagLayout(this.theFrame, this.panelAnnulusCalc, "Annulus calculator", 20, 20, 10, 0, 0, 0);
+		
+		//this.theFrame.getContentPane().add(panelAnnulusBorder);
 		
 		//this.theFrame.getContentPane().add(panelAnnulusCalc);
 		
 		// **DEBUGGING**
-		JButton test = new JButton ("test");
-		this.panelAnnulusCalc.add(test);
+		//JButton test = new JButton ("test");
+		//this.panelAnnulusBorder.add(test);
 		
 		// add panelMandelbrotCalc to panelLeft
-		this.panelLeft.add(this.panelAnnulusBorder = new PanelGridBagLayout("Annulus calculator", 20, 20, 10, 0, 0, 0));
+		
 		
 		// create panelRight
 		//this.panelRight = new PanelGridLayout(this.theFrame, 2, 1, 20, 5);
