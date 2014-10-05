@@ -76,7 +76,7 @@ public class PanelGridBagLayout extends PanelGridLayout {
 		
 		// use these gridbaglayout parameters
 		this.gbl_panel.columnWidths = new int[] {0, 0, 0, 0, 0};
-		this.gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		this.gbl_panel.rowHeights = new int[]{20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20};
 		this.gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		this.gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 	}
