@@ -2,14 +2,10 @@ package rewrite.view;
 
 // for debugging only
 import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 
 // import gui component classes
 import javax.swing.*;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
+import javax.swing.border.*;
 
 /**
  * This class ties all the view classes together to generate the view.
@@ -53,7 +49,12 @@ public class CalculatorView extends JFrame {
 	// declare mandelbrot calculator labels
 	private CalculatorLabel labelMandelbrotCalcInstructions;
 	
-
+	// declare annulus calculator user controls
+	private CalculatorTextField textFieldAnnulusOutRadius;
+	private CalculatorTextField textFieldAnnulusInRadius;
+	private CalculatorButton buttonAnnulusCalculate;
+	private CalculatorButton buttonAnnulusSave;
+	
 	/**
 	 * The CalculatorView constructor.
 	 * 
@@ -61,9 +62,14 @@ public class CalculatorView extends JFrame {
 	 */
 	public CalculatorView() {
 		
-		// call initView to display the frame and panels
+		// create the frame and panels
 		initFrame();
+		
+		// create the labels
 		initLabels();
+		
+		// create the user input controls
+		initControls();
 	}
 	
 	/**
@@ -130,18 +136,18 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
-	 * This method initializes the user controls of the view.
+	 * This method initializes the labels of the view.
 	 * 
 	 * @param args unused
 	 */
 	private final void initLabels() {
 		
 		/*
-		 * Create labels
+		 * Create annulus calculator labels
 		 */
 		
 		// create labelAnnulusCalcInstructions
-		this.labelAnnulusCalcInstructions = new CalculatorLabel("Enter the outer and inner radius.", "west", 2, 0, 40, 5, 5, 0, 1);
+		this.labelAnnulusCalcInstructions = new CalculatorLabel("Enter the outer and inner radius.", "west", 8, 0, 40, 5, 5, 0, 1);
 
 		// create labelAnnulusOutRadius
 		this.labelAnnulusOutRadius = new CalculatorLabel("Outer radius:", "west", 1, 0, 40, 5, 5, 0, 3);
@@ -150,19 +156,19 @@ public class CalculatorView extends JFrame {
 		this.labelAnnulusInRadius = new CalculatorLabel("Inner radius:", "west", 1, 0, 40, 5, 5, 0, 4);
 		
 		// create labelAnnulusApproxTitle
-		this.labelAnnulusApproxTitle = new CalculatorLabel("Approximate area:", "west", 2, 0, 40, 5, 5, 0, 6);
+		this.labelAnnulusApproxTitle = new CalculatorLabel("Approximate area:", "west", 2, 0, 40, 5, 5, 0, 7);
 		
 		// create labelAnnulusApproxOutput
-		this.labelAnnulusApproxOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 7);
+		this.labelAnnulusApproxOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 8);
 		
 		// create labelAnnulusMonteTitle
-		this.labelAnnulusMonteTitle = new CalculatorLabel("Monte Carlo estimate:", "west", 2, 0, 40, 5, 5, 0, 8);
+		this.labelAnnulusMonteTitle = new CalculatorLabel("Monte Carlo estimate:", "west", 2, 0, 40, 5, 5, 0, 9);
 		
 		// create labelAnnulusMonteOutput
-		this.labelAnnulusMonteOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 9);
+		this.labelAnnulusMonteOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 10);
 		
 		/*
-		 * Add labels to container panel
+		 * Add annulus calculator labels to container panel
 		 */
 		
 		// add labelAnnulusCalcInstructions to panelAnnulusBorder
@@ -185,6 +191,36 @@ public class CalculatorView extends JFrame {
 		
 		// add labelAnnulusMonteOutput to panelAnnulusBorder
 		this.panelAnnulusBorder.add(this.labelAnnulusMonteOutput.theLabel, this.labelAnnulusMonteOutput.gbc_label);
+	}
+	
+	/**
+	 * This method initializes the user input controls for the view.
+	 * 
+	 * @param args unused
+	 */
+	private final void initControls() {
+		
+		/*
+		 * Create annulus calculator controls
+		 */
+		
+		this.textFieldAnnulusOutRadius = new CalculatorTextField(200, 1, 3);
+		
+		this.textFieldAnnulusInRadius = new CalculatorTextField(200, 1, 4);
+		
+		this.buttonAnnulusCalculate = new CalculatorButton("Calculate", 1, 5);
+		
+		
+		
+		/*
+		 * Add annulus calculator controls to container panel
+		 */
+		
+		this.panelAnnulusBorder.add(textFieldAnnulusOutRadius.theTextField, this.textFieldAnnulusOutRadius.gbc_textField);
+		
+		this.panelAnnulusBorder.add(textFieldAnnulusInRadius.theTextField, this.textFieldAnnulusInRadius.gbc_textField);
+		
+		this.panelAnnulusBorder.add(this.buttonAnnulusCalculate.theButton, this.buttonAnnulusCalculate.gbc_button);
 	}
 	
 	/**

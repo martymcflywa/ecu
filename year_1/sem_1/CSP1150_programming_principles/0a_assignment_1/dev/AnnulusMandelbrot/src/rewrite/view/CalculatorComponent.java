@@ -13,12 +13,12 @@ import javax.swing.*;
  * @since 20141004
  */
 @SuppressWarnings("serial")
-public class CalculatorComponents extends JComponent {
+public class CalculatorComponent extends JComponent {
 
 	protected JLabel theLabel;
 	private GridBagConstraints gbc_userControls;
 	
-	public CalculatorComponents() {
+	public CalculatorComponent() {
 
 	}
 	
@@ -36,7 +36,7 @@ public class CalculatorComponents extends JComponent {
 	 * @param int gridx - The column position.
 	 * @param int gridy - The row position.
 	 */
-	public CalculatorComponents(String theWords, String theAnchor, int gridwidth, int insetTop, int insetLeft, int insetRight, int insetBottom, int gridx, int gridy) {
+	public CalculatorComponent(String theWords, String theAnchor, int gridwidth, int insetTop, int insetLeft, int insetRight, int insetBottom, int gridx, int gridy) {
 		
 		this.theLabel = new JLabel(theWords);
 		this.gbc_userControls = new GridBagConstraints();
