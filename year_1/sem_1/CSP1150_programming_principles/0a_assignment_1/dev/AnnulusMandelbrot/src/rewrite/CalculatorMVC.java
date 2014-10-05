@@ -1,5 +1,10 @@
 package rewrite;
 
-public class CalculatorMVC {
+import rewrite.view.*;
 
+public class CalculatorMVC {
+	
+	public static void main(String[] args) {
+		CalculatorView theView = new CalculatorView();
+	}
 }
