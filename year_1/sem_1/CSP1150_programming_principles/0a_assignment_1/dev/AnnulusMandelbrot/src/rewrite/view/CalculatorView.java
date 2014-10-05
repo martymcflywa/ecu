@@ -56,11 +56,13 @@ public class CalculatorView extends JFrame {
 
 	/**
 	 * The CalculatorView constructor.
+	 * 
+	 * @param args unused
 	 */
 	public CalculatorView() {
 		
 		// call initView to display the frame and panels
-		initView();
+		initFrame();
 		initLabels();
 	}
 	
@@ -69,7 +71,7 @@ public class CalculatorView extends JFrame {
 	 * 
 	 * @param args unused
 	 */
-	private final void initView() {
+	private final void initFrame() {
 		
 		// create frame
 		this.theFrame = new CalculatorFrame();
@@ -91,18 +93,12 @@ public class CalculatorView extends JFrame {
 		
 		// set panelAnnulusCalc layout
 		this.panelAnnulusCalc.setLayout(this.panelAnnulusCalc.gbl_panel);
-		
-		// **might still need this, if panelAnnulusBorder.gbc_panel is still null** 
-		//this.panelAnnulusBorder = new PanelGridBagLayout(20, 20, 10, 0, 0, 0);
 
 		// create panelAnnulusBorder (use overloading constructor) and add to panelAnnulusCalc
 		this.panelAnnulusCalc.add(this.panelAnnulusBorder = new PanelGridBagLayout(20, 20, 10, 0, 0, 0), this.panelAnnulusBorder.gbc_panel);
 		
 		// add titled border to panelAnnulusBorder
 		addBorder(this.panelAnnulusBorder, "Annulus Calculator");
-		
-		// add panelAnnulusBorder to panelAnnulusCalc container with its constraints
-		this.panelAnnulusCalc.add(this.panelAnnulusBorder, this.panelAnnulusBorder.gbc_panel);
 		
 		// set panelAnnulusBorder layout
 		this.panelAnnulusBorder.setLayout(this.panelAnnulusBorder.gbl_panel);
@@ -119,6 +115,9 @@ public class CalculatorView extends JFrame {
 		// add titled border to panelMandelbrotBorder
 		addBorder(this.panelMandelbrotBorder, "Mandelbrot Calculator");
 		
+		// set panelMandelbrotBorder layout
+		this.panelMandelbrotBorder.setLayout(this.panelMandelbrotBorder.gbl_panel);
+		
 		// create panelAnnulusImage container and add to panelRight
 		this.panelRight.add(this.panelAnnulusImage = new PanelGridLayout(0, 1, 0, 0));
 		
@@ -132,20 +131,42 @@ public class CalculatorView extends JFrame {
 	
 	/**
 	 * This method initializes the user controls of the view.
+	 * 
+	 * @param args unused
 	 */
 	private final void initLabels() {
 		
+		/*
+		 * Create labels
+		 */
+		
 		// create labelAnnulusCalcInstructions
 		this.labelAnnulusCalcInstructions = new CalculatorLabel("Enter the outer and inner radius.", "west", 2, 20, 40, 5, 5, 0, 0);
-		
-		// add labelAnnulusCalcInstructions to panelAnnulusBorder
-		this.panelAnnulusBorder.add(this.labelAnnulusCalcInstructions.getLabel(), this.labelAnnulusCalcInstructions.gbc_label);
-		
+
 		// create labelAnnulusOutRadius
 		this.labelAnnulusOutRadius = new CalculatorLabel("Outer radius:", "west", 1, 20, 40, 5, 5, 0, 2);
+
+		// create labelAnnulusInRadius
+		this.labelAnnulusInRadius = new CalculatorLabel("Inner radius:", "west", 1, 0, 40, 5, 5, 0, 3);
+		
+		// create labelAnnulusApproxTitle
+		this.labelAnnulusApproxTitle = new CalculatorLabel("Approximate area:", "west", 2, 0, 40, 5, 5, 0, 6);
+		
+		/*
+		 * Add labels to container panel
+		 */
+		
+		// add labelAnnulusCalcInstructions to panelAnnulusBorder
+		this.panelAnnulusBorder.add(this.labelAnnulusCalcInstructions.theLabel, this.labelAnnulusCalcInstructions.gbc_label);
 		
 		// add labelAnnulusOutRadius to panelAnnulusBorder
-		this.panelAnnulusBorder.add(this.labelAnnulusOutRadius.getLabel(), this.labelAnnulusOutRadius.gbc_label);
+		this.panelAnnulusBorder.add(this.labelAnnulusOutRadius.theLabel, this.labelAnnulusOutRadius.gbc_label);
+		
+		// add labelAnnulusInRadius to panelAnnulusBorder
+		this.panelAnnulusBorder.add(this.labelAnnulusInRadius.theLabel, this.labelAnnulusInRadius.gbc_label);
+		
+		// add labelAnnulusApproxTitle to panelAnnulusBorder
+		this.panelAnnulusBorder.add(this.labelAnnulusApproxTitle.theLabel, this.labelAnnulusApproxTitle.gbc_label);
 	}
 	
 	/**
