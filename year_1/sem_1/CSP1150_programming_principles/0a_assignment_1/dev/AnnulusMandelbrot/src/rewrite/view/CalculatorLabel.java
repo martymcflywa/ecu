@@ -23,7 +23,6 @@ public class CalculatorLabel extends JLabel {
 	/**
 	 * The constructor for JLabels. 
 	 * 
-	 * @param String theLabel - Determines which constructor to use.
 	 * @param String theWords - What the label will say.
 	 * @param String theAnchor - Possible values: north, south, west, east. Using "none" for labels that do not use anchor.
 	 * @param int gridwidth - The number of columns the label spans, use 1 as default.
