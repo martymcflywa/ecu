@@ -1,6 +1,12 @@
 package rewrite.controller;
 
+// the event listener
+import java.awt.event.*;
+
+// import the rest of the project
+import rewrite.*;
 import rewrite.model.*;
+import rewrite.view.*;
 
 /**
  * This super class defines the calculator controller,
@@ -14,9 +20,12 @@ import rewrite.model.*;
  */
 public class CalculatorController {
 
-	// reference to shape objects
+	// declare the model/s
 	private ShapeModel theAnnulus;
 	private ShapeModel theMandelbrot;
+	
+	// declare the view
+	private CalculatorView theView;
 	
 	
 }

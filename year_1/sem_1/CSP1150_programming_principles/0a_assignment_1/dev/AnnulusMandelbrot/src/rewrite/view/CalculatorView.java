@@ -227,4 +227,67 @@ public class CalculatorView extends JFrame {
 	private final void addBorder(JPanel thePanel, String borderTitle) {
 		thePanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), borderTitle, TitledBorder.LEADING, TitledBorder.TOP, null, null));
 	}
+	
+	/**
+	 * This method returns user input for outer radius
+	 * from the view, parse as double.
+	 * 
+	 * @param args unused
+	 * @return double - Outer radius.
+	 */
+	public final double getOutRadius() {
+		return Double.parseDouble(textFieldAnnulusOutRadius.getText());
+	}
+	
+	/**
+	 * This method returns user input for inner radius
+	 * from the view, parse as double.
+	 * 
+	 * @param args unused
+	 * @return double - Inner radius.
+	 */
+	public final double getInRadius() {
+		return Double.parseDouble(textFieldAnnulusInRadius.getText());
+	}
+	
+	/**
+	 * This method returns the annulus approx area result
+	 * from the view, parse as double.
+	 * 
+	 * @param args unused
+	 * @return double - Area of annulus.
+	 */
+	public final double getAnnulusAreaCalc() {
+		return Double.parseDouble(labelAnnulusApproxOutput.getText());
+	}
+	
+	/**
+	 * This method sets the annulus approx area result to the view
+	 * from the controller, parse as String.
+	 * 
+	 * @param double area.
+	 */
+	public final void setAnnulusAreaCalc(double area) {
+		labelAnnulusApproxOutput.setText(Double.toString(area));
+	}
+	
+	/**
+	 * This method sets the annulus monte carlo result to the view
+	 * from the controller, parse as String.
+	 * 
+	 * @param double area.
+	 */
+	public final void setAnnulusMonteCalc(double area) {
+		labelAnnulusApproxOutput.setText(Double.toString(area));
+	}
+	
+	/**
+	 * This method sets the monte carlo result to the view
+	 * from the controller, parse as String.
+	 * 
+	 * @param double area.
+	 */
+	public final void setMandelbrotMonteCalc(double area) {
+		//labelMandelbrotMonteOutput.setText(Double.toString(area));
+	}
 }
