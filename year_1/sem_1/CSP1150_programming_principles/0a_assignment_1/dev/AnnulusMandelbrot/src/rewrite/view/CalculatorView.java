@@ -126,6 +126,7 @@ public class CalculatorView extends JFrame {
 		this.panelMandelbrotBorder.setLayout(this.panelMandelbrotBorder.gbl_panel);
 		
 		// create panelAnnulusImage container and add to panelRight
+		// **NEED TO USE 444 as GRIDSIZE** fits exactly in the panel
 		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(444, 444, 0, 1, 0, 0));
 		
 		// create panelMandelbrotImage container and add to panelRight

@@ -172,21 +172,31 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	 */
 	public void mouseReleased(MouseEvent me) {
 		
-		// set zooming to false
-		zooming = false;
+		// if left mouse button is released
+		if(SwingUtilities.isLeftMouseButton(me)) {
+		
+			// set zooming to false
+			zooming = false;
+		}
 	}
 	
 	/**
-	 * This method defines the action to take when the left mouse button is held down.
+	 * This method defines the action to take when the mouse button is held down.
 	 * 
 	 * @param MouseEvent me - The mouse event.
 	 */
 	public void mousePressed(MouseEvent me) {
 		
+		// if left mouse button is pressed
 		if(SwingUtilities.isLeftMouseButton(me)) {
 		
+			// set zooming to true
 			zooming = true;
+			
+			// get location where mouse button is pressed
 			mousePt = me.getPoint();
+			
+			// repaint
 			me.getComponent().repaint();
 		}		
 	}
@@ -198,17 +208,22 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	 */
 	public void mouseDragged(MouseEvent me) {
 		
+		// if mouse is dragged with left mouse button
 		if(SwingUtilities.isLeftMouseButton(me)) {
 		
+			// set zooming to true
 			zooming = true;
 			
+			// set the rectangle bounds
+			// **USE THESE VALUES** to determine zoom
 			mouseRect.setBounds(
 					Math.min(mousePt.x, me.getX()),
 					Math.min(mousePt.y, me.getY()),
 					Math.abs(mousePt.x - me.getX()),
 					Math.abs(mousePt.y - me.getY())
 				);
-				
+			
+			// repaint
 			me.getComponent().repaint();
 		}
 	}
@@ -220,8 +235,10 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	 */
 	public void mouseClicked(MouseEvent me) {
 		
+		// if left mouse button is clicked
 		if(SwingUtilities.isLeftMouseButton(me)) {
 			
+			// set zooming to false
 			zooming = false;
 			
 			// reset rectangle bounds
