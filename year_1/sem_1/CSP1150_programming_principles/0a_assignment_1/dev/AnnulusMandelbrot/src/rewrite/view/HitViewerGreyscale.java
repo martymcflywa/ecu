@@ -7,6 +7,14 @@ import java.awt.GridLayout;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * This class generates GREYSCALE images of the shapes. Uses mouse listeners so the user
+ * can draw rectangles on the image and zoom in on the desired area.
+ * 
+ * @author Martin Ponce ID# 10371381
+ * @version 5.0.0
+ * @since 20141004
+ */
 @SuppressWarnings("serial")
 public class HitViewerGreyscale extends HitViewer implements MouseListener, MouseMotionListener {
 	

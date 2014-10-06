@@ -1,21 +1,27 @@
 package rewrite.view;
 
-// for debugging only
+// for debugging
 import java.awt.Color;
 
-
+// the layout manager
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+// inherit from JPanel
 import javax.swing.JPanel;
 
-
+/**
+ * This class creates a JPanel. The constructor is overloaded to accept
+ * gridbag constraints parameters which are stored in gbc_panel.
+ * These paramters are used for gridbag layout.
+ * 
+ * @author Martin Ponce ID# 10371381
+ * @version 5.0.0
+ * @since 20141004
+ */
 @SuppressWarnings("serial")
-public class PanelGridBagLayout extends PanelGridLayout {
-	
-	// declare panel
-	protected JPanel panel;
+public class PanelGridBagLayout extends JPanel {
 	
 	// store the gridbaglayout in this variable
 	protected GridBagLayout gbl_panel;
@@ -31,11 +37,8 @@ public class PanelGridBagLayout extends PanelGridLayout {
 	 */
 	public PanelGridBagLayout() {
 		
-		// create panel
-		this.panel = new JPanel();
-		
-		// **DEBUGGING**
-		this.panel.setBackground(Color.ORANGE);
+		// **DEBUGGING** give the panel a colour
+		//this.setBackground(Color.ORANGE);
 		
 		// create gridbag constraints
 		this.gbl_panel = new GridBagLayout();
@@ -58,9 +61,6 @@ public class PanelGridBagLayout extends PanelGridLayout {
 	 * @param int gridy - The row position.
 	 */
 	public PanelGridBagLayout(int insetTop, int insetLeft, int insetRight, int insetBottom, int gridx, int gridy) {
-		
-		// create panel
-		this.panel = new JPanel();
 		
 		// create gridbag constraints
 		this.gbc_panel = new GridBagConstraints();

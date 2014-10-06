@@ -1,11 +1,16 @@
 package rewrite.view;
 
+// the graphics elements
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridLayout;
-import java.awt.event.*;
 import java.awt.image.BufferedImage;
+
+// the layout manager
+import java.awt.GridLayout;
+
+// the event listener
+import java.awt.event.*;
 
 /**
  * This class generates images of the shapes. Uses mouse listeners so the user

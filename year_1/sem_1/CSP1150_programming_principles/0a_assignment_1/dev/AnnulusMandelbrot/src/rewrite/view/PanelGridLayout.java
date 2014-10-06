@@ -1,11 +1,22 @@
 package rewrite.view;
 
+// for debugging
 import java.awt.Color;
+
+// the layout manager
 import java.awt.GridLayout;
 
-import javax.swing.JFrame;
+// inherit from JPanel
 import javax.swing.JPanel;
 
+/**
+ * This class creates a JPanel. The constructor is overloaded to accept
+ * gridlayout constraints parameters which are stored in theGridLayout.
+ * 
+ * @author Martin Ponce ID# 10371381
+ * @version 5.0.0
+ * @since 20141004
+ */
 @SuppressWarnings("serial")
 public class PanelGridLayout extends JPanel {
 	
@@ -13,7 +24,7 @@ public class PanelGridLayout extends JPanel {
 	protected GridLayout theGridLayout;
 	
 	/**
-	 * The default constructor.
+	 * Default constructor for inheritance.
 	 */
 	public PanelGridLayout() {
 		
@@ -47,10 +58,7 @@ public class PanelGridLayout extends JPanel {
 	 */
 	public PanelGridLayout(JPanel thePanel, int rows, int cols, int hgap, int vgap) {
 		
-		// create panel
-		//this.panel = new JPanel();
-		
-		// **DEBUGGING**
+		// **DEBUGGING** give the panel a colour
 		this.setBackground(Color.BLUE);
 		
 		// use gridlayout, set the rows, columns and padding
