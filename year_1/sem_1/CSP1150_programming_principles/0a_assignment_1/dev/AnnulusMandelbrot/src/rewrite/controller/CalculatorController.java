@@ -21,11 +21,24 @@ import rewrite.view.*;
 public class CalculatorController {
 
 	// declare the model/s
-	private ShapeModel theAnnulus;
-	private ShapeModel theMandelbrot;
+	private AnnulusModel theAnnulus;
+	private MandelbrotModel theMandelbrot;
 	
 	// declare the view
 	private CalculatorView theView;
 	
+	// declare the image generators
+	private HitViewerGreyscale greyscaleAnnulus;
+	private HitViewerColour colourMandelbrot;
 	
+	public CalculatorController(CalculatorView theView, AnnulusModel theAnnulus, MandelbrotModel theMandelbrot) {
+		
+		// assign the incoming objects to their fields
+		this.theView = theView;
+		this.theAnnulus = theAnnulus;
+		this.theMandelbrot = theMandelbrot;
+		
+		// add the listeners
+		this.theView.addTheListeners(new CalculatorListener(this.theView, this.theAnnulus, this.greyscaleAnnulus));
+	}
 }

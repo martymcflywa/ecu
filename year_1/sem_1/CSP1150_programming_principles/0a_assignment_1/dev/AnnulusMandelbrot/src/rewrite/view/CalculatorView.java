@@ -1,6 +1,9 @@
 package rewrite.view;
 
-// import gui component classes
+// import action listener
+import java.awt.event.*;
+
+// import swing components
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -245,6 +248,17 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
+	 * This method refreshes the annulus image.
+	 * 
+	 * @param args unused
+	 */
+	public final void refreshAnnulusImage() {
+		
+		this.panelRight.remove(this.panelAnnulusImage);
+		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(444, 444, 0, 1, 0, 0));
+	}
+	
+	/**
 	 * This method adds a titled, etched border to the panel.
 	 * 
 	 * @param JPanel thePanel - The panel which requires the border
@@ -325,4 +339,29 @@ public class CalculatorView extends JFrame {
 	 * 
 	 * @param ActionListener theListener
 	 */
+	public final void addTheListeners(ActionListener theListener) {
+		
+		// add listener to annulus calculator buttons
+		this.buttonAnnulusCalculate.addActionListener(theListener);
+		this.buttonAnnulusZoomIn.addActionListener(theListener);
+		this.buttonAnnulusZoomReset.addActionListener(theListener);
+		this.buttonAnnulusSave.addActionListener(theListener);
+		
+		// add listener to mandelbrot calculator buttons
+		this.buttonMandelbrotOK.addActionListener(theListener);
+		this.buttonMandelbrotZoomIn.addActionListener(theListener);
+		this.buttonMandelbrotZoomReset.addActionListener(theListener);
+		this.buttonMandelbrotSave.addActionListener(theListener);
+	}
+	
+	/**
+	 * This method displays an error message for incorrect user input.
+	 * Message displayed on JOptionPane window.
+	 * 
+	 * @param String errorMessage - The error message.
+	 */
+	public final void displayErrorMessage(String errorMessage) {
+		
+		JOptionPane.showMessageDialog(this, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
+	}
 }

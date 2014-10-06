@@ -34,10 +34,35 @@ public class ShapeModel {
 	protected double areaMonte;
 	
 	/**
-	 * Default constructor
+	 * Default constructor for inheritance.
 	 */
 	public ShapeModel() {
 		
+	}
+	
+	/**
+	 * This method sets the radius.
+	 * 
+	 * @param double r1 - The outer radius.
+	 * @param double r2 - The inner radius.
+	 */
+	public final void setRadius(double outRadius, double inRadius) {
+		
+		// set incoming radius values to their respective variables
+		this.outRadius = outRadius;
+		this.inRadius = inRadius;
+		
+		// set incoming radius values to their respective max-min variables
+		this.maxX = outRadius;
+		this.minX = -outRadius;
+		this.maxY = outRadius;
+		this.minY = -outRadius;
+		
+		// do Area calculation
+		calcApprox(this.maxX, this.maxY, this.minX, this.minY);
+		
+		// do Monte calculation
+		calcMonte(this.maxX, this.maxY, this.minX, this.minY);
 	}
 	
 	/**
@@ -177,7 +202,7 @@ public class ShapeModel {
 	 * @param args unused
 	 * @return double[][] hits.
 	 */
-	public final double[][] returnHits() {
+	public final double[][] getHits() {
 		return hits;
 	}
 	
