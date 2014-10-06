@@ -15,10 +15,10 @@ import javax.swing.*;
  * @since 20141004
  */
 @SuppressWarnings("serial")
-public class CalculatorButton extends CalculatorComponent {
+public class CalculatorButton extends JButton {
 
-	// declare theButton
-	protected JButton theButton;
+//	// declare theButton
+//	protected JButton theButton;
 	
 	// declare the gridbag constraints
 	protected GridBagConstraints gbc_button;
@@ -33,7 +33,7 @@ public class CalculatorButton extends CalculatorComponent {
 	public CalculatorButton(String theWords, int gridx, int gridy) {
 		
 		// create button
-		this.theButton = new JButton(theWords);
+		this.setText(theWords);
 		
 		// create gridbag constraints
 		this.gbc_button = new GridBagConstraints();

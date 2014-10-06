@@ -5,22 +5,25 @@ import java.awt.Insets;
 
 import javax.swing.*;
 
+/**
+ * This class creates the textfields for the view. The constructor accepts
+ * gridbag constraints parameters and stores them in gbc_textField.
+ * These values are used for gridbag layout.
+ * 
+ * @author Martin Ponce ID# 10371381
+ * @version 5.0.0
+ * @since 20141004
+ */
 @SuppressWarnings("serial")
-public class CalculatorTextField extends CalculatorComponent {
-
-	// declare theTextField
-	protected JTextField theTextField;
+public class CalculatorTextField extends JTextField {
 	
 	// declare the gridbag constraints
 	protected GridBagConstraints gbc_textField;
 	
 	public CalculatorTextField(int length, int gridx, int gridy) {
-		
-		// create textfield
-		this.theTextField = new JTextField();
-		
+
 		// set textfield length
-		this.theTextField.setColumns(length);
+		this.setColumns(length);
 		
 		// create gridbag constraints
 		this.gbc_textField = new GridBagConstraints();

@@ -175,25 +175,25 @@ public class CalculatorView extends JFrame {
 		 */
 		
 		// add labelAnnulusCalcInstructions to panelAnnulusBorder
-		this.panelAnnulusBorder.add(this.labelAnnulusCalcInstructions.theLabel, this.labelAnnulusCalcInstructions.gbc_label);
+		this.panelAnnulusBorder.add(this.labelAnnulusCalcInstructions, this.labelAnnulusCalcInstructions.gbc_label);
 		
 		// add labelAnnulusOutRadius to panelAnnulusBorder
-		this.panelAnnulusBorder.add(this.labelAnnulusOutRadius.theLabel, this.labelAnnulusOutRadius.gbc_label);
+		this.panelAnnulusBorder.add(this.labelAnnulusOutRadius, this.labelAnnulusOutRadius.gbc_label);
 		
 		// add labelAnnulusInRadius to panelAnnulusBorder
-		this.panelAnnulusBorder.add(this.labelAnnulusInRadius.theLabel, this.labelAnnulusInRadius.gbc_label);
+		this.panelAnnulusBorder.add(this.labelAnnulusInRadius, this.labelAnnulusInRadius.gbc_label);
 		
 		// add labelAnnulusApproxTitle to panelAnnulusBorder
-		this.panelAnnulusBorder.add(this.labelAnnulusApproxTitle.theLabel, this.labelAnnulusApproxTitle.gbc_label);
+		this.panelAnnulusBorder.add(this.labelAnnulusApproxTitle, this.labelAnnulusApproxTitle.gbc_label);
 		
 		// add labelAnnulusApproxOutput to panelAnnulusBorder
-		this.panelAnnulusBorder.add(this.labelAnnulusApproxOutput.theLabel, this.labelAnnulusApproxOutput.gbc_label);
+		this.panelAnnulusBorder.add(this.labelAnnulusApproxOutput, this.labelAnnulusApproxOutput.gbc_label);
 		
 		// add labelAnnulusMonteTitle to panelAnnulusBorder
-		this.panelAnnulusBorder.add(this.labelAnnulusMonteTitle.theLabel, this.labelAnnulusMonteTitle.gbc_label);
+		this.panelAnnulusBorder.add(this.labelAnnulusMonteTitle, this.labelAnnulusMonteTitle.gbc_label);
 		
 		// add labelAnnulusMonteOutput to panelAnnulusBorder
-		this.panelAnnulusBorder.add(this.labelAnnulusMonteOutput.theLabel, this.labelAnnulusMonteOutput.gbc_label);
+		this.panelAnnulusBorder.add(this.labelAnnulusMonteOutput, this.labelAnnulusMonteOutput.gbc_label);
 	}
 	
 	/**
@@ -217,11 +217,11 @@ public class CalculatorView extends JFrame {
 		 * Add annulus calculator controls to container panel
 		 */
 		
-		this.panelAnnulusBorder.add(textFieldAnnulusOutRadius.theTextField, this.textFieldAnnulusOutRadius.gbc_textField);
+		this.panelAnnulusBorder.add(textFieldAnnulusOutRadius, this.textFieldAnnulusOutRadius.gbc_textField);
 		
-		this.panelAnnulusBorder.add(textFieldAnnulusInRadius.theTextField, this.textFieldAnnulusInRadius.gbc_textField);
+		this.panelAnnulusBorder.add(textFieldAnnulusInRadius, this.textFieldAnnulusInRadius.gbc_textField);
 		
-		this.panelAnnulusBorder.add(this.buttonAnnulusCalculate.theButton, this.buttonAnnulusCalculate.gbc_button);
+		this.panelAnnulusBorder.add(this.buttonAnnulusCalculate, this.buttonAnnulusCalculate.gbc_button);
 	}
 	
 	/**

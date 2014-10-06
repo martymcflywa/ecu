@@ -6,7 +6,7 @@ import java.awt.Insets;
 import javax.swing.*;
 
 /**
- * This subclass creates the labels for the view. The constructor accepts
+ * This class creates the labels for the view. The constructor accepts
  * gridbag constraints parameters and stores them in gbc_label.
  * These values are used for gridbag layout.
  * 
@@ -15,10 +15,10 @@ import javax.swing.*;
  * @since 20141004
  */
 @SuppressWarnings("serial")
-public class CalculatorLabel extends CalculatorComponent {
+public class CalculatorLabel extends JLabel {
 
-	// declare the label
-	protected JLabel theLabel;
+//	// declare the label
+//	protected JLabel theLabel;
 	
 	// declare the gridbag constraints
 	protected GridBagConstraints gbc_label;
@@ -40,7 +40,8 @@ public class CalculatorLabel extends CalculatorComponent {
 	public CalculatorLabel(String theWords, String theAnchor, int gridwidth, int insetTop, int insetLeft, int insetRight, int insetBottom, int gridx, int gridy) {
 		
 		// set the label text
-		this.theLabel = new JLabel(theWords);
+		//this.theLabel = new JLabel(theWords);
+		this.setText(theWords);
 		
 		// create gridbag constraints
 		this.gbc_label = new GridBagConstraints();
@@ -87,6 +88,6 @@ public class CalculatorLabel extends CalculatorComponent {
 	 * @return JLabel theLabel;
 	 */
 	public final JLabel getLabel() {
-		return theLabel;
+		return this;
 	}
 }
