@@ -80,8 +80,6 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 		
 		// use gridlayout, set the rows, columns and padding
 		this.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
-		
-		this.setOpaque(false);
 	}
 	
 	/**

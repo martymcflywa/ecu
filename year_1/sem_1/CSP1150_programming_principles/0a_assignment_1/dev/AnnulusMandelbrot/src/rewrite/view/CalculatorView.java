@@ -3,7 +3,6 @@ package rewrite.view;
 // for debugging only
 import java.awt.Color;
 
-
 // import gui component classes
 import javax.swing.*;
 import javax.swing.border.*;
@@ -35,7 +34,7 @@ public class CalculatorView extends JFrame {
 	
 	// and the image containers
 	private HitViewerGreyscale panelAnnulusImage;
-	private PanelGridLayout panelMandelbrotImage;
+	private HitViewerColour panelMandelbrotImage;
 	
 	// declare annulus calculator labels
 	private CalculatorLabel labelAnnulusCalcInstructions;
@@ -130,7 +129,7 @@ public class CalculatorView extends JFrame {
 		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(444, 444, 0, 1, 0, 0));
 		
 		// create panelMandelbrotImage container and add to panelRight
-		this.panelRight.add(this.panelMandelbrotImage = new PanelGridLayout(0, 1, 0, 0));
+		this.panelRight.add(this.panelMandelbrotImage = new HitViewerColour(444, 444, 0, 1, 0, 0));
 	}
 	
 	/**
