@@ -1,16 +1,23 @@
 package rewrite.view;
 
-// the graphics elements
+// the graphic elements
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.awt.Rectangle;
+
+// for mouse position
+import java.awt.Point;
 
 // the layout manager
 import java.awt.GridLayout;
 
 // the event listener
 import java.awt.event.*;
+
+// identifies which mouse button is pressed
+import javax.swing.SwingUtilities;
 
 /**
  * This class generates images of the shapes. Uses mouse listeners so the user
@@ -31,11 +38,14 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	protected int width;
 	protected int height;
 	
-	// declare mouse coordinates
-	protected int minX;
-	protected int minY;
-	protected int maxX;
-	protected int maxY;
+	// declare the mouse position
+	protected Point mousePt = new Point(width / 2, width / 2);
+	
+	// declare rectangle to be drawn
+	protected Rectangle mouseRect = new Rectangle();
+	
+	// declare boolean
+	protected boolean zooming = false;
 	
 	/**
 	 * Default constructor for inheritance.
@@ -70,6 +80,8 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 		
 		// use gridlayout, set the rows, columns and padding
 		this.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
+		
+		this.setOpaque(false);
 	}
 	
 	/**
@@ -129,35 +141,64 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	@Override
 	public void paintComponent(Graphics g) {
 		
+		// **NEEDS TESTING** with annulus image
+		
+		// seems to remove the image underneath
 		super.paintComponent(g);
 		
-		g.drawImage(image, 0, 0, null);
-	}
-	
-	/**
-	 * Overriding paint, draws rectangle for mouse drag zooming.
-	 * 
-	 * @param Graphics g
-	 */
-	@Override
-	public void paint(Graphics g) {
-		super.paint(g);
+		if(zooming) {
+			g.setColor(Color.DARK_GRAY);
+			g.drawRect(mouseRect.x, mouseRect.y, mouseRect.width, mouseRect.height);
+		} else {
+			g.drawImage(image, 0, 0, null);
+		}
 		
-		g.drawRect(maxX, maxY, Math.abs(maxX - minX), Math.abs(maxY - minY));
+		// the original lines - may need this again
+//		super.paintComponent(g);
+//		g.drawImage(image, 0, 0, null);
+	}
+	
+	// **MAY NEED THIS AGAIN** doesn't replace the image
+//	public void paint(Graphics g) {
+//		super.paint(g);
+//		g.setColor(Color.DARK_GRAY);
+//		g.drawRect(mouseRect.x, mouseRect.y, mouseRect.width, mouseRect.height);
+//	}
+	
+	/**
+	 * This method defines the action to take when the mouse button is released.
+	 * 
+	 * @param MouseEvent me - The mouse event.
+	 */
+	public void mouseReleased(MouseEvent me) {
+		
+		// if left mouse button is released
+		if(SwingUtilities.isLeftMouseButton(me)) {
+		
+			// set zooming to false
+			zooming = false;
+		}
 	}
 	
 	/**
-	 * This method defines the action to take when the left mouse button is held down.
+	 * This method defines the action to take when the mouse button is held down.
 	 * 
 	 * @param MouseEvent me - The mouse event.
 	 */
 	public void mousePressed(MouseEvent me) {
 		
-		// on mouseclick, get minX
-		this.maxX = me.getX();
+		// if left mouse button is pressed
+		if(SwingUtilities.isLeftMouseButton(me)) {
 		
-		// on mouseclick, get minY
-		this.maxY = me.getY();
+			// set zooming to true
+			zooming = true;
+			
+			// get location where mouse button is pressed
+			mousePt = me.getPoint();
+			
+			// repaint
+			me.getComponent().repaint();
+		}		
 	}
 	
 	/**
@@ -167,10 +208,24 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	 */
 	public void mouseDragged(MouseEvent me) {
 		
-		this.minX = me.getX();
-		this.minY = me.getY();
+		// if mouse is dragged with left mouse button
+		if(SwingUtilities.isLeftMouseButton(me)) {
 		
-		repaint();
+			// set zooming to true
+			zooming = true;
+			
+			// set the rectangle bounds
+			// **USE THESE VALUES** to determine zoom
+			mouseRect.setBounds(
+					Math.min(mousePt.x, me.getX()),
+					Math.min(mousePt.y, me.getY()),
+					Math.abs(mousePt.x - me.getX()),
+					Math.abs(mousePt.y - me.getY())
+				);
+			
+			// repaint
+			me.getComponent().repaint();
+		}
 	}
 	
 	/**
@@ -179,12 +234,23 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	 * @param args unused
 	 */
 	public void mouseClicked(MouseEvent me) {
-		revalidate();
-		repaint();
+		
+		// if left mouse button is clicked
+		if(SwingUtilities.isLeftMouseButton(me)) {
+			
+			// set zooming to false
+			zooming = false;
+			
+			// reset rectangle bounds
+			mouseRect.setBounds(0, 0, 0, 0);
+			
+			// repaint
+			me.getComponent().repaint();
+		}
 	}
 	
 	/**
-	 * Unused mouse action.
+	 * Unused mouse event.
 	 * 
 	 * @param args unused
 	 */
@@ -193,16 +259,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	}
 	
 	/**
-	 * Unused mouse action.
-	 * 
-	 * @param args unused
-	 */
-	public void mouseReleased(MouseEvent me) {
-		
-	}
-	
-	/**
-	 * Unused mouse action.
+	 * Unused mouse event.
 	 * 
 	 * @param args unused
 	 */
@@ -211,7 +268,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	}
 	
 	/**
-	 * Unused mouse action.
+	 * Unused mouse event.
 	 * 
 	 * @param args unused
 	 */
