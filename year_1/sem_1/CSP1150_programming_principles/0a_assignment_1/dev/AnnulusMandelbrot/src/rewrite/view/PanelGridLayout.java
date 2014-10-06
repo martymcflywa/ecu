@@ -9,9 +9,6 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class PanelGridLayout extends JPanel {
 	
-	// declare panel
-	//protected JPanel panel = new JPanel();
-	
 	// declare GridLayout
 	protected GridLayout theGridLayout;
 	
@@ -33,12 +30,6 @@ public class PanelGridLayout extends JPanel {
 	 * @param int vgap - Vertical padding, pixels.
 	 */
 	public PanelGridLayout(int rows, int cols, int hgap, int vgap) {
-		
-//		// create panel
-//		this.panel = new JPanel();
-//		
-//		// **DEBUGGING**
-//		this.panel.setBackground(Color.WHITE);
 		
 		// use gridlayout, set the rows, columns and padding
 		this.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
@@ -66,12 +57,4 @@ public class PanelGridLayout extends JPanel {
 		this.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
 		
 	}
-	
-//	/**
-//	 * This method returns the panel.
-//	 * @return JPanel panel
-//	 */
-//	public JPanel getPanel() {
-//		return panel;
-//	}
 }

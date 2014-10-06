@@ -16,9 +16,6 @@ import javax.swing.*;
  */
 @SuppressWarnings("serial")
 public class CalculatorLabel extends JLabel {
-
-//	// declare the label
-//	protected JLabel theLabel;
 	
 	// declare the gridbag constraints
 	protected GridBagConstraints gbc_label;
@@ -40,7 +37,6 @@ public class CalculatorLabel extends JLabel {
 	public CalculatorLabel(String theWords, String theAnchor, int gridwidth, int insetTop, int insetLeft, int insetRight, int insetBottom, int gridx, int gridy) {
 		
 		// set the label text
-		//this.theLabel = new JLabel(theWords);
 		this.setText(theWords);
 		
 		// create gridbag constraints
