@@ -31,7 +31,7 @@ public class CalculatorTextField extends JTextField {
 		// use these values as constraints
 		this.gbc_textField.anchor = GridBagConstraints.WEST;
 		this.gbc_textField.fill = GridBagConstraints.BOTH;
-		this.gbc_textField.gridwidth = 2;
+		this.gbc_textField.gridwidth = 1;
 		this.gbc_textField.insets = new Insets(0, 20, 5, 5);
 		
 		// set the column and row positions

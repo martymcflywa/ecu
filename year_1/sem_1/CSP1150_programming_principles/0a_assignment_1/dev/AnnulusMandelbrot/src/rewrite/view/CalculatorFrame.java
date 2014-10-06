@@ -28,9 +28,6 @@ public class CalculatorFrame extends JFrame {
 		// set default action when window is closed
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		// set frame to visible
-		this.setVisible(true);
-		
 		// set frame to appear in the center of the desktop
 		this.setLocationRelativeTo(null);
 		

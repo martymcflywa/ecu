@@ -1,15 +1,17 @@
 package rewrite.view;
 
+// the graphic elements
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.event.*;
 import java.awt.image.BufferedImage;
+
+// the event listener
+import java.awt.event.*;
 
 /**
  * This class generates GREYSCALE images of the shapes. Uses mouse listeners so the user
- * can draw rectangles on the image and zoom in on the desired area.
+ * can draw rectangles on the image and zoom in on the desired area. Uses gridlayout manager.
  * 
  * @author Martin Ponce ID# 10371381
  * @version 5.0.0

@@ -15,39 +15,33 @@ import javax.swing.*;
  * @since 20141004
  */
 @SuppressWarnings("serial")
-public class CalculatorButton extends JButton {
-	
+public class CalculatorRadioButton extends JRadioButton {
+
 	// declare the gridbag constraints
-	protected GridBagConstraints gbc_button;
+	protected GridBagConstraints gbc_radioButton;
 	
 	/**
-	 * The default constructor for inheritance.
-	 */
-	public CalculatorButton() {
-		
-	}
-	
-	/**
-	 * The constructor for JButtons.
+	 * The constructor for JRadioButtons.
 	 * 
 	 * @param String theWords - What the button will say.
 	 * @param int gridx - The column position.
 	 * @param int gridy - The row position.
 	 */
-	public CalculatorButton(String theWords, int gridx, int gridy) {
+	public CalculatorRadioButton(String theWords, int gridx, int gridy) {
 		
 		// create button
 		this.setText(theWords);
 		
 		// create gridbag constraints
-		this.gbc_button = new GridBagConstraints();
+		this.gbc_radioButton = new GridBagConstraints();
 		
 		// use these values as constraints
-		this.gbc_button.anchor = GridBagConstraints.WEST;
-		this.gbc_button.insets = new Insets(0, 20, 5, 5);
+		this.gbc_radioButton.anchor = GridBagConstraints.WEST;
+		this.gbc_radioButton.gridwidth = 2;
+		this.gbc_radioButton.insets = new Insets(0, 40, 5, 5);
 		
 		// set the column and row positions
-		this.gbc_button.gridx = gridx;
-		this.gbc_button.gridy = gridy;
+		this.gbc_radioButton.gridx = gridx;
+		this.gbc_radioButton.gridy = gridy;
 	}
 }

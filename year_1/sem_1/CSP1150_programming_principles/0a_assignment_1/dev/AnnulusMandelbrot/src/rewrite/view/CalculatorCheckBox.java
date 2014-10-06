@@ -15,39 +15,33 @@ import javax.swing.*;
  * @since 20141004
  */
 @SuppressWarnings("serial")
-public class CalculatorButton extends JButton {
-	
+public class CalculatorCheckBox extends JCheckBox {
+
 	// declare the gridbag constraints
-	protected GridBagConstraints gbc_button;
+	protected GridBagConstraints gbc_checkBox;
 	
 	/**
-	 * The default constructor for inheritance.
-	 */
-	public CalculatorButton() {
-		
-	}
-	
-	/**
-	 * The constructor for JButtons.
+	 * The constructor for JRadioButtons.
 	 * 
-	 * @param String theWords - What the button will say.
+	 * @param String theWords - What the checkbox will say.
 	 * @param int gridx - The column position.
 	 * @param int gridy - The row position.
 	 */
-	public CalculatorButton(String theWords, int gridx, int gridy) {
+	public CalculatorCheckBox(String theWords, int gridx, int gridy) {
 		
 		// create button
 		this.setText(theWords);
 		
 		// create gridbag constraints
-		this.gbc_button = new GridBagConstraints();
+		this.gbc_checkBox = new GridBagConstraints();
 		
 		// use these values as constraints
-		this.gbc_button.anchor = GridBagConstraints.WEST;
-		this.gbc_button.insets = new Insets(0, 20, 5, 5);
+		this.gbc_checkBox.anchor = GridBagConstraints.WEST;
+		this.gbc_checkBox.gridwidth = 2;
+		this.gbc_checkBox.insets = new Insets(0, 40, 5, 5);
 		
 		// set the column and row positions
-		this.gbc_button.gridx = gridx;
-		this.gbc_button.gridy = gridy;
+		this.gbc_checkBox.gridx = gridx;
+		this.gbc_checkBox.gridy = gridy;
 	}
 }
