@@ -130,10 +130,6 @@ public class CalculatorView extends JFrame {
 		
 		// create panelMandelbrotImage container and add to panelRight
 		this.panelRight.add(this.panelMandelbrotImage = new PanelGridLayout(0, 1, 0, 0));
-		
-		// **DEBUG**
-		this.panelAnnulusImage.setBackground(Color.ORANGE);
-		this.panelMandelbrotImage.setBackground(Color.ORANGE);
 	}
 	
 	/**
