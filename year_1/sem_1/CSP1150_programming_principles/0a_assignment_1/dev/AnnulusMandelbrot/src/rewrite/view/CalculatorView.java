@@ -1,8 +1,5 @@
 package rewrite.view;
 
-// for debugging only
-import java.awt.Color;
-
 // import gui component classes
 import javax.swing.*;
 import javax.swing.border.*;
@@ -48,12 +45,31 @@ public class CalculatorView extends JFrame {
 	
 	// declare mandelbrot calculator labels
 	private CalculatorLabel labelMandelbrotCalcInstructions;
+	private CalculatorLabel labelMandelbrotMonteTitle;
+	private CalculatorLabel labelMandelbrotMonteOutput;
+	private CalculatorLabel labelMandelbrotZoom;
 	
 	// declare annulus calculator user controls
 	private CalculatorTextField textFieldAnnulusOutRadius;
 	private CalculatorTextField textFieldAnnulusInRadius;
 	private CalculatorButton buttonAnnulusCalculate;
+	private CalculatorButtonCustom buttonAnnulusZoomIn;
+	private CalculatorButton buttonAnnulusZoomReset;
 	private CalculatorButton buttonAnnulusSave;
+	
+	// declare mandelbrot radio buttons
+	private CalculatorRadioButton radioMandelbrotCalculate;
+	private CalculatorRadioButton radioMandelbrotView;
+	
+	// declare the group for the radio buttons
+	private final ButtonGroup GROUP_MANDELBROT_RADIOS = new ButtonGroup();
+	
+	// declare other mandelbrot calculator user controls
+	private CalculatorButtonCustom buttonMandelbrotOK;
+	private CalculatorCheckBox checkBoxMandelbrotRandomColour;
+	private CalculatorButtonCustom buttonMandelbrotZoomIn;
+	private CalculatorButton buttonMandelbrotZoomReset;
+	private CalculatorButton buttonMandelbrotSave;
 	
 	/**
 	 * The CalculatorView constructor.
@@ -70,6 +86,9 @@ public class CalculatorView extends JFrame {
 		
 		// create the user input controls
 		initControls();
+		
+		// set frame visible AFTER everything is added
+		this.theFrame.setVisible(true);
 	}
 	
 	/**
@@ -140,54 +159,43 @@ public class CalculatorView extends JFrame {
 	private final void initLabels() {
 		
 		/*
-		 * Create annulus calculator labels
+		 * Add annulus calculator labels to the container panel
 		 */
 		
-		// create labelAnnulusCalcInstructions
-		this.labelAnnulusCalcInstructions = new CalculatorLabel("Enter the outer and inner radius.", "west", 8, 0, 40, 5, 5, 0, 1);
-
-		// create labelAnnulusOutRadius
-		this.labelAnnulusOutRadius = new CalculatorLabel("Outer radius:", "west", 1, 0, 40, 5, 5, 0, 3);
-
-		// create labelAnnulusInRadius
-		this.labelAnnulusInRadius = new CalculatorLabel("Inner radius:", "west", 1, 0, 40, 5, 5, 0, 4);
+		// add instructions
+		this.panelAnnulusBorder.add(this.labelAnnulusCalcInstructions = new CalculatorLabel("Enter the outer and inner radius.", "west", 8, 0, 40, 5, 5, 0, 1), this.labelAnnulusCalcInstructions.gbc_label);
 		
-		// create labelAnnulusApproxTitle
-		this.labelAnnulusApproxTitle = new CalculatorLabel("Approximate area:", "west", 2, 0, 40, 5, 5, 0, 7);
+		// add titles for input textFields
+		this.panelAnnulusBorder.add(this.labelAnnulusOutRadius = new CalculatorLabel("Outer radius:", "west", 1, 0, 40, 5, 5, 0, 3), this.labelAnnulusOutRadius.gbc_label);
+		this.panelAnnulusBorder.add(this.labelAnnulusInRadius = new CalculatorLabel("Inner radius:", "west", 1, 0, 40, 5, 5, 0, 4), this.labelAnnulusInRadius.gbc_label);
 		
-		// create labelAnnulusApproxOutput
-		this.labelAnnulusApproxOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 8);
+		// add titles for output
+		this.panelAnnulusBorder.add(this.labelAnnulusApproxTitle = new CalculatorLabel("Approximate area:", "west", 2, 0, 40, 5, 5, 0, 6), this.labelAnnulusApproxTitle.gbc_label);
+		this.panelAnnulusBorder.add(this.labelAnnulusMonteTitle = new CalculatorLabel("Monte Carlo estimate:", "west", 2, 0, 40, 5, 5, 0, 8), this.labelAnnulusMonteTitle.gbc_label);
 		
-		// create labelAnnulusMonteTitle
-		this.labelAnnulusMonteTitle = new CalculatorLabel("Monte Carlo estimate:", "west", 2, 0, 40, 5, 5, 0, 9);
+		// add the labels that will show the output
+		this.panelAnnulusBorder.add(this.labelAnnulusApproxOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 7), this.labelAnnulusApproxOutput.gbc_label);
+		this.panelAnnulusBorder.add(this.labelAnnulusMonteOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 9), this.labelAnnulusMonteOutput.gbc_label);
 		
-		// create labelAnnulusMonteOutput
-		this.labelAnnulusMonteOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 10);
+		// add zoom instructions
+		this.panelAnnulusBorder.add(this.labelAnnulusZoom = new CalculatorLabel("Left click and drag on image to set zoom area", "west", 5, 0, 40, 5, 0, 0, 10), this.labelAnnulusZoom.gbc_label);
 		
 		/*
-		 * Add annulus calculator labels to container panel
+		 * Add mandelbrot calculator labels to the container panel
 		 */
 		
-		// add labelAnnulusCalcInstructions to panelAnnulusBorder
-		this.panelAnnulusBorder.add(this.labelAnnulusCalcInstructions, this.labelAnnulusCalcInstructions.gbc_label);
+		// add instructions
+		this.panelMandelbrotBorder.add(this.labelMandelbrotCalcInstructions = new CalculatorLabel("Select calculate or view image.", "west", 8, 0, 40, 5, 5, 0, 1), this.labelMandelbrotCalcInstructions.gbc_label);
 		
-		// add labelAnnulusOutRadius to panelAnnulusBorder
-		this.panelAnnulusBorder.add(this.labelAnnulusOutRadius, this.labelAnnulusOutRadius.gbc_label);
+		// add title for output
+		this.panelMandelbrotBorder.add(this.labelMandelbrotMonteTitle = new CalculatorLabel("Monte Carlo estimate:", "west", 3, 0, 40, 5, 5, 0, 8), this.labelMandelbrotMonteTitle.gbc_label);
 		
-		// add labelAnnulusInRadius to panelAnnulusBorder
-		this.panelAnnulusBorder.add(this.labelAnnulusInRadius, this.labelAnnulusInRadius.gbc_label);
+		// add the label that will show the output
+		this.panelMandelbrotBorder.add(this.labelMandelbrotMonteOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 9), this.labelMandelbrotMonteOutput.gbc_label);
 		
-		// add labelAnnulusApproxTitle to panelAnnulusBorder
-		this.panelAnnulusBorder.add(this.labelAnnulusApproxTitle, this.labelAnnulusApproxTitle.gbc_label);
+		// add zoom instructions
+		this.panelMandelbrotBorder.add(this.labelMandelbrotZoom = new CalculatorLabel("Left click and drag on image to set zoom area", "west", 5, 0, 40, 5, 0, 0, 10), this.labelMandelbrotZoom.gbc_label);
 		
-		// add labelAnnulusApproxOutput to panelAnnulusBorder
-		this.panelAnnulusBorder.add(this.labelAnnulusApproxOutput, this.labelAnnulusApproxOutput.gbc_label);
-		
-		// add labelAnnulusMonteTitle to panelAnnulusBorder
-		this.panelAnnulusBorder.add(this.labelAnnulusMonteTitle, this.labelAnnulusMonteTitle.gbc_label);
-		
-		// add labelAnnulusMonteOutput to panelAnnulusBorder
-		this.panelAnnulusBorder.add(this.labelAnnulusMonteOutput, this.labelAnnulusMonteOutput.gbc_label);
 	}
 	
 	/**
@@ -198,24 +206,42 @@ public class CalculatorView extends JFrame {
 	private final void initControls() {
 		
 		/*
-		 * Create annulus calculator controls
-		 */
-		
-		this.textFieldAnnulusOutRadius = new CalculatorTextField(200, 1, 3);
-		
-		this.textFieldAnnulusInRadius = new CalculatorTextField(200, 1, 4);
-		
-		this.buttonAnnulusCalculate = new CalculatorButton("Calculate", 1, 5);
-		
-		/*
 		 * Add annulus calculator controls to container panel
 		 */
 		
-		this.panelAnnulusBorder.add(textFieldAnnulusOutRadius, this.textFieldAnnulusOutRadius.gbc_textField);
+		// add input textFields to the panel
+		this.panelAnnulusBorder.add(this.textFieldAnnulusOutRadius = new CalculatorTextField(10, 1, 3), this.textFieldAnnulusOutRadius.gbc_textField);
+		this.panelAnnulusBorder.add(this.textFieldAnnulusInRadius = new CalculatorTextField(10, 1, 4), this.textFieldAnnulusInRadius.gbc_textField);
 		
-		this.panelAnnulusBorder.add(textFieldAnnulusInRadius, this.textFieldAnnulusInRadius.gbc_textField);
+		// add buttons to the panel
+		this.panelAnnulusBorder.add(this.buttonAnnulusCalculate = new CalculatorButton("Calculate", 1, 5), this.buttonAnnulusCalculate.gbc_button);
+		this.panelAnnulusBorder.add(this.buttonAnnulusZoomIn = new CalculatorButtonCustom("Zoom In", 0, 12), this.buttonAnnulusZoomIn.gbc_button);
+		this.panelAnnulusBorder.add(this.buttonAnnulusZoomReset = new CalculatorButton("Reset Zoom", 1, 12), this.buttonAnnulusZoomReset.gbc_button);
+		this.panelAnnulusBorder.add(this.buttonAnnulusSave = new CalculatorButton("Save Image", 2, 12), this.buttonAnnulusSave.gbc_button);
 		
-		this.panelAnnulusBorder.add(this.buttonAnnulusCalculate, this.buttonAnnulusCalculate.gbc_button);
+		/*
+		 * Add mandelbrot calculator controls to container panel
+		 */
+		
+		// add radioButtons to the panel
+		this.panelMandelbrotBorder.add(this.radioMandelbrotCalculate = new CalculatorRadioButton("Calculate area", 0, 3), this.radioMandelbrotCalculate.gbc_radioButton);
+		this.panelMandelbrotBorder.add(this.radioMandelbrotView = new CalculatorRadioButton("View image", 0, 4), this.radioMandelbrotView.gbc_radioButton);
+		
+		// add radioButtons to a group, so only one can be selected at a time
+		this.GROUP_MANDELBROT_RADIOS.add(this.radioMandelbrotCalculate);
+		this.GROUP_MANDELBROT_RADIOS.add(this.radioMandelbrotView);
+		
+		// set calculate radio to be default selection
+		this.radioMandelbrotCalculate.setSelected(true);
+		
+		// add checkBox to the panel
+		this.panelMandelbrotBorder.add(this.checkBoxMandelbrotRandomColour = new CalculatorCheckBox("Random colour", 0, 5), this.checkBoxMandelbrotRandomColour.gbc_checkBox);
+		
+		// add buttons to the panel
+		this.panelMandelbrotBorder.add(this.buttonMandelbrotOK = new CalculatorButtonCustom("OK", 0, 6), this.buttonMandelbrotOK.gbc_button);
+		this.panelMandelbrotBorder.add(this.buttonMandelbrotZoomIn = new CalculatorButtonCustom("Zoom In", 0, 12), this.buttonMandelbrotZoomIn.gbc_button);
+		this.panelMandelbrotBorder.add(this.buttonMandelbrotZoomReset = new CalculatorButton("Reset Zoom", 1, 12), this.buttonMandelbrotZoomReset.gbc_button);
+		this.panelMandelbrotBorder.add(this.buttonMandelbrotSave = new CalculatorButton("Save Image", 2, 12), this.buttonMandelbrotSave.gbc_button);
 	}
 	
 	/**
@@ -235,7 +261,7 @@ public class CalculatorView extends JFrame {
 	 * @param args unused
 	 * @return double - Outer radius.
 	 */
-	public final double getOutRadius() {
+	public final double getAnnulusOutRadius() {
 		return Double.parseDouble(textFieldAnnulusOutRadius.getText());
 	}
 	
@@ -246,7 +272,7 @@ public class CalculatorView extends JFrame {
 	 * @param args unused
 	 * @return double - Inner radius.
 	 */
-	public final double getInRadius() {
+	public final double getAnnulusInRadius() {
 		return Double.parseDouble(textFieldAnnulusInRadius.getText());
 	}
 	
@@ -268,7 +294,8 @@ public class CalculatorView extends JFrame {
 	 * @param double area.
 	 */
 	public final void setAnnulusAreaCalc(double area) {
-		labelAnnulusApproxOutput.setText(Double.toString(area));
+		
+		this.labelAnnulusApproxOutput.setText(Double.toString(area));
 	}
 	
 	/**
@@ -278,7 +305,8 @@ public class CalculatorView extends JFrame {
 	 * @param double area.
 	 */
 	public final void setAnnulusMonteCalc(double area) {
-		labelAnnulusApproxOutput.setText(Double.toString(area));
+		
+		this.labelAnnulusApproxOutput.setText(Double.toString(area));
 	}
 	
 	/**
@@ -288,6 +316,13 @@ public class CalculatorView extends JFrame {
 	 * @param double area.
 	 */
 	public final void setMandelbrotMonteCalc(double area) {
-		//labelMandelbrotMonteOutput.setText(Double.toString(area));
+		
+		this.labelMandelbrotMonteOutput.setText(Double.toString(area));
 	}
+	
+	/**
+	 * This method adds action listeners to the buttons.
+	 * 
+	 * @param ActionListener theListener
+	 */
 }
