@@ -16,9 +16,6 @@ import javax.swing.*;
  */
 @SuppressWarnings("serial")
 public class CalculatorButton extends JButton {
-
-//	// declare theButton
-//	protected JButton theButton;
 	
 	// declare the gridbag constraints
 	protected GridBagConstraints gbc_button;

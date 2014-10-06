@@ -8,8 +8,6 @@ import java.awt.Color;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import rewrite.controller.*;
-
 /**
  * This class ties all the view classes together to generate the view.
  * 
