@@ -184,7 +184,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	}
 	
 	/**
-	 * Unused mouse action.
+	 * Unused mouse event.
 	 * 
 	 * @param args unused
 	 */
@@ -193,7 +193,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	}
 	
 	/**
-	 * Unused mouse action.
+	 * Unused mouse event.
 	 * 
 	 * @param args unused
 	 */
@@ -202,7 +202,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	}
 	
 	/**
-	 * Unused mouse action.
+	 * Unused mouse event.
 	 * 
 	 * @param args unused
 	 */
@@ -211,7 +211,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	}
 	
 	/**
-	 * Unused mouse action.
+	 * Unused mouse event.
 	 * 
 	 * @param args unused
 	 */
