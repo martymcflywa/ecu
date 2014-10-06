@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 public class PanelGridLayout extends JPanel {
 	
 	// declare panel
-	protected JPanel panel = new JPanel();
+	//protected JPanel panel = new JPanel();
 	
 	// declare GridLayout
 	protected GridLayout theGridLayout;
@@ -34,14 +34,14 @@ public class PanelGridLayout extends JPanel {
 	 */
 	public PanelGridLayout(int rows, int cols, int hgap, int vgap) {
 		
-		// create panel
-		this.panel = new JPanel();
+//		// create panel
+//		this.panel = new JPanel();
+//		
+//		// **DEBUGGING**
+//		this.panel.setBackground(Color.WHITE);
 		
-		// **DEBUGGING**
-		this.panel.setBackground(Color.WHITE);
-		
-		// use gridlayout, set the rows, columns and gaps
-		this.panel.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
+		// use gridlayout, set the rows, columns and padding
+		this.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
 	}
 	
 	/**
@@ -57,24 +57,21 @@ public class PanelGridLayout extends JPanel {
 	public PanelGridLayout(JPanel thePanel, int rows, int cols, int hgap, int vgap) {
 		
 		// create panel
-		this.panel = new JPanel();
+		//this.panel = new JPanel();
 		
 		// **DEBUGGING**
-		this.panel.setBackground(Color.BLUE);
+		this.setBackground(Color.BLUE);
 		
-		// use gridlayout, set the rows, columns and gaps
-		this.panel.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
-		
-		// add panel to the parent panel **might need to delete this**
-		thePanel.add(this.panel);
+		// use gridlayout, set the rows, columns and padding
+		this.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
 		
 	}
 	
-	/**
-	 * This method returns the panel.
-	 * @return JPanel panel
-	 */
-	public JPanel getPanel() {
-		return panel;
-	}
+//	/**
+//	 * This method returns the panel.
+//	 * @return JPanel panel
+//	 */
+//	public JPanel getPanel() {
+//		return panel;
+//	}
 }

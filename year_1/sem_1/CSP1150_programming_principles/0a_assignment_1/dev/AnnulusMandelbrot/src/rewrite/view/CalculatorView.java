@@ -3,9 +3,12 @@ package rewrite.view;
 // for debugging only
 import java.awt.Color;
 
+
 // import gui component classes
 import javax.swing.*;
 import javax.swing.border.*;
+
+import rewrite.controller.*;
 
 /**
  * This class ties all the view classes together to generate the view.
@@ -33,7 +36,7 @@ public class CalculatorView extends JFrame {
 	private PanelGridLayout panelRight;
 	
 	// and the image containers
-	private PanelGridLayout panelAnnulusImage;
+	private HitViewerGreyscale panelAnnulusImage;
 	private PanelGridLayout panelMandelbrotImage;
 	
 	// declare annulus calculator labels
@@ -125,7 +128,7 @@ public class CalculatorView extends JFrame {
 		this.panelMandelbrotBorder.setLayout(this.panelMandelbrotBorder.gbl_panel);
 		
 		// create panelAnnulusImage container and add to panelRight
-		this.panelRight.add(this.panelAnnulusImage = new PanelGridLayout(0, 1, 0, 0));
+		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(444, 444, 0, 1, 0, 0));
 		
 		// create panelMandelbrotImage container and add to panelRight
 		this.panelRight.add(this.panelMandelbrotImage = new PanelGridLayout(0, 1, 0, 0));
@@ -209,8 +212,6 @@ public class CalculatorView extends JFrame {
 		this.textFieldAnnulusInRadius = new CalculatorTextField(200, 1, 4);
 		
 		this.buttonAnnulusCalculate = new CalculatorButton("Calculate", 1, 5);
-		
-		
 		
 		/*
 		 * Add annulus calculator controls to container panel
