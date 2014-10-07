@@ -141,19 +141,19 @@ kurtosis(fbDataset.rmNil$Gender)
 #### Histogram
 
 ```{r}
-hist(fbDataset.rmNil$Gender, 
-     breaks=2, 
-     main="CSG1132 A2 Dataset \n Distribution of gender", 
-     ylab="Frequency of gender", 
-     xlab="Gender",
-     col="grey"
-     )
+h <- hist(fbDataset.rmNil$Gender, 
+        breaks=2, 
+        main="CSG1132 A2 Dataset \n Distribution of gender", 
+        ylab="Frequency of gender", 
+        xlab="Gender",
+        col="grey")
 xfit <- seq(min(fbDataset.rmNil$Gender), 
             max(fbDataset.rmNil$Gender), 
             length=40)
 yfit <- dnorm(xfit, 
               mean=mean(fbDataset.rmNil$Gender), , 
               sd=sd(fbDataset.rmNil$Gender))
+yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$Gender)
 lines(xfit, yfit)
 ```
 
@@ -197,18 +197,18 @@ kurtosis(fbDataset.rmNil$FB_Logins)
 #### Histogram
 
 ```{r}
-hist(fbDataset.rmNil$FB_Logins, 
-     main="CSG1132 A2 Dataset \n Distribution of FB Logins", 
-     ylab="Frequency of FB Logins", 
-     xlab="FB Logins",
-     col="grey"
-     )
+h <- hist(fbDataset.rmNil$FB_Logins, 
+        main="CSG1132 A2 Dataset \n Distribution of FB Logins", 
+        ylab="Frequency of FB Logins", 
+        xlab="FB Logins",
+        col="grey")
 xfit <- seq(min(fbDataset.rmNil$FB_Logins), 
             max(fbDataset.rmNil$FB_Logins), 
             length=40)
 yfit <- dnorm(xfit, 
               mean=mean(fbDataset.rmNil$FB_Logins), , 
               sd=sd(fbDataset.rmNil$FB_Logins))
+yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$FB_Logins)
 lines(xfit, yfit)
 ```
 
@@ -252,18 +252,18 @@ kurtosis(fbDataset.rmNil$Hours)
 #### Histogram
 
 ```{r}
-hist(fbDataset.rmNil$Hours, 
-     main="CSG1132 A2 Dataset \n Distribution of FB Hours", 
-     ylab="Frequency of FB Hours", 
-     xlab="FB Hours",
-     col="grey"
-     )
+h <- hist(fbDataset.rmNil$Hours, 
+        main="CSG1132 A2 Dataset \n Distribution of FB Hours", 
+        ylab="Frequency of FB Hours", 
+        xlab="FB Hours",
+        col="grey")
 xfit <- seq(min(fbDataset.rmNil$Hours), 
             max(fbDataset.rmNil$Hours), 
             length=40)
 yfit <- dnorm(xfit, 
               mean=mean(fbDataset.rmNil$Hours), , 
               sd=sd(fbDataset.rmNil$Hours))
+yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$Hours)
 lines(xfit, yfit)
 ```
 
@@ -307,18 +307,18 @@ kurtosis(fbDataset.rmNil$FB_friends)
 #### Histogram
 
 ```{r}
-hist(fbDataset.rmNil$FB_friends, 
-     main="CSG1132 A2 Dataset \n Distribution of FB Friends", 
-     ylab="Frequency of FB Friends", 
-     xlab="FB Friends",
-     col="grey"
-     )
+h <- hist(fbDataset.rmNil$FB_friends, 
+        main="CSG1132 A2 Dataset \n Distribution of FB Friends", 
+        ylab="Frequency of FB Friends", 
+        xlab="FB Friends",
+        col="grey")
 xfit <- seq(min(fbDataset.rmNil$FB_friends), 
             max(fbDataset.rmNil$FB_friends), 
             length=40)
 yfit <- dnorm(xfit, 
               mean=mean(fbDataset.rmNil$FB_friends), , 
               sd=sd(fbDataset.rmNil$FB_friends))
+yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$FB_Friends)
 lines(xfit, yfit)
 ```
 
@@ -362,18 +362,18 @@ kurtosis(fbDataset.rmNil$Close_friends)
 #### Histogram
 
 ```{r}
-hist(fbDataset.rmNil$Close_friends, 
-     main="CSG1132 A2 Dataset \n Distribution of Close Friends", 
-     ylab="Frequency of Close Friends", 
-     xlab="Close Friends",
-     col="grey"
-     )
+h <- hist(fbDataset.rmNil$Close_friends, 
+        main="CSG1132 A2 Dataset \n Distribution of Close Friends", 
+        ylab="Frequency of Close Friends", 
+        xlab="Close Friends",
+        col="grey")
 xfit <- seq(min(fbDataset.rmNil$Close_friends), 
             max(fbDataset.rmNil$Close_friends), 
             length=40)
 yfit <- dnorm(xfit, 
               mean=mean(fbDataset.rmNil$Close_friends), , 
               sd=sd(fbDataset.rmNil$Close_friends))
+yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$Close_friends)
 lines(xfit, yfit)
 ```
 
