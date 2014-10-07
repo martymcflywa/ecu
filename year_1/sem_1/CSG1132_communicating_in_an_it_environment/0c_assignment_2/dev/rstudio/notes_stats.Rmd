@@ -71,14 +71,19 @@ Gender is related to the intensity of Facebook use.
 To import SPSS data:
 
 ```{r, warning=FALSE}
-require(foreign)
-fbDataset.raw<-read.spss("./src/Ass2-dataset.sav", use.value.labels=TRUE, to.data.frame=TRUE)
+require(foreign);
+
+fbDataset.raw<-read.spss(
+  "./src/Ass2-dataset.sav", 
+  use.value.labels=TRUE, 
+  to.data.frame=TRUE
+);
 ```
 
 Raw data set consists of 61 observations, 10 variables.
 
 ```{r}
-summary(fbDataset.raw)
+summary(fbDataset.raw);
 ```
 
 ## Data cleaning
@@ -88,7 +93,7 @@ summary(fbDataset.raw)
 Created new object called fbDataset.rmNA with all observations with NA values removed:
 
 ```{r}
-fbDataset.rmNA<-na.omit(fbDataset.raw)
+fbDataset.rmNA <- na.omit(fbDataset.raw);
 ```
 
 56 observations remain.
@@ -98,7 +103,7 @@ fbDataset.rmNA<-na.omit(fbDataset.raw)
 Removed observations that have 0 (Nil) as FB_Login:
 
 ```{r}
-fbDataset.rmNil<-subset(fbDataset.rmNA, FB_Logins>0)
+fbDataset.rmNil <- subset(fbDataset.rmNA, FB_Logins > 0);
 ```
 
 53 observations remain.
@@ -106,7 +111,7 @@ fbDataset.rmNil<-subset(fbDataset.rmNA, FB_Logins>0)
 ### Summary post data clense
 
 ```{r}
-summary(fbDataset.rmNil)
+summary(fbDataset.rmNil);
 ```
 
 ## Central tendency
@@ -114,221 +119,282 @@ summary(fbDataset.rmNil)
 ### Gender
 
 ```{r}
-mean(fbDataset.rmNil$Gender)
+mean(fbDataset.rmNil$Gender);
 ```
 
 ```{r}
-median(fbDataset.rmNil$Gender)
+median(fbDataset.rmNil$Gender);
 ```
 
 mvf() = mode
 ```{r}
-mfv(fbDataset.rmNil$Gender)
+mfv(fbDataset.rmNil$Gender);
 ```
 
 ```{r}
-sd(fbDataset.rmNil$Gender)
+sd(fbDataset.rmNil$Gender);
 ```
 
 ```{r}
-skewness(fbDataset.rmNil$Gender)
+skewness(fbDataset.rmNil$Gender);
 ```
 
 ```{r}
-kurtosis(fbDataset.rmNil$Gender)
+kurtosis(fbDataset.rmNil$Gender);
 ```
 
 #### Histogram
 
 ```{r}
-h <- hist(fbDataset.rmNil$Gender, 
-        breaks=2, 
-        main="CSG1132 A2 Dataset \n Distribution of gender", 
-        ylab="Frequency of gender", 
-        xlab="Gender",
-        col="grey")
-xfit <- seq(min(fbDataset.rmNil$Gender), 
-            max(fbDataset.rmNil$Gender), 
-            length=40)
-yfit <- dnorm(xfit, 
-              mean=mean(fbDataset.rmNil$Gender), , 
-              sd=sd(fbDataset.rmNil$Gender))
-yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$Gender)
-lines(xfit, yfit)
+h <- hist(
+  fbDataset.rmNil$Gender, 
+  breaks = 2, 
+  main = "CSG1132 A2 Dataset \n Distribution of gender", 
+  ylab = "Frequency of gender", 
+  xlab = "Gender",
+  col = "grey"
+);
+
+# this draws the normal distribution curve over the histogram
+xfit <- seq(
+  min(fbDataset.rmNil$Gender), 
+  max(fbDataset.rmNil$Gender), 
+  length = 40
+);
+
+yfit <- dnorm(
+  xfit, 
+  mean = mean(fbDataset.rmNil$Gender), , 
+  sd = sd(fbDataset.rmNil$Gender)
+);
+
+yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$Gender);
+
+lines(
+  xfit, 
+  yfit, 
+  col = "darkblue"
+);
 ```
 
 ```{r}
-density <- density(fbDataset.rmNil$Gender)
+density <- density(fbDataset.rmNil$Gender);
+
 plot(density,
-     main="CSG1132 A2 Dataset\nKernal Density: Gender",
-     xlab="Gender",
-     ylab="Density",
-     col="red"
-     )
+  main = "CSG1132 A2 Dataset\nKernal Density: Gender",
+  xlab = "Gender",
+  ylab = "Density",
+  col = "red"
+);
 ```
 
 ### FB Logins
 
 ```{r}
-mean(fbDataset.rmNil$FB_Logins)
+mean(fbDataset.rmNil$FB_Logins);
 ```
 
 ```{r}
-median(fbDataset.rmNil$FB_Logins)
+median(fbDataset.rmNil$FB_Logins);
 ```
 
 mvf() = mode
 ```{r}
-mfv(fbDataset.rmNil$FB_Logins)
+mfv(fbDataset.rmNil$FB_Logins);
 ```
 
 ```{r}
-sd(fbDataset.rmNil$FB_Logins)
+sd(fbDataset.rmNil$FB_Logins);
 ```
 
 ```{r}
-skewness(fbDataset.rmNil$FB_Logins)
+skewness(fbDataset.rmNil$FB_Logins);
 ```
 
 ```{r}
-kurtosis(fbDataset.rmNil$FB_Logins)
+kurtosis(fbDataset.rmNil$FB_Logins);
 ```
 
 #### Histogram
 
 ```{r}
-h <- hist(fbDataset.rmNil$FB_Logins, 
-        main="CSG1132 A2 Dataset \n Distribution of FB Logins", 
-        ylab="Frequency of FB Logins", 
-        xlab="FB Logins",
-        col="grey")
-xfit <- seq(min(fbDataset.rmNil$FB_Logins), 
-            max(fbDataset.rmNil$FB_Logins), 
-            length=40)
-yfit <- dnorm(xfit, 
-              mean=mean(fbDataset.rmNil$FB_Logins), , 
-              sd=sd(fbDataset.rmNil$FB_Logins))
-yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$FB_Logins)
-lines(xfit, yfit)
+h <- hist(
+  fbDataset.rmNil$FB_Logins, 
+  main = "CSG1132 A2 Dataset \n Distribution of FB Logins", 
+  ylab = "Frequency of FB Logins", 
+  xlab = "FB Logins",
+  col = "grey"
+);
+
+xfit <- seq(
+  min(fbDataset.rmNil$FB_Logins), 
+  max(fbDataset.rmNil$FB_Logins), 
+  length=40
+);
+
+yfit <- dnorm(
+  xfit, 
+  mean=mean(fbDataset.rmNil$FB_Logins), , 
+  sd=sd(fbDataset.rmNil$FB_Logins)
+);
+
+yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$FB_Logins);
+
+lines(
+  xfit, 
+  yfit, 
+  col = "darkblue"
+);
 ```
 
 ```{r}
-density <- density(fbDataset.rmNil$FB_Logins)
-plot(density,
-     main="CSG1132 A2 Dataset\nKernal Density: FB Logins",
-     xlab="FB Logins",
-     ylab="Density",
-     col="red"
-     )
+density <- density(fbDataset.rmNil$FB_Logins);
+
+plot(
+  density,
+  main = "CSG1132 A2 Dataset\nKernal Density: FB Logins",
+  xlab = "FB Logins",
+  ylab = "Density",
+  col = "red"
+);
 ```
 
 ### FB Hours
 
 ```{r}
-mean(fbDataset.rmNil$Hours)
+mean(fbDataset.rmNil$Hours);
 ```
 
 ```{r}
-median(fbDataset.rmNil$Hours)
+median(fbDataset.rmNil$Hours);
 ```
 
 mvf() = mode
 ```{r}
-mfv(fbDataset.rmNil$Hours)
+mfv(fbDataset.rmNil$Hours);
 ```
 
 ```{r}
-sd(fbDataset.rmNil$Hours)
+sd(fbDataset.rmNil$Hours);
 ```
 
 ```{r}
-skewness(fbDataset.rmNil$Hours)
+skewness(fbDataset.rmNil$Hours);
 ```
 
 ```{r}
-kurtosis(fbDataset.rmNil$Hours)
+kurtosis(fbDataset.rmNil$Hours);
 ```
 
 #### Histogram
 
 ```{r}
-h <- hist(fbDataset.rmNil$Hours, 
-        main="CSG1132 A2 Dataset \n Distribution of FB Hours", 
-        ylab="Frequency of FB Hours", 
-        xlab="FB Hours",
-        col="grey")
-xfit <- seq(min(fbDataset.rmNil$Hours), 
-            max(fbDataset.rmNil$Hours), 
-            length=40)
-yfit <- dnorm(xfit, 
-              mean=mean(fbDataset.rmNil$Hours), , 
-              sd=sd(fbDataset.rmNil$Hours))
-yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$Hours)
-lines(xfit, yfit)
+h <- hist(
+  fbDataset.rmNil$Hours, 
+  main = "CSG1132 A2 Dataset \n Distribution of FB Hours", 
+  ylab = "Frequency of FB Hours", 
+  xlab = "FB Hours",
+  col = "grey"
+);
+
+xfit <- seq(
+  min(fbDataset.rmNil$Hours), 
+  max(fbDataset.rmNil$Hours), 
+  length=40
+);
+
+yfit <- dnorm(
+  xfit, 
+  mean = mean(fbDataset.rmNil$Hours), , 
+  sd = sd(fbDataset.rmNil$Hours)
+);
+
+yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$Hours);
+
+lines(
+  xfit, 
+  yfit, 
+  col = "darkblue"
+);
 ```
 
 ```{r}
-density <- density(fbDataset.rmNil$Hours)
+density <- density(fbDataset.rmNil$Hours);
+
 plot(density,
-     main="CSG1132 A2 Dataset\nKernal Density: FB Hours",
-     xlab="FB Hours",
-     ylab="Density",
-     col="red"
-     )
+  main = "CSG1132 A2 Dataset\nKernal Density: FB Hours",
+  xlab = "FB Hours",
+  ylab = "Density",
+  col = "red"
+);
 ```
 
 ### Facebook friends
 
 ```{r}
-mean(fbDataset.rmNil$FB_friends)
+mean(fbDataset.rmNil$FB_friends);
 ```
 
 ```{r}
-median(fbDataset.rmNil$FB_friends)
+median(fbDataset.rmNil$FB_friends);
 ```
 
 mvf() = mode
 ```{r}
-mfv(fbDataset.rmNil$FB_friends)
+mfv(fbDataset.rmNil$FB_friends);
 ```
 
 ```{r}
-sd(fbDataset.rmNil$FB_friends)
+sd(fbDataset.rmNil$FB_friends);
 ```
 
 ```{r}
-skewness(fbDataset.rmNil$FB_friends)
+skewness(fbDataset.rmNil$FB_friends);
 ```
 
 ```{r}
-kurtosis(fbDataset.rmNil$FB_friends)
+kurtosis(fbDataset.rmNil$FB_friends);
 ```
 
 #### Histogram
 
 ```{r}
-h <- hist(fbDataset.rmNil$FB_friends, 
-        main="CSG1132 A2 Dataset \n Distribution of FB Friends", 
-        ylab="Frequency of FB Friends", 
-        xlab="FB Friends",
-        col="grey")
-xfit <- seq(min(fbDataset.rmNil$FB_friends), 
-            max(fbDataset.rmNil$FB_friends), 
-            length=40)
-yfit <- dnorm(xfit, 
-              mean=mean(fbDataset.rmNil$FB_friends), , 
-              sd=sd(fbDataset.rmNil$FB_friends))
-yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$FB_friends)
-lines(xfit, yfit)
+h <- hist(
+  fbDataset.rmNil$FB_friends, 
+  main = "CSG1132 A2 Dataset \n Distribution of FB Friends", 
+  ylab = "Frequency of FB Friends", 
+  xlab = "FB Friends",
+  col = "grey"
+);
+
+xfit <- seq(
+  min(fbDataset.rmNil$FB_friends), 
+  max(fbDataset.rmNil$FB_friends), 
+  length = 40
+);
+
+yfit <- dnorm(
+  xfit, 
+  mean = mean(fbDataset.rmNil$FB_friends), , 
+  sd = sd(fbDataset.rmNil$FB_friends)
+);
+
+yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$FB_friends);
+
+lines(
+  xfit, 
+  yfit,
+  col = "darkblue"
+);
 ```
 
 ```{r}
 density <- density(fbDataset.rmNil$FB_friends)
 plot(density,
-     main="CSG1132 A2 Dataset\nKernal Density: FB Friends",
-     xlab="FB Friends",
-     ylab="Density",
-     col="red"
+     main = "CSG1132 A2 Dataset\nKernal Density: FB Friends",
+     xlab = "FB Friends",
+     ylab = "Density",
+     col = "red"
      )
 ```
 
@@ -364,40 +430,44 @@ kurtosis(fbDataset.rmNil$Close_friends)
 ```{r}
 h <- hist(
   fbDataset.rmNil$Close_friends, 
-  main="CSG1132 A2 Dataset \n Distribution of Close Friends", 
-  ylab="Frequency of Close Friends", 
-  xlab="Close Friends",
-  col="grey",
-  xlim=c(0,100)
+  main = "CSG1132 A2 Dataset \n Distribution of Close Friends", 
+  ylab = "Frequency of Close Friends", 
+  xlab = "Close Friends",
+  col = "grey",
+  
+  # change the limit for x-axis, ylim for y-axis
+  xlim = c(0,100)
 );
 
 xfit <- seq(
   min(fbDataset.rmNil$Close_friends), 
   max(fbDataset.rmNil$Close_friends), 
-  length=40
+  length = 40
 );
 
 yfit <- dnorm(
   xfit, 
-  mean=mean(fbDataset.rmNil$Close_friends), , 
-  sd=sd(fbDataset.rmNil$Close_friends)
+  mean = mean(fbDataset.rmNil$Close_friends), , 
+  sd = sd(fbDataset.rmNil$Close_friends)
 );
 
-yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$Close_friends)
+yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$Close_friends);
 
 lines(
   xfit, 
   yfit, 
-  col="darkblue"
+  col = "darkblue"
 );
 ```
 
 ```{r}
-density <- density(fbDataset.rmNil$Close_friends)
-plot(density,
-     main="CSG1132 A2 Dataset\nKernal Density: Close Friends",
-     xlab="Close Friends",
-     ylab="Density",
-     col="red"
-     )
+density <- density(fbDataset.rmNil$Close_friends);
+
+plot(
+  density,
+  main = "CSG1132 A2 Dataset\nKernal Density: Close Friends",
+  xlab = "Close Friends",
+  ylab = "Density",
+  col = "red"
+)
 ```
