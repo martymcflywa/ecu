@@ -24,4 +24,7 @@ SelfAssessment
 *.out
 *.gz
 *.toc
+
+# Rstudio
 .Rproj.user
+.Rhistory
