@@ -362,20 +362,34 @@ kurtosis(fbDataset.rmNil$Close_friends)
 #### Histogram
 
 ```{r}
-h <- hist(fbDataset.rmNil$Close_friends, 
-        main="CSG1132 A2 Dataset \n Distribution of Close Friends", 
-        ylab="Frequency of Close Friends", 
-        xlab="Close Friends",
-        col="grey",
-        xlim=c(0,100))
-xfit <- seq(min(fbDataset.rmNil$Close_friends), 
-            max(fbDataset.rmNil$Close_friends), 
-            length=40)
-yfit <- dnorm(xfit, 
-              mean=mean(fbDataset.rmNil$Close_friends), , 
-              sd=sd(fbDataset.rmNil$Close_friends))
+h <- hist(
+  fbDataset.rmNil$Close_friends, 
+  main="CSG1132 A2 Dataset \n Distribution of Close Friends", 
+  ylab="Frequency of Close Friends", 
+  xlab="Close Friends",
+  col="grey",
+  xlim=c(0,100)
+);
+
+xfit <- seq(
+  min(fbDataset.rmNil$Close_friends), 
+  max(fbDataset.rmNil$Close_friends), 
+  length=40
+);
+
+yfit <- dnorm(
+  xfit, 
+  mean=mean(fbDataset.rmNil$Close_friends), , 
+  sd=sd(fbDataset.rmNil$Close_friends)
+);
+
 yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$Close_friends)
-lines(xfit, yfit)
+
+lines(
+  xfit, 
+  yfit, 
+  col="darkblue"
+);
 ```
 
 ```{r}
