@@ -318,7 +318,7 @@ xfit <- seq(min(fbDataset.rmNil$FB_friends),
 yfit <- dnorm(xfit, 
               mean=mean(fbDataset.rmNil$FB_friends), , 
               sd=sd(fbDataset.rmNil$FB_friends))
-yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$FB_Friends)
+yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$FB_friends)
 lines(xfit, yfit)
 ```
 
