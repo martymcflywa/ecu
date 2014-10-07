@@ -156,9 +156,9 @@ attach(fbDataset.final)
 summary(fbDataset.final);
 ```
 
-## Central tendency
+# Central tendency
 
-### Gender
+## Gender
 
 ```{r}
 mean(Gender);
@@ -185,7 +185,7 @@ skewness(Gender);
 kurtosis(Gender);
 ```
 
-#### Histogram
+### Histogram
 
 ```{r}
 h <- hist(
@@ -230,7 +230,7 @@ plot(density,
 );
 ```
 
-### FB Logins
+## FB Logins
 
 ```{r}
 mean(FB_Logins);
@@ -257,7 +257,7 @@ skewness(FB_Logins);
 kurtosis(FB_Logins);
 ```
 
-#### Histogram
+### Histogram
 
 ```{r}
 h <- hist(
@@ -301,7 +301,7 @@ plot(
 );
 ```
 
-### FB Hours
+## FB Hours
 
 ```{r}
 mean(Hours);
@@ -328,7 +328,7 @@ skewness(Hours);
 kurtosis(Hours);
 ```
 
-#### Histogram
+### Histogram
 
 ```{r}
 h <- hist(
@@ -371,7 +371,7 @@ plot(density,
 );
 ```
 
-### Facebook friends
+## Facebook friends
 
 ```{r}
 mean(FB_friends);
@@ -398,7 +398,7 @@ skewness(FB_friends);
 kurtosis(FB_friends);
 ```
 
-#### Histogram
+### Histogram
 
 ```{r}
 h <- hist(
@@ -440,7 +440,7 @@ plot(density,
      )
 ```
 
-### Close friends
+## Close friends
 
 ```{r}
 mean(Close_friends)
@@ -467,7 +467,7 @@ skewness(Close_friends)
 kurtosis(Close_friends)
 ```
 
-#### Histogram
+### Histogram
 
 ```{r}
 h <- hist(
@@ -514,4 +514,112 @@ plot(
   ylab = "Density",
   col = "red"
 );
+```
+
+## Sociability
+
+```{r}
+mean(Sociability)
+```
+
+```{r}
+median(Sociability)
+```
+
+mvf() = mode
+```{r}
+mfv(Sociability)
+```
+
+```{r}
+sd(Sociability)
+```
+
+```{r}
+skewness(Sociability)
+```
+
+```{r}
+kurtosis(Sociability)
+```
+
+### Histogram
+
+```{r}
+h <- hist(
+  Sociability, 
+  main = "CSG1132 A2 Dataset \n Distribution of Sociability", 
+  ylab = "Frequency of Sociability", 
+  xlab = "Sociability",
+  col = "grey",
+  ylim = c(0, 30)
+);
+
+xfit <- seq(
+  min(Sociability), 
+  max(Sociability), 
+  length = 100
+);
+
+yfit <- dnorm(
+  xfit, 
+  mean = mean(Sociability), , 
+  sd = sd(Sociability)
+);
+
+yfit <- yfit * diff(h$mids[1:2]) * length(Sociability);
+
+lines(
+  xfit, 
+  yfit, 
+  col = "darkblue"
+);
+```
+
+```{r}
+density <- density(Sociability);
+
+plot(
+  density,
+  main = "CSG1132 A2 Dataset\nKernal Density: Sociability",
+  xlab = "Sociability",
+  ylab = "Density",
+  col = "red"
+);
+```
+
+# Testing
+
+Non-parametric tests chosen because the variables are non-normally distributed.
+
+## Tests chosen
+
+- Mann-Whitney-Wilcoxon test
+
+See [r-tutor](http://www.r-tutor.com/elementary-statistics/non-parametric-methods/mann-whitney-wilcoxon-test).
+
+## Theme 1: Gender is related to network size
+
+#### Facebook friends and gender
+
+```{r warning=FALSE}
+wilcox.test(FB_friends ~ Gender);
+```
+
+#### Close friends and gender
+
+```{r warning=FALSE}
+wilcox.test(Close_friends ~ Gender);
+```
+
+#### Sociability and gender
+
+```{r warning=FALSE}
+wilcox.test(Sociability ~ Gender);
+```
+
+### Spearman's Rho test
+
+```{r}
+cor.test(FB_friends, Gender, method = "spearman");
 ```

@@ -7,7 +7,6 @@
 # Word
 *~$*.*
 
-
 # Eclipse
 .classpath
 .project
@@ -27,4 +26,5 @@ SelfAssessment
 
 # Rstudio
 .Rproj.user
-.Rhistory
+*.Rhistory*
+*.Rdata*
