@@ -108,10 +108,52 @@ fbDataset.rmNil <- subset(fbDataset.rmNA, FB_Logins > 0);
 
 53 observations remain.
 
+### Removing Outliers
+
+#### FB Logins
+
+Removing FB Login outliers > 50
+
+```{r}
+fbDataset.rmOut <- subset(fbDataset.rmNil, FB_Logins < 50);
+```
+
+51 observations remain.
+
+#### FB Hours
+
+Removing FB Hours outliers > 50
+
+```{r}
+fbDataset.rmOut <- subset(fbDataset.rmOut, Hours < 50);
+```
+
+50 observations remain.
+
+#### Close Friends
+
+Removing Close Friends outliers > 70
+
+```{r}
+fbDataset.rmOut <- subset(fbDataset.rmOut, Close_friends < 70);
+```
+
+48 observations remain
+
+### Attach final dataset
+
+```{r}
+# make new set called final, assign clean data to it
+fbDataset.final <- fbDataset.rmOut
+
+# attach final dataset so I can refer straight to the variable
+attach(fbDataset.final)
+```
+
 ### Summary post data clense
 
 ```{r}
-summary(fbDataset.rmNil);
+summary(fbDataset.final);
 ```
 
 ## Central tendency
@@ -119,35 +161,35 @@ summary(fbDataset.rmNil);
 ### Gender
 
 ```{r}
-mean(fbDataset.rmNil$Gender);
+mean(Gender);
 ```
 
 ```{r}
-median(fbDataset.rmNil$Gender);
+median(Gender);
 ```
 
 mvf() = mode
 ```{r}
-mfv(fbDataset.rmNil$Gender);
+mfv(Gender);
 ```
 
 ```{r}
-sd(fbDataset.rmNil$Gender);
+sd(Gender);
 ```
 
 ```{r}
-skewness(fbDataset.rmNil$Gender);
+skewness(Gender);
 ```
 
 ```{r}
-kurtosis(fbDataset.rmNil$Gender);
+kurtosis(Gender);
 ```
 
 #### Histogram
 
 ```{r}
 h <- hist(
-  fbDataset.rmNil$Gender, 
+  Gender, 
   breaks = 2, 
   main = "CSG1132 A2 Dataset \n Distribution of gender", 
   ylab = "Frequency of gender", 
@@ -157,18 +199,18 @@ h <- hist(
 
 # this draws the normal distribution curve over the histogram
 xfit <- seq(
-  min(fbDataset.rmNil$Gender), 
-  max(fbDataset.rmNil$Gender), 
-  length = 40
+  min(Gender), 
+  max(Gender), 
+  length = 100
 );
 
 yfit <- dnorm(
   xfit, 
-  mean = mean(fbDataset.rmNil$Gender), , 
-  sd = sd(fbDataset.rmNil$Gender)
+  mean = mean(Gender), , 
+  sd = sd(Gender)
 );
 
-yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$Gender);
+yfit <- yfit * diff(h$mids[1:2]) * length(Gender);
 
 lines(
   xfit, 
@@ -178,7 +220,7 @@ lines(
 ```
 
 ```{r}
-density <- density(fbDataset.rmNil$Gender);
+density <- density(Gender);
 
 plot(density,
   main = "CSG1132 A2 Dataset\nKernal Density: Gender",
@@ -191,35 +233,35 @@ plot(density,
 ### FB Logins
 
 ```{r}
-mean(fbDataset.rmNil$FB_Logins);
+mean(FB_Logins);
 ```
 
 ```{r}
-median(fbDataset.rmNil$FB_Logins);
+median(FB_Logins);
 ```
 
 mvf() = mode
 ```{r}
-mfv(fbDataset.rmNil$FB_Logins);
+mfv(FB_Logins);
 ```
 
 ```{r}
-sd(fbDataset.rmNil$FB_Logins);
+sd(FB_Logins);
 ```
 
 ```{r}
-skewness(fbDataset.rmNil$FB_Logins);
+skewness(FB_Logins);
 ```
 
 ```{r}
-kurtosis(fbDataset.rmNil$FB_Logins);
+kurtosis(FB_Logins);
 ```
 
 #### Histogram
 
 ```{r}
 h <- hist(
-  fbDataset.rmNil$FB_Logins, 
+  FB_Logins, 
   main = "CSG1132 A2 Dataset \n Distribution of FB Logins", 
   ylab = "Frequency of FB Logins", 
   xlab = "FB Logins",
@@ -227,18 +269,18 @@ h <- hist(
 );
 
 xfit <- seq(
-  min(fbDataset.rmNil$FB_Logins), 
-  max(fbDataset.rmNil$FB_Logins), 
+  min(FB_Logins), 
+  max(FB_Logins), 
   length=40
 );
 
 yfit <- dnorm(
   xfit, 
-  mean=mean(fbDataset.rmNil$FB_Logins), , 
-  sd=sd(fbDataset.rmNil$FB_Logins)
+  mean=mean(FB_Logins), , 
+  sd=sd(FB_Logins)
 );
 
-yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$FB_Logins);
+yfit <- yfit * diff(h$mids[1:2]) * length(FB_Logins);
 
 lines(
   xfit, 
@@ -248,7 +290,7 @@ lines(
 ```
 
 ```{r}
-density <- density(fbDataset.rmNil$FB_Logins);
+density <- density(FB_Logins);
 
 plot(
   density,
@@ -262,35 +304,35 @@ plot(
 ### FB Hours
 
 ```{r}
-mean(fbDataset.rmNil$Hours);
+mean(Hours);
 ```
 
 ```{r}
-median(fbDataset.rmNil$Hours);
+median(Hours);
 ```
 
 mvf() = mode
 ```{r}
-mfv(fbDataset.rmNil$Hours);
+mfv(Hours);
 ```
 
 ```{r}
-sd(fbDataset.rmNil$Hours);
+sd(Hours);
 ```
 
 ```{r}
-skewness(fbDataset.rmNil$Hours);
+skewness(Hours);
 ```
 
 ```{r}
-kurtosis(fbDataset.rmNil$Hours);
+kurtosis(Hours);
 ```
 
 #### Histogram
 
 ```{r}
 h <- hist(
-  fbDataset.rmNil$Hours, 
+  Hours, 
   main = "CSG1132 A2 Dataset \n Distribution of FB Hours", 
   ylab = "Frequency of FB Hours", 
   xlab = "FB Hours",
@@ -298,18 +340,18 @@ h <- hist(
 );
 
 xfit <- seq(
-  min(fbDataset.rmNil$Hours), 
-  max(fbDataset.rmNil$Hours), 
+  min(Hours), 
+  max(Hours), 
   length=40
 );
 
 yfit <- dnorm(
   xfit, 
-  mean = mean(fbDataset.rmNil$Hours), , 
-  sd = sd(fbDataset.rmNil$Hours)
+  mean = mean(Hours), , 
+  sd = sd(Hours)
 );
 
-yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$Hours);
+yfit <- yfit * diff(h$mids[1:2]) * length(Hours);
 
 lines(
   xfit, 
@@ -319,7 +361,7 @@ lines(
 ```
 
 ```{r}
-density <- density(fbDataset.rmNil$Hours);
+density <- density(Hours);
 
 plot(density,
   main = "CSG1132 A2 Dataset\nKernal Density: FB Hours",
@@ -332,35 +374,35 @@ plot(density,
 ### Facebook friends
 
 ```{r}
-mean(fbDataset.rmNil$FB_friends);
+mean(FB_friends);
 ```
 
 ```{r}
-median(fbDataset.rmNil$FB_friends);
+median(FB_friends);
 ```
 
 mvf() = mode
 ```{r}
-mfv(fbDataset.rmNil$FB_friends);
+mfv(FB_friends);
 ```
 
 ```{r}
-sd(fbDataset.rmNil$FB_friends);
+sd(FB_friends);
 ```
 
 ```{r}
-skewness(fbDataset.rmNil$FB_friends);
+skewness(FB_friends);
 ```
 
 ```{r}
-kurtosis(fbDataset.rmNil$FB_friends);
+kurtosis(FB_friends);
 ```
 
 #### Histogram
 
 ```{r}
 h <- hist(
-  fbDataset.rmNil$FB_friends, 
+  FB_friends, 
   main = "CSG1132 A2 Dataset \n Distribution of FB Friends", 
   ylab = "Frequency of FB Friends", 
   xlab = "FB Friends",
@@ -368,18 +410,18 @@ h <- hist(
 );
 
 xfit <- seq(
-  min(fbDataset.rmNil$FB_friends), 
-  max(fbDataset.rmNil$FB_friends), 
-  length = 40
+  min(FB_friends), 
+  max(FB_friends), 
+  length = 100
 );
 
 yfit <- dnorm(
   xfit, 
-  mean = mean(fbDataset.rmNil$FB_friends), , 
-  sd = sd(fbDataset.rmNil$FB_friends)
+  mean = mean(FB_friends), , 
+  sd = sd(FB_friends)
 );
 
-yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$FB_friends);
+yfit <- yfit * diff(h$mids[1:2]) * length(FB_friends);
 
 lines(
   xfit, 
@@ -389,7 +431,7 @@ lines(
 ```
 
 ```{r}
-density <- density(fbDataset.rmNil$FB_friends)
+density <- density(FB_friends)
 plot(density,
      main = "CSG1132 A2 Dataset\nKernal Density: FB Friends",
      xlab = "FB Friends",
@@ -401,57 +443,59 @@ plot(density,
 ### Close friends
 
 ```{r}
-mean(fbDataset.rmNil$Close_friends)
+mean(Close_friends)
 ```
 
 ```{r}
-median(fbDataset.rmNil$Close_friends)
+median(Close_friends)
 ```
 
 mvf() = mode
 ```{r}
-mfv(fbDataset.rmNil$Close_friends)
+mfv(Close_friends)
 ```
 
 ```{r}
-sd(fbDataset.rmNil$Close_friends)
+sd(Close_friends)
 ```
 
 ```{r}
-skewness(fbDataset.rmNil$Close_friends)
+skewness(Close_friends)
 ```
 
 ```{r}
-kurtosis(fbDataset.rmNil$Close_friends)
+kurtosis(Close_friends)
 ```
 
 #### Histogram
 
 ```{r}
 h <- hist(
-  fbDataset.rmNil$Close_friends, 
+  Close_friends, 
   main = "CSG1132 A2 Dataset \n Distribution of Close Friends", 
   ylab = "Frequency of Close Friends", 
   xlab = "Close Friends",
   col = "grey",
+  breaks = 5,
   
   # change the limit for x-axis, ylim for y-axis
-  xlim = c(0,100)
+  xlim = c(0, 60),
+  ylim = c(0, 20),
 );
 
 xfit <- seq(
-  min(fbDataset.rmNil$Close_friends), 
-  max(fbDataset.rmNil$Close_friends), 
-  length = 40
+  min(Close_friends), 
+  max(Close_friends), 
+  length = 100
 );
 
 yfit <- dnorm(
   xfit, 
-  mean = mean(fbDataset.rmNil$Close_friends), , 
-  sd = sd(fbDataset.rmNil$Close_friends)
+  mean = mean(Close_friends), , 
+  sd = sd(Close_friends)
 );
 
-yfit <- yfit * diff(h$mids[1:2]) * length(fbDataset.rmNil$Close_friends);
+yfit <- yfit * diff(h$mids[1:2]) * length(Close_friends);
 
 lines(
   xfit, 
@@ -461,7 +505,7 @@ lines(
 ```
 
 ```{r}
-density <- density(fbDataset.rmNil$Close_friends);
+density <- density(Close_friends);
 
 plot(
   density,
@@ -469,5 +513,5 @@ plot(
   xlab = "Close Friends",
   ylab = "Density",
   col = "red"
-)
+);
 ```
