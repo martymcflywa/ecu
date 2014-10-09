@@ -34,11 +34,11 @@
 
 ![std dev formula](http://www.socialresearchmethods.net/kb/Assets/images/statdes3.gif)
 
-Step 1: xbar = average
-Step 2: find (x - xbar)^2, x = score and xbar = average
-Step 3: ∑ = sum all answers
-Step 4: sum / n - 1, n = number of scores
-Step 5: square root (sum / n - 1)
+Step 1: xbar = average  
+Step 2: find (x - xbar)^2, x = score and xbar = average  
+Step 3: ∑ = sum all answers  
+Step 4: sum / n - 1, n = number of scores  
+Step 5: square root (sum / n - 1)  
 Step 6: hooray answer.
 
 #### Example:
@@ -65,9 +65,9 @@ Sqroot 258.332 = 16.073
 
 ![z-score formula](http://lrieber.coe.uga.edu/edit6900/resources/z_formula_large.gif)
 
-Step 1: x = score, μ = mean, sigma = std dev
-Step 2: x - mean
-Step 3: divide answer by std dev
+Step 1: x = score, μ = mean, sigma = std dev  
+Step 2: x - mean  
+Step 3: divide answer by std dev  
 Step 4: hooray answer.
 
 #### Example
