@@ -124,11 +124,22 @@ fbDataset.rmOut <- subset(fbDataset.rmOut, Close_friends < 70);
 
 48 observations remain
 
+### Create gender category
+
+```{r}
+# create new object, copy rmOut dataset
+fbDataset.genderCat <- fbDataset.rmOut;
+
+# create new category for gender
+fbDataset.genderCat$Gender_category <- cut(fbDataset.genderCat$Gender, c(0, 1, 0.5), include.lowest = TRUE, labels = c(0:1));
+
+```
+
 ### Attach final dataset
 
 ```{r}
 # make new set called final, assign clean data to it
-fbDataset.final <- fbDataset.rmOut
+fbDataset.final <- fbDataset.genderCat
 
 # attach final dataset so I can refer straight to the variable
 attach(fbDataset.final)
@@ -214,6 +225,12 @@ plot(density,
     ylab = "Density",
     col = "red"
 );
+```
+
+v2
+
+```{r}
+
 ```
 
 ## FB Logins
@@ -793,16 +810,37 @@ wilcox.test(FB_friends ~ Gender);
 cor.test(Gender, FB_friends, method = "spearman");
 ```
 
-### Regression test
+### Regression tests
+
+#### Box plot
 
 ```{r}
 plot(
-    Gender, 
+    Gender_category, 
     FB_friends,
-    main = "Gender by FB Friends",
+    main = "Box plot: \n Gender by FB Friends",
     xlab = "Gender",
     ylab = "FB Friends"
 );
+```
+
+#### Scatter plot
+
+```{r}
+# plot the variables
+plot(Gender, FB_friends)
+
+# draw mean
+abline(h = mean(FB_friends), col="darkblue")
+
+# draw regression
+abline(lm(FB_friends ~ Gender), col="red")
+```
+
+#### Summary
+
+```{r}
+summary(lm(FB_friends ~ Gender));
 ```
 
 ### Close friends and gender
