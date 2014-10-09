@@ -132,14 +132,27 @@ fbDataset.genderCat <- fbDataset.rmOut;
 
 # create new category for gender
 fbDataset.genderCat$Gender_category <- cut(fbDataset.genderCat$Gender, c(0, 1, 0.5), include.lowest = TRUE, labels = c(0:1));
+```
 
+### Create factors with value labels
+
+```{r}
+# create new object, copy genderCat dataset
+fbDataset.factors <- fbDataset.genderCat;
+
+# create factors with value labels
+fbDataset.factors$Gender_label <- factor(
+    fbDataset.factors$Gender, 
+    levels = c(0, 1),
+    labels = c("Female", "Male")
+);
 ```
 
 ### Attach final dataset
 
 ```{r}
 # make new set called final, assign clean data to it
-fbDataset.final <- fbDataset.genderCat
+fbDataset.final <- fbDataset.factors
 
 # attach final dataset so I can refer straight to the variable
 attach(fbDataset.final)
@@ -189,7 +202,7 @@ h <- hist(
     main = "Histogram: Gender", 
     ylab = "Frequency of gender", 
     xlab = "Gender",
-    col = "grey"
+    col = "grey",
 );
 
 # this draws the normal distribution curve over the histogram
@@ -225,12 +238,6 @@ plot(density,
     ylab = "Density",
     col = "red"
 );
-```
-
-v2
-
-```{r}
-
 ```
 
 ## FB Logins
@@ -340,8 +347,8 @@ Note: Can't get legend to appear.
 library(sm);
 #plot.new();
 
-male_logins <- subset(fbDataset.final$FB_Logins, fbDataset.final$Gender == 0);
-female_logins <- subset (fbDataset.final$FB_Logins, fbDataset.final$Gender == 1);
+male_logins <- subset(FB_Logins, Gender == 0);
+female_logins <- subset (FB_Logins, Gender == 1);
 
 logins.f <- factor(
     fbDataset.final,
@@ -807,12 +814,12 @@ wilcox.test(FB_friends ~ Gender);
 #### Spearman's rho test
 
 ```{r warning=FALSE}
-cor.test(Gender, FB_friends, method = "spearman");
+cor.test(Gender, FB_friends, alternative = "two.sided", method = "spearman");
 ```
 
-### Regression tests
+#### Regression tests
 
-#### Box plot
+##### Box plot
 
 ```{r}
 plot(
@@ -824,17 +831,23 @@ plot(
 );
 ```
 
-#### Scatter plot
+##### Scatter plot
 
 ```{r}
 # plot the variables
-plot(Gender, FB_friends)
+plot(
+    Gender,
+    FB_friends,
+    main = "Scatter plot: \n Gender by FB Friends",
+    xlab = "Gender",
+    ylab = "FB Friends"
+);
 
 # draw mean
-abline(h = mean(FB_friends), col="darkblue")
+abline(h = mean(FB_friends), col="darkblue");
 
 # draw regression
-abline(lm(FB_friends ~ Gender), col="red")
+abline(lm(FB_friends ~ Gender), col="red");
 ```
 
 #### Summary
@@ -857,6 +870,45 @@ wilcox.test(Close_friends ~ Gender);
 cor.test(Gender, Close_friends, method = "spearman");
 ```
 
+#### Regression tests
+
+##### Box plot
+
+```{r}
+plot(
+    Gender_category, 
+    Close_friends,
+    main = "Box plot: \n Gender by Close Friends",
+    xlab = "Gender",
+    ylab = "Close Friends"
+);
+```
+
+##### Scatter plot
+
+```{r}
+# plot the variables
+plot(
+    Gender,
+    Close_friends,
+    main = "Scatter plot: \n Gender by Close Friends",
+    xlab = "Gender",
+    ylab = "Close Friends"
+);
+
+# draw mean
+abline(h = mean(Close_friends), col="darkblue");
+
+# draw regression
+abline(lm(Close_friends ~ Gender), col="red");
+```
+
+#### Summary
+
+```{r}
+summary(lm(Close_friends ~ Gender));
+```
+
 ### Sociability and gender
 
 #### Mann-Whitney-Wilcoxon test
@@ -869,4 +921,43 @@ wilcox.test(Sociability ~ Gender);
 
 ```{r warning=FALSE}
 cor.test(Sociability, Gender, method = "spearman");
+```
+
+#### Regression tests
+
+##### Box plot
+
+```{r}
+plot(
+    Gender_category, 
+    Sociability,
+    main = "Box plot: \n Gender by Sociability",
+    xlab = "Gender",
+    ylab = "Sociability"
+);
+```
+
+##### Scatter plot
+
+```{r}
+# plot the variables
+plot(
+    Gender,
+    Sociability,
+    main = "Scatter plot: \n Gender by Sociability",
+    xlab = "Gender",
+    ylab = "Sociability"
+);
+
+# draw mean
+abline(h = mean(Sociability), col="darkblue");
+
+# draw regression
+abline(lm(Sociability ~ Gender), col="red");
+```
+
+#### Summary
+
+```{r}
+summary(lm(Sociability ~ Gender));
 ```
