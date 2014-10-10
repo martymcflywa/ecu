@@ -10,13 +10,13 @@ public class CalculatorListener implements ActionListener {
 
 	private CalculatorView theView;
 	private ShapeModel theModel;
-	private HitViewer theImage;
+	private HitViewerGreyscale theAnnulusImage;
 	
 	public CalculatorListener(CalculatorView theView, ShapeModel theModel) {
 		
 		this.theView = theView;
 		this.theModel = theModel;
-		this.theImage = theView.getPanelAnnulusImage();
+		this.theAnnulusImage = theView.getPanelAnnulusImage();
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -51,10 +51,10 @@ public class CalculatorListener implements ActionListener {
 				this.theView.setAnnulusMonteCalc(theModel.getMonteCalc());
 				
 				// call viewHits to get data from the array
-				this.theImage.viewHits(theModel.getHits());
+				//this.theAnnulusImage.viewHits(theModel.getHits());
 				
 				// refresh the image
-				this.theView.refreshAnnulusImage();
+				this.theView.refreshAnnulusImage(this.theModel.getHits());
 			}
 		}
 		

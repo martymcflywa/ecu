@@ -151,7 +151,7 @@ public class CalculatorView extends JFrame {
 		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(444, 444, 0, 1, 0, 0));
 		
 		// create panelMandelbrotImage container and add to panelRight
-		this.panelRight.add(this.panelMandelbrotImage = new HitViewerColour(444, 444, 0, 1, 0, 0));
+		//this.panelRight.add(this.panelMandelbrotImage = new HitViewerColour(444, 444, 0, 1, 0, 0));
 	}
 	
 	/**
@@ -259,6 +259,18 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
+	 * This method refreshes the annulus image. **OVERLOAD**
+	 * 
+	 * @param args unused
+	 */
+	public final void refreshAnnulusImage(double[][] hits) {
+		
+		this.panelRight.remove(this.panelAnnulusImage);
+		repaint();
+		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(444, 444, 0, 1, 0, 0, hits));
+	}
+	
+	/**
 	 * This method adds a titled, etched border to the panel.
 	 * 
 	 * @param JPanel thePanel - The panel which requires the border
@@ -320,7 +332,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final void setAnnulusMonteCalc(double area) {
 		
-		this.labelAnnulusApproxOutput.setText(Double.toString(area));
+		this.labelAnnulusMonteOutput.setText(Double.toString(area));
 	}
 	
 	/**
