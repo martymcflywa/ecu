@@ -39,6 +39,6 @@ public class CalculatorController {
 		this.theMandelbrot = theMandelbrot;
 		
 		// add the listeners
-		this.theView.addTheListeners(new CalculatorListener(this.theView, this.theAnnulus, this.greyscaleAnnulus));
+		this.theView.addTheListeners(new CalculatorListener(this.theView, this.theAnnulus));
 	}
 }

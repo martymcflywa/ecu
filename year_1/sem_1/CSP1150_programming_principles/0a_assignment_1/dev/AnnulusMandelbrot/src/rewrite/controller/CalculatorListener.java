@@ -10,13 +10,13 @@ public class CalculatorListener implements ActionListener {
 
 	private CalculatorView theView;
 	private ShapeModel theModel;
-	private HitViewer theImage;
+	private HitViewerGreyscale theAnnulusImage;
 	
-	public CalculatorListener(CalculatorView theView, ShapeModel theModel, HitViewer theImage) {
+	public CalculatorListener(CalculatorView theView, ShapeModel theModel) {
 		
 		this.theView = theView;
 		this.theModel = theModel;
-		this.theImage = theImage;
+		this.theAnnulusImage = theView.getPanelAnnulusImage();
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -41,14 +41,20 @@ public class CalculatorListener implements ActionListener {
 			// else,
 			} else {
 				
-				// set radius in the model
+				// set input radius to the model
 				this.theModel.setRadius(outRadius, inRadius);
 				
+				// get calculated approx area from the model, show it in the view
+				this.theView.setAnnulusAreaCalc(theModel.getAreaCalc());
+				
+				// get calculated monte carlo area from the model, show it in the view
+				this.theView.setAnnulusMonteCalc(theModel.getMonteCalc());
+				
 				// call viewHits to get data from the array
-				this.theImage.viewHits(theModel.getHits());
+				//this.theAnnulusImage.viewHits(theModel.getHits());
 				
 				// refresh the image
-				this.theView.refreshAnnulusImage();
+				this.theView.refreshAnnulusImage(this.theModel.getHits());
 			}
 		}
 		
