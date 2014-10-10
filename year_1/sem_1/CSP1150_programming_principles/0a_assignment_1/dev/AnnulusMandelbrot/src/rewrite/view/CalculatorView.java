@@ -335,6 +335,15 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
+	 * This method returns the annulus image.
+	 * 
+	 * @return HitViewerGreyscale panelAnnulusImage.
+	 */
+	public HitViewerGreyscale getPanelAnnulusImage() {
+		return this.panelAnnulusImage;
+	}
+	
+	/**
 	 * This method adds action listeners to the buttons.
 	 * 
 	 * @param ActionListener theListener

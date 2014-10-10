@@ -13,7 +13,7 @@ package rewrite.model;
 public class ShapeModel {
 
 	// declare constant grid size & samples
-	protected final int GRIDSIZE = 400;
+	protected final int GRIDSIZE = 444;
 	protected final int SAMPLES = 100;
 	
 	// declare 2d array
