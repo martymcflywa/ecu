@@ -61,18 +61,18 @@
 \setlength{\belowcaptionskip}{5pt}
 
 % adds links to references and colors them blue
-%\usepackage{hyperref}
-%\hypersetup{colorlinks=true,
-%			linkcolor=blue,
-%			citecolor=blue,
-%			urlcolor=blue}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+			linkcolor=blue,
+			citecolor=black,
+			urlcolor=blue}
 
 % apa style referencing
 \usepackage[sectionbib, natbibapa]{apacite}
 \usepackage{chbibref}
 
 % \citetapos for possesive citations
-\newcommand{\citetapos}[1]{\citeauthor{#1}{\textcolor{blue}{'s}} \citeyearpar{#1}}
+\newcommand{\citetapos}[1]{\citeauthor{#1}{\textcolor{black}{'s}} \citeyearpar{#1}}
 
 % front matter
 \title{Edith Cowan University\\CSG1132\\Communicating in an IT Environment\\Assignment 2}

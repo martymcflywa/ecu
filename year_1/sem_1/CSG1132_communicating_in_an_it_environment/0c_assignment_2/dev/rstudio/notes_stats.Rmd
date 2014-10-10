@@ -961,3 +961,5 @@ abline(lm(Sociability ~ Gender), col="red");
 ```{r}
 summary(lm(Sociability ~ Gender));
 ```
+
+## Theme 2: Gender is related to intensity of use 
