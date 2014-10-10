@@ -65,7 +65,7 @@ public class CalculatorView extends JFrame {
 	
 	// declare mandelbrot radio buttons
 	private CalculatorRadioButton radioMandelbrotCalculate;
-	private CalculatorRadioButton radioMandelbrotView;
+	private CalculatorRadioButton radioMandelbrotViewImage;
 	
 	// declare the group for the radio buttons
 	private final ButtonGroup GROUP_MANDELBROT_RADIOS = new ButtonGroup();
@@ -236,11 +236,11 @@ public class CalculatorView extends JFrame {
 		
 		// add radioButtons to the panel
 		this.panelMandelbrotBorder.add(this.radioMandelbrotCalculate = new CalculatorRadioButton("Calculate area", 0, 3), this.radioMandelbrotCalculate.gbc_radioButton);
-		this.panelMandelbrotBorder.add(this.radioMandelbrotView = new CalculatorRadioButton("View image", 0, 4), this.radioMandelbrotView.gbc_radioButton);
+		this.panelMandelbrotBorder.add(this.radioMandelbrotViewImage = new CalculatorRadioButton("View image", 0, 4), this.radioMandelbrotViewImage.gbc_radioButton);
 		
 		// add radioButtons to a group, so only one can be selected at a time
 		this.GROUP_MANDELBROT_RADIOS.add(this.radioMandelbrotCalculate);
-		this.GROUP_MANDELBROT_RADIOS.add(this.radioMandelbrotView);
+		this.GROUP_MANDELBROT_RADIOS.add(this.radioMandelbrotViewImage);
 		
 		// set calculate radio to be default selection
 		this.radioMandelbrotCalculate.setSelected(true);
@@ -272,6 +272,12 @@ public class CalculatorView extends JFrame {
 		
 		// create new image, pass gridsize, grid constraints and hits array as arguments
 		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(this.gridSize, this.gridSize, 0, 1, 0, 0, hits));
+	}
+	
+	public final void refreshMandelbrotGreyscaleImage(double[][] hits) {
+		
+		this.panelRight.remove(this.panelMandelbrotImage);
+		this.panelRight.add(this.panelMandelbrotImage = new HitViewerColour(this.gridSize, this.gridSize, 0, 1, 0, 0, hits));
 	}
 	
 	/**
@@ -369,7 +375,7 @@ public class CalculatorView extends JFrame {
 	 * 
 	 * @param ActionListener theListener
 	 */
-	public final void addTheListeners(ActionListener theListener) {
+	public final void addCalculatorListener(ActionListener theListener) {
 		
 		// add listener to annulus calculator buttons
 		this.buttonAnnulusCalculate.addActionListener(theListener);
@@ -382,6 +388,42 @@ public class CalculatorView extends JFrame {
 		this.buttonMandelbrotZoomIn.addActionListener(theListener);
 		this.buttonMandelbrotZoomReset.addActionListener(theListener);
 		this.buttonMandelbrotSave.addActionListener(theListener);
+	}
+	
+	/**
+	 * This method returns the annulus calculate button.
+	 * 
+	 * @return CalculatorButton buttonAnnulusCalculate.
+	 */
+	public final CalculatorButton getButtonAnnulusCalculate() {
+		return buttonAnnulusCalculate;
+	}
+	
+	/**
+	 * This method returns the mandelbrot OK button.
+	 * 
+	 * @return CalculatorButton buttonMandelbrotOK.
+	 */
+	public final CalculatorButton getButtonMandelbrotOK() {
+		return buttonMandelbrotOK;
+	}
+	
+	/**
+	 * This method returns the mandelbrot calculate radio button.
+	 * 
+	 * @return CalculatorRadioButton radioMandelbrotCalculate.
+	 */
+	public final CalculatorRadioButton getRadioMandelbrotCalculate() {
+		return radioMandelbrotCalculate;
+	}
+	
+	/**
+	 * This method returns the mandelbrot view image radio button.
+	 * 
+	 * @return CalculatorRadioButton radioMandelbrotViewImage.
+	 */
+	public final CalculatorRadioButton getRadioMandelbrotViewImage() {
+		return radioMandelbrotViewImage;
 	}
 	
 	/**

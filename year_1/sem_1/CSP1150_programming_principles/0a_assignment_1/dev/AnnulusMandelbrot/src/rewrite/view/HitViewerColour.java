@@ -21,6 +21,15 @@ import java.util.Random;
 @SuppressWarnings("serial")
 public class HitViewerColour extends HitViewer implements MouseListener, MouseMotionListener {
 
+	/**
+	 * 
+	 * @param width
+	 * @param height
+	 * @param rows
+	 * @param cols
+	 * @param hgap
+	 * @param vgap
+	 */
 	public HitViewerColour(int width, int height, int rows, int cols, int hgap, int vgap) {
 		
 		this.width = width;
@@ -41,6 +50,43 @@ public class HitViewerColour extends HitViewer implements MouseListener, MouseMo
 		
 		// use gridlayout, set the rows, columns and padding
 		this.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
+	}
+	
+	/**
+	 * Overloading to accept hits array.
+	 * Construct the panel which contains the image.
+	 * 
+	 * @param width
+	 * @param height
+	 * @param rows
+	 * @param cols
+	 * @param hgap
+	 * @param vgap
+	 * @param hits
+	 */
+	public HitViewerColour(int width, int height, int rows, int cols, int hgap, int vgap, double[][] hits) {
+		
+		this.width = width;
+		this.height = height;
+		
+		// construct a BufferedImage of the right size and type
+		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+		
+		// make it all white to start with
+		Graphics2D g2 = image.createGraphics();
+		g2 = image.createGraphics();
+		g2.setColor(Color.WHITE);
+		g2.fillRect(0, 0, width, height);
+		
+		// add mouse listeners
+		addMouseListener(this);
+		addMouseMotionListener(this);
+		
+		// use gridlayout, set the rows, columns and padding
+		this.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
+		
+		// call viewHits to generate the image
+		viewHits(hits);
 	}
 	
 	/**
