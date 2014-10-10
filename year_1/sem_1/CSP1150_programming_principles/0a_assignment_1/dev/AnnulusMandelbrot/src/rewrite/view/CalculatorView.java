@@ -151,7 +151,7 @@ public class CalculatorView extends JFrame {
 		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(444, 444, 0, 1, 0, 0));
 		
 		// create panelMandelbrotImage container and add to panelRight
-		//this.panelRight.add(this.panelMandelbrotImage = new HitViewerColour(444, 444, 0, 1, 0, 0));
+		this.panelRight.add(this.panelMandelbrotImage = new HitViewerColour(444, 444, 0, 1, 0, 0));
 	}
 	
 	/**
@@ -248,25 +248,16 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
-	 * This method refreshes the annulus image.
+	 * This method refreshes the annulus image. Removes current image panels
+	 * from the parent container, then creates a new image, passing 
+	 * the hits array as an argument along with size and position.
 	 * 
-	 * @param args unused
-	 */
-	public final void refreshAnnulusImage() {
-		
-		this.panelRight.remove(this.panelAnnulusImage);
-		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(444, 444, 0, 1, 0, 0));
-	}
-	
-	/**
-	 * This method refreshes the annulus image. **OVERLOAD**
-	 * 
-	 * @param args unused
+	 * @param double[][] hits
 	 */
 	public final void refreshAnnulusImage(double[][] hits) {
 		
 		this.panelRight.remove(this.panelAnnulusImage);
-		repaint();
+		this.panelRight.remove(this.panelMandelbrotImage);
 		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(444, 444, 0, 1, 0, 0, hits));
 	}
 	
