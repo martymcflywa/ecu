@@ -227,6 +227,15 @@ lines(
 );
 ```
 
+### Q-Q plot
+
+Identifies normality of distribution.
+
+```{r}
+qqnorm(Gender, main = "Normal Q-Q Plot: Gender");
+qqline(Gender, col = "red");
+```
+
 ### Kernal density
 
 ```{r}
@@ -718,12 +727,15 @@ kurtosis(Sociability)
 ### Histogram
 
 ```{r}
+sociability.bins = seq(min(Sociability), max(Sociability), 1);
+
 h <- hist(
     Sociability, 
     main = "Histogram: Sociability", 
     ylab = "Frequency of Sociability", 
     xlab = "Sociability",
     col = "grey",
+    breaks = c(1, 2, 3, 4, 5),
     ylim = c(0, 30)
 );
 
@@ -805,16 +817,29 @@ Non-parametric tests chosen because the variables are non-normally distributed.
 
 ### Facebook friends and gender
 
+#### Correlation coefficient
+
+```{r}
+cor(Gender, FB_friends);
+
+# spearman
+cor(Gender, FB_friends, method = "spearman");
+```
+
+```{r}
+plot(Gender, FB_friends);
+```
+
 #### Mann-Whitney-Wilcoxon test
 
 ```{r warning=FALSE}
-wilcox.test(FB_friends ~ Gender);
+wilcox.test(FB_friends ~ Gender, alternative = "less");
 ```
 
 #### Spearman's rho test
 
 ```{r warning=FALSE}
-cor.test(Gender, FB_friends, alternative = "two.sided", method = "spearman");
+cor.test(Gender, FB_friends, alternative = "less", method = "spearman", exact = FALSE);
 ```
 
 #### Regression tests
@@ -858,6 +883,15 @@ summary(lm(FB_friends ~ Gender));
 
 ### Close friends and gender
 
+#### Correlation coefficient
+
+```{r}
+cor(Gender, Close_friends);
+
+# spearman
+cor(Gender, Close_friends, method = "spearman");
+```
+
 #### Mann-Whitney-Wilcoxon test
 
 ```{r warning=FALSE}
@@ -867,7 +901,7 @@ wilcox.test(Close_friends ~ Gender);
 #### Spearman's rho test
 
 ```{r warning=FALSE}
-cor.test(Gender, Close_friends, method = "spearman");
+cor.test(Gender, Close_friends, alternative = "less", method = "spearman", exact = FALSE);
 ```
 
 #### Regression tests
@@ -911,6 +945,15 @@ summary(lm(Close_friends ~ Gender));
 
 ### Sociability and gender
 
+#### Correlation coefficient
+
+```{r}
+cor(Gender, Sociability);
+
+# spearman
+cor(Gender, Sociability, method = "spearman");
+```
+
 #### Mann-Whitney-Wilcoxon test
 
 ```{r warning=FALSE}
@@ -920,7 +963,7 @@ wilcox.test(Sociability ~ Gender);
 #### Spearman's rho test
 
 ```{r warning=FALSE}
-cor.test(Sociability, Gender, method = "spearman");
+cor.test(Gender, Sociability, alternative = "less", method = "spearman", exact = FALSE);
 ```
 
 #### Regression tests
@@ -963,3 +1006,77 @@ summary(lm(Sociability ~ Gender));
 ```
 
 ## Theme 2: Gender is related to intensity of use 
+
+### Gender and Facebook hours
+
+### Sociability and gender
+
+#### Correlation coefficient
+
+```{r}
+cor(Gender, Hours);
+
+# spearman
+cor(Gender, Hours, method = "spearman");
+```
+
+#### Correlation coefficient
+
+```{r}
+cor(Gender, Hours);
+```
+
+```{r}
+plot(Gender, Hours);
+```
+
+#### Mann-Whitney-Wilcoxon test
+
+```{r warning=FALSE}
+wilcox.test(Gender, Hours, alternative = "two.sided");
+```
+
+#### Spearman's rho test
+
+```{r warning=FALSE}
+cor.test(Gender, Hours, alternative = "less", method = "spearman", exact = FALSE);
+```
+
+#### Regression tests
+
+##### Box plot
+
+```{r}
+plot(
+    Gender_category, 
+    Hours,
+    main = "Box plot: \n Gender by FB Hours",
+    xlab = "Gender",
+    ylab = "FB Hours"
+);
+```
+
+##### Scatter plot
+
+```{r}
+# plot the variables
+plot(
+    Gender,
+    Hours,
+    main = "Scatter plot: \n Gender by FB Hours",
+    xlab = "Gender",
+    ylab = "FB Hours"
+);
+
+# draw mean
+abline(h = mean(Hours), col="darkblue");
+
+# draw regression
+abline(lm(Hours ~ Gender), col="red");
+```
+
+#### Summary
+
+```{r}
+summary(lm(Gender ~ Hours));
+```
