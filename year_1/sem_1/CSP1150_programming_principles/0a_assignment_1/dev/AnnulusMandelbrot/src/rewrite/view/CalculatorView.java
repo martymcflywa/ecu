@@ -17,6 +17,9 @@ import javax.swing.border.*;
 @SuppressWarnings("serial")
 public class CalculatorView extends JFrame {
 	
+	// declare gridsize, will get from model
+	private int gridSize;
+	
 	// declare the frame
 	private CalculatorFrame theFrame;
 	
@@ -76,10 +79,15 @@ public class CalculatorView extends JFrame {
 	
 	/**
 	 * The CalculatorView constructor.
+	 * Set the gridsize at construction,
+	 * to be used by the hitviewers.
 	 * 
-	 * @param args unused
+	 * @param int gridSize - The model's gridsize.
 	 */
-	public CalculatorView() {
+	public CalculatorView(int gridSize) {
+		
+		//
+		this.gridSize = gridSize;
 		
 		// create the frame and panels
 		initFrame();
@@ -148,10 +156,10 @@ public class CalculatorView extends JFrame {
 		
 		// create panelAnnulusImage container and add to panelRight
 		// **NEED TO USE 444 as GRIDSIZE** fits exactly in the panel
-		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(444, 444, 0, 1, 0, 0));
+		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(this.gridSize, this.gridSize, 0, 1, 0, 0));
 		
 		// create panelMandelbrotImage container and add to panelRight
-		this.panelRight.add(this.panelMandelbrotImage = new HitViewerColour(444, 444, 0, 1, 0, 0));
+		this.panelRight.add(this.panelMandelbrotImage = new HitViewerColour(this.gridSize, this.gridSize, 0, 1, 0, 0));
 	}
 	
 	/**
@@ -256,9 +264,14 @@ public class CalculatorView extends JFrame {
 	 */
 	public final void refreshAnnulusImage(double[][] hits) {
 		
+		// remove both image panels from parent container, otherwise image will be added below,
+		// since the mandelbrot image will shift up, and take the space of the annulus image
+		// ** TODO: create separate containers so only one needs to be removed
 		this.panelRight.remove(this.panelAnnulusImage);
 		this.panelRight.remove(this.panelMandelbrotImage);
-		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(444, 444, 0, 1, 0, 0, hits));
+		
+		// create new image, pass gridsize, grid constraints and hits array as arguments
+		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(this.gridSize, this.gridSize, 0, 1, 0, 0, hits));
 	}
 	
 	/**
@@ -268,6 +281,7 @@ public class CalculatorView extends JFrame {
 	 * @param String borderTitle - The title of the border
 	 */
 	private final void addBorder(JPanel thePanel, String borderTitle) {
+		
 		thePanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), borderTitle, TitledBorder.LEADING, TitledBorder.TOP, null, null));
 	}
 	
@@ -279,6 +293,7 @@ public class CalculatorView extends JFrame {
 	 * @return double - Outer radius.
 	 */
 	public final double getAnnulusOutRadius() {
+		
 		return Double.parseDouble(textFieldAnnulusOutRadius.getText());
 	}
 	
@@ -290,6 +305,7 @@ public class CalculatorView extends JFrame {
 	 * @return double - Inner radius.
 	 */
 	public final double getAnnulusInRadius() {
+		
 		return Double.parseDouble(textFieldAnnulusInRadius.getText());
 	}
 	
@@ -301,6 +317,7 @@ public class CalculatorView extends JFrame {
 	 * @return double - Area of annulus.
 	 */
 	public final double getAnnulusAreaCalc() {
+		
 		return Double.parseDouble(labelAnnulusApproxOutput.getText());
 	}
 	
@@ -343,6 +360,7 @@ public class CalculatorView extends JFrame {
 	 * @return HitViewerGreyscale panelAnnulusImage.
 	 */
 	public HitViewerGreyscale getPanelAnnulusImage() {
+		
 		return this.panelAnnulusImage;
 	}
 	

@@ -55,10 +55,14 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	}
 	
 	/**
-	 * Construct the panel.
+	 * Construct the panel which contains the image.
 	 * 
-	 * @param width
-	 * @param height
+	 * @param int width - The grid width.
+	 * @param int height - The grid height.
+	 * @param int rows - How many rows in the grid.
+	 * @param int cols - How many columns in the grid.
+	 * @param int hgap - Horizontal padding, pixels.
+	 * @param int vgap - Vertical padding, pixels.
 	 */
 	public HitViewer(int width, int height, int rows, int cols, int hgap, int vgap) {
 		

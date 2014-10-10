@@ -13,7 +13,7 @@ public class CalculatorMVC {
 		MandelbrotModel theMandelbrot = new MandelbrotModel();
 		
 		// create the view
-		CalculatorView theView = new CalculatorView();
+		CalculatorView theView = new CalculatorView(theAnnulus.getGridSize());
 		
 		// create the controller
 		CalculatorController theController = new CalculatorController(theView, theAnnulus, theMandelbrot);

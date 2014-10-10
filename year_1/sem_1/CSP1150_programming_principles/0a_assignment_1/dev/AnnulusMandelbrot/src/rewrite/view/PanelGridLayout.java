@@ -45,24 +45,4 @@ public class PanelGridLayout extends JPanel {
 		// use gridlayout, set the rows, columns and padding
 		this.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
 	}
-	
-	/**
-	 * Overloading the panel constructor, to be used for panels
-	 * that are children of other JPanels.
-	 * 
-	 * @param thePanel
-	 * @param rows
-	 * @param cols
-	 * @param hgap
-	 * @param vgap
-	 */
-	public PanelGridLayout(JPanel thePanel, int rows, int cols, int hgap, int vgap) {
-		
-		// **DEBUGGING** give the panel a colour
-		this.setBackground(Color.BLUE);
-		
-		// use gridlayout, set the rows, columns and padding
-		this.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
-		
-	}
 }
