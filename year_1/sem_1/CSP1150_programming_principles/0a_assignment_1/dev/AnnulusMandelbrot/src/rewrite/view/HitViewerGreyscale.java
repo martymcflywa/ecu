@@ -86,6 +86,7 @@ public class HitViewerGreyscale extends HitViewer implements MouseListener, Mous
 		// use gridlayout, set the rows, columns and padding
 		this.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
 		
+		// call viewHits to generate the image
 		viewHits(hits);
 	}
 }

@@ -21,8 +21,8 @@ import rewrite.view.*;
 public class CalculatorController {
 
 	// declare the model/s
-	private AnnulusModel theAnnulus;
-	private MandelbrotModel theMandelbrot;
+	private AnnulusModel theAnnulusModel;
+	private MandelbrotModel theMandelbrotModel;
 	
 	// declare the view
 	private CalculatorView theView;
@@ -34,14 +34,14 @@ public class CalculatorController {
 	 * @param AnnulusModel theAnnulus - Import the annulus model.
 	 * @param MandelbrotModel theMandelbrot - Import the mandelbrot model.
 	 */
-	public CalculatorController(CalculatorView theView, AnnulusModel theAnnulus, MandelbrotModel theMandelbrot) {
+	public CalculatorController(CalculatorView theView, AnnulusModel theAnnulusModel, MandelbrotModel theMandelbrotModel) {
 		
 		// assign the imported objects to their respective fields
 		this.theView = theView;
-		this.theAnnulus = theAnnulus;
-		this.theMandelbrot = theMandelbrot;
+		this.theAnnulusModel = theAnnulusModel;
+		this.theMandelbrotModel = theMandelbrotModel;
 		
 		// add the listeners
-		this.theView.addTheListeners(new CalculatorListener(this.theView, this.theAnnulus));
+		this.theView.addCalculatorListener(new CalculatorListener(this.theView, this.theAnnulusModel, this.theMandelbrotModel));
 	}
 }
