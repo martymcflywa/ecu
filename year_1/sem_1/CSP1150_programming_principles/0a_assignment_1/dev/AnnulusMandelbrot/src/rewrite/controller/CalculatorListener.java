@@ -10,13 +10,11 @@ public class CalculatorListener implements ActionListener {
 
 	private CalculatorView theView;
 	private ShapeModel theModel;
-	private HitViewerGreyscale theAnnulusImage;
 	
 	public CalculatorListener(CalculatorView theView, ShapeModel theModel) {
 		
 		this.theView = theView;
 		this.theModel = theModel;
-		this.theAnnulusImage = theView.getPanelAnnulusImage();
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -49,9 +47,6 @@ public class CalculatorListener implements ActionListener {
 				
 				// get calculated monte carlo area from the model, show it in the view
 				this.theView.setAnnulusMonteCalc(theModel.getMonteCalc());
-				
-				// call viewHits to get data from the array
-				//this.theAnnulusImage.viewHits(theModel.getHits());
 				
 				// refresh the image
 				this.theView.refreshAnnulusImage(this.theModel.getHits());

@@ -26,14 +26,17 @@ public class CalculatorController {
 	
 	// declare the view
 	private CalculatorView theView;
-	
-	// declare the image generators
-	private HitViewerGreyscale greyscaleAnnulus;
-	private HitViewerColour colourMandelbrot;
-	
+
+	/**
+	 * The controller constructor.
+	 * 
+	 * @param CalculatorView theView - Import the view.
+	 * @param AnnulusModel theAnnulus - Import the annulus model.
+	 * @param MandelbrotModel theMandelbrot - Import the mandelbrot model.
+	 */
 	public CalculatorController(CalculatorView theView, AnnulusModel theAnnulus, MandelbrotModel theMandelbrot) {
 		
-		// assign the incoming objects to their fields
+		// assign the imported objects to their respective fields
 		this.theView = theView;
 		this.theAnnulus = theAnnulus;
 		this.theMandelbrot = theMandelbrot;

@@ -55,10 +55,14 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	}
 	
 	/**
-	 * Construct the panel.
+	 * Construct the panel which contains the image.
 	 * 
-	 * @param width
-	 * @param height
+	 * @param int width - The grid width.
+	 * @param int height - The grid height.
+	 * @param int rows - How many rows in the grid.
+	 * @param int cols - How many columns in the grid.
+	 * @param int hgap - Horizontal padding, pixels.
+	 * @param int vgap - Vertical padding, pixels.
 	 */
 	public HitViewer(int width, int height, int rows, int cols, int hgap, int vgap) {
 		
@@ -134,34 +138,27 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	/**
 	 * Overriding paintComponent, the world gets drawn here.
 	 * 
-	 * @param args unused
+	 * @param Graphics g
 	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		
-		// **NEEDS TESTING** with annulus image
-		
-		// seems to remove the image underneath
-		super.paintComponent(g);
-		
-		if(zooming) {
-			g.setColor(Color.DARK_GRAY);
-			g.drawRect(mouseRect.x, mouseRect.y, mouseRect.width, mouseRect.height);
-		} else {
-			g.drawImage(image, 0, 0, null);
-		}
-		
 		// the original lines - may need this again
-//		super.paintComponent(g);
-//		g.drawImage(image, 0, 0, null);
+		super.paintComponent(g);
+		g.drawImage(image, 0, 0, null);
 	}
 	
-	// **MAY NEED THIS AGAIN** doesn't replace the image
-//	public void paint(Graphics g) {
-//		super.paint(g);
-//		g.setColor(Color.DARK_GRAY);
-//		g.drawRect(mouseRect.x, mouseRect.y, mouseRect.width, mouseRect.height);
-//	}
+	/**
+	 * Overriding paint to draw rectangles over the image.
+	 * 
+	 * @param Graphics g
+	 */
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		g.setColor(Color.DARK_GRAY);
+		g.drawRect(mouseRect.x, mouseRect.y, mouseRect.width, mouseRect.height);
+	}
 	
 	/**
 	 * This method defines the action to take when the mouse button is released.

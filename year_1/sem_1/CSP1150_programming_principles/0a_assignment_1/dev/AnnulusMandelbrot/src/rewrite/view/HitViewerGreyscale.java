@@ -20,6 +20,17 @@ import java.awt.event.*;
 @SuppressWarnings("serial")
 public class HitViewerGreyscale extends HitViewer implements MouseListener, MouseMotionListener {
 	
+	/**
+	 * Construct the panel which contains the image.
+	 * Using this constructor to create empty placeholder at the start.
+	 * 
+	 * @param int width - The grid width.
+	 * @param int height - The grid height.
+	 * @param int rows - How many rows in the grid.
+	 * @param int cols - How many columns in the grid.
+	 * @param int hgap - Horizontal padding, pixels.
+	 * @param int vgap - Vertical padding, pixels.
+	 */
 	public HitViewerGreyscale(int width, int height, int rows, int cols, int hgap, int vgap) {
 		
 		this.width = width;
@@ -42,6 +53,18 @@ public class HitViewerGreyscale extends HitViewer implements MouseListener, Mous
 		this.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
 	}
 	
+	/**
+	 * Overloading to accept hits array.
+	 * Construct the panel which contains the image.
+	 * 
+	 * @param int width - The grid width.
+	 * @param int height - The grid height.
+	 * @param int rows - How many rows in the grid.
+	 * @param int cols - How many columns in the grid.
+	 * @param int hgap - Horizontal padding, pixels.
+	 * @param int vgap - Vertical padding, pixels.
+	 * @param double[][] hits - The hits array.
+	 */
 	public HitViewerGreyscale(int width, int height, int rows, int cols, int hgap, int vgap, double[][] hits) {
 		
 		this.width = width;
