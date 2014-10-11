@@ -86,7 +86,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public CalculatorView(int gridSize) {
 		
-		//
+		// set the gridsize
 		this.gridSize = gridSize;
 		
 		// create the frame and panels
