@@ -3,6 +3,17 @@
  * 
  * The players are in different classes
  * 
+ * SCORES:
+ * 
+ * |      | TFT | STFT | GRIM | PAVL | MEAN  |
+ * |------|-----|------|------|------|-------|
+ * | TFT  | 30  | 25   | 30   | 30   | 28.75 |
+ * | STFT | 25  | 10   | 13   | 23   | 17.75 |
+ * | GRIM | 30  | 13   | 30   | 30   | 25.75 |
+ * | PAVL | 30  | 18   | 30   | 30   | 27    |
+ * 
+ * HIGHEST PAYOFF MEAN: TFT
+ * 
  * @author CSP1150
  * @version 1
  */
@@ -12,19 +23,18 @@ public class IPDTest {
 	private static final int NUMBER_OF_GAMES = 10;
 
 	/** This is the first player */
-	// private static HumanPlayer player0 = new HumanPlayer();
-	// private static TitForTat player0 = new TitForTat();
-	private static SuspiciousTitForTat player0 = new SuspiciousTitForTat();
-	// private static Grim player0 = new Grim();
-	// private static Pavlov player0 = new Pavlov();
+	private static HumanPlayer player0 = new HumanPlayer();
+	//private static TitForTat player0 = new TitForTat();
+	//private static SuspiciousTitForTat player0 = new SuspiciousTitForTat();
+	//private static Grim player0 = new Grim();
+	//private static Pavlov player0 = new Pavlov();
 
 	/** This is the second player */
-	// private static HumanPlayer player1 = new HumanPlayer();
-	// private static TitForTat player1 = new TitForTat();
-	// private static SuspiciousTitForTat player1 = new SuspiciousTitForTat();
-	private static Grim player1 = new Grim();
-
-	// private static Pavlov player1 = new Pavlov();
+	private static HumanPlayer player1 = new HumanPlayer();
+	//private static TitForTat player1 = new TitForTat();
+	//private static SuspiciousTitForTat player1 = new SuspiciousTitForTat();
+	//private static Grim player1 = new Grim();
+	//private static Pavlov player1 = new Pavlov();
 
 	public static void main(String[] args) {
 		
