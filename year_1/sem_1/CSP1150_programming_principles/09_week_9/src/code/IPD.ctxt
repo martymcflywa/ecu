@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=firstMove\ secondMove
+comment0.target=int\ getScore(char,\ char)
+comment0.text=\n\ How\ many\ dollars\ for\ the\ first\ player?\n\ \n\ @param\ firstMove\ the\ first\ move\n\ @param\ secondMove\ the\ second\ move\n\ \n\ @return\ the\ payout\ for\ the\ first\ player\n
+numComments=1
