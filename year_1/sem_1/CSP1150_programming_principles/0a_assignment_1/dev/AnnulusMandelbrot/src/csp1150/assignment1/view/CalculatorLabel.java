@@ -1,15 +1,15 @@
 package csp1150.assignment1.view;
 
-// import layout manager
+// the layout manager
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-// import swing components
+// swing components
 import javax.swing.*;
 
 /**
- * This class creates the labels for the view. The constructor accepts
- * gridbag constraints parameters and stores them in gbc_label.
+ * This class inherits from JLabel and creates the labels for the view.
+ * The constructor accepts gridbag constraints parameters and stores them in gbc_label.
  * These values are used for gridbag layout.
  * 
  * @author Martin Ponce ID# 10371381
@@ -23,17 +23,17 @@ public class CalculatorLabel extends JLabel {
 	protected GridBagConstraints gbc_label;
 	
 	/**
-	 * The constructor for JLabels. 
+	 * The constructor. 
 	 * 
 	 * @param String theWords - What the label will say.
-	 * @param String theAnchor - Possible values: north, south, west, east. Using "none" for labels that do not use anchor.
-	 * @param int gridwidth - The number of columns the label spans, use 1 as default.
-	 * @param int insetTop - Padding top.
-	 * @param int insetLeft - Padding left.
-	 * @param int insetRight - Padding right.
-	 * @param int insetBottom - Padding bottom.
-	 * @param int gridx - The column position.
-	 * @param int gridy - The row position.
+	 * @param String theAnchor - Possible values: "north", "south", "west", "east". Use "none" for labels that do not use anchor.
+	 * @param int gridwidth - GridBagConstraints: The number of columns the label spans, use 1 as default.
+	 * @param int insetTop - GridBagConstraints: Padding top.
+	 * @param int insetLeft - GridBagConstraints: Padding left.
+	 * @param int insetRight - GridBagConstraints: Padding right.
+	 * @param int insetBottom - GridBagConstraints: Padding bottom.
+	 * @param int gridx - GridBagConstraints: The column position.
+	 * @param int gridy - GridBagConstraints: The row position.
 	 */
 	public CalculatorLabel(String theWords, String theAnchor, int gridwidth, int insetTop, int insetLeft, int insetRight, int insetBottom, int gridx, int gridy) {
 		
@@ -82,7 +82,7 @@ public class CalculatorLabel extends JLabel {
 	/**
 	 * This method returns the JLabel.
 	 * 
-	 * @return JLabel theLabel;
+	 * @return JLabel - This.
 	 */
 	public final JLabel getLabel() {
 		return this;

@@ -20,8 +20,9 @@ import java.awt.event.*;
 import javax.swing.SwingUtilities;
 
 /**
- * This class generates images of the shapes. Uses mouse listeners so the user
- * can draw rectangles on the image and zoom in on the desired area.
+ * This class inherits from PanelGridLayout and generates images of the shapes.
+ * Uses mouse listeners so the user can draw rectangles on the image and zoom in on the desired area.
+ * Uses GridLayout manager.
  * 
  * @author Martin Ponce ID# 10371381 & Prof. Hingston
  * @version 5.1.0
@@ -59,10 +60,10 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	 * 
 	 * @param int width - The grid width.
 	 * @param int height - The grid height.
-	 * @param int rows - How many rows in the grid.
-	 * @param int cols - How many columns in the grid.
-	 * @param int hgap - Horizontal padding, pixels.
-	 * @param int vgap - Vertical padding, pixels.
+	 * @param int rows - GridLayoutConstraints: How many rows in the grid.
+	 * @param int cols - GridLayoutConstraints: How many columns in the grid.
+	 * @param int hgap - GridLayoutConstraints: Horizontal padding, pixels.
+	 * @param int vgap - GridLayoutConstraints: Vertical padding, pixels.
 	 */
 	public HitViewer(int width, int height, int rows, int cols, int hgap, int vgap) {
 		
@@ -79,7 +80,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 		g2.setColor(Color.WHITE);
 		g2.fillRect(0, 0, width, height);
 		
-		// add mouse listeners
+		// add mouse listeners to the panel
 		addMouseListener(this);
 		addMouseMotionListener(this);
 		
@@ -227,7 +228,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	/**
 	 * This method defines the action to take when the left mouse button is clicked.
 	 * 
-	 * @param args unused
+	 * @param MouseEvent me.
 	 */
 	public void mouseClicked(MouseEvent me) {
 		

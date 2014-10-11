@@ -1,15 +1,15 @@
 package csp1150.assignment1.view;
 
-// import layout manager
+// the layout manager
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-// import swing components
+// swing components
 import javax.swing.*;
 
 /**
- * This class creates the textfields for the view. The constructor accepts
- * gridbag constraints parameters and stores them in gbc_textField.
+ * This class inherits from JTextField and creates the textfields for the view.
+ * The constructor accepts gridbag constraints parameters and stores them in gbc_textField.
  * These values are used for gridbag layout.
  * 
  * @author Martin Ponce ID# 10371381
@@ -22,6 +22,13 @@ public class CalculatorTextField extends JTextField {
 	// declare the gridbag constraints
 	protected GridBagConstraints gbc_textField;
 	
+	/**
+	 * The constructor.
+	 * 
+	 * @param int length - How many characters the textfield can hold.
+	 * @param int gridx - GridBagConstraints: The column position.
+	 * @param int gridy -GridBagConstraints: The row position.
+	 */
 	public CalculatorTextField(int length, int gridx, int gridy) {
 
 		// set textfield length

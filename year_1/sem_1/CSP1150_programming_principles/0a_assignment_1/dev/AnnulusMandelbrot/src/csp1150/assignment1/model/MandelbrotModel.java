@@ -6,8 +6,8 @@ package csp1150.assignment1.model;
  * isInside() method.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.0.0
- * @since 20141004
+ * @version 5.1.0
+ * @since 20141011
  */
 public class MandelbrotModel extends ShapeModel {
 	
@@ -76,7 +76,7 @@ public class MandelbrotModel extends ShapeModel {
 		counter = counter + arraySum;
 		
 		// calculate area
-		areaMonte = (maxX - minX) * (maxY - minY) * counter / Math.pow(GRIDSIZE, 2);
+		this.areaMonte = (maxX - minX) * (maxY - minY) * counter / Math.pow(GRIDSIZE, 2);
 	}
 	
 	/**
@@ -152,7 +152,7 @@ public class MandelbrotModel extends ShapeModel {
 	 * @param int col - The current column.
 	 * @param int row - The current row.
 	 */
-	private void getEscapeTime(double x, double y, int col, int row) {
+	private final void getEscapeTime(double x, double y, int col, int row) {
 		
 		boolean inside = true;
 		
@@ -171,6 +171,7 @@ public class MandelbrotModel extends ShapeModel {
 			steps++;
 		}
 		
+		// store value of steps in escapeArray's current cell
 		escapeArray[col][row] = steps;
 	}
 	
@@ -179,7 +180,8 @@ public class MandelbrotModel extends ShapeModel {
 	 * 
 	 * @return int[][] escapeArray.
 	 */
-	public int[][] getEscapeArray() {
+	public final int[][] getEscapeArray() {
+		
 		return escapeArray;
 	}
 }

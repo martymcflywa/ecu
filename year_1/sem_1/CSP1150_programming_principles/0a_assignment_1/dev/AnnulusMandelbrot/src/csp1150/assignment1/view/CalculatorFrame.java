@@ -1,13 +1,13 @@
 package csp1150.assignment1.view;
 
-// import layout manager
+// the layout manager
 import java.awt.GridLayout;
 
-// import JFrame
+// inherit from JFrame
 import javax.swing.JFrame;
 
 /**
- * This class defines the Calculator Frame.
+ * This class inherits from JFrame defines the Calculator Frame.
  * 
  * @author Martin Ponce ID# 10371381
  * @version 5.1.0
@@ -16,6 +16,11 @@ import javax.swing.JFrame;
 @SuppressWarnings("serial")
 public class CalculatorFrame extends JFrame {
 	
+	/**
+	 * The constructor.
+	 * 
+	 * @param args unused
+	 */
 	public CalculatorFrame() {
 		
 		// set frame title

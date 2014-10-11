@@ -1,15 +1,15 @@
 package csp1150.assignment1.view;
 
-// import layout manager
+// the layout manager
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-// import swing components
+// swing components
 import javax.swing.*;
 
 /**
- * This class creates the buttons for the view. The constructor accepts
- * gridbag constraints parameters gridx and gridy which are stored in gbc_label.
+ * This class inherits from JCheckBox and creates the checkboxes for the view.
+ * The constructor accepts gridbag constraints parameters gridx and gridy which are stored in gbc_checkBox.
  * These values are used for gridbag layout.
  * 
  * @author Martin Ponce ID# 10371381
@@ -23,11 +23,11 @@ public class CalculatorCheckBox extends JCheckBox {
 	protected GridBagConstraints gbc_checkBox;
 	
 	/**
-	 * The constructor for JRadioButtons.
+	 * The constructor.
 	 * 
 	 * @param String theWords - What the checkbox will say.
-	 * @param int gridx - The column position.
-	 * @param int gridy - The row position.
+	 * @param int gridx - GridBagConstraints: The column position.
+	 * @param int gridy - GridBagConstraints: The row position.
 	 */
 	public CalculatorCheckBox(String theWords, int gridx, int gridy) {
 		

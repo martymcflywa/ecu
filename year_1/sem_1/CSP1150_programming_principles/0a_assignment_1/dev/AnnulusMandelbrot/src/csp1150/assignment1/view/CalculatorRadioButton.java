@@ -8,8 +8,8 @@ import java.awt.Insets;
 import javax.swing.*;
 
 /**
- * This class creates the buttons for the view. The constructor accepts
- * gridbag constraints parameters gridx and gridy which are stored in gbc_radioButton.
+ * This class inherits from JRadioButton and creates radiobuttons for the view.
+ * The constructor accepts gridbag constraints parameters gridx and gridy which are stored in gbc_radioButton.
  * These values are used for gridbag layout.
  * 
  * @author Martin Ponce ID# 10371381
@@ -23,11 +23,11 @@ public class CalculatorRadioButton extends JRadioButton {
 	protected GridBagConstraints gbc_radioButton;
 	
 	/**
-	 * The constructor for JRadioButtons.
+	 * The constructor.
 	 * 
 	 * @param String theWords - What the button will say.
-	 * @param int gridx - The column position.
-	 * @param int gridy - The row position.
+	 * @param int gridx - GridBagConstraints: The column position.
+	 * @param int gridy - GridBagConstraints: The row position.
 	 */
 	public CalculatorRadioButton(String theWords, int gridx, int gridy) {
 		

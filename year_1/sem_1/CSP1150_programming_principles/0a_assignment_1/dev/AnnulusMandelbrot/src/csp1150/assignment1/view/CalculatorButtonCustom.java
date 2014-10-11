@@ -1,12 +1,12 @@
 package csp1150.assignment1.view;
 
-// import layout manager
+// the layout manager
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 /**
- * This class creates the zoom buttons for the view. They need custom gridbag constraints
- * parameters which are modified in this subclass.
+ * This class inherits from CalculatorButton and creates the zoom buttons for the view.
+ * They need custom gridbag constraints parameters which are modified in this subclass.
  * 
  * @author Martin Ponce ID# 10371381
  * @version 5.1.0
@@ -19,11 +19,11 @@ public class CalculatorButtonCustom extends CalculatorButton {
 	protected GridBagConstraints gbc_zoomButton;
 	
 	/**
-	 * The constructor for JButtons.
+	 * The constructor.
 	 * 
 	 * @param String theWords - What the button will say.
-	 * @param int gridx - The column position.
-	 * @param int gridy - The row position.
+	 * @param int gridx - GridBagConstraints: The column position.
+	 * @param int gridy - GridBagConstraints: The row position.
 	 */
 	public CalculatorButtonCustom(String theWords, int gridx, int gridy) {
 		
