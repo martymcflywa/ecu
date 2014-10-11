@@ -259,7 +259,7 @@ public class CalculatorView extends JFrame {
 	 * from the parent container, then creates a new image, passing 
 	 * hits array as an argument along with gridlayout constraints.
 	 * 
-	 * @param double[][] hits
+	 * @param double[][] hits - The hits array.
 	 */
 	public final void refreshAnnulusImage(double[][] hits) {
 		
@@ -282,7 +282,7 @@ public class CalculatorView extends JFrame {
 	 * from the parent container, then creates a new image, passing
 	 * hits array as an argument along with gridlayout constraints.
 	 * 
-	 * @param double[][] hits
+	 * @param double[][] hits - The hits array.
 	 */
 	public final void refreshMandelbrotImage(double[][] hits) {
 		
@@ -304,7 +304,7 @@ public class CalculatorView extends JFrame {
 	 * from the parent container, then creates a new image, passing
 	 * escapeArray as an argument along with gridlayout constraints.
 	 * 
-	 * @param double[][] escapeArray
+	 * @param double[][] escapeArray - The escapeArray.
 	 */
 	public final void refreshMandelbrotImage(int[][] escapeArray) {
 		
@@ -322,8 +322,8 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method adds a titled, etched border to the panel.
 	 * 
-	 * @param JPanel thePanel - The panel which requires the border
-	 * @param String borderTitle - The title of the border
+	 * @param JPanel thePanel - The panel which requires the border.
+	 * @param String borderTitle - The title of the border.
 	 */
 	private final void addBorder(JPanel thePanel, String borderTitle) {
 		
@@ -359,7 +359,7 @@ public class CalculatorView extends JFrame {
 	 * from the view, parse as double.
 	 * 
 	 * @param args unused
-	 * @return double - Area of annulus.
+	 * @return double - The calculated approximate area of the annulus.
 	 */
 	public final double getAnnulusAreaCalc() {
 		
@@ -370,7 +370,7 @@ public class CalculatorView extends JFrame {
 	 * This method sets the annulus approx area result to the view
 	 * from the controller, parse as String.
 	 * 
-	 * @param double area.
+	 * @param double area - The calculated approximate area of the annulus.
 	 */
 	public final void setAnnulusAreaCalc(double area) {
 		
@@ -381,7 +381,7 @@ public class CalculatorView extends JFrame {
 	 * This method sets the annulus monte carlo result to the view
 	 * from the controller, parse as String.
 	 * 
-	 * @param double area.
+	 * @param double area - The calculated monte carlo area of the annulus.
 	 */
 	public final void setAnnulusMonteCalc(double area) {
 		
@@ -392,7 +392,7 @@ public class CalculatorView extends JFrame {
 	 * This method sets the monte carlo result to the view
 	 * from the controller, parse as String.
 	 * 
-	 * @param double area.
+	 * @param double area - The calculated monte carlo area of the mandelbrot.
 	 */
 	public final void setMandelbrotMonteCalc(double area) {
 		
@@ -404,7 +404,7 @@ public class CalculatorView extends JFrame {
 	 * 
 	 * @return HitViewerGreyscale panelAnnulusImage.
 	 */
-	public HitViewerGreyscale getPanelAnnulusImage() {
+	public final HitViewerGreyscale getPanelAnnulusImage() {
 		
 		return this.panelAnnulusImage;
 	}
@@ -412,7 +412,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method adds action listeners to the buttons.
 	 * 
-	 * @param ActionListener theListener
+	 * @param ActionListener theListener.
 	 */
 	public final void addCalculatorListener(ActionListener theListener) {
 		

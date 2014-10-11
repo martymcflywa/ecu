@@ -1,7 +1,7 @@
 package csp1150.assignment1.model;
 
 /**
- * This super class defines the shape model.
+ * This class defines the shape model.
  * The shape's attributes are saved here,
  * and all calculation is handled by the methods
  * in this class.
@@ -19,17 +19,17 @@ public class ShapeModel {
 	// declare 2d array
 	protected double[][] hits = new double[GRIDSIZE][GRIDSIZE];
 	
-	// these variables hold user input values
+	// these fields hold user input values
 	protected double outRadius;
 	protected double inRadius;
 	
-	// these variables hold the max-min values aka zoom values
+	// these fields hold the max-min values aka zoom values
 	protected double maxX;
 	protected double maxY;
 	protected double minX;
 	protected double minY;
 	
-	// these variables hold the calculated values
+	// these fields hold the calculated values
 	private double areaApprox;
 	protected double areaMonte;
 	
@@ -43,8 +43,8 @@ public class ShapeModel {
 	/**
 	 * This method sets the radius.
 	 * 
-	 * @param double r1 - The outer radius.
-	 * @param double r2 - The inner radius.
+	 * @param double outRadius - The outer radius.
+	 * @param double inRadius - The inner radius.
 	 */
 	public final void setRadius(double outRadius, double inRadius) {
 		
@@ -67,8 +67,12 @@ public class ShapeModel {
 	
 	/**
 	 * This method calculates the area using approximate estimation.
+	 * Max-min values control how zoomed in the shape is.
 	 * 
-	 * @param args unused
+	 * @param double maxX - The max X coordinate.
+	 * @param double maxY - The max Y coordinate.
+	 * @param double minX - The min X coordinate.
+	 * @param double minY - The min Y coordinate.
 	 */
 	protected final void calcApprox(double maxX, double maxY, double minX, double minY) {
 		
@@ -100,7 +104,7 @@ public class ShapeModel {
 	
 	/**
 	 * This method calculates the area using monte carlo estimation.
-	 * Max-min values control the zoom of the image.
+	 * Max-min values control how zoomed in the shape is.
 	 * 
 	 * @param double maxX - The max X coordinate.
 	 * @param double maxY - The max Y coordinate.
@@ -155,7 +159,7 @@ public class ShapeModel {
 	 * 
 	 * @param double x - The x-axis value.
 	 * @param double y - The y-axis value.
-	 * @return boolean inside.
+	 * @return boolean inside - Is the hitpoint inside the shape perimeter.
 	 */
 	protected boolean isInside(double x, double y) {
 		

@@ -36,7 +36,8 @@ public class CalculatorListener implements ActionListener {
 	 * The listener constructor.
 	 * 
 	 * @param CalculatorView theView - Import the view.
-	 * @param ShapeModel theModel - Import the model.
+	 * @param AnnulusModel theAnnulusModel - Import the annulus model.
+	 * @param MandelbrotModel theMandelbrotModel - Impor the mandelbrot model.
 	 */
 	public CalculatorListener(CalculatorView theView, AnnulusModel theAnnulusModel, MandelbrotModel theMandelbrotModel) {
 		
@@ -46,7 +47,15 @@ public class CalculatorListener implements ActionListener {
 		this.theMandelbrotModel = theMandelbrotModel;
 	}
 	
-	public void actionPerformed(ActionEvent e) {
+	/**
+	 * Implements from ActionListener.
+	 * 
+	 * This method defines the actions to take when
+	 * a button from the view is clicked. 
+	 * 
+	 * @param ActionEvent e
+	 */
+	public final void actionPerformed(ActionEvent e) {
 		
 		/**
 		 * If Annulus Calculate Button is clicked...

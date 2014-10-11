@@ -9,9 +9,9 @@ import java.awt.Insets;
 import javax.swing.JPanel;
 
 /**
- * This class creates a JPanel. The constructor is overloaded to accept
+ * This class inherits from JPanel. The constructor is overloaded to accept
  * gridbag constraints parameters which are stored in gbc_panel.
- * These paramters are used for gridbag layout.
+ * These parameters are used for gridbag layout.
  * 
  * @author Martin Ponce ID# 10371381
  * @version 5.1.0
@@ -47,12 +47,12 @@ public class PanelGridBagLayout extends JPanel {
 	/**
 	 * Overloading the constructor, to be used for border panels.
 	 * 
-	 * @param int insetTop - Padding top.
-	 * @param int insetLeft - Padding left.
-	 * @param int insetRight - Padding right.
-	 * @param int insetBottom - Padding bottom.
-	 * @param int gridx - The column position.
-	 * @param int gridy - The row position.
+	 * @param int insetTop - GridBagConstraints: Padding top.
+	 * @param int insetLeft - GridBagConstraints: Padding left.
+	 * @param int insetRight - GridBagConstraints: Padding right.
+	 * @param int insetBottom - GridBagConstraints: Padding bottom.
+	 * @param int gridx - GridBagConstraints: The column position.
+	 * @param int gridy - GridBagConstraints: The row position.
 	 */
 	public PanelGridBagLayout(int insetTop, int insetLeft, int insetRight, int insetBottom, int gridx, int gridy) {
 		
