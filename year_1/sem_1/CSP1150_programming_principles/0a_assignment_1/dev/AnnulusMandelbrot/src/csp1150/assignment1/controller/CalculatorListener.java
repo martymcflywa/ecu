@@ -1,7 +1,6 @@
 package csp1150.assignment1.controller;
 
 // import event listener
-import java.awt.*;
 import java.awt.event.*;
 
 // import the project
@@ -18,10 +17,13 @@ import csp1150.assignment1.view.*;
  */
 public class CalculatorListener implements ActionListener {
 
-	// delcare the view and the models
+	// declare the view and the models
 	private CalculatorView theView;
 	private AnnulusModel theAnnulusModel;
 	private MandelbrotModel theMandelbrotModel;
+	
+	// declare boolean
+	private boolean mandelbrotColourImageExists = false;
 	
 	/**
 	 * The default constructor for inheritance.
@@ -130,11 +132,30 @@ public class CalculatorListener implements ActionListener {
 					// refresh the colour image
 					this.theView.refreshMandelbrotImage(this.theMandelbrotModel.getEscapeArray());
 					
+					// set boolean to true
+					this.mandelbrotColourImageExists = true;
+					
 				// else random colour checkbox is not ticked,	
 				} else {
 				
-					// refresh the greyscale image
-					this.theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
+					// if mandelbrot colour image is already shown,
+					if(mandelbrotColourImageExists) {
+						
+						// recalculate monte to refill values in hits array
+						this.theMandelbrotModel.calcMonte();
+						
+						// refresh greyscale image
+						this.theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
+						
+						// set boolean to false
+						this.mandelbrotColourImageExists = false;
+						
+					// else
+					} else {
+						
+						// refresh the greyscale image
+						this.theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
+					}
 				}
 			}
 		}
