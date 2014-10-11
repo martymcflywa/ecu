@@ -20,10 +20,10 @@ public class CalculatorFrame extends JFrame {
 		super("Annulus & Mandelbrot Calculator: Martin Ponce ID# 10371381");
 		
 		// set frame size
-		this.setBounds(100, 100, 915, 920);
+		this.setBounds(100, 100, 920, 940);
 		
 		// disable frame resize
-		this.setResizable(false);
+		this.setResizable(true);
 		
 		// set default action when window is closed
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

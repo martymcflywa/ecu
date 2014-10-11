@@ -155,7 +155,6 @@ public class CalculatorView extends JFrame {
 		this.panelMandelbrotBorder.setLayout(this.panelMandelbrotBorder.gbl_panel);
 		
 		// create panelAnnulusImage container and add to panelRight
-		// **NEED TO USE 444 as GRIDSIZE** fits exactly in the panel
 		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(this.gridSize, this.gridSize, 0, 1, 0, 0));
 		
 		// create panelMandelbrotImage container and add to panelRight
@@ -258,7 +257,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method refreshes the annulus image. Removes current image panels
 	 * from the parent container, then creates a new image, passing 
-	 * the hits array as an argument along with size and position.
+	 * hits array as an argument along with gridlayout constraints.
 	 * 
 	 * @param double[][] hits
 	 */
@@ -266,18 +265,56 @@ public class CalculatorView extends JFrame {
 		
 		// remove both image panels from parent container, otherwise image will be added below,
 		// since the mandelbrot image will shift up, and take the space of the annulus image
-		// ** TODO: create separate containers so only one needs to be removed
+		// ** TODO: create separate containers, or change layout manager so only annulus image needs to be removed
 		this.panelRight.remove(this.panelAnnulusImage);
 		this.panelRight.remove(this.panelMandelbrotImage);
 		
 		// create new image, pass gridsize, grid constraints and hits array as arguments
 		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(this.gridSize, this.gridSize, 0, 1, 0, 0, hits));
+		
+		// repaint the panel
+		this.panelAnnulusImage.revalidate();
+		this.panelAnnulusImage.repaint();
 	}
 	
-	public final void refreshMandelbrotGreyscaleImage(double[][] hits) {
+	/**
+	 * This method refreshes the greyscale mandelbrot image. Removes current image panel
+	 * from the parent container, then creates a new image, passing
+	 * hits array as an argument along with gridlayout constraints.
+	 * 
+	 * @param double[][] hits
+	 */
+	public final void refreshMandelbrotImage(double[][] hits) {
 		
+		// remove panel from parent container
 		this.panelRight.remove(this.panelMandelbrotImage);
+		
+		// create new greyscale image, pass gridsize, grid constraints and hits array as arguments
 		this.panelRight.add(this.panelMandelbrotImage = new HitViewerColour(this.gridSize, this.gridSize, 0, 1, 0, 0, hits));
+		
+		// repaint the panel
+		this.panelMandelbrotImage.revalidate();
+		this.panelMandelbrotImage.repaint();
+	}
+	
+	/**
+	 * This method refreshes the colour mandelbrot image. Removes current image panels
+	 * from the parent container, then creates a new image, passing
+	 * escapeArray as an argument along with gridlayout constraints.
+	 * 
+	 * @param double[][] escapeArray
+	 */
+	public final void refreshMandelbrotImage(int[][] escapeArray) {
+		
+		// remove panel from parent container
+		this.panelRight.remove(this.panelMandelbrotImage);
+		
+		// create new colour image, pass gridsize, grid constraints and escapeArray as arguments
+		this.panelRight.add(this.panelMandelbrotImage = new HitViewerColour(this.gridSize, this.gridSize, 0, 1, 0, 0, escapeArray));
+		
+		// repaint the panel
+		this.panelMandelbrotImage.revalidate();
+		this.panelMandelbrotImage.repaint();
 	}
 	
 	/**
@@ -396,7 +433,8 @@ public class CalculatorView extends JFrame {
 	 * @return CalculatorButton buttonAnnulusCalculate.
 	 */
 	public final CalculatorButton getButtonAnnulusCalculate() {
-		return buttonAnnulusCalculate;
+		
+		return this.buttonAnnulusCalculate;
 	}
 	
 	/**
@@ -405,7 +443,8 @@ public class CalculatorView extends JFrame {
 	 * @return CalculatorButton buttonMandelbrotOK.
 	 */
 	public final CalculatorButton getButtonMandelbrotOK() {
-		return buttonMandelbrotOK;
+		
+		return this.buttonMandelbrotOK;
 	}
 	
 	/**
@@ -414,7 +453,8 @@ public class CalculatorView extends JFrame {
 	 * @return CalculatorRadioButton radioMandelbrotCalculate.
 	 */
 	public final CalculatorRadioButton getRadioMandelbrotCalculate() {
-		return radioMandelbrotCalculate;
+		
+		return this.radioMandelbrotCalculate;
 	}
 	
 	/**
@@ -423,7 +463,18 @@ public class CalculatorView extends JFrame {
 	 * @return CalculatorRadioButton radioMandelbrotViewImage.
 	 */
 	public final CalculatorRadioButton getRadioMandelbrotViewImage() {
-		return radioMandelbrotViewImage;
+		
+		return this.radioMandelbrotViewImage;
+	}
+	
+	/**
+	 * This method returns the mandelbrot checkbox button.
+	 * 
+	 * @return CalculatorCheckBox checkBoxMandelbrotRandomColour.
+	 */
+	public final CalculatorCheckBox getCheckBoxMandelbrotRandomColour() {
+
+		return this.checkBoxMandelbrotRandomColour;
 	}
 	
 	/**

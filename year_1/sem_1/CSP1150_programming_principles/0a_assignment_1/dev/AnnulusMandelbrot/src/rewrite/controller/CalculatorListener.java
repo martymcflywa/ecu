@@ -71,8 +71,8 @@ public class CalculatorListener implements ActionListener {
 					// get calculated monte carlo area from the model, show it in the view
 					this.theView.setAnnulusMonteCalc(theAnnulusModel.getMonteCalc());
 					
-					// refresh the image
-					this.theView.refreshAnnulusImage(this.theAnnulusModel.getHits());
+					// refresh the greyscasle image
+					this.theView.refreshAnnulusImage(this.theAnnulusModel.getHitsArray());
 				}
 			}
 			
@@ -92,14 +92,29 @@ public class CalculatorListener implements ActionListener {
 			if(theView.getRadioMandelbrotCalculate().isSelected()) {
 				
 				// do the monte calculation
+				this.theMandelbrotModel.calcMonte();
+				
+				// get the monte calculation, add it to the view
 				this.theView.setMandelbrotMonteCalc(this.theMandelbrotModel.getMonteCalc());
 				
 			// else if view image radio is selected,	
 			} else if(theView.getRadioMandelbrotViewImage().isSelected()) {
 				
-				// calculate area using escape time
-				//this.theMandelbrotModel.calcEscape();
-				this.theView.refreshMandelbrotGreyscaleImage(this.theMandelbrotModel.getHits());
+				// if random colour checkbox is ticked,
+				if(theView.getCheckBoxMandelbrotRandomColour().isSelected()) {
+					
+					// calculate area using escape time
+					this.theMandelbrotModel.calcEscape();
+					
+					// refresh the colour image
+					this.theView.refreshMandelbrotImage(this.theMandelbrotModel.getEscapeArray());
+					
+				// else random colour checkbox is not ticked,	
+				} else {
+				
+					// refresh the greyscale image
+					this.theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
+				}
 			}
 		}
 	}
