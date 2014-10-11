@@ -19,17 +19,17 @@ public class ShapeModel {
 	// declare 2d array
 	protected double[][] hits = new double[GRIDSIZE][GRIDSIZE];
 	
-	// these variables hold user input values
+	// these fields hold user input values
 	protected double outRadius;
 	protected double inRadius;
 	
-	// these variables hold the max-min values aka zoom values
+	// these fields hold the max-min values aka zoom values
 	protected double maxX;
 	protected double maxY;
 	protected double minX;
 	protected double minY;
 	
-	// these variables hold the calculated values
+	// these fields hold the calculated values
 	private double areaApprox;
 	protected double areaMonte;
 	
@@ -43,8 +43,8 @@ public class ShapeModel {
 	/**
 	 * This method sets the radius.
 	 * 
-	 * @param double r1 - The outer radius.
-	 * @param double r2 - The inner radius.
+	 * @param double outRadius - The outer radius.
+	 * @param double inRadius - The inner radius.
 	 */
 	public final void setRadius(double outRadius, double inRadius) {
 		

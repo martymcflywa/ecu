@@ -27,9 +27,6 @@ public class MandelbrotModel extends ShapeModel {
 		this.maxY = 2;
 		this.minX = -2;
 		this.minY = -2;
-		
-		// do standard monte calculation
-		//calcMonte(this.maxX, this.maxY, this.minX, this.minY);
 	}
 	
 	/**
@@ -89,7 +86,7 @@ public class MandelbrotModel extends ShapeModel {
 	 * 
 	 * @param double x - The x-axis value.
 	 * @param double y - The y-axis value.
-	 * @return boolean inside
+	 * @return boolean inside - Is the hitpoint inside the shape perimeter.
 	 */
 	@Override
 	protected boolean isInside(double x, double y) {
@@ -152,7 +149,8 @@ public class MandelbrotModel extends ShapeModel {
 	 * 
 	 * @param double x - The x-axis value.
 	 * @param double y - The y-axis value.
-	 * @return boolean inside
+	 * @param int col - The current column.
+	 * @param int row - The current row.
 	 */
 	private void getEscapeTime(double x, double y, int col, int row) {
 		
