@@ -100,10 +100,14 @@ public class ShapeModel {
 	
 	/**
 	 * This method calculates the area using monte carlo estimation.
+	 * Max-min values control the zoom of the image.
 	 * 
-	 * @param args unused
+	 * @param double maxX - The max X coordinate.
+	 * @param double maxY - The max Y coordinate.
+	 * @param double minX - The min X coordinate.
+	 * @param double minY - The min Y coordinate.
 	 */
-	protected final void calcMonte(double maxX, double maxY, double minX, double minY) {
+	public final void calcMonte(double maxX, double maxY, double minX, double minY) {
 		
 		// declare counter
 		double counter = 0.0;

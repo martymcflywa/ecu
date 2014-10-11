@@ -29,7 +29,57 @@ public class MandelbrotModel extends ShapeModel {
 		this.minY = -2;
 		
 		// do standard monte calculation
-		calcMonte(this.maxX, this.maxY, this.minX, this.minY);
+		//calcMonte(this.maxX, this.maxY, this.minX, this.minY);
+	}
+	
+	/**
+	 * Overloading ShapeModel's calcMonte method, removed args.
+	 * This method calculates the area using monte carlo estimation
+	 * for the mandelbrot.
+	 * 
+	 * @param args unused
+	 */
+	public final void calcMonte() {
+		
+		// declare counter
+		double counter = 0.0;
+		
+		// declare arraySum
+		double arraySum = 0.0;
+		
+		// iterate through columns
+		for(int col = 0; col < GRIDSIZE - 1; col++) {
+			
+			// iterate through rows
+			for(int row = 0; row < GRIDSIZE - 1; row++) {
+				
+				// reset current cell value to 0
+				hits[col][row] = 0;
+				
+				// iterate through samples
+				for(int i = 0; i < SAMPLES; i++) {
+					
+					// generate random scatter points per cell
+					double x = minX + (col + Math.random()) * ((maxX - minX) / GRIDSIZE);
+					double y = minY + (row + Math.random()) * ((maxY - minY) / GRIDSIZE);
+					
+					// if test pass, set counter + 1
+					if(isInside(x, y)) {
+						hits[col][row] = 1;
+						arraySum++;
+					}
+				}
+			}
+		}
+		
+		// divide sum of array to samples
+		arraySum = arraySum / SAMPLES;
+		
+		// add sum of array to counter
+		counter = counter + arraySum;
+		
+		// calculate area
+		areaMonte = (maxX - minX) * (maxY - minY) * counter / Math.pow(GRIDSIZE, 2);
 	}
 	
 	/**

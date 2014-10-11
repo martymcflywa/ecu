@@ -275,16 +275,29 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
-	 * This method refreshes the mandelbrot image. Removes current image panels
+	 * This method refreshes the greyscale mandelbrot image. Removes current image panels
 	 * from the parent container, then creates a new image, passing
 	 * hits array as an argument along with gridlayout constraints.
 	 * 
 	 * @param double[][] hits
 	 */
-	public final void refreshMandelbrotGreyscaleImage(double[][] hits) {
+	public final void refreshMandelbrotImage(double[][] hits) {
 		
 		this.panelRight.remove(this.panelMandelbrotImage);
 		this.panelRight.add(this.panelMandelbrotImage = new HitViewerColour(this.gridSize, this.gridSize, 0, 1, 0, 0, hits));
+	}
+	
+	/**
+	 * This method refreshes the colour mandelbrot image. Removes current image panels
+	 * from the parent container, then creates a new image, passing
+	 * escapeArrau as an argument along with gridlayout constraints.
+	 * 
+	 * @param double[][] escapeArray
+	 */
+	public final void refreshMandelbrotImage(int[][] escapeArray) {
+		
+		this.panelRight.remove(this.panelMandelbrotImage);
+		this.panelRight.add(this.panelMandelbrotImage = new HitViewerColour(this.gridSize, this.gridSize, 0, 1, 0, 0, escapeArray));
 	}
 	
 	/**

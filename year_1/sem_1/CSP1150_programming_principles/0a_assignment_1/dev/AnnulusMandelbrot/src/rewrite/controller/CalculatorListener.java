@@ -92,6 +92,9 @@ public class CalculatorListener implements ActionListener {
 			if(theView.getRadioMandelbrotCalculate().isSelected()) {
 				
 				// do the monte calculation
+				this.theMandelbrotModel.calcMonte();
+				
+				// do the monte calculation
 				this.theView.setMandelbrotMonteCalc(this.theMandelbrotModel.getMonteCalc());
 				
 			// else if view image radio is selected,	
@@ -99,7 +102,7 @@ public class CalculatorListener implements ActionListener {
 				
 				// calculate area using escape time
 				//this.theMandelbrotModel.calcEscape();
-				this.theView.refreshMandelbrotGreyscaleImage(this.theMandelbrotModel.getHits());
+				this.theView.refreshMandelbrotImage(this.theMandelbrotModel.getHits());
 			}
 		}
 	}
