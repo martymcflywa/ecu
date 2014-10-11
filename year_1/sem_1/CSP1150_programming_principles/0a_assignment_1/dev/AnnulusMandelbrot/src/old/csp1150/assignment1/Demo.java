@@ -1,4 +1,4 @@
-package csp1150.assignment1.view;
+package old.csp1150.assignment1;
 
 import java.awt.EventQueue;
 
