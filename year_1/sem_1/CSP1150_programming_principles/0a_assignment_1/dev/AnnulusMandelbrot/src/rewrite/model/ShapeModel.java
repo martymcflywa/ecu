@@ -206,7 +206,7 @@ public class ShapeModel {
 	 * @param args unused
 	 * @return double[][] hits.
 	 */
-	public final double[][] getHits() {
+	public final double[][] getHitsArray() {
 		return hits;
 	}
 	

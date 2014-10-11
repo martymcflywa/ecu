@@ -181,7 +181,7 @@ public class MandelbrotModel extends ShapeModel {
 	 * 
 	 * @return int[][] escapeArray.
 	 */
-	public int[][] returnEscapeArray() {
+	public int[][] getEscapeArray() {
 		return escapeArray;
 	}
 }
