@@ -36,6 +36,8 @@ public class CalculatorView extends JFrame {
 	private PanelGridLayout panelRight;
 	
 	// and the image containers
+	private PanelGridLayout panelAnnulusImageContainer;
+	private PanelGridLayout panelMandelbrotImageContainer;
 	private HitViewerGreyscale panelAnnulusImage;
 	private HitViewerColour panelMandelbrotImage;
 	
@@ -154,11 +156,17 @@ public class CalculatorView extends JFrame {
 		// set panelMandelbrotBorder layout
 		this.panelMandelbrotBorder.setLayout(this.panelMandelbrotBorder.gbl_panel);
 		
-		// create panelAnnulusImage container and add to panelRight
-		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(this.gridSize, this.gridSize, 0, 1, 0, 0));
+		// create panelAnnulusImageContaianer and add to panelRight
+		this.panelRight.add(this.panelAnnulusImageContainer = new PanelGridLayout(0, 1, 0, 0));
 		
-		// create panelMandelbrotImage container and add to panelRight
-		this.panelRight.add(this.panelMandelbrotImage = new HitViewerColour(this.gridSize, this.gridSize, 0, 1, 0, 0));
+		// create panelMandelbrotImageContainer and add to panelRight
+		this.panelRight.add(this.panelMandelbrotImageContainer = new PanelGridLayout(0, 1, 0, 0));
+		
+		// create panelAnnulusImage and add to panelAnnulusImageContainer
+		this.panelAnnulusImageContainer.add(this.panelAnnulusImage = new HitViewerGreyscale(this.gridSize, this.gridSize, 0, 1, 0, 0));
+		
+		// create panelMandelbrotImage container and add to panelMandelbrotImageContainer
+		this.panelMandelbrotImageContainer.add(this.panelMandelbrotImage = new HitViewerColour(this.gridSize, this.gridSize, 0, 1, 0, 0));
 	}
 	
 	/**
@@ -263,16 +271,13 @@ public class CalculatorView extends JFrame {
 	 */
 	public final void refreshAnnulusImage(double[][] hits) {
 		
-		// remove both image panels from parent container, otherwise image will be added below,
-		// since the mandelbrot image will shift up, and take the space of the annulus image
-		// ** TODO: create separate containers, or change layout manager so only annulus image needs to be removed
-		this.panelRight.remove(this.panelAnnulusImage);
-		this.panelRight.remove(this.panelMandelbrotImage);
+		// remove panel from parent container
+		this.panelAnnulusImageContainer.remove(this.panelAnnulusImage);
 		
 		// create new image, pass gridsize, grid constraints and hits array as arguments
-		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(this.gridSize, this.gridSize, 0, 1, 0, 0, hits));
+		this.panelAnnulusImageContainer.add(this.panelAnnulusImage = new HitViewerGreyscale(this.gridSize, this.gridSize, 0, 1, 0, 0, hits));
 		
-		// repaint the panel
+		// repaint the image panel
 		this.panelAnnulusImage.revalidate();
 		this.panelAnnulusImage.repaint();
 	}
@@ -287,12 +292,12 @@ public class CalculatorView extends JFrame {
 	public final void refreshMandelbrotImage(double[][] hits) {
 		
 		// remove panel from parent container
-		this.panelRight.remove(this.panelMandelbrotImage);
+		this.panelMandelbrotImageContainer.remove(this.panelMandelbrotImage);
 		
 		// create new greyscale image, pass gridsize, grid constraints and hits array as arguments
-		this.panelRight.add(this.panelMandelbrotImage = new HitViewerColour(this.gridSize, this.gridSize, 0, 1, 0, 0, hits));
+		this.panelMandelbrotImageContainer.add(this.panelMandelbrotImage = new HitViewerColour(this.gridSize, this.gridSize, 0, 1, 0, 0, hits));
 		
-		// repaint the panel
+		// repaint the image panel
 		this.panelMandelbrotImage.revalidate();
 		this.panelMandelbrotImage.repaint();
 	}
@@ -309,12 +314,12 @@ public class CalculatorView extends JFrame {
 	public final void refreshMandelbrotImage(int[][] escapeArray) {
 		
 		// remove panel from parent container
-		this.panelRight.remove(this.panelMandelbrotImage);
+		this.panelMandelbrotImageContainer.remove(this.panelMandelbrotImage);
 		
 		// create new colour image, pass gridsize, grid constraints and escapeArray as arguments
-		this.panelRight.add(this.panelMandelbrotImage = new HitViewerColour(this.gridSize, this.gridSize, 0, 1, 0, 0, escapeArray));
+		this.panelMandelbrotImageContainer.add(this.panelMandelbrotImage = new HitViewerColour(this.gridSize, this.gridSize, 0, 1, 0, 0, escapeArray));
 		
-		// repaint the panel
+		// repaint the image panel
 		this.panelMandelbrotImage.revalidate();
 		this.panelMandelbrotImage.repaint();
 	}
