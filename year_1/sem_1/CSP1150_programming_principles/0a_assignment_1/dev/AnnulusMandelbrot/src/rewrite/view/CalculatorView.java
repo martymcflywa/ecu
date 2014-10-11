@@ -258,7 +258,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method refreshes the annulus image. Removes current image panels
 	 * from the parent container, then creates a new image, passing 
-	 * the hits array as an argument along with size and position.
+	 * hits array as an argument along with gridlayout constraints.
 	 * 
 	 * @param double[][] hits
 	 */
@@ -274,6 +274,13 @@ public class CalculatorView extends JFrame {
 		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(this.gridSize, this.gridSize, 0, 1, 0, 0, hits));
 	}
 	
+	/**
+	 * This method refreshes the mandelbrot image. Removes current image panels
+	 * from the parent container, then creates a new image, passing
+	 * hits array as an argument along with gridlayout constraints.
+	 * 
+	 * @param double[][] hits
+	 */
 	public final void refreshMandelbrotGreyscaleImage(double[][] hits) {
 		
 		this.panelRight.remove(this.panelMandelbrotImage);
@@ -396,6 +403,7 @@ public class CalculatorView extends JFrame {
 	 * @return CalculatorButton buttonAnnulusCalculate.
 	 */
 	public final CalculatorButton getButtonAnnulusCalculate() {
+		
 		return buttonAnnulusCalculate;
 	}
 	
@@ -405,6 +413,7 @@ public class CalculatorView extends JFrame {
 	 * @return CalculatorButton buttonMandelbrotOK.
 	 */
 	public final CalculatorButton getButtonMandelbrotOK() {
+		
 		return buttonMandelbrotOK;
 	}
 	
@@ -414,6 +423,7 @@ public class CalculatorView extends JFrame {
 	 * @return CalculatorRadioButton radioMandelbrotCalculate.
 	 */
 	public final CalculatorRadioButton getRadioMandelbrotCalculate() {
+		
 		return radioMandelbrotCalculate;
 	}
 	
@@ -423,6 +433,7 @@ public class CalculatorView extends JFrame {
 	 * @return CalculatorRadioButton radioMandelbrotViewImage.
 	 */
 	public final CalculatorRadioButton getRadioMandelbrotViewImage() {
+		
 		return radioMandelbrotViewImage;
 	}
 	

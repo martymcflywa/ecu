@@ -23,7 +23,7 @@ public class CalculatorFrame extends JFrame {
 		this.setBounds(100, 100, 915, 920);
 		
 		// disable frame resize
-		this.setResizable(false);
+		this.setResizable(true);
 		
 		// set default action when window is closed
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
