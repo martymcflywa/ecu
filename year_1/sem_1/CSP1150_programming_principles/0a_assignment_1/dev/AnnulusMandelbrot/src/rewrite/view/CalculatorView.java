@@ -266,16 +266,20 @@ public class CalculatorView extends JFrame {
 		
 		// remove both image panels from parent container, otherwise image will be added below,
 		// since the mandelbrot image will shift up, and take the space of the annulus image
-		// ** TODO: create separate containers so only one needs to be removed
+		// ** TODO: create separate containers, or change layout manager so only annulus image needs to be removed
 		this.panelRight.remove(this.panelAnnulusImage);
 		this.panelRight.remove(this.panelMandelbrotImage);
 		
 		// create new image, pass gridsize, grid constraints and hits array as arguments
 		this.panelRight.add(this.panelAnnulusImage = new HitViewerGreyscale(this.gridSize, this.gridSize, 0, 1, 0, 0, hits));
+		
+		// repaint the panel
+		this.panelAnnulusImage.revalidate();
+		this.panelAnnulusImage.repaint();
 	}
 	
 	/**
-	 * This method refreshes the greyscale mandelbrot image. Removes current image panels
+	 * This method refreshes the greyscale mandelbrot image. Removes current image panel
 	 * from the parent container, then creates a new image, passing
 	 * hits array as an argument along with gridlayout constraints.
 	 * 
@@ -283,8 +287,15 @@ public class CalculatorView extends JFrame {
 	 */
 	public final void refreshMandelbrotImage(double[][] hits) {
 		
+		// remove panel from parent container
 		this.panelRight.remove(this.panelMandelbrotImage);
+		
+		// create new image, pass gridsize, grid constraints and hits array as arguments
 		this.panelRight.add(this.panelMandelbrotImage = new HitViewerColour(this.gridSize, this.gridSize, 0, 1, 0, 0, hits));
+		
+		// repaint the panel
+		this.panelRight.revalidate();
+		this.panelRight.repaint();
 	}
 	
 	/**
