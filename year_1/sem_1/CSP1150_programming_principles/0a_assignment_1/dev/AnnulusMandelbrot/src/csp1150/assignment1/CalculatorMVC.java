@@ -1,45 +1,30 @@
 package csp1150.assignment1;
 
-//import greyscale view
-import view.*;
+// import the project
+import csp1150.assignment1.model.*;
+import csp1150.assignment1.controller.*;
+import csp1150.assignment1.view.*;
 
 /**
- * This class instantiates all the calculator MVC classes together
- * and executes the program to calculate the area of
- * an annulus and mandelbrot.
+ * This class contains the main method,
+ * where the program is executed.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 4.0.0
- * @since 20140930
+ * @version 5.1.0
+ * @since 20141011
  */
 public class CalculatorMVC {
-
-	/**
-	 * The main method.
-	 * 
-	 * @param args
-	 */
+	
 	public static void main(String[] args) {
 		
-		// create the annulus model object
-		CalculatorModel theAnnulus = new CalculatorModel();
+		// create the models
+		AnnulusModel theAnnulusModel = new AnnulusModel();
+		MandelbrotModel theMandelbrotModel = new MandelbrotModel();
 		
-		// create the mandelbrot model object
-		MandelbrotModel theMandelbrot = new MandelbrotModel();
+		// create the view
+		CalculatorView theView = new CalculatorView(theAnnulusModel.getGridSize());
 		
-		// create annulus greyscaleview object
-		HitViewerGenerator greyscaleAnnulus = new HitViewerGenerator(theAnnulus.getGridSize(), theAnnulus.getGridSize());
-		
-		// create mandelbrot greyscaleview object
-		HitViewerGenerator greyscaleMandelbrot = new HitViewerGenerator(theMandelbrot.getGridSize(), theMandelbrot.getGridSize());
-		
-		// create mandelbrot colourview object
-		ColourHitViewer colourMandelbrot = new ColourHitViewer(theMandelbrot.getGridSize(), theMandelbrot.getGridSize());
-		
-		// create the view object
-		CalculatorView theView = new CalculatorView(greyscaleAnnulus, greyscaleMandelbrot, colourMandelbrot);
-		
-		// create the controller object
-		CalculatorController theController = new CalculatorController(theView, theAnnulus, theMandelbrot, greyscaleAnnulus, greyscaleMandelbrot, colourMandelbrot);
+		// create the controller
+		CalculatorController theController = new CalculatorController(theView, theAnnulusModel, theMandelbrotModel);
 	}
 }
