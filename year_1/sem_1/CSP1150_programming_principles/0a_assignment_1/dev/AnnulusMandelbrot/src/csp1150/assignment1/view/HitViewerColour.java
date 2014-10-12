@@ -153,11 +153,13 @@ public class HitViewerColour extends HitViewer implements MouseListener, MouseMo
 			
 			for(int y = 0; y < height; y++) {
                 
-				// set pixel to current escapetime value
-				int pixel = escapeArray[x][y];
+				// set pixel to current escapetime value, add some randomness
+				int pixelRed = escapeArray[x][y] * randomRed / 25;
+				int pixelGreen = escapeArray[x][y] * randomGreen / 25;
+				int pixelBlue = escapeArray[x][y] * randomBlue / 25;
 				
 				// call setPixel to draw, using random numbers generated
-				setPixel(x, y, pixel * randomRed / 25, pixel * randomGreen / 25, pixel * randomBlue / 25);
+				setPixel(x, y, pixelRed, pixelGreen, pixelBlue);
             }
         }
 	}
