@@ -18,7 +18,7 @@ import csp1150.assignment1.view.*;
  */
 public class CalculatorListener implements ActionListener {
 
-	// delcare the view and the models
+	// declare the view and the models
 	private CalculatorView theView;
 	private AnnulusModel theAnnulusModel;
 	private MandelbrotModel theMandelbrotModel;
