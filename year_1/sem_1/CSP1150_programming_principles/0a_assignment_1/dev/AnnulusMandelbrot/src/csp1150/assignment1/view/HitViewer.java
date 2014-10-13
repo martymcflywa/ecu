@@ -48,7 +48,9 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	// declare boolean
 	protected boolean zooming = false;
 	
-	// declare zoom values
+	// declare pixel zoom array to hold values
+	private int[] pixelZoom = new int[4];
+	
 	private int pixelMinX;
 	private int pixelMinY;
 	private int pixelMaxX;
@@ -206,6 +208,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	
 	/**
 	 * This method defines the action to take when the mouse is dragged.
+	 * TODO: Needs to reset if mouseDragged exits panel.
 	 * 
 	 * @param MouseEvent me - The mouse event.
 	 */
@@ -224,16 +227,18 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 					Math.min(this.mousePt.y, me.getY()),
 					Math.abs(this.mousePt.x - me.getX()),
 					Math.abs(this.mousePt.y - me.getY())
-				);
+			);
 			
 			// ** DEBUGGING
 			//System.out.println("minX = " + Math.min(mousePt.x, me.getX()) + " | minY = " + Math.min(mousePt.y, me.getY()) + " | maxX = " + Math.abs(mousePt.x - me.getX()) + " | maxY = " + Math.abs(mousePt.y - me.getY()));
 			
 			// set pixel max-min values to mouse position
-			this.pixelMinX = Math.min(this.mousePt.x, me.getX());
-			this.pixelMinY = Math.min(this.mousePt.y, me.getY());
-			this.pixelMaxX = Math.abs(this.mousePt.x - me.getX());
-			this.pixelMaxY = Math.abs(this.mousePt.y - me.getY());
+			this.pixelZoom[0] = Math.min(this.mousePt.x, me.getX());
+			this.pixelZoom[1] = Math.min(this.mousePt.y, me.getY());
+			this.pixelZoom[2] = Math.abs(this.mousePt.x - me.getX());
+			this.pixelZoom[3] = Math.abs(this.mousePt.y - me.getY());
+			
+			System.out.println(pixelZoom[0] + " | " + pixelZoom[1] + " | " + pixelZoom[2] + " | " + pixelZoom[3]);
 			
 			// repaint
 			me.getComponent().repaint();
@@ -251,14 +256,30 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 		if(SwingUtilities.isLeftMouseButton(me)) {
 			
 			// set zooming to false
-			zooming = false;
+			this.zooming = false;
 			
 			// reset rectangle bounds
-			mouseRect.setBounds(0, 0, 0, 0);
+			this.mouseRect.setBounds(0, 0, 0, 0);
+			
+			// reset pixelZoom values to 0
+			for(int i = 0; i < this.pixelZoom.length; i++) {
+				this.pixelZoom[i] = 0;
+			}
+			
+			System.out.println(pixelZoom[0] + " | " + pixelZoom[1] + " | " + pixelZoom[2] + " | " + pixelZoom[3]);
 			
 			// repaint
 			me.getComponent().repaint();
 		}
+	}
+	
+	/**
+	 * This method returns pixelZoom array.
+	 * 
+	 * @return int[] pixelZoom.
+	 */
+	public final int[] getPixelZoom() {
+		return this.pixelZoom;
 	}
 	
 	/**

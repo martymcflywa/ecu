@@ -24,10 +24,10 @@ public class ShapeModel {
 	protected double inRadius;
 	
 	// these fields hold the max-min values aka zoom values
-	protected double maxX;
-	protected double maxY;
 	protected double minX;
 	protected double minY;
+	protected double maxX;
+	protected double maxY;
 	
 	// these fields hold the calculated values
 	private double areaApprox;
@@ -53,28 +53,28 @@ public class ShapeModel {
 		this.inRadius = inRadius;
 		
 		// set incoming radius values to their respective max-min variables
-		this.maxX = outRadius;
 		this.minX = -outRadius;
-		this.maxY = outRadius;
 		this.minY = -outRadius;
+		this.maxX = outRadius;
+		this.maxY = outRadius;
 		
 		// do Area calculation
-		calcApprox(this.maxX, this.maxY, this.minX, this.minY);
+		calcApprox(this.minX, this.minY, this.maxX, this.maxY);
 		
 		// do Monte calculation
-		calcMonte(this.maxX, this.maxY, this.minX, this.minY);
+		calcMonte(this.minX, this.minY, this.maxX, this.maxY);
 	}
 	
 	/**
 	 * This method calculates the area using approximate estimation.
 	 * Max-min values control how zoomed in the shape is.
 	 * 
-	 * @param double maxX - The max X coordinate.
-	 * @param double maxY - The max Y coordinate.
 	 * @param double minX - The min X coordinate.
 	 * @param double minY - The min Y coordinate.
+	 * @param double maxX - The max X coordinate.
+	 * @param double maxY - The max Y coordinate.
 	 */
-	protected final void calcApprox(double maxX, double maxY, double minX, double minY) {
+	protected final void calcApprox(double minX, double minY, double maxX, double maxY) {
 		
 		// declare counter
 		int counter = 0;
@@ -106,12 +106,12 @@ public class ShapeModel {
 	 * This method calculates the area using monte carlo estimation.
 	 * Max-min values control how zoomed in the shape is.
 	 * 
-	 * @param double maxX - The max X coordinate.
-	 * @param double maxY - The max Y coordinate.
 	 * @param double minX - The min X coordinate.
 	 * @param double minY - The min Y coordinate.
+	 * @param double maxX - The max X coordinate.
+	 * @param double maxY - The max Y coordinate.
 	 */
-	public final void calcMonte(double maxX, double maxY, double minX, double minY) {
+	public final void calcMonte(double minX, double minY, double maxX, double maxY) {
 		
 		// declare counter
 		double counter = 0.0;
@@ -225,19 +225,28 @@ public class ShapeModel {
 	}
 	
 	/**
-	 * This method sets the max-min values,
-	 * to be used for zooming in and out of the image.
+	 * This method resets the zoom values.
 	 * 
-	 * @param double maxX
-	 * @param double minX
-	 * @param double maxY
-	 * @param double minY
+	 * @param args unused
 	 */
-	public final void setMaxMins(double maxX, double minX, double maxY, double minY) {
+	public void resetZoom() {
 		
-		this.maxX = maxX;
-		this.minX = minX;
-		this.maxY = maxY;
-		this.minY = minY;
+		this.minX = -this.outRadius;
+		this.minY = -this.outRadius;
+		this.maxX = this.outRadius;
+		this.maxY = this.outRadius;
+	}
+	
+	/**
+	 * This method sets the custom zoom values.
+	 * 
+	 * @param int[] pixelZoom.
+	 */
+	public void setZoom(int[] pixelZoom) {
+		
+		this.minX = (pixelZoom[0] / this.GRIDSIZE) * this.outRadius;
+		this.minY = (pixelZoom[1] / this.GRIDSIZE) * this.outRadius;
+		this.maxX = (pixelZoom[2] / this.GRIDSIZE) * this.outRadius;
+		this.maxY = (pixelZoom[3] / this.GRIDSIZE) * this.outRadius;
 	}
 }
