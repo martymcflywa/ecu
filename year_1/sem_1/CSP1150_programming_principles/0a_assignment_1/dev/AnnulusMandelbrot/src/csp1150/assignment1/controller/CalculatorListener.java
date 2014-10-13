@@ -94,7 +94,7 @@ public class CalculatorListener implements ActionListener {
 					// get calculated monte carlo area from the model, show it in the view
 					this.theView.setAnnulusMonteCalc(theAnnulusModel.getMonteCalc());
 					
-					// refresh the greyscasle image
+					// refresh the greyscale image
 					this.theView.refreshAnnulusImage(this.theAnnulusModel.getHitsArray());
 				}
 			}
@@ -158,6 +158,36 @@ public class CalculatorListener implements ActionListener {
 					}
 				}
 			}
+		
+		/**
+		 * Else if Annulus Zoom In button is clicked...
+		 */
+		
+		} else if(e.getSource() == theView.getButtonAnnulusZoomIn()) {
+			
+			// set new max-mins to the model
+			this.theAnnulusModel.setZoom(this.theView.getPixelZoomAnnulus());
+			
+			// recalculate using new max-mins
+			this.theAnnulusModel.calcMonte();
+			
+			// refresh the greyscale image
+			this.theView.refreshAnnulusImage(this.theAnnulusModel.getHitsArray());
+			
+		/**
+		 * Else if Annulus Reset Zoom button is clicked...
+		 */
+			
+		} else if(e.getSource() == theView.getButtonAnnulusZoomReset()) {
+			
+			// reset max-min to outer radius
+			this.theAnnulusModel.resetZoom();
+			
+			// recalculate using default max-mins
+			this.theAnnulusModel.calcMonte();
+			
+			// refresh the greyscale image
+			this.theView.refreshAnnulusImage(this.theAnnulusModel.getHitsArray());
 		}
 		
 		/**

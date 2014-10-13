@@ -445,6 +445,26 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
+	 * This method returns the annulus zoom in button.
+	 * 
+	 * @return CalculatorButtonCustom buttonAnnulusZoomIn.
+	 */
+	public final CalculatorButtonCustom getButtonAnnulusZoomIn() {
+		
+		return this.buttonAnnulusZoomIn;
+	}
+	
+	/**
+	 * This method returns the annulus reset zoom button.
+	 * 
+	 * @return CalculatorButton buttonAnnulusZoomReset.
+	 */
+	public final CalculatorButton getButtonAnnulusZoomReset() {
+		
+		return this.buttonAnnulusZoomReset;
+	}
+	
+	/**
 	 * This method returns the mandelbrot OK button.
 	 * 
 	 * @return CalculatorButton buttonMandelbrotOK.
@@ -482,6 +502,36 @@ public class CalculatorView extends JFrame {
 	public final CalculatorCheckBox getCheckBoxMandelbrotRandomColour() {
 
 		return this.checkBoxMandelbrotRandomColour;
+	}
+	
+	/**
+	 * This method returns the annulus zoom in button.
+	 * 
+	 * @return CalculatorButtonCustom buttonAnnulusZoomIn.
+	 */
+	public final CalculatorButtonCustom getButtonMandelbrotZoomIn() {
+		
+		return this.buttonMandelbrotZoomIn;
+	}
+	
+	/**
+	 * This method returns the annulus pixel zoom array.
+	 * 
+	 * @return double[] pixelZoom.
+	 */
+	public final double[] getPixelZoomAnnulus() {
+		
+			return this.panelAnnulusImage.getPixelZoom();
+	}
+	
+	/**
+	 * This method returns the mandelbrot pixel zoom array.
+	 * 
+	 * @return double[] pixelZoom.
+	 */
+	public final double[] getPixelZoomMandelbrot() {
+		
+		return this.panelMandelbrotImage.getPixelZoom();
 	}
 	
 	/**
