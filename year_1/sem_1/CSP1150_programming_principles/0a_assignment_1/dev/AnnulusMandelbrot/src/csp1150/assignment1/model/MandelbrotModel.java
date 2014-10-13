@@ -17,16 +17,22 @@ public class MandelbrotModel extends ShapeModel {
 	// declare 2d array
 	private int[][] escapeArray = new int[GRIDSIZE][GRIDSIZE];
 	
+	// declare default zoom values, since there is no outer radius to fall back on when resetting
+	private final double DEFAULT_MINX = -2;
+	private final double DEFAULT_MINY = -2;
+	private final double DEFAULT_MAXX = 2;
+	private final double DEFAULT_MAXY = 2;
+	
 	/**
 	 * The Mandelbrot Model constructor.
 	 */
 	public MandelbrotModel() {
 		
 		// default values for max-min, without user input
-		this.maxX = 2;
-		this.maxY = 2;
-		this.minX = -2;
-		this.minY = -2;
+		this.minX = this.DEFAULT_MINX;
+		this.minY = this.DEFAULT_MINY;
+		this.maxX = this.DEFAULT_MAXX;
+		this.maxY = this.DEFAULT_MAXY;
 	}
 	
 	/**
@@ -183,5 +189,39 @@ public class MandelbrotModel extends ShapeModel {
 	public final int[][] getEscapeArray() {
 		
 		return escapeArray;
+	}
+	
+	/**
+	 * Overriding ShapeModel's method, adapted for mandelbrot.
+	 * 
+	 * This method resets the zoom values.
+	 * 
+	 * @param args unused
+	 */
+	@Override
+	public void resetZoom() {
+		
+		this.minX = this.DEFAULT_MINX;
+		this.minY = this.DEFAULT_MINY;
+		this.maxX = this.DEFAULT_MAXX;
+		this.maxY = this.DEFAULT_MAXY;
+	}
+	
+	/**
+	 * Overriding ShapeModel's method, adapted for mandelbrot.
+	 * 
+	 * This method converts pixelzoom values into max-min values,
+	 * and sets them to the minX - maxY fields.
+	 * 
+	 * @param double[] pixelZoom.
+	 */
+	@Override
+	public void setZoom(double[] pixelZoom) {
+		
+		// (pixelzoom / gridsize) * maxrange - halfrange
+		this.minX = (pixelZoom[0] / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2) - this.DEFAULT_MAXX;
+		this.minY = (pixelZoom[1] / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2) - this.DEFAULT_MAXX;
+		this.maxX = (pixelZoom[2] / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2) - this.DEFAULT_MAXX;
+		this.maxY = (pixelZoom[3] / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2) - this.DEFAULT_MAXX;
 	}
 }

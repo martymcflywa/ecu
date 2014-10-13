@@ -48,13 +48,8 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	// declare boolean
 	protected boolean zooming = false;
 	
-	// declare pixel zoom array to hold values
-	private int[] pixelZoom = new int[4];
-	
-	private int pixelMinX;
-	private int pixelMinY;
-	private int pixelMaxX;
-	private int pixelMaxY;
+	// declare pixel zoom array to hold values - index: 0 = minX, 1 = minY, 2 = maxX, 3 = maxY
+	private double[] pixelZoom = new double[4];
 	
 	/**
 	 * Default constructor for inheritance.
@@ -229,16 +224,14 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 					Math.abs(this.mousePt.y - me.getY())
 			);
 			
-			// ** DEBUGGING
-			//System.out.println("minX = " + Math.min(mousePt.x, me.getX()) + " | minY = " + Math.min(mousePt.y, me.getY()) + " | maxX = " + Math.abs(mousePt.x - me.getX()) + " | maxY = " + Math.abs(mousePt.y - me.getY()));
-			
 			// set pixel max-min values to mouse position
 			this.pixelZoom[0] = Math.min(this.mousePt.x, me.getX());
 			this.pixelZoom[1] = Math.min(this.mousePt.y, me.getY());
 			this.pixelZoom[2] = Math.abs(this.mousePt.x - me.getX());
 			this.pixelZoom[3] = Math.abs(this.mousePt.y - me.getY());
 			
-			System.out.println(pixelZoom[0] + " | " + pixelZoom[1] + " | " + pixelZoom[2] + " | " + pixelZoom[3]);
+			// ** DEBUGGING
+			//System.out.println(pixelZoom[0] + " | " + pixelZoom[1] + " | " + pixelZoom[2] + " | " + pixelZoom[3]);
 			
 			// repaint
 			me.getComponent().repaint();
@@ -266,7 +259,8 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 				this.pixelZoom[i] = 0;
 			}
 			
-			System.out.println(pixelZoom[0] + " | " + pixelZoom[1] + " | " + pixelZoom[2] + " | " + pixelZoom[3]);
+			// ** DEBUGGING
+			//System.out.println(pixelZoom[0] + " | " + pixelZoom[1] + " | " + pixelZoom[2] + " | " + pixelZoom[3]);
 			
 			// repaint
 			me.getComponent().repaint();
@@ -278,7 +272,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	 * 
 	 * @return int[] pixelZoom.
 	 */
-	public final int[] getPixelZoom() {
+	public final double[] getPixelZoom() {
 		return this.pixelZoom;
 	}
 	

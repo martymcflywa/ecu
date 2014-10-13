@@ -238,15 +238,17 @@ public class ShapeModel {
 	}
 	
 	/**
-	 * This method sets the custom zoom values.
+	 * This method converts pixelzoom values into max-min values,
+	 * and sets them to the minX - maxY fields.
 	 * 
-	 * @param int[] pixelZoom.
+	 * @param double[] pixelZoom.
 	 */
-	public void setZoom(int[] pixelZoom) {
+	public void setZoom(double[] pixelZoom) {
 		
-		this.minX = (pixelZoom[0] / this.GRIDSIZE) * this.outRadius;
-		this.minY = (pixelZoom[1] / this.GRIDSIZE) * this.outRadius;
-		this.maxX = (pixelZoom[2] / this.GRIDSIZE) * this.outRadius;
-		this.maxY = (pixelZoom[3] / this.GRIDSIZE) * this.outRadius;
+		// converted value = (pixelzoom / gridsize) * maxrange - halfrange
+		this.minX = (pixelZoom[0] / this.GRIDSIZE) * (this.outRadius * 2) - this.outRadius;
+		this.minY = (pixelZoom[1] / this.GRIDSIZE) * (this.outRadius * 2) - this.outRadius;
+		this.maxX = (pixelZoom[2] / this.GRIDSIZE) * (this.outRadius * 2) - this.outRadius;
+		this.maxY = (pixelZoom[3] / this.GRIDSIZE) * (this.outRadius * 2) - this.outRadius;
 	}
 }
