@@ -62,7 +62,7 @@ public class CalculatorView extends JFrame {
 	private CalculatorTextField textFieldAnnulusInRadius;
 	private CalculatorButton buttonAnnulusCalculate;
 	private CalculatorButtonCustom buttonAnnulusZoomIn;
-	private CalculatorButton buttonAnnulusZoomReset;
+	private CalculatorButton buttonAnnulusResetImage;
 	private CalculatorButton buttonAnnulusSave;
 	
 	// declare mandelbrot radio buttons
@@ -76,7 +76,7 @@ public class CalculatorView extends JFrame {
 	private CalculatorButtonCustom buttonMandelbrotOK;
 	private CalculatorCheckBox checkBoxMandelbrotRandomColour;
 	private CalculatorButtonCustom buttonMandelbrotZoomIn;
-	private CalculatorButton buttonMandelbrotZoomReset;
+	private CalculatorButton buttonMandelbrotResetImage;
 	private CalculatorButton buttonMandelbrotSave;
 	
 	/**
@@ -234,7 +234,7 @@ public class CalculatorView extends JFrame {
 		// add buttons to the panel
 		this.panelAnnulusBorder.add(this.buttonAnnulusCalculate = new CalculatorButton("Calculate", 1, 5), this.buttonAnnulusCalculate.gbc_button);
 		this.panelAnnulusBorder.add(this.buttonAnnulusZoomIn = new CalculatorButtonCustom("Zoom In", 0, 12), this.buttonAnnulusZoomIn.gbc_button);
-		this.panelAnnulusBorder.add(this.buttonAnnulusZoomReset = new CalculatorButton("Reset Zoom", 1, 12), this.buttonAnnulusZoomReset.gbc_button);
+		this.panelAnnulusBorder.add(this.buttonAnnulusResetImage = new CalculatorButton("Reset Image", 1, 12), this.buttonAnnulusResetImage.gbc_button);
 		this.panelAnnulusBorder.add(this.buttonAnnulusSave = new CalculatorButton("Save Image", 2, 12), this.buttonAnnulusSave.gbc_button);
 		
 		/*
@@ -258,7 +258,7 @@ public class CalculatorView extends JFrame {
 		// add buttons to the panel
 		this.panelMandelbrotBorder.add(this.buttonMandelbrotOK = new CalculatorButtonCustom("OK", 0, 6), this.buttonMandelbrotOK.gbc_button);
 		this.panelMandelbrotBorder.add(this.buttonMandelbrotZoomIn = new CalculatorButtonCustom("Zoom In", 0, 12), this.buttonMandelbrotZoomIn.gbc_button);
-		this.panelMandelbrotBorder.add(this.buttonMandelbrotZoomReset = new CalculatorButton("Reset Zoom", 1, 12), this.buttonMandelbrotZoomReset.gbc_button);
+		this.panelMandelbrotBorder.add(this.buttonMandelbrotResetImage = new CalculatorButton("Reset Image", 1, 12), this.buttonMandelbrotResetImage.gbc_button);
 		this.panelMandelbrotBorder.add(this.buttonMandelbrotSave = new CalculatorButton("Save Image", 2, 12), this.buttonMandelbrotSave.gbc_button);
 	}
 	
@@ -424,13 +424,13 @@ public class CalculatorView extends JFrame {
 		// add listener to annulus calculator buttons
 		this.buttonAnnulusCalculate.addActionListener(theListener);
 		this.buttonAnnulusZoomIn.addActionListener(theListener);
-		this.buttonAnnulusZoomReset.addActionListener(theListener);
+		this.buttonAnnulusResetImage.addActionListener(theListener);
 		this.buttonAnnulusSave.addActionListener(theListener);
 		
 		// add listener to mandelbrot calculator buttons
 		this.buttonMandelbrotOK.addActionListener(theListener);
 		this.buttonMandelbrotZoomIn.addActionListener(theListener);
-		this.buttonMandelbrotZoomReset.addActionListener(theListener);
+		this.buttonMandelbrotResetImage.addActionListener(theListener);
 		this.buttonMandelbrotSave.addActionListener(theListener);
 	}
 	
@@ -455,13 +455,13 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
-	 * This method returns the annulus reset zoom button.
+	 * This method returns the annulus zoom reset button.
 	 * 
 	 * @return CalculatorButton buttonAnnulusZoomReset.
 	 */
 	public final CalculatorButton getButtonAnnulusZoomReset() {
 		
-		return this.buttonAnnulusZoomReset;
+		return this.buttonAnnulusResetImage;
 	}
 	
 	/**
@@ -505,13 +505,22 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
-	 * This method returns the annulus zoom in button.
+	 * This method returns the mandelbrot zoom in button.
 	 * 
 	 * @return CalculatorButtonCustom buttonAnnulusZoomIn.
 	 */
 	public final CalculatorButtonCustom getButtonMandelbrotZoomIn() {
 		
 		return this.buttonMandelbrotZoomIn;
+	}
+	
+	/**
+	 * This method returns the mandelbrot zoom reset button
+	 * @return
+	 */
+	public final CalculatorButton getButtonMandelbrotZoomReset() {
+		
+		return this.buttonMandelbrotResetImage;
 	}
 	
 	/**

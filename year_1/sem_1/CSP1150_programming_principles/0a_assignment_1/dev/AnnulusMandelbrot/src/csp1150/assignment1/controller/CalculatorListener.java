@@ -104,6 +104,43 @@ public class CalculatorListener implements ActionListener {
 				
 				this.theView.displayErrorMessage("Enter two values.");
 			}
+		
+		/**
+		 * Else if Annulus Zoom In button is clicked...
+		 */
+		
+		} else if(e.getSource() == theView.getButtonAnnulusZoomIn()) {
+			
+			// set new max-mins to the model
+			this.theAnnulusModel.setZoom(this.theView.getPixelZoomAnnulus());
+			
+			// recalculate using new max-mins
+			this.theAnnulusModel.calcMonte();
+			
+			// refresh the greyscale image
+			this.theView.refreshAnnulusImage(this.theAnnulusModel.getHitsArray());
+			
+		/**
+		 * Else if Annulus Reset Zoom button is clicked...
+		 */
+			
+		} else if(e.getSource() == theView.getButtonAnnulusZoomReset()) {
+			
+			// reset max-min to outer radius
+			this.theAnnulusModel.resetZoom();
+			
+			// recalculate using default max-mins
+			this.theAnnulusModel.calcMonte();
+			
+			// refresh the greyscale image
+			this.theView.refreshAnnulusImage(this.theAnnulusModel.getHitsArray());
+			
+		/**
+		 * Else if Annulus Save button is clicked...
+		 * TODO: Define save button here.
+		 */
+		//} else if() {
+			
 			
 		/**
 		 * Else if Mandelbrot OK button is clicked...
@@ -160,34 +197,53 @@ public class CalculatorListener implements ActionListener {
 			}
 		
 		/**
-		 * Else if Annulus Zoom In button is clicked...
+		 * Else if Mandelbrot Zoom In button is clicked...	
 		 */
-		
-		} else if(e.getSource() == theView.getButtonAnnulusZoomIn()) {
+			
+		} else if(e.getSource() == theView.getButtonMandelbrotZoomIn()) {
 			
 			// set new max-mins to the model
-			this.theAnnulusModel.setZoom(this.theView.getPixelZoomAnnulus());
+			this.theMandelbrotModel.setZoom(this.theView.getPixelZoomMandelbrot());
 			
-			// recalculate using new max-mins
-			this.theAnnulusModel.calcMonte();
+			// if random colour checkbox is ticked,
+			if(theView.getCheckBoxMandelbrotRandomColour().isSelected()) {
+				
+				// calculate area using escape time
+				this.theMandelbrotModel.calcEscape();
+				
+				// refresh the colour image
+				this.theView.refreshMandelbrotImage(this.theMandelbrotModel.getEscapeArray());
+				
+				// set boolean to true
+				this.mandelbrotColourImageExists = true;
 			
-			// refresh the greyscale image
-			this.theView.refreshAnnulusImage(this.theAnnulusModel.getHitsArray());
+			// else random colour checkbox is not ticked,
+			} else {
+				
+				// recalculate monte to refill values in hits array
+				this.theMandelbrotModel.calcMonte();
+				
+				// refresh greyscale image
+				this.theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
+				
+				// set boolean to false
+				this.mandelbrotColourImageExists = false;
+			}
 			
 		/**
-		 * Else if Annulus Reset Zoom button is clicked...
+		 * Else if Mandelbrot Reset Zoom button is clicked...
 		 */
 			
-		} else if(e.getSource() == theView.getButtonAnnulusZoomReset()) {
+		} else if(e.getSource() == theView.getButtonMandelbrotZoomReset()) {
 			
 			// reset max-min to outer radius
-			this.theAnnulusModel.resetZoom();
+			this.theMandelbrotModel.resetZoom();
 			
 			// recalculate using default max-mins
-			this.theAnnulusModel.calcMonte();
+			this.theMandelbrotModel.calcMonte();
 			
 			// refresh the greyscale image
-			this.theView.refreshAnnulusImage(this.theAnnulusModel.getHitsArray());
+			this.theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
 		}
 		
 		/**
