@@ -322,4 +322,6 @@ Define:
 - Crow's foot notation
 	- Notation for LRDM
 	- The *feet* represent the relationship type, one-to-one or one-to-many
+	- The notch, or 1, represents **must** relationship
+	- The circle, or 0, represents **may** relationship
 	- Many-to-many does not exist
