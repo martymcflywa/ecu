@@ -247,8 +247,8 @@ public class ShapeModel {
 		
 		// converted value = (pixelzoom / gridsize) * maxrange - halfrange
 		this.minX = (pixelZoom[0] / this.GRIDSIZE) * (this.outRadius * 2) - this.outRadius;
-		this.minY = (pixelZoom[1] / this.GRIDSIZE) * (this.outRadius * 2) - this.outRadius;
+		this.minY = (pixelZoom[1] / this.GRIDSIZE) * (this.outRadius * 2);// - this.outRadius;
 		this.maxX = (pixelZoom[2] / this.GRIDSIZE) * (this.outRadius * 2) - this.outRadius;
-		this.maxY = (pixelZoom[3] / this.GRIDSIZE) * (this.outRadius * 2) - this.outRadius;
+		this.maxY = (pixelZoom[3] / this.GRIDSIZE) * (this.outRadius * 2);// - this.outRadius;
 	}
 }
