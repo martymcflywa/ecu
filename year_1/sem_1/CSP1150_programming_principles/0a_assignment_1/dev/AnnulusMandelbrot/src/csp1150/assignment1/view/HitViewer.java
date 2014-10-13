@@ -221,7 +221,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 				);
 			
 			// ** DEBUGGING
-			System.out.println(Math.abs(mousePt.x - me.getX()));
+			System.out.println("minX = " + Math.min(mousePt.x, me.getX()) + " | minY = " + Math.min(mousePt.y, me.getY()) + " | maxX = " + Math.abs(mousePt.x - me.getX()) + " | maxY = " + Math.abs(mousePt.y - me.getY()));
 			
 			// repaint
 			me.getComponent().repaint();
