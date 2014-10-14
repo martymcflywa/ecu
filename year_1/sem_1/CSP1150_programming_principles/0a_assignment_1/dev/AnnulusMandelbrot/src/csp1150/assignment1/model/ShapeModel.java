@@ -246,9 +246,24 @@ public class ShapeModel {
 	public void setZoom(double[] pixelZoom) {
 		
 		// converted value = (pixelzoom / gridsize) * maxrange - halfrange
-		this.minX = (pixelZoom[0] / this.GRIDSIZE) * (this.outRadius * 2) - this.outRadius;
-		this.minY = (pixelZoom[1] / this.GRIDSIZE) * (this.outRadius * 2);// - this.outRadius;
-		this.maxX = (pixelZoom[2] / this.GRIDSIZE) * (this.outRadius * 2) - this.outRadius;
-		this.maxY = (pixelZoom[3] / this.GRIDSIZE) * (this.outRadius * 2);// - this.outRadius;
+//		this.minX = (pixelZoom[0] / this.GRIDSIZE) * (this.outRadius * 2) - this.outRadius;
+//		this.minY = (pixelZoom[1] / this.GRIDSIZE) * (this.outRadius * 2) - this.outRadius;
+//		this.maxX = (pixelZoom[2] / this.GRIDSIZE) * (this.outRadius * 2) - this.outRadius;
+//		this.maxY = (pixelZoom[3] / this.GRIDSIZE) * (this.outRadius * 2) - this.outRadius;
+		
+//		this.minX = (0.0 / this.GRIDSIZE) * (this.outRadius * 2.0) - this.outRadius;
+//		this.minY = (0.0 / this.GRIDSIZE) * (this.outRadius * 2.0) + this.outRadius;
+//		this.maxX = (222.0 / this.GRIDSIZE) * (this.outRadius * 2.0) - this.outRadius;
+//		this.maxY = (222.0 / this.GRIDSIZE) * (this.outRadius * 2.0) - this.outRadius;
+		
+		
+		// y-axis could be reversed, zoom still not calculated correctly
+		minX = -5.0;
+		minY = 5.0;
+		maxX = 20.0;
+		maxY = -20.0;
+		
+		// ** DEBUGGING
+		System.out.println("minX: " + minX + " | minY: " + minY + " | maxX: " + maxX + " | maxY: " + maxY);
 	}
 }
