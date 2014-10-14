@@ -850,7 +850,7 @@ cor.test(Gender, FB_friends, alternative = "less", method = "spearman", exact = 
 plot(
     Gender_category, 
     FB_friends,
-    main = "Box plot: \n Gender by FB Friends",
+    main = "Box plot: \n Gender and FB Friends",
     xlab = "Gender",
     ylab = "FB Friends"
 );
@@ -863,7 +863,7 @@ plot(
 plot(
     Gender,
     FB_friends,
-    main = "Scatter plot: \n Gender by FB Friends",
+    main = "Scatter plot: \n Gender and FB Friends",
     xlab = "Gender",
     ylab = "FB Friends"
 );
@@ -912,7 +912,7 @@ cor.test(Gender, Close_friends, alternative = "less", method = "spearman", exact
 plot(
     Gender_category, 
     Close_friends,
-    main = "Box plot: \n Gender by Close Friends",
+    main = "Box plot: \n Gender and Close Friends",
     xlab = "Gender",
     ylab = "Close Friends"
 );
@@ -925,7 +925,7 @@ plot(
 plot(
     Gender,
     Close_friends,
-    main = "Scatter plot: \n Gender by Close Friends",
+    main = "Scatter plot: \n Gender and Close Friends",
     xlab = "Gender",
     ylab = "Close Friends"
 );
@@ -974,7 +974,7 @@ cor.test(Gender, Sociability, alternative = "less", method = "spearman", exact =
 plot(
     Gender_category, 
     Sociability,
-    main = "Box plot: \n Gender by Sociability",
+    main = "Box plot: \n Gender and Sociability",
     xlab = "Gender",
     ylab = "Sociability"
 );
@@ -987,7 +987,7 @@ plot(
 plot(
     Gender,
     Sociability,
-    main = "Scatter plot: \n Gender by Sociability",
+    main = "Scatter plot: \n Gender and Sociability",
     xlab = "Gender",
     ylab = "Sociability"
 );
@@ -1050,7 +1050,7 @@ cor.test(Gender, Hours, alternative = "less", method = "spearman", exact = FALSE
 plot(
     Gender_category, 
     Hours,
-    main = "Box plot: \n Gender by FB Hours",
+    main = "Box plot: \n Gender and FB Hours",
     xlab = "Gender",
     ylab = "FB Hours"
 );
@@ -1063,7 +1063,7 @@ plot(
 plot(
     Gender,
     Hours,
-    main = "Scatter plot: \n Gender by FB Hours",
+    main = "Scatter plot: \n Gender and FB Hours",
     xlab = "Gender",
     ylab = "FB Hours"
 );
