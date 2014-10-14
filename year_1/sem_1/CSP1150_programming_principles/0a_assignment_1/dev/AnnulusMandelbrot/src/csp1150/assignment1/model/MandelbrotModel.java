@@ -219,9 +219,14 @@ public class MandelbrotModel extends ShapeModel {
 	public void setZoom(double[] pixelZoom) {
 		
 		// (pixelzoom / gridsize) * maxrange - halfrange
-		this.minX = (pixelZoom[0] / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
-		this.minY = (pixelZoom[1] / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
-		this.maxX = (pixelZoom[2] / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
-		this.maxY = (pixelZoom[3] / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
+//		this.minX = (pixelZoom[0] / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
+//		this.minY = (pixelZoom[1] / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
+//		this.maxX = (pixelZoom[2] / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
+//		this.maxY = (pixelZoom[3] / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
+		
+		this.minX = -0.81;
+		this.minY = 0.17;
+		this.maxX = -0.79;
+		this.maxY = 0.15;
 	}
 }
