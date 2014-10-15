@@ -207,30 +207,9 @@ public class MandelbrotModel extends ShapeModel {
 		this.maxY = this.DEFAULT_MAXY;
 	}
 	
-//	/**
-//	 * Overriding ShapeModel's method, adapted for mandelbrot.
-//	 * 
-//	 * This method converts pixelzoom values into max-min values,
-//	 * and sets them to the minX - maxY fields.
-//	 * 
-//	 * @param double[] pixelZoom.
-//	 */
-//	@Override
-//	public void setZoom(double[] pixelZoom) {
-//		
-//		// (pixelzoom / gridsize) * maxrange - halfrange
-////		this.minX = (pixelZoom[0] / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
-////		this.minY = (pixelZoom[1] / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
-////		this.maxX = (pixelZoom[2] / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
-////		this.maxY = (pixelZoom[3] / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
-//		
-//		this.minX = -0.81;
-//		this.minY = 0.17;
-//		this.maxX = -0.79;
-//		this.maxY = 0.15;
-//	}
-	
 	/**
+	 * Overriding ShapeModel's method, using DEFAULT_MAXX instead of outRadius.
+	 * 
 	 * This method converts the minX mouse position to the grid position.
 	 * 
 	 * @param double pixelMinX - The mouse minX position.
@@ -239,22 +218,27 @@ public class MandelbrotModel extends ShapeModel {
 	@Override
 	protected double minXPixelToGrid(double pixelMinX) {
 		
-		return (pixelMinX / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2) - this.DEFAULT_MAXX;
+		return (pixelMinX / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
 	}
 	
 	/**
+	 * Overriding ShapeModel's method, using DEFAULT_MAXX instead of outRadius.
+	 * 
 	 * This method converts the minY mouse position to the grid position.
 	 * 
-	 * @param double pixelMinX - The mouse minY position.
+	 * @param double pixelMinY - The mouse minY position.
+	 * @param double pixelHeight - The height of the drawn rectangle.
 	 * @return double - The converted grid position.
 	 */
 	@Override
-	protected double maxYPixelToGrid(double pixelMinY) {
+	protected double minYPixelToGrid(double pixelMinY, double pixelHeight) {
 		
-		return Math.min(20, ((pixelMinY / this.GRIDSIZE) * (this.DEFAULT_MAXY * 2) - this.DEFAULT_MAXY * 2));
+		return ((this.GRIDSIZE - (pixelMinY + pixelHeight)) / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
 	}
 	
 	/**
+	 * Overriding ShapeModel's method, using DEFAULT_MAXX instead of outRadius.
+	 * 
 	 * This method converts the maxX mouse position to the grid position.
 	 * 
 	 * @param double pixelMinX - The mouse minY position.
@@ -264,19 +248,19 @@ public class MandelbrotModel extends ShapeModel {
 	@Override
 	protected double maxXPixelToGrid(double pixelMinX, double pixelWidth) {
 		
-		return ((pixelMinX + pixelWidth) / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2) - this.DEFAULT_MAXX; 
+		return ((pixelMinX + pixelWidth) / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX; 
 	}
 	
 	/**
+	 * Overriding ShapeModel's method, using DEFAULT_MAXX instead of outRadius.
+	 * 
 	 * This method converts the maxY mouse position to the grid position.
 	 * 
-	 * @param double pixelMinY - The mouse minY position.
-	 * @param double pixelHeight - The height of the drawn rectangle.
+	 * @param double pixelMinX - The mouse minY position.
 	 * @return double - The converted grid position.
 	 */
-	@Override
-	protected double minYPixelToGrid(double pixelMinY, double pixelHeight) {
+	protected double maxYPixelToGrid(double pixelMaxY) {
 		
-		return Math.min(20, ((pixelMinY + pixelHeight) / this.GRIDSIZE) * (this.DEFAULT_MAXY * 2) - this.DEFAULT_MAXY * 2);
+		return ((this.GRIDSIZE - pixelMaxY) / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
 	}
 }
