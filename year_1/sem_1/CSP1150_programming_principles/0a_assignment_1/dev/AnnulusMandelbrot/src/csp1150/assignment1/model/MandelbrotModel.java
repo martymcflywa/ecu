@@ -249,7 +249,7 @@ public class MandelbrotModel extends ShapeModel {
 	 * @return double - The converted grid position.
 	 */
 	@Override
-	protected double minYPixelToGrid(double pixelMinY) {
+	protected double maxYPixelToGrid(double pixelMinY) {
 		
 		return Math.min(20, ((pixelMinY / this.GRIDSIZE) * (this.DEFAULT_MAXY * 2) - this.DEFAULT_MAXY * 2));
 	}
@@ -275,7 +275,7 @@ public class MandelbrotModel extends ShapeModel {
 	 * @return double - The converted grid position.
 	 */
 	@Override
-	protected double maxYPixelToGrid(double pixelMinY, double pixelHeight) {
+	protected double minYPixelToGrid(double pixelMinY, double pixelHeight) {
 		
 		return Math.min(20, ((pixelMinY + pixelHeight) / this.GRIDSIZE) * (this.DEFAULT_MAXY * 2) - this.DEFAULT_MAXY * 2);
 	}

@@ -245,11 +245,11 @@ public class ShapeModel {
 	 */
 	public void setZoom(double[] pixelZoom) {
 		
-		// convert the pixel values to grid positions
+		// convert mouse positions to grid positions
 		this.minX = minXPixelToGrid(pixelZoom[0]);
-		this.minY = minYPixelToGrid(pixelZoom[1]);
+		this.minY = minYPixelToGrid(pixelZoom[1], pixelZoom[3]);
 		this.maxX = maxXPixelToGrid(pixelZoom[0], pixelZoom[2]);
-		this.maxY = maxYPixelToGrid(pixelZoom[1], pixelZoom[3]);
+		this.maxY = maxYPixelToGrid(pixelZoom[1]);
 		
 		// ** DEBUGGING
 		System.out.println("minX: " + minX + " | minY: " + minY + " | maxX: " + maxX + " | maxY: " + maxY);
@@ -263,18 +263,19 @@ public class ShapeModel {
 	 */
 	protected double minXPixelToGrid(double pixelMinX) {
 		
-		return (pixelMinX / this.GRIDSIZE) * (this.outRadius * 2) - this.outRadius;
+		return (pixelMinX / this.GRIDSIZE) * (this.outRadius * 2.0) - this.outRadius;
 	}
 	
 	/**
 	 * This method converts the minY mouse position to the grid position.
 	 * 
-	 * @param double pixelMinX - The mouse minY position.
+	 * @param double pixelMinY - The mouse minY position.
+	 * @param double pixelHeight - The height of the drawn rectangle.
 	 * @return double - The converted grid position.
 	 */
-	protected double minYPixelToGrid(double pixelMinY) {
+	protected double minYPixelToGrid(double pixelMinY, double pixelHeight) {
 		
-		return Math.min(20, ((pixelMinY / this.GRIDSIZE) * (this.outRadius * 2) - this.outRadius * 2));
+		return ((this.GRIDSIZE - (pixelMinY + pixelHeight)) / this.GRIDSIZE) * (this.outRadius * 2.0) - this.outRadius;
 	}
 	
 	/**
@@ -286,18 +287,17 @@ public class ShapeModel {
 	 */
 	protected double maxXPixelToGrid(double pixelMinX, double pixelWidth) {
 		
-		return ((pixelMinX + pixelWidth) / this.GRIDSIZE) * (this.outRadius * 2) - this.outRadius; 
+		return ((pixelMinX + pixelWidth) / this.GRIDSIZE) * (this.outRadius * 2.0) - this.outRadius; 
 	}
 	
 	/**
 	 * This method converts the maxY mouse position to the grid position.
 	 * 
-	 * @param double pixelMinY - The mouse minY position.
-	 * @param double pixelHeight - The height of the drawn rectangle.
+	 * @param double pixelMinX - The mouse minY position.
 	 * @return double - The converted grid position.
 	 */
-	protected double maxYPixelToGrid(double pixelMinY, double pixelHeight) {
+	protected double maxYPixelToGrid(double pixelMaxY) {
 		
-		return Math.min(20, ((pixelMinY + pixelHeight) / this.GRIDSIZE) * (this.outRadius * 2) - this.outRadius * 2);
+		return ((this.GRIDSIZE - pixelMaxY) / this.GRIDSIZE) * (this.outRadius * 2.0) - this.outRadius;
 	}
 }
