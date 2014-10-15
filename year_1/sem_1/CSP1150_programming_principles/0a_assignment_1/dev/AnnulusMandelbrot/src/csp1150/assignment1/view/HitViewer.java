@@ -226,12 +226,12 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 			
 			// set pixel max-min values to mouse position
 			this.pixelZoom[0] = Math.min(this.mousePt.x, me.getX());
-			this.pixelZoom[1] = Math.min(this.mousePt.y, me.getY());
+			this.pixelZoom[1] = this.height - Math.min(this.mousePt.y, me.getY());
 			this.pixelZoom[2] = Math.abs(this.mousePt.x - me.getX());
 			this.pixelZoom[3] = Math.abs(this.mousePt.y - me.getY());
 			
 			// ** DEBUGGING
-			//System.out.println(pixelZoom[0] + " | " + pixelZoom[1] + " | " + pixelZoom[2] + " | " + pixelZoom[3]);
+			System.out.println("startX: " + pixelZoom[0] + " | startY: " + pixelZoom[1] + " | width: " + pixelZoom[2] + " | height: " + pixelZoom[3]);
 			
 			// repaint
 			me.getComponent().repaint();
