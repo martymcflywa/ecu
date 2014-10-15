@@ -145,9 +145,9 @@ FB Hours      & -0.2815223  & 0.02629 \\ \hline
 \end{table}
 
 \newpage
-Hypothetically, if there were an equal to almost equal ratio between men and women in the dataset, and all variables were of normal distribution, a fair conclusion of these results would be that there is a negative correlation between gender and the number of Facebook friends and hours spent on Facebook. In other words, the negative correlation indicates that females have a greater network size than men, and spend more time on Facebook than men. With significant p-values $<$ $\alpha = 0.05$, the null hypothesis that there are no correlations between gender network size or hours of use is rejected. 
+Hypothetically, if there were an equal to almost equal ratio between men and women in the dataset, and all variables were of normal distribution, a fair conclusion of these results would be that there is a negative correlation between gender and the number of Facebook friends and hours spent on Facebook. In other words, the negative correlation indicates that females have a greater network size than men, and spend more time on Facebook than men. With significant p-values $< \alpha = 0.05$, the null hypothesis that there are no correlations between gender network size or hours of use is rejected. 
 
-While Close friends exhibits a negative correlation, the calculated p-value is insignificant, being $>$ $\alpha = 0.05$. Therefore the null hypothesis that there are no correlations between gender and Close friends survives. Sociability's 0 $r$ value indicates there are no correlations at all.
+While Close friends exhibits a negative correlation, the calculated p-value is insignificant, being $> \alpha = 0.05$. Therefore the null hypothesis that there are no correlations between gender and Close friends survives. Sociability's 0 $r$ value indicates there are no correlations at all.
 
 However, since there is such a small representation of women in the sample set, there is insufficient evidence to provide a conclusion. Additionally, Pearson's method only applies to normally distributed variables and the variables measured are non-normally distributed. Therefore, the results must be further verified by non-parametric tests.
 
@@ -165,7 +165,7 @@ However, since there is such a small representation of women in the sample set, 
 
 Table 3 displays the non-parametric Spearman's correlation coefficient results with each variable compared with gender. A one-tailed test has been selected to identify a negative correlation towards 0, being female, where $r_s$ is calculated by ranking the scores, then calculating the correlation coefficient using Pearson's method with the ranks rather than the scores themselves \citep{McKillup2011}.
 
-Similar correlation results are found from those in the previous parametric test. However, in this instance, a weak negative correlation is also found between gender and Sociability. Furthermore, all p-values in this test are considered insignificant being $<$ $\alpha = 0.05$. Therefore, the null hypotheses for these tests cannot be rejected. Facebook friends exhibits the most significant p-value where H$_0$ could potentially be rejected.
+Similar correlation results are found from those in the previous parametric test. However, in this instance, a weak negative correlation is also found between gender and Sociability. Furthermore, all p-values in this test are considered insignificant being $< \alpha = 0.05$. Therefore, the null hypotheses for these tests cannot be rejected. Facebook friends exhibits the most significant p-value where H$_0$ could potentially be rejected.
 
 Two-tail and negated one-tail tests were also performed, only to find higher, insignificant p-values.
 
@@ -185,12 +185,11 @@ Since all variables being tested are non-normally distributed, Spearman's non-pa
 
 %Again, if the dataset included a balanced ratio between men and women, Facebook friends $\rho$ could be interpreted to support the thesis statement ``Gender is related to the size of a user's Facebook network'', demonstrating that in general, women have more Facebook friends than men. Facebook hours $\rho$ could also be interpreted to support the thesis statement ``Gender is related to the amount of time a user spends on Facebook'', illustrating that in general, women report higher hours of Facebook use than men.
 
-\subsection{Wilcoxon Signed Rank Test}
+\subsubsection{Wilcoxon signed rank test}
 
 %wilcox.test(FB_friends ~ Gender, alt="g", conf.int=T) R-code
 
-Due to the non-normal distribution of the data, the non-parametric Wilcoxon Signed Rank test has been selected to perform a paired differences hypothesis test. Table 4 displays Wilcoxon Signed Rank test results where each variable is compared with gender.
-
+Due to the non-normal distribution of the data, the non-parametric Wilcoxon signed rank test has been selected to perform a paired differences hypothesis test. Table 4 displays Wilcoxon signed rank test results where each variable is compared with gender. A one-tailed test has been selected to identify a positive correlation 
 
 \begin{table}[H]
 \centering
