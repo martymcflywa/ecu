@@ -203,7 +203,7 @@ public class CalculatorView extends JFrame {
 		 */
 		
 		// add instructions
-		this.panelMandelbrotBorder.add(this.labelMandelbrotCalcInstructions = new CalculatorLabel("Select calculate or view image.", "west", 8, 0, 40, 5, 5, 0, 1), this.labelMandelbrotCalcInstructions.gbc_label);
+		this.panelMandelbrotBorder.add(this.labelMandelbrotCalcInstructions = new CalculatorLabel("Calculate area first, then view image.", "west", 8, 0, 40, 5, 5, 0, 1), this.labelMandelbrotCalcInstructions.gbc_label);
 		
 		// add title for output
 		this.panelMandelbrotBorder.add(this.labelMandelbrotMonteTitle = new CalculatorLabel("Monte Carlo estimate:", "west", 3, 0, 40, 5, 5, 0, 8), this.labelMandelbrotMonteTitle.gbc_label);
