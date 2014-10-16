@@ -233,7 +233,7 @@ public class CalculatorView extends JFrame {
 		
 		// add buttons to the panel
 		this.panelAnnulusBorder.add(this.buttonAnnulusCalculate = new CalculatorButton("Calculate", 1, 5), this.buttonAnnulusCalculate.gbc_button);
-		this.panelAnnulusBorder.add(this.buttonAnnulusZoomIn = new CalculatorButtonCustom("Zoom In", 0, 12), this.buttonAnnulusZoomIn.gbc_button);
+		this.panelAnnulusBorder.add(this.buttonAnnulusZoomIn = new CalculatorButtonCustom("Zoom In", 0, 12), this.buttonAnnulusZoomIn.gbc_zoomButton);
 		this.panelAnnulusBorder.add(this.buttonAnnulusResetImage = new CalculatorButton("Reset Image", 1, 12), this.buttonAnnulusResetImage.gbc_button);
 		this.panelAnnulusBorder.add(this.buttonAnnulusSave = new CalculatorButton("Save Image", 2, 12), this.buttonAnnulusSave.gbc_button);
 		
@@ -256,8 +256,8 @@ public class CalculatorView extends JFrame {
 		this.panelMandelbrotBorder.add(this.checkBoxMandelbrotRandomColour = new CalculatorCheckBox("Random colour", 0, 5), this.checkBoxMandelbrotRandomColour.gbc_checkBox);
 		
 		// add buttons to the panel
-		this.panelMandelbrotBorder.add(this.buttonMandelbrotOK = new CalculatorButtonCustom("OK", 0, 6), this.buttonMandelbrotOK.gbc_button);
-		this.panelMandelbrotBorder.add(this.buttonMandelbrotZoomIn = new CalculatorButtonCustom("Zoom In", 0, 12), this.buttonMandelbrotZoomIn.gbc_button);
+		this.panelMandelbrotBorder.add(this.buttonMandelbrotOK = new CalculatorButtonCustom("OK", 0, 6), this.buttonMandelbrotOK.gbc_zoomButton);
+		this.panelMandelbrotBorder.add(this.buttonMandelbrotZoomIn = new CalculatorButtonCustom("Zoom In", 0, 12), this.buttonMandelbrotZoomIn.gbc_zoomButton);
 		this.panelMandelbrotBorder.add(this.buttonMandelbrotResetImage = new CalculatorButton("Reset Image", 1, 12), this.buttonMandelbrotResetImage.gbc_button);
 		this.panelMandelbrotBorder.add(this.buttonMandelbrotSave = new CalculatorButton("Save Image", 2, 12), this.buttonMandelbrotSave.gbc_button);
 	}

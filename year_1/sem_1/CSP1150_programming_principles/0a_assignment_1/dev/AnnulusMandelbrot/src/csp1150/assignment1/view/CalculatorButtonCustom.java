@@ -31,14 +31,14 @@ public class CalculatorButtonCustom extends CalculatorButton {
 		this.setText(theWords);
 		
 		// create gridbag constraints
-		this.gbc_button = new GridBagConstraints();
+		this.gbc_zoomButton = new GridBagConstraints();
 		
 		// use these values as constraints
-		this.gbc_button.anchor = GridBagConstraints.WEST;
-		this.gbc_button.insets = new Insets(0, 40, 5, 5);
+		this.gbc_zoomButton.anchor = GridBagConstraints.WEST;
+		this.gbc_zoomButton.insets = new Insets(0, 40, 5, 5);
 		
 		// set the column and row positions
-		this.gbc_button.gridx = gridx;
-		this.gbc_button.gridy = gridy;
+		this.gbc_zoomButton.gridx = gridx;
+		this.gbc_zoomButton.gridy = gridy;
 	}
 }
