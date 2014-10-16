@@ -145,9 +145,9 @@ public class HitViewerColour extends HitViewer implements MouseListener, MouseMo
 		Random randomRGB = new Random();
 		
 		// get a random number for red, green and blue
-		int randomRed = randomRGB.nextInt(255 - 0) + 1;
-		int randomGreen = randomRGB.nextInt(255 - 0) + 1;
-		int randomBlue = randomRGB.nextInt(255 - 0) + 1;
+		int randomR = randomRGB.nextInt(255 - 0) + 1;
+		int randomG = randomRGB.nextInt(255 - 0) + 1;
+		int randomB = randomRGB.nextInt(255 - 0) + 1;
 		
 		for(int x = 0; x < width; x++) {
 			
@@ -155,15 +155,15 @@ public class HitViewerColour extends HitViewer implements MouseListener, MouseMo
                 
 				// set pixel to current escapetime value, add some randomness - previously divided by 25
 				// TODO: add if(zooming) keep colour, else randomise
-				int pixelRed = Math.abs(escapeArray[x][y] - randomRed);
-				int pixelGreen = Math.abs(escapeArray[x][y] - randomGreen);
-				int pixelBlue = Math.abs(escapeArray[x][y] - randomBlue);
+				int pixelR = Math.abs(escapeArray[x][y] - randomR);
+				int pixelG = Math.abs(escapeArray[x][y] - randomG);
+				int pixelB = Math.abs(escapeArray[x][y] - randomB);
 				
 				// call setPixel to draw, using random numbers generated
-				setPixel(x, y, pixelRed, pixelGreen, pixelBlue);
+				setPixel(x, y, pixelR, pixelG, pixelB);
 				
 				// ** DEBUGGING
-				System.out.println(pixelRed + " " + pixelGreen + " " + pixelBlue);
+				System.out.println(pixelR + " " + pixelG + " " + pixelB);
             }
         }
 	}

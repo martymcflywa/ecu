@@ -162,19 +162,19 @@ public class MandelbrotModel extends ShapeModel {
 		
 		boolean inside = true;
 		
-		int steps = 0;
+		int steps = MAX_STEPS;
 		
 		double px = 0;
 		double py = 0;
 		
-		while(steps < MAX_STEPS && inside) {
+		while(steps > 0 && inside) {
 			inside = px * px + py * py < 4.0;
 			
 			double py1 = 2 * px * py + y;
 			px = px * px - py * py + x;
 			py = py1;
 			
-			steps++;
+			steps--;
 		}
 		
 		// store value of steps in escapeArray's current cell
