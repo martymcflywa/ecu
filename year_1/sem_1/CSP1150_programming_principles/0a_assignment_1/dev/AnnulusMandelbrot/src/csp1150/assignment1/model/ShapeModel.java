@@ -256,7 +256,7 @@ public class ShapeModel {
 	}
 	
 	/**
-	 * This method converts the minX mouse position to the grid position.
+	 * This method converts the minX pixel position to the grid position.
 	 * 
 	 * @param double pixelMinX - The mouse minX position.
 	 * @return double - The converted grid position.
@@ -267,9 +267,10 @@ public class ShapeModel {
 	}
 	
 	/**
-	 * This method converts the minY mouse position to the grid position.
+	 * This method converts the minY pixel position to the grid position.
+	 * Calculations are reversed for y-axis, since maxY appears to be setting the top-left corner.
 	 * 
-	 * @param double pixelMinY - The mouse minY position.
+	 * @param double pixelMinY - The pixel minY position.
 	 * @param double pixelHeight - The height of the drawn rectangle.
 	 * @return double - The converted grid position.
 	 */
@@ -279,9 +280,9 @@ public class ShapeModel {
 	}
 	
 	/**
-	 * This method converts the maxX mouse position to the grid position.
+	 * This method converts the maxX (width) pixel position to the grid position.
 	 * 
-	 * @param double pixelMinX - The mouse minY position.
+	 * @param double pixelMinX - The pixel minX position.
 	 * @param double pixelWidth - The width of the drawn rectangle.
 	 * @return double - The converted grid position.
 	 */
@@ -291,13 +292,14 @@ public class ShapeModel {
 	}
 	
 	/**
-	 * This method converts the maxY mouse position to the grid position.
+	 * This method converts the maxY (height) pixel position to the grid position.
+	 * Calculations are reversed for y-axis, since maxY appears to be setting the top-left corner.
 	 * 
-	 * @param double pixelMinX - The mouse minY position.
+	 * @param double pixelMinY - The pixel minY position.
 	 * @return double - The converted grid position.
 	 */
-	protected double maxYPixelToGrid(double pixelMaxY) {
+	protected double maxYPixelToGrid(double pixelMinY) {
 		
-		return ((this.GRIDSIZE - pixelMaxY) / this.GRIDSIZE) * (this.outRadius * 2.0) - this.outRadius;
+		return ((this.GRIDSIZE - pixelMinY) / this.GRIDSIZE) * (this.outRadius * 2.0) - this.outRadius;
 	}
 }

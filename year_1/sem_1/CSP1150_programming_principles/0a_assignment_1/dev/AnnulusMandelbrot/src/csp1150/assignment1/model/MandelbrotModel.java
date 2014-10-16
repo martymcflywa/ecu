@@ -194,7 +194,7 @@ public class MandelbrotModel extends ShapeModel {
 	/**
 	 * Overriding ShapeModel's method, adapted for mandelbrot.
 	 * 
-	 * This method resets the zoom values.
+	 * This method resets the zoom values back to default values.
 	 * 
 	 * @param args unused
 	 */
@@ -210,9 +210,9 @@ public class MandelbrotModel extends ShapeModel {
 	/**
 	 * Overriding ShapeModel's method, using DEFAULT_MAXX instead of outRadius.
 	 * 
-	 * This method converts the minX mouse position to the grid position.
+	 * This method converts the minX pixel position to the grid position.
 	 * 
-	 * @param double pixelMinX - The mouse minX position.
+	 * @param double pixelMinX - The pixel minX position.
 	 * @return double - The converted grid position.
 	 */
 	@Override
@@ -224,9 +224,10 @@ public class MandelbrotModel extends ShapeModel {
 	/**
 	 * Overriding ShapeModel's method, using DEFAULT_MAXX instead of outRadius.
 	 * 
-	 * This method converts the minY mouse position to the grid position.
+	 * This method converts the minY pixel position to the grid position.
+	 * Calculations are reversed for y-axis, since since maxY appears to be setting the top-left corner.
 	 * 
-	 * @param double pixelMinY - The mouse minY position.
+	 * @param double pixelMinY - The pixel minY position.
 	 * @param double pixelHeight - The height of the drawn rectangle.
 	 * @return double - The converted grid position.
 	 */
@@ -239,9 +240,9 @@ public class MandelbrotModel extends ShapeModel {
 	/**
 	 * Overriding ShapeModel's method, using DEFAULT_MAXX instead of outRadius.
 	 * 
-	 * This method converts the maxX mouse position to the grid position.
+	 * This method converts the maxX (width) pixel position to the grid position.
 	 * 
-	 * @param double pixelMinX - The mouse minY position.
+	 * @param double pixelMinX - The pixel maxX position.
 	 * @param double pixelWidth - The width of the drawn rectangle.
 	 * @return double - The converted grid position.
 	 */
@@ -254,13 +255,14 @@ public class MandelbrotModel extends ShapeModel {
 	/**
 	 * Overriding ShapeModel's method, using DEFAULT_MAXX instead of outRadius.
 	 * 
-	 * This method converts the maxY mouse position to the grid position.
+	 * This method converts the maxY (height) pixel position to the grid position.
+	 * Calculations are reversed for y-axis, since maxY appears to be setting the top-left corner.
 	 * 
-	 * @param double pixelMinX - The mouse minY position.
+	 * @param double pixelMinY - The pixel minY position.
 	 * @return double - The converted grid position.
 	 */
-	protected double maxYPixelToGrid(double pixelMaxY) {
+	protected double maxYPixelToGrid(double pixelMinY) {
 		
-		return ((this.GRIDSIZE - pixelMaxY) / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
+		return ((this.GRIDSIZE - pixelMinY) / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
 	}
 }
