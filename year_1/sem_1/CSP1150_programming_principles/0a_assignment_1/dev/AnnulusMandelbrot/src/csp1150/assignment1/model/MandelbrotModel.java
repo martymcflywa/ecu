@@ -162,6 +162,7 @@ public class MandelbrotModel extends ShapeModel {
 		
 		boolean inside = true;
 		
+		// reversing the steps from MAX_STEPS to zero, for  brighter colours
 		int steps = MAX_STEPS;
 		
 		double px = 0;
