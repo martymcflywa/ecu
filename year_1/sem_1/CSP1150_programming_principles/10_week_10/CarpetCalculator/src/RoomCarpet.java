@@ -28,6 +28,7 @@ public class RoomCarpet {
 	
 	/**
 	 * This method returns the calculated carpetCost.
+	 * Bypassed by RoomCarpet constructor.
 	 * 
 	 * @return double dimension * carpetCost
 	 */

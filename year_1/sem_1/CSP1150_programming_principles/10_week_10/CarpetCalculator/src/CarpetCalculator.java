@@ -78,6 +78,8 @@ public class CarpetCalculator {
 	
 	/**
 	 * This method sets the total cost to RoomCarpet object.
+	 * Then prints result, calling RoomCarpet's toString method
+	 * for output.
 	 * 
 	 * @param RoomDimension theRoom - The room object.
 	 * @param double price - The price per sq meter.
