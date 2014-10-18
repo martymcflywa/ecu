@@ -58,7 +58,7 @@ Sociability   & 2   & 5   & 3.667  & 4      & 4    & 0.7532   & -0.5633 & -0.008
 
 With gender coded as 0 = female and 1 = male, the gender mean of 0.9375 demonstrates that the majority of participants within this dataset are men. Women only represent 3 of the total 48 observations. With such a small number of female participants, there is not enough evidence to provide any meaningful conclusions when testing for any correlations between gender and the selected variables.
 
-Facebook friends exhibits the highest variance about the mean, with a standard deviation of 176.001. A positive skew of 0.7959 also indicates that the majority of scores would be towards the lower end of the range. The high variance is caused by a potential outlier, with a maximum score of 798. The exclusion of this outlier could possibly normalize the variance and skew. However, the score belongs to an observation from a female participant, and the exclusion would result in a dataset with only 2 female participants. Therefore, it was decided that this observation would not be screened, so that the following tests would include as many female participants as possible.
+Facebook friends exhibits the highest variance about the mean, with a standard deviation of 176.001. A positive skew of 0.7959 and high variance is caused by a potential outlier, with a maximum score of 798. The exclusion of this outlier could potentially normalize the variance and skew. However, the score belongs to an observation from a female participant, and the exclusion would result in a dataset with only 2 female participants. Therefore, it was decided that this observation would not be screened, so that the following tests would include as many female participants as possible.
 
 The figures below include histograms and q-q plots to assist in identifying a normal or non-normal distribution.
 
@@ -116,43 +116,66 @@ Figure 5 shows the histogram and normal q-q plot for Facebook hours. The blue cu
 \includegraphics[scale=0.35]{./img/qqplot_fbhours.pdf}
 \end{figure}
 
+\newpage
 \subsection{Bivariate inferential tests}
 
-\subsubsection{Pearson's correlation coefficient}
+%\subsubsection{Pearson's correlation coefficient}
 
-Table 2 displays the parametric Pearson's correlation coefficient $r$ results with each variable compared with gender. Since the given data is non-normally distributed, results must be further verified by a non-parametric test. In this instance, a one-tailed test has been selected to identify a negative correlation, where 0, representing females is predicted to have higher scores than 1, which represents males, as seen in the scatter plots in Figure 6. \\
-\\
-$r$ is calculated by \citep{McKillup2011}:
+%Table 2 displays the parametric Pearson's correlation coefficient $r$ results with each variable compared with gender. Since the given data is non-normally distributed, results must be further verified by a non-parametric test. In this instance, a one-tailed test has been selected to identify a negative correlation, where 0, representing females is predicted to have higher scores than 1, which represents males, as seen in the scatter plots in Figure 6. \\
+%\\
+%$r$ is calculated by \citep{McKillup2011}:
 
-$$r = \frac{\sum_{i=1}^N (Z_{xi} \times Z_{yi})}{n - 1}$$
+%$$r = \frac{\sum_{i=1}^N (Z_{xi} \times Z_{yi})}{n - 1}$$
 
-$$Z = \frac{X_i - \bar{X}}{s}$$
+%$$Z = \frac{X_i - \bar{X}}{s}$$
 
 %$$s = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (x_i - \overline{x})^2}$$ **DEMO FORMULA
 
-The results express that gender and Facebook friends have a moderate negative correlation, gender and close friends have a weak negative correlation, and gender and Facebook hours have a moderate negative correlation. The negative correlation indicates that at $x$ variable 0, which represents women, the scores are higher than those at $x$ variable 1, which represents men. The 0 $r$ value for gender and Sociability demonstrates that there is no correlation between these two variables. These results are further illustrated in the scatter plots at Figure 6, which exhibits a reversed slope regression line for the variables with a negative correlation to gender.
+%The results express that gender and Facebook friends have a moderate negative correlation, gender and close friends have a weak negative correlation, and gender and Facebook hours have a moderate negative correlation. The negative correlation indicates that at $x$ variable 0, which represents women, the scores are higher than those at $x$ variable 1, which represents men. The 0 $r$ value for gender and Sociability demonstrates that there is no correlation between these two variables. These results are further illustrated in the scatter plots at Figure 6, which exhibits a reversed slope regression line for the variables with a negative correlation to gender.
 
 %With gender as the $x$ variable, negative $r$ denotes that Facebook friends, close friends and Facebook hours increase in a reverse slope towards 0, which represents women, and conversely decreases towards 1, which represents men. The 0 $r$ value for Sociability indicates that there is no relationship between gender and sociability. These results are also illustrated in the scatter plots from Figure 6 which show the calculated regression line.
 
-\begin{table}[H]
-\centering
-\caption{Pearson's correlation coefficient - Gender}
-\begin{tabular}{l|l|l}
-Variable      & $r$         & p-value \\ \hline
-FB Friends    & -0.3176993  & 0.01389 \\ \hline
-Close Friends & -0.07652931 & 0.3026  \\ \hline
-Sociability   & 0           & 0.5     \\ \hline
-FB Hours      & -0.2815223  & 0.02629 \\ \hline
-\end{tabular}
-\end{table}
+%\begin{table}[H]
+%\centering
+%\caption{Pearson's correlation coefficient - Gender}
+%\begin{tabular}{l|l|l}
+%Variable      & $r$         & p-value \\ \hline
+%FB Friends    & -0.3176993  & 0.01389 \\ \hline
+%Close Friends & -0.07652931 & 0.3026  \\ \hline
+%Sociability   & 0           & 0.5     \\ \hline
+%FB Hours      & -0.2815223  & 0.02629 \\ \hline
+%\end{tabular}
+%\end{table}
 
-Hypothetically, if there were an equal to almost equal ratio between men and women in the dataset, and all variables were of normal distribution, a fair conclusion of these results would be that there is a moderate negative correlation between gender and the number of Facebook friends and hours spent on Facebook. In other words, the negative correlation indicates that females have a greater network size than men, and spend more time on Facebook than men. With significant p-values $< \alpha = 0.05$, the null hypothesis that there are no correlations between gender and network size or gender and hours would be rejected. 
+%Hypothetically, if there were an equal to almost equal ratio between men and women in the dataset, and all variables were of normal distribution, a fair conclusion of these results would be that there is a moderate negative correlation between gender and the number of Facebook friends and hours spent on Facebook. In other words, the negative correlation indicates that females have a greater network size than men, and spend more time on Facebook than men. With significant p-values $< \alpha = 0.05$, the null hypothesis that there are no correlations between gender and network size or gender and hours would be rejected. 
 
-While Close friends exhibits a negative correlation, the calculated p-value is insignificant, being $> \alpha = 0.05$. Therefore the null hypothesis that there are no correlations between gender and Close friends survives. Sociability's 0 $r$ value indicates there are no correlations at all.
+%While Close friends exhibits a negative correlation, the calculated p-value is insignificant, being $> \alpha = 0.05$. Therefore the null hypothesis that there are no correlations between gender and Close friends survives. Sociability's 0 $r$ value indicates there are no correlations at all.
 
-However, the data is non-normally distributed and the results must be further verified by non-parametric tests. Additionally, three points of bias are introduced while testing the correlation between gender and the selected variables. The decision to include an identified outlier has created bias towards higher scores for female Facebook friends. And while males and females both have a maximum score of 31 for Facebook hours, the small number of female participants has increased the female Facebook hours mean higher than that of men. In spite of females having a much lower Close friends maximum score than men, the small number of female participants has lead to an increased female Close friends mean. Therefore, there is not enough evidence within the dataset to provide any conclusions.
+%However, the data is non-normally distributed and the results must be further verified by non-parametric tests. Additionally, three points of bias are introduced while testing the correlation between gender and the selected variables. The decision to include an identified outlier has created bias towards higher scores for female Facebook friends. And while males and females both have a maximum score of 31 for Facebook hours, the small number of female participants has increased the female Facebook hours mean higher than that of men. In spite of females having a much lower Close friends maximum score than men, the small number of female participants has lead to an increased female Close friends mean. Therefore, there is not enough evidence within the dataset to provide any conclusions.
 
 %However, since there is such a small representation of women in the sample set, there is insufficient evidence to provide a conclusion. Additionally, Pearson's method only applies to normally distributed variables and the variables measured are non-normally distributed. Therefore, the results must be further verified by non-parametric tests.
+
+\subsubsection{Scatter plots and regression}
+
+Figure 6 displays scatter plots with a linear regression overlay in comparison with gender and Facebook friends, Close friends, Sociability and Facebook hours.
+
+The results indicate a moderate negative relationship between gender and Facebook friends, and between gender and Facebook hours. A weak negative relationship is observed between gender and Close friends, and no relationship at all between gender and Sociability.
+
+In other words, the negative relationships exhibit that women, represented as 0 on the $x$ axis, tend to have higher scores than men, shown as 1 on the $x$ axis, in Facebook friends, Close friends and Facebook hours, as the regression line shows a reversed slope from 0 to 1.
+
+However, linear regression analysis assumes that data is normally distributed and therefore is not a suitable test with the given dataset \citep[p. 263]{McKillup2011}. 
+
+Linear regression is calculated with the following formulas \citep[p. 247-249]{McKillup2011}.\\
+
+To calculate the average slope of the regression line:
+ 
+$$b = \frac{\sum_{i=1}^N(X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^N(X_i - \bar{X})(X_i - \bar{X})}$$
+
+To calculate the intercept at the $y$ axis:
+
+$$a = \bar{Y} - b\bar{X}$$
+
+Due to the reliance of the sample mean in linear regression analysis, the result for Facebook friends has been influenced by the inclusion of a previously identified outlier score from a female participant. And while males and females both have a maximum score of 31 for Facebook hours, the small number of female participants has allowed the female Facebook hours mean to increase higher than that of men. In spite of females having a much lower Close friends maximum score than men, the small number of female participants has also lead to an increased female Close friends mean. Therefore, it is apparent that linear regression is not a suitable test, and there is simply not enough data from female participants to provide any conclusions.
 
 \begin{figure}[H]
 \caption{Scatter Plots}
@@ -163,14 +186,17 @@ However, the data is non-normally distributed and the results must be further ve
 \includegraphics[scale=0.44]{./img/scatplot_fbhours.pdf}
 \end{figure}
 
-\newpage
 \subsubsection{Spearman's correlation coefficient}
 
-Table 3 displays the non-parametric Spearman's correlation coefficient results with each variable compared with gender. A one-tailed test has been chosen due to the expectation that women will have higher scores than men, as seen in Figure 6. 
+A non-parametric correlation test has been selected to identify any correlation between gender and Facebook friends, Close friends, Sociability or Facebook hours. Table 3 displays the non-parametric Spearman's correlation coefficient results for each variable compared with gender. A one-tailed test has been chosen due to the expectation that women will have higher scores than men, as seen in Figure 6. 
 
-$r_s$ is calculated by ranking the scores, then calculating the correlation coefficient using Pearson's method with the rank values \citep{McKillup2011}.
+$r_s$ is calculated by ranking the scores, then calculating the correlation coefficient using the following formula \citep[p. 359]{Gauthier2001}, where $d$ = the difference between each pair of ranks from the values of variables $x$ and $y$, and $n$ = the number of paired values in the sample:
 
-Similar correlation results are found from those in the previous parametric test. However, in this instance, a weak negative correlation is also found between gender and Sociability. Furthermore, all p-values in this test are considered insignificant being $> \alpha = 0.05$. Therefore, the null hypotheses that there are no correlations between gender and the selected variables is not rejected. 
+$$r_s = 1 - \frac{6\sum_{i=1}^Nd_i^2}{n(n^2-1)}$$
+
+A moderate negative correlation has been found between gender and Facebook friends ($r_s = -0.2391, N = 48, P > 0.05$), and a moderate negative correlation has been found between gender and Facebook hours ($r_s = -0.1747, N = 48, P > 0.05$). However, p-values for all tests are considered insignificant  being $> \alpha = 0.05$. Therefore, the null hypothesis that there are no correlations between gender and the selected variables is not rejected.
+
+%Similar correlation results are found from those in the previous parametric test. However, in this instance, a weak negative correlation is also found between gender and Sociability. Furthermore, all p-values in this test are considered insignificant being $> \alpha = 0.05, N = 48$. Therefore, the null hypotheses that there are no correlations between gender and the selected variables is not rejected. 
 
 %Facebook friends exhibits the most significant p-value where H$_0$ could potentially be rejected.
 
@@ -199,18 +225,7 @@ Since all variables being tested are non-normally distributed, Spearman's non-pa
 
 %wilcox.test(FB_friends ~ Gender, alt="g", conf.int=T) R-code
 
-A non-parametric independent samples test has been selected to test the null hypothesis that the distribution of scores of the selected variables between men and women are equal \citep{Coolican2014}. A one-tail test has been chosen due to the expectation that women will have higher scores than men, as seen in Figure 6. The results of this test are shown in Table 4.
-%\\
-
-%$U$ is calculated for each pair of independent samples, where $a$ is the first sample, $b$ is the second sample, and $R$ is the sum of the ranks:
-
-%$$U_a = N_aN_b + \frac{N_a(N_a + 1)}{2} - R_a$$
-
-%$$U_b = N_aN_b + \frac{N_b(N_b + 1)}{2} - R_b$$
-%\\
-%The lower value between the two is the observed $U$ \citep[p. 463]{Coolican2014}. The results of this test are displayed in Table 4.
-
-%Due to the non-normal distribution of the data, the non-parametric Wilcoxon signed rank test has been selected to perform a paired differences hypothesis test. Table 4 displays Wilcoxon signed rank test results where each variable is compared with gender. A one-tailed test has been selected to identify a positive correlation 
+A non-parametric independent samples test has been selected to test the null hypothesis that the distribution of scores of the selected variables between men and women are equal \citep{Coolican2014}. A one-tail test has been chosen due to the expectation that women will have higher scores than men, as seen in Figure 6. The results of this test are shown in Table 4. 
 
 \begin{table}[H]
 \centering
