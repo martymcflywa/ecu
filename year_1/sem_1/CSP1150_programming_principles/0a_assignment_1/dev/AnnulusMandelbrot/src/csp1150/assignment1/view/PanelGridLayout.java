@@ -40,6 +40,6 @@ public class PanelGridLayout extends JPanel {
 	public PanelGridLayout(int rows, int cols, int hgap, int vgap) {
 		
 		// use gridlayout, set the rows, columns and padding
-		this.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
+		this.setLayout(theGridLayout = new GridLayout(rows, cols, hgap, vgap));
 	}
 }

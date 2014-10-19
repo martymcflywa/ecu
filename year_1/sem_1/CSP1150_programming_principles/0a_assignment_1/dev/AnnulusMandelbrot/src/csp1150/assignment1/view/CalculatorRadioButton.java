@@ -25,25 +25,25 @@ public class CalculatorRadioButton extends JRadioButton {
 	/**
 	 * The constructor.
 	 * 
-	 * @param String theWords - What the button will say.
+	 * @param String buttonName - The button name.
 	 * @param int gridx - GridBagConstraints: The column position.
 	 * @param int gridy - GridBagConstraints: The row position.
 	 */
-	public CalculatorRadioButton(String theWords, int gridx, int gridy) {
+	public CalculatorRadioButton(String buttonName, int gridx, int gridy) {
 		
-		// create button
-		this.setText(theWords);
+		// set the button text
+		this.setText(buttonName);
 		
 		// create gridbag constraints
-		this.gbc_radioButton = new GridBagConstraints();
+		gbc_radioButton = new GridBagConstraints();
 		
 		// use these values as constraints
-		this.gbc_radioButton.anchor = GridBagConstraints.WEST;
-		this.gbc_radioButton.gridwidth = 2;
-		this.gbc_radioButton.insets = new Insets(0, 40, 5, 5);
+		gbc_radioButton.anchor = GridBagConstraints.WEST;
+		gbc_radioButton.gridwidth = 2;
+		gbc_radioButton.insets = new Insets(0, 40, 5, 5);
 		
 		// set the column and row positions
-		this.gbc_radioButton.gridx = gridx;
-		this.gbc_radioButton.gridy = gridy;
+		gbc_radioButton.gridx = gridx;
+		gbc_radioButton.gridy = gridy;
 	}
 }

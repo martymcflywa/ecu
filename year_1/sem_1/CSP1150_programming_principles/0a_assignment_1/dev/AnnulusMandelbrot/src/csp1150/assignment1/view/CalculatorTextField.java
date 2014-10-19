@@ -35,16 +35,16 @@ public class CalculatorTextField extends JTextField {
 		this.setColumns(length);
 		
 		// create gridbag constraints
-		this.gbc_textField = new GridBagConstraints();
+		gbc_textField = new GridBagConstraints();
 		
 		// use these values as constraints
-		this.gbc_textField.anchor = GridBagConstraints.WEST;
-		this.gbc_textField.fill = GridBagConstraints.BOTH;
-		this.gbc_textField.gridwidth = 1;
-		this.gbc_textField.insets = new Insets(0, 20, 5, 5);
+		gbc_textField.anchor = GridBagConstraints.WEST;
+		gbc_textField.fill = GridBagConstraints.BOTH;
+		gbc_textField.gridwidth = 1;
+		gbc_textField.insets = new Insets(0, 20, 5, 5);
 		
 		// set the column and row positions
-		this.gbc_textField.gridx = gridx;
-		this.gbc_textField.gridy = gridy;
+		gbc_textField.gridx = gridx;
+		gbc_textField.gridy = gridy;
 	}
 }

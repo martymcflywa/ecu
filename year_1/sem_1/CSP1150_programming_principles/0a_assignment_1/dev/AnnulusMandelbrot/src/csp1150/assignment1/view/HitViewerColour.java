@@ -54,7 +54,7 @@ public class HitViewerColour extends HitViewer implements MouseListener, MouseMo
 		addMouseMotionListener(this);
 		
 		// use gridlayout, set the rows, columns and padding
-		this.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
+		this.setLayout(theGridLayout = new GridLayout(rows, cols, hgap, vgap));
 	}
 	
 	/**
@@ -89,7 +89,7 @@ public class HitViewerColour extends HitViewer implements MouseListener, MouseMo
 		addMouseMotionListener(this);
 		
 		// use gridlayout, set the rows, columns and padding
-		this.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
+		this.setLayout(theGridLayout = new GridLayout(rows, cols, hgap, vgap));
 		
 		// call viewHits to generate the image
 		viewHits(hits);
@@ -128,7 +128,7 @@ public class HitViewerColour extends HitViewer implements MouseListener, MouseMo
 		addMouseMotionListener(this);
 		
 		// use gridlayout, set the rows, columns and padding
-		this.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
+		this.setLayout(theGridLayout = new GridLayout(rows, cols, hgap, vgap));
 		
 		// call viewHits to generate the image
 		viewHitsRandomColour(escapeArray);
@@ -154,7 +154,7 @@ public class HitViewerColour extends HitViewer implements MouseListener, MouseMo
 			for(int y = 0; y < height; y++) {
                 
 				// set pixel to current escapetime value, add some randomness - previously divided by 25
-				// TODO: add if(zooming) keep colour, else randomise
+				// TODO: add if(zooming) keep colour, else randomize
 				int pixelR = Math.abs(escapeArray[x][y] - randomR);
 				int pixelG = Math.abs(escapeArray[x][y] - randomG);
 				int pixelB = Math.abs(escapeArray[x][y] - randomB);
@@ -163,7 +163,7 @@ public class HitViewerColour extends HitViewer implements MouseListener, MouseMo
 				setPixel(x, y, pixelR, pixelG, pixelB);
 				
 				// ** DEBUGGING
-				System.out.println(pixelR + " " + pixelG + " " + pixelB);
+				System.out.println("R: " + pixelR + " | G: " + pixelG + " | B: " + pixelB);
             }
         }
 	}

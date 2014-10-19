@@ -59,10 +59,10 @@ public class ShapeModel {
 		this.maxY = outRadius;
 		
 		// do Area calculation
-		calcApprox(this.minX, this.minY, this.maxX, this.maxY);
+		calcApprox(minX, minY, maxX, maxY);
 		
 		// do Monte calculation
-		calcMonte(this.minX, this.minY, this.maxX, this.maxY);
+		calcMonte(minX, minY, maxX, maxY);
 	}
 	
 	/**
@@ -137,6 +137,7 @@ public class ShapeModel {
 					
 					// if test pass, set counter + 1
 					if(isInside(x, y)) {
+						
 						hits[col][row] = 1;
 						arraySum++;
 					}
@@ -229,12 +230,12 @@ public class ShapeModel {
 	 * 
 	 * @param args unused
 	 */
-	public void resetZoom() {
+	public void resetImage() {
 		
-		this.minX = -this.outRadius;
-		this.minY = -this.outRadius;
-		this.maxX = this.outRadius;
-		this.maxY = this.outRadius;
+		minX = -outRadius;
+		minY = -outRadius;
+		maxX = outRadius;
+		maxY = outRadius;
 	}
 	
 	/**
@@ -246,10 +247,10 @@ public class ShapeModel {
 	public void setZoom(double[] pixelZoom) {
 		
 		// convert mouse positions to grid positions
-		this.minX = minXPixelToGrid(pixelZoom[0]);
-		this.minY = minYPixelToGrid(pixelZoom[1], pixelZoom[3]);
-		this.maxX = maxXPixelToGrid(pixelZoom[0], pixelZoom[2]);
-		this.maxY = maxYPixelToGrid(pixelZoom[1]);
+		minX = minXPixelToGrid(pixelZoom[0]);
+		minY = minYPixelToGrid(pixelZoom[1], pixelZoom[3]);
+		maxX = maxXPixelToGrid(pixelZoom[0], pixelZoom[2]);
+		maxY = maxYPixelToGrid(pixelZoom[1]);
 		
 		// ** DEBUGGING
 		System.out.println("minX: " + minX + " | minY: " + minY + " | maxX: " + maxX + " | maxY: " + maxY);
@@ -263,7 +264,7 @@ public class ShapeModel {
 	 */
 	protected double minXPixelToGrid(double pixelMinX) {
 		
-		return (pixelMinX / this.GRIDSIZE) * (this.outRadius * 2.0) - this.outRadius;
+		return (pixelMinX / GRIDSIZE) * (outRadius * 2.0) - outRadius;
 	}
 	
 	/**
@@ -276,7 +277,7 @@ public class ShapeModel {
 	 */
 	protected double minYPixelToGrid(double pixelMinY, double pixelHeight) {
 		
-		return ((this.GRIDSIZE - (pixelMinY + pixelHeight)) / this.GRIDSIZE) * (this.outRadius * 2.0) - this.outRadius;
+		return ((GRIDSIZE - (pixelMinY + pixelHeight)) / GRIDSIZE) * (outRadius * 2.0) - outRadius;
 	}
 	
 	/**
@@ -288,7 +289,7 @@ public class ShapeModel {
 	 */
 	protected double maxXPixelToGrid(double pixelMinX, double pixelWidth) {
 		
-		return ((pixelMinX + pixelWidth) / this.GRIDSIZE) * (this.outRadius * 2.0) - this.outRadius; 
+		return ((pixelMinX + pixelWidth) / GRIDSIZE) * (outRadius * 2.0) - outRadius; 
 	}
 	
 	/**
@@ -300,6 +301,6 @@ public class ShapeModel {
 	 */
 	protected double maxYPixelToGrid(double pixelMinY) {
 		
-		return ((this.GRIDSIZE - pixelMinY) / this.GRIDSIZE) * (this.outRadius * 2.0) - this.outRadius;
+		return ((GRIDSIZE - pixelMinY) / GRIDSIZE) * (outRadius * 2.0) - outRadius;
 	}
 }

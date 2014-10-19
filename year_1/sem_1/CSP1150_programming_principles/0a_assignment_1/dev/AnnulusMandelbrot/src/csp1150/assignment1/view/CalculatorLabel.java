@@ -25,7 +25,7 @@ public class CalculatorLabel extends JLabel {
 	/**
 	 * The constructor. 
 	 * 
-	 * @param String theWords - What the label will say.
+	 * @param String labelName - The label name.
 	 * @param String theAnchor - Possible values: "north", "south", "west", "east". Use "none" for labels that do not use anchor.
 	 * @param int gridwidth - GridBagConstraints: The number of columns the label spans, use 1 as default.
 	 * @param int insetTop - GridBagConstraints: Padding top.
@@ -35,56 +35,47 @@ public class CalculatorLabel extends JLabel {
 	 * @param int gridx - GridBagConstraints: The column position.
 	 * @param int gridy - GridBagConstraints: The row position.
 	 */
-	public CalculatorLabel(String theWords, String theAnchor, int gridwidth, int insetTop, int insetLeft, int insetRight, int insetBottom, int gridx, int gridy) {
+	public CalculatorLabel(String labelName, String theAnchor, int gridwidth, int insetTop, int insetLeft, int insetRight, int insetBottom, int gridx, int gridy) {
 		
 		// set the label text
-		this.setText(theWords);
+		this.setText(labelName);
 		
 		// create gridbag constraints
-		this.gbc_label = new GridBagConstraints();
+		gbc_label = new GridBagConstraints();
 		
 		// if theAnchor == north
 		if(theAnchor.equalsIgnoreCase("north")) {
 			
 			// set gbc anchor north
-			this.gbc_label.anchor = GridBagConstraints.NORTH;
+			gbc_label.anchor = GridBagConstraints.NORTH;
 		
 		// else if theAnchor == south
 		} else if(theAnchor.equalsIgnoreCase("south")) {
 			
 			// set gbc anchor south
-			this.gbc_label.anchor = GridBagConstraints.SOUTH;
+			gbc_label.anchor = GridBagConstraints.SOUTH;
 		
 		// else if theAnchor == west
 		} else if(theAnchor.equalsIgnoreCase("west")) {
 			
 			// set gbc anchor west
-			this.gbc_label.anchor = GridBagConstraints.WEST;
+			gbc_label.anchor = GridBagConstraints.WEST;
 		
 		// else if theAnchor == east
 		} else if(theAnchor.equalsIgnoreCase("east")) {
 			
 			// set gbc anchor east
-			this.gbc_label.anchor = GridBagConstraints.EAST;
+			gbc_label.anchor = GridBagConstraints.EAST;
 		}
 		
 		// set gbc gridwidth
-		this.gbc_label.gridwidth = gridwidth;
+		gbc_label.gridwidth = gridwidth;
 		
 		// set the inset values
-		this.gbc_label.insets = new Insets(insetTop, insetLeft, insetRight, insetBottom);
+		gbc_label.insets = new Insets(insetTop, insetLeft, insetRight, insetBottom);
 		
 		// set the column and row positions
-		this.gbc_label.gridx = gridx;
-		this.gbc_label.gridy = gridy;
-	}
-	
-	/**
-	 * This method returns the JLabel.
-	 * 
-	 * @return JLabel - This.
-	 */
-	public final JLabel getLabel() {
-		return this;
+		gbc_label.gridx = gridx;
+		gbc_label.gridy = gridy;
 	}
 }

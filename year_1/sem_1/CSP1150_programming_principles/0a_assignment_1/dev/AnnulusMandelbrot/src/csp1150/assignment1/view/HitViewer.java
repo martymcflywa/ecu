@@ -46,7 +46,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	protected Rectangle mouseRect = new Rectangle();
 	
 	// declare boolean
-	// ** TODO: remove boolean, no use
+	// ** TODO: use boolean to stop colour changing if zooming
 	protected boolean zooming = false;
 	
 	// declare pixelZoom array to hold values - index: 0 = minX, 1 = minY, 2 = maxX (width), 3 = maxY (height)
@@ -89,7 +89,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 		addMouseMotionListener(this);
 		
 		// use gridlayout, set the rows, columns and padding
-		this.setLayout(this.theGridLayout = new GridLayout(rows, cols, hgap, vgap));
+		this.setLayout(theGridLayout = new GridLayout(rows, cols, hgap, vgap));
 	}
 	
 	/**
@@ -177,7 +177,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 		if(SwingUtilities.isLeftMouseButton(me)) {
 		
 			// set zooming to false
-			this.zooming = false;
+			zooming = false;
 		}
 	}
 	
@@ -192,10 +192,10 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 		if(SwingUtilities.isLeftMouseButton(me)) {
 		
 			// set zooming to true
-			this.zooming = true;
+			zooming = true;
 			
 			// get location where mouse button is pressed
-			this.mousePt = me.getPoint();
+			mousePt = me.getPoint();
 			
 			// repaint
 			me.getComponent().repaint();
@@ -218,19 +218,19 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 			
 			// set the rectangle bounds
 			this.mouseRect.setBounds(
-					Math.min(this.mousePt.x, me.getX()),
-					Math.min(this.mousePt.y, me.getY()),
-					Math.abs(this.mousePt.x - me.getX()),
-					Math.abs(this.mousePt.y - me.getY())
+					Math.min(mousePt.x, me.getX()),
+					Math.min(mousePt.y, me.getY()),
+					Math.abs(mousePt.x - me.getX()),
+					Math.abs(mousePt.y - me.getY())
 			);
 			
 			// set pixel max-min values to mouse position
-			this.pixelZoom[0] = Math.min(this.mousePt.x, me.getX());
-			this.pixelZoom[1] = Math.min(this.mousePt.y, me.getY());
-			this.pixelZoom[2] = Math.abs(this.mousePt.x - me.getX());
+			pixelZoom[0] = Math.min(mousePt.x, me.getX());
+			pixelZoom[1] = Math.min(mousePt.y, me.getY());
+			pixelZoom[2] = Math.abs(mousePt.x - me.getX());
 			
 			// cheating here, using width as height to make sure zoom selection is always 1:1 aspect ratio
-			this.pixelZoom[3] = Math.abs(this.mousePt.x - me.getX());
+			pixelZoom[3] = Math.abs(mousePt.x - me.getX());
 			
 			// ** DEBUGGING
 			System.out.println("minX: " + pixelZoom[0] + " | minY: " + pixelZoom[1] + " | width: " + pixelZoom[2] + " | height: " + pixelZoom[3]);
@@ -251,14 +251,15 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 		if(SwingUtilities.isLeftMouseButton(me)) {
 			
 			// set zooming to false
-			this.zooming = false;
+			zooming = false;
 			
 			// reset rectangle bounds
-			this.mouseRect.setBounds(0, 0, 0, 0);
+			mouseRect.setBounds(0, 0, 0, 0);
 			
 			// reset pixelZoom values to 0
-			for(int i = 0; i < this.pixelZoom.length; i++) {
-				this.pixelZoom[i] = 0;
+			for(int i = 0; i < pixelZoom.length; i++) {
+				
+				pixelZoom[i] = 0;
 			}
 			
 			// repaint
@@ -272,7 +273,8 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	 * @return int[] pixelZoom.
 	 */
 	public final double[] getPixelZoom() {
-		return this.pixelZoom;
+		
+		return pixelZoom;
 	}
 	
 	/**

@@ -69,7 +69,7 @@ public class CalculatorView extends JFrame {
 	private CalculatorRadioButton radioMandelbrotCalculate;
 	private CalculatorRadioButton radioMandelbrotViewImage;
 	
-	// declare the group for the radio buttons
+	// declare and create a group for the radio buttons
 	private final ButtonGroup GROUP_MANDELBROT_RADIOS = new ButtonGroup();
 	
 	// declare other mandelbrot calculator user controls
@@ -101,7 +101,7 @@ public class CalculatorView extends JFrame {
 		initControls();
 		
 		// set frame visible AFTER everything is added
-		this.theFrame.setVisible(true);
+		theFrame.setVisible(true);
 	}
 	
 	/**
@@ -112,61 +112,61 @@ public class CalculatorView extends JFrame {
 	private final void initFrame() {
 		
 		// create frame
-		this.theFrame = new CalculatorFrame();
+		theFrame = new CalculatorFrame();
 		
 		// create panelLeft and add to the frame
-		this.theFrame.getContentPane().add(this.panelLeft = new PanelGridLayout(2, 1, 20, 5));
+		theFrame.getContentPane().add(panelLeft = new PanelGridLayout(2, 1, 20, 5));
 		
 		// set panelLeft layout
-		this.panelLeft.setLayout(this.panelLeft.theGridLayout);
+		panelLeft.setLayout(panelLeft.theGridLayout);
 		
 		// create panelRight and add to the frame
-		this.theFrame.getContentPane().add(this.panelRight = new PanelGridLayout(2, 1, 20, 5));
+		theFrame.getContentPane().add(panelRight = new PanelGridLayout(2, 1, 20, 5));
 		
 		// set panelRight layout
-		this.panelRight.setLayout(this.panelRight.theGridLayout);
+		panelRight.setLayout(panelRight.theGridLayout);
 		
 		// create panelAnnulusCalc container and add to panelLeft
-		this.panelLeft.add(this.panelAnnulusCalc = new PanelGridBagLayout());
+		panelLeft.add(panelAnnulusCalc = new PanelGridBagLayout());
 		
 		// set panelAnnulusCalc layout
-		this.panelAnnulusCalc.setLayout(this.panelAnnulusCalc.gbl_panel);
+		panelAnnulusCalc.setLayout(panelAnnulusCalc.gbl_panel);
 
 		// create panelAnnulusBorder (use overloading constructor) and add to panelAnnulusCalc
-		this.panelAnnulusCalc.add(this.panelAnnulusBorder = new PanelGridBagLayout(20, 20, 10, 0, 0, 0), this.panelAnnulusBorder.gbc_panel);
+		panelAnnulusCalc.add(panelAnnulusBorder = new PanelGridBagLayout(20, 20, 10, 0, 0, 0), panelAnnulusBorder.gbc_panel);
 		
 		// add titled border to panelAnnulusBorder
-		addBorder(this.panelAnnulusBorder, "Annulus Calculator");
+		addBorder(panelAnnulusBorder, "Annulus Calculator");
 		
 		// set panelAnnulusBorder layout
-		this.panelAnnulusBorder.setLayout(this.panelAnnulusBorder.gbl_panel);
+		panelAnnulusBorder.setLayout(panelAnnulusBorder.gbl_panel);
 		
 		// add panelMandelbrotCalc to panelLeft
-		this.panelLeft.add(this.panelMandelbrotCalc = new PanelGridBagLayout());
+		panelLeft.add(panelMandelbrotCalc = new PanelGridBagLayout());
 		
 		// set panelMandelbrotCalc layout
-		this.panelMandelbrotCalc.setLayout(this.panelMandelbrotCalc.gbl_panel);
+		panelMandelbrotCalc.setLayout(panelMandelbrotCalc.gbl_panel);
 		
 		// create panelMandelbrotBorder (use overloading constructor) and add to panelMandelbrotCalc
-		this.panelMandelbrotCalc.add(this.panelMandelbrotBorder = new PanelGridBagLayout(10, 20, 10, 0, 0, 0), this.panelMandelbrotBorder.gbc_panel);
+		panelMandelbrotCalc.add(panelMandelbrotBorder = new PanelGridBagLayout(10, 20, 10, 0, 0, 0), panelMandelbrotBorder.gbc_panel);
 		
 		// add titled border to panelMandelbrotBorder
-		addBorder(this.panelMandelbrotBorder, "Mandelbrot Calculator");
+		addBorder(panelMandelbrotBorder, "Mandelbrot Calculator");
 		
 		// set panelMandelbrotBorder layout
-		this.panelMandelbrotBorder.setLayout(this.panelMandelbrotBorder.gbl_panel);
+		panelMandelbrotBorder.setLayout(panelMandelbrotBorder.gbl_panel);
 		
 		// create panelAnnulusImageContaianer and add to panelRight
-		this.panelRight.add(this.panelAnnulusImageContainer = new PanelGridLayout(0, 1, 0, 0));
+		panelRight.add(panelAnnulusImageContainer = new PanelGridLayout(0, 1, 0, 0));
 		
 		// create panelMandelbrotImageContainer and add to panelRight
-		this.panelRight.add(this.panelMandelbrotImageContainer = new PanelGridLayout(0, 1, 0, 0));
+		panelRight.add(panelMandelbrotImageContainer = new PanelGridLayout(0, 1, 0, 0));
 		
 		// create panelAnnulusImage and add to panelAnnulusImageContainer
-		this.panelAnnulusImageContainer.add(this.panelAnnulusImage = new HitViewerGreyscale(this.gridSize, this.gridSize, 0, 1, 0, 0));
+		panelAnnulusImageContainer.add(panelAnnulusImage = new HitViewerGreyscale(gridSize, gridSize, 0, 1, 0, 0));
 		
 		// create panelMandelbrotImage container and add to panelMandelbrotImageContainer
-		this.panelMandelbrotImageContainer.add(this.panelMandelbrotImage = new HitViewerColour(this.gridSize, this.gridSize, 0, 1, 0, 0));
+		panelMandelbrotImageContainer.add(panelMandelbrotImage = new HitViewerColour(gridSize, gridSize, 0, 1, 0, 0));
 	}
 	
 	/**
@@ -181,38 +181,38 @@ public class CalculatorView extends JFrame {
 		 */
 		
 		// add instructions
-		this.panelAnnulusBorder.add(this.labelAnnulusCalcInstructions = new CalculatorLabel("Enter the outer and inner radius.", "west", 8, 0, 40, 5, 5, 0, 1), this.labelAnnulusCalcInstructions.gbc_label);
+		panelAnnulusBorder.add(labelAnnulusCalcInstructions = new CalculatorLabel("Enter the outer and inner radius.", "west", 8, 0, 40, 5, 5, 0, 1), labelAnnulusCalcInstructions.gbc_label);
 		
 		// add titles for input textFields
-		this.panelAnnulusBorder.add(this.labelAnnulusOutRadius = new CalculatorLabel("Outer radius:", "west", 1, 0, 40, 5, 5, 0, 3), this.labelAnnulusOutRadius.gbc_label);
-		this.panelAnnulusBorder.add(this.labelAnnulusInRadius = new CalculatorLabel("Inner radius:", "west", 1, 0, 40, 5, 5, 0, 4), this.labelAnnulusInRadius.gbc_label);
+		panelAnnulusBorder.add(labelAnnulusOutRadius = new CalculatorLabel("Outer radius:", "west", 1, 0, 40, 5, 5, 0, 3), labelAnnulusOutRadius.gbc_label);
+		panelAnnulusBorder.add(labelAnnulusInRadius = new CalculatorLabel("Inner radius:", "west", 1, 0, 40, 5, 5, 0, 4), labelAnnulusInRadius.gbc_label);
 		
 		// add titles for output
-		this.panelAnnulusBorder.add(this.labelAnnulusApproxTitle = new CalculatorLabel("Approximate area:", "west", 2, 0, 40, 5, 5, 0, 6), this.labelAnnulusApproxTitle.gbc_label);
-		this.panelAnnulusBorder.add(this.labelAnnulusMonteTitle = new CalculatorLabel("Monte Carlo estimate:", "west", 2, 0, 40, 5, 5, 0, 8), this.labelAnnulusMonteTitle.gbc_label);
+		panelAnnulusBorder.add(labelAnnulusApproxTitle = new CalculatorLabel("Approximate area:", "west", 2, 0, 40, 5, 5, 0, 6), labelAnnulusApproxTitle.gbc_label);
+		panelAnnulusBorder.add(labelAnnulusMonteTitle = new CalculatorLabel("Monte Carlo estimate:", "west", 2, 0, 40, 5, 5, 0, 8), labelAnnulusMonteTitle.gbc_label);
 		
 		// add the labels that will show the output
-		this.panelAnnulusBorder.add(this.labelAnnulusApproxOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 7), this.labelAnnulusApproxOutput.gbc_label);
-		this.panelAnnulusBorder.add(this.labelAnnulusMonteOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 9), this.labelAnnulusMonteOutput.gbc_label);
+		panelAnnulusBorder.add(labelAnnulusApproxOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 7), labelAnnulusApproxOutput.gbc_label);
+		panelAnnulusBorder.add(labelAnnulusMonteOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 9), labelAnnulusMonteOutput.gbc_label);
 		
 		// add zoom instructions
-		this.panelAnnulusBorder.add(this.labelAnnulusZoom = new CalculatorLabel("Left click and drag on image to set zoom area", "west", 5, 0, 40, 5, 0, 0, 10), this.labelAnnulusZoom.gbc_label);
+		panelAnnulusBorder.add(labelAnnulusZoom = new CalculatorLabel("Left click and drag on image to set zoom area", "west", 5, 0, 40, 5, 0, 0, 10), labelAnnulusZoom.gbc_label);
 		
 		/*
 		 * Add mandelbrot calculator labels to the container panel
 		 */
 		
 		// add instructions
-		this.panelMandelbrotBorder.add(this.labelMandelbrotCalcInstructions = new CalculatorLabel("Calculate area first, then view image.", "west", 8, 0, 40, 5, 5, 0, 1), this.labelMandelbrotCalcInstructions.gbc_label);
+		panelMandelbrotBorder.add(labelMandelbrotCalcInstructions = new CalculatorLabel("Calculate area first, then view image.", "west", 8, 0, 40, 5, 5, 0, 1), labelMandelbrotCalcInstructions.gbc_label);
 		
 		// add title for output
-		this.panelMandelbrotBorder.add(this.labelMandelbrotMonteTitle = new CalculatorLabel("Monte Carlo estimate:", "west", 3, 0, 40, 5, 5, 0, 8), this.labelMandelbrotMonteTitle.gbc_label);
+		panelMandelbrotBorder.add(labelMandelbrotMonteTitle = new CalculatorLabel("Monte Carlo estimate:", "west", 3, 0, 40, 5, 5, 0, 8), labelMandelbrotMonteTitle.gbc_label);
 		
 		// add the label that will show the output
-		this.panelMandelbrotBorder.add(this.labelMandelbrotMonteOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 9), this.labelMandelbrotMonteOutput.gbc_label);
+		panelMandelbrotBorder.add(labelMandelbrotMonteOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 9), labelMandelbrotMonteOutput.gbc_label);
 		
 		// add zoom instructions
-		this.panelMandelbrotBorder.add(this.labelMandelbrotZoom = new CalculatorLabel("Left click and drag on image to set zoom area", "west", 5, 0, 40, 5, 0, 0, 10), this.labelMandelbrotZoom.gbc_label);
+		panelMandelbrotBorder.add(labelMandelbrotZoom = new CalculatorLabel("Left click and drag on image to set zoom area", "west", 5, 0, 40, 5, 0, 0, 10), labelMandelbrotZoom.gbc_label);
 		
 	}
 	
@@ -228,38 +228,38 @@ public class CalculatorView extends JFrame {
 		 */
 		
 		// add input textFields to the panel
-		this.panelAnnulusBorder.add(this.textFieldAnnulusOutRadius = new CalculatorTextField(10, 1, 3), this.textFieldAnnulusOutRadius.gbc_textField);
-		this.panelAnnulusBorder.add(this.textFieldAnnulusInRadius = new CalculatorTextField(10, 1, 4), this.textFieldAnnulusInRadius.gbc_textField);
+		panelAnnulusBorder.add(textFieldAnnulusOutRadius = new CalculatorTextField(10, 1, 3), textFieldAnnulusOutRadius.gbc_textField);
+		panelAnnulusBorder.add(textFieldAnnulusInRadius = new CalculatorTextField(10, 1, 4), textFieldAnnulusInRadius.gbc_textField);
 		
 		// add buttons to the panel
-		this.panelAnnulusBorder.add(this.buttonAnnulusCalculate = new CalculatorButton("Calculate", 1, 5), this.buttonAnnulusCalculate.gbc_button);
-		this.panelAnnulusBorder.add(this.buttonAnnulusZoomIn = new CalculatorButtonCustom("Zoom In", 0, 12), this.buttonAnnulusZoomIn.gbc_zoomButton);
-		this.panelAnnulusBorder.add(this.buttonAnnulusResetImage = new CalculatorButton("Reset Image", 1, 12), this.buttonAnnulusResetImage.gbc_button);
-		this.panelAnnulusBorder.add(this.buttonAnnulusSave = new CalculatorButton("Save Image", 2, 12), this.buttonAnnulusSave.gbc_button);
+		panelAnnulusBorder.add(buttonAnnulusCalculate = new CalculatorButton("Calculate", 1, 5), buttonAnnulusCalculate.gbc_button);
+		panelAnnulusBorder.add(buttonAnnulusZoomIn = new CalculatorButtonCustom("Zoom In", 0, 12), buttonAnnulusZoomIn.gbc_zoomButton);
+		panelAnnulusBorder.add(buttonAnnulusResetImage = new CalculatorButton("Reset Image", 1, 12), buttonAnnulusResetImage.gbc_button);
+		panelAnnulusBorder.add(buttonAnnulusSave = new CalculatorButton("Save Image", 2, 12), buttonAnnulusSave.gbc_button);
 		
 		/*
 		 * Add mandelbrot calculator controls to container panel
 		 */
 		
 		// add radioButtons to the panel
-		this.panelMandelbrotBorder.add(this.radioMandelbrotCalculate = new CalculatorRadioButton("Calculate area", 0, 3), this.radioMandelbrotCalculate.gbc_radioButton);
-		this.panelMandelbrotBorder.add(this.radioMandelbrotViewImage = new CalculatorRadioButton("View image", 0, 4), this.radioMandelbrotViewImage.gbc_radioButton);
+		panelMandelbrotBorder.add(radioMandelbrotCalculate = new CalculatorRadioButton("Calculate area", 0, 3), radioMandelbrotCalculate.gbc_radioButton);
+		panelMandelbrotBorder.add(radioMandelbrotViewImage = new CalculatorRadioButton("View image", 0, 4), radioMandelbrotViewImage.gbc_radioButton);
 		
 		// add radioButtons to a group, so only one can be selected at a time
-		this.GROUP_MANDELBROT_RADIOS.add(this.radioMandelbrotCalculate);
-		this.GROUP_MANDELBROT_RADIOS.add(this.radioMandelbrotViewImage);
+		GROUP_MANDELBROT_RADIOS.add(radioMandelbrotCalculate);
+		GROUP_MANDELBROT_RADIOS.add(radioMandelbrotViewImage);
 		
 		// set calculate radio to be default selection
-		this.radioMandelbrotCalculate.setSelected(true);
+		radioMandelbrotCalculate.setSelected(true);
 		
 		// add checkBox to the panel
-		this.panelMandelbrotBorder.add(this.checkBoxMandelbrotRandomColour = new CalculatorCheckBox("Random colour", 0, 5), this.checkBoxMandelbrotRandomColour.gbc_checkBox);
+		panelMandelbrotBorder.add(checkBoxMandelbrotRandomColour = new CalculatorCheckBox("Random colour", 0, 5), checkBoxMandelbrotRandomColour.gbc_checkBox);
 		
 		// add buttons to the panel
-		this.panelMandelbrotBorder.add(this.buttonMandelbrotOK = new CalculatorButtonCustom("OK", 0, 6), this.buttonMandelbrotOK.gbc_zoomButton);
-		this.panelMandelbrotBorder.add(this.buttonMandelbrotZoomIn = new CalculatorButtonCustom("Zoom In", 0, 12), this.buttonMandelbrotZoomIn.gbc_zoomButton);
-		this.panelMandelbrotBorder.add(this.buttonMandelbrotResetImage = new CalculatorButton("Reset Image", 1, 12), this.buttonMandelbrotResetImage.gbc_button);
-		this.panelMandelbrotBorder.add(this.buttonMandelbrotSave = new CalculatorButton("Save Image", 2, 12), this.buttonMandelbrotSave.gbc_button);
+		panelMandelbrotBorder.add(buttonMandelbrotOK = new CalculatorButtonCustom("OK", 0, 6), buttonMandelbrotOK.gbc_zoomButton);
+		panelMandelbrotBorder.add(buttonMandelbrotZoomIn = new CalculatorButtonCustom("Zoom In", 0, 12), buttonMandelbrotZoomIn.gbc_zoomButton);
+		panelMandelbrotBorder.add(buttonMandelbrotResetImage = new CalculatorButton("Reset Image", 1, 12), buttonMandelbrotResetImage.gbc_button);
+		panelMandelbrotBorder.add(buttonMandelbrotSave = new CalculatorButton("Save Image", 2, 12), buttonMandelbrotSave.gbc_button);
 	}
 	
 	/**
@@ -272,14 +272,14 @@ public class CalculatorView extends JFrame {
 	public final void refreshAnnulusImage(double[][] hits) {
 		
 		// remove panel from parent container
-		this.panelAnnulusImageContainer.remove(this.panelAnnulusImage);
+		panelAnnulusImageContainer.remove(panelAnnulusImage);
 		
 		// create new image, pass gridsize, grid constraints and hits array as arguments
-		this.panelAnnulusImageContainer.add(this.panelAnnulusImage = new HitViewerGreyscale(this.gridSize, this.gridSize, 0, 1, 0, 0, hits));
+		panelAnnulusImageContainer.add(panelAnnulusImage = new HitViewerGreyscale(gridSize, gridSize, 0, 1, 0, 0, hits));
 		
 		// repaint the image panel
-		this.panelAnnulusImage.revalidate();
-		this.panelAnnulusImage.repaint();
+		panelAnnulusImage.revalidate();
+		panelAnnulusImage.repaint();
 	}
 	
 	/**
@@ -292,14 +292,14 @@ public class CalculatorView extends JFrame {
 	public final void refreshMandelbrotImage(double[][] hits) {
 		
 		// remove panel from parent container
-		this.panelMandelbrotImageContainer.remove(this.panelMandelbrotImage);
+		panelMandelbrotImageContainer.remove(panelMandelbrotImage);
 		
 		// create new greyscale image, pass gridsize, grid constraints and hits array as arguments
-		this.panelMandelbrotImageContainer.add(this.panelMandelbrotImage = new HitViewerColour(this.gridSize, this.gridSize, 0, 1, 0, 0, hits));
+		panelMandelbrotImageContainer.add(panelMandelbrotImage = new HitViewerColour(gridSize, gridSize, 0, 1, 0, 0, hits));
 		
 		// repaint the image panel
-		this.panelMandelbrotImage.revalidate();
-		this.panelMandelbrotImage.repaint();
+		panelMandelbrotImage.revalidate();
+		panelMandelbrotImage.repaint();
 	}
 	
 	/**
@@ -314,14 +314,14 @@ public class CalculatorView extends JFrame {
 	public final void refreshMandelbrotImage(int[][] escapeArray) {
 		
 		// remove panel from parent container
-		this.panelMandelbrotImageContainer.remove(this.panelMandelbrotImage);
+		panelMandelbrotImageContainer.remove(panelMandelbrotImage);
 		
 		// create new colour image, pass gridsize, grid constraints and escapeArray as arguments
-		this.panelMandelbrotImageContainer.add(this.panelMandelbrotImage = new HitViewerColour(this.gridSize, this.gridSize, 0, 1, 0, 0, escapeArray));
+		panelMandelbrotImageContainer.add(panelMandelbrotImage = new HitViewerColour(gridSize, gridSize, 0, 1, 0, 0, escapeArray));
 		
 		// repaint the image panel
-		this.panelMandelbrotImage.revalidate();
-		this.panelMandelbrotImage.repaint();
+		panelMandelbrotImage.revalidate();
+		panelMandelbrotImage.repaint();
 	}
 	
 	/**
@@ -379,7 +379,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final void setAnnulusAreaCalc(double area) {
 		
-		this.labelAnnulusApproxOutput.setText(Double.toString(area));
+		labelAnnulusApproxOutput.setText(Double.toString(area));
 	}
 	
 	/**
@@ -390,7 +390,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final void setAnnulusMonteCalc(double area) {
 		
-		this.labelAnnulusMonteOutput.setText(Double.toString(area));
+		labelAnnulusMonteOutput.setText(Double.toString(area));
 	}
 	
 	/**
@@ -401,7 +401,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final void setMandelbrotMonteCalc(double area) {
 		
-		this.labelMandelbrotMonteOutput.setText(Double.toString(area));
+		labelMandelbrotMonteOutput.setText(Double.toString(area));
 	}
 	
 	/**
@@ -411,7 +411,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final HitViewerGreyscale getPanelAnnulusImage() {
 		
-		return this.panelAnnulusImage;
+		return panelAnnulusImage;
 	}
 	
 	/**
@@ -422,16 +422,16 @@ public class CalculatorView extends JFrame {
 	public final void addCalculatorListener(ActionListener theListener) {
 		
 		// add listener to annulus calculator buttons
-		this.buttonAnnulusCalculate.addActionListener(theListener);
-		this.buttonAnnulusZoomIn.addActionListener(theListener);
-		this.buttonAnnulusResetImage.addActionListener(theListener);
-		this.buttonAnnulusSave.addActionListener(theListener);
+		buttonAnnulusCalculate.addActionListener(theListener);
+		buttonAnnulusZoomIn.addActionListener(theListener);
+		buttonAnnulusResetImage.addActionListener(theListener);
+		buttonAnnulusSave.addActionListener(theListener);
 		
 		// add listener to mandelbrot calculator buttons
-		this.buttonMandelbrotOK.addActionListener(theListener);
-		this.buttonMandelbrotZoomIn.addActionListener(theListener);
-		this.buttonMandelbrotResetImage.addActionListener(theListener);
-		this.buttonMandelbrotSave.addActionListener(theListener);
+		buttonMandelbrotOK.addActionListener(theListener);
+		buttonMandelbrotZoomIn.addActionListener(theListener);
+		buttonMandelbrotResetImage.addActionListener(theListener);
+		buttonMandelbrotSave.addActionListener(theListener);
 	}
 	
 	/**
@@ -441,7 +441,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final CalculatorButton getButtonAnnulusCalculate() {
 		
-		return this.buttonAnnulusCalculate;
+		return buttonAnnulusCalculate;
 	}
 	
 	/**
@@ -451,7 +451,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final CalculatorButtonCustom getButtonAnnulusZoomIn() {
 		
-		return this.buttonAnnulusZoomIn;
+		return buttonAnnulusZoomIn;
 	}
 	
 	/**
@@ -461,7 +461,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final CalculatorButton getButtonAnnulusZoomReset() {
 		
-		return this.buttonAnnulusResetImage;
+		return buttonAnnulusResetImage;
 	}
 	
 	/**
@@ -471,7 +471,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final CalculatorButton getButtonMandelbrotOK() {
 		
-		return this.buttonMandelbrotOK;
+		return buttonMandelbrotOK;
 	}
 	
 	/**
@@ -481,7 +481,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final CalculatorRadioButton getRadioMandelbrotCalculate() {
 		
-		return this.radioMandelbrotCalculate;
+		return radioMandelbrotCalculate;
 	}
 	
 	/**
@@ -491,7 +491,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final CalculatorRadioButton getRadioMandelbrotViewImage() {
 		
-		return this.radioMandelbrotViewImage;
+		return radioMandelbrotViewImage;
 	}
 	
 	/**
@@ -501,7 +501,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final CalculatorCheckBox getCheckBoxMandelbrotRandomColour() {
 
-		return this.checkBoxMandelbrotRandomColour;
+		return checkBoxMandelbrotRandomColour;
 	}
 	
 	/**
@@ -511,7 +511,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final CalculatorButtonCustom getButtonMandelbrotZoomIn() {
 		
-		return this.buttonMandelbrotZoomIn;
+		return buttonMandelbrotZoomIn;
 	}
 	
 	/**
@@ -520,7 +520,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final CalculatorButton getButtonMandelbrotZoomReset() {
 		
-		return this.buttonMandelbrotResetImage;
+		return buttonMandelbrotResetImage;
 	}
 	
 	/**
@@ -530,7 +530,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final double[] getPixelZoomAnnulus() {
 		
-			return this.panelAnnulusImage.getPixelZoom();
+			return panelAnnulusImage.getPixelZoom();
 	}
 	
 	/**
@@ -540,7 +540,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final double[] getPixelZoomMandelbrot() {
 		
-		return this.panelMandelbrotImage.getPixelZoom();
+		return panelMandelbrotImage.getPixelZoom();
 	}
 	
 	/**

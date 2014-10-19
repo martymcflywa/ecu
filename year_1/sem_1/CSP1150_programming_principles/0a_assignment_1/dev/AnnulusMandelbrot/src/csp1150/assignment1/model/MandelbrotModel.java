@@ -68,6 +68,7 @@ public class MandelbrotModel extends ShapeModel {
 					
 					// if test pass, set counter + 1
 					if(isInside(x, y)) {
+						
 						hits[col][row] = 1;
 						arraySum++;
 					}
@@ -82,7 +83,7 @@ public class MandelbrotModel extends ShapeModel {
 		counter = counter + arraySum;
 		
 		// calculate area
-		this.areaMonte = (maxX - minX) * (maxY - minY) * counter / Math.pow(GRIDSIZE, 2);
+		areaMonte = (maxX - minX) * (maxY - minY) * counter / Math.pow(GRIDSIZE, 2);
 	}
 	
 	/**
@@ -200,12 +201,12 @@ public class MandelbrotModel extends ShapeModel {
 	 * @param args unused
 	 */
 	@Override
-	public void resetZoom() {
+	public void resetImage() {
 		
-		this.minX = this.DEFAULT_MINX;
-		this.minY = this.DEFAULT_MINY;
-		this.maxX = this.DEFAULT_MAXX;
-		this.maxY = this.DEFAULT_MAXY;
+		minX = DEFAULT_MINX;
+		minY = DEFAULT_MINY;
+		maxX = DEFAULT_MAXX;
+		maxY = DEFAULT_MAXY;
 	}
 	
 	/**
@@ -219,7 +220,7 @@ public class MandelbrotModel extends ShapeModel {
 	@Override
 	protected double minXPixelToGrid(double pixelMinX) {
 		
-		return (pixelMinX / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
+		return (pixelMinX / GRIDSIZE) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX;
 	}
 	
 	/**
@@ -235,7 +236,7 @@ public class MandelbrotModel extends ShapeModel {
 	@Override
 	protected double minYPixelToGrid(double pixelMinY, double pixelHeight) {
 		
-		return ((this.GRIDSIZE - (pixelMinY + pixelHeight)) / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
+		return ((GRIDSIZE - (pixelMinY + pixelHeight)) / GRIDSIZE) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX;
 	}
 	
 	/**
@@ -250,7 +251,7 @@ public class MandelbrotModel extends ShapeModel {
 	@Override
 	protected double maxXPixelToGrid(double pixelMinX, double pixelWidth) {
 		
-		return ((pixelMinX + pixelWidth) / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX; 
+		return ((pixelMinX + pixelWidth) / GRIDSIZE) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX; 
 	}
 	
 	/**
@@ -264,6 +265,6 @@ public class MandelbrotModel extends ShapeModel {
 	 */
 	protected double maxYPixelToGrid(double pixelMinY) {
 		
-		return ((this.GRIDSIZE - pixelMinY) / this.GRIDSIZE) * (this.DEFAULT_MAXX * 2.0) - this.DEFAULT_MAXX;
+		return ((GRIDSIZE - pixelMinY) / GRIDSIZE) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX;
 	}
 }

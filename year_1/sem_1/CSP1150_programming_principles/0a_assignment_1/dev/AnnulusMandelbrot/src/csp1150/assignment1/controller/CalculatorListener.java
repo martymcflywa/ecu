@@ -73,36 +73,36 @@ public class CalculatorListener implements ActionListener {
 			try {
 				
 				// get the annulus radius values from the view
-				outRadius = this.theView.getAnnulusOutRadius();
-				inRadius = this.theView.getAnnulusInRadius();
+				outRadius = theView.getAnnulusOutRadius();
+				inRadius = theView.getAnnulusInRadius();
 				
 				// if outer radius < inner radius,
 				if(outRadius < inRadius) {
 					
 					// display error message
-					this.theView.displayErrorMessage("Outer radius must be greater than inner radius!");
+					theView.displayErrorMessage("Outer radius must be greater than inner radius!");
 					
 				// else,
 				} else {
 					
 					// set input radius to the model
-					this.theAnnulusModel.setRadius(outRadius, inRadius);
+					theAnnulusModel.setRadius(outRadius, inRadius);
 					
 					// get calculated approx area from the model, show it in the view
-					this.theView.setAnnulusAreaCalc(theAnnulusModel.getAreaCalc());
+					theView.setAnnulusAreaCalc(theAnnulusModel.getAreaCalc());
 					
 					// get calculated monte carlo area from the model, show it in the view
-					this.theView.setAnnulusMonteCalc(theAnnulusModel.getMonteCalc());
+					theView.setAnnulusMonteCalc(theAnnulusModel.getMonteCalc());
 					
 					// refresh the greyscale image
-					this.theView.refreshAnnulusImage(this.theAnnulusModel.getHitsArray());
+					theView.refreshAnnulusImage(this.theAnnulusModel.getHitsArray());
 				}
 			}
 			
 			// if no values are set, display error message
 			catch(NumberFormatException ex) {
 				
-				this.theView.displayErrorMessage("Enter two values.");
+				theView.displayErrorMessage("Enter two values.");
 			}
 		
 		/**
@@ -112,13 +112,13 @@ public class CalculatorListener implements ActionListener {
 		} else if(e.getSource() == theView.getButtonAnnulusZoomIn()) {
 			
 			// set new max-mins to the model
-			this.theAnnulusModel.setZoom(this.theView.getPixelZoomAnnulus());
+			theAnnulusModel.setZoom(theView.getPixelZoomAnnulus());
 			
 			// recalculate using new max-mins
-			this.theAnnulusModel.calcMonte();
+			theAnnulusModel.calcMonte();
 			
 			// refresh the greyscale image
-			this.theView.refreshAnnulusImage(this.theAnnulusModel.getHitsArray());
+			theView.refreshAnnulusImage(theAnnulusModel.getHitsArray());
 			
 		/**
 		 * Else if Annulus Reset Zoom button is clicked...
@@ -127,13 +127,13 @@ public class CalculatorListener implements ActionListener {
 		} else if(e.getSource() == theView.getButtonAnnulusZoomReset()) {
 			
 			// reset max-min to outer radius
-			this.theAnnulusModel.resetZoom();
+			theAnnulusModel.resetImage();
 			
 			// recalculate using default max-mins
-			this.theAnnulusModel.calcMonte();
+			theAnnulusModel.calcMonte();
 			
 			// refresh the greyscale image
-			this.theView.refreshAnnulusImage(this.theAnnulusModel.getHitsArray());
+			theView.refreshAnnulusImage(theAnnulusModel.getHitsArray());
 			
 		/**
 		 * Else if Annulus Save button is clicked...
@@ -152,10 +152,10 @@ public class CalculatorListener implements ActionListener {
 			if(theView.getRadioMandelbrotCalculate().isSelected()) {
 				
 				// do the monte calculation
-				this.theMandelbrotModel.calcMonte();
+				theMandelbrotModel.calcMonte();
 				
 				// get the monte calculation, add it to the view
-				this.theView.setMandelbrotMonteCalc(this.theMandelbrotModel.getMonteCalc());
+				theView.setMandelbrotMonteCalc(this.theMandelbrotModel.getMonteCalc());
 				
 			// else if view image radio is selected,	
 			} else if(theView.getRadioMandelbrotViewImage().isSelected()) {
@@ -164,13 +164,13 @@ public class CalculatorListener implements ActionListener {
 				if(theView.getCheckBoxMandelbrotRandomColour().isSelected()) {
 					
 					// calculate area using escape time
-					this.theMandelbrotModel.calcEscape();
+					theMandelbrotModel.calcEscape();
 					
 					// refresh the colour image
-					this.theView.refreshMandelbrotImage(this.theMandelbrotModel.getEscapeArray());
+					theView.refreshMandelbrotImage(this.theMandelbrotModel.getEscapeArray());
 					
 					// set boolean to true
-					this.mandelbrotColourImageExists = true;
+					mandelbrotColourImageExists = true;
 					
 				// else random colour checkbox is not ticked,	
 				} else {
@@ -179,19 +179,19 @@ public class CalculatorListener implements ActionListener {
 					if(mandelbrotColourImageExists) {
 						
 						// recalculate monte to refill values in hits array
-						this.theMandelbrotModel.calcMonte();
+						theMandelbrotModel.calcMonte();
 						
 						// refresh greyscale image
-						this.theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
+						theView.refreshMandelbrotImage(theMandelbrotModel.getHitsArray());
 						
 						// set boolean to false
-						this.mandelbrotColourImageExists = false;
+						mandelbrotColourImageExists = false;
 						
 					// else
 					} else {
 						
 						// refresh the greyscale image
-						this.theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
+						theView.refreshMandelbrotImage(theMandelbrotModel.getHitsArray());
 					}
 				}
 			}
@@ -203,47 +203,47 @@ public class CalculatorListener implements ActionListener {
 		} else if(e.getSource() == theView.getButtonMandelbrotZoomIn()) {
 			
 			// set new max-mins to the model
-			this.theMandelbrotModel.setZoom(this.theView.getPixelZoomMandelbrot());
+			theMandelbrotModel.setZoom(theView.getPixelZoomMandelbrot());
 			
 			// if random colour checkbox is ticked,
 			if(theView.getCheckBoxMandelbrotRandomColour().isSelected()) {
 				
 				// calculate area using escape time
-				this.theMandelbrotModel.calcEscape();
+				theMandelbrotModel.calcEscape();
 				
 				// refresh the colour image
-				this.theView.refreshMandelbrotImage(this.theMandelbrotModel.getEscapeArray());
+				theView.refreshMandelbrotImage(theMandelbrotModel.getEscapeArray());
 				
 				// set boolean to true
-				this.mandelbrotColourImageExists = true;
+				mandelbrotColourImageExists = true;
 			
 			// else random colour checkbox is not ticked,
 			} else {
 				
 				// recalculate monte to refill values in hits array
-				this.theMandelbrotModel.calcMonte();
+				theMandelbrotModel.calcMonte();
 				
 				// refresh greyscale image
-				this.theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
+				theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
 				
 				// set boolean to false
-				this.mandelbrotColourImageExists = false;
+				mandelbrotColourImageExists = false;
 			}
 			
 		/**
-		 * Else if Mandelbrot Reset Zoom button is clicked...
+		 * Else if Mandelbrot Reset Image button is clicked...
 		 */
 			
 		} else if(e.getSource() == theView.getButtonMandelbrotZoomReset()) {
 			
 			// reset max-min to outer radius
-			this.theMandelbrotModel.resetZoom();
+			theMandelbrotModel.resetImage();
 			
 			// recalculate using default max-mins
-			this.theMandelbrotModel.calcMonte();
+			theMandelbrotModel.calcMonte();
 			
 			// refresh the greyscale image
-			this.theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
+			theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
 		}
 		
 		/**

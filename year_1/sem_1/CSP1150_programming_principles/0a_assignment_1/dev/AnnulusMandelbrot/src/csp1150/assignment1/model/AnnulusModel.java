@@ -37,24 +37,25 @@ public class AnnulusModel extends ShapeModel {
 		double arraySum = 0.0;
 		
 		// iterate through columns
-		for(int col = 0; col < this.GRIDSIZE - 1; col++) {
+		for(int col = 0; col < GRIDSIZE - 1; col++) {
 			
 			// iterate through rows
-			for(int row = 0; row < this.GRIDSIZE - 1; row++) {
+			for(int row = 0; row < GRIDSIZE - 1; row++) {
 				
 				// reset current cell value to 0
-				this.hits[col][row] = 0;
+				hits[col][row] = 0;
 				
 				// iterate through samples
 				for(int i = 0; i < SAMPLES; i++) {
 					
 					// generate random scatter points per cell
-					double x = this.minX + (col + Math.random()) * ((this.maxX - this.minX) / this.GRIDSIZE);
-					double y = this.minY + (row + Math.random()) * ((this.maxY - this.minY) / this.GRIDSIZE);
+					double x = minX + (col + Math.random()) * ((maxX - minX) / GRIDSIZE);
+					double y = minY + (row + Math.random()) * ((maxY - minY) / GRIDSIZE);
 					
 					// if test pass, set counter + 1
 					if(isInside(x, y)) {
-						this.hits[col][row] = 1;
+						
+						hits[col][row] = 1;
 						arraySum++;
 					}
 				}
@@ -62,12 +63,12 @@ public class AnnulusModel extends ShapeModel {
 		}
 		
 		// divide sum of array to samples
-		arraySum = arraySum / this.SAMPLES;
+		arraySum = arraySum / SAMPLES;
 		
 		// add sum of array to counter
 		counter = counter + arraySum;
 		
 		// calculate area
-		this.areaMonte = (this.maxX - this.minX) * (this.maxY - this.minY) * counter / Math.pow(this.GRIDSIZE, 2);
+		areaMonte = (maxX - minX) * (maxY - minY) * counter / Math.pow(GRIDSIZE, 2);
 	}
 }

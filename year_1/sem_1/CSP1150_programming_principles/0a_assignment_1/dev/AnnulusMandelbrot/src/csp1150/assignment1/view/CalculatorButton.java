@@ -32,24 +32,24 @@ public class CalculatorButton extends JButton {
 	/**
 	 * The constructor.
 	 * 
-	 * @param String theWords - What the button will say.
+	 * @param String buttonName - The button name.
 	 * @param int gridx - GridBagConstraints: The column position.
 	 * @param int gridy - GridBagConstraints: The row position.
 	 */
-	public CalculatorButton(String theWords, int gridx, int gridy) {
+	public CalculatorButton(String buttonName, int gridx, int gridy) {
 		
-		// create button
-		this.setText(theWords);
+		// set the button text
+		this.setText(buttonName);
 		
 		// create gridbag constraints
-		this.gbc_button = new GridBagConstraints();
+		gbc_button = new GridBagConstraints();
 		
 		// use these values as constraints
-		this.gbc_button.anchor = GridBagConstraints.WEST;
-		this.gbc_button.insets = new Insets(0, 20, 5, 5);
+		gbc_button.anchor = GridBagConstraints.WEST;
+		gbc_button.insets = new Insets(0, 20, 5, 5);
 		
 		// set the column and row positions
-		this.gbc_button.gridx = gridx;
-		this.gbc_button.gridy = gridy;
+		gbc_button.gridx = gridx;
+		gbc_button.gridy = gridy;
 	}
 }

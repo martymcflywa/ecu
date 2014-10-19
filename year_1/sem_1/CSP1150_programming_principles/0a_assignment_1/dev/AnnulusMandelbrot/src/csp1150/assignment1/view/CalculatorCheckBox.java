@@ -25,25 +25,25 @@ public class CalculatorCheckBox extends JCheckBox {
 	/**
 	 * The constructor.
 	 * 
-	 * @param String theWords - What the checkbox will say.
+	 * @param String buttonName - The button name.
 	 * @param int gridx - GridBagConstraints: The column position.
 	 * @param int gridy - GridBagConstraints: The row position.
 	 */
-	public CalculatorCheckBox(String theWords, int gridx, int gridy) {
+	public CalculatorCheckBox(String buttonName, int gridx, int gridy) {
 		
-		// create button
-		this.setText(theWords);
+		// set the button text
+		this.setText(buttonName);
 		
 		// create gridbag constraints
-		this.gbc_checkBox = new GridBagConstraints();
+		gbc_checkBox = new GridBagConstraints();
 		
 		// use these values as constraints
-		this.gbc_checkBox.anchor = GridBagConstraints.WEST;
-		this.gbc_checkBox.gridwidth = 2;
-		this.gbc_checkBox.insets = new Insets(0, 40, 5, 5);
+		gbc_checkBox.anchor = GridBagConstraints.WEST;
+		gbc_checkBox.gridwidth = 2;
+		gbc_checkBox.insets = new Insets(0, 40, 5, 5);
 		
 		// set the column and row positions
-		this.gbc_checkBox.gridx = gridx;
-		this.gbc_checkBox.gridy = gridy;
+		gbc_checkBox.gridx = gridx;
+		gbc_checkBox.gridy = gridy;
 	}
 }
