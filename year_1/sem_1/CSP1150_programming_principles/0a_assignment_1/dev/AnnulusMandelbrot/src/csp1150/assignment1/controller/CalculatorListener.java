@@ -3,6 +3,9 @@ package csp1150.assignment1.controller;
 // import event listener
 import java.awt.event.*;
 
+// import imageio
+import javax.imageio.ImageIO;
+
 // import the project
 import csp1150.assignment1.model.*;
 import csp1150.assignment1.view.*;
@@ -139,8 +142,9 @@ public class CalculatorListener implements ActionListener {
 		 * Else if Annulus Save button is clicked...
 		 * TODO: Define save button here.
 		 */
-		//} else if() {
+		} else if(e.getSource() == theView.getButtonAnnulusSave()) {
 			
+			// **TESTING save
 			
 		/**
 		 * Else if Mandelbrot OK button is clicked...

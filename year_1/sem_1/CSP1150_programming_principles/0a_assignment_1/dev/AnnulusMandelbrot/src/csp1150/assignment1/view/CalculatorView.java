@@ -465,6 +465,16 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
+	 * This method returns the annulus save button.
+	 * 
+	 * @return CalculatorButton buttonAnnulusSave.
+	 */
+	public final CalculatorButton getButtonAnnulusSave() {
+		
+		return buttonAnnulusSave;
+	}
+	
+	/**
 	 * This method returns the mandelbrot OK button.
 	 * 
 	 * @return CalculatorButton buttonMandelbrotOK.
@@ -515,12 +525,23 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
-	 * This method returns the mandelbrot zoom reset button
-	 * @return
+	 * This method returns the mandelbrot zoom reset button.
+	 * 
+	 * @return CalculatorButton buttonMandelbrotResetImage.
 	 */
 	public final CalculatorButton getButtonMandelbrotZoomReset() {
 		
 		return buttonMandelbrotResetImage;
+	}
+	
+	/**
+	 * This method returns the mandelbrot save button.
+	 * 
+	 * @return CalculatorButton buttonMandelbrotSave.
+	 */
+	public final CalculatorButton getButtonMandelbrotSave() {
+		
+		return buttonMandelbrotSave;
 	}
 	
 	/**
