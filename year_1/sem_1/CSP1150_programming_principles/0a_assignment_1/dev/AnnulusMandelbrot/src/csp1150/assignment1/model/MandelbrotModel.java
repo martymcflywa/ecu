@@ -163,20 +163,19 @@ public class MandelbrotModel extends ShapeModel {
 		
 		boolean inside = true;
 		
-		// reversing the steps from MAX_STEPS to zero, for  brighter colours
-		int steps = MAX_STEPS;
+		int steps = 0;
 		
 		double px = 0;
 		double py = 0;
 		
-		while(steps > 0 && inside) {
+		while(steps < MAX_STEPS && inside) {
 			inside = px * px + py * py < 4.0;
 			
 			double py1 = 2 * px * py + y;
 			px = px * px - py * py + x;
 			py = py1;
 			
-			steps--;
+			steps++;
 		}
 		
 		// store value of steps in escapeArray's current cell

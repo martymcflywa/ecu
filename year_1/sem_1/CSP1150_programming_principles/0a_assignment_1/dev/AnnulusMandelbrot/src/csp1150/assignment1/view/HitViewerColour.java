@@ -155,9 +155,9 @@ public class HitViewerColour extends HitViewer implements MouseListener, MouseMo
                 
 				// set pixel to current escapetime value, add some randomness - previously divided by 25
 				// TODO: add if(zooming) keep colour, else randomize
-				int pixelR = Math.abs(escapeArray[x][y] - randomR);
-				int pixelG = Math.abs(escapeArray[x][y] - randomG);
-				int pixelB = Math.abs(escapeArray[x][y] - randomB);
+				int pixelR = escapeArray[x][y] * randomR / 25;
+				int pixelG = escapeArray[x][y] * randomG / 25;
+				int pixelB = escapeArray[x][y] * randomB / 25;
 				
 				// call setPixel to draw, using random numbers generated
 				setPixel(x, y, pixelR, pixelG, pixelB);
