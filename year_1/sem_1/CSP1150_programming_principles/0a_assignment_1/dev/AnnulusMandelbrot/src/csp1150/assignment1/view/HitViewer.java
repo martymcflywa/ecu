@@ -278,6 +278,16 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	}
 	
 	/**
+	 * This method returns the image.
+	 * 
+	 * @return BufferedImage image.
+	 */
+	public final BufferedImage getImage() {
+		
+		return image;
+	}
+	
+	/**
 	 * Unused mouse event.
 	 * 
 	 * @param args unused

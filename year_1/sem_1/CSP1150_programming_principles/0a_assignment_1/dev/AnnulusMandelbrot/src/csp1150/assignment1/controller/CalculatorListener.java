@@ -2,9 +2,12 @@ package csp1150.assignment1.controller;
 
 // import event listener
 import java.awt.event.*;
+import java.io.File;
 
 // import imageio
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+
 
 // import the project
 import csp1150.assignment1.model.*;
@@ -145,6 +148,7 @@ public class CalculatorListener implements ActionListener {
 		} else if(e.getSource() == theView.getButtonAnnulusSave()) {
 			
 			// **TESTING save
+			//ImageIO.write((BufferedImage), "png", new File("Users/marty/Desktop/test.png"));
 			
 		/**
 		 * Else if Mandelbrot OK button is clicked...
