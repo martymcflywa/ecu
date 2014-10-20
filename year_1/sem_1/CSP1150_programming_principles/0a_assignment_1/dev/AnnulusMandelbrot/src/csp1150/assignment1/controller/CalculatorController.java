@@ -1,9 +1,16 @@
 package csp1150.assignment1.controller;
 
+import java.awt.Component;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+
+
+
 // import the project
 import csp1150.assignment1.model.*;
 import csp1150.assignment1.view.*;
-
 
 /**
  * This class defines the calculator controller,
@@ -231,5 +238,25 @@ public class CalculatorController {
 		
 		// refresh the greyscale image
 		theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
+	}
+	
+	/**
+	 * This method captures an image of a component.
+	 * 
+	 * @param Component c - The component to capture.
+	 * @return BufferedImage theImage - returns image of captured component.
+	 */
+	public final BufferedImage getComponentImage(Component c) {
+		
+		BufferedImage theImage = new BufferedImage(c.getWidth(), c.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		c.paint(theImage.getGraphics());
+		
+		return theImage;
+	}
+	
+	public final void saveComponentImage(Component c) throws Exception {
+		
+		BufferedImage savedImage = getComponentImage(c);
+		ImageIO.write(savedImage, "png", new File("/Users/marty/Desktop/test.png"));
 	}
 }

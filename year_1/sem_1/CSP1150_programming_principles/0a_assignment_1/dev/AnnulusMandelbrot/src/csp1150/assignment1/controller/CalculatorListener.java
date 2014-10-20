@@ -85,8 +85,21 @@ public class CalculatorListener implements ActionListener {
 		 */
 		} else if(e.getSource() == theView.getButtonAnnulusSave()) {
 			
-			// **TESTING save
-			//ImageIO.write((BufferedImage), "png", new File("Users/marty/Desktop/test.png"));
+			// capture image being displayed on component
+			theController.getComponentImage(theView.getPanelAnnulusImage());
+			
+			// try this first,
+			try {
+				
+				// save image
+				theController.saveComponentImage(theView.getPanelAnnulusImage());
+				
+			// if exception thrown,
+			} catch(Exception ex) {
+				
+				// show error message
+				theView.displayErrorMessage("Error saving image.");
+			}
 			
 		/**
 		 * Else if Mandelbrot OK button is clicked...

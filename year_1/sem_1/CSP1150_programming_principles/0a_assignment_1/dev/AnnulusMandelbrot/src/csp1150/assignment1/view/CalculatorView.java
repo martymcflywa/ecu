@@ -418,6 +418,16 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
+	 * This method returns the mandelbrot image.
+	 * 
+	 * @return HitViewerColour panelMandelbrotImage.
+	 */
+	public final HitViewerColour getPanelMandelbrotImage() {
+		
+		return panelMandelbrotImage;
+	}
+	
+	/**
 	 * This method adds action listeners to the buttons.
 	 * 
 	 * @param ActionListener theListener.
