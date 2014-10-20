@@ -1,12 +1,14 @@
 package csp1150.assignment1.controller;
 
+// import component
 import java.awt.Component;
+
+// import bufferedimage
 import java.awt.image.BufferedImage;
+
+// import io
 import java.io.File;
-
 import javax.imageio.ImageIO;
-
-
 
 // import the project
 import csp1150.assignment1.model.*;
@@ -18,8 +20,8 @@ import csp1150.assignment1.view.*;
  * to the model and vice versa.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.1.0
- * @since 20141011
+ * @version 5.2.0
+ * @since 20141020
  */
 public class CalculatorController {
 
@@ -242,21 +244,42 @@ public class CalculatorController {
 	
 	/**
 	 * This method captures an image of a component.
+	 * TODO: try consolidating getComponentImage and saveComponentImage as one method, and one BufferedImage.
 	 * 
 	 * @param Component c - The component to capture.
 	 * @return BufferedImage theImage - returns image of captured component.
 	 */
 	public final BufferedImage getComponentImage(Component c) {
 		
-		BufferedImage theImage = new BufferedImage(c.getWidth(), c.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		// create new buffered image, use component width and height minus padding
+		BufferedImage theImage = new BufferedImage(c.getWidth() - 10, c.getHeight() - 10, BufferedImage.TYPE_INT_ARGB);
+		
+		// paint component image on to theImage
 		c.paint(theImage.getGraphics());
 		
+		// return the image
 		return theImage;
 	}
 	
-	public final void saveComponentImage(Component c) throws Exception {
+	/**
+	 * This method saves the captured component image to project root.
+	 * TODO: use JFileChooser instead of hardcoded directory/filename.
+	 * 
+	 * @param Component c - The component to save.
+	 * @throws Exception
+	 */
+	public final void saveComponentImage(Component c, String filename) throws Exception {
 		
+		// create new buffered image, call getComponentImage
 		BufferedImage savedImage = getComponentImage(c);
-		ImageIO.write(savedImage, "png", new File("/Users/marty/Desktop/test.png"));
+		
+		// create new file
+		File theFile = new File(filename);
+		
+		// write buffered image to file
+		ImageIO.write(savedImage, "png", theFile);
+		
+		// tell user where file is saved
+		theView.displayInfoMessage("The image has been saved to " + theFile.getAbsolutePath());
 	}
 }

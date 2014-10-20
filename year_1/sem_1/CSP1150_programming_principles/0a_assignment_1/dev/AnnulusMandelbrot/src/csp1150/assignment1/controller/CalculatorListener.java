@@ -11,26 +11,14 @@ import csp1150.assignment1.view.*;
  * when buttons are pressed.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.1.0
- * @since 20141011
+ * @version 5.2.0
+ * @since 20141020
  */
 public class CalculatorListener implements ActionListener {
 
 	// declare the view and controller
 	private CalculatorView theView;
 	private CalculatorController theController;
-	
-//	// declare boolean ** MOVED TO VIEW
-//	private boolean mandelbrotColourImageExists = false;
-	
-	/**
-	 * The default constructor for inheritance.
-	 * 
-	 * @param args unused
-	 */
-	public CalculatorListener() {
-		
-	}
 	
 	/**
 	 * The listener constructor.
@@ -81,7 +69,6 @@ public class CalculatorListener implements ActionListener {
 			
 		/**
 		 * Else if Annulus Save button is clicked...
-		 * TODO: Define save button here.
 		 */
 		} else if(e.getSource() == theView.getButtonAnnulusSave()) {
 			
@@ -91,8 +78,9 @@ public class CalculatorListener implements ActionListener {
 			// try this first,
 			try {
 				
-				// save image
-				theController.saveComponentImage(theView.getPanelAnnulusImage());
+				// save image as AnnulusImage.png (at project root)
+				// TODO: replace with JFileChooser
+				theController.saveComponentImage(theView.getPanelAnnulusImage(), "AnnulusImage.png");
 				
 			// if exception thrown,
 			} catch(Exception ex) {
@@ -124,11 +112,29 @@ public class CalculatorListener implements ActionListener {
 		} else if(e.getSource() == theView.getButtonMandelbrotZoomReset()) {
 			
 			theController.resetMandelbrotImage();
-		}
 		
 		/**
-		 * Else if...
-		 * TODO: Define the rest of the buttons. 
+		 * Else if Mandelbrot Save button is clicked...
 		 */
+		
+		} else if(e.getSource() ==  theView.getButtonMandelbrotSave()) {
+			
+			// capture image being displayed on component
+			theController.getComponentImage(theView.getPanelMandelbrotImage());
+			
+			// try this first,
+			try {
+				
+				// save image as MandelbrotImage.png (at project root)
+				// TODO: replace with JFileChooser
+				theController.saveComponentImage(theView.getPanelMandelbrotImage(), "MandelbrotImage.png");
+				
+			// if exception thrown,
+			} catch(Exception ex) {
+				
+				// show error message
+				theView.displayErrorMessage("Error saving image.");
+			}
+		}
 	}
 }

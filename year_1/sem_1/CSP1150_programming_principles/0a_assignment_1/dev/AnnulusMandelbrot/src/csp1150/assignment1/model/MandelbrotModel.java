@@ -6,8 +6,8 @@ package csp1150.assignment1.model;
  * isInside() method.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.1.0
- * @since 20141011
+ * @version 5.2.0
+ * @since 20141020
  */
 public class MandelbrotModel extends ShapeModel {
 	

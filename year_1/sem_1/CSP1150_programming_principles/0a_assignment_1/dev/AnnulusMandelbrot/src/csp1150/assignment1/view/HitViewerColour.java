@@ -18,8 +18,8 @@ import java.util.Random;
  * Uses GridLayout manager.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.1.0
- * @since 20141011
+ * @version 5.2.0
+ * @since 20141020
  */
 @SuppressWarnings("serial")
 public class HitViewerColour extends HitViewer implements MouseListener, MouseMotionListener {
@@ -163,7 +163,7 @@ public class HitViewerColour extends HitViewer implements MouseListener, MouseMo
 				setPixel(x, y, pixelR, pixelG, pixelB);
 				
 				// ** DEBUGGING
-				System.out.println("R: " + pixelR + " | G: " + pixelG + " | B: " + pixelB);
+				System.out.println("DEBUG viewHitsRandomColour | R: " + pixelR + " | G: " + pixelG + " | B: " + pixelB);
             }
         }
 	}

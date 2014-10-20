@@ -7,8 +7,8 @@ package csp1150.assignment1.model;
  * in this class.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.1.0
- * @since 20141011
+ * @version 5.2.0
+ * @since 20141020
  */
 public class ShapeModel {
 
@@ -253,7 +253,7 @@ public class ShapeModel {
 		maxY = maxYPixelToGrid(pixelZoom[1]);
 		
 		// ** DEBUGGING
-		System.out.println("minX: " + minX + " | minY: " + minY + " | maxX: " + maxX + " | maxY: " + maxY);
+		System.out.println("DEBUG setZoom | minX: " + minX + " | minY: " + minY + " | maxX: " + maxX + " | maxY: " + maxY);
 	}
 	
 	/**

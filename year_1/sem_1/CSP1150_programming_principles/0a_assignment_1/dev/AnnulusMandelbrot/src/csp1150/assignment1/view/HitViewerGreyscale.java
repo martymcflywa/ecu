@@ -15,8 +15,8 @@ import java.awt.event.*;
  * Uses GridLayout manager.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.1.0
- * @since 20141011
+ * @version 5.2.0
+ * @since 20141020
  */
 @SuppressWarnings("serial")
 public class HitViewerGreyscale extends HitViewer implements MouseListener, MouseMotionListener {

@@ -25,8 +25,8 @@ import javax.swing.SwingUtilities;
  * Uses GridLayout manager.
  * 
  * @author Martin Ponce ID# 10371381 & Prof. Hingston
- * @version 5.1.0
- * @since 20141011
+ * @version 5.2.0
+ * @since 20141020
  */
 
 @SuppressWarnings("serial")
@@ -233,7 +233,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 			pixelZoom[3] = Math.abs(mousePt.x - me.getX());
 			
 			// ** DEBUGGING
-			System.out.println("minX: " + pixelZoom[0] + " | minY: " + pixelZoom[1] + " | width: " + pixelZoom[2] + " | height: " + pixelZoom[3]);
+			System.out.println("DEBUG pixelZoom | minX: " + pixelZoom[0] + " | minY: " + pixelZoom[1] + " | width: " + pixelZoom[2] + " | height: " + pixelZoom[3]);
 			
 			// repaint
 			me.getComponent().repaint();

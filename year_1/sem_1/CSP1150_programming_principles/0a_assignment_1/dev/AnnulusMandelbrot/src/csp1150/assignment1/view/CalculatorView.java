@@ -11,8 +11,8 @@ import javax.swing.border.*;
  * This class ties all the view classes together to generate the view.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.1.0
- * @since 20141011
+ * @version 5.2.0
+ * @since 20141020
  */
 @SuppressWarnings("serial")
 public class CalculatorView extends JFrame {
@@ -606,5 +606,15 @@ public class CalculatorView extends JFrame {
 	public final void displayErrorMessage(String errorMessage) {
 		
 		JOptionPane.showMessageDialog(this, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	/**
+	 * This method displays an information message to alert the user.
+	 * 
+	 * @param String infoMessage - The info message.
+	 */
+	public final void displayInfoMessage(String infoMessage) {
+		
+		JOptionPane.showMessageDialog(this, infoMessage, "Information", JOptionPane.INFORMATION_MESSAGE);
 	}
 }

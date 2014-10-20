@@ -4,8 +4,8 @@ package csp1150.assignment1.model;
  * Subclass of ShapeModel. Defines the Annulus shape.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.1.0
- * @since 20141011
+ * @version 5.2.0
+ * @since 20141020
  */
 public class AnnulusModel extends ShapeModel {
 	

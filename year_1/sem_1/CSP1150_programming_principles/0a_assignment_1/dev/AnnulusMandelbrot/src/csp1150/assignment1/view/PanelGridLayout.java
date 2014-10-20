@@ -11,8 +11,8 @@ import javax.swing.JPanel;
  * GridLayout constraints parameters which are stored in theGridLayout.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.1.0
- * @since 20141011
+ * @version 5.2.0
+ * @since 20141020
  */
 @SuppressWarnings("serial")
 public class PanelGridLayout extends JPanel {
