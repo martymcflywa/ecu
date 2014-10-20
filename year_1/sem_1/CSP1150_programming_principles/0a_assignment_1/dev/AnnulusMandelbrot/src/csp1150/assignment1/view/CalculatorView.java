@@ -79,6 +79,9 @@ public class CalculatorView extends JFrame {
 	private CalculatorButton buttonMandelbrotResetImage;
 	private CalculatorButton buttonMandelbrotSave;
 	
+	// declare boolean
+	private boolean mandelbrotColourImageExists = false;
+	
 	/**
 	 * The CalculatorView constructor.
 	 * Set the gridsize at construction,
@@ -562,6 +565,26 @@ public class CalculatorView extends JFrame {
 	public final double[] getPixelZoomMandelbrot() {
 		
 		return panelMandelbrotImage.getPixelZoom();
+	}
+	
+	/**
+	 * This method returns boolean mandelbrotColourImageExists;
+	 * 
+	 * @return boolean mandelbrotColourImageExists.
+	 */
+	public final boolean getMandelbrotColourImageExists() {
+	
+		return mandelbrotColourImageExists;
+	}
+	
+	/**
+	 * This method sets mandelbrotColourImageExists field.
+	 * 
+	 * @param boolean trueOrFalse.
+	 */
+	public final void setMandelbrotColourImageExists(boolean trueOrFalse) {
+		
+		mandelbrotColourImageExists = trueOrFalse;
 	}
 	
 	/**
