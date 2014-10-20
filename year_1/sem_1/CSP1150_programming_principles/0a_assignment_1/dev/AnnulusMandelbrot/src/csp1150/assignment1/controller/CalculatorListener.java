@@ -2,14 +2,8 @@ package csp1150.assignment1.controller;
 
 // import event listener
 import java.awt.event.*;
-import java.io.File;
 
-// import imageio
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-
-
-// import the project
+// import the view
 import csp1150.assignment1.view.*;
 
 /**
