@@ -2,7 +2,7 @@
 
 \subsection{Participants}
 
-The sample consisted of 61 fictional under-graduate students from a University in Perth, Western Australia who responded to a survey regarding their Facebook use. 
+The sample initially consisted of 61 fictional under-graduate students from a University in Perth, Western Australia who responded to a survey regarding their Facebook use. 
 
 Out of the 61 observations, five were excluded from the dataset with NA responses. Three observations were excluded with responses to the questionnaire as ``0'' (zero). The dataset was then screened for outliers, excluding two observations with reported Facebook logins greater than 50 per week. One observation was excluded, with reported hours spent Facebook greater than 50 per week. Finally, two observations were excluded, with reported number of close friends greater than 70.
 
@@ -10,11 +10,7 @@ This resulted in a final sample of 48 Facebook users, 3 female, 45 male (M = 0.9
 
 \subsection{Survey}
 
-Each participant filled out a survey which consisted of 10 questions. The first section included questions about the participants demography, requesting their age and sex. 
-
-The second section included questions regarding the amount of Facebook use, requesting self-reported estimates on how many Facebook logins per week, and hours spent per week on Facebook. 
-
-The third section included questions regarding the participant's social networking and connection, requesting self-reported estimates on how many Facebook friends they have, how many offline close friends they have, and a 5 point Likert-style scale opinion of their own sociability; 1 = strongly disagree, 5 = strongly agree. 
+Each participant filled out a survey which consisted of ten sections. The first section included questions about the participants demography, requesting their age and sex. The second section included questions regarding the amount of Facebook use, requesting self-reported estimates on the number of Facebook logins per week, and hours spent per week on Facebook. The third section included questions regarding the participant's social networking and connection, requesting self-reported estimates on how many Facebook friends they have, how many offline close friends they have, and a 5 point Likert-style scale opinion of their own sociability; 1 = strongly disagree, 5 = strongly agree. 
 
 The fourth and final section included personality surveys, measuring extraversion, self-esteem and social anxiety. Extraversion was measured through a personality test of 25 items, the scores of which were converted to an integer value between 1 and 25. A lower value suggests introversion and a higher value suggests extraversion. Self esteem was measured using a Rosenberg self esteem scale survey of 10 items. The scale ranges between 0 to 30, with scores between 15 to 25 considered normal, and scores below 15 suggesting low self esteem. Social anxiety was measured using a Liebowitz Social Anxiety Scale survey of 24 items, with scores between 55 to 65 suggesting moderate social phobia, scores between 65 to 80 suggesting marked social phobia, 80 to 95 suggesting severe social phobia and scores greater than 95 suggesting very severe social phobia.
 
@@ -31,7 +27,7 @@ The fourth and final section included personality surveys, measuring extraversio
 This research paper aims to explore the relationship between gender and network size, and the relationship between gender and amount of time spent on Facebook. As such, the following measured variables from the survey have been selected for this research:\\
 
 \begin{itemize}
-\item \textbf{Gender:} The categorical variable with binary values 0 or 1.
+\item \textbf{Gender:} The categorical variable with binary values 0, = female or 1 = male.
 \item \textbf{Facebook friends (FB friends):} Primary variable related to testing Thesis Statement 1.
 \item \textbf{Close friends:} Secondary variable related to testing Thesis Statement 1, exploring the possibility that gender is also related to number of close friends offline, and may provide further evidence for Thesis Statement 1.
 \item \textbf{Sociability:} Secondary variable related to testing Thesis Statement 1, exploring the possibility that gender may also have a correlation with Sociability, and may provide further evidence for Thesis Statement 1.
@@ -56,15 +52,19 @@ Sociability   & 2   & 5   & 3.667  & 4      & 4    & 0.7532   & -0.5633 & -0.008
 
 %It is worth noting that men greatly outnumber women in this sample set by 15 to 1. Unfortunately, there is not enough female representation in the dataset to provide any meaningful conclusions in the tests to follow.
 
-With gender coded as 0 = female and 1 = male, the gender mean of 0.9375 demonstrates that the majority of participants within this dataset are men. Women only represent 3 of the total 48 observations. With such a small number of female participants, there is not enough evidence to provide any meaningful conclusions when testing for any correlations between gender and the selected variables.
+With gender coded as 0 = female and 1 = male, the gender mean of 0.9375 demonstrates that the majority of participants within this dataset are men. Women only represent 3 of the total 48 observations. This limitation will pose a recurring problem throughout this research paper.
 
-Facebook friends exhibits the highest variance about the mean, with a standard deviation of 176.001. A positive skew of 0.7959 and high variance is caused by a potential outlier, with a maximum score of 798. The exclusion of this outlier could potentially normalize the variance and skew. However, the score belongs to an observation from a female participant, and the exclusion would result in a dataset with only 2 female participants. Therefore, it was decided that this observation would not be screened, so that the following tests would include as many female participants as possible.
+%With such a small number of female participants, there is not enough evidence to provide any meaningful conclusions when testing for any correlations between gender and the selected variables.
+
+Facebook friends exhibits the highest variance about the mean, with a standard deviation of 176.001. A positive skew of 0.7959 and high variance is caused by a potential outlier, with a maximum score of 798. The exclusion of this outlier could possibly normalize the variance and skew, however, the score belongs to an observation from a female participant, and the exclusion would result in a dataset with only 2 female participants. Therefore, it was decided that this observation would not be screened, so that the following tests would include as many female participants as possible.
 
 The figures below include histograms and q-q plots to assist in identifying a normal or non-normal distribution.
 
 \subsubsection{Gender}
 
-Figure 1 shows the histogram for gender. The blue curve overlay demonstates a non-normal distribution. Only non-parametric tests are applicable for this variable. As previously mentioned, men greatly outnumber women in this study, therefore, no meaningful conclusions can be made from the following tests.
+Figure 1 shows the histogram for gender. The blue curve overlay demonstrates a non-normal distribution. Only non-parametric tests are applicable for this variable. This histogram also demonstrates the gender imbalance of the sample set.
+
+%As previously mentioned, men greatly outnumber women in this study, therefore, no meaningful conclusions can be made from the following tests.
 
 \begin{figure}[H]
 \centering
@@ -85,7 +85,7 @@ Figure 2 shows the histogram and normal q-q plot for Facebook friends. The blue 
 
 \subsubsection{Close friends}
 
-Figure 3 shows the histogram and normal q-q plot for close friends. The blue curve overlay on the histogram demonstrates a non-normal distribution. The normal q-q plot also demonstrates a non-normal distrbution, as the majority of data-points do not fall on the expected normal distribution line. Only non-parametric tests are applicable for this variable.
+Figure 3 shows the histogram and normal q-q plot for close friends. The blue curve overlay on the histogram demonstrates a non-normal distribution. The normal q-q plot also demonstrates a non-normal distribution, as the majority of data-points do not fall on the expected normal distribution line. Only non-parametric tests are applicable for this variable.
 
 \begin{figure}[H]
 \caption{Histogram and Normal Q-Q Plot: Facebook friends}
@@ -96,7 +96,7 @@ Figure 3 shows the histogram and normal q-q plot for close friends. The blue cur
 
 \subsubsection{Sociability}
 
-Figure 4 shows the histogram and normal q-q plot for Sociability. The blue curve overlay on the histogram demonstrates a non-normal distribution. The normal q-q plot also demonstrates a non-normal distrbution, as the majority of data-points do not fall on the expected normal distribution line. Only non-parametric tests are applicable for this variable.
+Figure 4 shows the histogram and normal q-q plot for Sociability. The blue curve overlay on the histogram demonstrates a non-normal distribution. The normal q-q plot also demonstrates a non-normal distribution, as the majority of data-points do not fall on the expected normal distribution line. Only non-parametric tests are applicable for this variable.
 
 \begin{figure}[H]
 \caption{Histogram and Normal Q-Q Plot: Sociability}
@@ -107,7 +107,7 @@ Figure 4 shows the histogram and normal q-q plot for Sociability. The blue curve
 
 \subsubsection{Facebook hours}
 
-Figure 5 shows the histogram and normal q-q plot for Facebook hours. The blue curve overlay on the histogram demonstrates a non-normal distribution. The normal q-q plot also demonstrates a non-normal distrbution, as the majority of data-points do not fall on the expected normal distribution line. Only non-parametric tests are applicable for this variable.
+Figure 5 shows the histogram and normal q-q plot for Facebook hours. The blue curve overlay on the histogram demonstrates a non-normal distribution. The normal q-q plot also demonstrates a non-normal distribution, as the majority of data-points do not fall on the expected normal distribution line. Only non-parametric tests are applicable for this variable.
 
 \begin{figure}[H]
 \caption{Histogram and Normal Q-Q Plot: Facebook hours}
@@ -163,13 +163,12 @@ The results indicate a moderate negative relationship between gender and Faceboo
 
 In other words, the negative relationships exhibit that women, represented as 0 on the $x$ axis, tend to have higher scores than men, shown as 1 on the $x$ axis, in Facebook friends, Close friends and Facebook hours, as the regression line shows a reversed slope from 0 to 1.
 
-However, linear regression analysis assumes that data is normally distributed and therefore is not a suitable test with the given dataset \citep[p. 263]{McKillup2011}. 
-
-Linear regression is calculated with the following formulas \citep[p. 247-249]{McKillup2011}.\\
+However, linear regression analysis assumes that data is normally distributed and therefore is not a suitable test with the current dataset \citep[p. 263]{McKillup2011}. Linear regression is calculated with the following formulas \citep[p. 247-249]{McKillup2011}.\\
 
 To calculate the average slope of the regression line:
  
-$$b = \frac{\sum_{i=1}^N(X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^N(X_i - \bar{X})(X_i - \bar{X})}$$
+$$b = \frac{\sum_{i=1}^N(X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^N(X_i - \bar{X})(X_i - \bar{X})}$$ \linebreak
+
 
 To calculate the intercept at the $y$ axis:
 
@@ -192,7 +191,7 @@ A non-parametric correlation test has been selected to identify any correlation 
 
 $r_s$ is calculated by ranking the scores, then calculating the correlation coefficient using the following formula \citep[p. 359]{Gauthier2001}, where $d$ = the difference between each pair of ranks from the values of variables $x$ and $y$, and $n$ = the number of paired values in the sample:
 
-$$r_s = 1 - \frac{6\sum_{i=1}^Nd_i^2}{n(n^2-1)}$$
+$$r_s = 1 - \frac{6\sum_{i=1}^Nd_i^2}{n(n^2-1)}$$\linebreak
 
 A moderate negative correlation has been found between gender and Facebook friends ($r_s = -0.2391, N = 48, P > 0.05$), and a moderate negative correlation has been found between gender and Facebook hours ($r_s = -0.1747, N = 48, P > 0.05$). However, p-values for all tests are considered insignificant  being $> \alpha = 0.05$. Therefore, the null hypothesis that there are no correlations between gender and the selected variables is not rejected.
 
@@ -214,7 +213,7 @@ FB Hours      & -0.1747336  & 0.1174  \\ \hline
 \end{tabular}
 \end{table}
 
-Since all variables being tested are non-normally distributed, Spearman's non-parametric method is a suitable test and results considered reliable. However, there is not enough female observations in the dataset to provide any conclusions with the results.
+Since all variables being tested are non-normally distributed, Spearman's non-parametric method is a suitable test and results considered reliable. However, the insignificant p-values indicate that the higher scores for women have occurred by chance due to the fact that there is so few female observations in the sample set.
 
 %However, three points of bias are introduced while testing the correlation between gender and the selected variables. The decision to include an identified outlier has created bias towards higher scores for female Facebook friends. And while males and females both have a maximum score of 31 for Facebook hours, the lack of gender balance has raised the female mean for Facebook hours, thus creating a bias towards higher Facebook hours for females. In fact, females have a much lower Close friends maximum score than men, however, due to the small number of female participants, the mean for that variable is higher than that of men. Therefore, there is not enough evidence within the datasete to provide any conclusions.
 %The same could also be said for Close friends. Therefore, the issue still applies, that women are under represented in this study, and there is not enough evidence within the dataset to provide any conclusions.
