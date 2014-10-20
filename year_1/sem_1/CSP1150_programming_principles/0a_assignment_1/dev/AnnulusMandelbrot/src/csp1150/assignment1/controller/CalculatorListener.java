@@ -23,10 +23,11 @@ import csp1150.assignment1.view.*;
  */
 public class CalculatorListener implements ActionListener {
 
-	// declare the view and the models
-	private CalculatorView theView;
+	// declare the models, view and controller
 	private AnnulusModel theAnnulusModel;
 	private MandelbrotModel theMandelbrotModel;
+	private CalculatorView theView;
+	private CalculatorController theController;
 	
 	// declare boolean
 	private boolean mandelbrotColourImageExists = false;
@@ -47,12 +48,13 @@ public class CalculatorListener implements ActionListener {
 	 * @param AnnulusModel theAnnulusModel - Import the annulus model.
 	 * @param MandelbrotModel theMandelbrotModel - Impor the mandelbrot model.
 	 */
-	public CalculatorListener(CalculatorView theView, AnnulusModel theAnnulusModel, MandelbrotModel theMandelbrotModel) {
+	public CalculatorListener(AnnulusModel theAnnulusModel, MandelbrotModel theMandelbrotModel, CalculatorView theView, CalculatorController theController) {
 		
-		// import the view and the models
-		this.theView = theView;
+		// import the models, view and controller
 		this.theAnnulusModel = theAnnulusModel;
 		this.theMandelbrotModel = theMandelbrotModel;
+		this.theView = theView;
+		this.theController = theController;
 	}
 	
 	/**

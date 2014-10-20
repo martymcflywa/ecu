@@ -38,6 +38,6 @@ public class CalculatorController {
 		this.theMandelbrotModel = theMandelbrotModel;
 		
 		// add the listeners
-		this.theView.addCalculatorListener(new CalculatorListener(this.theView, this.theAnnulusModel, this.theMandelbrotModel));
+		this.theView.addCalculatorListener(new CalculatorListener(this.theAnnulusModel, this.theMandelbrotModel, this.theView, this));
 	}
 }
