@@ -2,6 +2,7 @@
 
 ## v5.2.0 20141020:
 
+- Designed and written in MVC pattern
 - GUI for both Annulus and Mandelbrot calculator
 - Annulus calculator allows user to input outer and inner radius
 	- Image is then displayed
