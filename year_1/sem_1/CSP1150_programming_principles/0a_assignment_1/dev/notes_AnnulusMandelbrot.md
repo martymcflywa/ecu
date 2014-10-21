@@ -25,7 +25,7 @@
 
 ## Screenshots
 
-![window](http://snag.gy/LCfB9.jpg)
+![window](http://i.imgur.com/XBpWOmP.png)
 
 ![mandy 1](http://i.imgur.com/Sg2l7d8.png)
 
