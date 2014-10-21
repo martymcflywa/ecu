@@ -6,6 +6,8 @@
 - GUI for both Annulus and Mandelbrot calculator
 - Annulus calculator allows user to input outer and inner radius
 	- Image is then displayed
+	- Error message when no values are entered
+	- Error message when outer radius is less than inner radius
 - Mandelbrot calculator has fixed dimensions, always calculates the same size at default zoom level
 	- Mandelbrot can generate random coloured image
 - User can click and drag on either image to draw rectangle
