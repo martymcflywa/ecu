@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ act()
+comment0.text=\r\n\ Make\ the\ balloon\ go\ up.\ \r\n
+comment1.params=
+comment1.target=void\ pop()
+comment1.text=\r\n\ Pop\ this\ balloon.\r\n
+numComments=2

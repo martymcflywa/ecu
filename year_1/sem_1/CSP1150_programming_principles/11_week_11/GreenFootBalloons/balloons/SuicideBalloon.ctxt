@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ pop()
+comment0.text=\r\n\ Ballon\ explodes\ when\ popped.\r\n\ \r\n\ @param\ args\ unused\r\n
+comment1.params=
+comment1.target=void\ explode()
+comment1.text=\r\n\ Defines\ how\ the\ balloon\ explodes.\r\n\ Copy\ of\ Bomb's\ method,\ without\ call\ to\ removeObject.\r\n
+numComments=2

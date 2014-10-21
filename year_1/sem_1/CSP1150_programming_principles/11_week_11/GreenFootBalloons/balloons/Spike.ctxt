@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=xSpeed\ ySpeed
+comment0.target=Spike(int,\ int)
+comment0.text=\r\n\ The\ Spike\ constructor.\r\n\ \r\n\ @param\ args\ unused\r\n
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Spike\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment2.params=
+comment2.target=void\ move()
+comment2.text=\r\n\ This\ method\ defines\ how\ the\ spikes\ move.\r\n\ \r\n\ @param\ args\ unused\r\n
+comment3.params=
+comment3.target=void\ checkBalloons()
+comment3.text=\r\n\ This\ method\ detects\ Spike\ collision\ with\ Balloons.\r\n\ \r\n\ @param\ args\ unused\r\n
+numComments=4

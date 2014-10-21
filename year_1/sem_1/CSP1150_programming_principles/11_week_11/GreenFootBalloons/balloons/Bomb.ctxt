@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=world
+comment0.target=void\ addedToWorld(greenfoot.World)
+comment0.text=\r\n\ Will\ store\ the\ initial\ location\ of\ the\ bomb.\r\n
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\r\n\ Check\ the\ mouse\ and\ make\ the\ bomb\ draggable.\ \ \r\n\r\n
+comment2.params=
+comment2.target=void\ explode()
+comment2.text=\r\n\ Make\ an\ explosion.\r\n
+comment3.params=
+comment3.target=void\ reset()
+comment3.text=\r\n\ Reset\ the\ bomb\ to\ its\ original\ location.\r\n
+numComments=4
