@@ -27,11 +27,11 @@ The fourth and final section included personality surveys, measuring extraversio
 This research paper aims to explore the relationship between gender and network size, and the relationship between gender and amount of time spent on Facebook. As such, the following measured variables from the survey have been selected for this research:\\
 
 \begin{itemize}
-\item \textbf{Gender:} The categorical variable with binary values 0, = female or 1 = male.
-\item \textbf{Facebook friends (FB friends):} Primary variable related to testing Thesis Statement 1.
-\item \textbf{Close friends:} Secondary variable related to testing Thesis Statement 1, exploring the possibility that gender is also related to number of close friends offline, and may provide further evidence for Thesis Statement 1.
+\item \textbf{Gender:} The categorical variable with binary values, 0 = female or 1 = male.
+\item \textbf{Facebook Friends (FB friends):} Primary variable related to testing Thesis Statement 1.
+\item \textbf{Close Friends:} Secondary variable related to testing Thesis Statement 1, exploring the possibility that gender is also related to number of close friends offline, and may provide further evidence for Thesis Statement 1.
 \item \textbf{Sociability:} Secondary variable related to testing Thesis Statement 1, exploring the possibility that gender may also have a correlation with Sociability, and may provide further evidence for Thesis Statement 1.
-\item \textbf{Facebook hours:} Primary variable related to testing Thesis Statement 2.
+\item \textbf{Facebook Hours:} Primary variable related to testing Thesis Statement 2.
 \end{itemize}
 
 Table 1 provides centrality and variance measures of the selected variables.\\
@@ -40,11 +40,11 @@ Table 1 provides centrality and variance measures of the selected variables.\\
 \centering
 \caption{Measures of centrality and variance}
 \begin{tabular}{r|l|l|l|l|l|l|l|l}
-Variable      & Min & Max & Mean   & Median & Mode & Std. Dev & Skew    & Kurt      \\ \hline
-Gender        & 0   & 1   & 0.9375 & 1      & 1    & 0.2446   & -3.502  & 10.49     \\ \hline
-FB Friends    & 33  & 798 & 290.7  & 275    & 242  & 176.001  & 0.7959  & 0.04759   \\ \hline
-Close Friends & 6   & 53  & 21.73  & 19     & 23   & 12.29    & 0.9668  & 0.1483    \\ \hline
-Sociability   & 2   & 5   & 3.667  & 4      & 4    & 0.7532   & -0.5633 & -0.008646 \\ \hline
+Variable      & Min & Max & Mean   & Median & Mode & Std. Dev & Skew   & Kurt      \\ \hline
+Gender        & 0   & 1   & 0.9375 & 1      & 1    & 0.2446   & -3.502 & 10.49     \\ \hline
+FB Friends    & 33  & 798 & 290.7  & 275    & 242  & 176.001  & 0.796  & 0.048   \\ \hline
+Close Friends & 6   & 53  & 21.73  & 19     & 23   & 12.29    & 0.967  & 0.148    \\ \hline
+Sociability   & 2   & 5   & 3.667  & 4      & 4    & 0.7532   & -0.563 & -0.009 \\ \hline
 \end{tabular}
 \end{table}
 
@@ -52,17 +52,17 @@ Sociability   & 2   & 5   & 3.667  & 4      & 4    & 0.7532   & -0.5633 & -0.008
 
 %It is worth noting that men greatly outnumber women in this sample set by 15 to 1. Unfortunately, there is not enough female representation in the dataset to provide any meaningful conclusions in the tests to follow.
 
-With gender coded as 0 = female and 1 = male, the gender mean of 0.9375 demonstrates that the majority of participants within this dataset are men. Women only represent 3 of the total 48 observations. This limitation will pose a recurring problem throughout this research paper.
+With Gender coded as 0 = female and 1 = male, the gender mean of 0.9375 demonstrates that the majority of participants within this dataset are men. Women only represent 3 of the total 48 observations and will pose a recurring limitation throughout this research paper.
 
 %With such a small number of female participants, there is not enough evidence to provide any meaningful conclusions when testing for any correlations between gender and the selected variables.
 
-Facebook friends exhibits the highest variance about the mean, with a standard deviation of 176.001. A positive skew of 0.7959 and high variance is caused by a potential outlier, with a maximum score of 798. The exclusion of this outlier could possibly normalize the variance and skew, however, the score belongs to an observation from a female participant, and the exclusion would result in a dataset with only 2 female participants. Therefore, it was decided that this observation would not be screened, so that the following tests would include as many female participants as possible.
+Facebook Friends exhibits the highest variance about the mean, with a standard deviation of 176.001. A positive skew of 0.796 and high variance is caused by a potential outlier, with a maximum score of 798. The exclusion of this outlier could possibly normalize the variance and skew, however, the score belongs to an observation from a female participant, and the exclusion would result in a dataset with only 2 female participants. Therefore, it was decided that this observation would not be screened, so that the following tests would include as many female participants as possible.
 
 The figures below include histograms and q-q plots to assist in identifying a normal or non-normal distribution.
 
 \subsubsection{Gender}
 
-Figure 1 shows the histogram for gender. The blue curve overlay demonstrates a non-normal distribution. Only non-parametric tests are applicable for this variable. This histogram also demonstrates the gender imbalance of the sample set.
+Figure 1 shows the histogram for Gender. The blue curve overlay demonstrates a non-normal distribution. Only non-parametric tests are applicable for this variable. This histogram also demonstrates the gender imbalance of the sample set.
 
 %As previously mentioned, men greatly outnumber women in this study, therefore, no meaningful conclusions can be made from the following tests.
 
@@ -72,23 +72,23 @@ Figure 1 shows the histogram for gender. The blue curve overlay demonstrates a n
 \includegraphics[scale=0.35]{./img/hist_gender.pdf}
 \end{figure}
 
-\subsubsection{Facebook friends}
+\subsubsection{Facebook Friends}
 
-Figure 2 shows the histogram and normal q-q plot for Facebook friends. The blue curve overlay on the histogram demonstrates a non-normal distribution. The normal q-q plot also demonstrates a non-normal distribution, as the majority of data-points do not fall on the expected normal distribution line. Only non-parametric tests are applicable for this variable.
+Figure 2 shows the histogram and normal q-q plot for Facebook Friends. The blue curve overlay on the histogram demonstrates a non-normal distribution. The normal q-q plot also demonstrates a non-normal distribution, as the majority of data-points do not fall on the expected normal distribution line. Only non-parametric tests are applicable for this variable.
 
 \begin{figure}[H]
-\caption{Histogram and Normal Q-Q Plot: Facebook friends}
+\caption{Histogram and Normal Q-Q Plot: Facebook Friends}
 \centering
 \includegraphics[scale=0.35]{./img/hist_fbfriends.pdf}
 \includegraphics[scale=0.35]{./img/qqplot_fbfriends.pdf}
 \end{figure}
 
-\subsubsection{Close friends}
+\subsubsection{Close Friends}
 
-Figure 3 shows the histogram and normal q-q plot for close friends. The blue curve overlay on the histogram demonstrates a non-normal distribution. The normal q-q plot also demonstrates a non-normal distribution, as the majority of data-points do not fall on the expected normal distribution line. Only non-parametric tests are applicable for this variable.
+Figure 3 shows the histogram and normal q-q plot for Close Friends. The blue curve overlay on the histogram demonstrates a non-normal distribution. The normal q-q plot also demonstrates a non-normal distribution, as the majority of data-points do not fall on the expected normal distribution line. Only non-parametric tests are applicable for this variable.
 
 \begin{figure}[H]
-\caption{Histogram and Normal Q-Q Plot: Facebook friends}
+\caption{Histogram and Normal Q-Q Plot: Facebook Friends}
 \centering
 \includegraphics[scale=0.35]{./img/hist_closefriends.pdf}
 \includegraphics[scale=0.35]{./img/qqplot_closefriends.pdf}
@@ -105,12 +105,12 @@ Figure 4 shows the histogram and normal q-q plot for Sociability. The blue curve
 \includegraphics[scale=0.35]{./img/qqplot_sociability.pdf}
 \end{figure}
 
-\subsubsection{Facebook hours}
+\subsubsection{Facebook Hours}
 
-Figure 5 shows the histogram and normal q-q plot for Facebook hours. The blue curve overlay on the histogram demonstrates a non-normal distribution. The normal q-q plot also demonstrates a non-normal distribution, as the majority of data-points do not fall on the expected normal distribution line. Only non-parametric tests are applicable for this variable.
+Figure 5 shows the histogram and normal q-q plot for Facebook Hours. The blue curve overlay on the histogram demonstrates a non-normal distribution. The normal q-q plot also demonstrates a non-normal distribution, as the majority of data-points do not fall on the expected normal distribution line. Only non-parametric tests are applicable for this variable.
 
 \begin{figure}[H]
-\caption{Histogram and Normal Q-Q Plot: Facebook hours}
+\caption{Histogram and Normal Q-Q Plot: Facebook Hours}
 \centering
 \includegraphics[scale=0.35]{./img/hist_fbhours.pdf}
 \includegraphics[scale=0.35]{./img/qqplot_fbhours.pdf}
@@ -157,24 +157,24 @@ Figure 5 shows the histogram and normal q-q plot for Facebook hours. The blue cu
 
 \subsubsection{Scatter plots and regression}
 
-Figure 6 displays scatter plots with a linear regression overlay in comparison with gender and Facebook friends, Close friends, Sociability and Facebook hours.
+Figure 6 displays scatter plots with a linear regression overlay in comparison with Gender and Facebook Friends, Close Friends, Sociability and Facebook Hours.
 
-The results indicate a moderate negative relationship between gender and Facebook friends, and between gender and Facebook hours. A weak negative relationship is observed between gender and Close friends, and no relationship at all between gender and Sociability.
+The results indicate a moderate negative relationship between Gender and Facebook Friends, and between Gender and Facebook Hours. A weak negative relationship is observed between Gender and Close Friends, and no relationship at all between Gender and Sociability.
 
-In other words, the negative relationships exhibit that women, represented as 0 on the $x$ axis, tend to have higher scores than men, shown as 1 on the $x$ axis, in Facebook friends, Close friends and Facebook hours, as the regression line shows a reversed slope from 0 to 1.
+In other words, the negative relationships exhibit that women, represented as 0 on the $x$ axis, tend to have higher scores than men, shown as 1 on the $x$ axis, in Facebook Friends, Close Friends and Facebook Hours, as the regression line shows a reversed slope from 0 to 1.
 
 However, linear regression analysis assumes that data is normally distributed and therefore is not a suitable test with the current dataset \citep[p. 263]{McKillup2011}. Linear regression is calculated with the following formulas \citep[p. 247-249]{McKillup2011}.\\
+\linebreak
 
 To calculate the average slope of the regression line:
  
 $$b = \frac{\sum_{i=1}^N(X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^N(X_i - \bar{X})(X_i - \bar{X})}$$ \linebreak
 
-
 To calculate the intercept at the $y$ axis:
 
-$$a = \bar{Y} - b\bar{X}$$
+$$a = \bar{Y} - b\bar{X}$$ \linebreak
 
-Due to the reliance of the sample mean in linear regression analysis, the result for Facebook friends has been influenced by the inclusion of a previously identified outlier score from a female participant. And while males and females both have a maximum score of 31 for Facebook hours, the small number of female participants has allowed the female Facebook hours mean to increase higher than that of men. In spite of females having a much lower Close friends maximum score than men, the small number of female participants has also lead to an increased female Close friends mean. Therefore, it is apparent that linear regression is not a suitable test, and there is simply not enough data from female participants to provide any conclusions.
+Due to the reliance of the sample mean in linear regression analysis, the result for Facebook Friends has been influenced by the inclusion of a previously identified outlier score from a female participant. And while men and women both have a maximum score of 31 for Facebook Hours, the small number of female participants allowed the female Facebook Hours mean to increase higher than that of men. In spite of women having a much lower Close Friends maximum score than men, the small number of female participants also lead to an increased female Close Friends mean. Therefore, it is apparent that linear regression is not a suitable test, and there is simply not enough data from female participants to provide any conclusions.
 
 \begin{figure}[H]
 \caption{Scatter Plots}
@@ -187,13 +187,13 @@ Due to the reliance of the sample mean in linear regression analysis, the result
 
 \subsubsection{Spearman's correlation coefficient}
 
-A non-parametric correlation test has been selected to identify any correlation between gender and Facebook friends, Close friends, Sociability or Facebook hours. Table 3 displays the non-parametric Spearman's correlation coefficient results for each variable compared with gender. A one-tailed test has been chosen due to the expectation that women will have higher scores than men, as seen in Figure 6. 
+A non-parametric correlation test has been selected to identify any correlation between Gender and Facebook Friends, Close Friends, Sociability or Facebook Hours. Table 3 displays the non-parametric Spearman's correlation coefficient results for each variable compared with Gender. A one-tailed test has been chosen due to the expectation that women will have higher scores than men, as seen in Figure 6. 
 
 $r_s$ is calculated by ranking the scores, then calculating the correlation coefficient using the following formula \citep[p. 359]{Gauthier2001}, where $d$ = the difference between each pair of ranks from the values of variables $x$ and $y$, and $n$ = the number of paired values in the sample:
 
 $$r_s = 1 - \frac{6\sum_{i=1}^Nd_i^2}{n(n^2-1)}$$\linebreak
 
-A moderate negative correlation has been found between gender and Facebook friends ($r_s = -0.2391, N = 48, P > 0.05$), and a moderate negative correlation has been found between gender and Facebook hours ($r_s = -0.1747, N = 48, P > 0.05$). However, p-values for all tests are considered insignificant  being $> \alpha = 0.05$. Therefore, the null hypothesis that there are no correlations between gender and the selected variables is not rejected.
+A moderate negative correlation has been found between Gender and Facebook Friends ($r_s = -0.2391, N = 48, P > 0.05$), and a moderate negative correlation has been found between Gender and Facebook Hours ($r_s = -0.1747, N = 48, P > 0.05$). However, p-values for all tests are considered insignificant  being $> \alpha = 0.05$. Therefore, the null hypothesis that there are no correlations between Gender and the selected variables is not rejected.
 
 %Similar correlation results are found from those in the previous parametric test. However, in this instance, a weak negative correlation is also found between gender and Sociability. Furthermore, all p-values in this test are considered insignificant being $> \alpha = 0.05, N = 48$. Therefore, the null hypotheses that there are no correlations between gender and the selected variables is not rejected. 
 
@@ -213,7 +213,7 @@ FB Hours      & -0.1747336  & 0.1174  \\ \hline
 \end{tabular}
 \end{table}
 
-Since all variables being tested are non-normally distributed, Spearman's non-parametric method is a suitable test and results considered reliable. However, the insignificant p-values indicate that the higher scores for women have occurred by chance due to the fact that there is so few female observations in the sample set.
+Since all variables being tested are non-normally distributed, Spearman's non-parametric method is a suitable test and results considered reliable. However, the insignificant p-values indicate that the higher scores for women have occurred by chance due to the fact that there are so few female observations in the sample set.
 
 %However, three points of bias are introduced while testing the correlation between gender and the selected variables. The decision to include an identified outlier has created bias towards higher scores for female Facebook friends. And while males and females both have a maximum score of 31 for Facebook hours, the lack of gender balance has raised the female mean for Facebook hours, thus creating a bias towards higher Facebook hours for females. In fact, females have a much lower Close friends maximum score than men, however, due to the small number of female participants, the mean for that variable is higher than that of men. Therefore, there is not enough evidence within the datasete to provide any conclusions.
 %The same could also be said for Close friends. Therefore, the issue still applies, that women are under represented in this study, and there is not enough evidence within the dataset to provide any conclusions.
