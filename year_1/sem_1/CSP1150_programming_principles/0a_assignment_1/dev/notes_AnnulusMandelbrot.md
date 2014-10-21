@@ -11,7 +11,7 @@
 - Mandelbrot calculator has fixed dimensions, always calculates the same size at default zoom level
 	- Mandelbrot can generate random coloured image
 - User can click and drag on either image to draw rectangle
-	- Rectangle determines zoom
+	- Rectangle selects zoom area
 	- Zoom is confirmed with "Zoom In" button
 - User can reset image, which resets zoom and reverts to greyscale image
 - User can save either Annulus or Mandelbrot image separately
