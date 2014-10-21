@@ -6,7 +6,7 @@
 - GUI for both Annulus and Mandelbrot calculator
 - Annulus calculator allows user to input outer and inner radius
 	- Image is then displayed
-- Mandelbrot calculator has fixed dimensions, always calculates the same size
+- Mandelbrot calculator has fixed dimensions, always calculates the same size at default zoom level
 	- Mandelbrot can generate random coloured image
 - User can click and drag on either image to draw rectangle
 	- Rectangle determines zoom
@@ -17,7 +17,7 @@
 
 ## TODO:
 
-1. Replace with JFileChooser rather than hardcoded filename/directory
+1. Replace hardcoded filename/directory with JFileChooser
 2. Fix issue where user can generate coloured image without calculating Mandelbrot area first
 3. Fix issue where zooming while random colour is ticked, colour changes
 	- Colour shouldn't change while zooming
