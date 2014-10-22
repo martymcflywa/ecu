@@ -3,7 +3,7 @@
 ## v5.3.0 20141022:
 
 - Resolved issues:
-	- Colour is not randomized while zooming
+	- Colour is no longer randomized while zooming
 	- User must calculate area before viewing greyscale or colour image
 		- Error message notifies user
 	- User must select zoom area first before zooming in
