@@ -6,23 +6,20 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 
-// the event listener
-import java.awt.event.*;
-
 // for random colours
 import java.util.Random;
 
 /**
  * This class inherits from HitViewer and generates COLOUR images of the shapes.
- * Uses mouse listeners so the user can draw rectangles on the image and zoom in on the desired area. 
+ * Implements mouse listeners so the user can draw rectangles on the image and zoom in on the desired area. 
  * Uses GridLayout manager.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.2.0
- * @since 20141020
+ * @version 5.3.0
+ * @since 20141022
  */
 @SuppressWarnings("serial")
-public class HitViewerColour extends HitViewer implements MouseListener, MouseMotionListener {
+public class HitViewerColour extends HitViewer {
 	
 	// create random object
 	private Random randomRGB = new Random();

@@ -13,8 +13,8 @@ import javax.swing.*;
  * These values are used for gridbag layout.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.2.0
- * @since 20141020
+ * @version 5.3.0
+ * @since 20141022
  */
 @SuppressWarnings("serial")
 public class CalculatorButton extends JButton {

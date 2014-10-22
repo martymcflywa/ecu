@@ -10,8 +10,8 @@ import csp1150.assignment1.view.*;
  * Contains the main method where the program is executed.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.2.0
- * @since 20141020
+ * @version 5.3.0
+ * @since 20141022
  */
 public class CalculatorMVC {
 	

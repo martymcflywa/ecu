@@ -6,8 +6,8 @@ package csp1150.assignment1.model;
  * isInside() method.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.2.0
- * @since 20141020
+ * @version 5.3.0
+ * @since 20141022
  */
 public class MandelbrotModel extends ShapeModel {
 	
@@ -37,6 +37,7 @@ public class MandelbrotModel extends ShapeModel {
 	
 	/**
 	 * Overloading ShapeModel's calcMonte method, removed args.
+	 * 
 	 * This method calculates the area using monte carlo estimation
 	 * for the mandelbrot.
 	 * 
@@ -87,9 +88,9 @@ public class MandelbrotModel extends ShapeModel {
 	}
 	
 	/**
+	 * Overriding ShapeModel's method, adapted for mandelbrot.
+	 * 
 	 * This method checks if hitpoints are within shape perimeter.
-	 * Overriding ShapeModel's original method, adapted to
-	 * calculate Mandelbrot area.
 	 * 
 	 * @param double x - The x-axis value.
 	 * @param double y - The y-axis value.
@@ -120,7 +121,7 @@ public class MandelbrotModel extends ShapeModel {
 	}
 	
 	/**
-	 * This method calculates the the area of a mandelbrot
+	 * This method calculates the the area of a mandelbrot,
 	 * using the escape time method.
 	 * 
 	 * @param args unused
@@ -152,7 +153,7 @@ public class MandelbrotModel extends ShapeModel {
 	
 	/**
 	 * This method calculates the escape time for each whileloop.
-	 * Results are stored in escapeArray.
+	 * Results stored in escapeArray.
 	 * 
 	 * @param double x - The x-axis value.
 	 * @param double y - The y-axis value.

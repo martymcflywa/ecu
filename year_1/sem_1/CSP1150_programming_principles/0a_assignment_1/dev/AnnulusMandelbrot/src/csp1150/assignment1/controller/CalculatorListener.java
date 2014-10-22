@@ -11,8 +11,8 @@ import csp1150.assignment1.view.*;
  * when buttons are pressed.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.2.0
- * @since 20141020
+ * @version 5.3.0
+ * @since 20141022
  */
 public class CalculatorListener implements ActionListener {
 
@@ -28,7 +28,7 @@ public class CalculatorListener implements ActionListener {
 	 */
 	public CalculatorListener(CalculatorView theView, CalculatorController theController) {
 		
-		// import the view and controller
+		// set objects to their reference variables
 		this.theView = theView;
 		this.theController = theController;
 	}
@@ -86,7 +86,7 @@ public class CalculatorListener implements ActionListener {
 			} catch(Exception ex) {
 				
 				// show error message
-				theView.displayErrorMessage("Error saving image.");
+				theView.displayErrorMessage("Error saving image, try again.");
 			}
 			
 		/**
@@ -133,7 +133,7 @@ public class CalculatorListener implements ActionListener {
 			} catch(Exception ex) {
 				
 				// show error message
-				theView.displayErrorMessage("Error saving image.");
+				theView.displayErrorMessage("Error saving image, try again.");
 			}
 		}
 	}

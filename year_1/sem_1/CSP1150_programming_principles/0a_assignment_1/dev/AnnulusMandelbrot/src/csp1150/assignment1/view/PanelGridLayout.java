@@ -7,12 +7,12 @@ import java.awt.GridLayout;
 import javax.swing.JPanel;
 
 /**
- * This class inherits from JPanel. The constructor is overloaded to accept
+ * This class inherits from JPanel. The constructor accepts
  * GridLayout constraints parameters which are stored in theGridLayout.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.2.0
- * @since 20141020
+ * @version 5.3.0
+ * @since 20141022
  */
 @SuppressWarnings("serial")
 public class PanelGridLayout extends JPanel {

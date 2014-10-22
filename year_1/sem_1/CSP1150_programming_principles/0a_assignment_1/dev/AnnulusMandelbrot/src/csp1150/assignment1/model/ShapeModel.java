@@ -7,8 +7,8 @@ package csp1150.assignment1.model;
  * in this class.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.2.0
- * @since 20141020
+ * @version 5.3.0
+ * @since 20141022
  */
 public class ShapeModel {
 
