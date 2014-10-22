@@ -31,6 +31,9 @@ public class CalculatorController {
 	
 	// declare the view
 	private CalculatorView theView;
+	
+	// some booleans for checking
+	private boolean mandelbrotIsCalculated = false;
 
 	/**
 	 * The controller constructor.
@@ -149,42 +152,54 @@ public class CalculatorController {
 			// get the monte calculation, add it to the view
 			theView.setMandelbrotMonteCalc(this.theMandelbrotModel.getMonteCalc());
 			
+			// set boolean to true
+			mandelbrotIsCalculated = true;
+			
 		// else if view image radio is selected,	
 		} else if(theView.getRadioMandelbrotViewImage().isSelected()) {
 			
-			// if random colour checkbox is ticked,
-			if(theView.getCheckBoxMandelbrotRandomColour().isSelected()) {
-				
-				// calculate area using escape time
-				theMandelbrotModel.calcEscape();
-				
-				// refresh the colour image
-				theView.refreshMandelbrotImage(this.theMandelbrotModel.getEscapeArray());
-				
-				// set boolean to true
-				theView.setMandelbrotColourImageExists(true);
-				
-			// else random colour checkbox is not ticked,	
-			} else {
+			// if mandelbrot area already calculated,
+			if(mandelbrotIsCalculated) {
 			
-				// if mandelbrot colour image is already shown,
-				if(theView.getMandelbrotColourImageExists()) {
+				// if random colour checkbox is ticked,
+				if(theView.getCheckBoxMandelbrotRandomColour().isSelected()) {
 					
-					// recalculate monte to refill values in hits array
-					theMandelbrotModel.calcMonte();
+					// calculate area using escape time
+					theMandelbrotModel.calcEscape();
 					
-					// refresh greyscale image
-					theView.refreshMandelbrotImage(theMandelbrotModel.getHitsArray());
+					// refresh the colour image
+					theView.refreshMandelbrotImage(this.theMandelbrotModel.getEscapeArray());
 					
-					// set boolean to false
-					theView.setMandelbrotColourImageExists(false);
+					// set boolean to true
+					theView.setMandelbrotColourImageExists(true);
 					
-				// else
+				// else random colour checkbox is not ticked,	
 				} else {
-					
-					// refresh the greyscale image
-					theView.refreshMandelbrotImage(theMandelbrotModel.getHitsArray());
+				
+					// if mandelbrot colour image is already shown,
+					if(theView.getMandelbrotColourImageExists()) {
+						
+						// recalculate monte to refill values in hits array
+						theMandelbrotModel.calcMonte();
+						
+						// refresh greyscale image
+						theView.refreshMandelbrotImage(theMandelbrotModel.getHitsArray());
+						
+						// set boolean to false
+						theView.setMandelbrotColourImageExists(false);
+						
+					// else
+					} else {
+						
+						// refresh the greyscale image
+						theView.refreshMandelbrotImage(theMandelbrotModel.getHitsArray());
+					}
 				}
+			
+			// else tell user to calculate first
+			} else {
+				
+				theView.displayErrorMessage("Calculate Mandelbrot area first!");
 			}
 		}
 	}
