@@ -6,8 +6,8 @@ import csp1150.assignment1.controller.*;
 import csp1150.assignment1.view.*;
 
 /**
- * This class contains the main method,
- * where the program is executed.
+ * This class creates the models, view and controller.
+ * Contains the main method where the program is executed.
  * 
  * @author Martin Ponce ID# 10371381
  * @version 5.2.0
@@ -25,6 +25,6 @@ public class CalculatorMVC {
 		CalculatorView theView = new CalculatorView(theAnnulusModel.getGridSize());
 		
 		// create the controller
-		CalculatorController theController = new CalculatorController(theView, theAnnulusModel, theMandelbrotModel);
+		CalculatorController theController = new CalculatorController(theAnnulusModel, theMandelbrotModel, theView);
 	}
 }

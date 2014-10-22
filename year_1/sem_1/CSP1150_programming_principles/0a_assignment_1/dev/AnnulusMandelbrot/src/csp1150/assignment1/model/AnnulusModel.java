@@ -23,10 +23,7 @@ public class AnnulusModel extends ShapeModel {
 	 * This method calculates the area using monte carlo estimation.
 	 * Max-min values control how zoomed in the shape is.
 	 * 
-	 * @param double minX - The min X coordinate.
-	 * @param double minY - The min Y coordinate.
-	 * @param double maxX - The max X coordinate.
-	 * @param double maxY - The max Y coordinate.
+	 * @param args unused
 	 */
 	public final void calcMonte() {
 		

@@ -39,12 +39,12 @@ public class CalculatorController {
 	 * @param AnnulusModel theAnnulusModel - Import the annulus model.
 	 * @param MandelbrotModel theMandelbrotModel - Import the mandelbrot model.
 	 */
-	public CalculatorController(CalculatorView theView, AnnulusModel theAnnulusModel, MandelbrotModel theMandelbrotModel) {
+	public CalculatorController(AnnulusModel theAnnulusModel, MandelbrotModel theMandelbrotModel, CalculatorView theView) {
 		
 		// assign the imported objects to their respective fields
-		this.theView = theView;
 		this.theAnnulusModel = theAnnulusModel;
 		this.theMandelbrotModel = theMandelbrotModel;
+		this.theView = theView;
 		
 		// add the listeners
 		this.theView.addCalculatorListener(new CalculatorListener(this.theView, this));
