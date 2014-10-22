@@ -116,6 +116,7 @@ public class HitViewerColour extends HitViewer implements MouseListener, MouseMo
 	 * @param int hgap - GridLayoutConstraints: Horizontal padding, pixels.
 	 * @param int vgap - GridLayoutConstraints: Vertical padding, pixels.
 	 * @param int[][] escapeArray - The escapeArray.
+	 * @param boolean zooming - Check this before generating new random colours.
 	 */
 	public HitViewerColour(int width, int height, int rows, int cols, int hgap, int vgap, int[][] escapeArray, boolean zooming) {
 		
@@ -174,6 +175,12 @@ public class HitViewerColour extends HitViewer implements MouseListener, MouseMo
 		System.out.println("DEBUG randomValues | randomR: " + randomR + " | randomG: " + randomG + " | randomB: " + randomB);
 	}
 	
+	/**
+	 * This method generates random numbers,
+	 * to be used for randomizing rgb values.
+	 * 
+	 * @param args unused
+	 */
 	private void getRandomRGB() {
 		
 		randomR = randomRGB.nextInt(255 - 0) + 1;

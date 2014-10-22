@@ -313,6 +313,7 @@ public class CalculatorView extends JFrame {
 	 * escapeArray as an argument along with gridlayout constraints.
 	 * 
 	 * @param double[][] escapeArray - The escapeArray.
+	 * @param boolean zooming - Check this before randomizing colour.
 	 */
 	public final void refreshMandelbrotImage(int[][] escapeArray, boolean zooming) {
 		
