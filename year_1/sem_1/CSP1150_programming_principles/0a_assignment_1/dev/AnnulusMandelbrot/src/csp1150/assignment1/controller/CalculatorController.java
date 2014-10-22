@@ -110,7 +110,7 @@ public class CalculatorController {
 	public final void zoomInAnnulus() {
 		
 		// if zoom area selected,
-		if(theView.annulusIsZooming()) {
+		if(theView.getImageZoomBool()) {
 			
 			// set new max-mins to the model
 			theAnnulusModel.setZoom(theView.getPixelZoomAnnulus());
@@ -120,6 +120,9 @@ public class CalculatorController {
 			
 			// refresh the greyscale image
 			theView.refreshAnnulusImage(theAnnulusModel.getHitsArray());
+			
+			// operation done, set image zoom boolean to false
+			theView.setImageZoomBool(false);
 			
 		// else,
 		} else {
@@ -144,6 +147,9 @@ public class CalculatorController {
 		
 		// refresh the greyscale image
 		theView.refreshAnnulusImage(theAnnulusModel.getHitsArray());
+		
+		// operation done, set image zoom boolean to false
+		theView.setImageZoomBool(false);
 	}
 	
 	/**
@@ -179,10 +185,13 @@ public class CalculatorController {
 					theMandelbrotModel.calcEscape();
 					
 					// refresh the colour image
-					theView.refreshMandelbrotImage(this.theMandelbrotModel.getEscapeArray());
+					theView.refreshMandelbrotImage(this.theMandelbrotModel.getEscapeArray(), theView.getImageZoomBool());
 					
 					// set boolean to true
 					theView.setMandelbrotColourImageExists(true);
+					
+					// operation done, set image zoom boolean to false
+					theView.setImageZoomBool(false);
 					
 				// else random colour checkbox is not ticked,	
 				} else {
@@ -198,6 +207,9 @@ public class CalculatorController {
 						
 						// set boolean to false
 						theView.setMandelbrotColourImageExists(false);
+						
+						// operation done, set image zoom boolean to false
+						theView.setImageZoomBool(false);
 						
 					// else
 					} else {
@@ -224,7 +236,7 @@ public class CalculatorController {
 	public final void zoomInMandelbrot() {
 		
 		// if zoom area selected,
-		if(theView.mandelbrotIsZooming()) {
+		if(theView.getImageZoomBool()) {
 			
 			// set new max-mins to the model
 			theMandelbrotModel.setZoom(theView.getPixelZoomMandelbrot());
@@ -236,10 +248,10 @@ public class CalculatorController {
 				theMandelbrotModel.calcEscape();
 				
 				// refresh the colour image
-				theView.refreshMandelbrotImage(theMandelbrotModel.getEscapeArray());
+				theView.refreshMandelbrotImage(theMandelbrotModel.getEscapeArray(), theView.getImageZoomBool());
 				
-				// set boolean to true
-				theView.setMandelbrotColourImageExists(true);;
+				// set imageExists boolean to true
+				theView.setMandelbrotColourImageExists(true);
 			
 			// else random colour checkbox is not ticked,
 			} else {
@@ -251,8 +263,11 @@ public class CalculatorController {
 				theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
 				
 				// set boolean to false
-				theView.setMandelbrotColourImageExists(false);;
+				theView.setMandelbrotColourImageExists(false);
 			}
+			
+			// operation done, set image zoom boolean to false
+			theView.setImageZoomBool(false);
 		
 		// else,
 		} else {
@@ -277,6 +292,9 @@ public class CalculatorController {
 		
 		// refresh the greyscale image
 		theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
+		
+		// operation done, set image zoom boolean to false
+		theView.setImageZoomBool(false);
 	}
 	
 	/**

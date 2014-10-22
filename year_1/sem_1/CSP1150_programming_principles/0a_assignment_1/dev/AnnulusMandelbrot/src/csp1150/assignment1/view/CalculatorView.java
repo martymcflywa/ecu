@@ -314,13 +314,13 @@ public class CalculatorView extends JFrame {
 	 * 
 	 * @param double[][] escapeArray - The escapeArray.
 	 */
-	public final void refreshMandelbrotImage(int[][] escapeArray) {
+	public final void refreshMandelbrotImage(int[][] escapeArray, boolean zooming) {
 		
 		// remove panel from parent container
 		panelMandelbrotImageContainer.remove(panelMandelbrotImage);
 		
 		// create new colour image, pass gridsize, grid constraints and escapeArray as arguments
-		panelMandelbrotImageContainer.add(panelMandelbrotImage = new HitViewerColour(gridSize, gridSize, 0, 1, 0, 0, escapeArray));
+		panelMandelbrotImageContainer.add(panelMandelbrotImage = new HitViewerColour(gridSize, gridSize, 0, 1, 0, 0, escapeArray, zooming));
 		
 		// repaint the image panel
 		panelMandelbrotImage.revalidate();
@@ -598,23 +598,23 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
-	 * This method returns the annulus zooming boolean.
+	 * This method returns the zooming boolean.
 	 * 
-	 * @return boolean isZooming.
+	 * @return boolean zooming.
 	 */
-	public final boolean annulusIsZooming() {
+	public final boolean getImageZoomBool() {
 		
-		return panelAnnulusImage.getZoomingBool();
+		return HitViewer.getZoomBool();
 	}
 	
 	/**
-	 * This method returns the mandelbrot zooming boolean.
+	 * This method sets the zooming boolean.
 	 * 
-	 * @return boolean isZooming.
+	 * @param boolean trueOrFalse.
 	 */
-	public final boolean mandelbrotIsZooming() {
+	public final void setImageZoomBool(boolean trueOrFalse) {
 		
-		return panelMandelbrotImage.getZoomingBool();
+		HitViewer.setZoomBool(trueOrFalse);
 	}
 	
 	/**

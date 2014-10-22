@@ -23,6 +23,14 @@ import java.util.Random;
  */
 @SuppressWarnings("serial")
 public class HitViewerColour extends HitViewer implements MouseListener, MouseMotionListener {
+	
+	// create random object
+	private Random randomRGB = new Random();
+	
+	// declare random RGB fields
+	private static int randomR;
+	private static int randomG;
+	private static int randomB;
 
 	/**
 	 * Construct the panel which contains the image.
@@ -109,7 +117,7 @@ public class HitViewerColour extends HitViewer implements MouseListener, MouseMo
 	 * @param int vgap - GridLayoutConstraints: Vertical padding, pixels.
 	 * @param int[][] escapeArray - The escapeArray.
 	 */
-	public HitViewerColour(int width, int height, int rows, int cols, int hgap, int vgap, int[][] escapeArray) {
+	public HitViewerColour(int width, int height, int rows, int cols, int hgap, int vgap, int[][] escapeArray, boolean zooming) {
 		
 		this.width = width;
 		this.height = height;
@@ -131,7 +139,7 @@ public class HitViewerColour extends HitViewer implements MouseListener, MouseMo
 		this.setLayout(theGridLayout = new GridLayout(rows, cols, hgap, vgap));
 		
 		// call viewHits to generate the image
-		viewHitsRandomColour(escapeArray);
+		viewHitsRandomColour(escapeArray, zooming);
 	}
 	
 	/**
@@ -139,32 +147,37 @@ public class HitViewerColour extends HitViewer implements MouseListener, MouseMo
 	 * 
 	 * @param int[][] escapeArray
 	 */
-	public void viewHitsRandomColour(int[][] escapeArray) {
+	public void viewHitsRandomColour(int[][] escapeArray, boolean zooming) {
 		
-		// create Random object
-		Random randomRGB = new Random();
-		
-		// get a random number for red, green and blue
-		int randomR = randomRGB.nextInt(255 - 0) + 1;
-		int randomG = randomRGB.nextInt(255 - 0) + 1;
-		int randomB = randomRGB.nextInt(255 - 0) + 1;
+		// if not zooming, 
+		if(!zooming) {
+			
+			// go get random values
+			getRandomRGB();
+		}
 		
 		for(int x = 0; x < width; x++) {
 			
 			for(int y = 0; y < height; y++) {
                 
-				// set pixel to current escapetime value, add some randomness - previously divided by 25
-				// TODO: add if(zooming) keep colour, else randomize
+				// set pixel to current escapetime value, add some randomness
 				int pixelR = escapeArray[x][y] * randomR / 25;
 				int pixelG = escapeArray[x][y] * randomG / 25;
 				int pixelB = escapeArray[x][y] * randomB / 25;
 				
-				// call setPixel to draw, using random numbers generated
+				// call setPixel to draw, use randomized rgb values
 				setPixel(x, y, pixelR, pixelG, pixelB);
-				
-				// ** DEBUGGING
-				System.out.println("DEBUG viewHitsRandomColour | R: " + pixelR + " | G: " + pixelG + " | B: " + pixelB);
             }
         }
+		
+		// ** DEBUGGING
+		System.out.println("DEBUG randomValues | randomR: " + randomR + " | randomG: " + randomG + " | randomB: " + randomB);
+	}
+	
+	private void getRandomRGB() {
+		
+		randomR = randomRGB.nextInt(255 - 0) + 1;
+		randomG = randomRGB.nextInt(255 - 0) + 1;
+		randomB = randomRGB.nextInt(255 - 0) + 1;
 	}
 }

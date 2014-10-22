@@ -45,9 +45,8 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	// declare rectangle to be drawn
 	private Rectangle mouseRect = new Rectangle();
 	
-	// declare boolean
-	// ** TODO: use boolean to stop colour changing if zooming
-	private boolean zooming = false;
+	// declare boolean, static to stop it resetting whenever a new instance is created
+	private static boolean zooming = false;
 	
 	// declare pixelZoom array to hold values - index: 0 = minX, 1 = minY, 2 = maxX (width), 3 = maxY (height)
 	private double[] pixelZoom = new double[4];
@@ -167,21 +166,6 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	}
 	
 	/**
-	 * This method defines the action to take when the mouse button is released.
-	 * 
-	 * @param MouseEvent me - The mouse event.
-	 */
-	public void mouseReleased(MouseEvent me) {
-		
-//		// if left mouse button is released
-//		if(SwingUtilities.isLeftMouseButton(me)) {
-//		
-//			// set zooming to false
-//			zooming = false;
-//		}
-	}
-	
-	/**
 	 * This method defines the action to take when the mouse button is held down.
 	 * 
 	 * @param MouseEvent me - The mouse event.
@@ -278,13 +262,32 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	}
 	
 	/**
-	 * This method returns zooming boolean.
+	 * This static method returns static zooming boolean.
 	 * 
 	 * @return boolean zooming.
 	 */
-	public final boolean getZoomingBool() {
+	public static final boolean getZoomBool() {
 		
 		return zooming;
+	}
+	
+	/**
+	 * This static method sets the static zooming boolean.
+	 * 
+	 * @param boolean trueOrFalse.
+	 */
+	public static final void setZoomBool(boolean trueOrFalse) {
+		
+		zooming = trueOrFalse; 
+	}
+	
+	/**
+	 * Unused mouse event.
+	 * 
+	 * @param args unused
+	 */
+	public void mouseReleased(MouseEvent me) {
+		
 	}
 	
 	/**
