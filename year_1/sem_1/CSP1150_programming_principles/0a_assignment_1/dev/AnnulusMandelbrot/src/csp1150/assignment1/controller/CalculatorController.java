@@ -42,11 +42,13 @@ public class CalculatorController {
 	 * @param AnnulusModel theAnnulusModel - Import the annulus model.
 	 * @param MandelbrotModel theMandelbrotModel - Import the mandelbrot model.
 	 */
-	public CalculatorController(AnnulusModel theAnnulusModel, MandelbrotModel theMandelbrotModel, CalculatorView theView) {
+	public CalculatorController(ShapeModel theAnnulusModel, ShapeModel theMandelbrotModel, CalculatorView theView) {
 		
-		// assign the imported objects to their respective fields
-		this.theAnnulusModel = theAnnulusModel;
-		this.theMandelbrotModel = theMandelbrotModel;
+		// assign the casted model objects to their reference variables
+		this.theAnnulusModel = (AnnulusModel) theAnnulusModel;
+		this.theMandelbrotModel = (MandelbrotModel) theMandelbrotModel;
+		
+		// assign the view object to the reference variable
 		this.theView = theView;
 		
 		// add the listeners
@@ -307,7 +309,7 @@ public class CalculatorController {
 	public final BufferedImage getComponentImage(Component c) {
 		
 		// create new buffered image, use component width and height minus padding
-		BufferedImage theImage = new BufferedImage(c.getWidth() - 10, c.getHeight() - 10, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage theImage = new BufferedImage(c.getWidth() - 10, c.getHeight() - 9, BufferedImage.TYPE_INT_ARGB);
 		
 		// paint component image on to theImage
 		c.paint(theImage.getGraphics());

@@ -17,9 +17,9 @@ public class CalculatorMVC {
 	
 	public static void main(String[] args) {
 		
-		// create the models
-		AnnulusModel theAnnulusModel = new AnnulusModel();
-		MandelbrotModel theMandelbrotModel = new MandelbrotModel();
+		// create the models, experimenting with polymorphism
+		ShapeModel theAnnulusModel = new AnnulusModel();
+		ShapeModel theMandelbrotModel = new MandelbrotModel();
 		
 		// create the view
 		CalculatorView theView = new CalculatorView(theAnnulusModel.getGridSize());
