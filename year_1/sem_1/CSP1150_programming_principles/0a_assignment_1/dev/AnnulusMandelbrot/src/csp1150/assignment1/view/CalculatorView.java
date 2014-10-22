@@ -598,6 +598,26 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
+	 * This method returns the annulus zooming boolean.
+	 * 
+	 * @return boolean isZooming.
+	 */
+	public final boolean annulusIsZooming() {
+		
+		return panelAnnulusImage.getZoomingBool();
+	}
+	
+	/**
+	 * This method returns the mandelbrot zooming boolean.
+	 * 
+	 * @return boolean isZooming.
+	 */
+	public final boolean mandelbrotIsZooming() {
+		
+		return panelMandelbrotImage.getZoomingBool();
+	}
+	
+	/**
 	 * This method displays an error message for incorrect user input.
 	 * Message displayed on JOptionPane window.
 	 * 

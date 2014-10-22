@@ -32,7 +32,7 @@ public class CalculatorController {
 	// declare the view
 	private CalculatorView theView;
 	
-	// some booleans for checking
+	// declare boolean to check before showing image
 	private boolean mandelbrotIsCalculated = false;
 
 	/**
@@ -94,10 +94,11 @@ public class CalculatorController {
 			}
 		}
 		
-		// if no values are set, display error message
+		// if no values are set,
 		catch(NumberFormatException ex) {
 			
-			theView.displayErrorMessage("Enter two values.");
+			// display error message
+			theView.displayErrorMessage("Enter two values!");
 		}
 	}
 	
@@ -108,14 +109,24 @@ public class CalculatorController {
 	 */
 	public final void zoomInAnnulus() {
 		
-		// set new max-mins to the model
-		theAnnulusModel.setZoom(theView.getPixelZoomAnnulus());
-		
-		// recalculate using new max-mins
-		theAnnulusModel.calcMonte();
-		
-		// refresh the greyscale image
-		theView.refreshAnnulusImage(theAnnulusModel.getHitsArray());
+		// if zoom area selected,
+		if(theView.annulusIsZooming()) {
+			
+			// set new max-mins to the model
+			theAnnulusModel.setZoom(theView.getPixelZoomAnnulus());
+			
+			// recalculate using new max-mins
+			theAnnulusModel.calcMonte();
+			
+			// refresh the greyscale image
+			theView.refreshAnnulusImage(theAnnulusModel.getHitsArray());
+			
+		// else,
+		} else {
+			
+			// display error message
+			theView.displayErrorMessage("Set zoom area first!");
+		}
 	}
 	
 	/**
@@ -196,9 +207,10 @@ public class CalculatorController {
 					}
 				}
 			
-			// else tell user to calculate first
+			// else,
 			} else {
 				
+				// tell user to calculate area first
 				theView.displayErrorMessage("Calculate Mandelbrot area first!");
 			}
 		}
@@ -211,32 +223,42 @@ public class CalculatorController {
 	 */
 	public final void zoomInMandelbrot() {
 		
-		// set new max-mins to the model
-		theMandelbrotModel.setZoom(theView.getPixelZoomMandelbrot());
+		// if zoom area selected,
+		if(theView.mandelbrotIsZooming()) {
+			
+			// set new max-mins to the model
+			theMandelbrotModel.setZoom(theView.getPixelZoomMandelbrot());
+			
+			// if random colour checkbox is ticked,
+			if(theView.getCheckBoxMandelbrotRandomColour().isSelected()) {
+				
+				// calculate area using escape time
+				theMandelbrotModel.calcEscape();
+				
+				// refresh the colour image
+				theView.refreshMandelbrotImage(theMandelbrotModel.getEscapeArray());
+				
+				// set boolean to true
+				theView.setMandelbrotColourImageExists(true);;
+			
+			// else random colour checkbox is not ticked,
+			} else {
+				
+				// recalculate monte to refill values in hits array
+				theMandelbrotModel.calcMonte();
+				
+				// refresh greyscale image
+				theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
+				
+				// set boolean to false
+				theView.setMandelbrotColourImageExists(false);;
+			}
 		
-		// if random colour checkbox is ticked,
-		if(theView.getCheckBoxMandelbrotRandomColour().isSelected()) {
-			
-			// calculate area using escape time
-			theMandelbrotModel.calcEscape();
-			
-			// refresh the colour image
-			theView.refreshMandelbrotImage(theMandelbrotModel.getEscapeArray());
-			
-			// set boolean to true
-			theView.setMandelbrotColourImageExists(true);;
-		
-		// else random colour checkbox is not ticked,
+		// else,
 		} else {
 			
-			// recalculate monte to refill values in hits array
-			theMandelbrotModel.calcMonte();
-			
-			// refresh greyscale image
-			theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
-			
-			// set boolean to false
-			theView.setMandelbrotColourImageExists(false);;
+			// display error message
+			theView.displayErrorMessage("Set zoom area first!");
 		}
 	}
 	

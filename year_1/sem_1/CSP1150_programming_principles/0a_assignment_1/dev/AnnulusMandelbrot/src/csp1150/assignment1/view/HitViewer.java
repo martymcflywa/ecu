@@ -40,14 +40,14 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	protected int height;
 	
 	// declare the mouse position
-	protected Point mousePt = new Point(width / 2, width / 2);
+	private Point mousePt = new Point(width / 2, width / 2);
 	
 	// declare rectangle to be drawn
-	protected Rectangle mouseRect = new Rectangle();
+	private Rectangle mouseRect = new Rectangle();
 	
 	// declare boolean
 	// ** TODO: use boolean to stop colour changing if zooming
-	protected boolean zooming = false;
+	private boolean zooming = false;
 	
 	// declare pixelZoom array to hold values - index: 0 = minX, 1 = minY, 2 = maxX (width), 3 = maxY (height)
 	private double[] pixelZoom = new double[4];
@@ -173,12 +173,12 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	 */
 	public void mouseReleased(MouseEvent me) {
 		
-		// if left mouse button is released
-		if(SwingUtilities.isLeftMouseButton(me)) {
-		
-			// set zooming to false
-			zooming = false;
-		}
+//		// if left mouse button is released
+//		if(SwingUtilities.isLeftMouseButton(me)) {
+//		
+//			// set zooming to false
+//			zooming = false;
+//		}
 	}
 	
 	/**
@@ -212,12 +212,9 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 		
 		// if mouse is dragged with left mouse button
 		if(SwingUtilities.isLeftMouseButton(me)) {
-		
-			// set zooming to true
-			this.zooming = true;
 			
 			// set the rectangle bounds
-			this.mouseRect.setBounds(
+			mouseRect.setBounds(
 					Math.min(mousePt.x, me.getX()),
 					Math.min(mousePt.y, me.getY()),
 					Math.abs(mousePt.x - me.getX()),
@@ -235,6 +232,9 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 			// ** DEBUGGING
 			System.out.println("DEBUG pixelZoom | minX: " + pixelZoom[0] + " | minY: " + pixelZoom[1] + " | width: " + pixelZoom[2] + " | height: " + pixelZoom[3]);
 			
+			// set zooming to true
+			zooming = true;
+			
 			// repaint
 			me.getComponent().repaint();
 		}
@@ -250,9 +250,6 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 		// if left mouse button is clicked
 		if(SwingUtilities.isLeftMouseButton(me)) {
 			
-			// set zooming to false
-			zooming = false;
-			
 			// reset rectangle bounds
 			mouseRect.setBounds(0, 0, 0, 0);
 			
@@ -261,6 +258,9 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 				
 				pixelZoom[i] = 0;
 			}
+			
+			// set zooming to false
+			zooming = false;
 			
 			// repaint
 			me.getComponent().repaint();
@@ -278,13 +278,13 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	}
 	
 	/**
-	 * This method returns the image.
+	 * This method returns zooming boolean.
 	 * 
-	 * @return BufferedImage image.
+	 * @return boolean zooming.
 	 */
-	public final BufferedImage getImage() {
+	public final boolean getZoomingBool() {
 		
-		return image;
+		return zooming;
 	}
 	
 	/**
