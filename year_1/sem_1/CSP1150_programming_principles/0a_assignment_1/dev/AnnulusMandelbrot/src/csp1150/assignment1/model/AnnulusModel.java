@@ -40,7 +40,7 @@ public class AnnulusModel extends ShapeModel {
 			for(int row = 0; row < this.getGridSize() - 1; row++) {
 				
 				// reset current cell value to 0
-				hits[col][row] = 0;
+				this.getHitsArray()[col][row] = 0;
 				
 				// iterate through samples
 				for(int i = 0; i < this.getSamples(); i++) {
@@ -52,7 +52,7 @@ public class AnnulusModel extends ShapeModel {
 					// if test pass, set counter + 1
 					if(isInside(x, y)) {
 						
-						hits[col][row] = 1;
+						this.getHitsArray()[col][row] = 1;
 						arraySum++;
 					}
 				}

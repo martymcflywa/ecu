@@ -17,7 +17,7 @@ public class ShapeModel {
 	private final int SAMPLES = 100;
 	
 	// declare 2d array
-	protected double[][] hits = new double[GRIDSIZE][GRIDSIZE];
+	private double[][] hits = new double[GRIDSIZE][GRIDSIZE];
 	
 	// these fields hold user input values
 	protected double outRadius;
