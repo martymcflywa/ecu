@@ -17,10 +17,10 @@ import javax.swing.*;
  * @since 20141022
  */
 @SuppressWarnings("serial")
-public class CalculatorLabel extends JLabel {
+public class CalculatorLabel extends JLabel implements ConstraintsInterface {
 	
 	// declare the gridbag constraints
-	protected GridBagConstraints gbc_label;
+	private GridBagConstraints gbc_label;
 	
 	/**
 	 * The constructor. 
@@ -77,5 +77,17 @@ public class CalculatorLabel extends JLabel {
 		// set the column and row positions
 		gbc_label.gridx = gridx;
 		gbc_label.gridy = gridy;
+	}
+	
+	/**
+	 * Implements interface.
+	 * 
+	 * This method returns the GridBagConstraints reference.
+	 * 
+	 * @return GridBagConstraints gbc_label.
+	 */
+	public final GridBagConstraints getConstraints() {
+		
+		return gbc_label;
 	}
 }

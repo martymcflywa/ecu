@@ -17,10 +17,10 @@ import javax.swing.*;
  * @since 20141022
  */
 @SuppressWarnings("serial")
-public class CalculatorTextField extends JTextField {
+public class CalculatorTextField extends JTextField implements ConstraintsInterface {
 	
 	// declare the gridbag constraints
-	protected GridBagConstraints gbc_textField;
+	private GridBagConstraints gbc_textField;
 	
 	/**
 	 * The constructor.
@@ -46,5 +46,17 @@ public class CalculatorTextField extends JTextField {
 		// set the column and row positions
 		gbc_textField.gridx = gridx;
 		gbc_textField.gridy = gridy;
+	}
+	
+	/**
+	 * Implements interface.
+	 * 
+	 * This method returns the GridBagConstraints reference.
+	 * 
+	 * @return GridBagConstraints gbc_textField.
+	 */
+	public final GridBagConstraints getConstraints() {
+		
+		return gbc_textField;
 	}
 }

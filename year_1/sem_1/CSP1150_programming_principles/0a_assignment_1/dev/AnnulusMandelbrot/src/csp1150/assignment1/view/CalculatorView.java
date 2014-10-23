@@ -121,43 +121,43 @@ public class CalculatorView extends JFrame {
 		theFrame.getContentPane().add(panelLeft = new PanelGridLayout(2, 1, 20, 5));
 		
 		// set panelLeft layout
-		panelLeft.setLayout(panelLeft.theGridLayout);
+		panelLeft.setLayout(panelLeft.getGridLayout());
 		
 		// create panelRight and add to the frame
 		theFrame.getContentPane().add(panelRight = new PanelGridLayout(2, 1, 20, 5));
 		
 		// set panelRight layout
-		panelRight.setLayout(panelRight.theGridLayout);
+		panelRight.setLayout(panelRight.getGridLayout());
 		
 		// create panelAnnulusCalc container and add to panelLeft
 		panelLeft.add(panelAnnulusCalc = new PanelGridBagLayout());
 		
 		// set panelAnnulusCalc layout
-		panelAnnulusCalc.setLayout(panelAnnulusCalc.gbl_panel);
+		panelAnnulusCalc.setLayout(panelAnnulusCalc.getGridBagLayout());
 
 		// create panelAnnulusBorder (use overloading constructor) and add to panelAnnulusCalc
-		panelAnnulusCalc.add(panelAnnulusBorder = new PanelGridBagLayout(20, 20, 10, 0, 0, 0), panelAnnulusBorder.gbc_panel);
+		panelAnnulusCalc.add(panelAnnulusBorder = new PanelGridBagLayout(20, 20, 10, 0, 0, 0), panelAnnulusBorder.getConstraints());
 		
 		// add titled border to panelAnnulusBorder
 		addBorder(panelAnnulusBorder, "Annulus Calculator");
 		
 		// set panelAnnulusBorder layout
-		panelAnnulusBorder.setLayout(panelAnnulusBorder.gbl_panel);
+		panelAnnulusBorder.setLayout(panelAnnulusBorder.getGridBagLayout());
 		
 		// add panelMandelbrotCalc to panelLeft
 		panelLeft.add(panelMandelbrotCalc = new PanelGridBagLayout());
 		
 		// set panelMandelbrotCalc layout
-		panelMandelbrotCalc.setLayout(panelMandelbrotCalc.gbl_panel);
+		panelMandelbrotCalc.setLayout(panelMandelbrotCalc.getGridBagLayout());
 		
 		// create panelMandelbrotBorder (use overloading constructor) and add to panelMandelbrotCalc
-		panelMandelbrotCalc.add(panelMandelbrotBorder = new PanelGridBagLayout(10, 20, 10, 0, 0, 0), panelMandelbrotBorder.gbc_panel);
+		panelMandelbrotCalc.add(panelMandelbrotBorder = new PanelGridBagLayout(10, 20, 10, 0, 0, 0), panelMandelbrotBorder.getConstraints());
 		
 		// add titled border to panelMandelbrotBorder
 		addBorder(panelMandelbrotBorder, "Mandelbrot Calculator");
 		
 		// set panelMandelbrotBorder layout
-		panelMandelbrotBorder.setLayout(panelMandelbrotBorder.gbl_panel);
+		panelMandelbrotBorder.setLayout(panelMandelbrotBorder.getGridBagLayout());
 		
 		// create panelAnnulusImageContaianer and add to panelRight
 		panelRight.add(panelAnnulusImageContainer = new PanelGridLayout(0, 1, 0, 0));
@@ -184,38 +184,38 @@ public class CalculatorView extends JFrame {
 		 */
 		
 		// add instructions
-		panelAnnulusBorder.add(labelAnnulusCalcInstructions = new CalculatorLabel("Enter the outer and inner radius.", "west", 8, 0, 40, 5, 5, 0, 1), labelAnnulusCalcInstructions.gbc_label);
+		panelAnnulusBorder.add(labelAnnulusCalcInstructions = new CalculatorLabel("Enter the outer and inner radius.", "west", 8, 0, 40, 5, 5, 0, 1), labelAnnulusCalcInstructions.getConstraints());
 		
 		// add titles for input textFields
-		panelAnnulusBorder.add(labelAnnulusOutRadius = new CalculatorLabel("Outer radius:", "west", 1, 0, 40, 5, 5, 0, 3), labelAnnulusOutRadius.gbc_label);
-		panelAnnulusBorder.add(labelAnnulusInRadius = new CalculatorLabel("Inner radius:", "west", 1, 0, 40, 5, 5, 0, 4), labelAnnulusInRadius.gbc_label);
+		panelAnnulusBorder.add(labelAnnulusOutRadius = new CalculatorLabel("Outer radius:", "west", 1, 0, 40, 5, 5, 0, 3), labelAnnulusOutRadius.getConstraints());
+		panelAnnulusBorder.add(labelAnnulusInRadius = new CalculatorLabel("Inner radius:", "west", 1, 0, 40, 5, 5, 0, 4), labelAnnulusInRadius.getConstraints());
 		
 		// add titles for output
-		panelAnnulusBorder.add(labelAnnulusApproxTitle = new CalculatorLabel("Approximate area:", "west", 2, 0, 40, 5, 5, 0, 6), labelAnnulusApproxTitle.gbc_label);
-		panelAnnulusBorder.add(labelAnnulusMonteTitle = new CalculatorLabel("Monte Carlo estimate:", "west", 2, 0, 40, 5, 5, 0, 8), labelAnnulusMonteTitle.gbc_label);
+		panelAnnulusBorder.add(labelAnnulusApproxTitle = new CalculatorLabel("Approximate area:", "west", 2, 0, 40, 5, 5, 0, 6), labelAnnulusApproxTitle.getConstraints());
+		panelAnnulusBorder.add(labelAnnulusMonteTitle = new CalculatorLabel("Monte Carlo estimate:", "west", 2, 0, 40, 5, 5, 0, 8), labelAnnulusMonteTitle.getConstraints());
 		
 		// add the labels that will show the output
-		panelAnnulusBorder.add(labelAnnulusApproxOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 7), labelAnnulusApproxOutput.gbc_label);
-		panelAnnulusBorder.add(labelAnnulusMonteOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 9), labelAnnulusMonteOutput.gbc_label);
+		panelAnnulusBorder.add(labelAnnulusApproxOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 7), labelAnnulusApproxOutput.getConstraints());
+		panelAnnulusBorder.add(labelAnnulusMonteOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 9), labelAnnulusMonteOutput.getConstraints());
 		
 		// add zoom instructions
-		panelAnnulusBorder.add(labelAnnulusZoom = new CalculatorLabel("Left click and drag on image to set zoom area", "west", 5, 0, 40, 5, 0, 0, 10), labelAnnulusZoom.gbc_label);
+		panelAnnulusBorder.add(labelAnnulusZoom = new CalculatorLabel("Left click and drag on image to set zoom area", "west", 5, 0, 40, 5, 0, 0, 10), labelAnnulusZoom.getConstraints());
 		
 		/*
 		 * Add mandelbrot calculator labels to the container panel
 		 */
 		
 		// add instructions
-		panelMandelbrotBorder.add(labelMandelbrotCalcInstructions = new CalculatorLabel("Calculate area first, then view image.", "west", 8, 0, 40, 5, 5, 0, 1), labelMandelbrotCalcInstructions.gbc_label);
+		panelMandelbrotBorder.add(labelMandelbrotCalcInstructions = new CalculatorLabel("Calculate area first, then view image.", "west", 8, 0, 40, 5, 5, 0, 1), labelMandelbrotCalcInstructions.getConstraints());
 		
 		// add title for output
-		panelMandelbrotBorder.add(labelMandelbrotMonteTitle = new CalculatorLabel("Monte Carlo estimate:", "west", 3, 0, 40, 5, 5, 0, 8), labelMandelbrotMonteTitle.gbc_label);
+		panelMandelbrotBorder.add(labelMandelbrotMonteTitle = new CalculatorLabel("Monte Carlo estimate:", "west", 3, 0, 40, 5, 5, 0, 8), labelMandelbrotMonteTitle.getConstraints());
 		
 		// add the label that will show the output
-		panelMandelbrotBorder.add(labelMandelbrotMonteOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 9), labelMandelbrotMonteOutput.gbc_label);
+		panelMandelbrotBorder.add(labelMandelbrotMonteOutput = new CalculatorLabel("---", "none", 5, 0, 0, 5, 0, 0, 9), labelMandelbrotMonteOutput.getConstraints());
 		
 		// add zoom instructions
-		panelMandelbrotBorder.add(labelMandelbrotZoom = new CalculatorLabel("Left click and drag on image to set zoom area", "west", 5, 0, 40, 5, 0, 0, 10), labelMandelbrotZoom.gbc_label);
+		panelMandelbrotBorder.add(labelMandelbrotZoom = new CalculatorLabel("Left click and drag on image to set zoom area", "west", 5, 0, 40, 5, 0, 0, 10), labelMandelbrotZoom.getConstraints());
 		
 	}
 	
@@ -231,8 +231,8 @@ public class CalculatorView extends JFrame {
 		 */
 		
 		// add input textFields to the panel
-		panelAnnulusBorder.add(textFieldAnnulusOutRadius = new CalculatorTextField(10, 1, 3), textFieldAnnulusOutRadius.gbc_textField);
-		panelAnnulusBorder.add(textFieldAnnulusInRadius = new CalculatorTextField(10, 1, 4), textFieldAnnulusInRadius.gbc_textField);
+		panelAnnulusBorder.add(textFieldAnnulusOutRadius = new CalculatorTextField(10, 1, 3), textFieldAnnulusOutRadius.getConstraints());
+		panelAnnulusBorder.add(textFieldAnnulusInRadius = new CalculatorTextField(10, 1, 4), textFieldAnnulusInRadius.getConstraints());
 		
 		// add buttons to the panel
 		panelAnnulusBorder.add(buttonAnnulusCalculate = new CalculatorButton("Calculate", 1, 5), buttonAnnulusCalculate.getConstraints());
@@ -245,8 +245,8 @@ public class CalculatorView extends JFrame {
 		 */
 		
 		// add radioButtons to the panel
-		panelMandelbrotBorder.add(radioMandelbrotCalculate = new CalculatorRadioButton("Calculate area", 0, 3), radioMandelbrotCalculate.gbc_radioButton);
-		panelMandelbrotBorder.add(radioMandelbrotViewImage = new CalculatorRadioButton("View image", 0, 4), radioMandelbrotViewImage.gbc_radioButton);
+		panelMandelbrotBorder.add(radioMandelbrotCalculate = new CalculatorRadioButton("Calculate area", 0, 3), radioMandelbrotCalculate.getConstraints());
+		panelMandelbrotBorder.add(radioMandelbrotViewImage = new CalculatorRadioButton("View image", 0, 4), radioMandelbrotViewImage.getConstraints());
 		
 		// add radioButtons to a group, so only one can be selected at a time
 		GROUP_MANDELBROT_RADIOS.add(radioMandelbrotCalculate);
@@ -256,7 +256,7 @@ public class CalculatorView extends JFrame {
 		radioMandelbrotCalculate.setSelected(true);
 		
 		// add checkBox to the panel
-		panelMandelbrotBorder.add(checkBoxMandelbrotRandomColour = new CalculatorCheckBox("Random colour", 0, 5), checkBoxMandelbrotRandomColour.gbc_checkBox);
+		panelMandelbrotBorder.add(checkBoxMandelbrotRandomColour = new CalculatorCheckBox("Random colour", 0, 5), checkBoxMandelbrotRandomColour.getConstraints());
 		
 		// add buttons to the panel
 		panelMandelbrotBorder.add(buttonMandelbrotOK = new CalculatorButtonCustom("OK", 0, 6), buttonMandelbrotOK.getConstraints());

@@ -53,7 +53,7 @@ public class CalculatorButton extends JButton implements ConstraintsInterface {
 	/**
 	 * Implements interface.
 	 * 
-	 * This method returns GridBagConstraints.
+	 * This method returns the GridBagConstraints reference.
 	 * 
 	 * @return GridBagConstraints gbc_button.
 	 */

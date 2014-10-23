@@ -18,13 +18,13 @@ import javax.swing.JPanel;
  * @since 20141022
  */
 @SuppressWarnings("serial")
-public class PanelGridBagLayout extends JPanel {
+public class PanelGridBagLayout extends JPanel implements ConstraintsInterface {
 	
 	// declare gridbaglayout
-	protected GridBagLayout gbl_panel;
+	private GridBagLayout gbl_panel;
 	
 	// declare gridbag constraints
-	protected GridBagConstraints gbc_panel;
+	private GridBagConstraints gbc_panel;
 	
 	/**
 	 * The panel constructor, using GridBagLayout.
@@ -73,5 +73,29 @@ public class PanelGridBagLayout extends JPanel {
 		gbl_panel.rowHeights = new int[]{30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30};
 		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+	}
+	
+	/**
+	 * Implements interface.
+	 * 
+	 * This method returns the GridBagConstraints object.
+	 * 
+	 * @param args unused
+	 * @return GridBagConstraints gbc_panel.
+	 */
+	public final GridBagConstraints getConstraints() {
+		
+		return gbc_panel;
+	}
+	
+	/**
+	 * This method returns GridBagLayout.
+	 * 
+	 * @param args unused
+	 * @return GridBagLayout gbl_panel.
+	 */
+	public final GridBagLayout getGridBagLayout() {
+		
+		return gbl_panel;
 	}
 }

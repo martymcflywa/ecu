@@ -17,10 +17,10 @@ import javax.swing.*;
  * @since 20141022
  */
 @SuppressWarnings("serial")
-public class CalculatorRadioButton extends JRadioButton {
+public class CalculatorRadioButton extends JRadioButton implements ConstraintsInterface {
 
 	// declare the gridbag constraints
-	protected GridBagConstraints gbc_radioButton;
+	private GridBagConstraints gbc_radioButton;
 	
 	/**
 	 * The constructor.
@@ -45,5 +45,17 @@ public class CalculatorRadioButton extends JRadioButton {
 		// set the column and row positions
 		gbc_radioButton.gridx = gridx;
 		gbc_radioButton.gridy = gridy;
+	}
+	
+	/**
+	 * Implements interface.
+	 * 
+	 * This method returns the GridBagConstraints reference.
+	 * 
+	 * @return GridBagConstraints gbc_radioButton.
+	 */
+	public final GridBagConstraints getConstraints() {
+		
+		return gbc_radioButton;
 	}
 }

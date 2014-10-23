@@ -17,10 +17,10 @@ import javax.swing.*;
  * @since 20141022
  */
 @SuppressWarnings("serial")
-public class CalculatorCheckBox extends JCheckBox {
+public class CalculatorCheckBox extends JCheckBox implements ConstraintsInterface {
 
 	// declare the gridbag constraints
-	protected GridBagConstraints gbc_checkBox;
+	private GridBagConstraints gbc_checkBox;
 	
 	/**
 	 * The constructor.
@@ -45,5 +45,17 @@ public class CalculatorCheckBox extends JCheckBox {
 		// set the column and row positions
 		gbc_checkBox.gridx = gridx;
 		gbc_checkBox.gridy = gridy;
+	}
+	
+	/**
+	 * Implements interface.
+	 * 
+	 * This method returns the GridBagConstraints reference.
+	 * 
+	 * @return GridBagConstraints gbc_checkBox.
+	 */
+	public final GridBagConstraints getConstraints() {
+		
+		return gbc_checkBox;
 	}
 }

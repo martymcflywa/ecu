@@ -42,4 +42,15 @@ public class PanelGridLayout extends JPanel {
 		// use gridlayout, set the rows, columns and padding
 		this.setLayout(theGridLayout = new GridLayout(rows, cols, hgap, vgap));
 	}
+	
+	/**
+	 * This method returns the GridLayout object.
+	 * 
+	 * @param args unused
+	 * @return GridLayut theGridLayout.
+	 */
+	public GridLayout getGridLayout() {
+		
+		return theGridLayout;
+	}
 }
