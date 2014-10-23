@@ -13,7 +13,7 @@ package csp1150.assignment1.model;
 public class ShapeModel {
 
 	// declare constant grid size & samples
-	protected final int GRIDSIZE = 444;
+	private final int GRIDSIZE = 444;
 	protected final int SAMPLES = 100;
 	
 	// declare 2d array

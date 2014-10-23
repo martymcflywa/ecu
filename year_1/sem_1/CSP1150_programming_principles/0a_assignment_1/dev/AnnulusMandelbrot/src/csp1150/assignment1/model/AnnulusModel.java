@@ -34,10 +34,10 @@ public class AnnulusModel extends ShapeModel {
 		double arraySum = 0.0;
 		
 		// iterate through columns
-		for(int col = 0; col < GRIDSIZE - 1; col++) {
+		for(int col = 0; col < this.getGridSize() - 1; col++) {
 			
 			// iterate through rows
-			for(int row = 0; row < GRIDSIZE - 1; row++) {
+			for(int row = 0; row < this.getGridSize() - 1; row++) {
 				
 				// reset current cell value to 0
 				hits[col][row] = 0;
@@ -46,8 +46,8 @@ public class AnnulusModel extends ShapeModel {
 				for(int i = 0; i < SAMPLES; i++) {
 					
 					// generate random scatter points per cell
-					double x = minX + (col + Math.random()) * ((maxX - minX) / GRIDSIZE);
-					double y = minY + (row + Math.random()) * ((maxY - minY) / GRIDSIZE);
+					double x = minX + (col + Math.random()) * ((maxX - minX) / this.getGridSize());
+					double y = minY + (row + Math.random()) * ((maxY - minY) / this.getGridSize());
 					
 					// if test pass, set counter + 1
 					if(isInside(x, y)) {
@@ -66,6 +66,6 @@ public class AnnulusModel extends ShapeModel {
 		counter = counter + arraySum;
 		
 		// calculate area
-		areaMonte = (maxX - minX) * (maxY - minY) * counter / Math.pow(GRIDSIZE, 2);
+		areaMonte = (maxX - minX) * (maxY - minY) * counter / Math.pow(this.getGridSize(), 2);
 	}
 }

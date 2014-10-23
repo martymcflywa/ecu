@@ -15,7 +15,7 @@ public class MandelbrotModel extends ShapeModel {
 	private final int MAX_STEPS = 255;
 	
 	// declare 2d array
-	private int[][] escapeArray = new int[GRIDSIZE][GRIDSIZE];
+	private int[][] escapeArray = new int[this.getGridSize()][this.getGridSize()];
 	
 	// declare default zoom values, since there is no outer radius to fall back on when resetting
 	private final double DEFAULT_MINX = -2;
@@ -52,10 +52,10 @@ public class MandelbrotModel extends ShapeModel {
 		double arraySum = 0.0;
 		
 		// iterate through columns
-		for(int col = 0; col < GRIDSIZE - 1; col++) {
+		for(int col = 0; col < this.getGridSize() - 1; col++) {
 			
 			// iterate through rows
-			for(int row = 0; row < GRIDSIZE - 1; row++) {
+			for(int row = 0; row < this.getGridSize() - 1; row++) {
 				
 				// reset current cell value to 0
 				hits[col][row] = 0;
@@ -64,8 +64,8 @@ public class MandelbrotModel extends ShapeModel {
 				for(int i = 0; i < SAMPLES; i++) {
 					
 					// generate random scatter points per cell
-					double x = minX + (col + Math.random()) * ((maxX - minX) / GRIDSIZE);
-					double y = minY + (row + Math.random()) * ((maxY - minY) / GRIDSIZE);
+					double x = minX + (col + Math.random()) * ((maxX - minX) / this.getGridSize());
+					double y = minY + (row + Math.random()) * ((maxY - minY) / this.getGridSize());
 					
 					// if test pass, set counter + 1
 					if(isInside(x, y)) {
@@ -84,7 +84,7 @@ public class MandelbrotModel extends ShapeModel {
 		counter = counter + arraySum;
 		
 		// calculate area
-		areaMonte = (maxX - minX) * (maxY - minY) * counter / Math.pow(GRIDSIZE, 2);
+		areaMonte = (maxX - minX) * (maxY - minY) * counter / Math.pow(this.getGridSize(), 2);
 	}
 	
 	/**
@@ -129,10 +129,10 @@ public class MandelbrotModel extends ShapeModel {
 	public final void calcEscape() {
 		
 		// iterate through columns
-		for(int col = 0; col < GRIDSIZE - 1; col++) {
+		for(int col = 0; col < this.getGridSize() - 1; col++) {
 			
 			// iterate through rows
-			for(int row = 0; row < GRIDSIZE - 1; row++) {
+			for(int row = 0; row < this.getGridSize() - 1; row++) {
 				
 				// reset current cell value to 0
 				hits[col][row] = 0;
@@ -141,8 +141,8 @@ public class MandelbrotModel extends ShapeModel {
 				for(int i = 0; i < SAMPLES; i++) {
 					
 					// generate random scatter points per cell
-					double x = minX + (col + Math.random()) * ((maxX - minX) / GRIDSIZE);
-					double y = minY + (row + Math.random()) * ((maxY - minY) / GRIDSIZE);
+					double x = minX + (col + Math.random()) * ((maxX - minX) / this.getGridSize());
+					double y = minY + (row + Math.random()) * ((maxY - minY) / this.getGridSize());
 					
 					// calculate escape time for each cell
 					getEscapeTime(x, y, col, row);
@@ -220,7 +220,7 @@ public class MandelbrotModel extends ShapeModel {
 	@Override
 	protected double minXPixelToGrid(double pixelMinX) {
 		
-		return (pixelMinX / GRIDSIZE) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX;
+		return (pixelMinX / this.getGridSize()) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX;
 	}
 	
 	/**
@@ -236,7 +236,7 @@ public class MandelbrotModel extends ShapeModel {
 	@Override
 	protected double minYPixelToGrid(double pixelMinY, double pixelHeight) {
 		
-		return ((GRIDSIZE - (pixelMinY + pixelHeight)) / GRIDSIZE) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX;
+		return ((this.getGridSize() - (pixelMinY + pixelHeight)) / this.getGridSize()) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX;
 	}
 	
 	/**
@@ -251,7 +251,7 @@ public class MandelbrotModel extends ShapeModel {
 	@Override
 	protected double maxXPixelToGrid(double pixelMinX, double pixelWidth) {
 		
-		return ((pixelMinX + pixelWidth) / GRIDSIZE) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX; 
+		return ((pixelMinX + pixelWidth) / this.getGridSize()) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX; 
 	}
 	
 	/**
@@ -265,6 +265,6 @@ public class MandelbrotModel extends ShapeModel {
 	 */
 	protected double maxYPixelToGrid(double pixelMinY) {
 		
-		return ((GRIDSIZE - pixelMinY) / GRIDSIZE) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX;
+		return ((this.getGridSize() - pixelMinY) / this.getGridSize()) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX;
 	}
 }
