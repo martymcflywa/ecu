@@ -14,9 +14,6 @@ import java.awt.Insets;
  */
 @SuppressWarnings("serial")
 public class CalculatorButtonCustom extends CalculatorButton {
-
-	// declare the gridbag constraints
-	protected GridBagConstraints gbc_zoomButton;
 	
 	/**
 	 * The constructor.
@@ -30,15 +27,12 @@ public class CalculatorButtonCustom extends CalculatorButton {
 		// set the button text
 		this.setText(buttonName);
 		
-		// create gridbag constraints
-		gbc_zoomButton = new GridBagConstraints();
-		
 		// use these values as constraints
-		gbc_zoomButton.anchor = GridBagConstraints.WEST;
-		gbc_zoomButton.insets = new Insets(0, 40, 5, 5);
+		this.getConstraints().anchor = GridBagConstraints.WEST;
+		this.getConstraints().insets = new Insets(0, 40, 5, 5);
 		
 		// set the column and row positions
-		gbc_zoomButton.gridx = gridx;
-		gbc_zoomButton.gridy = gridy;
+		this.getConstraints().gridx = gridx;
+		this.getConstraints().gridy = gridy;
 	}
 }

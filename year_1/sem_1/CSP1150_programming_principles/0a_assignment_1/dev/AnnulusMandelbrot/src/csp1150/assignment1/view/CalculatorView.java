@@ -235,10 +235,10 @@ public class CalculatorView extends JFrame {
 		panelAnnulusBorder.add(textFieldAnnulusInRadius = new CalculatorTextField(10, 1, 4), textFieldAnnulusInRadius.gbc_textField);
 		
 		// add buttons to the panel
-		panelAnnulusBorder.add(buttonAnnulusCalculate = new CalculatorButton("Calculate", 1, 5), buttonAnnulusCalculate.gbc_button);
-		panelAnnulusBorder.add(buttonAnnulusZoomIn = new CalculatorButtonCustom("Zoom In", 0, 12), buttonAnnulusZoomIn.gbc_zoomButton);
-		panelAnnulusBorder.add(buttonAnnulusResetImage = new CalculatorButton("Reset Image", 1, 12), buttonAnnulusResetImage.gbc_button);
-		panelAnnulusBorder.add(buttonAnnulusSave = new CalculatorButton("Save Image", 2, 12), buttonAnnulusSave.gbc_button);
+		panelAnnulusBorder.add(buttonAnnulusCalculate = new CalculatorButton("Calculate", 1, 5), buttonAnnulusCalculate.getConstraints());
+		panelAnnulusBorder.add(buttonAnnulusZoomIn = new CalculatorButtonCustom("Zoom In", 0, 12), buttonAnnulusZoomIn.getConstraints());
+		panelAnnulusBorder.add(buttonAnnulusResetImage = new CalculatorButton("Reset Image", 1, 12), buttonAnnulusResetImage.getConstraints());
+		panelAnnulusBorder.add(buttonAnnulusSave = new CalculatorButton("Save Image", 2, 12), buttonAnnulusSave.getConstraints());
 		
 		/*
 		 * Add mandelbrot calculator controls to container panel
@@ -259,10 +259,10 @@ public class CalculatorView extends JFrame {
 		panelMandelbrotBorder.add(checkBoxMandelbrotRandomColour = new CalculatorCheckBox("Random colour", 0, 5), checkBoxMandelbrotRandomColour.gbc_checkBox);
 		
 		// add buttons to the panel
-		panelMandelbrotBorder.add(buttonMandelbrotOK = new CalculatorButtonCustom("OK", 0, 6), buttonMandelbrotOK.gbc_zoomButton);
-		panelMandelbrotBorder.add(buttonMandelbrotZoomIn = new CalculatorButtonCustom("Zoom In", 0, 12), buttonMandelbrotZoomIn.gbc_zoomButton);
-		panelMandelbrotBorder.add(buttonMandelbrotResetImage = new CalculatorButton("Reset Image", 1, 12), buttonMandelbrotResetImage.gbc_button);
-		panelMandelbrotBorder.add(buttonMandelbrotSave = new CalculatorButton("Save Image", 2, 12), buttonMandelbrotSave.gbc_button);
+		panelMandelbrotBorder.add(buttonMandelbrotOK = new CalculatorButtonCustom("OK", 0, 6), buttonMandelbrotOK.getConstraints());
+		panelMandelbrotBorder.add(buttonMandelbrotZoomIn = new CalculatorButtonCustom("Zoom In", 0, 12), buttonMandelbrotZoomIn.getConstraints());
+		panelMandelbrotBorder.add(buttonMandelbrotResetImage = new CalculatorButton("Reset Image", 1, 12), buttonMandelbrotResetImage.getConstraints());
+		panelMandelbrotBorder.add(buttonMandelbrotSave = new CalculatorButton("Save Image", 2, 12), buttonMandelbrotSave.getConstraints());
 	}
 	
 	/**

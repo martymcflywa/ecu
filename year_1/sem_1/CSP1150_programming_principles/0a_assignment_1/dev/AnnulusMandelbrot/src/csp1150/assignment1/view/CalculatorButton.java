@@ -19,8 +19,8 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class CalculatorButton extends JButton {
 	
-	// declare the gridbag constraints
-	protected GridBagConstraints gbc_button;
+	// create gridbag constraints object
+	private GridBagConstraints gbc_button = new GridBagConstraints();;
 	
 	/**
 	 * The default constructor for inheritance.
@@ -41,9 +41,6 @@ public class CalculatorButton extends JButton {
 		// set the button text
 		this.setText(buttonName);
 		
-		// create gridbag constraints
-		gbc_button = new GridBagConstraints();
-		
 		// use these values as constraints
 		gbc_button.anchor = GridBagConstraints.WEST;
 		gbc_button.insets = new Insets(0, 20, 5, 5);
@@ -51,5 +48,15 @@ public class CalculatorButton extends JButton {
 		// set the column and row positions
 		gbc_button.gridx = gridx;
 		gbc_button.gridy = gridy;
+	}
+	
+	/**
+	 * This method returns GridBagConstraints.
+	 * 
+	 * @return GridBagConstraints gbc_button.
+	 */
+	protected final GridBagConstraints getConstraints() {
+		
+		return gbc_button;
 	}
 }
