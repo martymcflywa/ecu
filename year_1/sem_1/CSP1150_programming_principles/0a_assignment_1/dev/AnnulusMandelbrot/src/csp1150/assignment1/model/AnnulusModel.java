@@ -66,6 +66,6 @@ public class AnnulusModel extends ShapeModel {
 		counter = counter + arraySum;
 		
 		// calculate area
-		areaMonte = (this.getMaxX() - this.getMinX()) * (this.getMaxY() - this.getMinY()) * counter / Math.pow(this.getGridSize(), 2);
+		this.setMonteCalc(counter);
 	}
 }

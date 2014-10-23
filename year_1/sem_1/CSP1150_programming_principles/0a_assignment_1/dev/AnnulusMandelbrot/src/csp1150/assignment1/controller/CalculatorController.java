@@ -86,7 +86,7 @@ public class CalculatorController {
 				theAnnulusModel.setRadius(outRadius, inRadius);
 				
 				// get calculated approx area from the model, show it in the view
-				theView.setAnnulusAreaCalc(theAnnulusModel.getAreaCalc());
+				theView.setAnnulusAreaCalc(theAnnulusModel.getApproxCalc());
 				
 				// get calculated monte carlo area from the model, show it in the view
 				theView.setAnnulusMonteCalc(theAnnulusModel.getMonteCalc());

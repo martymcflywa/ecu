@@ -31,7 +31,7 @@ public class ShapeModel {
 	
 	// these fields hold the calculated values
 	private double areaApprox;
-	protected double areaMonte;
+	private double areaMonte;
 	
 	/**
 	 * Default constructor for inheritance.
@@ -99,7 +99,8 @@ public class ShapeModel {
 		}
 		
 		// set calculated area to areaApprox
-		areaApprox = (maxX - minX) * (maxY - minY) * counter / Math.pow(GRIDSIZE, 2);
+		setApproxCalc(counter);
+		//areaApprox = (maxX - minX) * (maxY - minY) * counter / Math.pow(GRIDSIZE, 2);
 	}
 	
 	/**
@@ -152,7 +153,8 @@ public class ShapeModel {
 		counter = counter + arraySum;
 		
 		// calculate area
-		areaMonte = (maxX - minX) * (maxY - minY) * counter / Math.pow(GRIDSIZE, 2);
+		setMonteCalc(counter);
+		//areaMonte = (maxX - minX) * (maxY - minY) * counter / Math.pow(GRIDSIZE, 2);
 	}
 	
 	/**
@@ -186,12 +188,33 @@ public class ShapeModel {
 	}
 	
 	/**
+	 * This method sets the areaApprox field with the calculated area.
+	 * 
+	 * @param int counter - The hits counter.
+	 */
+	public final void setApproxCalc(int counter) {
+		
+		areaApprox = (maxX - minX) * (maxY - minY) * counter / Math.pow(GRIDSIZE, 2);
+	}
+	
+	/**
+	 * This method sets the areaMonte field with the calculated area.
+	 * 
+	 * @param double counter - The hits counter.
+	 */
+	public final void setMonteCalc(double counter) {
+		
+		areaMonte = (maxX - minX) * (maxY - minY) * counter / Math.pow(GRIDSIZE, 2);
+	}
+	
+	/**
 	 * This method returns the area calculated using approximate estimation.
 	 * 
 	 * @param args unused
 	 * @return double areaApprox
 	 */
-	public final double getAreaCalc() {
+	public final double getApproxCalc() {
+		
 		return areaApprox;
 	}
 	
@@ -202,6 +225,7 @@ public class ShapeModel {
 	 * @return double areaMonte
 	 */
 	public final double getMonteCalc() {
+		
 		return areaMonte;
 	}
 	
