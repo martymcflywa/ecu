@@ -17,7 +17,7 @@ import javax.swing.*;
  * @since 20141022
  */
 @SuppressWarnings("serial")
-public class CalculatorButton extends JButton {
+public class CalculatorButton extends JButton implements ConstraintsInterface {
 	
 	// create gridbag constraints object
 	private GridBagConstraints gbc_button = new GridBagConstraints();;
@@ -51,11 +51,13 @@ public class CalculatorButton extends JButton {
 	}
 	
 	/**
+	 * Implements interface.
+	 * 
 	 * This method returns GridBagConstraints.
 	 * 
 	 * @return GridBagConstraints gbc_button.
 	 */
-	protected final GridBagConstraints getConstraints() {
+	public final GridBagConstraints getConstraints() {
 		
 		return gbc_button;
 	}
