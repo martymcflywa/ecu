@@ -23,8 +23,8 @@ public class CalculatorListener implements ActionListener {
 	/**
 	 * The listener constructor.
 	 * 
-	 * @param CalculatorView theView - Import the view.
-	 * @param CalculatorController theController - Import the controller.
+	 * @param CalculatorView theView - The view object.
+	 * @param CalculatorController theController - the controller object.
 	 */
 	public CalculatorListener(CalculatorView theView, CalculatorController theController) {
 		

@@ -38,9 +38,9 @@ public class CalculatorController {
 	/**
 	 * The controller constructor.
 	 * 
-	 * @param CalculatorView theView - Import the view.
-	 * @param AnnulusModel theAnnulusModel - Import the annulus model.
-	 * @param MandelbrotModel theMandelbrotModel - Import the mandelbrot model.
+	 * @param CalculatorView theView - The view object.
+	 * @param ShapeModel theAnnulusModel - The annulus model object.
+	 * @param ShapeModel theMandelbrotModel - The mandelbrot model object.
 	 */
 	public CalculatorController(ShapeModel theAnnulusModel, ShapeModel theMandelbrotModel, CalculatorView theView) {
 		
