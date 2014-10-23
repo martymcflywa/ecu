@@ -9,6 +9,11 @@
 	- User must select zoom area first before zooming in
 		- Error message notifies user
 
+### Bug/s:
+
+- Zooming image with "Random colour" ticked without previously viewing a random colour image results in black image
+	- Need to update the controller to introduce random colours, could use mandelbrotColourImageExists to check
+
 ## v5.2.0 20141020:
 
 - Designed and written in MVC pattern
