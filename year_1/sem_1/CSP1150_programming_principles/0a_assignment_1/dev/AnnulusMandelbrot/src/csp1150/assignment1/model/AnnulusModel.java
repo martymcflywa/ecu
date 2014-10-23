@@ -43,7 +43,7 @@ public class AnnulusModel extends ShapeModel {
 				hits[col][row] = 0;
 				
 				// iterate through samples
-				for(int i = 0; i < SAMPLES; i++) {
+				for(int i = 0; i < this.getSamples(); i++) {
 					
 					// generate random scatter points per cell
 					double x = minX + (col + Math.random()) * ((maxX - minX) / this.getGridSize());
@@ -60,7 +60,7 @@ public class AnnulusModel extends ShapeModel {
 		}
 		
 		// divide sum of array to samples
-		arraySum = arraySum / SAMPLES;
+		arraySum = arraySum / this.getSamples();
 		
 		// add sum of array to counter
 		counter = counter + arraySum;

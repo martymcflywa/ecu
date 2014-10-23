@@ -14,7 +14,7 @@ public class ShapeModel {
 
 	// declare constant grid size & samples
 	private final int GRIDSIZE = 444;
-	protected final int SAMPLES = 100;
+	private final int SAMPLES = 100;
 	
 	// declare 2d array
 	protected double[][] hits = new double[GRIDSIZE][GRIDSIZE];
@@ -223,6 +223,17 @@ public class ShapeModel {
 	 */
 	public final int getGridSize() {
 		return GRIDSIZE;
+	}
+	
+	/**
+	 * This method returns the SAMPLES constant.
+	 * 
+	 * @param args unused
+	 * @return int SAMPLES.
+	 */
+	public final int getSamples() {
+		
+		return SAMPLES;
 	}
 	
 	/**
