@@ -112,7 +112,7 @@ public class ShapeModel {
 	 * @param double maxX - The max X coordinate.
 	 * @param double maxY - The max Y coordinate.
 	 */
-	public final void calcMonte(double minX, double minY, double maxX, double maxY) {
+	protected final void calcMonte(double minX, double minY, double maxX, double maxY) {
 		
 		// declare counter
 		double counter = 0.0;
@@ -192,7 +192,7 @@ public class ShapeModel {
 	 * 
 	 * @param int counter - The hits counter.
 	 */
-	public final void setApproxCalc(int counter) {
+	protected final void setApproxCalc(int counter) {
 		
 		areaApprox = (maxX - minX) * (maxY - minY) * counter / Math.pow(GRIDSIZE, 2);
 	}
@@ -202,7 +202,7 @@ public class ShapeModel {
 	 * 
 	 * @param double counter - The hits counter.
 	 */
-	public final void setMonteCalc(double counter) {
+	protected final void setMonteCalc(double counter) {
 		
 		areaMonte = (maxX - minX) * (maxY - minY) * counter / Math.pow(GRIDSIZE, 2);
 	}
@@ -266,7 +266,7 @@ public class ShapeModel {
 	 * @param args unused
 	 * @return double minX.
 	 */
-	public final double getMinX() {
+	protected final double getMinX() {
 		
 		return minX;
 	}
@@ -277,7 +277,7 @@ public class ShapeModel {
 	 * @param args unused
 	 * @return double minY.
 	 */
-	public final double getMinY() {
+	protected final double getMinY() {
 		
 		return minY;
 	}
@@ -288,7 +288,7 @@ public class ShapeModel {
 	 * @param args unused
 	 * @return double maxX.
 	 */
-	public final double getMaxX() {
+	protected final double getMaxX() {
 		
 		return maxX;
 	}
@@ -299,7 +299,7 @@ public class ShapeModel {
 	 * @param args unused
 	 * @return double maxY.
 	 */
-	public final double getMaxY() {
+	protected final double getMaxY() {
 		
 		return maxY;
 	}
@@ -309,7 +309,7 @@ public class ShapeModel {
 	 * 
 	 * @param double minX.
 	 */
-	public final void setMinX(double minX) {
+	protected final void setMinX(double minX) {
 		
 		this.minX = minX;
 	}
@@ -319,7 +319,7 @@ public class ShapeModel {
 	 * 
 	 * @param double minY.
 	 */
-	public final void setMinY(double minY) {
+	protected final void setMinY(double minY) {
 		
 		this.minY = minY;
 	}
@@ -329,7 +329,7 @@ public class ShapeModel {
 	 * 
 	 * @param double maxX.
 	 */
-	public final void setMaxX(double maxX) {
+	protected final void setMaxX(double maxX) {
 		
 		this.maxX = maxX;
 	}
@@ -339,7 +339,7 @@ public class ShapeModel {
 	 * 
 	 * @param double maxY.
 	 */
-	public final void setMaxY(double maxY) {
+	protected final void setMaxY(double maxY) {
 		
 		this.maxY = maxY;
 	}
