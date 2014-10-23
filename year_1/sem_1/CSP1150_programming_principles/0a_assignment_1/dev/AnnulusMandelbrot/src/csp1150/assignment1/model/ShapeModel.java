@@ -20,14 +20,14 @@ public class ShapeModel {
 	private double[][] hits = new double[GRIDSIZE][GRIDSIZE];
 	
 	// these fields hold user input values
-	protected double outRadius;
-	protected double inRadius;
+	private double outRadius;
+	private double inRadius;
 	
 	// these fields hold the max-min values aka zoom values
-	protected double minX;
-	protected double minY;
-	protected double maxX;
-	protected double maxY;
+	private double minX;
+	private double minY;
+	private double maxX;
+	private double maxY;
 	
 	// these fields hold the calculated values
 	private double areaApprox;
@@ -234,6 +234,90 @@ public class ShapeModel {
 	public final int getSamples() {
 		
 		return SAMPLES;
+	}
+	
+	/**
+	 * This method returns minX.
+	 * 
+	 * @param args unused
+	 * @return double minX.
+	 */
+	public final double getMinX() {
+		
+		return minX;
+	}
+	
+	/**
+	 * This method returns minY.
+	 * 
+	 * @param args unused
+	 * @return double minY.
+	 */
+	public final double getMinY() {
+		
+		return minY;
+	}
+	
+	/**
+	 * This method returns maxX.
+	 * 
+	 * @param args unused
+	 * @return double maxX.
+	 */
+	public final double getMaxX() {
+		
+		return maxX;
+	}
+	
+	/**
+	 * This method returns maxY.
+	 * 
+	 * @param args unused
+	 * @return double maxY.
+	 */
+	public final double getMaxY() {
+		
+		return maxY;
+	}
+	
+	/**
+	 * This method sets minX.
+	 * 
+	 * @param double minX.
+	 */
+	public final void setMinX(double minX) {
+		
+		this.minX = minX;
+	}
+	
+	/**
+	 * This method sets minY.
+	 * 
+	 * @param double minY.
+	 */
+	public final void setMinY(double minY) {
+		
+		this.minY = minY;
+	}
+	
+	/**
+	 * This method sets maxX.
+	 * 
+	 * @param double maxX.
+	 */
+	public final void setMaxX(double maxX) {
+		
+		this.maxX = maxX;
+	}
+	
+	/**
+	 * This method sets maxY.
+	 * 
+	 * @param double maxY.
+	 */
+	public final void setMaxY(double maxY) {
+		
+		this.maxY = maxY;
 	}
 	
 	/**

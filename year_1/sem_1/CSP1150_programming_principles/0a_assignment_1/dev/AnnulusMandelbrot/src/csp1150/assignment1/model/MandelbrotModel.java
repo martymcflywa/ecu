@@ -29,10 +29,10 @@ public class MandelbrotModel extends ShapeModel {
 	public MandelbrotModel() {
 		
 		// default values for max-min, without user input
-		this.minX = this.DEFAULT_MINX;
-		this.minY = this.DEFAULT_MINY;
-		this.maxX = this.DEFAULT_MAXX;
-		this.maxY = this.DEFAULT_MAXY;
+		this.setMinX(DEFAULT_MINX);
+		this.setMinY(DEFAULT_MINY);
+		this.setMaxX(DEFAULT_MAXX);
+		this.setMaxY(DEFAULT_MAXY);
 	}
 	
 	/**
@@ -64,8 +64,8 @@ public class MandelbrotModel extends ShapeModel {
 				for(int i = 0; i < this.getSamples(); i++) {
 					
 					// generate random scatter points per cell
-					double x = minX + (col + Math.random()) * ((maxX - minX) / this.getGridSize());
-					double y = minY + (row + Math.random()) * ((maxY - minY) / this.getGridSize());
+					double x = this.getMinX() + (col + Math.random()) * ((this.getMaxX() - this.getMinX()) / this.getGridSize());
+					double y = this.getMinY() + (row + Math.random()) * ((this.getMaxY() - this.getMinY()) / this.getGridSize());
 					
 					// if test pass, set counter + 1
 					if(isInside(x, y)) {
@@ -84,7 +84,7 @@ public class MandelbrotModel extends ShapeModel {
 		counter = counter + arraySum;
 		
 		// calculate area
-		areaMonte = (maxX - minX) * (maxY - minY) * counter / Math.pow(this.getGridSize(), 2);
+		areaMonte = (this.getMaxX() - this.getMinX()) * (this.getMaxY() - this.getMinY()) * counter / Math.pow(this.getGridSize(), 2);
 	}
 	
 	/**
@@ -141,8 +141,8 @@ public class MandelbrotModel extends ShapeModel {
 				for(int i = 0; i < this.getSamples(); i++) {
 					
 					// generate random scatter points per cell
-					double x = minX + (col + Math.random()) * ((maxX - minX) / this.getGridSize());
-					double y = minY + (row + Math.random()) * ((maxY - minY) / this.getGridSize());
+					double x = this.getMinX() + (col + Math.random()) * ((this.getMaxX() - this.getMinX()) / this.getGridSize());
+					double y = this.getMinY() + (row + Math.random()) * ((this.getMaxY() - this.getMinY()) / this.getGridSize());
 					
 					// calculate escape time for each cell
 					getEscapeTime(x, y, col, row);
@@ -203,10 +203,10 @@ public class MandelbrotModel extends ShapeModel {
 	@Override
 	public void resetImage() {
 		
-		minX = DEFAULT_MINX;
-		minY = DEFAULT_MINY;
-		maxX = DEFAULT_MAXX;
-		maxY = DEFAULT_MAXY;
+		this.setMinX(DEFAULT_MINX);
+		this.setMinY(DEFAULT_MINY);
+		this.setMaxX(DEFAULT_MAXX);
+		this.setMaxY(DEFAULT_MAXY);
 	}
 	
 	/**
