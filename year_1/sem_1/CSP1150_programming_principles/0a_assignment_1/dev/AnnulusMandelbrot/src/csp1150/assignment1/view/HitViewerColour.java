@@ -15,13 +15,13 @@ import java.util.Random;
 @SuppressWarnings("serial")
 public class HitViewerColour extends HitViewer {
 	
-	// create random object
-	private Random randomRGB = new Random();
+	// create static random object
+	private static Random randomRGB = new Random();
 	
-	// declare random RGB fields
-	private static int randomR;
-	private static int randomG;
-	private static int randomB;
+	// init random values
+	private int randomR = randomRGB.nextInt(255 - 0) + 1;
+	private int randomG = randomRGB.nextInt(255 - 0) + 1;
+	private int randomB = randomRGB.nextInt(255 - 0) + 1;
 
 	/**
 	 * Construct the panel which contains the image.
