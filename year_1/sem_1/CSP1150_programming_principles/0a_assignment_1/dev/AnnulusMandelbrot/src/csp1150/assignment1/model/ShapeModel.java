@@ -255,7 +255,7 @@ public class ShapeModel {
 	 * @param args unused
 	 * @return int SAMPLES.
 	 */
-	public final int getSamples() {
+	protected final int getSamples() {
 		
 		return SAMPLES;
 	}
