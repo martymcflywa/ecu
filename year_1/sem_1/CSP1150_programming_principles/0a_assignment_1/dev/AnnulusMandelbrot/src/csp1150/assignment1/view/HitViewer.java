@@ -108,7 +108,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	 * 
 	 * @param double[][] hits - The array.
 	 */
-	public void viewHits(double[][] hits) {
+	protected void viewHits(double[][] hits) {
 		
 		for(int x = 0; x < this.width; x++) {
 			
@@ -290,7 +290,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	 * 
 	 * @return int[] pixelZoom.
 	 */
-	public final double[] getPixelZoom() {
+	protected final double[] getPixelZoom() {
 		
 		return pixelZoom;
 	}
@@ -300,7 +300,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	 * 
 	 * @return boolean zooming.
 	 */
-	public static final boolean getZoomBool() {
+	protected static final boolean getZoomBool() {
 		
 		return zooming;
 	}
@@ -310,7 +310,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	 * 
 	 * @param boolean trueOrFalse.
 	 */
-	public static final void setZoomBool(boolean trueOrFalse) {
+	protected static final void setZoomBool(boolean trueOrFalse) {
 		
 		zooming = trueOrFalse; 
 	}
