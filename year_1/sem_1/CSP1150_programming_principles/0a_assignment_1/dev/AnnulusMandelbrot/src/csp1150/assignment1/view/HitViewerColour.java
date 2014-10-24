@@ -121,7 +121,7 @@ public class HitViewerColour extends HitViewer {
 	 * 
 	 * @param int[][] escapeArray
 	 */
-	public void viewHitsRandomColour(int[][] escapeArray, boolean zooming) {
+	protected final void viewHitsRandomColour(int[][] escapeArray, boolean zooming) {
 		
 		// if not zooming, 
 		if(!zooming) {
@@ -154,7 +154,7 @@ public class HitViewerColour extends HitViewer {
 	 * 
 	 * @param args unused
 	 */
-	private void getRandomRGB() {
+	private final void getRandomRGB() {
 		
 		randomR = randomRGB.nextInt(255 - 0) + 1;
 		randomG = randomRGB.nextInt(255 - 0) + 1;
