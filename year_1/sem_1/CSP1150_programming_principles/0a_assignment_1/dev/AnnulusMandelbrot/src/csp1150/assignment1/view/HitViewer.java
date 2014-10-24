@@ -67,31 +67,26 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	 */
 	public HitViewer(int width, int height, int rows, int cols, int hgap, int vgap) {
 		
-//		// set the width and height
-//		this.width = width;
-//		this.height = height;
-//		
-//		// construct a BufferedImage of the right size and type
-//		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-//		
-//		// make it all white to start with
-//		Graphics2D g2 = image.createGraphics();
-//		g2 = image.createGraphics();
-//		g2.setColor(Color.WHITE);
-//		g2.fillRect(0, 0, width, height);
-		
+		// init the image
 		initImage(width, height);
 		
 		// add mouse listeners to the panel
 		addMouseListener(this);
 		addMouseMotionListener(this);
 		
-		// use gridlayout, set the rows, columns and padding
+		// set the rows, columns and padding
 		setGridConstraints(rows, cols, hgap, vgap);
 		
+		// use the layout
 		this.setLayout(getGridLayout());
 	}
 	
+	/**
+	 * This method initializes the image.
+	 * 
+	 * @param int width - The image width.
+	 * @param int height - The image height.
+	 */
 	protected final void initImage(int width, int height) {
 		
 		// set the width and height

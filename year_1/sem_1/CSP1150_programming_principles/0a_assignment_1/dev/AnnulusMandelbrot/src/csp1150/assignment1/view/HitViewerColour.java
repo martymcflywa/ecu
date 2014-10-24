@@ -1,10 +1,5 @@
 package csp1150.assignment1.view;
 
-// the graphic elements
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-
 // for random colours
 import java.util.Random;
 
@@ -41,27 +36,17 @@ public class HitViewerColour extends HitViewer {
 	 */
 	public HitViewerColour(int width, int height, int rows, int cols, int hgap, int vgap) {
 		
-//		this.width = width;
-//		this.height = height;
-//		
-//		// construct a BufferedImage of the right size and type
-//		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-//		
-//		// make it all white to start with
-//		Graphics2D g2 = image.createGraphics();
-//		g2 = image.createGraphics();
-//		g2.setColor(Color.WHITE);
-//		g2.fillRect(0, 0, width, height);
-		
+		// init the image
 		initImage(width, height);
 		
 		// add mouse listeners
 		addMouseListener(this);
 		addMouseMotionListener(this);
 		
-		// use gridlayout, set the rows, columns and padding
+		// set the rows, columns and padding
 		setGridConstraints(rows, cols, hgap, vgap);
 		
+		// use the layout
 		this.setLayout(getGridLayout());
 	}
 	
@@ -80,27 +65,17 @@ public class HitViewerColour extends HitViewer {
 	 */
 	public HitViewerColour(int width, int height, int rows, int cols, int hgap, int vgap, double[][] hits) {
 		
-//		this.width = width;
-//		this.height = height;
-//		
-//		// construct a BufferedImage of the right size and type
-//		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-//		
-//		// make it all white to start with
-//		Graphics2D g2 = image.createGraphics();
-//		g2 = image.createGraphics();
-//		g2.setColor(Color.WHITE);
-//		g2.fillRect(0, 0, width, height);
-		
+		// init the image
 		initImage(width, height);
 		
 		// add mouse listeners
 		addMouseListener(this);
 		addMouseMotionListener(this);
 		
-		// use gridlayout, set the rows, columns and padding
+		// set the rows, columns and padding
 		setGridConstraints(rows, cols, hgap, vgap);
 		
+		// use the layout
 		this.setLayout(getGridLayout());
 		
 		// call viewHits to generate the image
@@ -124,27 +99,17 @@ public class HitViewerColour extends HitViewer {
 	 */
 	public HitViewerColour(int width, int height, int rows, int cols, int hgap, int vgap, int[][] escapeArray, boolean zooming) {
 		
-//		this.width = width;
-//		this.height = height;
-//		
-//		// construct a BufferedImage of the right size and type
-//		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-//		
-//		// make it all white to start with
-//		Graphics2D g2 = image.createGraphics();
-//		g2 = image.createGraphics();
-//		g2.setColor(Color.WHITE);
-//		g2.fillRect(0, 0, width, height);
-		
+		// init the image
 		initImage(width, height);
 		
 		// add mouse listeners
 		addMouseListener(this);
 		addMouseMotionListener(this);
 		
-		// use gridlayout, set the rows, columns and padding
+		// set the rows, columns and padding
 		setGridConstraints(rows, cols, hgap, vgap);
 		
+		// use the layout
 		this.setLayout(getGridLayout());
 		
 		// call viewHits to generate the image
