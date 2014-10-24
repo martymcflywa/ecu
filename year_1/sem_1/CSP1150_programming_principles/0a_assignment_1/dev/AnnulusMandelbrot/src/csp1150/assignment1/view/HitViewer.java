@@ -30,11 +30,11 @@ import javax.swing.SwingUtilities;
 public class HitViewer extends PanelGridLayout implements MouseListener, MouseMotionListener {
 
 	// declare image
-	protected BufferedImage image;
+	private BufferedImage image;
 	
 	// declare image width and height
-	protected int width;
-	protected int height;
+	private int width;
+	private int height;
 	
 	// declare the mouse position
 	private Point mousePt = new Point(width / 2, width / 2);
@@ -67,6 +67,33 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	 */
 	public HitViewer(int width, int height, int rows, int cols, int hgap, int vgap) {
 		
+//		// set the width and height
+//		this.width = width;
+//		this.height = height;
+//		
+//		// construct a BufferedImage of the right size and type
+//		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+//		
+//		// make it all white to start with
+//		Graphics2D g2 = image.createGraphics();
+//		g2 = image.createGraphics();
+//		g2.setColor(Color.WHITE);
+//		g2.fillRect(0, 0, width, height);
+		
+		initImage(width, height);
+		
+		// add mouse listeners to the panel
+		addMouseListener(this);
+		addMouseMotionListener(this);
+		
+		// use gridlayout, set the rows, columns and padding
+		setGridConstraints(rows, cols, hgap, vgap);
+		
+		this.setLayout(getGridLayout());
+	}
+	
+	protected final void initImage(int width, int height) {
+		
 		// set the width and height
 		this.width = width;
 		this.height = height;
@@ -79,15 +106,6 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 		g2 = image.createGraphics();
 		g2.setColor(Color.WHITE);
 		g2.fillRect(0, 0, width, height);
-		
-		// add mouse listeners to the panel
-		addMouseListener(this);
-		addMouseMotionListener(this);
-		
-		// use gridlayout, set the rows, columns and padding
-		setGridConstraints(rows, cols, hgap, vgap);
-		
-		this.setLayout(getGridLayout());
 	}
 	
 	/**
@@ -248,6 +266,28 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 			// repaint
 			me.getComponent().repaint();
 		}
+	}
+
+	/**
+	 * This method returns the image width.
+	 * 
+	 * @param args unused
+	 * @return int width.
+	 */
+	protected final int getImageWidth() {
+		
+		return width;
+	}
+	
+	/**
+	 * This method returns the image height.
+	 * 
+	 * @param args unused
+	 * @return int height.
+	 */
+	protected final int getImageHeight() {
+		
+		return height;
 	}
 	
 	/**

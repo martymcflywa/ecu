@@ -41,17 +41,19 @@ public class HitViewerColour extends HitViewer {
 	 */
 	public HitViewerColour(int width, int height, int rows, int cols, int hgap, int vgap) {
 		
-		this.width = width;
-		this.height = height;
+//		this.width = width;
+//		this.height = height;
+//		
+//		// construct a BufferedImage of the right size and type
+//		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+//		
+//		// make it all white to start with
+//		Graphics2D g2 = image.createGraphics();
+//		g2 = image.createGraphics();
+//		g2.setColor(Color.WHITE);
+//		g2.fillRect(0, 0, width, height);
 		
-		// construct a BufferedImage of the right size and type
-		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		
-		// make it all white to start with
-		Graphics2D g2 = image.createGraphics();
-		g2 = image.createGraphics();
-		g2.setColor(Color.WHITE);
-		g2.fillRect(0, 0, width, height);
+		initImage(width, height);
 		
 		// add mouse listeners
 		addMouseListener(this);
@@ -78,17 +80,19 @@ public class HitViewerColour extends HitViewer {
 	 */
 	public HitViewerColour(int width, int height, int rows, int cols, int hgap, int vgap, double[][] hits) {
 		
-		this.width = width;
-		this.height = height;
+//		this.width = width;
+//		this.height = height;
+//		
+//		// construct a BufferedImage of the right size and type
+//		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+//		
+//		// make it all white to start with
+//		Graphics2D g2 = image.createGraphics();
+//		g2 = image.createGraphics();
+//		g2.setColor(Color.WHITE);
+//		g2.fillRect(0, 0, width, height);
 		
-		// construct a BufferedImage of the right size and type
-		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		
-		// make it all white to start with
-		Graphics2D g2 = image.createGraphics();
-		g2 = image.createGraphics();
-		g2.setColor(Color.WHITE);
-		g2.fillRect(0, 0, width, height);
+		initImage(width, height);
 		
 		// add mouse listeners
 		addMouseListener(this);
@@ -120,17 +124,19 @@ public class HitViewerColour extends HitViewer {
 	 */
 	public HitViewerColour(int width, int height, int rows, int cols, int hgap, int vgap, int[][] escapeArray, boolean zooming) {
 		
-		this.width = width;
-		this.height = height;
+//		this.width = width;
+//		this.height = height;
+//		
+//		// construct a BufferedImage of the right size and type
+//		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+//		
+//		// make it all white to start with
+//		Graphics2D g2 = image.createGraphics();
+//		g2 = image.createGraphics();
+//		g2.setColor(Color.WHITE);
+//		g2.fillRect(0, 0, width, height);
 		
-		// construct a BufferedImage of the right size and type
-		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		
-		// make it all white to start with
-		Graphics2D g2 = image.createGraphics();
-		g2 = image.createGraphics();
-		g2.setColor(Color.WHITE);
-		g2.fillRect(0, 0, width, height);
+		initImage(width, height);
 		
 		// add mouse listeners
 		addMouseListener(this);
@@ -159,9 +165,9 @@ public class HitViewerColour extends HitViewer {
 			getRandomRGB();
 		}
 		
-		for(int x = 0; x < width; x++) {
+		for(int x = 0; x < this.getImageWidth(); x++) {
 			
-			for(int y = 0; y < height; y++) {
+			for(int y = 0; y < this.getImageHeight(); y++) {
                 
 				// set pixel to current escapetime value, add some randomness
 				int pixelR = escapeArray[x][y] * randomR / 25;
