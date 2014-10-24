@@ -10,8 +10,8 @@ import javax.swing.JFrame;
  * This class inherits from JFrame defines the Calculator Frame.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.3.0
- * @since 20141022
+ * @version 5.3.1
+ * @since 20141024
  */
 @SuppressWarnings("serial")
 public class CalculatorFrame extends JFrame {
@@ -19,7 +19,7 @@ public class CalculatorFrame extends JFrame {
 	/**
 	 * The constructor.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 */
 	public CalculatorFrame() {
 		

@@ -21,8 +21,8 @@ import csp1150.assignment1.view.*;
  * however the user may choose to view the image with random colours.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.3.0
- * @since 20141022
+ * @version 5.3.1
+ * @since 20141024
  */
 public class CalculatorMVC {
 	

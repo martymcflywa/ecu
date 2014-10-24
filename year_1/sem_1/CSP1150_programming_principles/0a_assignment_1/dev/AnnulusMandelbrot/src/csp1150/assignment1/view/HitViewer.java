@@ -22,8 +22,8 @@ import javax.swing.SwingUtilities;
  * Uses GridLayout manager.
  * 
  * @author Martin Ponce ID# 10371381 & Prof. Hingston
- * @version 5.3.0
- * @since 20141022
+ * @version 5.3.1
+ * @since 20141024
  */
 
 @SuppressWarnings("serial")
@@ -50,6 +50,8 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	
 	/**
 	 * Default constructor for inheritance.
+	 * 
+	 * @param args unused.
 	 */
 	public HitViewer() {
 		
@@ -327,7 +329,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	/**
 	 * Unused mouse event.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 */
 	public void mouseEntered(MouseEvent me) {
 		
@@ -336,7 +338,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	/**
 	 * Unused mouse event.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 */
 	public void mouseMoved(MouseEvent me) {
 		
@@ -345,7 +347,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	/**
 	 * Unused mouse event.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 */
 	public void mouseExited(MouseEvent me) {
 		

@@ -13,8 +13,8 @@ import javax.swing.*;
  * These values are used for gridbag layout.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.3.0
- * @since 20141022
+ * @version 5.3.1
+ * @since 20141024
  */
 @SuppressWarnings("serial")
 public class CalculatorTextField extends JTextField implements ConstraintsInterface {
@@ -53,6 +53,7 @@ public class CalculatorTextField extends JTextField implements ConstraintsInterf
 	 * 
 	 * This method returns the GridBagConstraints reference.
 	 * 
+	 * @param args unused.
 	 * @return GridBagConstraints gbc_textField.
 	 */
 	public final GridBagConstraints getConstraints() {

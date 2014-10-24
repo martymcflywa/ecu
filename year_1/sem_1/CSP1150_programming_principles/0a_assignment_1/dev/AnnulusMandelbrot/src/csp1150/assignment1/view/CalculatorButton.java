@@ -13,8 +13,8 @@ import javax.swing.*;
  * These values are used for gridbag layout.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.3.0
- * @since 20141022
+ * @version 5.3.1
+ * @since 20141024
  */
 @SuppressWarnings("serial")
 public class CalculatorButton extends JButton implements ConstraintsInterface {
@@ -24,6 +24,8 @@ public class CalculatorButton extends JButton implements ConstraintsInterface {
 	
 	/**
 	 * The default constructor for inheritance.
+	 * 
+	 * @param args unused.
 	 */
 	public CalculatorButton() {
 		
@@ -55,6 +57,7 @@ public class CalculatorButton extends JButton implements ConstraintsInterface {
 	 * 
 	 * This method returns the GridBagConstraints reference.
 	 * 
+	 * @param args unused.
 	 * @return GridBagConstraints gbc_button.
 	 */
 	public final GridBagConstraints getConstraints() {

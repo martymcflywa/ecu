@@ -11,8 +11,8 @@ import javax.swing.border.*;
  * This class ties all the view classes together to generate the view.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.3.0
- * @since 20141022
+ * @version 5.3.1
+ * @since 20141024
  */
 @SuppressWarnings("serial")
 public class CalculatorView extends JFrame {
@@ -110,7 +110,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method initializes the frames and panels of the view.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 */
 	private final void initFrame() {
 		
@@ -175,7 +175,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method initializes the labels of the view.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 */
 	private final void initLabels() {
 		
@@ -222,7 +222,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method initializes the user input controls for the view.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 */
 	private final void initControls() {
 		
@@ -343,7 +343,7 @@ public class CalculatorView extends JFrame {
 	 * This method returns user input for outer radius
 	 * from the view, parse as double.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 * @return double - Outer radius.
 	 */
 	public final double getAnnulusOutRadius() {
@@ -355,7 +355,7 @@ public class CalculatorView extends JFrame {
 	 * This method returns user input for inner radius
 	 * from the view, parse as double.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 * @return double - Inner radius.
 	 */
 	public final double getAnnulusInRadius() {
@@ -367,7 +367,7 @@ public class CalculatorView extends JFrame {
 	 * This method returns the annulus approx area result
 	 * from the view, parse as double.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 * @return double - The calculated approximate area of the annulus.
 	 */
 	public final double getAnnulusAreaCalc() {
@@ -411,6 +411,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns the annulus image.
 	 * 
+	 * @param args unused.
 	 * @return HitViewerGreyscale panelAnnulusImage.
 	 */
 	public final HitViewerGreyscale getPanelAnnulusImage() {
@@ -421,6 +422,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns the mandelbrot image.
 	 * 
+	 * @param args unused.
 	 * @return HitViewerColour panelMandelbrotImage.
 	 */
 	public final HitViewerColour getPanelMandelbrotImage() {
@@ -431,6 +433,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method adds action listeners to the buttons.
 	 * 
+	 * @param args unused.
 	 * @param ActionListener theListener.
 	 */
 	public final void addCalculatorListener(ActionListener theListener) {
@@ -451,6 +454,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns the annulus calculate button.
 	 * 
+	 * @param args unused.
 	 * @return CalculatorButton buttonAnnulusCalculate.
 	 */
 	public final CalculatorButton getButtonAnnulusCalculate() {
@@ -461,6 +465,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns the annulus zoom in button.
 	 * 
+	 * @param args unused.
 	 * @return CalculatorButtonCustom buttonAnnulusZoomIn.
 	 */
 	public final CalculatorButtonCustom getButtonAnnulusZoomIn() {
@@ -471,6 +476,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns the annulus zoom reset button.
 	 * 
+	 * @param args unused.
 	 * @return CalculatorButton buttonAnnulusZoomReset.
 	 */
 	public final CalculatorButton getButtonAnnulusZoomReset() {
@@ -481,6 +487,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns the annulus save button.
 	 * 
+	 * @param args unused.
 	 * @return CalculatorButton buttonAnnulusSave.
 	 */
 	public final CalculatorButton getButtonAnnulusSave() {
@@ -491,6 +498,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns the mandelbrot OK button.
 	 * 
+	 * @param args unused.
 	 * @return CalculatorButton buttonMandelbrotOK.
 	 */
 	public final CalculatorButton getButtonMandelbrotOK() {
@@ -501,6 +509,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns the mandelbrot calculate radio button.
 	 * 
+	 * @param args unused.
 	 * @return CalculatorRadioButton radioMandelbrotCalculate.
 	 */
 	public final CalculatorRadioButton getRadioMandelbrotCalculate() {
@@ -511,6 +520,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns the mandelbrot view image radio button.
 	 * 
+	 * @param args unused.
 	 * @return CalculatorRadioButton radioMandelbrotViewImage.
 	 */
 	public final CalculatorRadioButton getRadioMandelbrotViewImage() {
@@ -521,6 +531,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns the mandelbrot checkbox button.
 	 * 
+	 * @param args unused.
 	 * @return CalculatorCheckBox checkBoxMandelbrotRandomColour.
 	 */
 	public final CalculatorCheckBox getCheckBoxMandelbrotRandomColour() {
@@ -531,6 +542,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns the mandelbrot zoom in button.
 	 * 
+	 * @param args unused.
 	 * @return CalculatorButtonCustom buttonAnnulusZoomIn.
 	 */
 	public final CalculatorButtonCustom getButtonMandelbrotZoomIn() {
@@ -541,6 +553,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns the mandelbrot zoom reset button.
 	 * 
+	 * @param args unused.
 	 * @return CalculatorButton buttonMandelbrotResetImage.
 	 */
 	public final CalculatorButton getButtonMandelbrotZoomReset() {
@@ -551,6 +564,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns the mandelbrot save button.
 	 * 
+	 * @param args unused.
 	 * @return CalculatorButton buttonMandelbrotSave.
 	 */
 	public final CalculatorButton getButtonMandelbrotSave() {
@@ -561,6 +575,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns the annulus pixel zoom array.
 	 * 
+	 * @param args unused.
 	 * @return double[] pixelZoom.
 	 */
 	public final double[] getPixelZoomAnnulus() {
@@ -571,6 +586,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns the mandelbrot pixel zoom array.
 	 * 
+	 * @param args unused.
 	 * @return double[] pixelZoom.
 	 */
 	public final double[] getPixelZoomMandelbrot() {
@@ -581,6 +597,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns boolean mandelbrotColourImageExists;
 	 * 
+	 * @param args unused.
 	 * @return boolean mandelbrotColourImageExists.
 	 */
 	public final boolean getMandelbrotColourImageExists() {
@@ -601,6 +618,7 @@ public class CalculatorView extends JFrame {
 	/**
 	 * This method returns the zooming boolean.
 	 * 
+	 * @param args unused.
 	 * @return boolean zooming.
 	 */
 	public final boolean getImageZoomBool() {

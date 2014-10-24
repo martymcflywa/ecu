@@ -9,8 +9,8 @@ import java.awt.Insets;
  * These buttons need different gridbag constraints parameters which are modified in this subclass.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.3.0
- * @since 20141022
+ * @version 5.3.1
+ * @since 20141024
  */
 @SuppressWarnings("serial")
 public class CalculatorButtonCustom extends CalculatorButton {

@@ -4,8 +4,8 @@ package csp1150.assignment1.model;
  * Subclass of ShapeModel. Defines the Annulus shape.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.3.0
- * @since 20141022
+ * @version 5.3.1
+ * @since 20141024
  */
 public class AnnulusModel extends ShapeModel {
 	
@@ -23,7 +23,7 @@ public class AnnulusModel extends ShapeModel {
 	 * This method calculates the area using monte carlo estimation.
 	 * Max-min values control how zoomed in the shape is.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 */
 	public final void calcMonte() {
 		

@@ -7,8 +7,8 @@ package csp1150.assignment1.model;
  * in this class.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.3.0
- * @since 20141022
+ * @version 5.3.1
+ * @since 20141024
  */
 public class ShapeModel {
 
@@ -35,6 +35,8 @@ public class ShapeModel {
 	
 	/**
 	 * Default constructor for inheritance.
+	 * 
+	 * @param args unused.
 	 */
 	public ShapeModel() {
 		
@@ -210,8 +212,8 @@ public class ShapeModel {
 	/**
 	 * This method returns the area calculated using approximate estimation.
 	 * 
-	 * @param args unused
-	 * @return double areaApprox
+	 * @param args unused.
+	 * @return double areaApprox.
 	 */
 	public final double getApproxCalc() {
 		
@@ -221,8 +223,8 @@ public class ShapeModel {
 	/**
 	 * This method returns the area calculated using monte carlo method.
 	 * 
-	 * @param args unused
-	 * @return double areaMonte
+	 * @param args unused.
+	 * @return double areaMonte.
 	 */
 	public final double getMonteCalc() {
 		
@@ -232,7 +234,7 @@ public class ShapeModel {
 	/**
 	 * This method returns the hits array to be used for the hit view generator.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 * @return double[][] hits.
 	 */
 	public final double[][] getHitsArray() {
@@ -242,7 +244,7 @@ public class ShapeModel {
 	/**
 	 * This method returns the GRIDSIZE constant.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 * @return int GRIDSIZE.
 	 */
 	public final int getGridSize() {
@@ -252,7 +254,7 @@ public class ShapeModel {
 	/**
 	 * This method returns the SAMPLES constant.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 * @return int SAMPLES.
 	 */
 	protected final int getSamples() {
@@ -263,7 +265,7 @@ public class ShapeModel {
 	/**
 	 * This method returns minX.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 * @return double minX.
 	 */
 	protected final double getMinX() {
@@ -274,7 +276,7 @@ public class ShapeModel {
 	/**
 	 * This method returns minY.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 * @return double minY.
 	 */
 	protected final double getMinY() {
@@ -285,7 +287,7 @@ public class ShapeModel {
 	/**
 	 * This method returns maxX.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 * @return double maxX.
 	 */
 	protected final double getMaxX() {
@@ -296,7 +298,7 @@ public class ShapeModel {
 	/**
 	 * This method returns maxY.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 * @return double maxY.
 	 */
 	protected final double getMaxY() {
@@ -347,7 +349,7 @@ public class ShapeModel {
 	/**
 	 * This method resets the zoom values.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 */
 	public void resetImage() {
 		

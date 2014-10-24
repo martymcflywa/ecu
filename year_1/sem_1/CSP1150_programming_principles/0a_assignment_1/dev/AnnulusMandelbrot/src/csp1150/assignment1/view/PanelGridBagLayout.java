@@ -14,8 +14,8 @@ import javax.swing.JPanel;
  * These parameters are used for gridbag layout.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.3.0
- * @since 20141022
+ * @version 5.3.1
+ * @since 20141024
  */
 @SuppressWarnings("serial")
 public class PanelGridBagLayout extends JPanel implements ConstraintsInterface {
@@ -80,7 +80,7 @@ public class PanelGridBagLayout extends JPanel implements ConstraintsInterface {
 	 * 
 	 * This method returns the GridBagConstraints object.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 * @return GridBagConstraints gbc_panel.
 	 */
 	public final GridBagConstraints getConstraints() {
@@ -91,7 +91,7 @@ public class PanelGridBagLayout extends JPanel implements ConstraintsInterface {
 	/**
 	 * This method returns GridBagLayout.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 * @return GridBagLayout gbl_panel.
 	 */
 	public final GridBagLayout getGridBagLayout() {

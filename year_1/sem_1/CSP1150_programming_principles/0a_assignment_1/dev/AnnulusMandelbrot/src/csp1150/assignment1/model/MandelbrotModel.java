@@ -6,8 +6,8 @@ package csp1150.assignment1.model;
  * isInside() method.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.3.0
- * @since 20141022
+ * @version 5.3.1
+ * @since 20141024
  */
 public class MandelbrotModel extends ShapeModel {
 	
@@ -25,6 +25,8 @@ public class MandelbrotModel extends ShapeModel {
 	
 	/**
 	 * The Mandelbrot Model constructor.
+	 * 
+	 * @param args unused.
 	 */
 	public MandelbrotModel() {
 		
@@ -41,7 +43,7 @@ public class MandelbrotModel extends ShapeModel {
 	 * This method calculates the area using monte carlo estimation
 	 * for the mandelbrot.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 */
 	public final void calcMonte() {
 		
@@ -124,7 +126,7 @@ public class MandelbrotModel extends ShapeModel {
 	 * This method calculates the the area of a mandelbrot,
 	 * using the escape time method.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 */
 	public final void calcEscape() {
 		
@@ -198,7 +200,7 @@ public class MandelbrotModel extends ShapeModel {
 	 * 
 	 * This method resets the zoom values back to default values.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 */
 	@Override
 	public void resetImage() {

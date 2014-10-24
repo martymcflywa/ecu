@@ -9,8 +9,8 @@ import java.util.Random;
  * Uses GridLayout manager.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.3.0
- * @since 20141022
+ * @version 5.3.1
+ * @since 20141024
  */
 @SuppressWarnings("serial")
 public class HitViewerColour extends HitViewer {
@@ -122,7 +122,8 @@ public class HitViewerColour extends HitViewer {
 	/**
 	 * This method generates a random coloured image.
 	 * 
-	 * @param int[][] escapeArray
+	 * @param int[][] escapeArray - The escapeArray.
+	 * @param boolean zooming - Check this before generating new random colours.
 	 */
 	protected final void viewHitsRandomColour(int[][] escapeArray, boolean zooming) {
 		
@@ -155,7 +156,7 @@ public class HitViewerColour extends HitViewer {
 	 * This method generates random numbers,
 	 * to be used for randomizing rgb values.
 	 * 
-	 * @param args unused
+	 * @param args unused.
 	 */
 	private final void getRandomRGB() {
 		

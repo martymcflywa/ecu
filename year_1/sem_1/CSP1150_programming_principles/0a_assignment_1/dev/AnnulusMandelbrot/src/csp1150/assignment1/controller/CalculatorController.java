@@ -20,8 +20,8 @@ import csp1150.assignment1.view.*;
  * to the model and vice versa.
  * 
  * @author Martin Ponce ID# 10371381
- * @version 5.3.0
- * @since 20141022
+ * @version 5.3.1
+ * @since 20141024
  */
 public class CalculatorController {
 
@@ -38,9 +38,9 @@ public class CalculatorController {
 	/**
 	 * The controller constructor.
 	 * 
-	 * @param CalculatorView theView - The view object.
 	 * @param ShapeModel theAnnulusModel - The annulus model object.
 	 * @param ShapeModel theMandelbrotModel - The mandelbrot model object.
+	 * @param CalculatorView theView - The view object.
 	 */
 	public CalculatorController(ShapeModel theAnnulusModel, ShapeModel theMandelbrotModel, CalculatorView theView) {
 		
