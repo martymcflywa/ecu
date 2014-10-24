@@ -10,9 +10,6 @@ import java.awt.Rectangle;
 // for mouse position
 import java.awt.Point;
 
-// the layout manager
-import java.awt.GridLayout;
-
 // the event listener
 import java.awt.event.*;
 
@@ -88,7 +85,9 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 		addMouseMotionListener(this);
 		
 		// use gridlayout, set the rows, columns and padding
-		this.setLayout(theGridLayout = new GridLayout(rows, cols, hgap, vgap));
+		setGridConstraints(rows, cols, hgap, vgap);
+		
+		this.setLayout(getGridLayout());
 	}
 	
 	/**

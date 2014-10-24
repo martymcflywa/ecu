@@ -3,7 +3,6 @@ package csp1150.assignment1.view;
 // the graphic elements
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 
 // for random colours
@@ -59,7 +58,9 @@ public class HitViewerColour extends HitViewer {
 		addMouseMotionListener(this);
 		
 		// use gridlayout, set the rows, columns and padding
-		this.setLayout(theGridLayout = new GridLayout(rows, cols, hgap, vgap));
+		setGridConstraints(rows, cols, hgap, vgap);
+		
+		this.setLayout(getGridLayout());
 	}
 	
 	/**
@@ -94,7 +95,9 @@ public class HitViewerColour extends HitViewer {
 		addMouseMotionListener(this);
 		
 		// use gridlayout, set the rows, columns and padding
-		this.setLayout(theGridLayout = new GridLayout(rows, cols, hgap, vgap));
+		setGridConstraints(rows, cols, hgap, vgap);
+		
+		this.setLayout(getGridLayout());
 		
 		// call viewHits to generate the image
 		viewHits(hits);
@@ -134,7 +137,9 @@ public class HitViewerColour extends HitViewer {
 		addMouseMotionListener(this);
 		
 		// use gridlayout, set the rows, columns and padding
-		this.setLayout(theGridLayout = new GridLayout(rows, cols, hgap, vgap));
+		setGridConstraints(rows, cols, hgap, vgap);
+		
+		this.setLayout(getGridLayout());
 		
 		// call viewHits to generate the image
 		viewHitsRandomColour(escapeArray, zooming);

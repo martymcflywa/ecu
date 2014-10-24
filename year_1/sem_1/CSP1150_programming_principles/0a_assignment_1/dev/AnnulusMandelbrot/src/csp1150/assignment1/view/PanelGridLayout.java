@@ -17,8 +17,8 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class PanelGridLayout extends JPanel {
 	
-	// declare GridLayout
-	protected GridLayout theGridLayout;
+	// create GridLayout object with default constraints
+	private GridLayout theGridLayout = new GridLayout(2, 1, 20, 5);
 	
 	/**
 	 * Default constructor for inheritance.
@@ -39,8 +39,18 @@ public class PanelGridLayout extends JPanel {
 	 */
 	public PanelGridLayout(int rows, int cols, int hgap, int vgap) {
 		
-		// use gridlayout, set the rows, columns and padding
-		this.setLayout(theGridLayout = new GridLayout(rows, cols, hgap, vgap));
+		// set the rows, columns and padding
+		setGridConstraints(rows, cols, hgap, vgap);
+		
+		this.setLayout(theGridLayout);
+	}
+	
+	protected final void setGridConstraints(int rows, int cols, int hgap, int vgap) {
+		
+		theGridLayout.setRows(rows);
+		theGridLayout.setColumns(cols);
+		theGridLayout.setHgap(hgap);
+		theGridLayout.setVgap(vgap);
 	}
 	
 	/**
@@ -49,7 +59,7 @@ public class PanelGridLayout extends JPanel {
 	 * @param args unused
 	 * @return GridLayut theGridLayout.
 	 */
-	public GridLayout getGridLayout() {
+	protected final GridLayout getGridLayout() {
 		
 		return theGridLayout;
 	}
