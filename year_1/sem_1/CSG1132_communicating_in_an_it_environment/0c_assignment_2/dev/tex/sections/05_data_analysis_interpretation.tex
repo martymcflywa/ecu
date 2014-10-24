@@ -6,7 +6,7 @@ The sample initially consisted of 61 fictional under-graduate students from a Un
 
 Out of the 61 observations, five were excluded from the dataset with NA responses, and three observations were excluded with responses to the questionnaire as ``0'' (zero). The dataset was then screened for outliers, excluding two observations with reported Facebook logins greater than 50 per week. One observation was excluded, with reported hours spent on Facebook greater than 50 per week. Finally, two observations were excluded, with reported number of close friends greater than 70.
 
-This resulted in a final sample of 48 Facebook users, 3 female, 45 male (M = 0.938, SD = 0.2446) between the ages of 17 to 29 (M = 20.6, SD = 3.206543). Gender is coded as 0 = female and 1 = male in the dataset.
+This resulted in a final sample of 48 Facebook users, 3 female, 45 male (M = 0.938, SD = 0.245) between the ages of 17 to 29 (M = 20.6, SD = 3.206543). Gender is coded as 0 = female and 1 = male in the dataset.
 
 \subsection{Survey}
 
@@ -28,10 +28,10 @@ This research paper aims to explore the relationship between gender and network 
 
 \begin{itemize}
 \item \textbf{Gender:} The categorical variable with binary values, 0 = female or 1 = male.
-\item \textbf{Facebook Friends (FB friends):} Primary variable related to testing Thesis Statement 1.
+\item \textbf{Facebook Friends (FB Friends):} Primary variable related to testing Thesis Statement 1.
 \item \textbf{Close Friends:} Secondary variable related to testing Thesis Statement 1, exploring the possibility that gender is also related to number of close friends offline, and may provide further evidence for Thesis Statement 1.
 \item \textbf{Sociability:} Secondary variable related to testing Thesis Statement 1, exploring the possibility that gender may also have a correlation with Sociability, and may provide further evidence for Thesis Statement 1.
-\item \textbf{Facebook Hours:} Primary variable related to testing Thesis Statement 2.
+\item \textbf{Facebook Hours (FB Hours):} Primary variable related to testing Thesis Statement 2.
 \end{itemize}
 
 Table 1 provides centrality and variance measures of the selected variables.\\
@@ -39,12 +39,13 @@ Table 1 provides centrality and variance measures of the selected variables.\\
 \begin{table}[H]
 \centering
 \caption{Measures of centrality and variance}
-\begin{tabular}{r|l|l|l|l|l|l|l|l}
-Variable      & Min & Max & Mean   & Median & Mode & Std. Dev & Skew   & Kurt      \\ \hline
-Gender        & 0   & 1   & 0.9375 & 1      & 1    & 0.2446   & -3.502 & 10.49     \\ \hline
+\begin{tabular}{r|r|r|r|r|r|r|r|r}
+Variable      & Min & Max & Mean   & Median & Mode & Std. Dev & Skew   & Kurt    \\ \hline
+Gender        & 0   & 1   & 0.938  & 1      & 1    & 0.245    & -3.502 & 10.49   \\ \hline
 FB Friends    & 33  & 798 & 290.7  & 275    & 242  & 176.001  & 0.796  & 0.048   \\ \hline
-Close Friends & 6   & 53  & 21.73  & 19     & 23   & 12.29    & 0.967  & 0.148    \\ \hline
-Sociability   & 2   & 5   & 3.667  & 4      & 4    & 0.7532   & -0.563 & -0.009 \\ \hline
+Close Friends & 6   & 53  & 21.73  & 19     & 23   & 12.29    & 0.967  & 0.148   \\ \hline
+Sociability   & 2   & 5   & 3.667  & 4      & 4    & 0.7532   & -0.563 & -0.009  \\ \hline
+FB Hours      & 2   & 31  & 10.521 & 7      & 8    & 8.786    & 1.013  & -0.316  \\ \hline
 \end{tabular}
 \end{table}
 
@@ -52,7 +53,8 @@ Sociability   & 2   & 5   & 3.667  & 4      & 4    & 0.7532   & -0.563 & -0.009 
 
 %It is worth noting that men greatly outnumber women in this sample set by 15 to 1. Unfortunately, there is not enough female representation in the dataset to provide any meaningful conclusions in the tests to follow.
 
-With Gender coded as 0 = female and 1 = male, the Gender mean of 0.9375 demonstrates that the majority of participants within this dataset are men. Women only represent 3 of the total 48 observations and will pose a recurring limitation throughout this research paper.
+\newpage
+With Gender coded as 0 = female and 1 = male, the Gender mean of 0.938 demonstrates that the majority of participants within this dataset are men. Women only represent 3 of the total 48 observations and will pose a recurring limitation throughout this research paper.
 
 %With such a small number of female participants, there is not enough evidence to provide any meaningful conclusions when testing for any correlations between gender and the selected variables.
 
@@ -88,7 +90,7 @@ Figure 2 shows the histogram and normal q-q plot for Facebook Friends. The blue 
 Figure 3 shows the histogram and normal q-q plot for Close Friends. The blue curve overlay on the histogram demonstrates a non-normal distribution. The normal q-q plot also demonstrates a non-normal distribution, as the majority of data-points do not fall on the expected normal distribution line. Only non-parametric tests are applicable for this variable.
 
 \begin{figure}[H]
-\caption{Histogram and Normal Q-Q Plot: Facebook Friends}
+\caption{Histogram and Normal Q-Q Plot: Close Friends}
 \centering
 \includegraphics[scale=0.35]{./img/hist_closefriends.pdf}
 \includegraphics[scale=0.35]{./img/qqplot_closefriends.pdf}
@@ -174,7 +176,7 @@ To calculate the intercept at the $y$ axis:
 
 $$a = \bar{Y} - b\bar{X}$$ \linebreak
 
-Due to the reliance of the sample mean in linear regression analysis, the result for Facebook Friends has been influenced by the inclusion of a previously identified outlier score from a female participant. And while men and women both have a maximum score of 31 for Facebook Hours, the small number of female participants allowed the female Facebook Hours mean to increase higher than that of men. In spite of women having a much lower Close Friends maximum score than men, the small number of female participants also lead to an increased female Close Friends mean. Therefore, it is apparent that linear regression is not a suitable test, and there is simply not enough data from female participants to provide any conclusions.
+Due to the reliance of the sample mean in linear regression analysis, the result for Facebook Friends has been influenced by the inclusion of a previously identified outlier score from a female participant (Max = 798, female $\bar{X}$ = 505, N = 3, male $\bar{X}$ = 276.422, N = 45). In spite of women having a much lower Close Friends maximum score than men, the small number of female participants lead to an increased female Close Friends mean (female $\bar{X}$ = 25.333, male $\bar{X}$ = 21.489). And while men and women both have a maximum score of 31 for Facebook Hours, the small number of female participants also allowed the female Facebook Hours mean to increase higher than that of men (female $\bar{X}$ = 20, male $\bar{X}$ = 9.889). Therefore, it is apparent that linear regression is not a suitable test, and there is simply not enough data from female participants to provide any conclusions.
 
 \begin{figure}[H]
 \caption{Scatter Plots}
