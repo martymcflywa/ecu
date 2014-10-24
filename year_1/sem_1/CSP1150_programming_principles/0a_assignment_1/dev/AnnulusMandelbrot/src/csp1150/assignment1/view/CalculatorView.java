@@ -580,7 +580,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final double[] getPixelZoomAnnulus() {
 		
-			return panelAnnulusImage.getPixelZoom();
+		return panelAnnulusImage.getPixelZoom();
 	}
 	
 	/**
