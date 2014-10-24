@@ -1,5 +1,12 @@
 # AnnulusMandelbrot Calculator
 
+## v5.3.1 20141024
+
+- Resolved issue:
+	- If user viewing Mandelbrot image for the first time and has random colour ticked, and zoom area selected, clicking OK button will no longer generate a black image
+		- Changed the fields that hold the random values to be static so they are not reset every time a new image object is instantiated
+		- These fields are also preloaded with a random int so they do not give zero when initially called
+
 ## v5.3.0 20141022:
 
 - Resolved issues:
@@ -11,8 +18,8 @@
 
 ### Bug/s:
 
-- Zooming image with "Random colour" ticked without previously viewing a random colour image results in black image
-	- Need to update the controller to introduce random colours, could use mandelbrotColourImageExists to check
+- ~~Zooming image with "Random colour" ticked without previously viewing a random colour image results in black image~~
+	- ~~Need to update the controller to introduce random colours, could use mandelbrotColourImageExists to check~~
 
 ## v5.2.0 20141020:
 
