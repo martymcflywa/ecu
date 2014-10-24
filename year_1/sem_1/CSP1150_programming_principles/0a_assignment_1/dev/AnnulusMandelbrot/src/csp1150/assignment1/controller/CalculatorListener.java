@@ -60,7 +60,7 @@ public class CalculatorListener implements ActionListener {
 			theController.zoomInAnnulus();
 			
 		/**
-		 * Else if Annulus Reset Zoom button is clicked...
+		 * Else if Annulus Reset Image button is clicked...
 		 */
 			
 		} else if(e.getSource() == theView.getButtonAnnulusZoomReset()) {
@@ -68,7 +68,7 @@ public class CalculatorListener implements ActionListener {
 			theController.resetAnnulusImage();
 			
 		/**
-		 * Else if Annulus Save button is clicked...
+		 * Else if Annulus Save Image button is clicked...
 		 */
 		} else if(e.getSource() == theView.getButtonAnnulusSave()) {
 			
@@ -114,7 +114,7 @@ public class CalculatorListener implements ActionListener {
 			theController.resetMandelbrotImage();
 		
 		/**
-		 * Else if Mandelbrot Save button is clicked...
+		 * Else if Mandelbrot Save Image button is clicked...
 		 */
 		
 		} else if(e.getSource() ==  theView.getButtonMandelbrotSave()) {

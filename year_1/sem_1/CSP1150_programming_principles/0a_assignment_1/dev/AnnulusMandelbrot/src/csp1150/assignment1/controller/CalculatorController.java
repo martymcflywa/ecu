@@ -60,7 +60,7 @@ public class CalculatorController {
 	 * 
 	 * @param args unused.
 	 */
-	public final void calculateAnnulus() {
+	protected final void calculateAnnulus() {
 		
 		// init default values for annulus input fields
 		double outRadius = 0.0;
@@ -109,7 +109,7 @@ public class CalculatorController {
 	 * 
 	 * @param args unused.
 	 */
-	public final void zoomInAnnulus() {
+	protected final void zoomInAnnulus() {
 		
 		// if zoom area selected,
 		if(theView.getImageZoomBool()) {
@@ -139,7 +139,7 @@ public class CalculatorController {
 	 * 
 	 * @param args unused.
 	 */
-	public final void resetAnnulusImage() {
+	protected final void resetAnnulusImage() {
 		
 		// reset max-min to outer radius
 		theAnnulusModel.resetImage();
@@ -160,7 +160,7 @@ public class CalculatorController {
 	 * 
 	 * @param args unused.
 	 */
-	public final void calculateMandelbrot() {
+	protected final void calculateMandelbrot() {
 		
 		// if calculate radio is selected,
 		if(theView.getRadioMandelbrotCalculate().isSelected()) {
@@ -235,7 +235,7 @@ public class CalculatorController {
 	 * 
 	 * @param args unused.
 	 */
-	public final void zoomInMandelbrot() {
+	protected final void zoomInMandelbrot() {
 		
 		// if zoom area selected,
 		if(theView.getImageZoomBool()) {
@@ -284,7 +284,7 @@ public class CalculatorController {
 	 * 
 	 * @param args unused.
 	 */
-	public final void resetMandelbrotImage() {
+	protected final void resetMandelbrotImage() {
 		
 		// reset max-min to outer radius
 		theMandelbrotModel.resetImage();
@@ -306,7 +306,7 @@ public class CalculatorController {
 	 * @param Component c - The component to capture.
 	 * @return BufferedImage theImage - returns image of captured component.
 	 */
-	public final BufferedImage getComponentImage(Component c) {
+	protected final BufferedImage getComponentImage(Component c) {
 		
 		// create new buffered image, use component width and height minus padding
 		BufferedImage theImage = new BufferedImage(c.getWidth() - 10, c.getHeight() - 9, BufferedImage.TYPE_INT_ARGB);
@@ -325,7 +325,7 @@ public class CalculatorController {
 	 * @param Component c - The component to save.
 	 * @throws Exception
 	 */
-	public final void saveComponentImage(Component c, String filename) throws Exception {
+	protected final void saveComponentImage(Component c, String filename) throws Exception {
 		
 		// create new buffered image, call getComponentImage
 		BufferedImage savedImage = getComponentImage(c);
