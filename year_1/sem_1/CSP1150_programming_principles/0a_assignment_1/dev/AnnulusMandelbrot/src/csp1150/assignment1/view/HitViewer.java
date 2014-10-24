@@ -78,7 +78,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 		setGridConstraints(rows, cols, hgap, vgap);
 		
 		// use the layout
-		this.setLayout(getGridLayout());
+		setLayout(getGridLayout());
 	}
 	
 	/**

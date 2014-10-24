@@ -36,7 +36,7 @@ public class HitViewerGreyscale extends HitViewer {
 		setGridConstraints(rows, cols, hgap, vgap);
 		
 		// use the layout
-		this.setLayout(getGridLayout());
+		setLayout(getGridLayout());
 	}
 	
 	/**
@@ -66,7 +66,7 @@ public class HitViewerGreyscale extends HitViewer {
 		setGridConstraints(rows, cols, hgap, vgap);
 		
 		// use the layout
-		this.setLayout(getGridLayout());
+		setLayout(getGridLayout());
 		
 		// call viewHits to generate the image
 		viewHits(hits);

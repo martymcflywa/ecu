@@ -47,7 +47,7 @@ public class HitViewerColour extends HitViewer {
 		setGridConstraints(rows, cols, hgap, vgap);
 		
 		// use the layout
-		this.setLayout(getGridLayout());
+		setLayout(getGridLayout());
 	}
 	
 	/**
@@ -76,7 +76,7 @@ public class HitViewerColour extends HitViewer {
 		setGridConstraints(rows, cols, hgap, vgap);
 		
 		// use the layout
-		this.setLayout(getGridLayout());
+		setLayout(getGridLayout());
 		
 		// call viewHits to generate the image
 		viewHits(hits);
@@ -110,7 +110,7 @@ public class HitViewerColour extends HitViewer {
 		setGridConstraints(rows, cols, hgap, vgap);
 		
 		// use the layout
-		this.setLayout(getGridLayout());
+		setLayout(getGridLayout());
 		
 		// call viewHits to generate the image
 		viewHitsRandomColour(escapeArray, zooming);
