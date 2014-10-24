@@ -189,7 +189,7 @@ Due to the reliance of the sample mean in linear regression analysis, the result
 
 \subsubsection{Spearman's correlation coefficient}
 
-A non-parametric correlation test has been selected to identify any correlation between Gender and Facebook Friends, Close Friends, Sociability or Facebook Hours. Table 3 displays the non-parametric Spearman's correlation coefficient results for each variable compared with Gender. A one-tailed test has been chosen due to the expectation that women will have higher scores than men, as seen in Figure 6. 
+A non-parametric correlation test has been selected to identify any correlation between Gender and Facebook Friends, Close Friends, Sociability or Facebook Hours. Table 2 displays the non-parametric Spearman's correlation coefficient results for each variable compared with Gender. A one-tailed test has been chosen due to the expectation that women will have higher scores than men, as seen in Figure 6. 
 
 $r_s$ is calculated by ranking the scores, then calculating the correlation coefficient using the following formula \citep[p. 359]{Gauthier2001}, where $d$ = the difference between each pair of ranks from the values of variables $x$ and $y$, and $n$ = the number of paired values in the sample:
 
@@ -226,7 +226,7 @@ Since all variables being tested are non-normally distributed, Spearman's non-pa
 
 %wilcox.test(FB_friends ~ Gender, alt="g", conf.int=T) R-code
 
-A non-parametric independent samples test has been selected to test the null hypothesis that the distribution of scores of the selected variables between men and women are equal \citep{Coolican2014}. A one-tail test has been chosen due to the expectation that women will have higher scores than men, as seen in Figure 6. The results of this test are shown in Table 4. 
+A non-parametric independent samples test has been selected to test the null hypothesis that the distribution of scores of the selected variables between men and women are equal \citep{Coolican2014}. A one-tail test has been chosen due to the expectation that women will have higher scores than men, as seen in Figure 6. The results of this test are shown in Table 3. 
 
 \begin{table}[H]
 \centering
@@ -240,4 +240,4 @@ FB Hours      & 95.5 & 0.1197  \\ \hline
 \end{tabular}
 \end{table}
 
-Similar insignificant p-values $> \alpha = 0.05$ are found to those of the Spearman's correlation coefficient test, seen in Table 3. While it is possible to conclude that the null hypothesis survives, there is not enough female observations in the dataset to provide conclusive evidence that these test results are accurate.
+Similar insignificant p-values $> \alpha = 0.05$ are found to those of the Spearman's correlation coefficient test, seen in Table 2. While it is possible to conclude that the null hypothesis survives, there is not enough female observations in the dataset to provide conclusive evidence that these test results are accurate.
