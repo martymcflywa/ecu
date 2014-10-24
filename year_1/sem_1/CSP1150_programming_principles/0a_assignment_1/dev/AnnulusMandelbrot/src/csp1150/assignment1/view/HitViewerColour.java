@@ -18,10 +18,13 @@ public class HitViewerColour extends HitViewer {
 	// create static random object
 	private static Random randomRGB = new Random();
 	
-	// init random values
-	private int randomR = randomRGB.nextInt(255 - 0) + 1;
-	private int randomG = randomRGB.nextInt(255 - 0) + 1;
-	private int randomB = randomRGB.nextInt(255 - 0) + 1;
+	/*
+	 * Declare static variables for each random colour so they are not reset when instantiated,
+	 * preload with random values to stop black images being shown.
+	 */
+	private static int randomR = randomRGB.nextInt(255 - 0) + 1;
+	private static int randomG = randomRGB.nextInt(255 - 0) + 1;
+	private static int randomB = randomRGB.nextInt(255 - 0) + 1;
 
 	/**
 	 * Construct the panel which contains the image.
