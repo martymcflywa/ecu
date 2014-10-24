@@ -42,7 +42,8 @@ public class PanelGridLayout extends JPanel {
 		// set the rows, columns and padding
 		setGridConstraints(rows, cols, hgap, vgap);
 		
-		this.setLayout(theGridLayout);
+		// use the layout
+		setLayout(theGridLayout);
 	}
 	
 	protected final void setGridConstraints(int rows, int cols, int hgap, int vgap) {
@@ -57,7 +58,7 @@ public class PanelGridLayout extends JPanel {
 	 * This method returns the GridLayout object.
 	 * 
 	 * @param args unused
-	 * @return GridLayut theGridLayout.
+	 * @return GridLayout theGridLayout.
 	 */
 	protected final GridLayout getGridLayout() {
 		
