@@ -1,7 +1,7 @@
 package csp1150.assignment1.model;
 
 /**
- * This class defines the shape model.
+ * Superclass. This class defines the shape model.
  * The shape's attributes are saved here,
  * and all calculation is handled by the methods
  * in this class.
@@ -19,17 +19,17 @@ public class ShapeModel {
 	// declare 2d array
 	private double[][] hits = new double[GRIDSIZE][GRIDSIZE];
 	
-	// these fields hold user input values
+	// declare fields to hold user input
 	private double outRadius;
 	private double inRadius;
 	
-	// these fields hold the max-min values aka zoom values
+	// declare fields to hold min-max, aka zoom
 	private double minX;
 	private double minY;
 	private double maxX;
 	private double maxY;
 	
-	// these fields hold the calculated values
+	// declare fields to hold calculated output
 	private double areaApprox;
 	private double areaMonte;
 	
@@ -69,7 +69,7 @@ public class ShapeModel {
 	
 	/**
 	 * This method calculates the area using approximate estimation.
-	 * Max-min values control how zoomed in the shape is.
+	 * Min-max values control zoom level.
 	 * 
 	 * @param double minX - The min X coordinate.
 	 * @param double minY - The min Y coordinate.
@@ -107,7 +107,7 @@ public class ShapeModel {
 	
 	/**
 	 * This method calculates the area using monte carlo estimation.
-	 * Max-min values control how zoomed in the shape is.
+	 * Min-max values control zoom level.
 	 * 
 	 * @param double minX - The min X coordinate.
 	 * @param double minY - The min Y coordinate.

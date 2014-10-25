@@ -47,7 +47,7 @@ public class HitViewerColour extends HitViewer {
 		addMouseMotionListener(this);
 		
 		// set the rows, columns and padding
-		setGridConstraints(rows, cols, hgap, vgap);
+		setGridLayoutConstraints(rows, cols, hgap, vgap);
 		
 		// use the layout
 		setLayout(getGridLayout());
@@ -76,7 +76,7 @@ public class HitViewerColour extends HitViewer {
 		addMouseMotionListener(this);
 		
 		// set the rows, columns and padding
-		setGridConstraints(rows, cols, hgap, vgap);
+		setGridLayoutConstraints(rows, cols, hgap, vgap);
 		
 		// use the layout
 		setLayout(getGridLayout());
@@ -110,7 +110,7 @@ public class HitViewerColour extends HitViewer {
 		addMouseMotionListener(this);
 		
 		// set the rows, columns and padding
-		setGridConstraints(rows, cols, hgap, vgap);
+		setGridLayoutConstraints(rows, cols, hgap, vgap);
 		
 		// use the layout
 		setLayout(getGridLayout());
@@ -125,7 +125,7 @@ public class HitViewerColour extends HitViewer {
 	 * @param int[][] escapeArray - The escapeArray.
 	 * @param boolean zooming - Check this before generating new random colours.
 	 */
-	protected final void viewHitsRandomColour(int[][] escapeArray, boolean zooming) {
+	private final void viewHitsRandomColour(int[][] escapeArray, boolean zooming) {
 		
 		// if not zooming, 
 		if(!zooming) {

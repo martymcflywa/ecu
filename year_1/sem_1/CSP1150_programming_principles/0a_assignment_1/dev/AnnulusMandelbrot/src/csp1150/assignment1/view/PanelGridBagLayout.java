@@ -9,9 +9,9 @@ import java.awt.Insets;
 import javax.swing.JPanel;
 
 /**
- * This class inherits from JPanel. The constructor is overloaded to accept
- * gridbag constraints parameters which are stored in gbc_panel.
- * These parameters are used for gridbag layout.
+ * This class inherits from JPanel and creates panels that use GridBagLayout manager. 
+ * The constructor is overloaded to accept GridBagConstraints parameters which are stored in gbc_panel.
+ * These parameters are used for GridBagLayout.
  * 
  * @author Martin Ponce ID# 10371381
  * @version 5.3.1
@@ -89,7 +89,7 @@ public class PanelGridBagLayout extends JPanel implements ConstraintsInterface {
 	}
 	
 	/**
-	 * This method returns GridBagLayout.
+	 * This method returns the GridBagLayout object.
 	 * 
 	 * @param args unused.
 	 * @return GridBagLayout gbl_panel.

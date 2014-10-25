@@ -7,8 +7,8 @@ import java.awt.GridLayout;
 import javax.swing.JPanel;
 
 /**
- * This class inherits from JPanel. The constructor accepts
- * GridLayout constraints parameters which are stored in theGridLayout.
+ * This class inherits from JPanel and creates panels that use GridLayout manager.
+ * The constructor accepts GridLayout constraints parameters which are stored in theGridLayout.
  * 
  * @author Martin Ponce ID# 10371381
  * @version 5.3.1
@@ -33,22 +33,29 @@ public class PanelGridLayout extends JPanel {
 	 * The panel constructor. 
 	 * Used for panels that are direct children of CalculatorFrame.
 	 * 
-	 * @param JFrame theFrame - The parent frame.
-	 * @param int rows - GridLayoutConstraints: How many rows in grid.
-	 * @param int cols - GridLayoutConstraints: How many columns in grid.
-	 * @param int hgap - GridLayoutConstraints: Horizontal padding, pixels.
-	 * @param int vgap - GridLayoutConstraints: Vertical padding, pixels.
+	 * @param int rows - GridLayout constraints: How many rows in grid.
+	 * @param int cols - GridLayout constraints: How many columns in grid.
+	 * @param int hgap - GridLayout constraints: Horizontal padding, pixels.
+	 * @param int vgap - GridLayout constraints: Vertical padding, pixels.
 	 */
 	public PanelGridLayout(int rows, int cols, int hgap, int vgap) {
 		
 		// set the rows, columns and padding
-		setGridConstraints(rows, cols, hgap, vgap);
+		setGridLayoutConstraints(rows, cols, hgap, vgap);
 		
 		// use the layout
 		setLayout(theGridLayout);
 	}
 	
-	protected final void setGridConstraints(int rows, int cols, int hgap, int vgap) {
+	/**
+	 * This method sets the GridLayout constraints.
+	 * 
+	 * @param int rows - GridLayout constraints: How many rows in grid.
+	 * @param int cols - GridLayout constraints: How many columns in grid.
+	 * @param int hgap - GridLayout constraints: Horizontal padding, pixels.
+	 * @param int vgap - GridLayout constraints: Vertical padding, pixels.
+	 */
+	protected final void setGridLayoutConstraints(int rows, int cols, int hgap, int vgap) {
 		
 		theGridLayout.setRows(rows);
 		theGridLayout.setColumns(cols);

@@ -62,10 +62,10 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	 * 
 	 * @param int width - The grid width.
 	 * @param int height - The grid height.
-	 * @param int rows - GridLayoutConstraints: How many rows in the grid.
-	 * @param int cols - GridLayoutConstraints: How many columns in the grid.
-	 * @param int hgap - GridLayoutConstraints: Horizontal padding, pixels.
-	 * @param int vgap - GridLayoutConstraints: Vertical padding, pixels.
+	 * @param int rows - GridLayout constraints: How many rows in the grid.
+	 * @param int cols - GridLayout constraints: How many columns in the grid.
+	 * @param int hgap - GridLayout constraints: Horizontal padding, pixels.
+	 * @param int vgap - GridLayout constraints: Vertical padding, pixels.
 	 */
 	public HitViewer(int width, int height, int rows, int cols, int hgap, int vgap) {
 		
@@ -77,7 +77,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 		addMouseMotionListener(this);
 		
 		// set the rows, columns and padding
-		setGridConstraints(rows, cols, hgap, vgap);
+		setGridLayoutConstraints(rows, cols, hgap, vgap);
 		
 		// use the layout
 		setLayout(getGridLayout());

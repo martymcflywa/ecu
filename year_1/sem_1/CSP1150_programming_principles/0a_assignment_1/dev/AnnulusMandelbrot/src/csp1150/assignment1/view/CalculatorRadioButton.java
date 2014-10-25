@@ -25,14 +25,14 @@ public class CalculatorRadioButton extends JRadioButton implements ConstraintsIn
 	/**
 	 * The constructor.
 	 * 
-	 * @param String buttonName - The button name.
+	 * @param String radioButtonName - The button name.
 	 * @param int gridx - GridBagConstraints: The column position.
 	 * @param int gridy - GridBagConstraints: The row position.
 	 */
-	public CalculatorRadioButton(String buttonName, int gridx, int gridy) {
+	public CalculatorRadioButton(String radioButtonName, int gridx, int gridy) {
 		
 		// set the button text
-		this.setText(buttonName);
+		this.setText(radioButtonName);
 		
 		// create gridbag constraints
 		gbc_radioButton = new GridBagConstraints();

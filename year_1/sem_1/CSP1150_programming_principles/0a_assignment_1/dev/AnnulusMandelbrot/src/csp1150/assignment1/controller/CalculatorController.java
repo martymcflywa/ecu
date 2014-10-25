@@ -114,10 +114,10 @@ public class CalculatorController {
 		// if zoom area selected,
 		if(theView.getImageZoomBool()) {
 			
-			// set new max-mins to the model
+			// set new min-max to the model
 			theAnnulusModel.setZoom(theView.getPixelZoomAnnulus());
 			
-			// recalculate using new max-mins
+			// recalculate using new min-max
 			theAnnulusModel.calcMonte();
 			
 			// refresh the greyscale image
@@ -126,7 +126,7 @@ public class CalculatorController {
 			// operation done, set image zoom boolean to false
 			theView.setImageZoomBool(false);
 			
-		// else,
+		// else zoom area is not selected,
 		} else {
 			
 			// display error message
@@ -141,10 +141,10 @@ public class CalculatorController {
 	 */
 	protected final void resetAnnulusImage() {
 		
-		// reset max-min to outer radius
+		// reset min-max to outer radius
 		theAnnulusModel.resetImage();
 		
-		// recalculate using default max-mins
+		// recalculate using default min-max
 		theAnnulusModel.calcMonte();
 		
 		// refresh the greyscale image
@@ -213,7 +213,7 @@ public class CalculatorController {
 						// operation done, set image zoom boolean to false
 						theView.setImageZoomBool(false);
 						
-					// else
+					// else mandelbrot colour image not yet generated,
 					} else {
 						
 						// refresh the greyscale image
@@ -221,7 +221,7 @@ public class CalculatorController {
 					}
 				}
 			
-			// else,
+			// else mandelbrot area not calculated yet,
 			} else {
 				
 				// tell user to calculate area first
@@ -271,7 +271,7 @@ public class CalculatorController {
 			// operation done, set image zoom boolean to false
 			theView.setImageZoomBool(false);
 		
-		// else,
+		// else zoom area is not selected,
 		} else {
 			
 			// display error message
@@ -286,17 +286,27 @@ public class CalculatorController {
 	 */
 	protected final void resetMandelbrotImage() {
 		
-		// reset max-min to outer radius
-		theMandelbrotModel.resetImage();
+		// if mandelbrot area is already calculated,
+		if(mandelbrotIsCalculated) {
 		
-		// recalculate using default max-mins
-		theMandelbrotModel.calcMonte();
+			// reset min-max to defaults
+			theMandelbrotModel.resetImage();
+			
+			// recalculate using default min-max
+			theMandelbrotModel.calcMonte();
+			
+			// refresh the greyscale image
+			theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
+			
+			// operation done, set image zoom boolean to false
+			theView.setImageZoomBool(false);
 		
-		// refresh the greyscale image
-		theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
-		
-		// operation done, set image zoom boolean to false
-		theView.setImageZoomBool(false);
+		// else mandelbrot area not calculated yet,	
+		} else {
+			
+			// tell user to calculate area first
+			theView.displayErrorMessage("Calculate Mandelbrot area first!");
+		}
 	}
 	
 	/**

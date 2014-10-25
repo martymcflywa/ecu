@@ -25,14 +25,14 @@ public class CalculatorCheckBox extends JCheckBox implements ConstraintsInterfac
 	/**
 	 * The constructor.
 	 * 
-	 * @param String buttonName - The button name.
+	 * @param String checkBoxName - The button name.
 	 * @param int gridx - GridBagConstraints: The column position.
 	 * @param int gridy - GridBagConstraints: The row position.
 	 */
-	public CalculatorCheckBox(String buttonName, int gridx, int gridy) {
+	public CalculatorCheckBox(String checkBoxName, int gridx, int gridy) {
 		
 		// set the button text
-		this.setText(buttonName);
+		this.setText(checkBoxName);
 		
 		// create gridbag constraints
 		gbc_checkBox = new GridBagConstraints();

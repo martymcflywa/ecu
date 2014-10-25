@@ -274,7 +274,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final void refreshAnnulusImage(double[][] hits) {
 		
-		// remove panel from parent container
+		// remove current image from parent container
 		panelAnnulusImageContainer.remove(panelAnnulusImage);
 		
 		// create new image, pass gridsize, grid constraints and hits array as arguments
@@ -294,7 +294,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final void refreshMandelbrotImage(double[][] hits) {
 		
-		// remove panel from parent container
+		// remove current image from parent container
 		panelMandelbrotImageContainer.remove(panelMandelbrotImage);
 		
 		// create new greyscale image, pass gridsize, grid constraints and hits array as arguments
@@ -306,7 +306,8 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
-	 * Overloading refreshMandelbrotImage to accept escapeArray as argument.
+	 * Overloading refreshMandelbrotImage to accept escapeArray and zooming boolean as argument.
+	 * Zooming boolean is checked before randomizing colour.
 	 * 
 	 * This method refreshes the colour mandelbrot image. Removes current image panels
 	 * from the parent container, then creates a new image, passing
@@ -317,7 +318,7 @@ public class CalculatorView extends JFrame {
 	 */
 	public final void refreshMandelbrotImage(int[][] escapeArray, boolean zooming) {
 		
-		// remove panel from parent container
+		// remove current image from from parent container
 		panelMandelbrotImageContainer.remove(panelMandelbrotImage);
 		
 		// create new colour image, pass gridsize, grid constraints and escapeArray as arguments

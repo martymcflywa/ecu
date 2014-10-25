@@ -7,7 +7,7 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 
 /**
- * This class inherits from JFrame defines the Calculator Frame.
+ * This class inherits from JFrame and defines the Calculator Frame.
  * 
  * @author Martin Ponce ID# 10371381
  * @version 5.3.1
