@@ -1,21 +1,29 @@
 # AnnulusMandelbrot Calculator
 
+### CSP1150 Assignment 1 - Martin Ponce, Student 10371381
+
 ## Features:
 
 - Designed and written in MVC pattern
 - GUI for both Annulus and Mandelbrot calculator
 - Annulus calculator allows user to input outer and inner radius
-	- Image is then displayed
-	- Error message when no values are entered
-	- Error message when outer radius is less than inner radius
+	- Calculates area using approximate and monte carlo estimation
+		- Error message when no values are entered
+		- Error message when outer radius is less than inner radius
+	- Displays image after calculation
 - Mandelbrot calculator has fixed dimensions, always calculates the same size at default zoom level
-	- Mandelbrot can generate random coloured image
-- User can click and drag on either image to draw rectangle
-	- Rectangle selects zoom area
-	- Zoom is confirmed with "Zoom In" button
-- User can reset image, which resets zoom and reverts to greyscale image
+	- Calculates area using monte carlo estimation
+	- User can then view image of Mandelbrot
+		- Area must be calculated first
+- The images can be manipulated
+	- User can left click and drag on either image to draw rectangle
+		- Rectangle selects zoom area
+		- Zoom is confirmed with "Zoom In" button
+			- Error message when no zoom area selected and "Zoom In" button is clicked
+		- User can reset image, which resets zoom and reverts to greyscale image
+	- Mandelbrot image can be generated with random colours
 - User can save either Annulus or Mandelbrot image separately
-	- JOptionPane notifies user where file is saved
+	- Message notifies user where file is saved
 
 ## TODO:
 
@@ -29,29 +37,33 @@
 	- Changed the fields that hold the random values to be static so they are not reset every time a new image object is instantiated
 	- These fields are also preloaded with a random int so they do not give zero when initially called
 
-## v5.3.0 20141022:
+## v5.3.0 20141022
 
 ### Resolved issues:
 
 - Colour is no longer randomized while zooming
-- User must calculate area before viewing greyscale or colour image
+- User must now calculate Mandelbrot area first before viewing greyscale or colour image
 	- Error message notifies user
 - User must select zoom area first before zooming in
 	- Error message notifies user
 
 ### Bug/s:
 
+Listed bugs fixed, see resolved issues above.
+
 - ~~Zooming image with "Random colour" ticked without previously viewing a random colour image results in black image~~
 	- ~~Need to update the controller to introduce random colours, could use mandelbrotColourImageExists to check~~
 
-## v5.2.0 20141020:
+## v5.2.0 20141020
 
 ### Bug/s:
 
-1. ~~Fix issue where user can generate coloured image without calculating Mandelbrot area first~~
-2. ~~Fix issue where zooming while random colour is ticked, colour changes~~
+Listed bugs fixed, see resolved issues above.
+
+1. ~~User can generate coloured image without calculating Mandelbrot area first~~
+2. ~~Zooming while random colour is ticked, colour changes~~
 	- ~~Colour shouldn't change while zooming~~
-3. ~~Stop "Zoom In" button from working if no zoom selection has been made~~
+3. ~~"Zoom In" button still works even though no zoom selection has been made~~
 
 ## Screenshots
 
