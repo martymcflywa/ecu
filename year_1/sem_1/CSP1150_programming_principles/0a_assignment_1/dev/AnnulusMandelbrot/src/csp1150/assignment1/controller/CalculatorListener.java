@@ -72,16 +72,11 @@ public class CalculatorListener implements ActionListener {
 		 */
 		} else if(e.getSource() == theView.getButtonAnnulusSave()) {
 			
-			// capture image being displayed on component
-			theController.getComponentImage(theView.getPanelAnnulusImage());
-			
-			// try this first,
+			// try saving image first,
 			try {
-				
-				// save image as AnnulusImage.png (at project root)
-				// TODO: replace with JFileChooser
-				theController.saveComponentImage(theView.getPanelAnnulusImage(), "AnnulusImage.png");
-				
+			
+				theController.saveImage(theView.getPanelAnnulusImage(), "AnnulusImage.png");
+			
 			// if exception thrown,
 			} catch(Exception ex) {
 				
@@ -119,16 +114,11 @@ public class CalculatorListener implements ActionListener {
 		
 		} else if(e.getSource() ==  theView.getButtonMandelbrotSave()) {
 			
-			// capture image being displayed on component
-			theController.getComponentImage(theView.getPanelMandelbrotImage());
-			
-			// try this first,
+			// try saving image first,
 			try {
-				
-				// save image as MandelbrotImage.png (at project root)
-				// TODO: replace with JFileChooser
-				theController.saveComponentImage(theView.getPanelMandelbrotImage(), "MandelbrotImage.png");
-				
+			
+				theController.saveImage(theView.getPanelMandelbrotImage(), "MandelbrotImage.png");
+			
 			// if exception thrown,
 			} catch(Exception ex) {
 				

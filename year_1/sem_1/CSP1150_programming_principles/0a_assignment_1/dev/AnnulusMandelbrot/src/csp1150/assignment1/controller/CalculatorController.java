@@ -300,13 +300,28 @@ public class CalculatorController {
 	}
 	
 	/**
+	 * This method defines actions when the save image button is clicked.
+	 * 
+	 * @param Component c - The component that contains the image.
+	 * @param String filename - The filename for the file.
+	 * @throws Exception
+	 */
+	protected final void saveImage(Component c, String filename) throws Exception {
+		
+		// call getComponentImage, pass component
+		getComponentImage(c);
+		
+		// call saveComponentImage, pass component and filename
+		saveComponentImage(c, filename);
+	}
+	
+	/**
 	 * This method captures an image of a component.
-	 * TODO: try consolidating getComponentImage and saveComponentImage as one method, and one BufferedImage.
 	 * 
 	 * @param Component c - The component to capture.
 	 * @return BufferedImage theImage - returns image of captured component.
 	 */
-	protected final BufferedImage getComponentImage(Component c) {
+	private final BufferedImage getComponentImage(Component c) {
 		
 		// create new buffered image, use component width and height minus padding
 		BufferedImage theImage = new BufferedImage(c.getWidth() - 10, c.getHeight() - 9, BufferedImage.TYPE_INT_ARGB);
@@ -325,7 +340,7 @@ public class CalculatorController {
 	 * @param Component c - The component to save.
 	 * @throws Exception
 	 */
-	protected final void saveComponentImage(Component c, String filename) throws Exception {
+	private final void saveComponentImage(Component c, String filename) throws Exception {
 		
 		// create new buffered image, call getComponentImage
 		BufferedImage savedImage = getComponentImage(c);
