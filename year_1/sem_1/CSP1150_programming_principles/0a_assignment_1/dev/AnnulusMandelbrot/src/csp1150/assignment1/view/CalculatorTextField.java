@@ -32,7 +32,7 @@ public class CalculatorTextField extends JTextField implements ConstraintsInterf
 	public CalculatorTextField(int length, int gridx, int gridy) {
 
 		// set textfield length
-		this.setColumns(length);
+		setColumns(length);
 		
 		// create gridbag constraints
 		gbc_textField = new GridBagConstraints();

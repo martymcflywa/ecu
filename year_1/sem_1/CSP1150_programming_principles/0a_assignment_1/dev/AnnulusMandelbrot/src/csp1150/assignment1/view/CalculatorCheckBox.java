@@ -32,7 +32,7 @@ public class CalculatorCheckBox extends JCheckBox implements ConstraintsInterfac
 	public CalculatorCheckBox(String checkBoxName, int gridx, int gridy) {
 		
 		// set the button text
-		this.setText(checkBoxName);
+		setText(checkBoxName);
 		
 		// create gridbag constraints
 		gbc_checkBox = new GridBagConstraints();

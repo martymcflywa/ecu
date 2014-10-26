@@ -32,7 +32,7 @@ public class CalculatorRadioButton extends JRadioButton implements ConstraintsIn
 	public CalculatorRadioButton(String radioButtonName, int gridx, int gridy) {
 		
 		// set the button text
-		this.setText(radioButtonName);
+		setText(radioButtonName);
 		
 		// create gridbag constraints
 		gbc_radioButton = new GridBagConstraints();

@@ -38,7 +38,7 @@ public class CalculatorLabel extends JLabel implements ConstraintsInterface {
 	public CalculatorLabel(String labelName, String theAnchor, int gridwidth, int insetTop, int insetLeft, int insetRight, int insetBottom, int gridx, int gridy) {
 		
 		// set the label text
-		this.setText(labelName);
+		setText(labelName);
 		
 		// create gridbag constraints
 		gbc_label = new GridBagConstraints();

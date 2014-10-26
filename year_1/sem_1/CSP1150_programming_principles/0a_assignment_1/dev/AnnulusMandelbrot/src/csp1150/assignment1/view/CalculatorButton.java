@@ -41,7 +41,7 @@ public class CalculatorButton extends JButton implements ConstraintsInterface {
 	public CalculatorButton(String buttonName, int gridx, int gridy) {
 		
 		// set the button text
-		this.setText(buttonName);
+		setText(buttonName);
 		
 		// use these values as constraints
 		gbc_button.anchor = GridBagConstraints.WEST;

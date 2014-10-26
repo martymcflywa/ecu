@@ -92,7 +92,7 @@ public class CalculatorController {
 				theView.setAnnulusMonteCalc(theAnnulusModel.getMonteCalc());
 				
 				// refresh the greyscale image
-				theView.refreshAnnulusImage(this.theAnnulusModel.getHitsArray());
+				theView.refreshAnnulusImage(theAnnulusModel.getHitsArray());
 			}
 		}
 		
@@ -169,7 +169,7 @@ public class CalculatorController {
 			theMandelbrotModel.calcMonte();
 			
 			// get the monte calculation, add it to the view
-			theView.setMandelbrotMonteCalc(this.theMandelbrotModel.getMonteCalc());
+			theView.setMandelbrotMonteCalc(theMandelbrotModel.getMonteCalc());
 			
 			// set boolean to true
 			mandelbrotIsCalculated = true;
@@ -187,7 +187,7 @@ public class CalculatorController {
 					theMandelbrotModel.calcEscape();
 					
 					// refresh the colour image
-					theView.refreshMandelbrotImage(this.theMandelbrotModel.getEscapeArray(), theView.getImageZoomBool());
+					theView.refreshMandelbrotImage(theMandelbrotModel.getEscapeArray(), theView.getImageZoomBool());
 					
 					// set boolean to true
 					theView.setMandelbrotColourImageExists(true);
@@ -262,7 +262,7 @@ public class CalculatorController {
 				theMandelbrotModel.calcMonte();
 				
 				// refresh greyscale image
-				theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
+				theView.refreshMandelbrotImage(theMandelbrotModel.getHitsArray());
 				
 				// set boolean to false
 				theView.setMandelbrotColourImageExists(false);
@@ -296,7 +296,7 @@ public class CalculatorController {
 			theMandelbrotModel.calcMonte();
 			
 			// refresh the greyscale image
-			theView.refreshMandelbrotImage(this.theMandelbrotModel.getHitsArray());
+			theView.refreshMandelbrotImage(theMandelbrotModel.getHitsArray());
 			
 			// operation done, set image zoom boolean to false
 			theView.setImageZoomBool(false);

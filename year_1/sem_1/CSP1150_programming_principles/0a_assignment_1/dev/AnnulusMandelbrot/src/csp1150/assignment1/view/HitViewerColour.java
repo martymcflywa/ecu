@@ -134,9 +134,9 @@ public class HitViewerColour extends HitViewer {
 			getRandomRGB();
 		}
 		
-		for(int x = 0; x < this.getImageWidth(); x++) {
+		for(int x = 0; x < getImageWidth(); x++) {
 			
-			for(int y = 0; y < this.getImageHeight(); y++) {
+			for(int y = 0; y < getImageHeight(); y++) {
                 
 				// set pixel to current escapetime value, add some randomness
 				int pixelR = escapeArray[x][y] * randomR / 25;

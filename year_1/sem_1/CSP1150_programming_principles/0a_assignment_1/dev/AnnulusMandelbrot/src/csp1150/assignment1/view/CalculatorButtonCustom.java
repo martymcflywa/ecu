@@ -25,14 +25,14 @@ public class CalculatorButtonCustom extends CalculatorButton {
 	public CalculatorButtonCustom(String buttonName, int gridx, int gridy) {
 		
 		// set the button text
-		this.setText(buttonName);
+		setText(buttonName);
 		
 		// use these values as constraints
-		this.getConstraints().anchor = GridBagConstraints.WEST;
-		this.getConstraints().insets = new Insets(0, 40, 5, 5);
+		getConstraints().anchor = GridBagConstraints.WEST;
+		getConstraints().insets = new Insets(0, 40, 5, 5);
 		
 		// set the column and row positions
-		this.getConstraints().gridx = gridx;
-		this.getConstraints().gridy = gridy;
+		getConstraints().gridx = gridx;
+		getConstraints().gridy = gridy;
 	}
 }

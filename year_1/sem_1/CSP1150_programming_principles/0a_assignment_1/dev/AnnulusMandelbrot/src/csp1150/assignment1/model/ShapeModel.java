@@ -50,11 +50,11 @@ public class ShapeModel {
 	 */
 	public final void setRadius(double outRadius, double inRadius) {
 		
-		// set incoming radius values to their respective variables
+		// set incoming radius values to fields
 		this.outRadius = outRadius;
 		this.inRadius = inRadius;
 		
-		// set incoming radius values to their respective max-min variables
+		// set incoming radius values to min-max fields
 		this.minX = -outRadius;
 		this.minY = -outRadius;
 		this.maxX = outRadius;
@@ -238,6 +238,7 @@ public class ShapeModel {
 	 * @return double[][] hits.
 	 */
 	public final double[][] getHitsArray() {
+		
 		return hits;
 	}
 	
@@ -248,6 +249,7 @@ public class ShapeModel {
 	 * @return int GRIDSIZE.
 	 */
 	public final int getGridSize() {
+		
 		return GRIDSIZE;
 	}
 	

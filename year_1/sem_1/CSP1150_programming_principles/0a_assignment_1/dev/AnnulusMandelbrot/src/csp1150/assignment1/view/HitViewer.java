@@ -112,9 +112,9 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	 */
 	protected void viewHits(double[][] hits) {
 		
-		for(int x = 0; x < this.width; x++) {
+		for(int x = 0; x < width; x++) {
 			
-			for(int y = 0; y < this.height; y++) {
+			for(int y = 0; y < height; y++) {
 				
 				float grey = (float)(1.0 - hits[x][y]);
 				setPixel(x, y, grey);
@@ -136,7 +136,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 		int pixel = (blue << 0) | (green << 8) | (red << 16) | (255 << 24);
 		
 		// height-y-1 because the y-axis coordinates are inverted(0 is at the top)
-		this.image.setRGB(x, this.height-y-1, pixel);
+		image.setRGB(x, height-y-1, pixel);
 	}
 	
 	/**
@@ -163,7 +163,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 	public void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);
-		g.drawImage(this.image, 0, 0, null);
+		g.drawImage(image, 0, 0, null);
 	}
 	
 	/**
@@ -176,7 +176,7 @@ public class HitViewer extends PanelGridLayout implements MouseListener, MouseMo
 		
 		super.paint(g);
 		g.setColor(Color.DARK_GRAY);
-		g.drawRect(this.mouseRect.x, this.mouseRect.y, this.mouseRect.width, this.mouseRect.height);
+		g.drawRect(mouseRect.x, mouseRect.y, mouseRect.width, mouseRect.height);
 	}
 	
 	/**

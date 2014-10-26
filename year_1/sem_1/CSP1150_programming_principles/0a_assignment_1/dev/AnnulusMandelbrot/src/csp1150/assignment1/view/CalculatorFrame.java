@@ -27,18 +27,18 @@ public class CalculatorFrame extends JFrame {
 		super("Annulus & Mandelbrot Calculator: Martin Ponce ID# 10371381");
 		
 		// set frame size
-		this.setBounds(100, 100, 920, 940);
+		setBounds(100, 100, 920, 940);
 		
 		// disable frame resize
-		this.setResizable(false);
+		setResizable(false);
 		
 		// set default action when window is closed
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// set frame to appear in the center of the desktop
-		this.setLocationRelativeTo(null);
+		setLocationRelativeTo(null);
 		
 		// use gridlayout to divide frame into 2 columns with 5px padding
-		this.getContentPane().setLayout(new GridLayout(0, 2, 5, 5));
+		getContentPane().setLayout(new GridLayout(0, 2, 5, 5));
 	}
 }
