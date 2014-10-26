@@ -17,11 +17,11 @@ public class AnnulusModel extends ShapeModel {
 	}
 	
 	/**
-	 * Overloading ShapeModel's calcMonte method, to accept no args.
+	 * Overloading ShapeModel's calcMonte method, removed args.
 	 * Used for recalculating image for zooming in and out.
 	 * 
 	 * This method calculates the area using monte carlo estimation.
-	 * Max-min values control how zoomed in the shape is.
+	 * Min-max values control how zoomed in the shape is.
 	 * 
 	 * @param args unused.
 	 */
@@ -34,25 +34,25 @@ public class AnnulusModel extends ShapeModel {
 		double arraySum = 0.0;
 		
 		// iterate through columns
-		for(int col = 0; col < this.getGridSize() - 1; col++) {
+		for(int col = 0; col < getGridSize() - 1; col++) {
 			
 			// iterate through rows
-			for(int row = 0; row < this.getGridSize() - 1; row++) {
+			for(int row = 0; row < getGridSize() - 1; row++) {
 				
 				// reset current cell value to 0
-				this.getHitsArray()[col][row] = 0;
+				getHitsArray()[col][row] = 0;
 				
 				// iterate through samples
 				for(int i = 0; i < this.getSamples(); i++) {
 					
 					// generate random scatter points per cell
-					double x = this.getMinX() + (col + Math.random()) * ((this.getMaxX() - this.getMinX()) / this.getGridSize());
-					double y = this.getMinY() + (row + Math.random()) * ((this.getMaxY() - this.getMinY()) / this.getGridSize());
+					double x = getMinX() + (col + Math.random()) * ((getMaxX() - getMinX()) / getGridSize());
+					double y = getMinY() + (row + Math.random()) * ((getMaxY() - getMinY()) / getGridSize());
 					
 					// if test pass, set counter + 1
 					if(isInside(x, y)) {
 						
-						this.getHitsArray()[col][row] = 1;
+						getHitsArray()[col][row] = 1;
 						arraySum++;
 					}
 				}
@@ -60,12 +60,12 @@ public class AnnulusModel extends ShapeModel {
 		}
 		
 		// divide sum of array to samples
-		arraySum = arraySum / this.getSamples();
+		arraySum = arraySum / getSamples();
 		
 		// add sum of array to counter
 		counter = counter + arraySum;
 		
 		// calculate area
-		this.setMonteCalc(counter);
+		setMonteCalc(counter);
 	}
 }

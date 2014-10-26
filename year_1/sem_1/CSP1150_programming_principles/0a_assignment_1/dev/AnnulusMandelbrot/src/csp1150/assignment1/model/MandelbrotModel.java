@@ -11,11 +11,11 @@ package csp1150.assignment1.model;
  */
 public class MandelbrotModel extends ShapeModel {
 	
-	// declaring constant, defines rgb max value for escapeTime
+	// declare constant MAX_STEPS
 	private final int MAX_STEPS = 255;
 	
 	// declare 2d array
-	private int[][] escapeArray = new int[this.getGridSize()][this.getGridSize()];
+	private int[][] escapeArray = new int[getGridSize()][getGridSize()];
 	
 	// declare default zoom values, since there is no outer radius to fall back on when resetting
 	private final double DEFAULT_MINX = -2;
@@ -30,11 +30,11 @@ public class MandelbrotModel extends ShapeModel {
 	 */
 	public MandelbrotModel() {
 		
-		// default values for max-min, without user input
-		this.setMinX(DEFAULT_MINX);
-		this.setMinY(DEFAULT_MINY);
-		this.setMaxX(DEFAULT_MAXX);
-		this.setMaxY(DEFAULT_MAXY);
+		// default values for min-max, without user input
+		setMinX(DEFAULT_MINX);
+		setMinY(DEFAULT_MINY);
+		setMaxX(DEFAULT_MAXX);
+		setMaxY(DEFAULT_MAXY);
 	}
 	
 	/**
@@ -54,10 +54,10 @@ public class MandelbrotModel extends ShapeModel {
 		double arraySum = 0.0;
 		
 		// iterate through columns
-		for(int col = 0; col < this.getGridSize() - 1; col++) {
+		for(int col = 0; col < getGridSize() - 1; col++) {
 			
 			// iterate through rows
-			for(int row = 0; row < this.getGridSize() - 1; row++) {
+			for(int row = 0; row < getGridSize() - 1; row++) {
 				
 				// reset current cell value to 0
 				this.getHitsArray()[col][row] = 0;
@@ -65,14 +65,14 @@ public class MandelbrotModel extends ShapeModel {
 				// iterate through samples
 				for(int i = 0; i < this.getSamples(); i++) {
 					
-					// generate random scatter points per cell
-					double x = this.getMinX() + (col + Math.random()) * ((this.getMaxX() - this.getMinX()) / this.getGridSize());
-					double y = this.getMinY() + (row + Math.random()) * ((this.getMaxY() - this.getMinY()) / this.getGridSize());
+					// generate random hit points per cell
+					double x = getMinX() + (col + Math.random()) * ((getMaxX() - getMinX()) / getGridSize());
+					double y = getMinY() + (row + Math.random()) * ((getMaxY() - getMinY()) / getGridSize());
 					
 					// if test pass, set counter + 1
 					if(isInside(x, y)) {
 						
-						this.getHitsArray()[col][row] = 1;
+						getHitsArray()[col][row] = 1;
 						arraySum++;
 					}
 				}
@@ -90,7 +90,7 @@ public class MandelbrotModel extends ShapeModel {
 	}
 	
 	/**
-	 * Overriding ShapeModel's method, adapted for mandelbrot.
+	 * Overriding ShapeModel's isInside method, adapted for mandelbrot.
 	 * 
 	 * This method checks if hitpoints are within shape perimeter.
 	 * 
@@ -196,7 +196,7 @@ public class MandelbrotModel extends ShapeModel {
 	}
 	
 	/**
-	 * Overriding ShapeModel's method, adapted for mandelbrot.
+	 * Overriding ShapeModel's resetImage method, adapted for mandelbrot.
 	 * 
 	 * This method resets the zoom values back to default values.
 	 * 
