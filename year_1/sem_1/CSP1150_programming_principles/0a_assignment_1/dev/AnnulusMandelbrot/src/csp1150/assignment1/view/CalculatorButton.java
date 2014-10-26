@@ -20,7 +20,7 @@ import javax.swing.*;
 public class CalculatorButton extends JButton implements ConstraintsInterface {
 	
 	// create gridbag constraints object
-	private GridBagConstraints gbc_button = new GridBagConstraints();;
+	private GridBagConstraints gbc_button = new GridBagConstraints();
 	
 	/**
 	 * The default constructor for inheritance.

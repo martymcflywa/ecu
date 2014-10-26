@@ -17,7 +17,7 @@ import javax.swing.JFrame;
 public class CalculatorFrame extends JFrame {
 	
 	/**
-	 * The constructor.
+	 * The frame constructor.
 	 * 
 	 * @param args unused.
 	 */
