@@ -36,7 +36,7 @@ public class AnnulusModel extends ShapeModel {
 				getHitsArray()[col][row] = 0;
 				
 				// iterate through samples
-				for(int i = 0; i < this.getSamples(); i++) {
+				for(int i = 0; i < getSamples(); i++) {
 					
 					// generate random scatter points per cell
 					double x = getMinX() + (col + Math.random()) * ((getMaxX() - getMinX()) / getGridSize());

@@ -60,10 +60,10 @@ public class MandelbrotModel extends ShapeModel {
 			for(int row = 0; row < getGridSize() - 1; row++) {
 				
 				// reset current cell value to 0
-				this.getHitsArray()[col][row] = 0;
+				getHitsArray()[col][row] = 0;
 				
 				// iterate through samples
-				for(int i = 0; i < this.getSamples(); i++) {
+				for(int i = 0; i < getSamples(); i++) {
 					
 					// generate random hit points per cell
 					double x = getMinX() + (col + Math.random()) * ((getMaxX() - getMinX()) / getGridSize());
@@ -80,13 +80,13 @@ public class MandelbrotModel extends ShapeModel {
 		}
 		
 		// divide sum of array to samples
-		arraySum = arraySum / this.getSamples();
+		arraySum = arraySum / getSamples();
 		
 		// add sum of array to counter
 		counter = counter + arraySum;
 		
 		// calculate area
-		this.setMonteCalc(counter);
+		setMonteCalc(counter);
 	}
 	
 	/**
@@ -206,10 +206,10 @@ public class MandelbrotModel extends ShapeModel {
 	@Override
 	public void resetImage() {
 		
-		this.setMinX(DEFAULT_MINX);
-		this.setMinY(DEFAULT_MINY);
-		this.setMaxX(DEFAULT_MAXX);
-		this.setMaxY(DEFAULT_MAXY);
+		setMinX(DEFAULT_MINX);
+		setMinY(DEFAULT_MINY);
+		setMaxX(DEFAULT_MAXX);
+		setMaxY(DEFAULT_MAXY);
 	}
 	
 	/**
