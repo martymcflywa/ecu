@@ -17,7 +17,7 @@ public class MandelbrotModel extends ShapeModel {
 	// declare 2d array
 	private int[][] escapeArray = new int[getGridSize()][getGridSize()];
 	
-	// declare default zoom values, since there is no outer radius to fall back on when resetting
+	// declare constant default zoom values, since there is no outer radius to fall back on when resetting
 	private final double DEFAULT_MINX = -2;
 	private final double DEFAULT_MINY = -2;
 	private final double DEFAULT_MAXX = 2;
