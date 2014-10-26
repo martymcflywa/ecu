@@ -2,8 +2,8 @@ package csp1150.assignment1.model;
 
 /**
  * Subclass of ShapeModel. Defines the Mandelbrot shape.
- * Declares default max-min fields, and overrides ShapeModel's
- * isInside() method.
+ * Uses independent default min-max fields, overrides ShapeModel's
+ * isInside, resetImage and pixel-to-grid conversion methods.
  * 
  * @author Martin Ponce ID# 10371381
  * @version 5.3.1
@@ -131,20 +131,20 @@ public class MandelbrotModel extends ShapeModel {
 	public final void calcEscape() {
 		
 		// iterate through columns
-		for(int col = 0; col < this.getGridSize() - 1; col++) {
+		for(int col = 0; col < getGridSize() - 1; col++) {
 			
 			// iterate through rows
-			for(int row = 0; row < this.getGridSize() - 1; row++) {
+			for(int row = 0; row < getGridSize() - 1; row++) {
 				
 				// reset current cell value to 0
-				this.getHitsArray()[col][row] = 0;
+				getHitsArray()[col][row] = 0;
 				
 				// iterate through samples
-				for(int i = 0; i < this.getSamples(); i++) {
+				for(int i = 0; i < getSamples(); i++) {
 					
 					// generate random scatter points per cell
-					double x = this.getMinX() + (col + Math.random()) * ((this.getMaxX() - this.getMinX()) / this.getGridSize());
-					double y = this.getMinY() + (row + Math.random()) * ((this.getMaxY() - this.getMinY()) / this.getGridSize());
+					double x = getMinX() + (col + Math.random()) * ((getMaxX() - getMinX()) / getGridSize());
+					double y = getMinY() + (row + Math.random()) * ((getMaxY() - getMinY()) / getGridSize());
 					
 					// calculate escape time for each cell
 					getEscapeTime(x, y, col, row);
@@ -197,6 +197,7 @@ public class MandelbrotModel extends ShapeModel {
 	
 	/**
 	 * Overriding ShapeModel's resetImage method, adapted for mandelbrot.
+	 * Using DEFAULT_* instead of outRadius.
 	 * 
 	 * This method resets the zoom values back to default values.
 	 * 
@@ -222,7 +223,7 @@ public class MandelbrotModel extends ShapeModel {
 	@Override
 	protected double minXPixelToGrid(double pixelMinX) {
 		
-		return (pixelMinX / this.getGridSize()) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX;
+		return (pixelMinX / getGridSize()) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX;
 	}
 	
 	/**
@@ -238,7 +239,7 @@ public class MandelbrotModel extends ShapeModel {
 	@Override
 	protected double minYPixelToGrid(double pixelMinY, double pixelHeight) {
 		
-		return ((this.getGridSize() - (pixelMinY + pixelHeight)) / this.getGridSize()) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX;
+		return ((getGridSize() - (pixelMinY + pixelHeight)) / getGridSize()) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX;
 	}
 	
 	/**
@@ -253,7 +254,7 @@ public class MandelbrotModel extends ShapeModel {
 	@Override
 	protected double maxXPixelToGrid(double pixelMinX, double pixelWidth) {
 		
-		return ((pixelMinX + pixelWidth) / this.getGridSize()) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX; 
+		return ((pixelMinX + pixelWidth) / getGridSize()) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX; 
 	}
 	
 	/**
@@ -267,6 +268,6 @@ public class MandelbrotModel extends ShapeModel {
 	 */
 	protected double maxYPixelToGrid(double pixelMinY) {
 		
-		return ((this.getGridSize() - pixelMinY) / this.getGridSize()) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX;
+		return ((getGridSize() - pixelMinY) / getGridSize()) * (DEFAULT_MAXX * 2.0) - DEFAULT_MAXX;
 	}
 }

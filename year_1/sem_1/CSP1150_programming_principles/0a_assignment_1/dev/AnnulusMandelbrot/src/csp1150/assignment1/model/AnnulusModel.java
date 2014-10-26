@@ -10,18 +10,11 @@ package csp1150.assignment1.model;
 public class AnnulusModel extends ShapeModel {
 	
 	/**
-	 * The default constructor.
-	 */
-	public AnnulusModel() {
-		
-	}
-	
-	/**
 	 * Overloading ShapeModel's calcMonte method, removed args.
 	 * Used for recalculating image for zooming in and out.
 	 * 
 	 * This method calculates the area using monte carlo estimation.
-	 * Min-max values control how zoomed in the shape is.
+	 * Min-max values control zoom level.
 	 * 
 	 * @param args unused.
 	 */
