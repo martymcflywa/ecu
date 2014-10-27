@@ -48,7 +48,7 @@ Define the following:
 - What are the three types of cost
 - What are the four types of benefit
 - What is a deliverable
-- What is a responsibility table
+- What is a requirements table
 - What is the essential difference between a requirements specification and a systems specification
 
 ### Technical report writing
