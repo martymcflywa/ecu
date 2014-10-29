@@ -1116,3 +1116,216 @@ n = 5
 ```
 5! = 5 * 4 * 3 * 2 * 1
 ```
+
+## Graph Theory
+
+### Complements
+
+Original graph:
+
+![complement a](http://snag.gy/tkqB8.jpg)
+
+Complement graph:
+
+![complement b](http://snag.gy/ER2tE.jpg)
+
+### Degree of vertex
+
+The number of edges connecting to a vertex.
+
+A graph with pairs of vertices that are joined with only one edge is called **simple**.
+
+A graph with pairs of vertices that are joined with more than one edge is called **multigraph**.
+
+A vertex can have odd or even degrees.
+
+### Number of edges
+
+Theorems:
+
+>1. For any graph, the sum of the degrees of the vertex is equal to twice the number of edges.  
+2. The sum of degrees of a graph is always even  
+3. Any graph has an even number of odd vertices
+
+### Isomorphic graphs
+
+Two different looking graphs that contain the same information are considered isomorphic graphs. The graphs must have the same characteristics listed below:
+
+- Number of vertices
+- Number of edges
+- Degrees
+
+### Mapping isomorphic graphs
+
+The two graphs below are mapped as:
+
+>A → Q, B → R, C → S, D → T and E → P
+
+The matrix representation shows that both maps as isomorphic:
+
+![matrix iso](http://snag.gy/t2wY4.jpg)
+
+### Non-isomorphic graphs
+
+11 non-isomorphic graphs with 4 vertices:
+
+![non-iso](http://snag.gy/txdhM.jpg)
+
+### Eulerian paths and circuits
+
+![eul paths and circuits](http://snag.gy/na1QE.jpg)
+
+#### Eulerian path
+
+>A Eulerian path includes every edge exactly once.  
+A Eulerian path may pass through a vertex more than once.
+
+#### Eulerian circuit
+
+>A Eulerian circuit is a Eulerian path that is also a circuit.  
+Meaning it ends where it begins.
+
+#### Methods for identifying Eulerian paths and circuits
+
+1. No Eulerian path if it has more than two odd vertices
+2. A Eulerian path, but no Eulerian circuit if it has two odd vertices
+3. A Eulerian circuit if every vertex is even
+
+#### Eulerian examples
+
+Eulerian path. Has two odd vertices. **Start at odd vertex**.
+
+![q16-F](http://snag.gy/QhQhL.jpg)
+
+Eulerian circuit. Every vertex is even.
+
+![q16-H](http://snag.gy/U0mnm.jpg)
+
+### Hamiltonian paths and circuits
+
+![ham paths and circuits](http://snag.gy/D8k8I.jpg)
+
+#### Hamiltonian path
+
+>A Hamiltonian path includes every vertex exactly once, except that the last vertex may also be the first.
+
+#### Hamiltonian circuit
+
+>A Hamiltonian circuit is a Hamiltonian path that is also a circuit.  
+Meaning it ends where it begins.
+
+#### Hamiltonian examples
+
+Hamiltonian path.
+
+![q17-J](http://snag.gy/ULaXz.jpg)
+
+Hamiltonian circuit.
+
+![q17-G](http://snag.gy/hdxhz.jpg)
+
+### Planar graphs
+
+Planar graphs have edges that only intersect at vertices.
+
+#### Examples
+
+![redraw 4](http://snag.gy/B0U6K.jpg)
+
+![redraw 5](http://snag.gy/iUg0Y.jpg)
+
+![redraw 3](http://snag.gy/Y1iti.jpg)
+
+### Non-planar graphs
+
+Sometimes these graphs are used to prove another graph is isomorphic to these graphs and therefore non-planar.
+
+![non-planar K](http://snag.gy/EMOSD.jpg)
+
+## Matrices and applications 1
+
+### Definitions and terminology
+
+- Numbers in a matrix are called **elements**
+- Reference to these elements are called **subscription** notation
+	- For example, m<sub>23</sub> refers to the element in the 2nd row, 3rd column
+
+### Order
+
+The order of a matrix determines how many rows and columns it has. Rows is always first, followed by columns.
+
+For example 10x3 matrix will have 10 rows and 3 columns.
+
+### Matrix operations
+
+#### Addition of matrices
+
+To add two matrices, add their corresponding elements.
+
+#### Multiplication by a number
+
+To multiply a matrix by a number, multiply every element by the number.
+
+#### Multiplying two matrices
+
+Multiply each row from first matrix to the column of the second matrix. Sum the answers to get the single element value. Repeat for all rows and columns.
+
+Multiplication is only possible if the following condition is satisfied:
+
+>- Suppose we have an m × n matrix and a p × q matrix
+- Multiplication is possible only if n = p
+- And if this is the case, then the order of the result is m × q
+
+In other words, number of columns of first matrix is equal to number of rows of the second matrix. Resulting matrix product will be an order of number of rows of first matrix, and number of columns of second matrix.
+
+#### Matrix algebra rules
+
+>- A + B = B + A
+- A + (B + C) = (A + B) + C
+- A (B C) = (A B) C
+- A (B + C) = A B + A C
+- (B + C) A = B A + C A
+
+#### Matrix non-communtativity
+
+>For matrices A and B, it may be that AB = BA, but very often AB ≠ BA.
+
+##### Holonomic
+
+Commutativity in robotics. Holonomic means commutative, ie. AB = BA.
+
+##### Non-holonomic
+
+Non-commutativity in robotics. Non-holonomic means non-commutative, ie. AB ≠ BA.
+
+### Application of matrix to directed graphs
+
+Directed graphs also known as digraphs.
+
+The adjacency matrix for this digraph is:
+
+![digraph adjacency](http://snag.gy/DnYMw.jpg)
+
+![vertex table](http://snag.gy/ATfsS.jpg)
+
+- The row totals should be equal to the number of **outdegree**
+	- The edges leaving the vertex
+- The column totals should be equal to the number of **indegree**
+	- The edges arriving the vertex
+
+### Reachability of vertices
+
+Reachability determines which vertices are reachable from other vertices.
+
+Reachability matrix is represented as M*.
+
+#### To calculate M*:
+
+If the digraph has n vertices, then M* will be n × n, and is obtained from:
+
+>M* = M + M2 + ... + Mn
+
+## Matrices and applications 2
+
+### Transformations
+
