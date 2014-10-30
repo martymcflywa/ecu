@@ -1,4 +1,4 @@
-# Lecture 1
+# Symbols
 
 | Symbol  | Name                     | LaTeX           |Function
 |---------|--------------------------|-----------------|--------------------------------------| 
@@ -1117,9 +1117,9 @@ n = 5
 5! = 5 * 4 * 3 * 2 * 1
 ```
 
-## Graph Theory
+# Graph Theory
 
-### Complements
+## Complements
 
 Original graph:
 
@@ -1139,7 +1139,7 @@ A graph with pairs of vertices that are joined with more than one edge is called
 
 A vertex can have odd or even degrees.
 
-### Number of edges
+## Number of edges
 
 Theorems:
 
@@ -1147,7 +1147,7 @@ Theorems:
 2. The sum of degrees of a graph is always even  
 3. Any graph has an even number of odd vertices
 
-### Isomorphic graphs
+## Isomorphic graphs
 
 Two different looking graphs that contain the same information are considered isomorphic graphs. The graphs must have the same characteristics listed below:
 
@@ -1155,7 +1155,7 @@ Two different looking graphs that contain the same information are considered is
 - Number of edges
 - Degrees
 
-### Mapping isomorphic graphs
+## Mapping isomorphic graphs
 
 The two graphs below are mapped as:
 
@@ -1165,33 +1165,33 @@ The matrix representation shows that both maps as isomorphic:
 
 ![matrix iso](http://snag.gy/t2wY4.jpg)
 
-### Non-isomorphic graphs
+## Non-isomorphic graphs
 
 11 non-isomorphic graphs with 4 vertices:
 
 ![non-iso](http://snag.gy/txdhM.jpg)
 
-### Eulerian paths and circuits
+## Eulerian paths and circuits
 
 ![eul paths and circuits](http://snag.gy/na1QE.jpg)
 
-#### Eulerian path
+### Eulerian path
 
 >A Eulerian path includes every edge exactly once.  
 A Eulerian path may pass through a vertex more than once.
 
-#### Eulerian circuit
+### Eulerian circuit
 
 >A Eulerian circuit is a Eulerian path that is also a circuit.  
 Meaning it ends where it begins.
 
-#### Methods for identifying Eulerian paths and circuits
+### Methods for identifying Eulerian paths and circuits
 
 1. No Eulerian path if it has more than two odd vertices
 2. A Eulerian path, but no Eulerian circuit if it has two odd vertices
 3. A Eulerian circuit if every vertex is even
 
-#### Eulerian examples
+### Eulerian examples
 
 Eulerian path. Has two odd vertices. **Start at odd vertex**.
 
@@ -1201,20 +1201,20 @@ Eulerian circuit. Every vertex is even.
 
 ![q16-H](http://snag.gy/U0mnm.jpg)
 
-### Hamiltonian paths and circuits
+## Hamiltonian paths and circuits
 
 ![ham paths and circuits](http://snag.gy/D8k8I.jpg)
 
-#### Hamiltonian path
+### Hamiltonian path
 
 >A Hamiltonian path includes every vertex exactly once, except that the last vertex may also be the first.
 
-#### Hamiltonian circuit
+### Hamiltonian circuit
 
 >A Hamiltonian circuit is a Hamiltonian path that is also a circuit.  
 Meaning it ends where it begins.
 
-#### Hamiltonian examples
+### Hamiltonian examples
 
 Hamiltonian path.
 
@@ -1224,11 +1224,11 @@ Hamiltonian circuit.
 
 ![q17-G](http://snag.gy/hdxhz.jpg)
 
-### Planar graphs
+## Planar graphs
 
 Planar graphs have edges that only intersect at vertices.
 
-#### Examples
+### Examples
 
 ![redraw 4](http://snag.gy/B0U6K.jpg)
 
@@ -1236,37 +1236,37 @@ Planar graphs have edges that only intersect at vertices.
 
 ![redraw 3](http://snag.gy/Y1iti.jpg)
 
-### Non-planar graphs
+## Non-planar graphs
 
 Sometimes these graphs are used to prove another graph is isomorphic to these graphs and therefore non-planar.
 
 ![non-planar K](http://snag.gy/EMOSD.jpg)
 
-## Matrices and applications 1
+# Matrices and applications 1
 
-### Definitions and terminology
+## Definitions and terminology
 
 - Numbers in a matrix are called **elements**
 - Reference to these elements are called **subscription** notation
 	- For example, m<sub>23</sub> refers to the element in the 2nd row, 3rd column
 
-### Order
+## Order
 
 The order of a matrix determines how many rows and columns it has. Rows is always first, followed by columns.
 
 For example 10x3 matrix will have 10 rows and 3 columns.
 
-### Matrix operations
+## Matrix operations
 
-#### Addition of matrices
+### Addition of matrices
 
 To add two matrices, add their corresponding elements.
 
-#### Multiplication by a number
+### Multiplication by a number
 
 To multiply a matrix by a number, multiply every element by the number.
 
-#### Multiplying two matrices
+### Multiplying two matrices
 
 Multiply each row from first matrix to the column of the second matrix. Sum the answers to get the single element value. Repeat for all rows and columns.
 
@@ -1278,7 +1278,7 @@ Multiplication is only possible if the following condition is satisfied:
 
 In other words, number of columns of first matrix is equal to number of rows of the second matrix. Resulting matrix product will be an order of number of rows of first matrix, and number of columns of second matrix.
 
-#### Matrix algebra rules
+### Matrix algebra rules
 
 >- A + B = B + A
 - A + (B + C) = (A + B) + C
@@ -1286,19 +1286,19 @@ In other words, number of columns of first matrix is equal to number of rows of 
 - A (B + C) = A B + A C
 - (B + C) A = B A + C A
 
-#### Matrix non-communtativity
+### Matrix non-communtativity
 
 >For matrices A and B, it may be that AB = BA, but very often AB ≠ BA.
 
-##### Holonomic
+#### Holonomic
 
 Commutativity in robotics. Holonomic means commutative, ie. AB = BA.
 
-##### Non-holonomic
+#### Non-holonomic
 
 Non-commutativity in robotics. Non-holonomic means non-commutative, ie. AB ≠ BA.
 
-### Application of matrix to directed graphs
+## Application of matrix to directed graphs
 
 Directed graphs also known as digraphs.
 
@@ -1313,19 +1313,128 @@ The adjacency matrix for this digraph is:
 - The column totals should be equal to the number of **indegree**
 	- The edges arriving the vertex
 
-### Reachability of vertices
+## Reachability of vertices
 
 Reachability determines which vertices are reachable from other vertices.
 
 Reachability matrix is represented as M*.
 
-#### To calculate M*:
+### To calculate M*:
 
 If the digraph has n vertices, then M* will be n × n, and is obtained from:
 
 >M* = M + M2 + ... + Mn
 
-## Matrices and applications 2
+# Matrices and applications 2
 
-### Transformations
+Each point on the plane is represented by x and y coordinate which are represented in a matrix as:
 
+>[[x], [y]] - x is always first.
+
+## Finding image of point
+
+Multiply the transformation matrix to the x,y column matrix to find the image (x', y').
+
+>[[x'], [y']] = [[a, b], [c, d]] * [[x], [y]]
+
+![matrix equation](http://snag.gy/dTFuP.jpg)
+
+Rather than finding the product for each x,y coordinate, each coordinate can be combined into one matrix and multiplied with the transformation matrix.
+
+![abberviate](http://snag.gy/REil8.jpg)
+
+## Finding matrix of given transformation
+
+Only need to figure out the transformation for two points: I(1,0) and J(0,1).
+
+Perform the transformation with these two points, then find their images I' and J'.
+
+I' is first column of matrix, J' is second column.
+
+### Example
+
+90° rotation about the origin.
+
+![q2-3](http://snag.gy/RzPdc.jpg)
+
+## Transformations
+
+### Rotation
+
+**POSITIVE ROTATION:** Anti-clockwise  
+**NEGATIVE ROTATION:** Clockwise
+
+### Reflection
+
+**y = x:** diagonal line going up from the left, 45°
+
+![y = x](http://snag.gy/MqCna.jpg)
+
+**y = -x:** diagonal line going down from the left, -45°
+
+![y = -x](http://snag.gy/ggV5D.jpg)
+
+## Successive transformations
+
+If matrix A transformation is followed by matrix B, find matrix C.
+
+>BA = C
+
+**WARNING:** Not always the case, map the transformations first to confirm the final image and check answer.
+
+## Identity matrix
+
+Identity matrix, usually called "I", is a square matrix with 1's on the diagonal from top left to bottom right, all other elements are 0.
+
+Behaves like the number 1, no effect when multiplied with another matrix.
+
+![identity matrix](http://snag.gy/Wojfx.jpg)
+
+Identity matrix is found by multiplying a matrix with its inverse, if it has one.
+
+>AA<sup>-1</sup> = A<sup>-1</sup>A = I
+
+## Inverse of a square matrix
+
+![matrix](http://snag.gy/daBg3.jpg)
+
+Before finding inverse, check determinant ≠ 0.
+
+>ad - bc ≠ 0
+
+M<sup>-1</sup> will identify inverse.
+
+**WARNING:** Calculator may give you the same matrix as the answer. Ensure that determinant ≠ 0:
+
+>ad - bc ≠ 0
+
+Or manually with formula:
+
+![inverse formula](http://snag.gy/9zxbY.jpg)
+
+## Matrix system of equations
+
+>ax + by = h  
+cx + dy = k
+
+is equivalent to:
+
+![sys of eq](http://snag.gy/Q009y.jpg)
+
+### Rules:
+
+- Don't forget to use `-` sign where applicable
+- If letter doesn't appear, it is 0
+- If letter appears with no number, it is 1
+
+## Solving matrix equations
+
+- Find the inverse of matrix that contains numerical elements
+- Multiply everything with inverse matrix
+
+### Example
+
+>2y = -10  
+-x + 5y = -3
+
+![q6-3](http://snag.gy/TRuFH.jpg)
