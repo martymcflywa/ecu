@@ -42,6 +42,14 @@ The laws are essentially the same, but are just presented differently.
 | `true`  | `U`  | `1`     |
 | `false` | `∅`  | `0`     |
 
+# Truth table for `if` statement
+
+>a → b
+
+The only time it is false is if:
+
+>a = 1, b = 0
+
 # Laws
 
 | Distributive Laws                    | de Morgan's Laws      |
@@ -189,6 +197,45 @@ There are two key concepts to remember:
 
 - In a fundamental product, each variable must be present, with or without `'`
 - Each fundamental product is equal to 1 for one and only one combination of the variables
+
+# Relations of a set
+
+## Reflexive relation
+
+`∀x ∈ S, x R x`
+
+`x R x` for **all** `x`
+
+![reflexive](http://i.imgur.com/SvS2GpC.png)
+
+## Symmetric relation
+
+`∀x, y ∈ S, x R y → y R x`
+
+**If** `x R y` **then** `y R x`, **for all** `x` **and** `y`
+
+![symmetric](http://i.imgur.com/17Xmod1.png)
+
+## Transitive relation
+
+`∀x, y, z ∈ S, ( x R y ) ˄ ( y R z ) → ( x R z )`
+
+**If** `x R y` **and** `y R z`, **then** `x R z`, **for all** `x`, `y` and `z`
+
+![transitive](http://i.imgur.com/uw0ikMT.png)
+
+| Ex | Set      | Relation                     | Reflex | Symm | Trans | Equiv |
+|:--:|----------|------------------------------|:------:|:----:|:-----:|:-----:|
+| a  | integers | is a multiple of             | Y      | N    | Y     | N     |
+| b  | girls    | is the sister of             | N      | Y    | Y     | N     |
+| c  | people   | drives the same make of car  | Y      | Y    | Y     | Y     |
+| d  | words    | has the same first letter as | Y      | Y    | Y     | Y     |
+| e  | people   | lives no more than 1 km from | Y      | Y    | N     | N     |
+| f  | people   | is not older than            | Y      | N    | Y     | N     |
+| g  | students | attends the same class as    | Y      | Y    | Y     | Y     |
+| h  | towns    | lie to the East of           | N      | N    | Y     | N     |
+| i  | cars     | can travel faster than       | N      | N    | Y     | N     |
+| j  | people   | likes to play chess with     | N      | N    | N     | N     |
 
 # Multiplying matrices
 
