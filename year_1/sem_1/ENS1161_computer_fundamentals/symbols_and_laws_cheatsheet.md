@@ -73,6 +73,16 @@ Is a three-step process when used for simplifying.
 
 # Negations
 
+## Symbol negations
+
+### Negation of AND `˄`
+
+`~(p ˄ q) ≡ ~p ˅ ~q`
+
+### Negation of OR `˅`
+
+`~(p ˅ q) ≡ ~p ˄ ~q`
+
 ## Statement Negations
 
 | Statement   | Negation        |
