@@ -73,4 +73,4 @@
 
 ### 0NF
 
->R1 = (Invoice#, InvoiceDate, CustEmail, CustName, CustPhone, DeliveryAddress, DeliveryInstructions, {ItemCode, ItemName, CatCode, CatName, Cost, Qty})
+>R1 = (CustEmail, CustName, CustPhone, DeliveryAddress, DeliveryInstructions, {Invoice#, InvoiceDate, {ItemCode, ItemName, CatCode, CatName, Cost, Qty}})
