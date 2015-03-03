@@ -42,6 +42,34 @@
 
 >R1 = (CustomerPhone, CustomerName, {Booking#, BookingDate, Duration, Room#, RoomName, RoomCapacity})
 
+### 1NF
+
+>~~R1 = (<ins>**CustomerPhone**</ins>, CustomerName, {<ins>**Booking#**</ins>, BookingDate, Duration, Room#, RoomName, RoomCapacity})~~  
+R11 = (<ins>**CustomerPhone**</ins>, CustomerName)  
+R12 = (<ins>**_CustomerPhone_**</ins>, <ins>**Booking#**</ins>, BookingDate, Duration, Room#, RoomName, RoomCapacity)
+
+### 2NF
+
+>R11 = (<ins>**CustomerPhone**</ins>, CustomerName)  
+~~R12 = (<ins>**_CustomerPhone_**</ins>, <ins>**Booking#**</ins>, BookingDate, Duration, Room#, RoomName, RoomCapacity)~~  
+R121 = (<ins>**_CustomerPhone_**</ins>, <ins>**_Booking#_**</ins>)  
+R122 = (<ins>**Booking#**</ins>, BookingDate, Duration, Room#, RoomName, RoomCapacity)
+
+### 3NF
+
+>R11 = (<ins>**CustomerPhone**</ins>, CustomerName)  
+R121 = (<ins>**_CustomerPhone_**</ins>, <ins>**_Booking#_**</ins>)  
+~~R122 = (<ins>**Booking#**</ins>, BookingDate, Duration, Room#, RoomName, RoomCapacity)~~  
+R1211 = (<ins>**Booking#**</ins>, BookingDate, Duration, *Room#*)  
+R1212 = (<ins>**Room#**</ins>, RoomName, RoomCapacity)
+
+### Named relations
+
+>Customer = (<ins>**CustomerPhone**</ins>, CustomerName)  
+CustomerBooking = (<ins>**_CustomerPhone_**</ins>, <ins>**_Booking#_**</ins>)  
+Booking = (<ins>**Booking#**</ins>, BookingDate, Duration, *Room#*)  
+Room = (<ins>**Room#**</ins>, RoomName, RoomCapacity)
+
 # Task 2: Advanced Normalisation
 
 ![task 2](http://snag.gy/Sflhq.jpg)
