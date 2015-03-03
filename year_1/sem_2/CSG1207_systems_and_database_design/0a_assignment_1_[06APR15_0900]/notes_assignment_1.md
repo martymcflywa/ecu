@@ -50,24 +50,22 @@ R12 = (<ins>**_CustomerPhone_**</ins>, <ins>**Booking#**</ins>, BookingDate, Dur
 
 ### 2NF
 
+No partial dependencies, already 2NF.
+
 >R11 = (<ins>**CustomerPhone**</ins>, CustomerName)  
-~~R12 = (<ins>**_CustomerPhone_**</ins>, <ins>**Booking#**</ins>, BookingDate, Duration, Room#, RoomName, RoomCapacity)~~  
-R121 = (<ins>**_CustomerPhone_**</ins>, <ins>**_Booking#_**</ins>)  
-R122 = (<ins>**Booking#**</ins>, BookingDate, Duration, Room#, RoomName, RoomCapacity)
+R12 = (<ins>**_CustomerPhone_**</ins>, <ins>**Booking#**</ins>, BookingDate, Duration, Room#, RoomName, RoomCapacity)
 
 ### 3NF
 
 >R11 = (<ins>**CustomerPhone**</ins>, CustomerName)  
-R121 = (<ins>**_CustomerPhone_**</ins>, <ins>**_Booking#_**</ins>)  
-~~R122 = (<ins>**Booking#**</ins>, BookingDate, Duration, Room#, RoomName, RoomCapacity)~~  
-R1211 = (<ins>**Booking#**</ins>, BookingDate, Duration, *Room#*)  
-R1212 = (<ins>**Room#**</ins>, RoomName, RoomCapacity)
+~~R12 = (<ins>**_CustomerPhone_**</ins>, <ins>**Booking#**</ins>, BookingDate, Duration, Room#, RoomName, RoomCapacity)~~  
+R121 = (<ins>**_CustomerPhone_**</ins>, <ins>**Booking#**</ins>, BookingDate, Duration, *Room#*)  
+R122 = (<ins>**Room#**</ins>, RoomName, RoomCapacity)
 
 ### Named relations
 
 >Customer = (<ins>**CustomerPhone**</ins>, CustomerName)  
-CustomerBooking = (<ins>**_CustomerPhone_**</ins>, <ins>**_Booking#_**</ins>)  
-Booking = (<ins>**Booking#**</ins>, BookingDate, Duration, *Room#*)  
+Booking = (<ins>**_CustomerPhone_**</ins>, <ins>**Booking#**</ins>, BookingDate, Duration, *Room#*)  
 Room = (<ins>**Room#**</ins>, RoomName, RoomCapacity)
 
 # Task 2: Advanced Normalisation
@@ -102,3 +100,34 @@ Room = (<ins>**Room#**</ins>, RoomName, RoomCapacity)
 ### 0NF
 
 >R1 = (CustEmail, CustName, CustPhone, DeliveryAddress, DeliveryInstructions, {Invoice#, InvoiceDate, {ItemCode, ItemName, CatCode, CatName, Cost, Qty}})
+
+### 1NF
+
+>~~R1 = (<ins>**CustEmail**</ins>, CustName, CustPhone, DeliveryAddress, DeliveryInstructions, {<ins>**Invoice#**</ins>, InvoiceDate, {<ins>**ItemCode**</ins>, ItemName, CatCode, CatName, Cost, Qty}})~~  
+R11 = (<ins>**CustEmail**</ins>, CustName, CustPhone, DeliveryAddress, DeliveryInstructions)  
+R12 = (<ins>**Invoice#**</ins>, InvoiceDate, *CustEmail*)  
+R13 = (<ins>**_Invoice#_**</ins>, <ins>**ItemCode**</ins>, ItemName, CatCode, CatName, Cost, Qty)
+
+### 2NF
+
+>R11 = (<ins>**CustEmail**</ins>, CustName, CustPhone, DeliveryAddress, DeliveryInstructions)  
+R12 = (<ins>**Invoice#**</ins>, InvoiceDate, *CustEmail*)  
+~~R13 = (<ins>**_Invoice#_**</ins>, <ins>**ItemCode**</ins>, ItemName, CatCode, CatName, Cost, Qty)~~  
+R131 = (<ins>**_Invoice#_**</ins>, <ins>**_ItemCode_**</ins>, Qty)  
+R132 = (<ins>**ItemCode**</ins>, ItemName, CatCode, CatName, Cost)
+
+### 3NF
+
+No transitive dependencies, already 3NF.
+
+>R11 = (<ins>**CustEmail**</ins>, CustName, CustPhone, DeliveryAddress, DeliveryInstructions)  
+R12 = (<ins>**Invoice#**</ins>, InvoiceDate, *CustEmail*)  
+R131 = (<ins>**_Invoice#_**</ins>, <ins>**_ItemCode_**</ins>, Qty)  
+R132 = (<ins>**ItemCode**</ins>, ItemName, CatCode, CatName, Cost)
+
+### Named relations
+
+>Customer = (<ins>**CustEmail**</ins>, CustName, CustPhone, DeliveryAddress, DeliveryInstructions)  
+Invoice = (<ins>**Invoice#**</ins>, InvoiceDate, *CustEmail*)  
+InvoiceItem = (<ins>**_Invoice#_**</ins>, <ins>**_ItemCode_**</ins>, Qty)  
+Item = (<ins>**ItemCode**</ins>, ItemName, CatCode, CatName, Cost)
