@@ -127,7 +127,7 @@ R1322 = (<ins>**CatCode**</ins>, CatName)
 
 ### Named relations
 
->(<ins>**CustEmail**</ins>, CustName, CustPhone, DeliveryAddress, DeliveryInstructions)  
+>Customer = (<ins>**CustEmail**</ins>, CustName, CustPhone, DeliveryAddress, DeliveryInstructions)  
 Invoice = (<ins>**Invoice#**</ins>, InvoiceDate, *CustEmail*)  
 InvoiceItem = (<ins>**_Invoice#_**</ins>, <ins>**_ItemCode_**</ins>, Qty)  
 Item = (<ins>**ItemCode**</ins>, ItemName, *CatCode*)  
