@@ -59,8 +59,8 @@ R12 = (<ins>**Booking#**</ins>, BookingDate, Duration, Room#, RoomName, RoomCapa
 
 >R11 = (<ins>**CustomerPhone**</ins>, CustomerName)  
 ~~R12 = (<ins>**_CustomerPhone_**</ins>, <ins>**Booking#**</ins>, BookingDate, Duration, Room#, RoomName, RoomCapacity)~~  
-R121 = (<ins>**Booking#**</ins>, BookingDate, Duration, *Room#*)  
-R122 = (<ins>**Room#**</ins>, RoomName, RoomCapacity, *CustomerPhone*)
+R121 = (<ins>**Booking#**</ins>, BookingDate, Duration, *Room#*, *CustomerPhone*)  
+R122 = (<ins>**Room#**</ins>, RoomName, RoomCapacity)
 
 ### Named relations
 
