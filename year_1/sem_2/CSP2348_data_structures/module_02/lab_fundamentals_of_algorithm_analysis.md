@@ -25,3 +25,132 @@ Observe the differences among these growth rates.
 ## Task 2
 
 Suppose that the following expressions are the sum of characteristic operations of some algorithms. Determine the time complexity of each of these expressions by means of the Big-O notation.
+
+### n<sup>10</sup> + 9 * n<sup>9</sup> + 20 * n<sup>8</sup>
+
+>max{O(n<sup>10</sup>), O(9 * n<sup>9</sup>), O(20 * n<sup>8</sup>)}  
+
+Normalise constant factor.
+
+>&rArr; max{O(n<sup>10</sup>), O(n<sup>9</sup>), O(n<sup>8</sup>)}  
+&rArr; O(n<sup>10</sup>)
+
+### (n + 1)<sup>4</sup>
+
+>O((n + 1)<sup>4</sup>)  
+= O((n + 1) \* (n + 1) \* (n + 1) \* (n + 1))  
+= O(n + 1) \* O(n + 1) \* O(n + 1) \* O(n + 1)  
+
+Normalise constant factor.
+
+>= O(n) \* O(n) \* O(n) \* O(n)  
+= O(n \* n \* n \* n)  
+= O(n<sup>4</sup>)
+
+### (n<sup>2</sup> + n)<sup>2</sup>
+
+>O((n<sup>2</sup> + n)<sup>2</sup>)  
+= O((n<sup>2</sup> + n) \* (n<sup>2</sup> + n))  
+= O(n<sup>2</sup> + n) \* O(n<sup>2</sup> + n)
+
+Normalise constant factor.
+
+>= O(n<sup>2</sup>) \* O(n<sup>2</sup>)  
+= O(n<sup>2</sup> * n<sup>2</sup>)  
+= O(n<sup>4</sup>)
+
+### n + 0.001 * n<sup>3</sup>
+
+>&rArr; max{O(n), O(0.001 * n<sup>3</sup>)}  
+&rArr; max{O(n), O(n<sup>3</sup>)}  
+&rArr; O(n<sup>3</sup>)
+
+### n<sup>3</sup> - 1000 * n<sup>2</sup>
+
+>&rArr; max{O(n<sup>3</sup>), O(1000 * n<sup>2</sup>)}  
+&rArr; max{O(n<sup>3</sup>), O(n<sup>2</sup>)}  
+&rArr; O(n<sup>3</sup>)
+
+### n + log<sub>2</sub>(n)
+
+>&rArr; max{O(n), O(log<sub>2</sub>(n))}  
+>&rArr; O(n)
+
+### n<sup>2</sup> + n * log<sub>2</sub>(n)
+
+>&rArr; max{O(n<sup>2</sup>), O(n * log<sub>2</sub>(n))}  
+&rArr; max{O(n<sup>2</sup>), O(log<sub>2</sub>(n))}  
+&rArr; O(n<sup>2</sup>)
+
+### 2<sup>n</sup> + n<sup>2</sup>
+
+>&rArr; max{O(2<sup>n</sup>), O(n<sup>2</sup>)}  
+&rArr; O(2<sup>n</sup>)
+
+### (n<sup>3</sup> + 2 * n) / (n + 5)
+
+>O((n<sup>3</sup> + 2 * n) / (n + 5))  
+= O(n<sup>3</sup> + 2 * n) / O(n + 5)  
+= O(n<sup>3</sup>) / O(n)  
+= O(n<sup>3</sup> / n)  
+= O(n<sup>2</sup>)
+
+## Task 3
+
+Analyse the time complexity of the following methods / algorithms.
+
+Source: Excercise 2.4 or page 31 of reference textbook - Java Collections (2001)
+
+The following Java methods implement matrix addition and multiplication. Each matrix is represented by an n * n two-dimensional array of float numbers.
+
+``` java
+static void matrixAdd (int n, float[][] a, float[][] b, float[][] sum) {
+
+	// Set sum to the sum of the n*n matrices a and b
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j < n; j++) {
+			sum[i][j] = a[i][j] + b[i][j];
+		}
+	}
+}
+
+static void matrixMult(int n, float[][] a, float[][] b, float[][] prod) {
+
+	// Set prod to the sum of the n*n matrices a and b
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j < n; j++) {
+			float s = 0.0;
+			for(int k = 0; k < n; k++) {
+				s += a[i][k] * b[k][j];
+			}
+			prod[i][j] = s;
+		}
+	}
+}
+```
+
+### `matrixAdd()`
+
+- Number of additions: n * n = n<sup>2</sup>
+	- In the new matrix, there are n*n elements
+	- Each element is the result of **ONE** addition from matrix A and matrix B
+- Number of multiplications: 0
+	- There is no multiplication involved in constructing any new element
+- Time complexity:
+
+>max{O(additions), O(multiplications)}  
+= max{O(n<sup>2</sup>, O(1))}  
+= O(n<sup>2</sup>)
+
+### `matrixMult()`
+
+- Number of additions: n \* n \* n = n<sup>3</sup>
+	- In each new matrix, there are n*n elements
+	- Each element is the result of n additions from matrix A and matrix B
+- Number of multiplications: n \* n \* n = n<sup>3</sup>
+	- Each element is the result of n multiplications from matrix A and matrix B
+- Time complexity:
+
+>max{O(additions), O(multiplications)}  
+= max{O(n<sup>3</sup>), O(n<sup>3</sup>)}  
+= O(n<sup>3</sup>)
