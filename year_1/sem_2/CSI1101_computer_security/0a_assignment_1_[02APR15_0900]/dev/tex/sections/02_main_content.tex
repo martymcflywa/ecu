@@ -4,9 +4,19 @@
 
 \subsubsection{Windows Vista Business x86 SP0}
 
-The VM image provided includes Windows Vista Business 32 bit (x86) Service Pack 0 (SP0) as its operating system. Windows Vista is considered an older operating system with extended support due to end on 11 April, 2017 \citep{Microsoft2014}. In addition, SP0 support has ended on 13 April, 2010 \citep{Microsoft2015}
+The VM image provided includes Windows Vista Business 32 bit (x86) Service Pack 0 (SP0) as its operating system. Windows Vista is considered to be an older operating system with extended support due to end on 11 April, 2017 \citep{Microsoft2014}. Service Pack 0 indicates that no service packs have been installed. In addition, SP0 support has ended on 13 April, 2010. End of support means that the operating system will ``no longer receive security updates that can help protect your PC from harmful viruses, spyware, and other malicious software that can steal your personal information'' \citep{Microsoft2015}.
+
+Analysis of the VM image has shown that no service packs or security updates from Microsoft have been installed, leaving the operating system vulnerable to various exploits or attacks. For example, CVE-2008-0951 describes an ``Execute Code'' vulnerability in the operating system's Auto-run function, which allows arbitrary code on removable media to be executed when inserting either a CD-ROM or USB device \citep{SecurityFocus2008}.
+
+Additionally, CVE-2007-5133 describes a ``Denial of Service Overflow'' vulnerability in Microsoft Windows Explorer. Windows Explorer's inability to handle malformed PNG image files can be exploited, causing the CPU to waste cycles which results in an unresponsive system \citep{SecurityFocus2007a}.
+
+Furthermore, CVE-2007-1658 describes a vulnerability in Windows Mail, an email application packaged with the operating system. The vulnerability allows an attacker to send an email containing a ``maliciously crafted link'' to execute local files \citep{SecurityFocus2007b}.
+
+As seen in the examples above, withholding the installation of operating system service pack and/or security updates leave the system open to various attacks. Installing regular operating system updates is a step towards a secure system, ensuring that the latest known vulnerabilities are patched, and is suggested to be performed as best practice. Blue Ink should also note the end of extended support date. In approximately two years from the time of writing this report, no further security updates to the operating system will be supplied by the vendor. This will be a point to consider if any sensitive information is planned to be stored on these systems after the ``end of support'' date.
 
 \subsubsection{Internet Explorer 7}
+
+
 
 \subsubsection{Windows Defender}
 
