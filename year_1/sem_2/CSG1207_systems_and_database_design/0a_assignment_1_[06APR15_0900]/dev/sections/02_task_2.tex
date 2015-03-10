@@ -6,7 +6,7 @@ Figure 2 below depicts an invoice for an order from a store.
 \begin{figure}[H]
 \centering
 \caption{Pakoko Tax Invoice}
-\includegraphics[scale=1]{./img/task2.pdf}
+\includegraphics[scale=0.75]{./img/task2.pdf}
 \end{figure}
 
 \subsection*{Assumptions}
@@ -22,6 +22,10 @@ Figure 2 below depicts an invoice for an order from a store.
 \item Invoice header and footer is static and is not stored in the database
 	\begin{itemize}
 	\item Includes Pakoko business details header and thank you / return policy URL footer
+	\end{itemize}
+\item Derived attributes are not stored in the database
+	\begin{itemize}
+	\item Includes Item Subtotal and Invoice Grand Total
 	\end{itemize}
 \end{itemize}
 
