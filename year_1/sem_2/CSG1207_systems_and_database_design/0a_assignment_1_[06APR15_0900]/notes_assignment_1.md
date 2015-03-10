@@ -132,3 +132,88 @@ Invoice = (<ins>**Invoice#**</ins>, InvoiceDate, *CustEmail*)
 InvoiceItem = (<ins>**_Invoice#_**</ins>, <ins>**_ItemCode_**</ins>, Qty)  
 Item = (<ins>**ItemCode**</ins>, ItemName, *CatCode*)  
 Category = (<ins>**CatCode**</ins>, CatName)
+
+## Task 2
+
+You have been hired to design a database system for a pizza store. The database must encompass the customers, staff, pizza details, and the pizza orders made by customers. You have the following information about the way the store operates:
+
+### Attributes
+
+- Customer
+	- Notes
+		- Customer details are recorded when they make first order
+	- Attributes
+		- CustID
+		- CustName
+		- CustAdrs
+		- CustEmail
+- Staff
+	- Attributes
+		- StaffID
+		- StaffFirstName
+		- StaffSurname
+		- StaffDOB
+		- StaffPhone
+- CustomerOrder
+	- Notes
+		- Each order can contain multiple pizzas
+	- Attributes
+		- CustOrderID
+		- CustOrderDate
+		- CustOrderTime
+		- *CustID*
+			- Who ordered the pizza
+		- *StaffID*
+			- Who took the order
+- PizzaOrder
+	- CustomerOrder and PizzaType intermediary
+	- Attributes
+		- PizzaOrderID
+		- *CustOrderID*
+		- *PizzaTypeID*
+		- *PizzaCrustID*
+		- *PizzaSauceID*
+		- PizzaReady
+			- Boolean
+			- Default N
+- PizzaType
+	- Notes
+		- Does this need to go in PizzaOrder?
+	- Attributes
+		- PizzaTypeID
+		- PizzaName
+		- PizzaDesc
+		- PizzaPrice
+- PizzaCrust
+	- Notes
+		- Must be chosen when ordering
+	- Attributes
+		- PizzaCrustID
+		- PizzaCrustName
+- PizzaSauce
+	- Attributes
+		- PizzaSauceID
+		- PizzaSauceName
+- Other requirements
+	- Database must track which pizzas were ordered in which orders
+		- Auto-incrementing ordered pizzaID
+		- FK identifying the order that this pizza is part of
+		- FK identifying which pizza was chosen
+		- FK identifying which sauce was chosen
+
+### Assumptions
+
+- A customer must order at least one pizza to exist on database
+- Some staff may not take any CustomerOrders
+- A CustomerOrder must contain at least one PizzaOrder
+- A PizzaOrder must include one PizzaCrust selection
+- A PizzaOrder must include one PizzaSauce selection
+- A PizzaOrder must include one PizzaType
+
+### Logical ER
+
+![pizza LER](http://snag.gy/0QQZX.jpg)
+
+### Physical ER
+
+![pizza PER](http://snag.gy/4AMtc.jpg)
