@@ -84,16 +84,27 @@ State any assumptions you make that influence your diagrams.
 >Plan = (<ins>**Plan#**</ins>, PlanName, Quota, Cost)  
 Customer = (<ins>**Cust#**</ins>, *Plan#*, CustName, CustPhone)
 
-![phone plan er]()
+#### Assumptions
+
+- There may be plans with no customers
+- All customers are signed up to a plan
+
+![phone plan er](http://snag.gy/UjyZ1.jpg)
 
 ### Meeting
+
+#### Assumptions
+
+- Projects may not require a meeting
+- Some staff may not attend a meeting
+- Every meeting must have at least one attendee
 
 >Meeting = (<ins>**Meeting#**</ins>, DateTime, Room, *ProjectCode*, MeetingTopic, MeetingDuration)  
 Project = (<ins>**ProjectCode**</ins>, ProjectTitle)  
 Attendee = (<ins>**_Meeting#_**</ins>, <ins>**_Staff#_**</ins>)  
 Staff = (<ins>**Staff#**</ins>, StaffName)
 
-![meeting er]()
+![meeting er](http://snag.gy/s7X4I.jpg)
 
 ### Computer sales
 
@@ -103,7 +114,14 @@ InvoiceItem = (<ins>**_Invoice#_**</ins>. <ins>**_Item#_**</ins>)
 Item = (<ins>**Item#**</ins>, ItemName, *Cat#*, Cost)  
 Category = (<ins>**Cat#**, CatName</ins>)
 
-![computer sales er]()
+#### Assumptions
+
+- A customer must have at least one invoice
+- An invoice must have at least one invoice item
+- An item may never be purchased
+- All items must be a category, and all categories must have at least one item in them
+
+![computer sales er](http://snag.gy/j5bR4.jpg)
 
 ## Task 3
 
@@ -111,10 +129,20 @@ Create a physical ER diagram from the following set of normalised relations:
 
 >**Player** = (<ins>**Username**</ins>, Password, DoB, RealName, Hobbies)  
 **Game** = (<ins>**GameID**</ins>, Name, Description)  
-**Play** = (<ins>**Play#**</ins>, *GameID*, StartTime, Duration, Winner)  
-PlayPlayer = (<ins>**_Play_**</ins>, <ins>**_Username_**</ins>)
+**Play** = (<ins>**Play#**</ins>, *GameID*, StartTime, Duration, *Winner*)  
+**PlayPlayer** = (<ins>**_Play#_**</ins>, <ins>**_Username_**</ins>)
 
 >The database is for an online boardgame website. There is a record in the **Play** entity for each game that is started, and a record is added to the **PlayPlayer** entity when a Player joins a game that has been started. The **Winner** foreign key in the **Play** entity refers to a **Username** in the **Player** entity.
+
+### Assumptions
+
+- There may be games in the database that have never been played
+- It is possible for a play of a game to have not had a winner
+- It is possible for a player to have never played or won a game
+- It is not possible for a play of a game to occur without any players joining it
+	- A record is not added to the play entity unless the game itself actually starts, which requires a player
+
+![game er](http://snag.gy/G39bF.jpg)
 
 ## Task 4
 
@@ -127,6 +155,53 @@ Create a logical ER diagram for the following problem description, and then conv
 As an additional challenge, try to incorporate the following into your ER diagrams. This can be implemented in a number of ways.
 
 >I need to be able to record the work done by each employee on each contract. The database must record the employee who did work, the contract it was performed on, the date it was performed on, and the hours of work performed. To determine pay, the role which the employee was performing must also be recorded.
+
+### Easy version
+
+#### Notes
+
+- Employee
+	- EmployeeID
+	- EmployeeName
+	- EmployeeDOB
+	- EmployeePhone
+	- EmployeeAdrs
+- Role
+	- RoleID
+	- RoleName
+	- RolePay
+- EmployeeRole
+	- *EmployeeID*
+	- *RoleID*
+- Customer
+	- CustID
+	- CustName
+	- CustPhone
+	- CustEmail
+	- CustAdrs
+- Contract
+	- Contract#
+	- ContractName
+	- ContractDescription
+	- ContratStartDate
+	- *JobType*
+- JobType
+	- JobType
+
+#### Assumptions
+
+- Every customer must have a contract
+	- Otherwise no reason to store details
+- Every employee must be able to perform at least one role
+- Some roles and job types may not have anything associated with them
+
+![job roles easy](http://snag.gy/Yfywp.jpg)
+
+### Hard version
+
+- EmployeeRole in Work entity is composite of EmployeeRole PK's EmployeeID and RoleID
+
+![job roles hard](http://snag.gy/EwfrP.jpg)
 
 ## Task 5
 
@@ -147,3 +222,38 @@ A solution we arrived at was based on these three assumptions:
 Attempt to create a physical ER diagram which does **not** make these assumptions. That is, the database must account for a tenant living in more than one unit, each unit has an owner (who is a tenant), and not all tenants have a driver's licence.
 
 State any assumptions or decisions you have made in order to incorporate these elements.
+
+### Notes
+
+- Unit
+	- **Unit#**
+	- UnitAdrs
+	- Phone
+	- Rent
+	- *Owner*
+- Residence
+	- **_Unit#_**
+	- **_TenantID_**
+	- RentDateStart
+	- RentDateEnd
+- Tenant
+	- **TenantID**
+	- TenantName
+	- TenantPhone
+- ApplianceOwner
+	- **_TenantID_**
+	- **_Serial#_**
+- Appliance
+	- **Serial#**
+	- Brand
+	- Model
+	- Description
+	- Cost
+
+### Assumptions
+
+- Units may be empty
+- A tenant must be living in a unit
+- A tenant can only be the owner of one unit
+
+![tenants](http://snag.gy/r1KCb.jpg)

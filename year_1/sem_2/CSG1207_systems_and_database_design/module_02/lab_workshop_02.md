@@ -157,7 +157,7 @@ R12 = (<ins>**_Invoice#_**</ins>. <ins>**Item#**</ins>, ItemName, Cat#, CatName,
 
 >R11 = (<ins>**Invoice#**</ins>, InvoiceDate, Username, CustomerName, Phone, Address)  
 ~~R12 = (<ins>**_Invoice#_**</ins>. <ins>**Item#**</ins>, ItemName, Cat#, CatName, Qty, Cost)~~  
-R121 = (<ins>**_Invoice#_**</ins>. <ins>**_Item#_**</ins>)  
+R121 = (<ins>**_Invoice#_**</ins>. <ins>**_Item#_**</ins>, Qty)  
 R122 = (<ins>**Item#**</ins>, ItemName, Cat#, CatName, Cost)
 
 #### 3NF
@@ -166,7 +166,7 @@ R122 = (<ins>**Item#**</ins>, ItemName, Cat#, CatName, Cost)
 R111 = (<ins>**_Invoice#_**</ins>, InvoiceDate, *Username*)  
 R112 = (<ins>**Username**</ins>, CustomerName, Phone, Address)
 
->R121 = (<ins>**_Invoice#_**</ins>. <ins>**_Item#_**</ins>)  
+>R121 = (<ins>**_Invoice#_**</ins>. <ins>**_Item#_**</ins>, Qty)  
 ~~R122 = (<ins>**Item#**</ins>, ItemName, Cat#, CatName, Cost)~~  
 R1221 = (<ins>**Item#**</ins>, ItemName, *Cat#*, Cost)  
 R1222 = (<ins>**Cat#**, CatName</ins>)
@@ -175,7 +175,7 @@ R1222 = (<ins>**Cat#**, CatName</ins>)
 
 >Invoice = (<ins>**_Invoice#_**</ins>, InvoiceDate, *Username*)  
 Customer = (<ins>**Username**</ins>, CustomerName, Phone, Address)  
-InvoiceItem = (<ins>**_Invoice#_**</ins>. <ins>**_Item#_**</ins>)  
+InvoiceItem = (<ins>**_Invoice#_**</ins>. <ins>**_Item#_**</ins>, Qty)  
 Item = (<ins>**Item#**</ins>, ItemName, *Cat#*, Cost)  
 Category = (<ins>**Cat#**, CatName</ins>)
 
