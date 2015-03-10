@@ -15,6 +15,7 @@ Figure 2 below depicts an invoice for an order from a store.
 \item Auto-incrementing Cust\# has been created, replacing CustEmail as customer identifier
 	\begin{itemize}
 	\item Auto-incrementing identifier avoids user input error which may result in multiple customers with the same email address
+	\item Allows CustEmail to be updated without having to update foreign keys if CustEmail remained as identifier
 	\end{itemize}
 \item Each item is only in one category
 \item Item codes are unique per item, even if the items are in different categories
