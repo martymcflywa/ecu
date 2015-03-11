@@ -18,25 +18,19 @@ Figure 1 below shows part of a spreadsheet used by a tavern which allows custome
 	\item Auto-incrementing identifier avoids user input error which may result in multiple customers with the same phone number
 	\item Allows CustomerPhone to be updated without having to update foreign keys if CustomerPhone remained as identifier
 	\end{itemize}
-\item BookingDate time element has been split into its own attribute
-	\begin{itemize}
-	\item New attributes created called BookingTimeStart and BookingTimeEnd
-	\item Duration attribute is now derived, no longer stored on database
-	\item Allows system to check availability of room before a new booking can be created
-	\end{itemize}
 \end{itemize}
 
 \subsection{0NF: Unnormalised form}
 
-R1 = (Customer\#, CustomerPhone, CustomerName, {Booking\#, BookingDate, BookingTimeStart, BookingTimeEnd, Room\#, RoomName, RoomCapacity})
+R1 = (Customer\#, CustomerPhone, CustomerName, {Booking\#, BookingDate, Duration, Room\#, RoomName, RoomCapacity})
 
 \subsection{1NF: First normal form}
 
-\sout{R1 = (\textbf{\underline{Customer\#}}, CustomerPhone, CustomerName, \{\textbf{\underline{Booking\#}}, BookingDate, BookingTimeStart, BookingTimeEnd, Room\#,RoomName, RoomCapacity\})}
+\sout{R1 = (\textbf{\underline{Customer\#}}, CustomerPhone, CustomerName, \{\textbf{\underline{Booking\#}}, BookingDate, Duration, Room\#,RoomName, RoomCapacity\})}
 \\\\
 R11 = (\textbf{\underline{Customer\#}}, CustomerPhone, CustomerName)
 \\\\
-R12 = (\textbf{\underline{Booking\#}}, BookingDate, BookingTimeStart, BookingTimeEnd, Room\#, RoomName, RoomCapacity, \emph{Customer\#})
+R12 = (\textbf{\underline{Booking\#}}, BookingDate, Duration, Room\#, RoomName, RoomCapacity, \emph{Customer\#})
 
 \subsection{2NF: Second normal form}
 
@@ -44,15 +38,15 @@ No partial dependencies, already 2NF.
 \\\\
 R11 = (\textbf{\underline{Customer\#}}, CustomerPhone, CustomerName)
 \\\\
-R12 = (\textbf{\underline{Booking\#}}, BookingDate, BookingTimeStart, BookingTimeEnd, Room\#, RoomName, RoomCapacity, \emph{Customer\#})
+R12 = (\textbf{\underline{Booking\#}}, BookingDate, Duration, Room\#, RoomName, RoomCapacity, \emph{Customer\#})
 
 \subsection{3NF: Third normal form}
 
 R11 = (\textbf{\underline{Customer\#}}, CustomerPhone, CustomerName)
 \\\\
-\sout{R12 = (\textbf{\underline{Booking\#}}, BookingDate, BookingTimeStart, BookingTimeEnd, Room\#, RoomName, RoomCapacity, \emph{Customer\#})}
+\sout{R12 = (\textbf{\underline{Booking\#}}, BookingDate, Duration, Room\#, RoomName, RoomCapacity, \emph{Customer\#})}
 \\\\
-R121 = (\textbf{\underline{Booking\#}}, BookingDate, BookingTimeStart, BookingTimeEnd, \emph{Room\#}, \emph{Customer\#})
+R121 = (\textbf{\underline{Booking\#}}, BookingDate, Duration, \emph{Room\#}, \emph{Customer\#})
 \\\\
 R122 = (\textbf{\underline{Room\#}}, RoomName, RoomCapacity)
 
@@ -60,7 +54,7 @@ R122 = (\textbf{\underline{Room\#}}, RoomName, RoomCapacity)
 
 Customer = (\textbf{\underline{Customer\#}}, CustomerPhone, CustomerName)
 \\\\
-Booking = (\textbf{\underline{Booking\#}}, BookingDate, BookingTimeStart, BookingTimeEnd, \emph{Room\#}, \emph{Customer\#})
+Booking = (\textbf{\underline{Booking\#}}, BookingDate, Duration, \emph{Room\#}, \emph{Customer\#})
 \\\\
 Room = (\textbf{\underline{Room\#}}, RoomName, RoomCapacity)
 
