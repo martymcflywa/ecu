@@ -16,28 +16,56 @@ As seen in the examples above, withholding the installation of operating system 
 
 \subsubsection{Internet Explorer 7}
 
-Internet Explorer 7 (IE 7) is the default browser included with Microsoft Vista. IE 7 is considered an older browser and will no longer receive support or security updates after 12 January, 2016 \citep{Capriotti2014}. Furthermore, since no service packs or security updates have been applied to the operating system itself, no security patches have also been applied to this browser, rendering the browser vulnerable to various attacks and zero-day exploits.
+Internet Explorer 7 (IE 7) is the default browser included with Microsoft Vista. IE 7 is considered an older browser and will no longer receive support or security updates after 12 January, 2016 \citep{Capriotti2014}. Furthermore, since no service packs or security updates have been applied to the operating system itself, no security patches have also been applied to this browser, rendering the browser vulnerable to various attacks and exploits.
 
 For example, CVE-2015-0067 describes a ``Remote Memory Corruption'' vulnerability for Internet Explorer versions 6 through 9. A remote user-assisted attacker may exploit this vulnerability by sending the victim a link to view a ``specially crafted'' web page which can then execute malicious code \citep{SecurityFocus2015}.
 
-Additionally, CVE-2013-3918 describes a vulnerability in an ActiveX Class which allows an attacker to remotely execute code on a victim's computer through a malicious website \citep{Ozkan2013, Microsoft2013}. \citet{Chen2013} assert that this particular vulnerability was exploited in a ``watering hole'' attack on a US based website. Anyone that visited the website was subject to a ``drive-by download'' enabled by the vulnerability, in order to propagate malware. \citet{Moran2013} have also found that the payload attacks the memory directly without writing to disk, and ``generally cannot be detected by traditional anti-malware tools'' \citep{Wilson2013}.
+Additionally, CVE-2013-3918 describes a vulnerability in an ActiveX Class which allows an attacker to remotely execute code on a victim's computer through a malicious website \citep{Ozkan2013, Microsoft2013}. \citet{Chen2013} assert that this particular vulnerability was exploited in a ``watering hole'' attack on a US based website. Visitors to the website were subject to a ``drive-by download'' enabled by the vulnerability, in order to propagate malware. \citet{Moran2013} have also found that the malware payload attacks the memory directly without writing to disk, and ``generally cannot be detected by traditional anti-malware tools'' \citep{Wilson2013}.
 
-There are many more vulnerabilities found for this version of Internet Explorer, and the list will continue to grow as they are found. The two examples above indicate the importance of installing security software updates regularly to ensure that known vulnerabilities and exploits are patched. As with the end of support date for Windows Vista, the support of Internet Explorer 7 will only continue for less than a year, from the time of writing this report. Consideration to update to a modern, supported browser is suggested to ensure the security of the business' data.
+There are many more vulnerabilities identified for this version of Internet Explorer, and the list will continue to grow as they are found. The two examples above indicate the importance of installing security software updates regularly to ensure that known vulnerabilities and exploits are patched. It is also important to note that vendor support of Internet Explorer 7 will only continue for less than a year, from the time of writing this report. Consideration to update to a modern, supported browser is suggested to ensure the security of business data.
 
 \subsubsection{Windows Defender}
 
-Windows Defender is an anti-malware software included with Windows Vista. 
+Windows Defender is an anti-malware software included with Windows Vista. The lack of installed service packs or security updates for the operating system has left the included anti-malware software with a severely obsolete virus and malware signature list. The supplied VM image indicates that virus definitions for Windows Defender have not been updated since version 1.0.0.0 on 14 July, 2006.
+
+In order for an anti-malware/virus application to protect a computer effectively, signatures for known viruses and malware must be updated frequently, so that the software is aware of current threats and can protect the system from them \citep{Goodrich2011}. In its current state, Windows Defender can only protect the system from threats that exist in the definitions list on or before the update.
+
+In addition to the lack of virus definition updates, a virus test has been applied using the anti-malware test files from \href{http://www.eicar.org/85-0-Download.html}{www.eicar.org}. Executable, plain-text and archive files which included signatures mimicking a virus were allowed to be downloaded through Internet Explorer 7 without being stopped by Windows Defender. The executable file was also able to be executed without any warnings from Windows Defender. An on-demand scan was then performed on the folder containing the test files, and no threats were found. This either indicates that little to no protection is provided by Windows Defender in its current state, or the eicar test files are not supported with this anti-malware application.
 
 \subsection{Applications}
 
-\subsubsection{Anti-virus}
+\subsubsection{Fake anti-virus}
+
+The VM image includes a desktop shortcut for ``Symantec AV Scanner''. The shortcut links to a html file which attempts to present itself as a legitimate anti-virus software. The ``user interface'' imitates an on-demand virus scan with a progress bar at 100\% and declares ``Scan complete! No threats Discovered!''.
+
+The fake anti-virus software may provide the user a false sense of security, making the user believe the computer is protected, when in fact it is not. The origin of the fake anti-virus is also of concern, as it is possible to have been installed as a result of a malware infection. Removal of the desktop shortcut icon and related files is recommended to ensure that it does not provide the user a false sense of protection.
 
 \subsubsection{Adobe Reader 6.0.1}
 
-\subsubsection{OpenOffice 1.1.5}
+Adobe Reader 6.0.1 is installed in the VM image, allowing the user to view PDF files. Adobe Reader 6.0.1 is a legacy version of the application and has been identified with a number of vulnerabilities. For example, CVE-2011-2462 describes a vulnerability which allows a remote attacker to execute malicious code or cause a Denial of Service through memory corruption \citep{Adobe2011}.
+
+Similarly, CVE-2009-3959 details a vulnerability where an attacker is able to execute arbitrary code by providing the victim with a malicious PDF file. When the PDF file is viewed, the code will be executed with the user's system privileges or cause the victim's application to crash \citep{SecurityFocus2010, SecurityTracker2010}.
+
+These two examples are by no means the only vulnerabilities identified for Adobe Reader 6.0.1, but they illustrate the importance of not only applying updates for the operating system, but also for any installed software. Regularly updating Adobe Reader to the latest version will mitigate the risk of any currently known vulnerabilities for that software.
+
+\subsubsection{OpenOffice.org 1.1.5}
+
+OpenOffice.org 1.1.5 is an open source productivity suite of applications comparable to Microsoft Office and is currently installed on the VM image. A number of vulnerabilities have been identified for version 1.1.5. For example, CVE-2006-2198 describes a vulnerability where an attacker can create a malicious document which when opened by the victim, will execute arbitrary macro code using the victim's user privileges without prompting the victim. The macro will execute even if the application has been configured to disable macros \citep{MITRE2006a}.
+
+CVE-2006-2199 describes another vulnerability where the attacker can create a malicious Java Applet in an OpenOffice.org 1.1.5 document. When the document is loaded by the victim, the Java Applet will escape the Java runtime 'sandbox' and provide system wide access to the attacker with the victim's user privileges \citep{MITRE2006b, SecurityTracker2006}.
+
+These two examples reiterate the need to regularly update installed software to mitigate the risks of any known vulnerabilities for the particular application.
 
 \subsubsection{mIRC 6.0}
 
+mIRC 6.0 is an Internet Relay Chat (IRC) client which is installed on the VM image. CVE-2002-1456 describes a ``Buffer Overflow'' vulnerability which allows an attacker to remotely execute arbitrary code through a flaw in a scripting identifier \citep{MITRE2003, Martin2002}.
+
+IRC clients share similar risks of malware propagation as email. Attackers may send links through private messages or in chatrooms using social engineering to convince a victim to open malicious web pages or files, or may even send files directly through IRC's file-sharing capabilities. Therefore the risks involved in the use of IRC in a business environment must be considered before continuing its use.
+
 \subsection{User practices}
 
-Include user account "green" is admin. Why? Should not have admin rights.
+\subsubsection{Passwords}
+
+\subsubsection{User privileges}
+
+Include user account "green" is admin. Why? Should not have admin rights. Also talk about plain-text password files.
