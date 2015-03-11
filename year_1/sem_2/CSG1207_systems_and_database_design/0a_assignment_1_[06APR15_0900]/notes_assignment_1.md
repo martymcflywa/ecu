@@ -206,9 +206,9 @@ You have been hired to design a database system for a pizza store. The database 
 - A customer must order at least one pizza to exist on database
 - Some staff may not take any CustomerOrders
 - A CustomerOrder must contain at least one PizzaOrder
+- A PizzaOrder must include one PizzaType selection
 - A PizzaOrder must include one PizzaCrust selection
 - A PizzaOrder must include one PizzaSauce selection
-- A PizzaOrder must include one PizzaType
 
 ### Logical ER
 
