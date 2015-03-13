@@ -17,7 +17,16 @@ Special case: b<sup>n*1</sup> =  (b<sup>n</sup>)<sup>1</sup> = b<sup>n</sup>
 log<sub>2</sub>(x / y) = log<sub>2</sub>x - log<sub>2</sub>y  
 log<sub>2</sub>(2<sup>2</sup>) = n (how many times 2 halves 2<sup>n</sup>)
 
-### Examples
+## Manual floor() & ceiling()
+
+Using a manual method, apply floor() and ceiling() functions to log<sub>2</sub>(1050).
+
+>1. 1024 &le; 1050 < 2048
+2. log<sub>2</sub>(1024) &le; log<sub>2</sub>(1050) < log<sub>2</sub>(2048)
+3. log<sub>2</sub>(1024) = 10 &le; log<sub>2</sub>(1050) < log<sub>2</sub>(2048) = 11
+4. Therefore:
+	- floor(log<sub>2</sub>(1050)) = 10
+	- ceiling(log<sub>2</sub>(1050)) = 11
 
 #### Power calculations
 
@@ -87,7 +96,7 @@ To compute approximately the square root of a positive real number a:
 
 ## Powers
 
-### Simple power
+### Simple power: O(n)
 
 To compute b<sup>n</sup> where n is a non-negative int.
 
@@ -114,7 +123,7 @@ static int power(int b, int n) {
 - = 1n
 - = O(n)
 
-### Smart power
+### Smart power: O(log(n))
 
 To compute b<sup>n</sup> where n is a non-negative int.
 
@@ -147,6 +156,96 @@ static int power(int b, int n) {
 - 1 division (half)
 - = 2 floor(log<sub>2</sub>n)
 - = O(log(n))
+
+## Arrays
+
+### Linear search: O(n)
+
+To find which (if any) component of a[left ... right] equals target.
+
+>1. For p = left, ..., right, repeat:
+	1. If target equals a[p], terminate with answer p
+2. Else terminate with answer none.
+
+``` java
+int linearSearch(Object target, Object[] a, int left, int right) {
+	// Find target in a[left ... right]
+	for(int p = left; p <= right; p++) {
+		if(target.equals(a[p])) {
+			return p;
+		}
+	}
+	return -1;
+}
+```
+
+#### Successful linear search
+
+![successful linear search](http://i.imgur.com/QQcyoC0.gif)
+
+#### Unsuccessful linear search
+
+![unsuccessful linear search](http://i.imgur.com/Iy96Pyw.gif)
+
+### Analysis: Counting comparisons
+
+- Let n = right - left + 1 be the length of the array
+- If the search is **successful**, step 1.1 is repeated between 1 and n times
+	- Average number of comparisons = (n + 1) / 2
+- If the search is **unsuccessful**, step 1.1 is repeated n times
+	- Number of comparisons = n
+- In both cases, time complexity is O(n)
+
+### Binary search:
+
+To find which (if any) component of the sorted (sub)array a[left ... right] equals target:
+
+1. Set l = left, r = right
+2. While l &le; r, repeat:
+	1. Let m be an integer about halfway between l and r
+	2. If target equals a[m], terminate with answer m
+	3. If target is less than a[m], set r = m - 1
+	4. If target is greater than a[m], set l = m + 1
+3. Terminate with answer none
+
+![binary search](http://snag.gy/3lQqG.jpg)
+
+``` java
+int binarySearch(Comparable target, Comparable[] a, int left, int right) {
+	// Find target in (sub)array a[left ... right]
+	int l = left, r = right;
+	while(l <= r) {
+		int m = (l + r) / 2;
+		int comp = target.compareTo(a[m]);
+		if(comp == 0) {
+			return m;
+		} else if(comp < 0) {
+			r = m -1;
+		} else {
+			l = m + 1
+		}
+	}
+	return -1;
+}
+```
+
+#### Successful binary search
+
+![successful binary search](http://i.imgur.com/GsH8gL9.gif)
+
+#### Unsuccessful binary search
+
+![unsuccessful binary search](http://i.imgur.com/4urQWAl.gif)
+
+#### Analysis: Counting comparisons
+
+- Let n be the length of the array
+- Assume that steps 2.2~2.4 perform a single (successful) comparison
+- If the search is **unsuccessful**, these steps are repeated as often as we must halve n to reach 0:
+	- Number of comparisons = floor(log<sub>2</sub>n) + 1
+- If the search is **successful**, these steps are repeated at most that many times
+	- Maximum number of comparisons = floor(log<sub>2</sub>n) + 1
+- In both cases, the time complexity is O(log<sub>2</sub>n)
 
 # Algorithm analysis
 
