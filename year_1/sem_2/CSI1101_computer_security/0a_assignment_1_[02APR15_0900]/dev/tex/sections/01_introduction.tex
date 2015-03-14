@@ -2,11 +2,14 @@
 
 The Board of Directors at Blue Ink have recently become aware of the lack of computer security awareness and best practices amongst its employees. As a result, Blue Ink have requested that a sample Virtual Machine (VM) image of a typical computer within their organisation be analysed for security issues.
 
-This report outlines the security issues identified during the analysis of Blue Ink's sample VM image. Vulnerabilities have been found with the operating system itself, and support software packaged with the operating system, such as the Internet browser and anti-virus application. Vulnerabilities have also been identified in outdated software whilst practices regarding the storage of passwords in plain-text files within user documents folders provide opportunities for unwanted access. The security issues identified in this report must be addressed in order to maintain the utmost security.
+This report outlines the security issues identified during the analysis of Blue Ink's sample VM image. Vulnerabilities have been found with the operating system itself, and support software packaged with the operating system, such as the Internet browser and anti-virus application. Vulnerabilities have also been identified in user practices, such as no password required to log in to the operating system, storage of password manager master password in a plain-text file, and administrator user privileges for standard user accounts.
+
+The security issues identified in this report must be addressed in order to mitigate as many security issues as possible.
 
 \subsection{Assumptions}
 
 \begin{itemize}
+\item The computer is connected to WAN (Internet) and LAN
 \item A firewall is implemented to protect the network
 \item User "green" is a standard employee account
 \end{itemize}

@@ -6,7 +6,7 @@
 
 The VM image provided includes Windows Vista Business 32 bit (x86) Service Pack 0 (SP0) as its operating system. Windows Vista is considered to be an older operating system with extended support due to end on 11 April, 2017 \citep{Microsoft2014}. Service Pack 0 indicates that no service packs have been installed. In addition, SP0 support has ended on 13 April, 2010. End of support means that the operating system will ``no longer receive security updates that can help protect your PC from harmful viruses, spyware, and other malicious software that can steal your personal information'' \citep{Microsoft2015}.
 
-Analysis of the VM image has shown that no service packs or security updates from Microsoft have been installed, leaving the operating system vulnerable to various exploits or attacks. For example, CVE-2008-0951 describes an ``Execute Code'' vulnerability in the operating system's Auto-run function, which allows arbitrary code on removable media to be executed when inserting either a CD-ROM or USB device \citep{SecurityFocus2008}. This vulnerability would allow a user-assisted attacker to insert malicious code on a CD-ROM or USB hard drive, and insertion of the CD-ROM or USB hard drive would result in the execution of the malicious code.
+Analysis of the VM image has shown that no service packs or security updates from Microsoft have been installed, leaving the operating system vulnerable to various exploits or attacks. For example, CVE-2008-0951 describes an ``Execute Code'' vulnerability in the operating system's Auto-run function, which allows arbitrary code on removable media to be executed when inserting either a CD-ROM or USB device \citep{SecurityFocus2008}. This vulnerability would allow a user-assisted attacker to include malicious code on a CD-ROM or USB hard drive, and insertion of the CD-ROM or USB hard drive by the victim would result in the execution of the malicious code.
 
 Additionally, CVE-2007-5133 describes a ``Denial of Service Overflow'' vulnerability in Microsoft Windows Explorer. Windows Explorer's inability to handle malformed PNG image files can be exploited, causing the CPU to waste cycles which results in an unresponsive system \citep{SecurityFocus2007a}. For example, a user-assisted attacker may send a victim a website link with an embedded malformed PNG image file, causing the computer to lock up when viewed by the victim.
 
@@ -60,12 +60,26 @@ These two examples reiterate the need to regularly update installed software to 
 
 mIRC 6.0 is an Internet Relay Chat (IRC) client which is installed on the VM image. CVE-2002-1456 describes a ``Buffer Overflow'' vulnerability which allows an attacker to remotely execute arbitrary code through a flaw in a scripting identifier \citep{MITRE2003, Martin2002}.
 
-IRC clients share similar risks of malware propagation as email. Attackers may send links through private messages or in chatrooms using social engineering to convince a victim to open malicious web pages or files, or may even send files directly through IRC's file-sharing capabilities. Therefore the risks involved in the use of IRC in a business environment must be considered before continuing its use.
+In addition to vulnerabilities in the software, IRC clients share similar risks of malware propagation as email. Attackers may send links through private messages or in chatrooms, using social engineering to convince a victim to open malicious web pages or files, or may even send files directly through IRC's file-sharing capabilities. Therefore the risks involved in the use of IRC in a business environment must be considered before continuing its use.
 
 \subsection{User practices}
 
+\subsubsection{Account locking}
+
+The VM image does not require a password while the operating system boots up, and automatically logs in to user ``green''. This would allow a local attacker to gain access to the system with user ``green'' privileges, simply by booting up the computer.
+
+Additionally, the screen saver is not password locked. If the computer is left on while the victim is away from the computer, a local attacker would gain system wide access with user ``green'' privileges with ease.
+
 \subsubsection{Passwords}
+
+Keepass, an open-source password manager is installed in the VM image. While it is generally recommended to use a password manager, the storage of the master password in a plain-text file is not. The master password was found to be stored in a plain-text file inside the user "Documents" directory. If access to this folder was gained, the file could easily be read by an attacker and all passwords stored in the password manager would be compromised.
+
+It is suggested that the practice of storing any passwords in plain-text files to stop. If passwords are to be stored, they should be placed inside an encrypted file, or within the password manager itself.
 
 \subsubsection{User privileges}
 
-Include user account "green" is admin. Why? Should not have admin rights. Also talk about plain-text password files.
+The default user account (automatically logged in at boot-up without requiring a password) is ``green'' has administrator rights. It is assumed that this user is a standard employee and should not require administrator privileges to the system. If an attacker were to gain access to the computer through this user, the attacker would gain access with administrator rights to the system.
+
+Additionally, User Account Control (UAC) has been disabled for this user. UAC is a Windows Vista function which assists in protecting the computer by helping to ``prevent unauthorized changes to your computer''. UAC will notify the user and request permission before any system changing actions are performed \citep{MicrosoftUAC}. Generally, accounts with administrator privileges are authorized to approve such changes. While this option is disabled, changes made by malware could be made without knowledge of the user.
+
+The elevated privileges of a normal user such as ``green'' coupled with the disabling of UAC allows an attacker to gain administrator rights and make system changes without alerting the user.
