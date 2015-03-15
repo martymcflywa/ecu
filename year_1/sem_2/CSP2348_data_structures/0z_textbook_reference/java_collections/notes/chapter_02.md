@@ -213,6 +213,107 @@ static int power(int b, int n) {
 }
 ```
 
+Many algorithms can be expressed using either iteration or recursion. Typically, the recursive algorithm is more elegant and easier to understand, but less efficient, than the corresponding iterative algorithm.
+
+We do not always have a straight choice between iteration and recursion. For some problems, an iterative solution would be extremely awkward, and a recursive solution is much more elegant.
+
+### Integer rendering
+
+Rendering means converting data into a form suitable for printing or display on a screen. Most often, data are rendered as character strings (although some data are suitable for rendering graphically).
+
+The problem is to render a given integer i to a given base or radix, r between 2 and 10. The rendered integer is to be signed only if negative. For example:
+
+| i   | r  | Render |
+|-----|----|--------|
+| +29 | 2  | 11101  |
+| +29 | 8  | 35     |
+| -29 | 8  | -35    |
+| +29 | 10 | 29     |
+
+We can view this problem in terms of three cases:
+
+1. If i < 0, we have a negative integer
+	- So we should render a minus sign '-' and then render (-i) to the base r
+2. If 0 &le; i < r, we have a single digit non-negative integer
+	- So we should simply render the required digit
+		- Note that we must carefully distinguish between the integers 0, 1, ..., 9 and the corresponding digits '0', '1', ..., '9'
+			- A digit is a character, and as such can be printed or displayed on a screen
+			- It is true that each digit has an (integer) internal code, but the internal code for '9' is not 9
+3. If i &ge; r, we have a multiple digit non-negative integer
+	- If we divide i by r, the remainder can be rendered as the rightmost digit, and the quotient can be rendered as the remaining digits
+	- So we should render (i / r) to the base r and then render the single digit corresponding to (i mod r)
+
+This naturally leads to the algorithm below. Step 2 is the easy case (a small non-negative integer) which is solved directly. Step 3 is a harder case, a large non-negative integer, which is solved in part by calling the algorithm recursively to deal with an easier case, a smaller non-negative integer. Step 1 is also a harder case, a negative integer, which is solved in part by calling the algorithm recursively to deal with an easier case, a non-negative integer.
+
+>To render an integer i to the base r, where r is an integer between 2 and 10:
+
+>1. If i < 0:
+	1. Render '-'
+	2. <ins>Render (-i) to the base r</ins>
+2. If 0 &le; i < r:
+	1. Let d be the digit corresponding to i
+	2. Render d
+3. If i &ge; r:
+	1. Let d be the digit corresponding to (i mod r)
+	2. <ins>Render (i / r) to the base r</ins>
+	3. Render d
+
+``` java
+static String renderBasedInt(int i, int r) {
+	// render i to the base r, where r is an integer between 2 and 10
+	String s;
+	if(i < 0) {
+		s = '-' + renderBasedInt(-i, r);
+	} else if(i < r) {
+		char d = (char)('0' + i);
+	} else {
+		char d = (char)('0' + i % r);
+		s = renderBasedInt(i / r, r) + d
+	}
+	return s;
+}
+```
+
+### Towers of Hanoi
+
+Three vertical poles are mounted on a platform. A number of disks are provided, all of different sizes, and each with a central hole allowing it to be threaded on to any of the poles. Initially, all of the disks are on Pole 1, forming a tower with the largest disk at the bottom, and the smallest disk at the top. Only a single disk may be moved at a time, from the top of any tower to the top of any tower, but no larger disks may be moved on top of a smaller disk. The problem is to move the tower of disks from Pole 1 to Pole 2.
+
+According to legend, this task was originally set for the monks at the monastery of Hanoi. 64 disks were provided. Once the monks completed their task, the universe would come to an end. How long should this take?
+
+Rather than the particular problem of moving the tower of 64 disks from Pole 1 to Pole 2, it will prove helpful to address the more general problem of moving a tower of n disks from pole source to pole dest.
+
+We immediately see that n = 1 is an easy case: just move the single disk from source to dest.
+
+In the harder case, n > 1, we are forced to use the remaining pole (other than source and dest); let us call it spare. If n = 2, for example, we can move the smaller disk from source to spare, then move the larger disk from source to dest, and then finally move the smaller disk from spare to dest.
+
+This gives us a clue to solving the general case, n > 1. Assume for the moment that we have an auxiliary algorithm to move a tower of (n - 1) disks from one pole to another. Thus we can proceed as follows: move a tower of (n - 1) disks from source to spare (using the auxiliary algorithm); then move a single disk from source to dest; then move a tower of (n - 1) disks from spare to dest (again using the auxiliary algorithm).
+
+But of course we do not need an auxiliary algorithm to move a tower of (n - 1) disks; we just use the same algorithm recursively! Thus we have derived the algorithm below. To estimate how long the monks of Hanoi will take to move the tower of 64 disks, we need to analyze the algorithm. The characteristic operations are of course single-disk moves. Let monves(n) be the number of single-disk moves required to move a tower of n disks from one pole to another. Then we can immediately write down the following equations:
+
+>moves(n) = 1 | if n = 1  
+moves(n) = 1 + 2 moves(n - 1) | if n > 1
+
+Again we have a pair of recurrence equations. Again we skip the derivation and simply state the solution:
+
+>moves(n) = 2<sup>n</sup> - 1
+
+Thus, for example, moves(1) = 1, which is obviously correct, and moves(2) = 3.
+
+The Towers of Hanoi algorithm has time complexity O(2<sup>n</sup>). In fact, it is the first O(2<sup>n</sup>) algorithm we have encountered.
+
+>To move a tower of n disks from source to dest, where n is a positive integer:
+
+>1. If n = 1:
+	1. <ins>Move a single disk from source to dest</ins>
+2. If n > 1:
+	1. Let spare be the remaining pole, other than source and dest
+	2. <ins>Move a tower of (n - 1) disks from source to spare</ins>
+	3. Move a single disk from source to dest
+	4. <ins>Move a tower of (n - 1) disks from spare to dest</ins>
+3. Terminate
+
+The monks of Hanoi would have discovered long ago what this signifies in practice. Their task entails making 2<sup>64</sup> - 1 or about 18 million million million moves, an enourmous number. At the rate of one move per second, their task would take about 570 billing years, or about 40 times the estimated age of the universe.
+
 # Questions
 
 1. How does "Halve m (neglecting remainder), and multiply q by itself" become floor(log<sub>2</sub>n) + 1
