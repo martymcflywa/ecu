@@ -153,6 +153,30 @@ The finished database design is due tomorrow, and your friend is too busy talkin
 
 Find and correct any errors in the diagram, and make sure that it incorporates the details that you know. The result should be a well-structured physical ER diagram including cardinality. Once this is complete, list the table creation and dropping order for the database, and try to create a data dictionary for it.
 
+### Physical ERD
+
+![3-0](http://snag.gy/f9uXd.jpg)
+
+- All breweries must produce at least one beer
+- Each beer is produced in at least one brewery
+- Each order must have at least one beer
+- Some beers may never have been ordered
+- Some pubs may not have made an order
+
+### Data dictionary
+
+![3-0 data definitions](http://snag.gy/Dw0UP.jpg)
+
+#### Create order
+
+1. Brewery
+2. BeerType
+3. Pub
+4. Order
+5. Beer
+6. BrewBeer
+7. OrderBeer
+
 ## Task 5
 
 You wish to create a database to store details of Pokemon. The database needs to keep track of Pokemon details, including the moves they can do and which Pokemon they evolve into. Draw a physical ER diagram to model this, using the following guidelinies:
