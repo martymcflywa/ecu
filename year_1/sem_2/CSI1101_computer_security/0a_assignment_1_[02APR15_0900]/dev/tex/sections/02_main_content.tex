@@ -12,7 +12,7 @@ Additionally, CVE-2007-5133 describes a ``Denial of Service Overflow'' vulnerabi
 
 Furthermore, CVE-2007-1658 describes a vulnerability in Windows Mail, an email application packaged with the operating system. The vulnerability allows a user-assisted attacker to send an email containing a ``maliciously crafted link'' to execute local files \citep{SecurityFocus2007b}.
 
-As seen in the examples above, withholding the installation of operating system service pack and/or security updates leave the system open to various vulnerabilities. Installing regular operating system updates is a step towards a secure system, ensuring that the latest known vulnerabilities are patched, and should be performed regularly as best practice. Blue Ink should also note the end of extended support date. In approximately two years from the time of writing this report, no further security updates to the operating system will be supplied by the vendor. This will be a point to consider if any sensitive information is planned to be stored on these systems after the ``end of support'' date.
+%As seen in the examples above, withholding the installation of operating system service pack and/or security updates leave the system open to various vulnerabilities. Installing regular operating system updates is a step towards a secure system, ensuring that the latest known vulnerabilities are patched, and should be performed regularly as best practice. Blue Ink should also note the end of extended support date. In approximately two years from the time of writing this report, no further security updates to the operating system will be supplied by the vendor. This will be a point to consider if any sensitive information is planned to be stored on these systems after the ``end of support'' date.
 
 \subsubsection{Internet Explorer 7}
 
@@ -22,7 +22,7 @@ For example, CVE-2015-0067 describes a ``Remote Memory Corruption'' vulnerabilit
 
 Additionally, CVE-2013-3918 describes a vulnerability in an ActiveX Class which allows an attacker to remotely execute code on a victim's computer through a malicious website \citep{Ozkan2013, Microsoft2013}. \citet{Chen2013} assert that this particular vulnerability was exploited in a ``watering hole'' attack on a US based website. Visitors to the website were subject to a ``drive-by download'' enabled by the vulnerability, in order to propagate malware. \citet{Moran2013} have also found that the malware payload attacks the memory directly without writing to disk, and ``generally cannot be detected by traditional anti-malware tools'' \citep{Wilson2013}.
 
-There are many more vulnerabilities identified for this version of Internet Explorer, and the list will continue to grow as they are found. The two examples above indicate the importance of installing security software updates regularly to ensure that known vulnerabilities and exploits are patched. It is also important to note that vendor support of Internet Explorer 7 will only continue for less than a year, from the time of writing this report. Consideration to update to a modern, supported browser is suggested to ensure the security of business data.
+%There are many more vulnerabilities identified for this version of Internet Explorer, and the list will continue to grow as they are found. The two examples above indicate the importance of installing security software updates regularly to ensure that known vulnerabilities and exploits are patched. It is also important to note that vendor support of Internet Explorer 7 will only continue for less than a year, from the time of writing this report. Consideration to update to a modern, supported browser is suggested to ensure the security of business data.
 
 \subsubsection{Windows Defender}
 
@@ -40,21 +40,27 @@ The VM image includes a desktop shortcut for ``Symantec AV Scanner''. The shortc
 
 The fake anti-virus software may provide the user a false sense of security, making the user believe the computer is protected, when in fact it is not. The origin of the fake anti-virus is also of concern, as it is possible to have been installed as a result of a malware infection. Removal of the desktop shortcut icon and related files is recommended to ensure that it does not provide the user a false sense of protection.
 
+\subsubsection{Firefox 8.0}
+
+Firefox 8.0, an alternative web browser to Internet Explorer is installed on the VM image. Several vulnerabilities have been identified with this particular version of the browser. Fore example, CVE-2014-1522 is a vulnerability which allows a remote attacker to execute arbitrary code or cause denial of service conditions if a victim loads a malicious web page \citep{MITRE2014b}.
+
+CVE-2014-1532 describes a ``heap memory corruption'' vulnerability which would allow a remote attacker to either execute arbitrary code or cause denial of service conditions \citep{MITRE2014a}.
+
 \subsubsection{Adobe Reader 6.0.1}
 
 Adobe Reader 6.0.1 is installed in the VM image, allowing the user to view PDF files. Adobe Reader 6.0.1 is a legacy version of the application and has been identified with a number of vulnerabilities. For example, CVE-2011-2462 describes a vulnerability which allows a remote attacker to execute malicious code or cause a Denial of Service through memory corruption \citep{Adobe2011}.
 
 Similarly, CVE-2009-3959 details a vulnerability where an attacker is able to execute arbitrary code by providing the victim with a malicious PDF file. When the PDF file is viewed, the code will be executed with the user's system privileges or cause the victim's application to crash \citep{SecurityFocus2010, SecurityTracker2010}.
 
-These two examples are by no means the only vulnerabilities identified for Adobe Reader 6.0.1, but they illustrate the importance of not only applying updates for the operating system, but also for any installed software. Regularly updating Adobe Reader to the latest version will mitigate the risk of any currently known vulnerabilities for that software.
+%These two examples are by no means the only vulnerabilities identified for Adobe Reader 6.0.1, but they illustrate the importance of not only applying updates for the operating system, but also for any installed software. Regularly updating Adobe Reader to the latest version will mitigate the risk of any currently known vulnerabilities for that software.
 
 \subsubsection{OpenOffice.org 1.1.5}
 
 OpenOffice.org 1.1.5 is an open source productivity suite of applications comparable to Microsoft Office and is currently installed on the VM image. A number of vulnerabilities have been identified for version 1.1.5. For example, CVE-2006-2198 describes a vulnerability where an attacker can create a malicious document which when opened by the victim, will execute arbitrary macro code using the victim's user privileges without prompting the victim. The macro will execute even if the application has been configured to disable macros \citep{MITRE2006a}.
 
-CVE-2006-2199 describes another vulnerability where the attacker can create a malicious Java Applet in an OpenOffice.org 1.1.5 document. When the document is loaded by the victim, the Java Applet will escape the Java runtime 'sandbox' and provide system wide access to the attacker with the victim's user privileges \citep{MITRE2006b, SecurityTracker2006}.
+CVE-2006-2199 describes another vulnerability where the attacker can create a malicious Java Applet in an OpenOffice.org document. When the document is loaded by the victim, the Java Applet will escape the Java runtime 'sandbox' and provide system wide access to the attacker with the victim's user privileges \citep{MITRE2006b, SecurityTracker2006}.
 
-These two examples reiterate the need to regularly update installed software to mitigate the risks of any known vulnerabilities for the particular application.
+%These two examples reiterate the need to regularly update installed software to mitigate the risks of any known vulnerabilities for the particular application.
 
 \subsubsection{mIRC 6.0}
 
@@ -64,22 +70,22 @@ In addition to vulnerabilities in the software, IRC clients share similar risks 
 
 \subsection{User practices}
 
-\subsubsection{Account locking}
+\subsubsection{Password protection}
 
 The VM image does not require a password while the operating system boots up, and automatically logs in to user ``green''. This would allow a local attacker to gain access to the system with user ``green'' privileges, simply by booting up the computer.
 
 Additionally, the screen saver is not password locked. If the computer is left on while the victim is away from the computer, a local attacker would gain system wide access with user ``green'' privileges with ease.
 
-\subsubsection{Passwords}
+\subsubsection{Plaintext password}
 
-Keepass, an open-source password manager is installed in the VM image. While it is generally recommended to use a password manager, the storage of the master password in a plain-text file is not. The master password was found to be stored in a plain-text file inside the user "Documents" directory. If access to this folder was gained, the file could easily be read by an attacker and all passwords stored in the password manager would be compromised.
+Keepass, an open-source password manager is installed in the VM image. While it is generally recommended to use a password manager, the storage of the master password in a plain-text file is not. The master password was found to be stored in a plain-text file inside the user "Documents" directory. If access to this folder was gained, the file could easily be read by an attacker and all encrypted passwords stored in the password manager would be compromised.
 
-It is suggested that the practice of storing any passwords in plain-text files to stop. If passwords are to be stored, they should be placed inside an encrypted file, or within the password manager itself.
+It is suggested that the practice of storing any passwords in plain-text files to stop. If passwords are to be stored within the computer itself, they should be placed inside an encrypted virtual disk device such as Truecrypt, or within the password manager itself.
 
 \subsubsection{User privileges}
 
-The default user account (automatically logged in at boot-up without requiring a password) is ``green'' has administrator rights. It is assumed that this user is a standard employee and should not require administrator privileges to the system. If an attacker were to gain access to the computer through this user, the attacker would gain access with administrator rights to the system.
+The default user account (automatically logged in at boot-up without requiring a password) ``green'' has administrator rights. It is assumed that this user is a standard employee and should not require administrator privileges to the system. If an attacker were to gain access to the computer through this user, the attacker would gain access with administrator rights to the system. Additionally, any malware propagated while under this user's control may potentially also receive administrator privileges.
 
-Additionally, User Account Control (UAC) has been disabled for this user. UAC is a Windows Vista function which assists in protecting the computer by helping to ``prevent unauthorized changes to your computer''. UAC will notify the user and request permission before any system changing actions are performed \citep{MicrosoftUAC}. Generally, accounts with administrator privileges are authorized to approve such changes. While this option is disabled, changes made by malware could be made without knowledge of the user.
+User Account Control (UAC) has been disabled for this user. UAC is a Windows Vista function which assists in protecting the computer by helping to ``prevent unauthorized changes to your computer''. UAC will notify the user and request permission before any system changing actions are performed \citep{MicrosoftUAC}. Generally, accounts with administrator privileges are authorized to approve such changes. While this option is disabled, changes made by malware could be made without knowledge of the user.
 
 The elevated privileges of a normal user such as ``green'' coupled with the disabling of UAC allows an attacker to gain administrator rights and make system changes without alerting the user.
