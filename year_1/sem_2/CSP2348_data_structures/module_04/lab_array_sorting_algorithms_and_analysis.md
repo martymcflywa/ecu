@@ -53,6 +53,52 @@ You are given two unsorted arrays of values. You are required to obtain a sorted
 
 Note: Assume that suitable merging and sorting algorithms are already available.
 
+### Version 1
+
+- Let
+	- n1 = right1 - left1 + 1
+	- n2 = right2 - left2 + 1
+	- n = n1 + n2
+
+>Copy all values from arrays a1[left1...right1] and a2[left2...right2] into an array a3[0...n - 1], and then sort array a3[0...n - 1] using an available array sorting algorithm:
+
+>1. Copy a1[left1...right1] to a3[0...n1 - 1]
+2. Copy a2[left2...right2] to a3[n1...n - 1]
+3. Sort a3[0...n - 1]
+4. Terminate
+
+#### Analysis
+
+- Step 1 and 2 perform 0 comparisons
+- If Step 3 uses selection sort, it performs about n<sup>2</sup> / 2 comparisons
+- The total number of comparisons is therefore about
+	- n<sup>2</sup> / 2
+	- = (n1 + n2)<sup>2</sup> / 2
+	- = n1<sup>2</sup> /  2 + n2<sup>2</sup> + n1n2
+
+### Version 2
+
+- Let
+	- n1 = right1 - left1 + 1
+	- n2 = right2 - left2 + 1
+	- n = n1 + n2
+
+>Sort arrays a1[left1...right2] and a2[left2...right2] respectively, and then merge the two sorted arrays into sorted array a3[1...n - 1] using array merging algorithm:
+
+>1. Sort a1[left1...right1]
+2. Sort a2[left2...right2]
+3. Merge a1[left1...right1] and a2[left2...right2] into a3[1...n - 1]
+4. Terminate
+
+#### Analysis
+
+- If steps 1 and 2 use selection sorting algorithm, they perform about n1<sup>2</sup> / 2 and n2<sup>2</sup> / 2 comparisons respectively
+- Step 3 performs about n = n1 + n2 comparisons
+- The total number of comparisons is therefore about
+	- n1<sup>2</sup> / 2 + n2<sup>2</sup> / 2 + n1 + n2
+- For all but small values of n1 and n2, n1 + n2 < n1n2
+	- Therefore the second way is faster than the first
+
 ## Task 3
 
 Test the Java selection and insertion sorting programs given.
@@ -75,3 +121,33 @@ Test the Vector class.
 
 1. Note how to construct vector objects
 2. Observe the operation of some vector methods by analysing the executed results
+
+### 1:
+
+``` java
+private static Vector v = new Vector();
+pritave static Vector w = new Vector();
+```
+
+### 2:
+
+Executed results:
+
+``` java
+v = []
+v = [Perth, Sydney, Melbourne, Brisbane, Adelaide]
+w = [Perth, Sydney, Melbourne, Brisbane, Adelaide]
+w.equals(v) = true
+v = [Perth, Sydney, Melbourne, Canberra, Adelaide]
+w = [Perth, Sydney, Melbourne, Brisbane, Adelaide]
+w.equals(v) = false
+v = [Perth, Sydney, Melbourne, Hobart, Canberra, Adelaide]
+w = [Perth, Sydney, Melbourne, Brisbane, Adelaide]
+w.equals(v) = false
+w = [Perth, Melbourne, Brisbane]
+v = [Perth, Sydney, Melbourne, Hobart, Canberra, Perth,
+Melbourne, Brisbane, Adelaide]
+v.indexOf("Perth") = 0
+v.indexOf("Perth",2) = 5
+v.indexOf("Canberra") = 4
+```
