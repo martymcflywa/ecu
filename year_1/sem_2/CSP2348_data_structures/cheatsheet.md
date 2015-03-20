@@ -5,8 +5,8 @@
 >b<sup>n+m</sup> = b<sup>n</sup> \* b<sup>m</sup>  
 Special case: b<sup>n+1</sup> \* b
 
->b<sup>n-m</sup> = b<sup>n</sup> | b<sup>m</sup>  
-Special case: b<sup>n-1</sup> = b<sup>n</sup> | b  
+>b<sup>n-m</sup> = b<sup>n</sup> / b<sup>m</sup>  
+Special case: b<sup>n-1</sup> = b<sup>n</sup> / b  
 
 >b<sup>nm</sup> = (b<sup>n</sup>)<sup>m</sup> = (b<sup>m</sup>)<sup>n</sup>  
 Special case: b<sup>n*1</sup> =  (b<sup>n</sup>)<sup>1</sup> = b<sup>n</sup>
@@ -53,6 +53,36 @@ Calculate 2<sup>8</sup> by hand in as many was as you can find, then compare the
 >4 = 2 \* 2; 16 = 4 \* 4; 16 \* 16 = 2<sup>8</sup>  
 3 multiplications  
 2 variables
+
+# Algorithm analysis
+
+## Time complexities
+
+| Big-O            | Type        | Feasibility |
+|------------------|-------------|-------------|
+| O(1)             | Constant    | Always      |
+| O(log(n))        | Logarithmic | Always      |
+| O(n)             | Linear      | Always      |
+| O(n log(n))      | Log Linear  | Always      |
+| O(n<sup>2</sup>) | Quadratic   | Sometimes   |
+| O(n<sup>3</sup>) | Cubic       | Less Often  |
+| O(2<sup>n</sup>) | Exponential | Rarely      |
+
+![big-o chart](http://bigocheatsheet.com/img/big-o-complexity.png)
+
+## O notation operations
+
+### Rule 1
+
+>O(g(n) ± h(n)) = O(g(n)) ± O(h(n)) &rArr; max{O(g(n)), O(h(n))}
+
+### Rule 2
+
+>O(g(n) \* h(n)) = O(g(n)) \* O(h(n))
+
+### Rule 3
+
+>O(g(n) / h(n)) = O(g(n)) / O(h(n))
 
 # Algorithms
 
@@ -117,7 +147,7 @@ static int power(int b, int n) {
 }
 ```
 
-#### Analysis:
+#### Analysis: Counting multiplications
 
 - 1 multiplication for every n
 - = 1n
@@ -150,7 +180,7 @@ static int power(int b, int n) {
 }
 ```
 
-#### Analysis:
+#### Analysis: Counting multiplications
 
 - 2 multiplications
 - 1 division (half)
@@ -159,7 +189,44 @@ static int power(int b, int n) {
 
 ## Arrays
 
-### Linear search: O(n)
+### Insert & Delete
+
+#### Insertion
+
+**Problem:** Given a (sub)array a[left ... right], insert a value val at a[ins]. If necessary, shift values right to make way for it.
+
+![insert](http://i.imgur.com/JZfQR8V.gif)
+
+##### Analysis: Counting copies
+
+- Let n = right - left + 1 be the length of the array
+- Step 1 performs between 0 and n-1 copies
+	- Say (n - 1) / 2 copies on average
+
+![average formula](http://i.imgur.com/ER6og2E.png)
+
+- Step 2 performs 1 copy
+- Average number of copies = (n - 1) / 2 + 1 = n / 2 + <sup>1</sup>/<sub>2</sub>
+- Time complexity is O(n)
+
+#### Deletion
+
+**Problem:** Given a (sub)array a[left ... right], delete the value from a[del]. If necessary, shift values left to fill the gap (assume that left &le; del &le; right).
+
+![deletion](http://i.imgur.com/nKPNSMa.gif)
+
+##### Analysis: Counting copies
+
+- Let n = right - left + 1 be the length of the array
+- Step 1 performs between 0 and n-1 copies
+- Step 2 takes constant time
+	- ie. O(1) time
+- Average number of copies = (n - 1) / 2 = n / 2 - <sup>1</sup>/<sub>2</sub>
+- Time complexity is O(n)
+
+### Searching
+
+#### Linear search: O(n)
 
 To find which (if any) component of a[left ... right] equals target.
 
@@ -179,15 +246,15 @@ int linearSearch(Object target, Object[] a, int left, int right) {
 }
 ```
 
-#### Successful linear search
+##### Successful linear search
 
 ![successful linear search](http://i.imgur.com/QQcyoC0.gif)
 
-#### Unsuccessful linear search
+##### Unsuccessful linear search
 
 ![unsuccessful linear search](http://i.imgur.com/Iy96Pyw.gif)
 
-### Analysis: Counting comparisons
+##### Analysis: Counting comparisons
 
 - Let n = right - left + 1 be the length of the array
 - If the search is **successful**, step 1.1 is repeated between 1 and n times
@@ -196,7 +263,7 @@ int linearSearch(Object target, Object[] a, int left, int right) {
 	- Number of comparisons = n
 - In both cases, time complexity is O(n)
 
-### Binary search:
+#### Binary search
 
 To find which (if any) component of the sorted (sub)array a[left ... right] equals target:
 
@@ -229,15 +296,15 @@ int binarySearch(Comparable target, Comparable[] a, int left, int right) {
 }
 ```
 
-#### Successful binary search
+##### Successful binary search
 
 ![successful binary search](http://i.imgur.com/GsH8gL9.gif)
 
-#### Unsuccessful binary search
+##### Unsuccessful binary search
 
 ![unsuccessful binary search](http://i.imgur.com/4urQWAl.gif)
 
-#### Analysis: Counting comparisons
+##### Analysis: Counting comparisons
 
 - Let n be the length of the array
 - Assume that steps 2.2~2.4 perform a single (successful) comparison
@@ -246,33 +313,3 @@ int binarySearch(Comparable target, Comparable[] a, int left, int right) {
 - If the search is **successful**, these steps are repeated at most that many times
 	- Maximum number of comparisons = floor(log<sub>2</sub>n) + 1
 - In both cases, the time complexity is O(log<sub>2</sub>n)
-
-# Algorithm analysis
-
-## Time complexities
-
-| Big-O            | Type        | Feasibility |
-|------------------|-------------|-------------|
-| O(1)             | Constant    | Always      |
-| O(log(n))        | Logarithmic | Always      |
-| O(n)             | Linear      | Always      |
-| O(n log(n))      | Log Linear  | Always      |
-| O(n<sup>2</sup>) | Quadratic   | Sometimes   |
-| O(n<sup>3</sup>) | Cubic       | Less Often  |
-| O(2<sup>n</sup>) | Exponential | Rarely      |
-
-![big-o chart](http://bigocheatsheet.com/img/big-o-complexity.png)
-
-## O notation operations
-
-### Rule 1
-
->O(g(n) ± h(n)) = O(g(n)) ± O(h(n)) &rArr; max{O(g(n)), O(h(n))}
-
-### Rule 2
-
->O(g(n) * h(n)) = O(g(n)) * O(h(n))
-
-### Rule 3
-
->O(g(n) / h(n)) = O(g(n)) / O(h(n))
