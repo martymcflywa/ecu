@@ -429,3 +429,34 @@ int binarySearch(Comparable target, Comparable[] a, int left, int right) {
 - If the search is **successful**, these steps are repeated at most that many times
 	- Maximum number of comparisons = floor(log<sub>2</sub>n) + 1
 - In both cases, the time complexity is O(log<sub>2</sub>n)
+
+# Review questions
+
+## Module 2: Algorithm analysis
+
+### 1:
+
+>The notation O(n<sup>2</sup>) means that the algorithm's time or space growth rate is proportional to:
+
+n<sup>2</sup>
+
+### 2:
+
+>Determine the time complexity of the following expression:
+
+>(3 \* n<sup>4</sup> + 2 \* n<sup>3</sup> + 2) / (5 \* n)
+
+![review 2-2](http://i.imgur.com/lIBoDvd.png)
+
+``` latex
+\begin{align*}
+(3 \times n^4 + 2 \times n^3 + 2) / (5 \times n) &= \frac{3}{5} \times n^3 + \frac{2}{5} + n^2 + \frac{2}{5} \times n^{-1} \\
+&\Rightarrow max \begin{Bmatrix}
+O(\frac{3}{5} \times n^3), O(\frac{2}{5} \times n^2), O(\frac{2}{5} \times n^{-1})
+\end{Bmatrix} \\
+&\Rightarrow max \begin{Bmatrix}
+O(n^3), O(n^2), O(n^{-1})
+\end{Bmatrix} \\
+&\Rightarrow O(n^3)
+\end{align}
+```
