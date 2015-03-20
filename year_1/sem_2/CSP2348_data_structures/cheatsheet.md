@@ -1,22 +1,5 @@
 # Remedial maths
 
-## Basic laws of powers
-
->b<sup>n+m</sup> = b<sup>n</sup> \* b<sup>m</sup>  
-Special case: b<sup>n+1</sup> \* b
-
->b<sup>n-m</sup> = b<sup>n</sup> / b<sup>m</sup>  
-Special case: b<sup>n-1</sup> = b<sup>n</sup> / b  
-
->b<sup>nm</sup> = (b<sup>n</sup>)<sup>m</sup> = (b<sup>m</sup>)<sup>n</sup>  
-Special case: b<sup>n*1</sup> =  (b<sup>n</sup>)<sup>1</sup> = b<sup>n</sup>
-
-## Basic laws of logarithm
-
->log<sub>2</sub>(x * y) = log<sub>2</sub>x + log<sub>2</sub>y  
-log<sub>2</sub>(x / y) = log<sub>2</sub>x - log<sub>2</sub>y  
-log<sub>2</sub>(2<sup>2</sup>) = n (how many times 2 halves 2<sup>n</sup>)
-
 ## Manual floor() & ceiling()
 
 Using a manual method, apply floor() and ceiling() functions to log<sub>2</sub>(1050).
@@ -28,7 +11,18 @@ Using a manual method, apply floor() and ceiling() functions to log<sub>2</sub>(
 	- floor(log<sub>2</sub>(1050)) = 10
 	- ceiling(log<sub>2</sub>(1050)) = 11
 
-#### Power calculations
+## Basic laws of powers
+
+>b<sup>n+m</sup> = b<sup>n</sup> \* b<sup>m</sup>  
+Special case: b<sup>n+1</sup> \* b
+
+>b<sup>n-m</sup> = b<sup>n</sup> / b<sup>m</sup>  
+Special case: b<sup>n-1</sup> = b<sup>n</sup> / b  
+
+>b<sup>nm</sup> = (b<sup>n</sup>)<sup>m</sup> = (b<sup>m</sup>)<sup>n</sup>  
+Special case: b<sup>n*1</sup> =  (b<sup>n</sup>)<sup>1</sup> = b<sup>n</sup>
+
+### Power calculations
 
 Calculate 2<sup>6</sup> by hand in as many was as you can find and compare their efficiency in terms of multiplications.
 
@@ -53,6 +47,65 @@ Calculate 2<sup>8</sup> by hand in as many was as you can find, then compare the
 >4 = 2 \* 2; 16 = 4 \* 4; 16 \* 16 = 2<sup>8</sup>  
 3 multiplications  
 2 variables
+
+## Basic laws of logarithm
+
+>log<sub>2</sub>(x * y) = log<sub>2</sub>x + log<sub>2</sub>y  
+log<sub>2</sub>(x / y) = log<sub>2</sub>x - log<sub>2</sub>y  
+log<sub>2</sub>(2<sup>2</sup>) = n (how many times 2 halves 2<sup>n</sup>)
+
+### Alternative log rules
+
+Goodrich, M. T., & Tamassia, R. (2014). Data Structures and Algorithms in Java (6th ed.). New York: John Wiley & Sons.
+
+Chapter 4.2, pp. 157.
+
+>1. log<sub>b</sub>(ac) = log<sub>b</sub>a + log<sub>b</sub>c
+2. log<sub>b</sub>(a/c) = log<sub>b</sub>a - log<sub>b</sub>c
+3. log<sub>b</sub>(a<sup>c</sup>) = c * log<sub>b</sub>a
+4. log<sub>b</sub>a = log<sub>d</sub>a / log<sub>d</sub>b
+5. b<sup>log<sub>d</sub>a</sup> = a<sup>log<sub>d</sub>b</sup>
+
+#### Rule application
+
+Goodrich, M. T., & Tamassia, R. (2014). Data Structures and Algorithms in Java (6th ed.). New York: John Wiley & Sons.
+
+Chapter 4.2, pp. 157.
+
+>- Rule 1:
+	- log(2n) = log(2) + log(n) = 1 + log(n)
+- Rule 2:
+	- log(n / 2) = log(n) - log(2) = log(n) - 1
+- Rule 3:
+	- log(n<sup>3</sup>) = 3 \* log(n)
+	- log(2<sup>n</sup>) = n \* log(2) = n * 1 = n
+- Rule 4:
+	- log<sub>4</sub>n = (log(n)) / log(4) = (log(n)) / 2
+- Rule 5:
+	- 2<sup>log(n)</sup> = n<sup>log(2)</sup> = n<sup>1</sup> = n
+
+## Basic laws of exponents
+
+Goodrich, M. T., & Tamassia, R. (2014). Data Structures and Algorithms in Java (6th ed.). New York: John Wiley & Sons.
+
+Chapter 4.2, pp. 161.
+
+>1. (b<sup>a</sup>)<sup>c</sup> = b<sup>ac</sup>
+2. b<sup>a</sup>b<sup>c</sup> = b<sup>a+c</sup>
+3. b<sup>a</sup> / b<sup>c = b<sup>a-c</sup>
+
+### Rule application
+
+Goodrich, M. T., & Tamassia, R. (2014). Data Structures and Algorithms in Java (6th ed.). New York: John Wiley & Sons.
+
+Chapter 4.2, pp. 162.
+
+>- Rule 1:
+	- 256 = 16<sup>2</sup> = (2<sup>4</sup>)<sup>2</sup> = 2<sup>4\*2</sup> = 2<sup>8</sup> = 256
+- Rule 2:
+	- 243 = 3<sup>5</sup> = 3<sup>2+3</sup> = 3<sup>2</sup> \* 3<sup>3</sup> = 9 \* 27 = 243
+- Rule 3:
+	- 16 = 1024 / 64 = 2<sup>10</sup> / 2<sup>6</sup> = 2<sup>10-6</sup> = 2<sup>4</sup> = 16
 
 # Algorithm analysis
 
