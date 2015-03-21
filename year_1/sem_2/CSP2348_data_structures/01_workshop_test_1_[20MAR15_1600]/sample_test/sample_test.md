@@ -48,7 +48,7 @@ Find the Greatest Common Divisor (GCD) of 1050 and 588 by manually executing the
 	2. q = 126 % 84
 		- q = 42
 5. 84 % 42 == 0
-6. q = 0
+6. q = 42
 
 ### 3:
 
