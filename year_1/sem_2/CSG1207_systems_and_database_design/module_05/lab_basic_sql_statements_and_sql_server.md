@@ -25,7 +25,9 @@ FROM employee
 #### Rewrite:
 
 ``` sql
-SELECT first_name, last_name, gender
+SELECT first_name,
+	last_name,
+	gender
 FROM employee;
 ```
 
@@ -49,7 +51,11 @@ FROM department;
 		- Calculate by multiplying by 0.75
 
 ``` sql
-SELECT employee_id, last_name, salary, salary * 12, salary * 0.75
+SELECT employee_id,
+	last_name,
+	salary,
+	salary * 12,
+	salary * 0.75
 FROM employee;
 ```
 
@@ -58,7 +64,11 @@ FROM employee;
 Modify the query you wrote in question 3 to give the last two columns appropriate aliases. Name the salary multiplied by 12 "annual_salary" and 75% of the salary "penalty_salary".
 
 ``` sql
-SELECT employee_id, last_name, salary, salary * 12 AS 'annual_salary', salary * 0.75 AS 'penalty_salary'
+SELECT employee_id,
+	last_name,
+	salary,
+	salary * 12 AS 'annual_salary',
+	salary * 0.75 AS 'penalty_salary'
 FROM employee;
 ```
 
@@ -71,7 +81,8 @@ FROM employee;
 		- ie. "King, Steven"
 
 ``` sql
-SELECT first_name + ' ' + last_name AS 'full_name', last_name + ', ' + first_name AS 'last_name_first'
+SELECT first_name + ' ' + last_name AS 'full_name',
+	last_name + ', ' + first_name AS 'last_name_first'
 FROM employee;
 ```
 
@@ -115,7 +126,8 @@ FROM employee;
 		- Such as `name_and_job` for the first column
 
 ``` sql
-SELECT first_name + ' ' + last_name + ' (' + job_id + ')' AS 'name_and_job', email + '@COMPANY.COM' AS 'full_email'
+SELECT first_name + ' ' + last_name + ' (' + job_id + ')' AS 'name_and_job',
+	email + '@COMPANY.COM' AS 'full_email'
 FROM employee;
 ```
 
@@ -129,7 +141,8 @@ FROM employee;
 	- Give both columns appropriate aliases
 
 ``` sql
-SELECT job_id + ' - ' + job_title AS 'job_id_and_title', max_salary - min_salary AS 'salary_difference'
+SELECT job_id + ' - ' + job_title AS 'job_id_and_title',
+	max_salary - min_salary AS 'salary_difference'
 FROM job;
 ```
 
@@ -142,6 +155,8 @@ Write a query which uses concatenation to return employee names and email addres
 ```
 
 ``` sql
-SELECT '<a href="mailto:' + LOWER(email) + '@company.com">' + first_name + ' ' + UPPER(last_name) + '</a>' AS 'email_hyperlink'
+SELECT '<a href="mailto:' + LOWER(email) + '@company.com">'
+	+ first_name + ' ' + UPPER(last_name) + '</a>'
+	AS 'email_hyperlink'
 FROM employee;
 ```
