@@ -279,4 +279,26 @@
 - Or could be local
 	- Within organisation
 	- Of course they wouldn't really carry any weight outside your organisation
-	
+
+### Hierarchy of trust
+
+- Digital certificates operate on a hierarchy of trust
+- A CA may vouch for you, and a higher CA may vouch for the CA who vouched for you and so on
+- If you look at the certificates stored by your web browser, you should find certificates of various **root** authorities
+
+![hierarchy of trust](http://snag.gy/Lywkw.jpg)
+
+### Chain of certification
+
+![chain of certification](http://snag.gy/lCZGR.jpg)
+
+### PGP digital certificates
+
+- The PGP encryption program can also be used to create and verify signatures
+- It can use x.509 certificates or it can use its own certificate format
+- PGP uses a slightly different approach to certificates
+	- Web of trust instead of heirarchy of trust
+	- You create your certificate and self sign it
+		- You then get peers that trust you to sign your key
+
+![web of trust](http://books.gigatux.nl/mirror/securitytools/ddu/images/0321194438/graphics/09fig07.gif)
