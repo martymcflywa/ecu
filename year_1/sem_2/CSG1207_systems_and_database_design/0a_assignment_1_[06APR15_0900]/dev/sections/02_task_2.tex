@@ -27,6 +27,10 @@ Figure 2 below depicts an invoice for an order from a store.
 	\begin{itemize}
 	\item Includes Item Subtotal and Invoice Grand Total
 	\end{itemize}
+\item A Customer must make at least one order to exist on the database
+\item An Invoice must contain at least one InvoiceItem
+\item An Item may never be ordered
+\item A Category may never be used
 \end{itemize}
 
 \subsection{0NF: Unnormalised form}
@@ -82,3 +86,9 @@ Item = (\textbf{\underline{ItemCode}}, ItemName, \emph{CatCode})
 Category = (\textbf{\underline{CatCode}}, CatName)
 
 \subsection{Physical E-R diagram}
+
+\begin{figure}[H]
+\centering
+\caption{Tax Invoice Physical E-R Diagram}
+\includegraphics[scale=0.5]{./img/CSG1207_A1_PONCE_TASK_2_PER_TAXINVOICE.pdf}
+\end{figure}

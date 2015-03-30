@@ -18,6 +18,8 @@ Figure 1 below shows part of a spreadsheet used by a tavern which allows custome
 	\item Auto-incrementing identifier avoids user input error which may result in multiple customers with the same phone number
 	\item Allows CustomerPhone to be updated without having to update foreign keys if CustomerPhone remained as identifier
 	\end{itemize}
+\item A Customer must make at least one booking to exist on the database
+\item It is possible a Room may never be booked
 \end{itemize}
 
 \subsection{0NF: Unnormalised form}
@@ -59,3 +61,9 @@ Booking = (\textbf{\underline{Booking\#}}, BookingDate, Duration, \emph{Room\#},
 Room = (\textbf{\underline{Room\#}}, RoomName, RoomCapacity)
 
 \subsection{Physical E-R diagram}
+
+\begin{figure}[H]
+\centering
+\caption{Tavern Bookings Physical E-R Diagram}
+\includegraphics[scale=0.5]{./img/CSG1207_A1_PONCE_TASK_1_PER_BOOKING.pdf}
+\end{figure}
