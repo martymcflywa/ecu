@@ -4,7 +4,7 @@
 
 \subsubsection{Windows Vista Business x86 SP0}
 
-The VM image provided includes Windows Vista Business 32 bit (x86) Service Pack 0 (SP0) as its operating system. Windows Vista is considered to be an older operating system with extended support due to end on 11 April, 2017 \citep{Microsoft2014}. Service Pack 0 indicates that no service packs have been installed. In addition, SP0 support has ended on 13 April, 2010. End of support means that the operating system will ``no longer receive security updates that can help protect your PC from harmful viruses, spyware, and other malicious software that can steal your personal information'' \citep{Microsoft2015}.
+The VM image provided includes Windows Vista Business 32 bit (x86) Service Pack 0 (SP0) as its operating system. Windows Vista is considered to be an older operating system with extended support due to end on 11 April, 2017 \citep{Microsoft2014}. Service Pack 0 indicates that no service packs have been installed. In addition, SP0 support has ended on 13 April, 2010. End of support means that the operating system will ``no longer receive security updates that can help protect your PC from harmful viruses, spyware, and other malicious software that can steal your personal information'' \citep{MicrosoftSupportLifecycle}.
 
 Analysis of the VM image has shown that no service packs or security updates from Microsoft have been installed, leaving the operating system vulnerable to various exploits or attacks. For example, CVE-2008-0951 describes an ``execute code'' vulnerability in the operating system's Auto-run function, which allows arbitrary code on removable media to be executed when inserting either a CD-ROM or USB device \citep{SecurityFocus2008}. This vulnerability would allow a user-assisted attacker to include malicious code on a CD-ROM or USB hard drive, and insertion of the CD-ROM or USB hard drive by the victim would result in the execution of the malicious code.
 
@@ -36,13 +36,13 @@ In addition to the lack of virus definition updates, a virus test has been appli
 
 \subsubsection{Fake anti-virus}
 
-The VM image includes a desktop shortcut for ``Symantec AV Scanner''. The shortcut links to a html file which attempts to present itself as a legitimate anti-virus software. The ``user interface'' imitates an on-demand virus scan with a progress bar at 100\% and declares ``Scan complete! No threats Discovered!''.
+The VM image includes a desktop shortcut for ``Symantec AV Scanner''. The shortcut links to a html file located in the user's Documents folder which attempts to present itself as a legitimate anti-virus software. The ``user interface'' imitates an on-demand virus scan with a progress bar at 100\% and declares ``Scan complete! No threats Discovered!''.
 
-The fake anti-virus software may provide the user a false sense of security, making the user believe the computer is protected, when in fact it is not. The origin of the fake anti-virus is also of concern, as it is possible to have been installed as a result of a malware infection. Removal of the desktop shortcut icon and related files is recommended to ensure that it does not provide the user a false sense of protection.
+The fake anti-virus software may provide the user a false sense of security, making the user believe the computer is protected, when in fact it is not. The origin of the fake anti-virus is also of concern, as it is possible to have been installed as a result of a malware propagation. Removal of the desktop shortcut icon and related files is recommended to ensure that it does not provide the user a false sense of protection.
 
 \subsubsection{Firefox 8.0}
 
-Firefox 8.0, an alternative web browser to Internet Explorer is installed on the VM image. Several vulnerabilities have been identified with this particular version of the browser. Fore example, CVE-2014-1522 is a vulnerability which allows a remote attacker to execute arbitrary code or cause denial of service conditions if a victim loads a malicious web page \citep{MITRE2014b}.
+Firefox 8.0, an alternative web browser to Internet Explorer is installed on the VM image. Several vulnerabilities have been identified with this particular version of the browser. For example, CVE-2014-1522 is a vulnerability which allows a remote attacker to execute arbitrary code or cause denial of service conditions if a victim loads a malicious web page \citep{MITRE2014b}.
 
 CVE-2014-1532 describes a ``heap memory corruption'' vulnerability which would allow a remote attacker to either execute arbitrary code or cause denial of service conditions \citep{MITRE2014a}.
 
@@ -66,7 +66,7 @@ CVE-2006-2199 describes another vulnerability where the attacker can create a ma
 
 mIRC 6.0 is an Internet Relay Chat (IRC) client which is installed on the VM image. CVE-2002-1456 describes a ``buffer overflow'' vulnerability which allows an attacker to remotely execute arbitrary code through a flaw in a scripting identifier \citep{MITRE2003, Martin2002}.
 
-In addition to vulnerabilities in the software, IRC clients share similar risks of malware propagation as email. Attackers may send links through private messages or in chatrooms, using social engineering to convince a victim to open malicious web pages or files, or may even send files directly through IRC's file-sharing capabilities. Therefore the risks involved in the use of IRC in a business environment must be considered before continuing its use.
+In addition to vulnerabilities in the software, IRC clients share similar risks of malware propagation as email. Attackers may send links through private messages or in chatrooms, using social engineering to convince a victim to open malicious web pages or files, or may even send files directly through IRC's file-sharing protocol. Therefore the risks involved in the use of IRC in a business environment must be considered before continuing its use.
 
 \subsection{User practices}
 
@@ -78,13 +78,13 @@ Additionally, the screen saver is not password locked. If the computer is left o
 
 \subsubsection{Plaintext password}
 
-Keepass, an open-source password manager is installed in the VM image. While it is generally recommended to use a password manager, the storage of the master password in a plain-text file is not. The master password was found to be stored in a plain-text file inside the user "Documents" directory. If access to this folder was gained, the file could easily be read by an attacker and all encrypted passwords stored in the password manager would be compromised.
+Keepass, an open-source password manager is installed in the VM image. While it is generally recommended to use a password manager, the storage of the master password in a plaintext file is not. The master password was found to be stored in a plaintext file inside the user ``Documents'' directory. If this folder were to be accessed by an attacker, the file could easily be read by an attacker and all encrypted passwords stored in the password manager would be compromised.
 
-It is suggested that the practice of storing any passwords in plain-text files to stop. If passwords are to be stored within the computer itself, they should be placed inside an encrypted virtual disk device such as Truecrypt, or within the password manager itself.
+This report suggests that the practice of storing any passwords in plaintext files to stop. If passwords are to be stored within the computer itself, they should be placed inside an encrypted virtual disk device such as Truecrypt, or within the password manager itself.
 
 \subsubsection{User privileges}
 
-The default user account (automatically logged in at boot-up without requiring a password) ``green'' has administrator rights. It is assumed that this user is a standard employee and should not require administrator privileges to the system. If an attacker were to gain access to the computer through this user, the attacker would gain access with administrator rights to the system. Additionally, any malware propagated while under this user's control may potentially also receive administrator privileges.
+The default user account (automatically logged in at boot-up without requiring a password) ``green'' has administrator rights. It is assumed that this user is a standard employee and should not require administrator privileges to the system. If an attacker were to gain access to the computer through this user, it is possible the attacker would gain access with administrator rights to the system. Additionally, any malware propagated while under this user's control may potentially also receive administrator privileges.
 
 User Account Control (UAC) has been disabled for this user. UAC is a Windows Vista function which assists in protecting the computer by helping to ``prevent unauthorized changes to your computer''. UAC will notify the user and request permission before any system changing actions are performed \citep{MicrosoftUAC}. Generally, accounts with administrator privileges are authorized to approve such changes. While this option is disabled, changes made by malware could be made without knowledge of the user.
 
