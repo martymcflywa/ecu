@@ -108,14 +108,23 @@
 	- Visit root node R
 	- Traverse left subtree
 	- Traverse right subtree
+		- Value
+		- Left
+		- Right
 - **In-order** traversal (l-R-r)
 	- Traverse left subtree
 	- Visit root node R
 	- Traverse right subtree
+		- Left
+		- Value
+		- Right
 - **Post-order** traversal (l-r-R)
 	- Traverse left subtree
 	- Traverse right subtree
 	- Visit root node R
+		- Left
+		- Right
+		- Value
 
 ### Pre-order traversal
 
@@ -149,14 +158,14 @@
 
 ### In-order traversal
 
-- Schematic for in-order traversal (l-R-l):
+- Schematic for in-order traversal (l-R-r):
 	- Traverse left subtree
 	- Visit root node
 	- Traverse right subtree
 
 ![schematic in-order](http://snag.gy/oAgh2.jpg)
 
-- Illustration (l-R-l)
+- Illustration (l-R-r)
 
 ![illus in-order](http://snag.gy/MEBkg.jpg)
 
