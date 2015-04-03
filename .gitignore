@@ -28,3 +28,9 @@ SelfAssessment
 .Rproj.user
 *.Rhistory*
 *.Rdata*
+
+# Intellij
+*.iml
+*.ipr
+*.iws
+*.class
