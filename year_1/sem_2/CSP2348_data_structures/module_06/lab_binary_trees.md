@@ -31,6 +31,14 @@ Consider a binary search tree (BST) whose elements are abbreviated names of chem
 	- H, C, N, O, AI, Si, Fe, Na, P, S, Ni, Ca
 2. Show the effect of successively deleting Si, N, O from the resulting BST
 
+**Successive inserts:**
+
+![2-1](http://snag.gy/1z2zU.jpg)
+
+**Successively deleting Si, N, O:**
+
+![2-2]()
+
 ## Task 3
 
 Test the Java implementation of a `Binary Search Tree` given in `TreeTest.java`.
