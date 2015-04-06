@@ -36,7 +36,7 @@ or:
 = 10 \* (10 + 1) / 2  
 = 10 \* 11 / 2 = 55
 
-### Example 2
+#### Example 2
 
 - Sum the series 2, 4, 6, ..., 18
 - Let n = 18
@@ -59,7 +59,8 @@ or:
 
 ## Sorting algorithms using arrays
 
-- Given an (unsorted) array of data, rearrange the data into certain ascending / descending order
+- **Problem:**
+	- Given an (unsorted) array of data, rearrange the data into certain ascending / descending order
 - Sorting is an important operation because sorted data can be searched and merged efficiently
 - Choice of sorting algorithms
 	- Selection sort
@@ -91,7 +92,7 @@ or:
 
 #### Selection sort
 
-- Idea
+- **Idea:**
 	- Find the least value in the array
 	- Swap it into the leftmost component
 	- Forget the leftmost component
@@ -127,9 +128,11 @@ terminate with p
 
 ![select sort anim](http://i.imgur.com/6PAZhC7.gif)
 
-**The array [2, 5, 1, 3, 4] sorted by selection sort:**
+#### Selection sort demo
 
-![selection sort 2,5,1,3,4](http://snag.gy/mBt2K.jpg)
+- The array [2, 5, 1, 3, 4] sorted by selection sort
+
+![select sort demo](http://i.imgur.com/u6aU2wi.gif)
 
 ##### Analysis
 
@@ -194,7 +197,7 @@ static void selectionSort(Comparable[] a, int left, int right) {
 
 **The array [2, 5, 1, 3, 4] sorted by insertion sort:**
 
-![insert sort 2,5,1,3,4](http://snag.gy/Dr5c0.jpg)
+![anim insert sort demo](http://i.imgur.com/r2WrZ3C.gif)
 
 ##### Analysis
 
@@ -240,9 +243,9 @@ static void selectionSort(Comparable[] a, int left, int right) {
 
 ![merge sort anim](http://i.imgur.com/Wwo3JQl.gif)
 
-**Merge sort example:**
+#### Merge sort demo
 
-![merge sort example](http://snag.gy/7d8jP.jpg)
+![merge sort demo](http://i.imgur.com/XSx7qRA.gif)
 
 ##### Recursive strategy
 
