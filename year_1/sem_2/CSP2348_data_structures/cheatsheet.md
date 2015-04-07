@@ -11,7 +11,9 @@ Using a manual method, apply floor() and ceiling() functions to log<sub>2</sub>(
 	- floor(log<sub>2</sub>(1050)) = 10
 	- ceiling(log<sub>2</sub>(1050)) = 11
 
-## Basic laws of powers
+## Indices
+
+### Indices basic laws
 
 >b<sup>n+m</sup> = b<sup>n</sup> \* b<sup>m</sup>  
 Special case: b<sup>n+1</sup> \* b
@@ -48,7 +50,23 @@ Calculate 2<sup>8</sup> by hand in as many was as you can find, then compare the
 3 multiplications  
 2 variables
 
-## Basic laws of logarithm
+### Inverse indices
+
+![indices law](http://snag.gy/4QKmS.jpg)
+
+To resolve equation 1, n has been inversed<sup>-1</sup> in order to add to the top, as seen in equation 2.
+
+``` tex
+\begin{align}
+&\frac{3 + n^4 + 2 \times n^3 + 2}{5 \times n} \\
+&= \frac{(3 \times n^4 + 2 \times n^3 + 2) \times n^{-1}}{5} \\
+&= \frac{3}{5} \times n^3 + \frac{2}{5} \times n^2 + \frac{2}{5} \times n^{-1}
+\end{align}
+```
+
+## Logarithm
+
+### Logarithm basic laws
 
 >log<sub>2</sub>(x * y) = log<sub>2</sub>x + log<sub>2</sub>y  
 log<sub>2</sub>(x / y) = log<sub>2</sub>x - log<sub>2</sub>y  
@@ -83,6 +101,22 @@ Chapter 4.2, pp. 157.
 	- log<sub>4</sub>n = (log(n)) / log(4) = (log(n)) / 2
 - Rule 5:
 	- 2<sup>log(n)</sup> = n<sup>log(2)</sup> = n<sup>1</sup> = n
+
+### Inverse log
+
+>Exponential: b<sup>log<sub>b</sub>x</sup> = x  
+Logarithmic: log<sub>b</sub>b<sup>x</sup> = x
+
+>Alternatively: n = 2<sup>k</sup> (for some k), or k = log<sub>2</sub>n
+
+#### Rule application
+
+>- log<sub>2</sub>2<sup>5</sup> = 5 \* log<sub>2</sub>2 = 5
+- log<sub>5</sub>5<sup>2x</sup> = 2x \* log<sub>5</sub>5 = 2x
+- log10<sup>6.2</sup> = 6.2 \* log10 = 6.2
+- 2<sup>log<sub>2</sub>5</sup> = 5 \* 2<sup>log<sub>2</sub></sup> = 5
+- 5<sup>log<sub>5</sub><sup>x-1</sup></sup> = x - 1 \* 5<sup>log<sub>5</sub></sup> = x - 1
+- 10<sup>log100</sup> = 100 \* 10<sup>log<sub>10</sub></sup> = 100
 
 ## Basic laws of exponents
 
@@ -714,9 +748,9 @@ Consider a special case: n = 2<sup>k</sup> (for some k), or k = log<sub>2</sub>n
 
 >Then k-1 &le; log<sub>2</sub>(n) < k.
 
->Follow similar proof, we have O(n * log<sub>2</sub>(n)) &le; C(n) &le; O(n * log<sub>2</sub>(n)).
+>Follow similar proof, we have O(n \* log<sub>2</sub>(n)) &le; C(n) &le; O(n \* log<sub>2</sub>(n)).
 
->Which also leads to C(n) &rArr; O(n * log<sub>2</sub>(n))
+>Which also leads to C(n) &rArr; O(n \* log<sub>2</sub>(n))
 
 ### Quick sort
 
@@ -904,3 +938,30 @@ O(n^3), O(n^2), O(n^{-1})
 &\Rightarrow O(n^3)
 \end{align}
 ```
+
+## Test 1 questions
+
+### Question 4:
+
+>Assume that the following expression is the function of a given algorithm (n is input size):  
+>(7n + 8)<sup>4</sup> - 72 \* (n + 1)<sup>9</sup> / (n - 3)<sup>4</sup> + n \* (log<sub>2</sub>(n))<sup>12</sup> + 1029
+
+**Solving (7n + 8)<sup>4</sup>:**  
+= (7n + 8) \* (7n + 8) \* (7n + 8) \* (7n + 8)  
+= O((7n + 8) \* (7n + 8) \* (7n + 8) \* (7n + 8))  
+= O(7n + 8) \* O(7n + 8) \* O(7n + 8) \* O(7n + 8)  
+= O(n) \* O(n) \* O(n) \* O(n)  
+= O(n<sup>4</sup>)
+
+**Solving (-72 * (n + 1)<sup>9</sup>) / (n - 3)<sup>4</sup>)**  
+= O((n + 1)<sup>9</sup>) / O((n - 3)<sup>4</sup>)  
+= ...  
+= O(n<sup>9</sup>) / O(n<sup>4</sup>)  
+= O(n<sup>9</sup> / n<sup>4</sup>)  
+= O(n<sup>5</sup>)
+
+**Therefore:**  
+(7n + 8)<sup>4</sup> - 72 \* (n + 1)<sup>9</sup> / (n - 3)<sup>4</sup> + n \* (log<sub>2</sub>(n))<sup>12</sup> + 1029  
+&rArr; max{O((7n + 8)<sup>4</sup>), O((-72 * (n + 1)<sup>9</sup>) / (n - 3)<sup>4</sup>), O(n * log(n)<sup>12</sup>), O(1029)}  
+&rArr; max{O(n<sup>4</sup>), O(n<sup>5</sup>), O(n * log(n)<sup>12</sup>), O(1)}  
+= O(n<sup>5</sup>)
