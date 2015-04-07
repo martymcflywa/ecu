@@ -813,7 +813,7 @@ static void quickSort(Comparable[] a, int left, int right) {
 
 ![partition invariant](http://snag.gy/CMw1W.jpg)
 
-##### Implementation in Java
+##### Quick sort partitioning Java implementation
 
 ``` java
 static int partition(Comparable[] a, int left, int right) {
@@ -833,6 +833,40 @@ static int partition(Comparable[] a, int left, int right) {
 		}
 	}
 	return p;
+}
+```
+
+### Bubble sort
+
+#### Bubble sort algorithm
+
+> To sort a[left...right]:
+
+>1. For i = 0, ..., right-left-1, repeat:
+	1. For j = left + 1, ..., right-i, repeat:
+		1. If a[j-1] is greater than a[j], swap a[j-l] and a[j]
+2. Terminate
+
+#### Bubble sort Java implementation
+
+``` java
+static void bubbleSort(Comparable[] a, int left, int right) {
+	// 1. For i = 0, ..., right-left-1, repeat:
+	for(int i = 0; i <= right - left - 1; i++) {
+		// 1.1 For j = left + 1, ..., right - i, repeat:
+		for(int j = left + 1; i < right - i; j++) {
+			// compare a[j - 1] to a[j]
+			int comp = a[j - 1].compareTo(a[j]);
+			// 1.1.1 If a[j-1] > a[j]...
+			if(comp > 0) {
+				// store a[j-1] in temp variable
+				Comparable temp = a[j - 1];
+				// ... swap a[j-1] and a[j]
+				a[j - 1] = a[j];
+				a[j] = temp;
+			}
+		}
+	}
 }
 ```
 
