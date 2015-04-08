@@ -1045,7 +1045,7 @@ private void deleteFirst() {
 private void deleteSecond() {
 
 	// temporary second field stores reference to original second node
-	private SLLNode second = this.first.next;
+	SLLNode second = this.first.next;
 
 	// assign first node's link from second, to second node's link (the third node)
 	this.first.next = second.next;
@@ -1058,7 +1058,7 @@ private void deleteSecond() {
 public void swapFirstTwo() {
 
 	// temporary second field stores reference to original second node
-	private SLLNode second = this.first.next;
+	SLLNode second = this.first.next;
 
 	// assign first node's link reference to second node's link (the third node)
 	this.first.next = second.next;
@@ -1143,7 +1143,7 @@ public void printLastToFirst() {
 public void deleteFirst() {
 
 	// temporary second field stores reference to original second node
-	private DLLNode second = this.first.next;
+	DLLNode second = this.first.next;
 	// make second's prev link null (delete link to first node)
 	second.prev = null;
 	// replace first node with second
@@ -1157,7 +1157,7 @@ public void deleteFirst() {
 public void deleteLast() {
 
 	// temporary penult field stores reference to original second-last node
-	private DLLNode penult = this.last.pred;
+	DLLNode penult = this.last.pred;
 	// make penult's next link null (delete link to last node)
 	penult.next = null;
 	// replace last node with second-last node
@@ -1167,7 +1167,7 @@ public void deleteLast() {
 
 ### Linked list algorithms
 
-#### Insertion
+#### Linked list insertion
 
 - **Problem:**
 	- Insert new element at a given point in a linked list
@@ -1209,7 +1209,7 @@ public void deleteLast() {
 public void insert(Object elem, SLLNode prev) {
 
 	// 1. Make ins a link to the newly-created node with element elem and successor null
-	private SSLNode ins = new SSLNode(elem, null);
+	SLLNode ins = new SLLNode(elem, null);
 
 	// 2. If the insertion point is created before the first node:
 	if(prev == null) {
@@ -1245,7 +1245,7 @@ public void insert(Object elem, SLLNode prev) {
 	- **Note:** See aux backward SLL insertion algorithm
 5. Terminate
 
-####### Auxiliary forward SLL insertion algorithm
+###### Auxiliary forward SLL insertion algorithm
 
 >To insert node ins at a given point in the forward SLL headed by first:
 
@@ -1258,7 +1258,7 @@ public void insert(Object elem, SLLNode prev) {
 		- **Note:** Similar to SLL insertion
 3. Terminate
 
-####### Auxiliary backward SLL insertion algorithm
+###### Auxiliary backward SLL insertion algorithm
 
 >To insert node ins after node successor in the backward SLL headed by last:
 
@@ -1266,21 +1266,256 @@ public void insert(Object elem, SLLNode prev) {
 	1. Set node ins's predecessor to first
 	2. Set last to ins
 2. If successor is not null:
-	1. Set node ins's predecessor to successor
-	2. Set node successor's predecessor to ins
+	1. Set node ins's predecessor to succ
+	2. Set node succ's predecessor to ins
 3. Terminate
 
-####### DLL insertion before first node
+###### DLL insertion before first node
 
 ![anim dll insert before first node](http://i.imgur.com/iTumrq4.gif)
 
-####### DLL insertion after last node
+###### DLL insertion after last node
 
 ![anim dll insert after last node](http://i.imgur.com/uZDZGDU.gif)
 
-####### DLL insertion between nodes
+###### DLL insertion between nodes
 
 ![anim dll insert between nodes](http://i.imgur.com/n8AI7AL.gif)
+
+###### DLL insertion Java implementation
+
+``` java
+public void insert(Object elem, DLLNode prev) {
+
+	// Insert elem at a given point in this DLL
+	// The insertion point is after the node pred, or before first node if pred is null
+
+	// 1. Make ins a link to the newly-created node with element elem, predecessor null, and successor null
+	DLLNode ins = new DLLNode(elem, null, null);
+
+	// Call auxiliary forward SLL insertion algorithm
+	insertNodeForwards(ins, prev);
+
+	// 3. Let succ be ins's successor
+	DLLNode succ = ins.next;
+
+	// Call auxiliary backward SLL insertion algorithm
+	insertNodeBackwards(ins, succ);
+
+}
+
+// Define auxiliary forward SLL insertion algorithm
+private void insertNodeForwards(DLLNode ins, DLLNode prev) {
+
+	// Insert the node ins at a given point in the forward SLL of this DLL
+	// The insertion point is after the node pred, or before the first node if pred is null
+
+	// 1. If successor point is before the first node:
+	if(pred == null) {
+
+		// 1.1 Set node ins's successor to first
+		ins.next = first;
+		// 1.2 Set first to ins
+		first = ins;
+
+	// 2. If the insertion point ins is after the node predecessor:
+	} else {
+
+		// 2.1 Set node ins's successor to node predecessor's successor
+		ins.next = pred.next;
+		// 3.2 Set node pred's successor to ins
+		pred.next = ins;
+	}
+}
+
+// Define auxiliary backward SLL insertion algorithm
+private void insertNodeBackwards(DLLNode ins, DLLNode next) {
+
+	// Insert the node ins at a given point in the backwards SLL of this DLL
+	// The insertion point is after the node succ, or before the last node if succ is null
+
+	// 1. If successor is null:
+	if(next == null) {
+
+		// 1.1 Set node ins's predecessor to first
+		ins.pred = last;
+		// 1.2 Set last to ins
+		last = ins;
+
+	// 2. If successor is not null:
+	} else {
+
+		// 2.1 Set node ins's predecessor to succ
+		ins.prev = succ.prev;
+		// 2.2 Set node succ's predecessor to ins
+		succ.prev = ins;
+	}
+}
+```
+
+#### Linked list deletion
+
+##### SLL deletion
+
+###### SLL deletion algorithm
+
+>To delete node del from the SLL headed by first:
+
+>1. Let succ be node del's successor
+2. If del = first:
+	1. Set first to succ
+3. Otherwise:
+	1. Let pred be node del's predecessor
+	2. Set node pred's successor to succ
+4. Terminate
+
+**Note:** There is no link from node del to its predecessor, so Step 3.1 can only access del's predecessor by traversing the links from first.
+
+###### SLL delete first node
+
+![anim sll delete first](http://i.imgur.com/OElG7vl.gif)
+
+###### SLL delete intermediate or last node
+
+![anim sll delete intermediate or last](http://i.imgur.com/cHkxgn3.gif)
+
+###### SLL deletion analysis
+
+- Let n be the SLLs length
+- Step 3.1 must visit all nodes from the first node to the delete node's predecessor
+- There are between 0 and n-1 such nodes
+- Average no. of nodes visited = (n - 1) / 2
+- Time complexity is O(n)
+
+###### SLL deletion Java implementation
+
+``` java
+public void delete(SLLNode del) {
+
+	// 1. Let succ be node del's successor
+	SLLNode succ = del.next;
+
+	// 2. If del = first:
+	if(del == this.first) {
+		// Set first to succ
+		this.first = succ;
+
+	// 3. Otherwise:
+	} else {
+		// loop next link until next = del
+		// can only traverse prev to next
+		while(pred.next != del) {
+
+			// 3.1 Let pred be node del's successor
+			pred = pred.next;
+		}
+
+		// 3.2 Set node pred's successor to succ
+		pred.next = succ;
+	}
+}
+```
+
+##### DLL deletion
+
+###### DLL deletion algorithm
+
+>To delete node del from the DLL headed by (first, last):
+
+>1. Let pred and succ be node del's predecessor and successor
+2. Delete node del, whose predecessor is pred, from the forward SLL headed by first
+	- See aux forward SLL deletion algorithm
+3. Delete node del, whos successor is succ, from the backwards SLL headed by last
+	- See aux backward SLL deletion algorithm
+4. Terminate
+
+###### Auxiliary forward SLL deletion algorithm
+
+>To delete node del, whose predecessor is pred, from the forward SLL headed by first:
+
+>1. If pred is null:
+	1. Set first to node del's successor
+2. If pred is not null:
+	1. Set node pred's successor to node del's successor
+3. Terminate
+
+###### Auxiliary backward SLL deletion algorithm
+
+>To delete node del, whose successor is succ, from the backward SLL headed by last:
+
+>1. If succ is null:
+	1. Set last to node del's predecessor
+2. If succ is not null:
+	1. Set node succ's predecessor to node del's predecessor
+3. Terminate
+
+###### DLL deleting the first (but not last) node
+
+![anim dll delete first but not last](http://i.imgur.com/wsOX5Zn.gif)
+
+###### DLL deleting an intermediate node
+
+![anim dll delete intermediate](http://i.imgur.com/gcAwzJW.gif)
+
+###### DLL deletion analysis
+
+- The DLL deletion algorithm has time complexity O(1)
+	- Because it does not need to traverse the DLL to establish a link to predecessor
+
+###### DLL deletion Java implementation
+
+``` java
+// To delete node del from the DLL headed by (first, last):
+public void delete(DLLNode del) {
+
+	// 2. Delete node del, whose predecessor is pred, from the forward SLL headed by first
+	deleteNodeForwards(del, del.prev);
+	// 3. Delete node del, whose successor is succ, from the backwards SLL headed by last
+	deleteNodeBackwards(del, del.next);
+}
+
+// To delete node del, whose successor is succ, from the backwards SLL headed by last:
+public void deleteNodeForwards(DLLNode del, DLLNode prev) {
+
+	DLLNode succ = del.next;
+
+	// 1. If pred is null:
+	if(pred == null) {
+
+		// 1.1 Set first to node del's successor
+		DLLNode first = succ;
+
+	// 2. If pred is not null:
+	} else {
+
+		// 2.1 Set node pred's successor to node del's successor
+		pred.next = succ;
+	}
+}
+
+// To deleted node del, whose successor is succ, from the backward SLL headed by first:
+public void deleteNodeBackwards(DLLNode del, DLLNode next) {
+
+	DLLNode pred = del.prev;
+
+	// 1. If succ is null:
+	if(next == null) {
+
+		// 1.1 Set last to node del's predecessor
+		last = pred;
+
+	// 2. If succ is not null:
+	} else {
+
+		// 2.2 Set node succ's predecessor to node del's predecessor
+		succ.prev = pred;
+	}
+}
+```
+
+#### Comparison of SLL/DLL insert/delete algorithms
+
+![sll vs. dll insert/delete](http://snag.gy/StGlq.jpg)
 
 # Review questions
 
