@@ -908,6 +908,380 @@ static void bubbleSort(Comparable[] a, int left, int right) {
 
 ![sort algorithms table](http://snag.gy/JzAZO.jpg)
 
+## Data structures
+
+### Linked list
+
+#### Array vs. linked list
+
+- **Array**
+	- Static structure
+		- Fixed length
+		- Cannot be changed once declared
+	- Access
+		- Uses an index
+		- Contagious allocated memory
+		- Suitable to random access
+	- Operations
+		- Search operation can be efficient for sorted array
+		- But delete/insert algorithms are inefficient
+- **Linked list**
+	- Dynamic data structure
+		- Size of a link list varies
+		- Can be changed
+	- Access
+		- Uses link
+		- Unable to quickly locate/access elements
+			- Must traverse
+	- Operations
+		- Efficient in data insertion/deletion
+			- Suitable for storing data set that is frequently inserted/deleted and infrequent value based searching
+- **Therefore:**
+	- If the data set is dynamic, and insert/delete operations occur frequently, it is better to use linked lists
+	- Else array data structure is more suitable
+
+#### Linked list properties
+
+- A linked list consists of a **header** and zero or more **link**-connected **nodes**
+	- A **singly-linked list** (SLL) **header** has one reference
+		- Which may be null or a link
+	- A **doubly-linked list** (DLL) **header** has two references
+		- Which may be both null
+		- Or both links
+	- Each node contains a single **element**
+		- Object or value
+	- Each SLL/DLL node contains a **successor** reference
+		- Which may be null or a link
+	- A **DLL** node also contains a **predecessor** reference
+		- Which may be null or a link
+- The **length** of a linked list is the number of nodes
+	- An **empty** linked list has 0 nodes
+- The individual elements are accessed by link
+	- The **links** can change the linked list structure
+		- Not possible in an array
+
+### Singly-linked list (SLL)
+
+![sll header and nodes](http://snag.gy/CqzHX.jpg)
+
+- SLL consists of sequence of nodes
+	- Connected by links in **one direction** only
+- Each SSL node contains a single element
+	- Plus link to node's successor
+	- Or null if no successor
+- An SLL header contains a link to the SLL's first node
+	- Or a null link if the SLL is empty
+
+#### SLL Java implementation
+
+##### SLL node
+
+``` java
+public class SLLNode {
+
+	// element field
+	private Object element;
+	// link to next node
+	private SLLNode next;
+
+	// constructor
+	SLLNode(Object element, SLLNode next) {
+
+		// assign args to fields
+		this.element = element;
+		this.next = next;
+	}
+}
+```
+
+##### SLL header
+
+``` java
+public class SLLHeader {
+
+	// reference to first node field
+	private SLLNode first;
+
+	// constructor
+	SLLHeader() {
+
+		// assign first as null
+		this.first = null
+	}
+	// SLL methods here
+}
+```
+
+##### SLL traversal
+
+``` java
+private void PrintFirstToLast() {
+
+	// print all elements in this SLL, first-to-last order
+
+	// curr = counter, iterates from first to next to next etc. until curr = null
+	for(SLLNode curr = this.first; curr != null; curr = next) {
+		// print current element in loop
+		System.out.println(curr.element);
+	}
+}
+```
+
+#### SLL manipulation
+
+##### SLL delete first node
+
+``` java
+private void deleteFirst() {
+
+	// assign first as next, removes first node
+	this.first = this.first.next;
+}
+```
+
+##### SLL delete second node
+
+``` java
+private void deleteSecond() {
+
+	// temporary second field stores reference to original second node
+	private SLLNode second = this.first.next;
+
+	// assign first node's link from second, to second node's link (the third node)
+	this.first.next = second.next;
+}
+```
+
+##### SLL swap first and second nodes
+
+``` java
+public void swapFirstTwo() {
+
+	// temporary second field stores reference to original second node
+	private SLLNode second = this.first.next;
+
+	// assign first node's link reference to second node's link (the third node)
+	this.first.next = second.next;
+	// assign second node's link to first node
+	second.next = this.first;
+	// assign first node's link to second node
+	this.first = second
+}
+```
+
+### Doubly-linked list (DLL)
+
+![dll header and nodes](http://snag.gy/xw9uk.jpg)
+
+- A doubly-linked list consists of a sequence of nodes
+	- Connected by links in **both** directions
+- Each DLL node contains a single element, plus links to the nodes successor and predecessor
+	- Or null links
+- The DLL **header** contains links to the DLLs first and last nodes
+	- Or null links if the DLL is empty
+
+#### DLL Java implementation
+
+##### DLL node
+
+``` java
+public class DLLNode {
+
+	// element field
+	protected Object element;
+
+	// link to prev and next nodes
+	protected DLLNode prev;
+	protected DLLNode next;
+
+	// constructor
+	public DLLNode(Object element, DLLNode prev, DLLNode next) {
+
+		// assign args to fields
+		this.element = element;
+		this.prev = prev;
+		this.next = next;
+	}
+}
+```
+
+##### DLL header
+
+``` java
+public class DLLHeader {
+
+	// link to first and last node
+	private DLLNode first;
+	private DLLNode last;
+
+	public DLLHeader() {
+		// construct empty DLL
+		this.first = null;
+		this.last = null;
+	}
+}
+```
+
+##### DLL traversal
+
+``` java
+public void printLastToFirst() {
+
+	// curr = counter, iterates from last node to prev to prev etc. until curr = null
+	for(DLLNode curr = this.last; curr != null; curr = curr.prev) {
+		// print current element in loop
+		System.out.println(curr.element);
+	}
+}
+```
+
+#### DLL manipulation
+
+##### DLL delete first node
+
+``` java
+public void deleteFirst() {
+
+	// temporary second field stores reference to original second node
+	private DLLNode second = this.first.next;
+	// make second's prev link null (delete link to first node)
+	second.prev = null;
+	// replace first node with second
+	this.first = second;
+}
+```
+
+##### DLL delete last node
+
+``` java
+public void deleteLast() {
+
+	// temporary penult field stores reference to original second-last node
+	private DLLNode penult = this.last.pred;
+	// make penult's next link null (delete link to last node)
+	penult.next = null;
+	// replace last node with second-last node
+	this.last = penult;
+}
+```
+
+### Linked list algorithms
+
+#### Insertion
+
+- **Problem:**
+	- Insert new element at a given point in a linked list
+- Four cases to consider:
+	1. Insertion in an empty linked list
+	2. Insertion before the first node of a non-empty linked list
+	3. Insertion after the last node of a non-empty linked list
+		- This case is actually a special case of 4 below
+	4. Insertion between nodes of a non-empty linked list
+		- General case
+- Insertion algorithm needs links to the new node's successor and predecessor
+
+##### SLL insertion
+
+###### SLL insertion algorithm
+
+>To insert elem at a given point in the SLL headed by first:
+
+>1. Make ins a link to the newly-created node with element elem and successor null
+2. If the insertion point is before the first node:
+	1. Set node ins's successor to first
+	2. Set first to ins
+3. If the insertion point is after the node pred:
+	1. Set node ins's successor to node pred's successor
+	2. Set node pred's successor to ins
+4. Terminate
+
+###### SLL insertion case 2: Insertion before first node
+
+![anim algorithm insertion before first node](http://i.imgur.com/fJm5gsv.gif)
+
+###### SLL insertion case 4: Insertion after intermediate node
+
+![anim algorithm insertion after intermediate node](http://i.imgur.com/1GSUFRO.gif)
+
+###### SLL insertion Java implementation
+
+``` java
+public void insert(Object elem, SLLNode prev) {
+
+	// 1. Make ins a link to the newly-created node with element elem and successor null
+	private SSLNode ins = new SSLNode(elem, null);
+
+	// 2. If the insertion point is created before the first node:
+	if(prev == null) {
+
+		// 2.1 Set node ins's successor to first
+		ins.next = this.first;
+		// 2.2 Set first to ins
+		this.first = ins;
+
+	// 3. If the insertion point is after the node pred:
+	} else {
+
+		// 3.1 Set node ins's successor to the node pred's successor
+		ins.next = pred.next;
+		// 3.2 Set node pred's successor to ins
+		pred.next = ins;
+	}
+}
+```
+
+##### DLL insertion
+
+###### DLL insertion algorithm
+
+>To insert elem at a given point in the DLL headed by (first, last):
+
+>1. Make ins a link to a newly-created node with element elem, predecessor null, and successor null
+2. Insert ins at the insertion point of the forward SLL headed by first
+	- **Note:** See aux forward SLL insertion algorithm
+3. Let succ be ins's successor
+	- Or null if ins has no successor
+4. Insert ins after node successor in the backwards SLL headed by last
+	- **Note:** See aux backward SLL insertion algorithm
+5. Terminate
+
+####### Auxiliary forward SLL insertion algorithm
+
+>To insert node ins at a given point in the forward SLL headed by first:
+
+>1. If the insertion point is before the first node:
+	1. Set node ins's successor to first
+	2. Set first to ins
+2. If the insertion point ins is after the node predecessor:
+	1. Set node ins's successor to node predecessor's successor
+	2. Set node predecessor's successor to ins
+		- **Note:** Similar to SLL insertion
+3. Terminate
+
+####### Auxiliary backward SLL insertion algorithm
+
+>To insert node ins after node successor in the backward SLL headed by last:
+
+>1. If successor is null:
+	1. Set node ins's predecessor to first
+	2. Set last to ins
+2. If successor is not null:
+	1. Set node ins's predecessor to successor
+	2. Set node successor's predecessor to ins
+3. Terminate
+
+####### DLL insertion before first node
+
+![anim dll insert before first node](http://i.imgur.com/iTumrq4.gif)
+
+####### DLL insertion after last node
+
+![anim dll insert after last node](http://i.imgur.com/uZDZGDU.gif)
+
+####### DLL insertion between nodes
+
+![anim dll insert between nodes](http://i.imgur.com/n8AI7AL.gif)
+
 # Review questions
 
 ## Module 2: Algorithm analysis
