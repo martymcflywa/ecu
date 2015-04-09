@@ -1517,6 +1517,178 @@ public void deleteNodeBackwards(DLLNode del, DLLNode next) {
 
 ![sll vs. dll insert/delete](http://snag.gy/StGlq.jpg)
 
+### Linked-list methods
+
+#### Linked-list searching
+
+- **Problem:**
+	- Search for a given target value in a linked list
+
+##### SLL linear search algorithm
+
+- For unsorted lists
+
+>To find which (if any) node of the SLL headed by first contains an element equal to target:
+
+>1. For each node curr in the SLL headed by first, repeat:
+	1. If target is equal to node curr's element, terminate with answer curr
+2. Terminate with answer none
+
+##### Unsorted DLL linear search algorithm
+
+- Similar to SLL linear search
+	- Adds ability to search last to first
+
+##### SLL linear search analysis
+
+- Counting comparisons
+- Let n be the SLLs length
+- If the search is **successful:**
+	- Best-case
+	- Average number of comparisons: (n + 1) / 2
+- If the search is **unsuccessful:**
+	- Worst-case
+	- Number of comparisons = n
+- In either case, time complexity is O(n)
+
+##### SLL linear search Java implementation
+
+``` java
+public SLLNode search(Object target) {
+
+	// To find which (if any) node of the SLL headed by first,
+	// contains an element equal to target:
+
+	// 1. For each node curr in the SLL headed by first, repeat:
+	for(SLLNode curr = this.first; curr != null; curr = curr.next) {
+
+		// 1.1 If target is equal to node curr's element, terminate with answer curr
+		if(target.equals(curr.element)) {
+			return curr;
+		}
+	}
+
+	// 2. Terminate with answer non
+	return null;
+}
+```
+
+#### Linked-list merging
+
+- **Problem:**
+	- Merge two sorted linked lists in a third, empty linked-list
+
+##### SLL merge algorithm
+
+>To merge two sorted SLLs, headed by first1 and first2 respectively:
+
+>1. Set curr1 to first1, set curr2 to first2, set first to null, and set last to null
+2. While curr1 is not null and curr2 is not null, repeat:
+	1. If curr1's element is less than or equal to curr2's element:
+		1. Append curr1's element to the SLL headed by (first, last)
+		2. Set curr1 to curr1's successor
+	2. If curr1's element is greater than or equal to curr2's element:
+		1. Append curr2's element to the SLL headed by (first, last)
+		2. Set curr2 to curr2's sucessor
+3. While curr1 is not null, repeat:
+	1. Append curr1's element to the SLL headed by (first, last)
+	2. Set curr1 to curr1's successor
+4. While curr2 is not null, repeat:
+	1. Append curr2's element to the SLL headed by (first, last)
+	2. Set curr2 to curr2's successor
+
+##### SLL auxiliary append algorithm
+
+- This method would go in a subclass of `SLL` called `AppendableSLL`
+
+>To append elem to the SLL headed by (first, last):
+
+>1. Make app a link to a newly-created node with element elem and successor null
+2. If last is null
+	1. Set first to app
+3. If last is not null
+	1. Set node last's successor to app
+4. Set last to app
+5. Terminate
+
+##### SLL auxiliary append Java implementation
+
+``` java
+public static AppendableSLL append(SLLNode elem) {
+
+	SLLNode app = new SLLNode(elem.element, null);
+
+	if(this.last == null) {
+		this.first = app;
+	} else {
+		this.last.next = app;
+	}
+	this.last = app;
+}
+```
+
+##### SLL merge Java implementation
+
+``` java
+public static SLL merge(SLL list1, SLL list2) {
+
+	// To merge two sorted SLLs, headed by first1 and first2 respectively:
+
+	// instantiate new/empty list to merge to
+	AppendableSLL list3 = new AppendableSLL();
+
+	// 1. Set curr1 to first1, set curr2 to first2, set first to null, set last to null
+	SLLNode curr1 = list1.first;
+	SLLNode curr2 = list2.first;
+
+	// 2. While curr1 is not null and curr2 is not null, repeat:
+	while(curr1 != null && curr2 != null) {
+
+		// casting curr*.element as Comparable
+		Comparable elem1 = (Comparable) curr1.element;
+		Comparable elem2 = (Comparable) curr2.element;
+
+		// compare happens here
+		int comp = elem1.compareTo(elem2);
+
+		// 2.1 If curr1's element is less than or equal to curr2's element:
+		if(comp <= 0) {
+
+			// 2.1.1 Append curr1's element to the SLL headed by (first, last)
+			list3.append(elem1);
+			// 2.1.2 Set curr1 to curr1's successor
+			curr1 = curr1.next;
+
+		// 2.2 If curr1's element is greater than or equal to curr2's element:
+		} else {
+
+			// 2.2.1 Append curr2's element to the SLL headed by (first, last)
+			list3.append(elem2);
+			// 2.2.2 Set curr2 to curr2's successor
+			curr2 = curr2.next;
+		}
+	}
+
+	// 3. While curr1 is not null, repeat:
+	while(curr1 != null) {
+
+		// 3.1 Append curr1's element to the SLL headed by (first, last)
+		list3.append(curr1.element);
+		// 3.2 Set curr1 to curr1's successor
+		curr1 = curr1.next;
+	}
+
+	// 4. While curr2 is not null, repeat:
+	while(curr2 != null) {
+
+		// 4.1 Append curr2's element to the SLL headed by (first, last)
+		list3.append(elem2);
+		// 4.2 Set curr2 to curr2's successor
+		curr2 = curr2.next;
+	}
+}
+```
+
 # Review questions
 
 ## Module 2: Algorithm analysis
