@@ -114,17 +114,27 @@ public class SLL<E> {
         // if head != null, meaning other nodes exist in list,
         if(head != null) {
 
-            // set head as the next node, making the next node the first node
-            head = head.getNext();
-
+            // if head's next is null, meaning last remaining node in list,
+            if(head.getNext() == null) {
+                // set head to null, deleting last node
+                head = null;
+                // print warning
+                System.out.println("Warning: Last node deleted!");
+                // decrement list length;
+                listLength--;
+                return null;
+            } else {
+                // set head as the next node, making the next node the first node
+                head = head.getNext();
+                // decrement list length;
+                listLength--;
+            }
         // else head == null, no other nodes exist,
         } else {
-            // set remove as null
             // TODO: throw exception instead
+            System.out.println("Error: List already empty!");
             remove = null;
         }
-        // decrement list length;
-        listLength--;
         // return removed node
         return remove;
     }
@@ -144,25 +154,38 @@ public class SLL<E> {
             // set current to head, make current == first node
             current = head;
 
-            // loop while current's next is not null, meaning loop through until at last node:
-            while(current.getNext() != null) {
-                // traverse previous to current node
-                previous = current;
-                // traverse current to current's next node
-                current = current.getNext();
-            }
-            // current.getNext() == null, arrived at last node
-            // set previous node's pointer to null, removing link to last node
-            previous.setNext(null);
-            // decrement list length
-            listLength--;
-            // return removed node
-            return current;
+            // if current's next is null, meaning last remaining node in list,
+            if(current.getNext() == null) {
+                // set head to null, deleting last node
+                head = null;
+                // print warning
+                System.out.println("Warning: Last node deleted!");
+                // decrement list length
+                listLength--;
+                return null;
 
-        // else head == null, no other nodes exist,
+                // else more than one node still exists,
+            } else {
+
+                // loop while current's next is not null, meaning loop through until at last node:
+                while(current.getNext() != null) {
+                    // traverse previous to current node
+                    previous = current;
+                    // traverse current to current's next node
+                    current = current.getNext();
+                }
+                // current.getNext() == null, arrived at last node
+                // set previous node's pointer to null, removing link to last node
+                previous.setNext(null);
+                // decrement list length
+                listLength--;
+                // return removed node
+                return current;
+            }
+        // else head == null, meaning list is already empty,
         } else {
-            // return null
             // TODO: throw exception instead
+            System.out.println("Error: List already empty!");
             return null;
         }
     }
@@ -181,10 +204,8 @@ public class SLL<E> {
 
         // if list is empty,
         if(head == null) {
-            // print error message
-            System.out.println("Error: The list is empty!");
-            // return null
             // TODO: throw exception instead
+            System.out.println("Error: The list is empty!");
             return null;
 
         // else list is not empty,
@@ -225,10 +246,8 @@ public class SLL<E> {
 
         // else end of list is reached, target not found
         } else {
-            // print error message
-            System.out.println("Error: Target does not exist in the list!");
-            // return null
             // TODO: throw exception instead
+            System.out.println("Error: Target not found!");
             return null;
         }
     }
@@ -278,60 +297,14 @@ public class SLL<E> {
 
     /**
      * This method returns the list length.
+     * O(1): Performs 1 action since listLength is already stored.
+     * No traversal required.
      *
      * @return listLength int
      */
     public int getListLength() {
         return listLength;
     }
-
-//    /**
-//     * TODO: Fix this method
-//     * @param index
-//     * @return
-//     */
-//    public E getDataAt(int index) {
-//
-//        if(index <= 0) {
-//            // TODO: Throw exception instead
-//            return null;
-//        }
-//
-//        current = head.getNext();
-//
-//        for(int i = 1; i < index; i++) {
-//            if(current.getNext() == null) {
-//                return null;
-//            }
-//            current = current.getNext();
-//        }
-//        return current.getData();
-//    }
-
-//    /**
-//     * TODO: Fix this method
-//     * @param index
-//     * @return
-//     */
-//    public E getDataAt(int index) {
-//
-//        if(index <= 0 || index > listLength) {
-//            // TODO: Throw exception instead
-//            System.out.println("Error: Index must be greater than 0 and <= list length!");
-//            return null;
-//        }
-//
-//        current = head.getNext();
-//
-//        for(int i = 1; i < index; i++) {
-//            if(current == null) {
-//                return null;
-//            }
-//            previous = current;
-//            current = current.getNext();
-//        }
-//        return previous.getData();
-//    }
 
     /**
      * This method returns the head pointer.
@@ -365,7 +338,7 @@ public class SLL<E> {
 
     /**
      * This method tests if list is empty.
-     * O(1): Performs 1 comparison for any length of list.
+     * O(1): Performs 1 action for any length of list.
      *
      * @return boolean
      */
@@ -389,51 +362,27 @@ public class SLL<E> {
      */
     public void insertAfter(E data, E target) {
 
-        // 1.0 Make ins a link to the newly-created node with element elem and successor null
-        SLLNode<E> insert = new SLLNode<E>(data);
+        // set current to head
+        current = head;
 
-        // ** New step: check if list is empty,
-        if(head == null) {
-            // print error message
-            // TODO: throw exception instead
-            System.out.println("Error: The list is empty!");
-
-            // 2.0 If the insertion point is before the first node:
-        } else if(target == null) {
-
-            // 2.1 Set node ins's successor to first
-            insert.setNext(head);
-            head = insert;
-            // increment list length
-            listLength++;
-
-            // 3.0 If the insertion point is after the node pred:
-        } else {
-
-            // set current to head
-            current = head;
-
-            // while not at last node AND current data does not match target:
-            while(current != null) {
-
-                // if current data matches target,
-                if(current.getData().equals(target)) {
-
-                    // 3.1 Set node ins's successor to node pred's successor
-                    insert.setNext(current.getNext());
-                    // 3.2 Set node pred's successor to ins
-                    current.setNext(insert);
-                    // increment list length
-                    listLength++;
-
-                    // else target not found,
-                } else {
-                    // print error message
-                    // TODO: Throw exception instead
-                    System.out.println("Error: Target not found!");
-                }
+        // traverse list from current until current is null
+        for(SLL list = this; current != null; current = current.getNext()) {
+            // if target is found,
+            if(current.getData().equals(target)) {
+                // create new insert node from data, set its next as current's next
+                SLLNode<E> insert = new SLLNode<E>(data, current.getNext());
+                // set current's next as insert
+                current.setNext(insert);
+                // increment list length
+                listLength++;
+                // end if
+                return;
             }
         }
+        // function reaches here if target not found
+        // print error message
+        // TODO: Throw exception instead
+        System.out.println("Error: Target not found!");
     }
 
     /**
