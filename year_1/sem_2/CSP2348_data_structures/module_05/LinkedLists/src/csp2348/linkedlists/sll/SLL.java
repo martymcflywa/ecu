@@ -21,7 +21,7 @@ public class SLL<E> {
 
     /**
      * SLL default constructor.
-     * Creates new nodes for head, current, previous, and sets to null.
+     * Sets head to null.
      * Sets listLength to 0.
      */
     public SLL() {
@@ -48,10 +48,10 @@ public class SLL<E> {
             // set head to insert, making insert the first node
             head = insert;
 
-        // else, there are other nodes in the list,
+        // else, list is not empty,
         } else {
 
-            // set inserts next as head, meaning point insert's next to current first node
+            // set insert's next as head, meaning point insert's next to current first node
             insert.setNext(head);
             // set head as insert, making insert the first node
             head = insert;
@@ -106,7 +106,7 @@ public class SLL<E> {
      *
      * @return remove SLLNode<E>
      */
-    public SLLNode<E> deleteFirst() {
+    public E deleteFirst() {
 
         // create new reference called remove, set as head
         SLLNode<E> remove = head;
@@ -122,7 +122,6 @@ public class SLL<E> {
                 System.out.println("Warning: Last node deleted!");
                 // decrement list length;
                 listLength--;
-                return null;
             } else {
                 // set head as the next node, making the next node the first node
                 head = head.getNext();
@@ -133,10 +132,10 @@ public class SLL<E> {
         } else {
             // TODO: throw exception instead
             System.out.println("Error: List already empty!");
-            remove = null;
+            return null;
         }
         // return removed node
-        return remove;
+        return remove.getData();
     }
 
     /**
@@ -146,7 +145,7 @@ public class SLL<E> {
      *
      * @return remove SLLNode<E>
      */
-    public SLLNode<E> deleteLast() {
+    public E deleteLast() {
 
         // if head != null, meaning other nodes exist in list,
         if(head != null) {
@@ -162,7 +161,7 @@ public class SLL<E> {
                 System.out.println("Warning: Last node deleted!");
                 // decrement list length
                 listLength--;
-                return null;
+                return current.getData();
 
                 // else more than one node still exists,
             } else {
@@ -180,7 +179,7 @@ public class SLL<E> {
                 // decrement list length
                 listLength--;
                 // return removed node
-                return current;
+                return current.getData();
             }
         // else head == null, meaning list is already empty,
         } else {
@@ -325,7 +324,7 @@ public class SLL<E> {
      */
     @Override
     public String toString() {
-        current = head;//.getNext();
+        current = head;
         String output = "";
 
         while(current != null) {
@@ -391,12 +390,19 @@ public class SLL<E> {
      *
      * @param <E>
      */
-    private class SLLNode<E> {
+    protected class SLLNode<E> {
 
         // data and next fields, generic to store any type
-        private E data;
-        private SLLNode<E> next;
+        protected E data;
+        protected SLLNode<E> next;
 
+        /**
+         * Default constructor for inheritance.
+         */
+        public SLLNode() {
+            data = null;
+            next = null;
+        }
         /**
          * This is the constructor for SLLNode.
          * Accepts data as argument, assigns next as null.
@@ -425,7 +431,7 @@ public class SLL<E> {
          *
          * @return SLLNode<E>
          */
-        public SLLNode<E> getSLLNode() {
+        public SLLNode<E> getNode() {
             return this;
         }
 
@@ -459,7 +465,7 @@ public class SLL<E> {
         /**
          * This method sets next.
          *
-         * @param next E
+         * @param next SLLNode<E>
          */
         public void setNext(SLLNode<E> next) {
             this.next = next;

@@ -1,5 +1,6 @@
 package csp2348.linkedlists;
 
+import csp2348.linkedlists.dll.*;
 import csp2348.linkedlists.sll.*;
 
 /**
@@ -10,39 +11,59 @@ import csp2348.linkedlists.sll.*;
  */
 public class Main {
 
-    private static SLL<String> fruitList = new SLL<String>();
+    private static SLL<String> fruitSLL = new SLL();
+    private static DLL<String> carsDLL = new DLL();
 
     public static void main (String[] args) {
 
+        /**
+         * SLL TEST:
+         */
+        System.out.println("*** TESTING SLL: *** \n");
         // do insert methods
-        doInsert(fruitList, "first", "Orange", null);
-        doInsert(fruitList, "last", "Watermelon", null);
-        doInsert(fruitList, "first", "Apple", null);
-        doInsert(fruitList, "after", "Banana", "Apple");
-        doInsert(fruitList, "after", "Coconut", "Banana");
-        doInsert(fruitList, "after", "Papaya", "Orange");
+        insertSLL(fruitSLL, "first", "Orange", null);
+        insertSLL(fruitSLL, "last", "Watermelon", null);
+        insertSLL(fruitSLL, "first", "Apple", null);
+        insertSLL(fruitSLL, "after", "Banana", "Apple");
+        insertSLL(fruitSLL, "after", "Coconut", "Banana");
+        insertSLL(fruitSLL, "after", "Papaya", "Orange");
         // target doesn't exist here
-        doInsert(fruitList, "after", "Grapefruit", "Fig");
-        doInsert(fruitList, "after", "Durian", "Coconut");
+        insertSLL(fruitSLL, "after", "Grapefruit", "Fig");
+        insertSLL(fruitSLL, "after", "Durian", "Coconut");
 
         System.out.println("Now performing delete methods on:");
-        System.out.println(fruitList + "\n");
+        System.out.println(fruitSLL + "\n");
 
         // do delete methods
-        doDelete(fruitList, "first", null);
-        doDelete(fruitList, "last", null);
-        doDelete(fruitList, "target", "Durian");
-        doDelete(fruitList, "target", "Tomato");
-        doDelete(fruitList, "first", null);
-        doDelete(fruitList, "last", null);
-        doDelete(fruitList, "first", null);
+        deleteSLL(fruitSLL, "first", null);
+        deleteSLL(fruitSLL, "last", null);
+        deleteSLL(fruitSLL, "target", "Durian");
+        deleteSLL(fruitSLL, "target", "Tomato");
+        deleteSLL(fruitSLL, "first", null);
+        deleteSLL(fruitSLL, "last", null);
+        deleteSLL(fruitSLL, "first", null);
         // last node
-        doDelete(fruitList, "first", null);
+        deleteSLL(fruitSLL, "first", null);
         // list already empty
-        doDelete(fruitList, "first", null);
+        deleteSLL(fruitSLL, "first", null);
+
+        /**
+         * DLL TEST:
+         */
+        System.out.println("*** TESTING DLL: *** \n");
+        carsDLL.insertFirst("Porsche");
+        carsDLL.insertFirst("Mercedes");
+        carsDLL.insertLast("Ferrari");
+        System.out.println(carsDLL);
+        System.out.println(carsDLL.getHead());
+        System.out.println(carsDLL.getTail());
+        System.out.println(carsDLL.getListLength());
+        System.out.println(carsDLL.deleteFirst());
+        System.out.println(carsDLL.deleteLast());
+        System.out.println(carsDLL);
     }
 
-    private static void doInsert(SLL<String> list, String insertType, String data, String target) {
+    private static void insertSLL(SLL<String> list, String insertType, String data, String target) {
 
         if(insertType == "first" || insertType == "last") {
             if(insertType == "first") {
@@ -63,13 +84,13 @@ public class Main {
         }
     }
 
-    private static void doDelete(SLL<String> list, String deleteType, String target) {
+    private static void deleteSLL(SLL<String> list, String deleteType, String target) {
         if(deleteType == "first" || deleteType == "last") {
             if(deleteType == "first") {
-                list.deleteFirst();
+                System.out.println("deleteFirst() deletes " + list.deleteFirst());
                 System.out.println("deleteFirst(): " + list);
             } else {
-                list.deleteLast();
+                System.out.println("deleteLast() deletes " + list.deleteLast());
                 System.out.println("deleteLast(): " + list);
             }
         } else if(deleteType == "target") {
@@ -78,5 +99,25 @@ public class Main {
         }
         //System.out.println("Head: " + list.getHead());
         System.out.println("Length: " + list.getListLength() + "\n");
+    }
+
+    private static void insertDLL(DLL<String> list, String insertType, String data, String target) {
+
+        if(insertType == "first" || insertType == "last") {
+            if(insertType == "first") {
+                // insertFirst here
+            } else {
+                // insertLast here
+            }
+            System.out.println("Head: " + list.getHead());
+            System.out.println("Tail: " + list.getTail());
+            System.out.println("Length: " + list.getListLength() + "\n");
+        } else if(insertType == "after") {
+            // insertAfter here
+            System.out.println("insertAfter(" + data + ", " + target + "): " + list);
+            System.out.println("Head: " + list.getHead());
+            System.out.println("Tail: " + list.getTail());
+            System.out.println("Length: " + list.getListLength() + "\n");
+        }
     }
 }
