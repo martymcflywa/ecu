@@ -78,7 +78,7 @@
 	- RFC
 24. IP addresses are commonly shown in \_\_\_\_\_\_\_\_\_\_.
 	- Dotted decimal notation
-25. To determine the path to an IP address, use \_\_\_\_\_\_\_\_\_\_ .
+25. To determine the path to an IP address, use \_\_\_\_\_\_\_\_\_\_.
 	- TRACERT
 26. DNS uses both the \_\_\_\_\_\_\_\_\_\_ and \_\_\_\_\_\_\_\_\_\_ protocols.
 	- TCP and UDP
