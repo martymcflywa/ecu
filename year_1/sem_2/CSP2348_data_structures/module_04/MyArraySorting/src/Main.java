@@ -24,6 +24,19 @@ public class Main {
         myArraySorting.insertionSort(numbers);
         System.out.println(myArraySorting.getString(numbers));
 
+        // unsort and print
+        unsort();
+
+        // do merge sort and print
+        myArraySorting.mergeSortInit(numbers);
+        System.out.println(myArraySorting.getString(numbers));
+
+        // unsort and print
+        unsort();
+
+        // do merge sort and print
+        myArraySorting.quickSortInit(numbers);
+        System.out.println(myArraySorting.getString(numbers));
     }
 
     private static void unsort() {
