@@ -108,7 +108,7 @@ table-size m = 26
 private final int TABLESIZE = 26;
 
 private int hash(String key) {
-	return getIntForChar(key.getCharAt(0)) % TABLESIZE;
+	return getIntForChar(key.charAt(0)) % TABLESIZE;
 }
 
 private int getIntForChar(char c) {
