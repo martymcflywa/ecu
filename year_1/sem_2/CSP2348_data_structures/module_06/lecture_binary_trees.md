@@ -100,7 +100,7 @@
 	- Visit all nodes (elements) of the tree in some predetermined order
 		- ie. Visit per node once and only once
 	- Must:
-		1. Visit rood node, R
+		1. Visit root node, R
 		2. Traverse the left subtree l
 		3. Traverse the right subtree r
 	- But in which order?
@@ -478,7 +478,7 @@ public BSTNode search(Comparable target) {
 	2. Delete the leftmost element in top's right subtree
 	3. Terminate with top as answer
 
-###### Auxiliary algorith: determine leftmost element
+###### Auxiliary algorithm: determine leftmost element
 
 >To determine the leftmost element in the nonempty subtree whose topmost node is top:
 
