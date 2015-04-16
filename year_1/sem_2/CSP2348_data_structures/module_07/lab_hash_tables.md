@@ -154,26 +154,153 @@ HASH:	ID:			STEPS:			FROM:
 
 Test the Java program WS0601.
 
+``` java
+public class WS0701 {
+
+	private static final int MASK = 0x7FFFFFFF; // 2^32-1
+	private static final int CAPACITY = 11;
+
+	public static void main(String[] args) {
+		printHash("Rad");
+		printHash("Uhr");
+		printHash("Ohr");
+		printHash("Tor");
+		printHash("Hut");
+		printHash("Tag");
+	}
+
+	private static void printHash(String word) {
+		System.out.println("hash(" + word + ") = " + hash(word));
+	}
+
+	private static int hash(Object object) {
+		return (object.hashCode() & MASK) % CAPACITY;
+	}
+}
+```
+
 #### 3.1
 
-Analyse the hash function given in the program.
+Analyze the hash function given in the program.
+
+##### Answer:
+
+The hash function `hash(Object object)` calculates the hash with statement:
+
+``` java
+return (object.hashCode() & MASK) % CAPACITY
+```
+
+`MASK = 0x7FFFFFFF` or 2147483647<sub>10</sub>  
+`CAPACITY = 11`
+
+The `&` removes the sign from whatever integer `object.hashCode()` returns. Therefore, the resulting value returned by `hash()` will always be between 0 and 10.
 
 #### 3.2
 
 Execute this program.
 
+#### Results:
+
+Results:
+
+```
+hash(Rad) = 3
+hash(Uhr) = 4
+hash(Ohr) = 2
+hash(Tor) = 8
+hash(Hut) = 5
+hash(Tag) = 3
+```
+
 #### 3.3
 
-Draw sketchges of the OBHT and CBHT to show the executed results. Draw the search path as well if any collision occurs.
+Draw sketches of the OBHT and CBHT to show the executed results. Draw the search path as well if any collision occurs.
+
+##### Answer:
+
+###### OBHT
+
+```
+HASH:	ID:
+00
+01
+02		Ohr
+03		Tag => Rad
+04		Uhr
+05		Hut
+06
+07
+08		Tor
+09
+10
+```
+
+###### CBHT
+
+```
+HASH:	ID:		SearchPath:
+00
+01
+02		Ohr
+03		Rad		1
+04		Uhr		2
+05		Hut		3
+06		Tag		4
+07
+08		Tor
+09
+10
+```
 
 ### Task 4
 
 Test the Java program WS0602.
 
+``` java
+public class WS0702 {
+
+	private static final int MASK = 0x7FFFFFFF; // 2^32-1
+	private static final int CAPACITY = 101;
+
+	public static void main(String[] args) {
+		printHash("Rad");
+		printHash("Uhr");
+		printHash("Ohr");
+		printHash("Tor");
+		printHash("Hut");
+		printHash("Tag");
+	}
+
+	private static void printHash(String word) {
+		System.out.println("hash(" + word + ") = " + hash(word));
+	}
+
+	private static int hash(Object object) {
+		return (object.hashCode() & MASK) % CAPACITY;
+	}
+}
+```
+
 #### 4.1
 
 Execute this program.
 
+##### Results:
+
+```
+hash(Rad) = 99
+hash(Uhr) = 82
+hash(Ohr) = 73
+hash(Tor) = 45
+hash(Hut) = 13
+hash(Tag) = 4
+```
+
 #### 4.2
 
 Discuss why no collision occurred in this program.
+
+##### Answer:
+
+`CAPACITY` has been raised to a higher prime number, 101. This reduces the possibility of collision occurring.
