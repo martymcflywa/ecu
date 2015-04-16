@@ -740,6 +740,11 @@ public void delete(Object key) {
 
 ![anim obht doublehash](http://i.imgur.com/q5XkLt5.gif)
 
+#### OBHT double hashing notes
+
+- `step()` function not called if no collision
+- Hash table wraps around from tail to head
+- If `step()` collides, perform `step()` again
 
 ## Study guide
 

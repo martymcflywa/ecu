@@ -101,7 +101,7 @@ Hash function is not suitable.
 
 Repeat Task 1 with an OBHT with double hashing, with the following second hash function:
 
->step(id) = last digits of id
+>step(id) = last digit of id
 
 #### Answer:
 
@@ -115,32 +115,40 @@ private int step(Object key) {
 ```
 
 ```
-000014 | hash(00) = 00 | step() not required
-990021 | hash(99) = 99 | step() not required
+000014 | hash(00) = 00 | step(4) = 4
+990021 | hash(99) = 99 | step(1) = 1
 990019 | hash(99) = 99 | step(9) = 9
-970036 | hash(97) = 97 | step() not required
+970036 | hash(97) = 97 | step(6) = 6
 000015 | hash(00) = 00 | step(5) = 5
 970012 | hash(97) = 97 | step(2) = 2
 970023 | hash(97) = 97 | step(3) = 3
 ```
 
 ```
-HASH:	ID:
-000		000014
-001		970023 (3rd step from 097 + 2, since 100 and 000 already occupied)
+HASH:	ID:			STEPS:			FROM:
+000		000014		no coll			n/a
+001		970012		2 * 2 steps		097
 002
-003
+003		970023		2 * 3 steps		097
 004
-005		000015 (5th step from 000)
+005		000015		5 steps			000
 006
-007		990019 (9th step from 099)
-008
-...		......
-097		970036
+007
+008		990019		9 steps			099
+009
+010
+...		......		.......			...
+097		970036		no coll			n/a
 098
-099		990021
-100		970012 (2nd step from 097 + 1, since 099 already occupied)
+099		990021		no coll			n/a
 ```
+
+#### OBHT double hashing notes
+
+- `step()` function not called if no collision
+- Hash table wraps around from tail to head
+- If `step()` collides, perform `step()` again
+	- See "2 * 2 steps" or "2 * 3 steps" above
 
 ### Task 3
 
