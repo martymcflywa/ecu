@@ -718,9 +718,28 @@ public void delete(Object key) {
 		- hash(e) = (initial letter of e - 'A') modulo m
 		- step(e) = 1, if e has a single letter, else (2 + (second letter of e - 'a') modulo 21) modulo 23
 
+#### OBHT double hashing algorithm
+
+>To insert the entry (key, val) into an OBHT:
+
+>1. Set b to hash(key), and set s to step(key)
+2. Repeat:
+	1. If bucket b is never occupied:
+		1. If bucket b is the last never occupied bucket
+			1. Expand the number of buckets
+			2. Repeat from Step 1
+		2. Make bucket b occupied by (key, val)
+		3. Terminate
+	2. If bucket b is formerly occupied, or is occupied by an entry whose key is equal to key:
+		1. Make bucket b occupied by (key, val)
+		2. Terminate
+	3. If bucket b is occupied by an entry whose key is not equal to key:
+		1. Increment b by s, modulo m
+
 #### OBHT double hashing animation
 
 ![anim obht doublehash](http://i.imgur.com/q5XkLt5.gif)
+
 
 ## Study guide
 
