@@ -122,7 +122,7 @@ public class ArraySorting {
             for (int j = 0; j < array.length - i - 1; j++) {
 
                 // 1.1.1 If a[j] is greater than a[j + 1],
-                if(array[j] > array[j + 1]) {
+                if(array[j] < array[j + 1]) {
 
                     // 1.1.1 Swap a[j] and a[j + 1]
                     int temp = array[j];

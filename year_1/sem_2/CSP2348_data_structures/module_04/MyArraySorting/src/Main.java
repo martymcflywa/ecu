@@ -24,7 +24,7 @@ public class Main {
         unsort();
 
         // do insertion sort and print
-        System.out.println("INSERTION SORT:");
+        System.out.println("INSERTION SORT REVERSE:");
         myArraySorting.insertionSort(numbers);
         System.out.println(myArraySorting.getString(numbers) + "\n");
 

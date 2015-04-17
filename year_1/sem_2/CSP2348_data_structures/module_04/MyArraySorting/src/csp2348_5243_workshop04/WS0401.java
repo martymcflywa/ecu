@@ -75,6 +75,22 @@ public class WS0401 {
      *  left                        = 0
      *  right                       = 5
      *
+     *
+     *  0   1   2   3   4   <--- index
+     *  1   2   3   4   5   <--- original elements
+     *  1   2   3   4   5   <--- sorted elements
+     *      r               <--- outer loop
+     *      p               <--- p while
+     *
+     *
+     *  val / a[r]                  = 2
+     *
+     *  WHILE:
+     *  val.compareTo(a[p - 1])     = -1
+     *
+     *  left                        = 0
+     *  right                       = 5
+     *
      * @param a
      * @param left
      * @param right
