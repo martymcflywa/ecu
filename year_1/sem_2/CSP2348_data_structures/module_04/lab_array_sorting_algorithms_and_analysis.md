@@ -172,7 +172,7 @@ Splits array in halves recursively, until each array only contains one element. 
 
 #### Quick sort
 
-The final element is chosen as the pivot, and then all other elements in the array is compared to the pivot. If element < pivot, that element is placed to the left of the pivot. If element > pivot, that element is placed to the right of the pivot.
+The final element is chosen as the pivot, and then all other elements in the array is compared to the pivot. If element < pivot, that element is placed to the left of the pivot. If element > pivot, that element is placed to the right of the pivot. Method is called recursively until sorted.
 
 ## Task 5
 
