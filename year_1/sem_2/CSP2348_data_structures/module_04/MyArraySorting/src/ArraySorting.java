@@ -67,6 +67,7 @@ public class ArraySorting {
      * = (2 + 3 + 4 + ... + n) / 2
      * = (n - 1)(n - 2) / 4
      * = (n^2 + n - 2) / 4
+     * = O(n^2)
      *
      * @param array int[]
      * @return int[]
@@ -97,6 +98,39 @@ public class ArraySorting {
             array[j + 1] = key;
         }
 
+        return array;
+    }
+
+    /**
+     * Bubble sort algorithm.
+     * To sort a[left...right]:
+     *
+     * O(n^2): Inner loop performs (n - 1) + (n - 2) + (n - 3) + ... + 1 comparisons
+     * = n * ((n - 1) + 1) / 2
+     * = n^2 / 2
+     * = O(n^2)
+     *
+     * @param array int[]
+     * @return int[]
+     */
+    public int[] bubbleSort(int[] array) {
+
+        // 1.0 For i = 0, ..., right - 1, repeat:
+        for (int i = 0; i < array.length - 1; i++) {
+
+            // 1.1 For j = left, ..., right - i - 1, repeat:
+            for (int j = 0; j < array.length - i - 1; j++) {
+
+                // 1.1.1 If a[j] is less than a[j + 1],
+                if(array[j] > array[j + 1]) {
+
+                    // 1.1.1 Swap a[j] and a[j + 1]
+                    int tmp = array[j];
+                    array[j] = array[j + 1];
+                    array[j+1] = tmp;
+                }
+            }
+        }
         return array;
     }
 
@@ -143,12 +177,12 @@ public class ArraySorting {
             // 1.2 Sort a[left...m] into ascending order
             mergeSort(low, middle);
 
-            // 1.3 Sort a[m+1...right] into ascending ordere
+            // 1.3 Sort a[m+1...right] into ascending order
             mergeSort(middle + 1, high);
 
             // 1.5 Merge a[left...m] and a[m+1...right] into auxiliary array b
-            // call mergeHelper() which is O(n)
-            mergeHelper(low, middle, high);
+            // call merge() which is O(n)
+            merge(low, middle, high);
         }
     }
 
@@ -164,7 +198,7 @@ public class ArraySorting {
      * @param middle int
      * @param high int
      */
-    private void mergeHelper(int low, int middle, int high) {
+    private void merge(int low, int middle, int high) {
 
         // iterate from low through to high
         for(int i = low; i <= high; i++) {
