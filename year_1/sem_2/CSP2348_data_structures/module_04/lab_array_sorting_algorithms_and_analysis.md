@@ -107,6 +107,31 @@ Test the Java selection and insertion sorting programs given.
 2. Explain the executed results according to the principles of the selection and insertion sorting algorithms
 3. Modify the code to test different data sets
 
+#### Answer
+
+- WS0401 is sorting `String` array [fox, cow, pig, cat, rat, lio, tig, goa, dog] using selection and insertion sort algorithms
+	- Selection sort
+		- Outer loop accounts for sorted invariant
+			- Iterates with `l` until `l < right`
+			- Sets `p = l`
+			- Sets `least = a[p]`
+		- Inner loop iterates over unsorted invariant and looks for least value
+			- Iterates with 'k' until `k <= right`
+			- Sets `comp` to `a[k].compareTo(least)`
+				- Value will either be
+					- If `a[k] < least` value is `-1`
+					- If `a[k] == least` value is `0`
+					- If `a[k] > least` value is `1`
+			- If `comp < 0`, meaning `a[k] < least`
+				- Sets `p = k`
+				- Sets `least = a[p]`
+		- When inner loop exits,
+			- If `a[p] != a[l]`
+				- Set `a[p] = a[l]`
+				- Set `a[l] = least`
+	- Insertion sort
+		- Outer loop 
+
 ## Task 4
 
 Test the Java merge and quick sort programs given.

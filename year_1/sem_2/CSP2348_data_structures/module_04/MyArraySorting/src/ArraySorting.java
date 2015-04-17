@@ -121,13 +121,13 @@ public class ArraySorting {
             // 1.1 For j = left, ..., right - i - 1, repeat:
             for (int j = 0; j < array.length - i - 1; j++) {
 
-                // 1.1.1 If a[j] is less than a[j + 1],
+                // 1.1.1 If a[j] is greater than a[j + 1],
                 if(array[j] > array[j + 1]) {
 
                     // 1.1.1 Swap a[j] and a[j + 1]
-                    int tmp = array[j];
+                    int temp = array[j];
                     array[j] = array[j + 1];
-                    array[j+1] = tmp;
+                    array[j + 1] = temp;
                 }
             }
         }
