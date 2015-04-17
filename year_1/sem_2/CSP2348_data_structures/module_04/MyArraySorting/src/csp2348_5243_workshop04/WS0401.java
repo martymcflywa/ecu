@@ -7,14 +7,15 @@ public class WS0401 {
 
     /**
      *  0   1   2   3   4   <--- index
-     *  2   3   5   7   9   <--- array elements
-     *              l       <--- outer loop
+     *  9   3   2   8   5   <--- original elements
+     *  2   3   5   8   9   <--- sorted elements
+     *          l           <--- outer loop
      *                  k   <--- inner loop
-     *              p       <--- compared with a[k]
+     *                  p   <--- compared with a[k]
      *
      *
-     *  least / a[p]    = 7
-     *  comp            = 1
+     *  least / a[p]    = 5
+     *  comp            = -1
      *
      * @param a
      * @param left
@@ -69,7 +70,7 @@ public class WS0401 {
      *  val / a[r]                  = 5
      *
      *  WHILE:
-     *  val.compareTo(a[p - 1])     = 1
+     *  val.compareTo(a[p - 1])     = -1
      *
      *  left                        = 0
      *  right                       = 5

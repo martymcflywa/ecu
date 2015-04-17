@@ -5,6 +5,20 @@ package csp2348_5243_workshop04;
  */
 public class WS0402 {
 
+    /**
+     *  0   1   2   3   4   <--- index
+     *  9   3   2   8   5   <--- original elements
+     *  9   3   2   8   5   <--- sorted elements
+     *
+     *
+     *  m                   =
+     *
+     *
+     * @param a
+     * @param left
+     * @param right
+     * @param tracing
+     */
     public static void mergeSort (Comparable[] a, int left, int right, boolean tracing) {
 
         // Sort a[left...right].

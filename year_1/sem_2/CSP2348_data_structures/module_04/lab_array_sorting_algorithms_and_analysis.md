@@ -109,28 +109,52 @@ Test the Java selection and insertion sorting programs given.
 
 #### Answer
 
-- WS0401 is sorting `String` array [fox, cow, pig, cat, rat, lio, tig, goa, dog] using selection and insertion sort algorithms
-	- Selection sort
-		- Outer loop accounts for sorted invariant
-			- Iterates with `l` until `l < right`
-			- Sets `p = l`
-			- Sets `least = a[p]`
-		- Inner loop iterates over unsorted invariant and looks for least value
-			- Iterates with 'k' until `k <= right`
-			- Sets `comp` to `a[k].compareTo(least)`
-				- Value will either be
-					- If `a[k] < least` value is `-1`
-					- If `a[k] == least` value is `0`
-					- If `a[k] > least` value is `1`
-			- If `comp < 0`, meaning `a[k] < least`
-				- Sets `p = k`
-				- Sets `least = a[p]`
-		- When inner loop exits,
-			- If `a[p] != a[l]`
-				- Set `a[p] = a[l]`
-				- Set `a[l] = least`
-	- Insertion sort
-		- Outer loop 
+##### Selection sort
+
+###### General idea
+
+Outer loop tracks sorted invariant, while inner loop searches for least value. When least value is found, the elements at the least array value and the end of the sorted invariant are swapped.
+
+###### Per line analysis
+
+- Outer loop accounts for sorted invariant
+	- Iterates with `l` until `l < right`
+	- Sets `p = l`
+	- Sets `least = a[p]`
+- Inner loop iterates over unsorted invariant and looks for least value
+	- Iterates with 'k' until `k <= right`
+	- Sets `comp` to `a[k].compareTo(least)`
+		- Value will either be
+			- If `a[k] < least` value is `-1`
+			- If `a[k] == least` value is `0`
+			- If `a[k] > least` value is `1`
+	- If `comp < 0`, meaning `a[k] < least`
+		- Sets `p = k`
+		- Sets `least = a[p]`
+- When inner loop exits,
+	- If `a[p] != a[l]`
+		- Set `a[p] = a[l]`
+		- Set `a[l] = least`
+
+##### Insertion sort
+
+###### General idea:
+
+Outer loop accounts for unsorted invariant. The outer loop uses `r` to iterate, `val` to hold current value of `a[r]` and sets `p` to `r`. Inner `while` loop checks if `val < a[p-1]`. If so, it swaps `a[p]` with `a[p-1]` sending least values to the front of the array and higher values to the end. The inner loop continues to send the value to the front of the sorted invariant, until the value is at its sorted position. When the inner loop exits, it then sets `a[p]` to `val`, completing the swap.
+
+###### Per line analysis
+
+- Outer loop accounts for unsorted invariant
+	- Iterates with `r = left + 1` until `r == right`
+	- Sets `val = a[r]`
+	- Sets `p = r`
+- Inner while loop executes until `p > left && val.compareTo(a[p-1] < 0)`
+	- During while loop,
+		- It sets `a[p] = a[p-1]`
+		- Decrements `p`
+- When inner while loop exits,
+	- Sets `a[p] = val`
+	- Completes the sort for that iteration
 
 ## Task 4
 
@@ -139,6 +163,16 @@ Test the Java merge and quick sort programs given.
 1. Run this program to observe the sorting process using pre-coded data
 2. Explain the executed results according to the principles of the merge and quick sort algorithms
 3. Modify the code to test different data sets
+
+### Answer
+
+#### Merge sort
+
+Splits array in halves recursively, until each array only contains one element. These arrays are then merge sorted until the original sorted array is rebuilt.
+
+#### Quick sort
+
+The final element is chosen as the pivot, and then all other elements in the array is compared to the pivot. If element < pivot, that element is placed to the left of the pivot. If element > pivot, that element is placed to the right of the pivot.
 
 ## Task 5
 
