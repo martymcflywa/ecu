@@ -1,0 +1,64 @@
+\section{Pizza store database design brief}
+
+You are required to design and create a database for a pizza store. The database must encompass the customers, staff, pizza details, and the pizza orders made by customers. You have the following information about the way the store operates:
+
+\begin{itemize}
+\item Customer details must be recorded. This includes a customer ID number, name, address and email. Customer details are recorded when they make their first order.
+\item Staff details must be recorded. This includes a staff ID number, first name, last name, date of birth and phone number.
+	\begin{itemize}
+	\item Each staff member may have a supervisor, which is another staff member. A staff member may supervise many other staff members. Not all staff have a supervisor.
+	\end{itemize}
+\item The details of pizza orders must be recorded. This includes an order ID number, the date and time that the order was placed, the ID number of the customer who made the order, and the ID number of the staff member who took the order.
+	\begin{itemize}
+	\item The table also needs to contain the staff ID number of the staff who delivered the order. Since the pizza order will be recorded before the pizzas are delivered, this value will originally be empty.
+	\item Each order can contain multiple pizzas.
+	\end{itemize}
+\item The store has divided their pizza selection into ``ranges'' (e.g. ``traditional'' and ``gourmet'') to simplify pricing. All of the pizzas in a range have the same price.
+	\begin{itemize}
+	\item The database must store an ID, name and price for each range.
+	\end{itemize}
+\item The details of the types of pizza available must be recorded. This includes a pizza ID number, the pizza’s name, a description and a foreign key identifying which pizza range it is in.
+\item The database also needs two tables to store the details of crust types and sauce types that can be chosen when ordering a pizza. Some crust/sauce types attract a surcharge.
+	\begin{itemize}
+	\item These tables require an ID number, name and surcharge (default of 0) column.
+	\item When ordering a pizza, a customer must choose which crust and sauce they want.
+	\end{itemize}
+\item The database must track which pizzas were ordered in which orders. This will involve:
+	\begin{itemize}
+	\item An auto-incrementing ordered pizza ID number.
+	\item A foreign key identifying the order that this pizza is part of.
+	\item A foreign key identifying which pizza was chosen.
+	\item A foreign key identifying which crust was chosen.
+	\item A foreign key identifying which sauce was chosen.
+	\item A ``ready'' column containing a ``Y'' or ``N'' to indicate whether the pizza has been made and cooked yet (default of ``N'').
+	\end{itemize}
+\end{itemize}
+
+\subsection{Assumptions}
+
+\begin{itemize}
+\item A Customer must make at least one CustomerOrder to exist on database
+\item A CustomerOrder must contain at least one PizzaOrder
+\item A PizzaOrder must include one PizzaType selection
+	\begin{itemize}
+	\item It is possible that a PizzaType may never be selected for a PizzaOrder
+	\end{itemize}
+\item A PizzaOrder must include one PizzaCrust selection
+	\begin{itemize}
+	\item It is possible that a PizzaCrust may never be selected for a PizzaOrder
+	\end{itemize}
+\item A PizzaOrder must include one PizzaSauce selection
+	\begin{itemize}
+	\item It is possible that a PizzaSauce may never be selected for a PizzaOrder
+	\end{itemize}
+\item A PizzaType must include one PizzaRange selection
+	\begin{itemize}
+	\item It is possible that a PizzaRange may never be selected for a PizzaOrder
+	\end{itemize}
+\item A staff member may be a supervisor to many staff members
+	\begin{itemize}
+	\item A staff member may only have one supervisor
+	\item Some staff may not have a supervisor
+	\end{itemize}
+\item A staff member may not deliver any pizzas
+\end{itemize}
