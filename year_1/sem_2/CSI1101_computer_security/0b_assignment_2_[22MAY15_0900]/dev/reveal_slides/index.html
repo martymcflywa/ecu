@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -41,337 +41,179 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>The HTML Presentation Framework</h3>
-					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
-					</p>
+					<h1>Security Issue Mitigation</h1>
 				</section>
 
 				<section>
-					<h2>Hello There</h2>
-					<p>
-						reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.
-					</p>
-				</section>
+					<h2>Recommendations for Blue Ink</h2>
+					<h3>By <a href="http://martymcflywa.github.io">Martin Ponce</a>, ID 10371381</h3>
 
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>Slides can be nested inside of each other.</p>
-						<p>Use the <em>Space</em> key to navigate through all slides.</p>
-						<br>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 1</h2>
-						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>That's it, time to go back up.</p>
-						<br>
-						<a href="#/2">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-				</section>
-
-				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slides.com" target="_blank">http://slides.com</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
-				</section>
-
-				<section>
-					<h2>Touch Optimized</h2>
-					<p>
-						Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
-					</p>
+					<p>CSI1101 Computer Security</p>
+					<p>ES Off-Campus</p>
+					<p>Tutor: Patryk Szewczyk</p>
 				</section>
 
 				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
-
-						Write content using inline or external Markdown.
-						Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-
-						```
-						<section data-markdown>
-						  ## Markdown support
-
-						  Write content using inline or external Markdown.
-						  Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
+					# Introduction
 				</section>
 
-				<section>
-					<section id="fragments">
-						<h2>Fragments</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
+				<section data-markdown>
+					### In the previous report...
 
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
+					We found security issues with:
+
+					- The operating system
+					- Third party applications
+					- User practices
+				</section>
+
+				<section data-markdown>
+					### This presentation will...
+
+					Recommend solutions to each of those issues and:
+
+					- Outline advantages/disadvantages where possible
+					- Introduce alternatives where possible
+					- Briefly discuss process where possible
+
+					Starting with...
+				</section>
+
+				<!-- **OPERATING SYSTEM** -->
+
+				<section data-markdown>
+					# The operating system
+				</section>
+
+				<section data-markdown>
+					## Some facts about Windows Vista Business
+
+					- It's getting old
+						- Superseded by two versions of Windows
+							- Almost three, with the pending release of Windows 10
+					- Will eventually become obsolete
+						- Extended support ends on 11 April 2017 [(Microsoft, 2015)](https://support.microsoft.com/en-us/lifecycle/search/default.aspx?alpha=Vista)
+					- Third party applications used by Blue Ink may also eventually end support for Vista
+				</section>
+
+				<!-- Nested slides can't be in markdown -->
+				<section>
+					<section>
+						<h2>What does this mean?</h2>
+
+						<ul>
+							<li>Microsoft will no longer provide security updates for Vista after 11 April 2017</li>
+								<ul>
+									<li>Only around two years left</li>
+								</ul>
+							<li>If or when vendors of third party applications decide to stop supporting Vista</li>
+								<ul>
+									<li>That particular application may no longer receive security updates as well</li>
+								</ul>
+						</ul>
+					</section>
+
+					<section>
+						<h3>What are security updates anyway?</h3>
+
+						<p>
+							When a security vulnerability in a program has been found or disclosed, the developer may release an update for the program to resolve the known vulnerability in order to stop it being exploited by attackers.
+						</p>
+					</section>
+
+					<section>
+						<h3>So when an operating system/application is no longer supported...</h3>
+
+						<p>
+							Any known vulnerabilities after the end of support date will not be resolved, leaving the system susceptible to those vulnerabilities.
+						</p>
+
+						</section>
+				</section>
+
+				<section data-markdown>
+					## How do we fix it?
+
+					### Upgrade!
+
+					- Upgrade to a modern version of Microsoft Windows
+						- ie. Windows 8.1, Microsoft's latest version of Windows
+				</section>
+
+				<section data-markdown>
+					### Advantages
+
+					- Computer/s will no longer be susceptible to vulnerabilities associated with Windows Vista
+					- Microsoft's support will be extended [(Microsoft, 2014)](http://windows.microsoft.com/en-au/windows/lifecycle)
+						- ie. Microsoft Windows 8.1 support ends 9 January 2018
+							- Extended support ends 10 January 2023
+					- Software included with operating systems such as Internet Explorer or Windows Defender will also be upgraded
+						- ie. Windows 8.1 ships with Internet Explorer 11 [(Microsoft, n.d)](http://windows.microsoft.com/en-au/internet-explorer/ie-system-requirements#ie=ie-11)
+				</section>
+
+				<section data-markdown>
+					### Disadvantages
+
+					- New license for each copy of OS must be purchased
+					- Current hardware may also need upgrades in order to run new OS
+					- Deployment of new OS may require down time
+					- Users may depend on software which may not be compatible with new OS
+					- Staff may require training in use of new OS
+						- User interface may have evolved since Vista
+					- Computer/s will then become susceptible to unresolved vulnerabilities in new OS
+				</section>
+
+				<section data-markdown>
+					## What's the alternative option?
+
+					### Update!
+
+					- Service packs and security updates must be installed
+						- No service packs or security updates have been installed yet
+					- **524** known vulnerabilities for all versions of Windows Vista [(Ozkan, 2015)](http://www.cvedetails.com/vulnerability-list/vendor_id-26/product_id-9591)
+						- From SP0 through to SP2
+				</section>
+
+				<section data-markdown>
+					### For example...
+
+					CVE-2008-0951 describes an *Auto-run* vulnerability which [(SecurityFocus, 2008)](http://www.securityfocus.com/bid/28360):
+
+					- Allows an attacker to include malicious code on removable media
+						- ie. CD-ROM or USB drive
+					- The malicious code will be executed once the removable media is inserted into the computer
+				</section>
+
+				<section data-markdown>
+					### Without any updates...
+
+					Blue Ink's computers are susceptible to all 524 known vulnerabilities.
+
+					Lack of updates have also kept included software such as Internet Explorer severely outdated.
+
+					| IE version | No. of vulnerabilities |
+					|------------|------------------------|
+					| IE 7       | 206                    |
+					| IE 8       | 249                    |
+					| IE 9       | 292                    |
+
+
+				</section>
+
+				<!-- **REFERENCES** -->
+				<section>
+					<section>
+						<h1>References</h1>
 					</section>
 					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's different types of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment roll-in">roll-in</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
+						<ul>
+							<li>Microsoft. (2014). Windows lifecycle fact sheet - Windows Help. Microsoft. Retrieved February 27, 2015, from http://windows.microsoft.com/en-au/windows/lifecycle</li>
+							<li>Microsoft. (2015). Microsoft Support Lifecycle. Microsoft. Retrieved February 27, 2015, from http://support.microsoft.com/lifecycle/search/default.aspx?alpha=Vista</li>
+							<li>Ozkan, S. (2015). Microsoft Windows Vista : List of security vulnerabilities. CVE Details. Retrieved February 27, 2015, from http://www.cvedetails.com/vulnerability-list/vendor_id-26/product_id-9591/Microsoft-Windows-Vista.html</li>
+							<li>SecurityFocus. (2008). Microsoft Windows NoDriveTypeAutoRun Automatic File Execution Vulnerability. SecurityFocus. Retrieved March 7, 2015, from http://www.securityfocus.com/bid/28360</li>
+						</ul>
 					</section>
 				</section>
-
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=slide#/transitions">Slide</a> -
-						<a href="?transition=convex#/transitions">Convex</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a>
-					</p>
-				</section>
-
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						reveal.js comes with a few themes built in: <br>
-						<!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
-					</p>
-				</section>
-
-				<section>
-					<section data-background="#dddddd">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Tiled Backgrounds</h2>
-						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
-						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-							<h2>Video Backgrounds</h2>
-							<pre><code style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
-						</div>
-					</section>
-				</section>
-
-				<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						Different background transitions are available via the backgroundTransition option. This one's called "zoom".
-					</p>
-					<pre><code>Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
-				</section>
-
-				<section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						You can override background transitions per-slide.
-					</p>
-					<pre><code style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
-				</section>
-
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-	var nodes = document.querySelectorAll( selector );
-
-	for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-	  var node = nodes[i];
-
-	  if( !node.className ) {
-		node.className += ' roll';
-	  }
-	}
-  }
-}
-					</code></pre>
-					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
-
-				<section>
-					<h2>Marvelous List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				<section>
-					<h2>Tabular Tables</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Item</th>
-								<th>Value</th>
-								<th>Quantity</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Apples</td>
-								<td>$1</td>
-								<td>7</td>
-							<tr>
-							<tr>
-								<td>Lemonade</td>
-								<td>$2</td>
-								<td>18</td>
-							<tr>
-							<tr>
-								<td>Bread</td>
-								<td>$3</td>
-								<td>2</td>
-							<tr>
-						</tbody>
-					</table>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Speaker View</h2>
-					<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-					<p>Press the <em>S</em> key to try it out.</p>
-
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
-				</section>
-
-				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-					<iframe src="//www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-				</section>
-
-				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the page background.
-					</p>
-				</section>
-
-				<section data-state="customevent">
-					<h2>State Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
-
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
-					</p>
-				</section>
-
-				<section>
-					<h2>Much more</h2>
-					<ul>
-						<li>Right-to-left support</li>
-						<li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
-					</ul>
-				</section>
-
-				<section style="text-align: left;">
-					<h1>THE END</h1>
-					<p>
-						- <a href="http://slides.com">Try the online editor</a> <br>
-						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-					</p>
-				</section>
-
 			</div>
 
 		</div>
