@@ -175,3 +175,11 @@ Format: Max 30 presentation slides
 #### Adobe Reader 6.0.1
 
 ### User practices
+
+#### Passwords
+
+- Include effective passwords
+	- Snowden on passwords [Last Week Tonight with John Oliver](https://youtu.be/yzGzB-yYKcc)
+- Storage of passwords in plaintext
+	- See [TV presenter in front of desk with handwritten password sticky notes](http://arstechnica.com/security/2015/04/hacked-french-network-exposed-its-own-passwords-during-tv-interview/)
+	- See [another example](https://twitter.com/pent0thal/status/586284074223984642)
