@@ -34,7 +34,9 @@ You are required to design and create a database for a pizza store. The database
 	\end{itemize}
 \end{itemize}
 
-\subsection{Assumptions}
+\section{Assumptions}
+
+\subsection{ER diagrams}
 
 \begin{itemize}
 \item A Customer must make at least one CustomerOrder to exist on database
@@ -61,4 +63,15 @@ You are required to design and create a database for a pizza store. The database
 	\item Some staff may not have a supervisor
 	\end{itemize}
 \item A staff member may not deliver any pizzas
+\end{itemize}
+
+\subsection{Data dictionary}
+
+\begin{itemize}
+\item Database will not be implented in SQL 2005
+\item Total number of Staff will not exceed 255
+\item Total number of Customers may exceed 255 but not 32,767
+\item Price of PizzaCrust, PizzaSauce or PizzaRange will each not exceed \$214,748.3647
+\item Total number of PizzaCrust, PizzaSauce or PizzaRange will each not exceed 255
+\item Total number of CustomerOrder or PizzaOrder will each not exceed 2,147,483,647
 \end{itemize}

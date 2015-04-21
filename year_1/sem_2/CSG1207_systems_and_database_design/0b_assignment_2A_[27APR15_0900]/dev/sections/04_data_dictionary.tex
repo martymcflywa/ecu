@@ -1,110 +1,126 @@
 \newpage
 \section{Data dictionary \& creation order}
 
+
 \begin{table}[H]
   \centering
   \caption{\textbf{``staff''} stores details about staff}
+  	\begin{footnotesize}
     \begin{tabular}{lllll}
     \textbf{Column name} & \textbf{Type/Length} & \textbf{Null} & \textbf{Constraints} & \textbf{Other} \\
-    staff\_id & INT   & NOT NULL & PK    & IDENTITY \\
+    staff\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
     staff\_last\_name & VARCHAR(20) & NOT NULL &       &  \\
     staff\_first\_name & VARCHAR(20) & NOT NULL &       &  \\
     staff\_dob & DATE  & NOT NULL &       &  \\
     staff\_phone & VARCHAR(20) & NOT NULL &       &  \\
-    supervisor & INT   & NULL & FK (staff.staff\_id) &  \\
+    supervisor & TINYINT   & NULL & FK (staff.staff\_id) &  \\
     %\bottomrule
     \end{tabular}%
+    \end{footnotesize}
   \label{tab:addlabel}%
 \end{table}%
 
 \begin{table}[H]
   \centering
   \caption{\textbf{``customer''} stores details about customer}
+  	\begin{footnotesize}
     \begin{tabular}{lllll}
     \textbf{Column name} & \textbf{Type/Length} & \textbf{Null} & \textbf{Constraints} & \textbf{Other} \\
-    cust\_id & INT   & NOT NULL & PK    & IDENTITY \\
+    cust\_id & SMALLINT   & NOT NULL & PK    & IDENTITY \\
     cust\_name & VARCHAR(50) & NOT NULL &       &  \\
     cust\_adrs & TEXT  & NOT NULL &       &  \\
     cust\_phone & VARCHAR(20) & NOT NULL &       &  \\
     \end{tabular}%
+    \end{footnotesize}
   \label{tab:addlabel}%
 \end{table}%
 
 \begin{table}[H]
   \centering
   \caption{\textbf{``customer\_order''} stores details about customer order}
+  	\begin{footnotesize}
     \begin{tabular}{lllll}
     \textbf{Column name} & \textbf{Type/Length} & \textbf{Null} & \textbf{Constraints} & \textbf{Other} \\
     cust\_order\_id & INT   & NOT NULL & PK    & IDENTITY \\
-    cust\_id & INT   & NOT NULL & FK (customer.cust\_id) &  \\
-    staff\_order & INT   & NOT NULL & FK (staff.staff\_id) &  \\
+    cust\_id & SMALLINT   & NOT NULL & FK (customer.cust\_id) &  \\
+    staff\_order & TINYINT   & NOT NULL & FK (staff.staff\_id) &  \\
     cust\_order\_datetime & DATETIME & NOT NULL &       &  \\
-    staff\_delivery & INT   & NULL  & FK (staff.staff\_id) &  \\
+    staff\_delivery & TINYINT   & NULL  & FK (staff.staff\_id) &  \\
     \end{tabular}%
+    \end{footnotesize}
   \label{tab:addlabel}%
 \end{table}%
 
 \begin{table}[H]
   \centering
   \caption{\textbf{``pizza\_crust''} stores details about pizza crust}
+  	\begin{footnotesize}
     \begin{tabular}{lllll}
     \textbf{Column name} & \textbf{Type/Length} & \textbf{Null} & \textbf{Constraints} & \textbf{Other} \\
-    pizza\_crust\_id & INT   & NOT NULL & PK    & IDENTITY \\
+    pizza\_crust\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
     pizza\_crust\_name & VARCHAR(20) & NOT NULL &       &  \\
-    surcharge & MONEY & NOT NULL &       &  \\
+    surcharge & SMALLMONEY & NOT NULL &       &  \\
     \end{tabular}%
+    \end{footnotesize}
   \label{tab:addlabel}%
 \end{table}%
 
 \begin{table}[H]
   \centering
   \caption{\textbf{``pizza\_sauce''} stores details about pizza sauce}
+  	\begin{footnotesize}
     \begin{tabular}{lllll}
     \textbf{Column name} & \textbf{Type/Length} & \textbf{Null} & \textbf{Constraints} & \textbf{Other} \\
-    pizza\_sauce\_id & INT   & NOT NULL & PK    & IDENTITY \\
+    pizza\_sauce\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
     pizza\_sauce\_name & VARCHAR(20) & NOT NULL &       &  \\
-    surcharge & MONEY & NOT NULL &       &  \\
+    surcharge & SMALLMONEY & NOT NULL &       &  \\
     \end{tabular}%
+    \end{footnotesize}
   \label{tab:addlabel}%
 \end{table}%
 
 \begin{table}[H]
   \centering
   \caption{\textbf{``pizza\_range''} stores details about pizza range}
+  	\begin{footnotesize}
     \begin{tabular}{lllll}
     \textbf{Column name} & \textbf{Type/Length} & \textbf{Null} & \textbf{Constraints} & \textbf{Other} \\
-    pizza\_range\_id & INT   & NOT NULL & PK    & IDENTITY \\
+    pizza\_range\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
     pizza\_range\_name & VARCHAR(20) & NOT NULL &       &  \\
-    pizza\_range\_price & MONEY & NOT NULL &       &  \\
+    pizza\_range\_price & SMALLMONEY & NOT NULL &       &  \\
     \end{tabular}%
+    \end{footnotesize}
   \label{tab:addlabel}%
 \end{table}%
 
 \begin{table}[H]
   \centering
   \caption{\textbf{``pizza\_type''} stores details about pizza type}
+  	\begin{footnotesize}
     \begin{tabular}{lllll}
     \textbf{Column name} & \textbf{Type/Length} & \textbf{Null} & \textbf{Constraints} & \textbf{Other} \\
-    pizza\_type\_id & INT   & NOT NULL & PK    & IDENTITY \\
-    pizza\_range\_id & INT   & NOT NULL & FK (pizza\_range.pizza\_range\_id) &  \\
+    pizza\_type\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
+    pizza\_range\_id & TINYINT   & NOT NULL & FK (pizza\_range.pizza\_range\_id) &  \\
     pizza\_name & VARCHAR(20) & NOT NULL &       &  \\
     pizza\_desc & TEXT  & NOT NULL &       &  \\
     \end{tabular}%
+    \end{footnotesize}
   \label{tab:addlabel}%
 \end{table}%
 
 \begin{table}[H]
   \centering
   \caption{\textbf{``pizza\_order''} stores details about pizza order}
+  	\begin{footnotesize}
     \begin{tabular}{lllll}
     \textbf{Column name} & \textbf{Type/Length} & \textbf{Null} & \textbf{Constraints} & \textbf{Other} \\
     pizza\_order\_id & INT   & NOT NULL & PK    & IDENTITY \\
-    pizza\_ready & BIT   & NOT NULL &       & DEFAULT 0 \\
+    pizza\_ready & CHAR(1)   & NOT NULL & CHECK (pizza\_ready IN (`Y', `N')) & DEFAULT `N' \\
     cust\_order\_id & INT   & NOT NULL & FK (customer.cust\_id) &  \\
-    pizza\_type\_id & INT   & NOT NULL & FK (pizza\_type.pizza\_type\_id) &  \\
-    pizza\_crust\_id & INT   & NOT NULL & FK (pizza\_crust.pizza\_crust\_id) &  \\
-    pizza\_sauce\_id & INT   & NOT NULL & FK (pizza\_sauce.pizza\_sauce\_id) &  \\
+    pizza\_type\_id & TINYINT   & NOT NULL & FK (pizza\_type.pizza\_type\_id) &  \\
+    pizza\_crust\_id & TINYINT   & NOT NULL & FK (pizza\_crust.pizza\_crust\_id) &  \\
+    pizza\_sauce\_id & TINYINT   & NOT NULL & FK (pizza\_sauce.pizza\_sauce\_id) &  \\
     \end{tabular}%
+    \end{footnotesize}
   \label{tab:addlabel}%
 \end{table}%
-
