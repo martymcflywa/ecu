@@ -15,6 +15,14 @@ CREATE TABLE staff (
 ```
 
 ``` sql
+CREATE TABLE pizza_type (
+	-- ... other columns
+	pizza_name VARCHAR(20) NOT NULL
+		CONSTRAINT pizza_name_uk UNIQUE
+);
+```
+
+``` sql
 CREATE TABLE pizza_crust (
 	-- ... other columns
 	pizza_crust_name VARCHAR(20) NOT NULL

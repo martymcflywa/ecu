@@ -95,7 +95,7 @@
     \textbf{Column name} & \textbf{Type/Length} & \textbf{Null} & \textbf{Constraints} & \textbf{Other} \\
     pizza\_type\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
     pizza\_range\_id & TINYINT   & NOT NULL & FK (pizza\_range.pizza\_range\_id) &  \\
-    pizza\_name & VARCHAR(20) & NOT NULL &       &  \\
+    pizza\_name & VARCHAR(20) & NOT NULL & UNIQUE &  \\
     pizza\_desc & TEXT  & NOT NULL &       &  \\
     \end{tabular}%
     \end{scriptsize}
