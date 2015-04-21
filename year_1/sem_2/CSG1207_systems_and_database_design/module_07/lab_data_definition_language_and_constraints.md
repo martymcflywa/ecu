@@ -14,17 +14,114 @@ If you are having trouble writing an SQL query, read any error messages and try 
 
 Using Management Studio, examine the tables in the `company` database. Identify the primary and foreign keys of all tables, and compare them to the ERD of the company database in the lecture of Module 5. Has the database been implemented correctly?
 
+- `region`
+	- ERD
+		- PK: `region_id`
+	- DB
+		- PK: `region_id`
+- `country`
+	- ERD
+		- PK: `country_id`
+		- FK: `region_id`
+	- DB
+		- PK: `country_id`
+		- FK: `region_id`
+- `location`
+	- ERD
+		- PK: `location_id`
+		- FK: `country_id`
+	- DB
+		- PK: `location_id`
+		- FK: `country_id`
+- `job`
+	- ERD
+		- PK: `job_id`
+	- DB
+		- PK: `job_id`
+- `department`
+	- ERD
+		- PK: `department_id`
+		- FK: `manager_id`
+		- FK: `location_id`
+	- DB
+		- PK: `department_id`
+		- FK: `manager_id`
+		- FK: `location_id`
+- `employee`
+	- ERD
+		- PK: `employee_id`
+		- FK: `department_id`
+		- FK: `job_id`
+		- FK: `manager_id`
+	- DB
+		- PK: `employee_id`
+		- FK: `department_id`
+		- FK: `job_id`
+		- FK: `manager_id`
+- `job_history`
+	- ERD
+		- PK FK: `employee_id`
+		- PK: `start_date`
+		- FK: `department_id`
+		- FK: `job_id`
+	- DB
+		- PK FK: `employee_id`
+		- PK: `start_date`
+		- FK: `job_id`
+		- **Missing:** FK `department_id`
+- `job_grade`
+	- ERD
+		- PK: `grade_level`
+	- DB
+		- PK: `grade_level`
+
+
 ### 2
 
 In the Object Explorer of Management Studio, right click on the "Database Diagrams" folder inside the `company` database and select "New Database Diagram". Create support objects if you are prompted to do so, and then select all the tables in the list and press "Add". Press "Close" and look at the ERD created by Management Studio. Does this ERD match the one in the lecture of Module 5? (You may wish to save the ERD so you can return to it at a later stage)
+
+**Original ERD**
+
+![q2-0](http://snag.gy/oxi1o.jpg)
+
+**Generated diagram:**
+
+![q2-1](http://snag.gy/2zfUy.jpg)
+
+- Missing relationship between `job_history` and `department`
+	- Caused by missing FK `department_id` in `job_history`
 
 ### 3
 
 If you have noticed anything missing or incorrect in the `company` database, write an ALTER TABLE statement to correct the problem. Use the steps in the first two tasks of this lab to check that the database now matches the ERD in the lecture of Module 5.
 
+``` sql
+ALTER TABLE job_history
+	ADD CONSTRAINT jhist_dept_fk FOREIGN KEY (department_id)
+		REFERENCES department(department_id);
+```
+
 ### 4
 
 In addition to the primary and foreign keys, two `CHECK` constraints and a `UNIQUE` constraint have been defined in the `employee` table. What names have they been given, what columns do they effect, and what do they all do/ensure/enforce?
+
+Ensure `salary` is greater than 0:
+
+``` sql
+CONSTRAINT emp_salary_min CHECK (salary > 0),
+```
+
+Ensure `gender_char` is either 'M' or 'F':
+
+``` sql
+CONSTRAINT gender_char CHECK (gender IN ('M', 'F')),
+```
+
+Ensure `emp_email_uk` is unique:
+
+``` sql
+CONSTRAINT emp_email_uk UNIQUE (email)
+```
 
 ### 5
 
@@ -32,9 +129,25 @@ Write a `CREATE TABLE` statement to create the table specified in below:
 
 ![q5](http://snag.gy/JSfmz.jpg)
 
+``` sql
+CREATE TABLE project (
+	project_id INT NOT NULL CONSTRAINT project_pk PRIMARY KEY IDENTITY,
+	project_name VARCHAR(50) NOT NULL UNIQUE,
+	project_desc TEXT NULL,
+	creation_date SMALLDATETIME NOT NULL DEFAULT GETDATE()
+);
+```
+
 ### 6
 
 Alter the `project` table to add a `project_leader` column – `INT`, `NOT NULL`. Give it a foreign key constraint, referencing the `employee_id` column of the `employee` table.
+
+``` sql
+ALTER TABLE project
+	ADD project_leader INT NOT NULL
+		CONSTRAINT proj_leader_fk FOREIGN KEY
+		REFERENCES employee(employee_id);
+```
 
 ### 7
 
