@@ -17,23 +17,20 @@ CREATE TABLE staff (
 ``` sql
 CREATE TABLE pizza_type (
 	-- ... other columns
-	pizza_name VARCHAR(20) NOT NULL
-		CONSTRAINT pizza_name_uk UNIQUE
+	pizza_name VARCHAR(20) NOT NULL UNIQUE
 );
 ```
 
 ``` sql
 CREATE TABLE pizza_crust (
 	-- ... other columns
-	pizza_crust_name VARCHAR(20) NOT NULL
-		CONSTRAINT pizza_crust_name_uk UNIQUE
+	pizza_crust_name VARCHAR(20) NOT NULL UNIQUE
 );
 ```
 
 ``` sql
 CREATE TABLE pizza_sauce (
 	-- ... other columns
-	pizza_sauce_name VARCHAR(20) NOT NULL
-		CONSTRAINT pizza_sauce_name_uk UNIQUE
+	pizza_sauce_name VARCHAR(20) NOT NULL UNIQUE
 );
 ```
