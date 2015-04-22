@@ -170,3 +170,31 @@ Upon initial examination the document seems harmless. However it contains a weal
 #### 5.2
 
 What other ways can you think of in which data might accidently be leaked when making documents public?
+
+- Passwords shown in video footage
+	- http://arstechnica.com/security/2015/04/hacked-french-tv-network-admits-blunder-that-exposed-youtube-password/
+
+## 6: Question
+
+Australia Post has just delivered your international passport which contains an RFID tag containing your sensitive information. A week later while shopping, you notice a salesperson selling a protective cover for your passport. The salesperson's solution costs $79.95 and protects your passport from being read via radio waves while it is in your pocket. Explain how you could achieve the same outcome for under $5.00.
+
+- DIY RFID blocker sleeves
+	- https://youtu.be/BEyRfjeE6ac
+- Materials
+	- UHT self stable carton
+		- ie. Carton of milk
+		- Needs layer of foil inside
+		- Plastic laminated
+	- Aluminum foil tape
+	- Plastic packing tape
+- Method
+	- Clean and dismantle carton
+	- Spread carton flat
+	- Trace passport/card over carton, both sides
+	- Cut out tracing
+	- Fold cutout in half
+	- Use foil tape to stick sides together
+	- Use packing tape over foil tape to secure
+	- Leave one edge open to insert passport/card
+- Alternative
+	- Use only foil to cover passport/card
