@@ -11,7 +11,7 @@
     staff\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
     staff\_last\_name & VARCHAR(20) & NOT NULL &       &  \\
     staff\_first\_name & VARCHAR(20) & NOT NULL &       &  \\
-    staff\_dob & DATE  & NOT NULL & CHECK (DATEDIFF(year, GETDATE(), staff\_dob) \textgreater 16)&  \\
+    staff\_dob & DATE  & NOT NULL & CHECK (DATEDIFF(year, GETDATE(), staff\_dob) \textgreater= 16)&  \\
     staff\_phone & VARCHAR(10) & NOT NULL &       &  \\
     supervisor & TINYINT   & NULL & FK (staff.staff\_id) &  \\
     %\bottomrule
@@ -28,7 +28,7 @@
     cust\_id & SMALLINT   & NOT NULL & PK    & IDENTITY \\
     cust\_name & VARCHAR(50) & NOT NULL &       &  \\
     cust\_adrs & TEXT  & NOT NULL &       &  \\
-    cust\_email & VARCHAR(20) & NOT NULL & CHECK (cust\_email LIKE `\%@\%.\%') &  \\
+    cust\_email & VARCHAR(20) & NOT NULL & CHECK (cust\_email LIKE `\_\%@\_\%.\_\%') &  \\
     \end{tabular}%
     \end{scriptsize}
 \end{table}%
