@@ -15,6 +15,7 @@ public class Main {
 
     private static PlayerPicks thePlayerPicks = new PlayerPicks(MAX_PLAYERS, MAX_PICKS, RANGE);
     private static WinningNumbers theWinningNumbers = new WinningNumbers(MAX_PICKS, RANGE);
+    private static WinningPlayers theWinningPlayers = new WinningPlayers(thePlayerPicks.getArray(), theWinningNumbers.getArray());
 
     private static final String UNSORTED_TITLE = "***********************"
             + "\n*** UNSORTED ARRAYS ***"

@@ -2,12 +2,21 @@ package com.martinponce.csp2348.a1.arrayprogramming;
 
 /**
  * Helper class to sort random numbers for player picks and winning numbers.
+ * Static class, should not be instantiated.
  *
  * @author Martin Ponce ID 10371381
  * @version 0.0.1
  * @since 20150423
  */
 public class Sorter {
+
+    /**
+     * Private constructor.
+     * Do not instantiate.
+     */
+    private Sorter() {
+
+    }
 
     /**
      * Method to initiate sorting of player picks.

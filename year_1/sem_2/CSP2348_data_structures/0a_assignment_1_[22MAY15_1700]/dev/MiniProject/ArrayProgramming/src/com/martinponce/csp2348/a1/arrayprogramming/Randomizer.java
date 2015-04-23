@@ -4,12 +4,21 @@ import java.util.Random;
 
 /**
  * Helper class to generate random numbers for player picks and winning numbers.
+ * Static class, should not be instantiated.
  *
  * @author Martin Ponce ID 10371381
  * @version 0.0.1
  * @since 20150423
  */
 public class Randomizer {
+
+    /**
+     * Private constructor.
+     * Do not instantiate.
+     */
+    private Randomizer() {
+
+    }
 
     /**
      * Method to initiate player picks random generation.
