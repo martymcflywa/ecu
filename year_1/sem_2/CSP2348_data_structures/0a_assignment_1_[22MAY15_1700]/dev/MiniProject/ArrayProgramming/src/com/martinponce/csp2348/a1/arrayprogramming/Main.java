@@ -16,9 +16,27 @@ public class Main {
     private static PlayerPicks thePlayerPicks = new PlayerPicks(MAX_PLAYERS, MAX_PICKS, RANGE);
     private static WinningNumbers theWinningNumbers = new WinningNumbers(MAX_PICKS, RANGE);
 
+    private static final String UNSORTED_TITLE = "***********************"
+            + "\n*** UNSORTED ARRAYS ***"
+            + "\n***********************\n";
+
+    private static final String SORTED_TITLE = "***********************"
+            + "\n**** SORTED ARRAYS ****"
+            + "\n***********************\n";
+
     public static void main(String[] args) {
 
+        System.out.println(UNSORTED_TITLE);
+
         System.out.println(thePlayerPicks);
+        System.out.println(theWinningNumbers);
+
+        System.out.println(SORTED_TITLE);
+
+        Sorter.sortArray(thePlayerPicks.getArray());
+        System.out.println(thePlayerPicks);
+
+        Sorter.sortArray(theWinningNumbers.getArray());
         System.out.println(theWinningNumbers);
     }
 }

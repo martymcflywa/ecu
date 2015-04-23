@@ -12,8 +12,7 @@ import java.util.Random;
 public class Randomizer {
 
     /**
-     * Method to generate player picks array,
-     * calls randomize().
+     * Method to initiate player picks random generation.
      *
      * @param array int[][] - The array to randomize.
      * @param maxPlayers int - Max number of players.
@@ -28,7 +27,7 @@ public class Randomizer {
     }
 
     /**
-     * Overloaded method to generate winning numbers array.
+     * Overloaded method to initiate winning numbers random generation.
      *
      * @param array int[] - The array to randomize.
      * @param maxPicks int - Max number of picks per player.
@@ -42,11 +41,11 @@ public class Randomizer {
     }
 
     /**
-     * Method to generate random picks.
+     * Method to generate random picks and winning numbers.
      *
-     * @param array
-     * @param maxPicks
-     * @param range
+     * @param array int[] - The array, either player picks or winning numbers.
+     * @param maxPicks int - Max number of picks allowed for game.
+     * @param range int - The range of numbers, starting from 1.
      */
     private static void randomize(int[] array, int maxPicks, int range) {
 

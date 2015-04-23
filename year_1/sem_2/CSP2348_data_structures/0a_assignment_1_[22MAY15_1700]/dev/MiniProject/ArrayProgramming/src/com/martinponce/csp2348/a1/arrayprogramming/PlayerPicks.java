@@ -28,7 +28,7 @@ public class PlayerPicks {
         this.maxPicks = maxPicks;
         this.range = range;
 
-        // create new array
+        // create array
         playerPicksArray = new int[maxPlayers][maxPicks];
         // randomize
         Randomizer.getRandomArray(playerPicksArray, maxPlayers, maxPicks, range);
@@ -37,7 +37,7 @@ public class PlayerPicks {
     /**
      * Override toString.
      * Prints entire array, padding zeros to align elements.
-     * @return
+     * @return output String - Customized string.
      */
     @Override
     public String toString() {

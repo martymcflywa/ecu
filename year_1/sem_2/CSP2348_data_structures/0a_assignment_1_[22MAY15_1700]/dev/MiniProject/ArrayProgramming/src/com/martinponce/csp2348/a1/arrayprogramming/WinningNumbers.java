@@ -18,7 +18,7 @@ public class WinningNumbers {
         this.maxPicks = maxPicks;
         this.range = range;
 
-        // create new array
+        // create array
         winningNumbersArray = new int[maxPicks];
         // randomize
         Randomizer.getRandomArray(winningNumbersArray, maxPicks, range);
@@ -33,10 +33,7 @@ public class WinningNumbers {
     public String toString() {
 
         String output = "Winning Numbers:   ";
-
         String pad1 = "0";
-        String pad2 = "00";
-        String pad3 = "000";
 
         for(int i = 0; i < maxPicks; i++) {
 
@@ -51,5 +48,35 @@ public class WinningNumbers {
         output += "\n";
 
         return output;
+    }
+
+    /**
+     * Method sets each index for winningNumbersArray.
+     * To be used for manual input.
+     * TODO: Add manual input in main.
+     *
+     * @param a int - Winning number at index 0.
+     * @param b int - Winning number at index 1.
+     * @param c int - Winning number at index 2.
+     * @param d int - Winning number at index 3.
+     * @param e int - Winning number at index 4.
+     * @param f int - Winning number at index 5.
+     */
+    public void setArray(int a, int b, int c, int d, int e, int f) {
+        winningNumbersArray[0] = a;
+        winningNumbersArray[1] = b;
+        winningNumbersArray[2] = c;
+        winningNumbersArray[3] = d;
+        winningNumbersArray[4] = e;
+        winningNumbersArray[5] = f;
+    }
+
+    /**
+     * Returns the winning numbers array.
+     *
+     * @return winningNumbersArray int.
+     */
+    public int[] getArray() {
+        return winningNumbersArray;
     }
 }
