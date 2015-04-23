@@ -6,4 +6,8 @@ package com.martinponce.csp2348.a2.binarytreetraversal;
  * @since 20150423
  */
 public class Main {
+
+    public static void main(String[] args) {
+
+    }
 }
