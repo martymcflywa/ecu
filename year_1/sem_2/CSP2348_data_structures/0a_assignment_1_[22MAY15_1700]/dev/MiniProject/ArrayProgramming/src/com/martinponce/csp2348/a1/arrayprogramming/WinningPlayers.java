@@ -22,14 +22,24 @@ public class WinningPlayers {
      */
     public void getWinners(int[][] playerPicksArray, int[] winningNumbersArray) {
 
+        // iterate through each player index
         for(int i = 0; i < playerPicksArray.length; i++) {
+
+            // set matches to 0 for each iteration
             int matches = 0;
+
+            // iterate through each winning number index
             for(int j = 0; j < winningNumbersArray.length; j++) {
+
+                // if a match is found, via binary search,
                 if(binarySearch(playerPicksArray[i], winningNumbersArray[j]) >= 0) {
+
+                    // increment matches
                     matches++;
                 }
             }
 
+            // switch case for matches, determines which class to increment
             switch(matches) {
                 case 6:
                     class1++;
@@ -48,6 +58,7 @@ public class WinningPlayers {
             }
         }
 
+        // print each winner class with their results
         printWinnerClasses();
     }
 
@@ -90,10 +101,12 @@ public class WinningPlayers {
     }
 
     /**
-     * Method prints each winner class.
+     * Method prints each winner class with their results.
      *
      * 1st class = 6 matches
-     * 2nd class =
+     * 2nd class = 5 matches
+     * 3rd class = 4 matches
+     * 4th class = 3 matches
      */
     private final void printWinnerClasses() {
         System.out.println("1st class winners: " + class1);
