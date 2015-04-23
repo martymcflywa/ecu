@@ -15,7 +15,7 @@ public class Main {
 
     private static PlayerPicks thePlayerPicks = new PlayerPicks(MAX_PLAYERS, MAX_PICKS, RANGE);
     private static WinningNumbers theWinningNumbers = new WinningNumbers(MAX_PICKS, RANGE);
-    private static WinningPlayers theWinningPlayers = new WinningPlayers(thePlayerPicks.getArray(), theWinningNumbers.getArray());
+    private static WinningPlayers theWinningPlayers = new WinningPlayers();
 
     private static final String UNSORTED_TITLE = "***********************"
             + "\n*** UNSORTED ARRAYS ***"
@@ -39,5 +39,7 @@ public class Main {
 
         Sorter.sortArray(theWinningNumbers.getArray());
         System.out.println(theWinningNumbers);
+
+        theWinningPlayers.getWinners(thePlayerPicks.getArray(), theWinningNumbers.getArray());
     }
 }

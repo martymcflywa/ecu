@@ -10,56 +10,60 @@ package com.martinponce.csp2348.a1.arrayprogramming;
  */
 public class WinningPlayers {
 
-    private int matches;
-    private int winnerClass;
-
-    private int[][] playerPicksArray;
-    private int[] winningNumbersArray;
-
-    public WinningPlayers(int[][] playerPicksArray, int[] winningNumbersArray) {
-
-        matches = 0;
-        winnerClass = 0;
-
-        this.playerPicksArray = playerPicksArray;
-        this.winningNumbersArray = winningNumbersArray;
-
-        getWinners();
-    }
+    private int class1;
+    private int class2;
+    private int class3;
+    private int class4;
 
     /**
      * Method to find lotto winners, uses binary search.
-     * TODO: Broken, needs attention. Halts when binary search finds a match.
-     * TODO: May need to have binarySearch return something else other than boolean.
+     * @param playerPicksArray int[][] - The array of player lotto picks.
+     * @param winningNumbersArray - The array of winning numbers.
      */
-    private void getWinners() {
+    public void getWinners(int[][] playerPicksArray, int[] winningNumbersArray) {
 
         for(int i = 0; i < playerPicksArray.length; i++) {
+            int matches = 0;
             for(int j = 0; j < winningNumbersArray.length; j++) {
-                if(binarySearch(playerPicksArray[i], winningNumbersArray[j])) {
+                if(binarySearch(playerPicksArray[i], winningNumbersArray[j]) >= 0) {
                     matches++;
                 }
             }
+
+            switch(matches) {
+                case 6:
+                    class1++;
+                    break;
+                case 5:
+                    class2++;
+                    break;
+                case 4:
+                    class3++;
+                    break;
+                case 3:
+                    class4++;
+                    break;
+                default:
+                    break;
+            }
         }
 
-        System.out.println(matches);
+        printWinnerClasses();
     }
+
     /**
      * Binary search algorithm.
      * To find which (if any) component of the sorted (sub)array a[left...right] equals target:
      *
      * @param array int[] - The array to be searched.
      * @param target int - The target to be searched.
-     * @return boolean.
+     * @return int - Value if target found, -1 if target not found
      */
-    private boolean binarySearch(int[] array, int target) {
+    private int binarySearch(int[] array, int target) {
 
         // 1.0 Set l = left, and r = right (substituted with low and high respectively)
         int low = 0;
         int high = array.length - 1;
-
-        // method will return boolean
-        boolean match = false;
 
         // 2.0 While l <= r, repeat:
         while(low <= high) {
@@ -69,7 +73,7 @@ public class WinningPlayers {
 
             // 2.2 If target equals a[m], terminate with answer m
             if(target == array[mid]) {
-                match = true;
+                return mid;
 
             // 2.3 If target is less than a[m], set r = m - 1
             } else if(target < array[mid]) {
@@ -82,6 +86,19 @@ public class WinningPlayers {
         }
 
         // 3.0 Terminate
-        return match;
+        return -1;
+    }
+
+    /**
+     * Method prints each winner class.
+     *
+     * 1st class = 6 matches
+     * 2nd class =
+     */
+    private final void printWinnerClasses() {
+        System.out.println("1st class winners: " + class1);
+        System.out.println("2nd class winners: " + class2);
+        System.out.println("3rd class winners: " + class3);
+        System.out.println("4th class winners: " + class4);
     }
 }
