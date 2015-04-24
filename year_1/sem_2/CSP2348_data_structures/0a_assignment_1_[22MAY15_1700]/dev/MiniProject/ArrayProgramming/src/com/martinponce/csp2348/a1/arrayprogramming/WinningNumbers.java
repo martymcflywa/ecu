@@ -14,6 +14,12 @@ public class WinningNumbers {
 
     private int[] winningNumbersArray;
 
+    /**
+     * Constructor.
+     *
+     * @param maxPicks int - Maximum number of picks a player can have.
+     * @param range int - The range of numbers picked for lotto game.
+     */
     public WinningNumbers(int maxPicks, int range) {
         this.maxPicks = maxPicks;
         this.range = range;

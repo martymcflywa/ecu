@@ -1,5 +1,7 @@
 package com.martinponce.csp2348.a1.arrayprogramming;
 
+import java.util.Scanner;
+
 /**
  * This is the executable class for the Array Programming task.
  *
@@ -26,6 +28,12 @@ public class Main {
     private final String SORTED_TITLE = "***********************"
             + "\n**** SORTED ARRAYS ****"
             + "\n***********************\n";
+    private final String USER_INPUT_TITLE = "***********************"
+            + "\n****** USERINPUT ******"
+            + "\n***********************\n";
+
+    // user input variables
+    private int playerNumber;
 
     /**
      * Constructor.
@@ -39,6 +47,7 @@ public class Main {
 
         // execute program
         initialize();
+        getUserInput();
     }
 
     /**
@@ -55,7 +64,7 @@ public class Main {
     /**
      * Method to init program.
      */
-    public void initialize() {
+    private final void initialize() {
 
         // print unsorted title
         System.out.println(UNSORTED_TITLE);
@@ -84,5 +93,27 @@ public class Main {
         theWinningPlayers.checkTicket(500, thePlayerPicks.getArray(), theWinningNumbers.getArray());
         theWinningPlayers.checkTicket(564, thePlayerPicks.getArray(), theWinningNumbers.getArray());
         theWinningPlayers.checkTicket(897, thePlayerPicks.getArray(), theWinningNumbers.getArray());
+    }
+
+    /**
+     * Method to get user input for player number.
+     * Player number used to check if player's ticket contains winning numbers.
+     */
+    private final void getUserInput() {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println(USER_INPUT_TITLE);
+
+        System.out.println("Enter your player number to check if you have a winning ticket:");
+        playerNumber =  sc.nextInt();
+
+        if(playerNumber > MAX_PLAYERS || playerNumber < 1) {
+            throw new ArrayIndexOutOfBoundsException("Player does not exist! Try again");
+        }
+
+        sc.close();
+
+        theWinningPlayers.checkTicket(playerNumber, thePlayerPicks.getArray(), theWinningNumbers.getArray());
     }
 }
