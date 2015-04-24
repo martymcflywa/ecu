@@ -27,22 +27,22 @@ public class WinningPlayers {
 
     /**
      * Method to find total lotto winners, uses binary search.
-     * @param playerPicksArray int[][] - The array of player lotto picks.
-     * @param winningNumbersArray - The array of winning numbers.
+     * @param playerPicks int[][] - The array of player lotto picks.
+     * @param winningNumbers - The array of winning numbers.
      */
-    public void getWinnerClasses(int[][] playerPicksArray, int[] winningNumbersArray) {
+    public void getWinnerClassesBinary(int[][] playerPicks, int[] winningNumbers) {
 
         // iterate through each player index
-        for(int i = 0; i < playerPicksArray.length; i++) {
+        for(int i = 0; i < playerPicks.length; i++) {
 
             // reset classMatchSum for each iteration
             classMatchSum = 0;
 
             // iterate through each winning number index
-            for(int j = 0; j < winningNumbersArray.length; j++) {
+            for(int j = 0; j < winningNumbers.length; j++) {
 
                 // if a match is found via binary search,
-                if(binarySearch(playerPicksArray[i], winningNumbersArray[j]) >= 0) {
+                if(binarySearch(playerPicks[i], winningNumbers[j]) >= 0) {
 
                     // increment classMatchSum
                     classMatchSum++;
@@ -62,30 +62,30 @@ public class WinningPlayers {
      *
      * @param playerNumber int - The player number, > 0, not array index!
      * @param array int[][] - The array of player picks.
-     * @param winningNumbersArray int[] - The array of winning numbers.
+     * @param winningNumbers int[] - The array of winning numbers.
      */
-    public void checkTicket(int playerNumber, int[][] array, int[] winningNumbersArray) {
+    public void checkTicketBinary(int playerNumber, int[][] array, int[] winningNumbers) {
 
         // reset counters and string
         playerMatchSum = 0;
         playerMatchString = "";
 
         // iterate over each item in the winning numbers array
-        for(int i = 0; i < winningNumbersArray.length; i++) {
+        for(int i = 0; i < winningNumbers.length; i++) {
 
             // if a winning number is found in the player's picks,
-            if(binarySearch(array[playerNumber - 1], winningNumbersArray[i]) >= 0) {
+            if(binarySearch(array[playerNumber - 1], winningNumbers[i]) >= 0) {
 
                 // update playerMatchString with matching array value
                 playerMatchString += "[";
 
                 // formatting: if value is less than 10, pad with leading zero
-                if(winningNumbersArray[i] < 10) {
+                if(winningNumbers[i] < 10) {
                     playerMatchString += "0";
                 }
 
                 // complete the rest of the string
-                playerMatchString += winningNumbersArray[i] + "]";
+                playerMatchString += winningNumbers[i] + "]";
                 // update the counter, determines the win class
                 playerMatchSum++;
             }
@@ -132,6 +132,45 @@ public class WinningPlayers {
 
         // 3.0 Terminate
         return -1;
+    }
+
+    /**
+     * TODO: FINISH MERGE SEARCH ALGORITHM!
+     * @param playerPicks
+     * @param winningNumbers
+     */
+    public final void getWinnerClassesMerge(int[][] playerPicks, int[] winningNumbers) {
+
+        // iterate through each player index
+        for(int i = 0; i < playerPicks.length; i++) {
+
+        }
+    }
+
+    private void mergeSearch(int[] playerPicks, int[] winningNumbers) {
+
+        int left1 = 0;
+        int left2 = 0;
+        int left3 = 0;
+        int right1 = playerPicks.length - 1;
+        int right2 = winningNumbers.length - 1;
+        int[] temp = new int[6];
+
+        while(left1 <= right1 && left2 <= right2) {
+
+            if(playerPicks[left1] < winningNumbers[left2]) {
+                temp[left3++] = playerPicks[left1++];
+            } else {
+                temp[left3++] = winningNumbers[left2++];
+            }
+        }
+
+        while(left1 <= right1) {
+            temp[left3++] = playerPicks[left1++];
+        }
+        while(left2 <= right2) {
+            temp[left3++] = winningNumbers[left2++];
+        }
     }
 
     /**

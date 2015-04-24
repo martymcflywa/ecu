@@ -87,12 +87,12 @@ public class Main {
         System.out.println(theWinningNumbers);
 
         // get winner classes and print
-        theWinningPlayers.getWinnerClasses(thePlayerPicks.getArray(), theWinningNumbers.getArray());
+        theWinningPlayers.getWinnerClassesBinary(thePlayerPicks.getArray(), theWinningNumbers.getArray());
 
-        theWinningPlayers.checkTicket(5, thePlayerPicks.getArray(), theWinningNumbers.getArray());
-        theWinningPlayers.checkTicket(500, thePlayerPicks.getArray(), theWinningNumbers.getArray());
-        theWinningPlayers.checkTicket(564, thePlayerPicks.getArray(), theWinningNumbers.getArray());
-        theWinningPlayers.checkTicket(897, thePlayerPicks.getArray(), theWinningNumbers.getArray());
+        theWinningPlayers.checkTicketBinary(5, thePlayerPicks.getArray(), theWinningNumbers.getArray());
+        theWinningPlayers.checkTicketBinary(500, thePlayerPicks.getArray(), theWinningNumbers.getArray());
+        theWinningPlayers.checkTicketBinary(564, thePlayerPicks.getArray(), theWinningNumbers.getArray());
+        theWinningPlayers.checkTicketBinary(897, thePlayerPicks.getArray(), theWinningNumbers.getArray());
     }
 
     /**
@@ -114,6 +114,6 @@ public class Main {
 
         sc.close();
 
-        theWinningPlayers.checkTicket(playerNumber, thePlayerPicks.getArray(), theWinningNumbers.getArray());
+        theWinningPlayers.checkTicketBinary(playerNumber, thePlayerPicks.getArray(), theWinningNumbers.getArray());
     }
 }
