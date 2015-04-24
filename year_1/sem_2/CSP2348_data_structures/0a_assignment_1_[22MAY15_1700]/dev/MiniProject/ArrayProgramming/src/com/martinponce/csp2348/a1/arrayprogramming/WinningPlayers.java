@@ -20,7 +20,7 @@ public class WinningPlayers {
      * @param playerPicksArray int[][] - The array of player lotto picks.
      * @param winningNumbersArray - The array of winning numbers.
      */
-    public void getWinners(int[][] playerPicksArray, int[] winningNumbersArray) {
+    public void getWinnerClasses(int[][] playerPicksArray, int[] winningNumbersArray) {
 
         // iterate through each player index
         for(int i = 0; i < playerPicksArray.length; i++) {
@@ -31,7 +31,7 @@ public class WinningPlayers {
             // iterate through each winning number index
             for(int j = 0; j < winningNumbersArray.length; j++) {
 
-                // if a match is found, via binary search,
+                // if a match is found via binary search,
                 if(binarySearch(playerPicksArray[i], winningNumbersArray[j]) >= 0) {
 
                     // increment matches

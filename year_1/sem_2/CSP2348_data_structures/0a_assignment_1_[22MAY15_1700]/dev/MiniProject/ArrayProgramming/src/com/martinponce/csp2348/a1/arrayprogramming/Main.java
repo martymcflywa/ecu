@@ -9,37 +9,75 @@ package com.martinponce.csp2348.a1.arrayprogramming;
  */
 public class Main {
 
-    private static final int MAX_PLAYERS = 1000;
-    private static final int MAX_PICKS = 6;
-    private static final int RANGE = 45;
+    // final instance variables
+    private final int MAX_PLAYERS = 1000;
+    private final int MAX_PICKS = 6;
+    private final int RANGE = 45;
 
-    private static PlayerPicks thePlayerPicks = new PlayerPicks(MAX_PLAYERS, MAX_PICKS, RANGE);
-    private static WinningNumbers theWinningNumbers = new WinningNumbers(MAX_PICKS, RANGE);
-    private static WinningPlayers theWinningPlayers = new WinningPlayers();
+    // lotto objects
+    private PlayerPicks thePlayerPicks;
+    private WinningNumbers theWinningNumbers;
+    private WinningPlayers theWinningPlayers;
 
-    private static final String UNSORTED_TITLE = "***********************"
+    // final title strings
+    private final String UNSORTED_TITLE = "***********************"
             + "\n*** UNSORTED ARRAYS ***"
             + "\n***********************\n";
-
-    private static final String SORTED_TITLE = "***********************"
+    private final String SORTED_TITLE = "***********************"
             + "\n**** SORTED ARRAYS ****"
             + "\n***********************\n";
 
+    /**
+     * Constructor.
+     */
+    public Main() {
+
+        // instantiate player picks, winning numbers and winning players
+        thePlayerPicks = new PlayerPicks(MAX_PLAYERS, MAX_PICKS, RANGE);
+        theWinningNumbers = new WinningNumbers(MAX_PICKS, RANGE);
+        theWinningPlayers = new WinningPlayers();
+
+        // execute program
+        initialize();
+    }
+
+    /**
+     * Main method.
+     *
+     * @param args String[]
+     */
     public static void main(String[] args) {
 
+        // instantiate main class
+        Main execute = new Main();
+    }
+
+    /**
+     * Method to init program.
+     */
+    public void initialize() {
+
+        // print unsorted title
         System.out.println(UNSORTED_TITLE);
 
+        // print unsorted player picks, winning numbers
         System.out.println(thePlayerPicks);
         System.out.println(theWinningNumbers);
 
+        // print sorted title
         System.out.println(SORTED_TITLE);
 
+        // sort player picks with insertion sort
         Sorter.sortArray(thePlayerPicks.getArray());
+        // print sorted player picks
         System.out.println(thePlayerPicks);
 
+        // sort winning numbers with insertion sort
         Sorter.sortArray(theWinningNumbers.getArray());
+        // print sorted winning numbers
         System.out.println(theWinningNumbers);
 
-        theWinningPlayers.getWinners(thePlayerPicks.getArray(), theWinningNumbers.getArray());
+        // get winner classes and print
+        theWinningPlayers.getWinnerClasses(thePlayerPicks.getArray(), theWinningNumbers.getArray());
     }
 }
