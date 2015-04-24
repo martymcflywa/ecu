@@ -28,7 +28,7 @@ public class Randomizer {
      * @param maxPicks int - Max number of picks per player.
      * @param range int - The range of random numbers starting from 1.
      */
-    public static void getRandomArray(int[][] array, int maxPlayers, int maxPicks, int range) {
+    public static final void getRandomArray(int[][] array, int maxPlayers, int maxPicks, int range) {
 
         for(int i = 0; i < maxPlayers; i++) {
             randomize(array[i], maxPicks, range);
@@ -42,7 +42,7 @@ public class Randomizer {
      * @param maxPicks int - Max number of picks per player.
      * @param range int - The range of random numbers starting from 1.
      */
-    public static void getRandomArray(int[] array, int maxPicks, int range) {
+    public static final void getRandomArray(int[] array, int maxPicks, int range) {
 
         for(int i = 0; i < array.length; i++) {
             randomize(array, maxPicks, range);
@@ -56,7 +56,7 @@ public class Randomizer {
      * @param maxPicks int - Max number of picks allowed for game.
      * @param range int - The range of numbers, starting from 1.
      */
-    private static void randomize(int[] array, int maxPicks, int range) {
+    private static final void randomize(int[] array, int maxPicks, int range) {
 
         int x = 0;
         int k = 0;

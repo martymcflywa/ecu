@@ -24,7 +24,7 @@ public class Sorter {
      * @param array int[][] - The array to randomize.
      * @return
      */
-    public static int[][] sortArray(int[][] array) {
+    public static final int[][] sortArray(int[][] array) {
 
         for(int i = 0; i < array.length; i++) {
             insertionSort(array[i]);
@@ -33,7 +33,7 @@ public class Sorter {
         return array;
     }
 
-    public static int[] sortArray(int[] array) {
+    public static final int[] sortArray(int[] array) {
 
         for(int i = 0; i < array.length; i++) {
             insertionSort(array);
@@ -57,7 +57,7 @@ public class Sorter {
      * @param array int[]
      * @return int[]
      */
-    private static int[] insertionSort(int[] array) {
+    private static final int[] insertionSort(int[] array) {
 
         // 1.0 For r = left+1, ..., right, repeat:
         for(int i = 1; i < array.length; i++) {

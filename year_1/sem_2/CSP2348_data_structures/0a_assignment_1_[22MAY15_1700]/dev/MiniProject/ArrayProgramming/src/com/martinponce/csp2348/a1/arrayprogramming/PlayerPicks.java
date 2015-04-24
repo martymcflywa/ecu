@@ -88,6 +88,16 @@ public class PlayerPicks {
     }
 
     /**
+     * Overloaded method, returns a row of 2d array.
+     *
+     * @param index int - The index of the row.
+     * @return int[] - Return the row.
+     */
+    public int[] getArray(int index) {
+        return playerPicksArray[index];
+    }
+
+    /**
      * Returns maxPlayers.
      *
      * @return maxPlayers int.

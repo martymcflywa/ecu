@@ -79,5 +79,10 @@ public class Main {
 
         // get winner classes and print
         theWinningPlayers.getWinnerClasses(thePlayerPicks.getArray(), theWinningNumbers.getArray());
+
+        theWinningPlayers.checkTicket(5, thePlayerPicks.getArray(), theWinningNumbers.getArray());
+        theWinningPlayers.checkTicket(500, thePlayerPicks.getArray(), theWinningNumbers.getArray());
+        theWinningPlayers.checkTicket(564, thePlayerPicks.getArray(), theWinningNumbers.getArray());
+        theWinningPlayers.checkTicket(897, thePlayerPicks.getArray(), theWinningNumbers.getArray());
     }
 }

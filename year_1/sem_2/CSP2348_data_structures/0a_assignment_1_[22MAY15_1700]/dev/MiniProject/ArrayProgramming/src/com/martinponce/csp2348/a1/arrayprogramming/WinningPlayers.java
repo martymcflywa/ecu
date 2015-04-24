@@ -10,13 +10,23 @@ package com.martinponce.csp2348.a1.arrayprogramming;
  */
 public class WinningPlayers {
 
+    // winner classes
     private int class1;
     private int class2;
     private int class3;
     private int class4;
 
+    // counter to determine winner class
+    private int classMatchSum;
+
+    // counter to determine player score
+    private int playerMatchSum;
+
+    // tracks players picks that match the winning numbers
+    private String playerMatchString;
+
     /**
-     * Method to find lotto winners, uses binary search.
+     * Method to find total lotto winners, uses binary search.
      * @param playerPicksArray int[][] - The array of player lotto picks.
      * @param winningNumbersArray - The array of winning numbers.
      */
@@ -25,8 +35,8 @@ public class WinningPlayers {
         // iterate through each player index
         for(int i = 0; i < playerPicksArray.length; i++) {
 
-            // set matches to 0 for each iteration
-            int matches = 0;
+            // reset classMatchSum for each iteration
+            classMatchSum = 0;
 
             // iterate through each winning number index
             for(int j = 0; j < winningNumbersArray.length; j++) {
@@ -34,32 +44,56 @@ public class WinningPlayers {
                 // if a match is found via binary search,
                 if(binarySearch(playerPicksArray[i], winningNumbersArray[j]) >= 0) {
 
-                    // increment matches
-                    matches++;
+                    // increment classMatchSum
+                    classMatchSum++;
                 }
             }
 
-            // switch case for matches, determines which class to increment
-            switch(matches) {
-                case 6:
-                    class1++;
-                    break;
-                case 5:
-                    class2++;
-                    break;
-                case 4:
-                    class3++;
-                    break;
-                case 3:
-                    class4++;
-                    break;
-                default:
-                    break;
-            }
+            setWinClass();
         }
 
         // print each winner class with their results
         printWinnerClasses();
+    }
+
+    /**
+     * Method checks a particular player's lotto ticket for winning numbers.
+     * Assumes input will be a player number starting from 1, not array index.
+     *
+     * @param playerNumber int - The player number, > 0, not array index!
+     * @param array int[][] - The array of player picks.
+     * @param winningNumbersArray int[] - The array of winning numbers.
+     */
+    public void checkTicket(int playerNumber, int[][] array, int[] winningNumbersArray) {
+
+        // reset counters and string
+        playerMatchSum = 0;
+        playerMatchString = "";
+
+        // iterate over each item in the winning numbers array
+        for(int i = 0; i < winningNumbersArray.length; i++) {
+
+            // if a winning number is found in the player's picks,
+            if(binarySearch(array[playerNumber - 1], winningNumbersArray[i]) >= 0) {
+
+                // update playerMatchString with matching array value
+                playerMatchString += "[";
+
+                // formatting: if value is less than 10, pad with leading zero
+                if(winningNumbersArray[i] < 10) {
+                    playerMatchString += "0";
+                }
+
+                // complete the rest of the string
+                playerMatchString += winningNumbersArray[i] + "]";
+                // update the counter, determines the win class
+                playerMatchSum++;
+            }
+        }
+
+        // print the result line
+        playerMatchString += "\n";
+        System.out.println(playerTitleString(playerNumber) + " " + playerResultString());
     }
 
     /**
@@ -101,17 +135,96 @@ public class WinningPlayers {
     }
 
     /**
+     * Method determines which class to increment.
+     */
+    private final void setWinClass() {
+
+        // switch case for classMatchSum, determines which class to increment
+        switch(classMatchSum) {
+            case 6:     class1++;
+                        break;
+            case 5:     class2++;
+                        break;
+            case 4:     class3++;
+                        break;
+            case 3:     class4++;
+                        break;
+            default:    break;
+        }
+    }
+
+    /**
+     * Method returns a player title string.
+     * Used when printing results.
+     * Assumes player number is > 0, or array index + 1.
+     *
+     * @param playerNumber int - The player number, not array index!
+     * @return String output.
+     */
+    private final String playerTitleString(int playerNumber) {
+
+        String output = "Player ";
+
+        String pad1 = "0";
+        String pad2 = "00";
+        String pad3 = "000";
+
+        if(playerNumber < 10) {
+            output += pad3;
+        } else if(playerNumber < 100) {
+            output += pad2;
+        } else if(playerNumber < 1000) {
+            output += pad1;
+        }
+
+        output += playerNumber;
+
+        return output;
+    }
+
+    /**
+     * Method returns the player's lotto results.
+     *
+     * @return String output.
+     */
+    private final String playerResultString() {
+
+        String output = "";
+
+        // switch case for playerMatchSum to determine the player's win class
+        switch(playerMatchSum) {
+            case 6:     output += "is a 1st class winner!\n"
+                            + "Your winning numbers are: " + playerMatchString;
+                        break;
+            case 5:     output += "is a 2nd class winner!\n"
+                            + "Your winning numbers are: " + playerMatchString;
+                        break;
+            case 4:     output += "is a 3rd class winner!\n"
+                            + "Your winning numbers are: " + playerMatchString;
+                        break;
+            case 3:     output += "is a 4th class winner!\n"
+                            + "Your winning numbers are: " + playerMatchString;
+                        break;
+            default:    output += "did not win. Thanks for playing lotto. \nBetter luck next time!\n";
+                        break;
+        }
+
+        return output;
+    }
+
+    /**
      * Method prints each winner class with their results.
      *
-     * 1st class = 6 matches
-     * 2nd class = 5 matches
-     * 3rd class = 4 matches
-     * 4th class = 3 matches
+     * 1st class = 6 classMatchSum
+     * 2nd class = 5 classMatchSum
+     * 3rd class = 4 classMatchSum
+     * 4th class = 3 classMatchSum
      */
     private final void printWinnerClasses() {
         System.out.println("1st class winners: " + class1);
         System.out.println("2nd class winners: " + class2);
         System.out.println("3rd class winners: " + class3);
         System.out.println("4th class winners: " + class4);
+        System.out.println();
     }
 }
