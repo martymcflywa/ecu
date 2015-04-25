@@ -28,9 +28,18 @@ public class Main {
     private final String SORTED_TITLE = "***********************"
             + "\n**** SORTED ARRAYS ****"
             + "\n***********************\n";
-    private final String USER_INPUT_TITLE = "***********************"
-            + "\n****** USERINPUT ******"
+    private final String USER_INPUT_TITLE = "************************"
+            + "\n****** USER INPUT ******"
+            + "\n************************\n";
+    private final String BINARY_TITLE = "***********************"
+            + "\n**** BINARY METHOD ****"
             + "\n***********************\n";
+    private final String MERGE_TITLE = "***********************"
+            + "\n**** MERGE METHOD *****"
+            + "\n***********************\n";
+    private final String TEST_TITLE = "***************************"
+            + "\n** TICKET CHECKING TESTS **\n"
+            + "***************************\n";
 
     // user input variables
     private int playerNumber;
@@ -46,8 +55,7 @@ public class Main {
         theWinningPlayers = new WinningPlayers();
 
         // execute program
-        initialize();
-        getUserInput();
+        run();
     }
 
     /**
@@ -64,7 +72,7 @@ public class Main {
     /**
      * Method to init program.
      */
-    private final void initialize() {
+    private final void run() {
 
         // print unsorted title
         System.out.println(UNSORTED_TITLE);
@@ -86,17 +94,40 @@ public class Main {
         // print sorted winning numbers
         System.out.println(theWinningNumbers);
 
-        // get winner classes and print
+        // print binary title
+        System.out.println(BINARY_TITLE);
+
+        // get winner classes via binary method and print
         theWinningPlayers.getWinnerClassesBinary(thePlayerPicks.getArray(), theWinningNumbers.getArray());
+
+        // print merge title
+        System.out.println(MERGE_TITLE);
+
+        // get winner classes via merge method and print
+        theWinningPlayers.getWinnerClassesMerge(thePlayerPicks.getArray(), theWinningNumbers.getArray());
+
+        System.out.println(TEST_TITLE);
+
+        System.out.println("** BINARY TICKET CHECKING **\n");
 
         theWinningPlayers.checkTicketBinary(5, thePlayerPicks.getArray(), theWinningNumbers.getArray());
         theWinningPlayers.checkTicketBinary(500, thePlayerPicks.getArray(), theWinningNumbers.getArray());
         theWinningPlayers.checkTicketBinary(564, thePlayerPicks.getArray(), theWinningNumbers.getArray());
         theWinningPlayers.checkTicketBinary(897, thePlayerPicks.getArray(), theWinningNumbers.getArray());
+
+        System.out.println("** MERGE TICKET CHECKING **\n");
+
+        theWinningPlayers.checkTicketBinary(5, thePlayerPicks.getArray(), theWinningNumbers.getArray());
+        theWinningPlayers.checkTicketBinary(500, thePlayerPicks.getArray(), theWinningNumbers.getArray());
+        theWinningPlayers.checkTicketBinary(564, thePlayerPicks.getArray(), theWinningNumbers.getArray());
+        theWinningPlayers.checkTicketBinary(897, thePlayerPicks.getArray(), theWinningNumbers.getArray());
+
+        // get user input
+        getUserInput();
     }
 
     /**
-     * Method to get user input for player number.
+     * Method to get user input for player number, uses binary search.
      * Player number used to check if player's ticket contains winning numbers.
      */
     private final void getUserInput() {
@@ -105,15 +136,19 @@ public class Main {
 
         System.out.println(USER_INPUT_TITLE);
 
-        System.out.println("Enter your player number to check if you have a winning ticket:");
+        System.out.println("ENTER YOUR PLAYER NUMBER TO CHECK IF YOU HAVE A WINNING TICKET:");
         playerNumber =  sc.nextInt();
 
         if(playerNumber > MAX_PLAYERS || playerNumber < 1) {
-            throw new ArrayIndexOutOfBoundsException("Player does not exist! Try again");
+            throw new ArrayIndexOutOfBoundsException("Player does not exist! Try again.");
         }
 
         sc.close();
 
+        System.out.println("** BINARY METHOD TICKET CHECK **");
         theWinningPlayers.checkTicketBinary(playerNumber, thePlayerPicks.getArray(), theWinningNumbers.getArray());
+
+        System.out.println("** MERGE METHOD TICKET CHECK **");
+        theWinningPlayers.checkTicketMerge(playerNumber, thePlayerPicks.getArray(), theWinningNumbers.getArray());
     }
 }
