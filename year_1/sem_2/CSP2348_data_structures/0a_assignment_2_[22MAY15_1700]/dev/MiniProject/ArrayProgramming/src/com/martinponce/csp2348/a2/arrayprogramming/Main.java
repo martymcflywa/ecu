@@ -85,12 +85,12 @@ public class Main {
         System.out.println(SORTED_TITLE);
 
         // sort player picks with insertion sort
-        Sorter.sortArray(thePlayerTickets.getArray());
+        Sorter.insertionSortArray(thePlayerTickets.getArray());
         // print sorted player picks
         System.out.println(thePlayerTickets);
 
         // sort winning numbers with insertion sort
-        Sorter.sortArray(theWinningNumbers.getArray());
+        Sorter.insertionSortArray(theWinningNumbers.getArray());
         // print sorted winning numbers
         System.out.println(theWinningNumbers);
 
