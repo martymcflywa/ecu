@@ -5,8 +5,8 @@ package com.martinponce.csp2348.a2.arrayprogramming;
  * Contains search methods to determine the winner.
  *
  * @author Martin Ponce ID 10371381
- * @version 0.0.1
- * @since 20150423
+ * @version 0.1.0
+ * @since 20150426
  */
 public class WinningPlayers {
 
