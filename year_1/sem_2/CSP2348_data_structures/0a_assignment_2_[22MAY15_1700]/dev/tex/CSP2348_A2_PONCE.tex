@@ -95,12 +95,23 @@
   listing only,
   minted style=monokai,
   minted language=java,
-  minted options={linenos=true,texcl=true},
+  minted options={linenos=true,texcl=true,fontsize=\footnotesize},
   left=1mm,
 }
 
 % define bg color for code highlighting
 \definecolor{bg}{rgb}{0.20,0.20,0.20}
+
+% listings package
+\usepackage{listings}
+% change label to code
+\renewcommand\listingscaption{Java code}
+
+% modify enumerate sub list
+\renewcommand{\labelenumii}{\theenumii}
+\renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
+\renewcommand{\theenumiii}{\theenumii\arabic{enumiii}}
+\renewcommand{\theenumiv}{\theenumiii.\arabic{enumiv}}
 
 % front matter
 \title{Edith Cowan University\\CSP2348\\Data Structures\\Assignment 2}
@@ -133,9 +144,9 @@
 
 \newpage
 \urlstyle{rm}
-%\setbibref{\textsf{References}}
 \bibliographystyle{apacite}
 \addcontentsline{toc}{section}{References}
 \bibliography{./bib/Year_1-Sem_2-CSP2348-A2}
+
 
 \end{document}

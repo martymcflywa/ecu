@@ -1,23 +1,30 @@
-package com.martinponce.csp2348.a1.arrayprogramming;
+private static final int[] insertionSort(int[] array) {
 
-import java.util.Scanner;
+    // 1.0 For r = left+1, ..., right, repeat:
+    for(int i = 1; i < array.length; i++) {
 
-/**
- * This is the executable class for the Array Programming task.
- *
- * @author Martin Ponce ID 10371381
- * @version 0.0.1
- * @since 20150423
- */
-public class Main {
+        // 1.1 Let val = a[r] (replaced with key)
+        int key = array[i];
 
-    // final instance variables
-    private final int MAX_PLAYERS = 1000;
-    private final int MAX_PICKS = 6;
-    private final int RANGE = 45;
+        // 1.2 Insert val into a[left...r] in such a way that
+        // the subarray is sorted
 
-    // lotto objects
-    private PlayerPicks thePlayerPicks;
-    private WinningNumbers theWinningNumbers;
-    private WinningPlayers theWinningPlayers;
+        // j tracks the sorted invariant
+        int j = i - 1;
+
+        // while j >= 0 and array[j] > key,
+        while(j >= 0 && array[j] > key) {
+
+            // set array[j + 1] to array[j]
+            array[j + 1] = array[j];
+            // decrement j
+            j--;
+        }
+
+        // after inner loop, set array[j + 1] to key
+        array[j + 1] = key;
+    }
+
+    // 2.0 Terminate
+    return array;
 }
