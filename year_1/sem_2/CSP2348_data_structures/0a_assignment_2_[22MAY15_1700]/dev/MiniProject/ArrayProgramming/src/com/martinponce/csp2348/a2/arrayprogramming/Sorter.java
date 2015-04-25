@@ -1,4 +1,4 @@
-package com.martinponce.csp2348.a1.arrayprogramming;
+package com.martinponce.csp2348.a2.arrayprogramming;
 
 /**
  * Helper class to sort random numbers for player picks and winning numbers.

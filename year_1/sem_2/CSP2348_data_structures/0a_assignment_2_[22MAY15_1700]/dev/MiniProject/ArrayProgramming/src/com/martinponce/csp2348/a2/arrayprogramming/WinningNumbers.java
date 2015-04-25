@@ -1,4 +1,4 @@
-package com.martinponce.csp2348.a1.arrayprogramming;
+package com.martinponce.csp2348.a2.arrayprogramming;
 
 /**
  * This class defines the winning numbers for Array Programming task.

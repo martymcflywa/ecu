@@ -1,4 +1,4 @@
-package com.martinponce.csp2348.a1.arrayprogramming;
+package com.martinponce.csp2348.a2.arrayprogramming;
 
 import java.util.Scanner;
 
