@@ -83,19 +83,23 @@
 % add minted package for code highlighting
 \usepackage[section]{minted}
 
+% add tcolorbox package to style code
 \usepackage{tcolorbox}
 \tcbuselibrary{minted,skins}
 
+% javacode style config
 \newtcblisting{javacode}{
   listing engine=minted,
   colback=bg,
-  colframe=black!70,
+  colframe=black!80,
   listing only,
   minted style=monokai,
   minted language=java,
   minted options={linenos=true,texcl=true},
   left=1mm,
 }
+
+% define bg color for code highlighting
 \definecolor{bg}{rgb}{0.20,0.20,0.20}
 
 % front matter
