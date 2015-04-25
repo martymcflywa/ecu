@@ -1,0 +1,141 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+
+% sets margin
+\usepackage[hmargin=3cm,vmargin=2.5cm]{geometry}
+
+% creates landscape pages
+\usepackage{pdflscape}
+\usepackage{pdfpages}
+
+%\renewcommand{\rmdefault}{phv} % Arial
+\renewcommand{\sfdefault}{phv} % Arial
+
+% defining settings for textpos
+\usepackage[absolute]{textpos}
+\setlength{\TPHorizModule}{\paperwidth}
+\setlength{\TPVertModule}{\paperheight}
+
+% headers / footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Assignment 2}
+\lhead{CSP2348: Data Structures}
+\rfoot{\thepage}
+\lfoot{Martin Ponce, ID: 10371381}
+\renewcommand{\footrulewidth}{0.5pt}
+
+% defining landscape headers / footers
+\fancypagestyle{fancylscape}{
+	\fancyhf{}
+	\renewcommand{\footrulewidth}{0pt}
+	\renewcommand{\headrulewidth}{0pt}
+	% header
+	\begin{textblock}{0.05}[-0.5,-2](0,0)
+		{\rotatebox{90}{CSP2348: Data Structures}}
+	\end{textblock}
+		\begin{textblock}{0.05}[-0.5,-1](0,0)
+		{\rotatebox{90}{Assignment 2}}
+	\end{textblock}
+	\begin{textblock}{0.05}[-1,-0.109](0,0)
+		{\rotatebox{90}{\rule{24.2cm}{0.5pt}}}
+	\end{textblock}
+	% footer
+	\begin{textblock}{0.05}[-19,-4.28](0,0)
+		{\rotatebox{90}{Martin Ponce, ID: 10371381}}
+	\end{textblock}
+		\begin{textblock}{0.05}[-19,-12.8](0,0)
+		{\rotatebox{90}{\thepage}}
+	\end{textblock}
+		\begin{textblock}{0.05}[-18.7,-0.109](0,0)
+		{\rotatebox{90}{\rule{24.2cm}{0.5pt}}}
+	\end{textblock}
+}
+
+% adjusts padding between caption and figure
+\setlength{\belowcaptionskip}{10pt}
+
+% adds links to references and colors them blue
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+			linkcolor=blue,
+			citecolor=black,
+			urlcolor=blue}
+
+% apa style referencing
+\usepackage[sectionbib, natbibapa]{apacite}
+\usepackage{chbibref}
+
+% underlining text
+\usepackage[normalem]{ulem}
+
+% \citetapos for possesive citations
+\newcommand{\citetapos}[1]{\citeauthor{#1}{\textcolor{black}{'s}} \citeyearpar{#1}}
+
+% add multiline comments \begin{comment} \end{comment}
+\usepackage{verbatim}
+
+% add minted package for code highlighting
+\usepackage[section]{minted}
+
+% add tcolorbox package to style code
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,skins}
+
+% javacode style config
+\newtcblisting{javacode}{
+  listing engine=minted,
+  colback=bg,
+  colframe=black!80,
+  listing only,
+  minted style=monokai,
+  minted language=java,
+  minted options={linenos=true,texcl=true},
+  left=1mm,
+}
+
+% define bg color for code highlighting
+\definecolor{bg}{rgb}{0.20,0.20,0.20}
+
+% front matter
+\title{Edith Cowan University\\CSP2348\\Data Structures\\Assignment 2}
+\author{Martin Ponce\\Student 10371381\\\\Tutor: Jitian Xiao}
+\date{\today}
+
+\begin{document}
+
+% title page
+\newpage
+\null  % Empty line
+\nointerlineskip  % No skip for prev line
+\vfill
+\let\snewpage \newpage
+\let\newpage \relax
+\maketitle
+\thispagestyle{empty}
+\let \newpage \snewpage
+\vfill
+
+% toc
+\newpage
+\tableofcontents
+\thispagestyle{fancy}
+
+\newpage
+\input{./sections/01_introduction}
+\input{./sections/02_main}
+\input{./sections/03_conclusion}
+
+\newpage
+\urlstyle{rm}
+%\setbibref{\textsf{References}}
+\bibliographystyle{apacite}
+\addcontentsline{toc}{section}{References}
+\bibliography{./bib/Year_1-Sem_2-CSP2348-A2}
+
+\end{document}
