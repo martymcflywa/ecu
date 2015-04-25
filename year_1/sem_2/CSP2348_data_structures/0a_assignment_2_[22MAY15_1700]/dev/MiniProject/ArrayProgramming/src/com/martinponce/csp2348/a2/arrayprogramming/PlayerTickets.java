@@ -7,13 +7,13 @@ package com.martinponce.csp2348.a2.arrayprogramming;
  * @version 0.0.1
  * @since 20150423
  */
-public class PlayerPicks {
+public class PlayerTickets {
 
     private int maxPlayers;
     private int maxPicks;
     private int range;
 
-    private int[][] playerPicksArray;
+    private int[][] playerTicketsArray;
 
     /**
      * Constructor.
@@ -22,16 +22,16 @@ public class PlayerPicks {
      * @param maxPicks int - Max number of picks per player.
      * @param range int - The range of random numbers starting from 1.
      */
-    public PlayerPicks(int maxPlayers, int maxPicks, int range) {
+    public PlayerTickets(int maxPlayers, int maxPicks, int range) {
 
         this.maxPlayers = maxPlayers;
         this.maxPicks = maxPicks;
         this.range = range;
 
         // create array
-        playerPicksArray = new int[maxPlayers][maxPicks];
+        playerTicketsArray = new int[maxPlayers][maxPicks];
         // randomize
-        Randomizer.getRandomArray(playerPicksArray, maxPlayers, maxPicks, range);
+        Randomizer.getRandomArray(playerTicketsArray, maxPlayers, maxPicks, range);
     }
 
     /**
@@ -63,14 +63,14 @@ public class PlayerPicks {
             output += (i + 1) + " picks: ";
 
             for(int j = 0; j < maxPicks; j++) {
-                //output += "[" + playerPicksArray[i][j] + "]";
+                //output += "[" + playerTicketsArray[i][j] + "]";
                 output += "[";
 
-                if(playerPicksArray[i][j] < 10) {
+                if(playerTicketsArray[i][j] < 10) {
                     output += pad1;
                 }
 
-                output += playerPicksArray[i][j] + "]";
+                output += playerTicketsArray[i][j] + "]";
             }
             output += "\n";
         }
@@ -81,10 +81,10 @@ public class PlayerPicks {
     /**
      * Returns the array.
      *
-     * @return int[][] playerPicksArray.
+     * @return int[][] playerTicketsArray.
      */
     public int[][] getArray() {
-        return playerPicksArray;
+        return playerTicketsArray;
     }
 
     /**
@@ -94,7 +94,7 @@ public class PlayerPicks {
      * @return int[] - Return the row.
      */
     public int[] getArray(int index) {
-        return playerPicksArray[index];
+        return playerTicketsArray[index];
     }
 
     /**

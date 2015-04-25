@@ -28,13 +28,13 @@ public class WinningPlayers {
     /**
      * Method to find total lotto winners, uses binary search.
      *
-     * @param allPlayerPicks int[][] - The array of player lotto picks.
+     * @param allPlayerTickets int[][] - The array of player tickets.
      * @param winningNumbers - The array of winning numbers.
      */
-    public final void getWinnerClassesBinary(int[][] allPlayerPicks, int[] winningNumbers) {
+    public final void getWinnerClassesBinary(int[][] allPlayerTickets, int[] winningNumbers) {
 
         // iterate through each player index
-        for(int i = 0; i < allPlayerPicks.length; i++) {
+        for(int i = 0; i < allPlayerTickets.length; i++) {
 
             // reset classMatchTally for each iteration
             classMatchTally = 0;
@@ -43,7 +43,7 @@ public class WinningPlayers {
             for(int j = 0; j < winningNumbers.length; j++) {
 
                 // if a match is found via binary search,
-                if(binarySearch(allPlayerPicks[i], winningNumbers[j]) >= 0) {
+                if(binarySearch(allPlayerTickets[i], winningNumbers[j]) >= 0) {
 
                     // increment classMatchTally
                     classMatchTally++;
@@ -62,10 +62,10 @@ public class WinningPlayers {
      * Assumes input will be a player number starting from 1, not array index.
      *
      * @param playerNumber int - The player number, > 0, not array index!
-     * @param allPlayerPicks int[][] - The array of player picks.
+     * @param allPlayerTickets int[][] - The array of player tickets.
      * @param winningNumbers int[] - The array of winning numbers.
      */
-    public final void checkTicketBinary(int playerNumber, int[][] allPlayerPicks, int[] winningNumbers) {
+    public final void checkTicketBinary(int playerNumber, int[][] allPlayerTickets, int[] winningNumbers) {
 
         // reset counter and string
         playerMatchTally = 0;
@@ -75,7 +75,7 @@ public class WinningPlayers {
         for(int i = 0; i < winningNumbers.length; i++) {
 
             // if a winning number is found in the player's picks,
-            if(binarySearch(allPlayerPicks[playerNumber - 1], winningNumbers[i]) >= 0) {
+            if(binarySearch(allPlayerTickets[playerNumber - 1], winningNumbers[i]) >= 0) {
 
                 // update playerMatchString with matching array value
                 playerMatchString += "[";
@@ -162,17 +162,17 @@ public class WinningPlayers {
      * Assumes input will be a player number starting from 1, not array index.
      *
      * @param playerNumber int - The player number, > 0, not array index!
-     * @param allPlayerPicks int[][] - The array of player picks.
+     * @param allPlayerTickets int[][] - The array of player picks.
      * @param winningNumbers int[] - The array of winning numbers.
      */
-    public final void checkTicketMerge(int playerNumber, int[][] allPlayerPicks, int[] winningNumbers) {
+    public final void checkTicketMerge(int playerNumber, int[][] allPlayerTickets, int[] winningNumbers) {
 
         // reset counter and string
         playerMatchTally = 0;
         playerMatchString = "";
 
         // set playerMatchTally to mergeSearch result
-        playerMatchTally = mergeSearch(allPlayerPicks[playerNumber - 1], winningNumbers);
+        playerMatchTally = mergeSearch(allPlayerTickets[playerNumber - 1], winningNumbers);
 
         // print the result line
         playerMatchString += "\n";
@@ -184,10 +184,10 @@ public class WinningPlayers {
      * To find which (if any) component of the sorted (sub)array a[left...right] equals target:
      * O(n): Merge search algorithm performs n - 1 max comparisons.
      *
-     * @param playerPicks int[] - The individual player picks array.
+     * @param playerTicket int[] - The individual player picks array.
      * @param winningNumbers int[] - The winning numbers array, target.
      */
-    private int mergeSearch(int[] playerPicks, int[] winningNumbers) {
+    private int mergeSearch(int[] playerTicket, int[] winningNumbers) {
 
         // 1.0 Set i = l1, set j = l2
 
@@ -199,16 +199,16 @@ public class WinningPlayers {
         int matchTally = 0;
 
         //  2.0 While i <= r1 AND j <= r2, repeat:
-        while(i < playerPicks.length && j < winningNumbers.length) {
+        while(i < playerTicket.length && j < winningNumbers.length) {
 
             // 2.1 If a1[i] < a2[j]:
-            if(playerPicks[i] < winningNumbers[j]) {
+            if(playerTicket[i] < winningNumbers[j]) {
 
                 // 2.1.2 Increment i
                 i++;
 
             // 2.2 If a1[i] > a2[j]:
-            } else if(playerPicks[i] > winningNumbers[j]) {
+            } else if(playerTicket[i] > winningNumbers[j]) {
 
                 // 2.2.1 Increment j
                 j++;
