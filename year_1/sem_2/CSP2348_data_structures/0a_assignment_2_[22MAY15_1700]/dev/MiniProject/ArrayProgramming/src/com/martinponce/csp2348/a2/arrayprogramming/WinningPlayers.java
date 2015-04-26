@@ -216,7 +216,7 @@ public class WinningPlayers {
             // 2.1 If a1[i] < a2[j]:
             if(playerTicket[i] < winningNumbers[j]) {
 
-                // 2.1.2 Increment i
+                // 2.1.1 Increment i
                 i++;
 
             // 2.2 If a1[i] > a2[j]:
