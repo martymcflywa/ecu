@@ -5,7 +5,7 @@ package com.martinponce.csp2348.a2.arrayprogramming;
  * Contains search methods to determine the winner.
  *
  * @author Martin Ponce ID 10371381
- * @version 0.1.0
+ * @version 0.1.1
  * @since 20150426
  */
 public class WinningPlayers {
@@ -26,10 +26,11 @@ public class WinningPlayers {
     private String playerMatchString;
 
     /**
-     * Method to find total lotto winners, uses binary search.
+     * Method finds total lotto winners for each winner class.
+     * Uses binary search.
      *
-     * @param allPlayerTickets int[][] - The array of player tickets.
-     * @param winningNumbers - The array of winning numbers.
+     * @param allPlayerTickets int[][] - The two-dimensional array of all player tickets.
+     * @param winningNumbers int[] - The array of winning numbers.
      */
     public final void getWinnerClassesBinary(int[][] allPlayerTickets, int[] winningNumbers) {
 
@@ -58,11 +59,12 @@ public class WinningPlayers {
     }
 
     /**
-     * Method checks a particular player's lotto ticket for winning numbers, uses binary search.
-     * Assumes input will be a player number starting from 1, not array index.
+     * Method finds total lotto winners for each winner class.
+     * Uses binary search.
+     * Assumes input will be a player number between 1 - 1000 inclusive. Not array index!
      *
-     * @param playerNumber int - The player number, > 0, not array index!
-     * @param allPlayerTickets int[][] - The array of player tickets.
+     * @param playerNumber int - The player number, between 1 - 1000 inclusive. Not array index!
+     * @param allPlayerTickets int[][] - The two-dimensional array of all player tickets.
      * @param winningNumbers int[] - The array of winning numbers.
      */
     public final void checkTicketBinary(int playerNumber, int[][] allPlayerTickets, int[] winningNumbers) {
@@ -70,6 +72,7 @@ public class WinningPlayers {
         // reset counter and string
         playerMatchTally = 0;
         playerMatchString = "";
+        resetWinnerClasses();
 
         // iterate over each item in the winning numbers array
         for(int i = 0; i < winningNumbers.length; i++) {
@@ -137,32 +140,39 @@ public class WinningPlayers {
     }
 
     /**
-     * Method to find total lotto winners, uses binary search.
+     * Method finds total lotto winners for each winner class.
+     * Uses merge search.
      *
-     * @param allPlayerPicks int[][] - The entire player picks array.
+     * @param allPlayerPicks int[][] - The two-dimensional array of all player tickets.
      * @param winningNumbers int[] - The winning numbers array.
      */
     public final void getWinnerClassesMerge(int[][] allPlayerPicks, int[] winningNumbers) {
+
+        resetWinnerClasses();
 
         // iterate through each player index
         for(int i = 0; i < allPlayerPicks.length; i++) {
 
             // reset classMatchTally for each iteration
             classMatchTally = 0;
+            playerMatchString = "";
 
             // set classMatchTally to mergeSearch result
             classMatchTally = mergeSearch(allPlayerPicks[i], winningNumbers);
+
+            setWinClass();
         }
-        setWinClass();
+
         printWinnerClasses();
     }
 
     /**
-     * Method checks a particular player's lotto ticket for winning numbers, uses binary search.
-     * Assumes input will be a player number starting from 1, not array index.
+     * Method checks individual player lotto ticket for winning numbers.
+     * Uses merge search.
+     * Assumes input will be a player number between 1 - 1000 inclusive. Not array index!
      *
-     * @param playerNumber int - The player number, > 0, not array index!
-     * @param allPlayerTickets int[][] - The array of player picks.
+     * @param playerNumber int - The player number, between 1 - 1000 inclusive. Not array index!
+     * @param allPlayerTickets int[][] - The two-dimensional array of all player tickets.
      * @param winningNumbers int[] - The array of winning numbers.
      */
     public final void checkTicketMerge(int playerNumber, int[][] allPlayerTickets, int[] winningNumbers) {
@@ -181,6 +191,8 @@ public class WinningPlayers {
 
     /**
      * Merge search algorithm:
+     * Adaptation of merge array algorithm, used to find matches between winning numbers and player ticket numbers.
+     *
      * To find which (if any) component of the sorted (sub)array a[left...right] equals target:
      * O(n): Merge search algorithm performs n - 1 max comparisons.
      *
@@ -263,9 +275,9 @@ public class WinningPlayers {
     /**
      * Method returns a player title string.
      * Used when printing results.
-     * Assumes player number is > 0, or array index + 1.
+     * Assumes input will be a player number between 1 - 1000 inclusive. Not array index!
      *
-     * @param playerNumber int - The player number, not array index!
+     * @param playerNumber int - The player number, between 1 - 1000 inclusive. Not array index!
      * @return String output.
      */
     private final String playerTitleString(int playerNumber) {
@@ -320,7 +332,7 @@ public class WinningPlayers {
     }
 
     /**
-     * Method prints each winner class with their results.
+     * Method prints total winners for each winner class.
      *
      * 1st class = 6 classMatchTally
      * 2nd class = 5 classMatchTally
@@ -333,5 +345,16 @@ public class WinningPlayers {
         System.out.println("3rd class winners: " + class3);
         System.out.println("4th class winners: " + class4);
         System.out.println();
+    }
+
+    /**
+     * Method resets each winner class back to 0.
+     */
+    private final void resetWinnerClasses() {
+
+        class1 = 0;
+        class2 = 0;
+        class3 = 0;
+        class4 = 0;
     }
 }

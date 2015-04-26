@@ -6,7 +6,7 @@ import java.util.Scanner;
  * This is the executable class for the Array Programming task.
  *
  * @author Martin Ponce ID 10371381
- * @version 0.1.0
+ * @version 0.1.1
  * @since 20150426
  */
 public class Main {
@@ -14,7 +14,7 @@ public class Main {
     // final instance variables
     private final int MAX_PLAYERS = 1000;
     private final int MAX_PICKS = 6;
-    private final int RANGE = 6;
+    private final int RANGE = 10;
 
     // lotto objects
     private PlayerTickets thePlayerTickets;
@@ -84,14 +84,15 @@ public class Main {
         // print sorted title
         System.out.println(SORTED_TITLE);
 
-        // sort player picks with insertion sort
-        Sorter.insertionSortArray(thePlayerTickets.getArray());
-        //Sorter.mergeSortArray(thePlayerTickets.getArray());
+        // sort player picks with merge sort
+        //Sorter.insertionSortArray(thePlayerTickets.getArray());
+        Sorter.mergeSortArray(thePlayerTickets.getArray());
         // print sorted player picks
         System.out.println(thePlayerTickets);
 
-        // sort winning numbers with insertion sort
-        Sorter.insertionSortArray(theWinningNumbers.getArray());
+        // sort winning numbers with merge sort
+        //Sorter.insertionSortArray(theWinningNumbers.getArray());
+        Sorter.mergeSortArray(theWinningNumbers.getArray());
         // print sorted winning numbers
         System.out.println(theWinningNumbers);
 

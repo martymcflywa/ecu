@@ -5,7 +5,7 @@ package com.martinponce.csp2348.a2.arrayprogramming;
  * Static class, should not be instantiated.
  *
  * @author Martin Ponce ID 10371381
- * @version 0.1.0
+ * @version 0.1.1
  * @since 20150426
  */
 public class Sorter {
@@ -22,10 +22,11 @@ public class Sorter {
     }
 
     /**
-     * Method to initiate sorting of player picks.
+     * Method initiates sorting of two-dimensional array of all player tickets.
+     * Uses insertion sort algorithm.
      *
-     * @param array int[][] - The array to sort.
-     * @return int[][] - The sorted array.
+     * @param array int[][] - The two-dimensional array of all player tickets.
+     * @return int[][] - The two-dimensional array of all player tickets.
      */
     public static final int[][] insertionSortArray(int[][] array) {
 
@@ -37,10 +38,11 @@ public class Sorter {
     }
 
     /**
-     * Overloaded method to initiate sorting of player picks.
+     * Overloaded method initiates sorting of one-dimensional array of an individual player ticket.
+     * Uses insertion sort algorithm.
      *
-     * @param array int[] - The array to sort.
-     * @return int[] - The sorted array.
+     * @param array int[] - The one-dimensional array of an individual player ticket.
+     * @return int[] - The one-dimensional array of an individual player ticket.
      */
     public static final int[] insertionSortArray(int[] array) {
 
@@ -63,8 +65,8 @@ public class Sorter {
      * = (n^2 + n - 2) / 4
      * = O(n^2)
      *
-     * @param array int[]
-     * @return int[]
+     * @param array int[] - The array to sort.
+     * @return int[] - The sorted array.
      */
     private static final int[] insertionSort(int[] array) {
 
@@ -96,9 +98,10 @@ public class Sorter {
     }
 
     /**
-     * This method initialises the merge sort algorithm.
+     * Method initiates sorting of two-dimensional array of all player tickets.
+     * Uses merge sort algorithm.
      *
-     * @param array int[]
+     * @param array int[][] - The two-dimensional array of all player tickets.
      */
     public static void mergeSortArray(int[][] array) {
 
@@ -117,6 +120,24 @@ public class Sorter {
     }
 
     /**
+     * Method initiates sorting of one-dimensional array of individual player ticket.
+     * Uses merge sort algorithm.
+     *
+     * @param array int[] - The one-dimensional array of an individual player ticket.
+     */
+    public static void mergeSortArray(int[] array) {
+
+        for(int i = 0; i < array.length; i++) {
+
+            mergeArrayToSort = array;
+
+            mergeTempArray = new int[array.length];
+
+            mergeSort(0, array.length - 1);
+        }
+    }
+
+    /**
      * Merge sort algorithm.
      *
      * To sort a[left...right] into ascending order:
@@ -127,26 +148,26 @@ public class Sorter {
      * = O(n * log(n))
      * O(n) for merge algorithm * O(log n) mergeSort algorithm.
      *
-     * @param low int
-     * @param high int
+     * @param low int - Left.
+     * @param high int - Right.
      */
     private static void mergeSort(int low, int high) {
 
-        // 1.0 If left < right
+        // 1.0 If left (low) < right (high)
         if(low < high) {
 
-            // 1.1 Let m be an integer about midway between left and right
-            int middle = low + (high - low) / 2;
+            // 1.1 Let m (mid) be an integer about midway between left and right
+            int mid = low + (high - low) / 2;
 
             // 1.2 Sort a[left...m] into ascending order
-            mergeSort(low, middle);
+            mergeSort(low, mid);
 
             // 1.3 Sort a[m+1...right] into ascending order
-            mergeSort(middle + 1, high);
+            mergeSort(mid + 1, high);
 
             // 1.5 Merge a[left...m] and a[m+1...right] into auxiliary array b
             // call merge() which is O(n)
-            merge(low, middle, high);
+            merge(low, mid, high);
         }
     }
 
@@ -158,48 +179,48 @@ public class Sorter {
      * O(n): Each component of a1 is copied once, and each component of a2 is copied once.
      * Number of copies = n_1 + n_2 = n.
      *
-     * @param low int
-     * @param middle int
-     * @param high int
+     * @param low int - Left.
+     * @param mid int - Middle.
+     * @param high int - Right.
      */
-    private static void merge(int low, int middle, int high) {
+    private static void merge(int low, int mid, int high) {
 
         // iterate from low through to high
         for(int i = low; i <= high; i++) {
 
-            // copy each dataArray element into helperArray
+            // copy each element from the array to sort, to each element into temp array
             mergeTempArray[i] = mergeArrayToSort[i];
         }
 
-        // 1.0 Set i = low, set j = middle + 1, set k = low
+        // 1.0 Set i = low, set j = mid + 1, set k = low
         int i = low;
-        int j = middle + 1;
+        int j = mid + 1;
         int k = low;
 
-        // 2.0 While i <= middle AND j <= high, repeat:
-        while(i <= middle && j <= high) {
+        // 2.0 While i <= mid AND j <= high, repeat:
+        while(i <= mid && j <= high) {
 
-            // 2.1 If helperArray[i] <= helperArray[j],
+            // 2.1 If mergeTempArray[i] <= mergeTempArray[j],
             if(mergeTempArray[i] <= mergeTempArray[j]) {
 
-                // 2.1.1 Copy helperArray[i] into datArray[k], then increment i and k
+                // 2.1.1 Copy mergeTempArray[i] into mergeArrayToSort[k], then increment i and k
                 mergeArrayToSort[k] = mergeTempArray[i];
                 i++;
 
-                // 2.2 If helperArray[i] > helperArray[j],
+                // 2.2 If mergeTempArray[i] > mergeTempArray[j],
             } else {
 
-                // 2.2.1 Copy helperArray[j] into dataArray[k], then increment j and k
+                // 2.2.1 Copy mergeTempArray[j] into mergeArrayToSort[k], then increment j and k
                 mergeArrayToSort[k] = mergeTempArray[j];
                 j++;
             }
             k++;
         }
 
-        // 3.0 While i <= middle,
-        while(i <= middle) {
+        // 3.0 While i <= mid,
+        while(i <= mid) {
 
-            // 3.1 Copy helperArray[i] into dataArray[k], then increment i and k
+            // 3.1 Copy mergeTempArray[i] into mergeArrayToSort[k], then increment i and k
             mergeArrayToSort[k] = mergeTempArray[i];
             k++;
             i++;

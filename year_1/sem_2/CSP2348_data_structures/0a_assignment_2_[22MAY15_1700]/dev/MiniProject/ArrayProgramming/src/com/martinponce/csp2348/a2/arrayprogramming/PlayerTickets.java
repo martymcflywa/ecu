@@ -4,7 +4,7 @@ package com.martinponce.csp2348.a2.arrayprogramming;
  * This class defines the player lotto picks for Array Programming task.
  *
  * @author Martin Ponce ID 10371381
- * @version 0.1.0
+ * @version 0.1.1
  * @since 20150426
  */
 public class PlayerTickets {
@@ -95,23 +95,5 @@ public class PlayerTickets {
      */
     public int[] getArray(int index) {
         return playerTicketsArray[index];
-    }
-
-    /**
-     * Returns maxPlayers.
-     *
-     * @return maxPlayers int.
-     */
-    public int getMaxPlayers() {
-        return maxPlayers;
-    }
-
-    /**
-     * Returns maxPicks.
-     *
-     * @return maxPicks int.
-     */
-    public int getMaxPicks() {
-        return maxPicks;
     }
 }
