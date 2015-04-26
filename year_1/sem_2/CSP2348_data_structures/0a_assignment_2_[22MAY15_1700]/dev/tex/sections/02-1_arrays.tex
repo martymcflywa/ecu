@@ -17,60 +17,175 @@ The following classes have been created to represent the lotto game:
 
 \subsection{Sorting}
 
-In order to use more efficient search algorithms such as binary search, the arrays must be sorted first. The \mintinline{java}{Sorter} class contains \mintinline{java}{insertionSort()} which is called to sort elements in an array in descending order using insertion sort algorithm. Implementation is shown in Java code 2.1.
+In order to use more efficient search algorithms such as binary search, the arrays must be sorted first. The \mintinline{java}{Sorter} class contains \mintinline{java}{mergeSort()} which is called to sort elements in an array in ascending order using merge sort algorithm. Implementation is shown in Java code 2.1.
 
-\subsubsection{Insertion sort algorithm}
+\subsubsection{Merge sort algorithm}
 
 To sort a[left...right] into ascending order:
 
 \begin{enumerate}
-\item For r = left + 1, ..., right, repeat:
+\item If left \textless right:
 	\begin{enumerate}
-	\item Let val = a[r]
-	\item Insert val into its correct sorted position in a[left...r]
+	\item Let m be an integer about midway between left and right
+	\item Sort a[left...m] into ascending order
+	\item Sort a[m+1...right into ascending order
+	\item Merge a[left...m] and a[m+1...right] into auxiliary array b
+	\item Copy all components of b into a[left...right]
 	\end{enumerate}
 \item Terminate
 \end{enumerate}
 
-\citep[p. 1]{Watt2001}
+\citep[p. 54]{Watt2001}
 
 
-\subsubsection{Insertion sort Java method}
+\subsubsection{Merge sort Java method}
 
 \begin{listing}[H]
-\caption{Insertion sort method}
+\caption{Merge sort method}
 \begin{javacode}
-private static final int[] insertionSort(int[] array) {
+private static void mergeSort(int low, int high) {
 
-    // 1.0 For r = left+1, ..., right, repeat:
-    for(int i = 1; i < array.length; i++) {
+    // 1.0 If left (low) < right (high)
+    if(low < high) {
 
-        // 1.1 Let val = a[r] (replaced with key)
-        int key = array[i];
+        // 1.1 Let m (mid) be an integer about midway between left and right
+        int mid = low + (high - low) / 2;
 
-        // 1.2 Insert val into a[left...r] in such a way that 
-        // the subarray is sorted
+        // 1.2 Sort a[left...m] into ascending order
+        mergeSort(low, mid);
 
-        // j tracks the sorted invariant
-        int j = i - 1;
+        // 1.3 Sort a[m+1...right] into ascending order
+        mergeSort(mid + 1, high);
 
-        // while j >= 0 and array[j] > key,
-        while(j >= 0 && array[j] > key) {
-
-            // set array[j + 1] to array[j]
-            array[j + 1] = array[j];
-            // decrement j
-            j--;
-        }
-
-        // after inner loop, set array[j + 1] to key
-        array[j + 1] = key;
+        // 1.4 Merge a[left...m] and a[m+1...right] into auxiliary array b
+        // call merge() which is O(n)
+        merge(low, mid, high);
     }
-
-    // 2.0 Terminate
-    return array;
 }
 \end{javacode}
 \end{listing}
 
-\subsubsection{Insertion sort analysis}
+At line 17, the \mintinline{java}{mergeSort()} method calls supporting method \mintinline{java}{merge()}, as shown in Java code 2.2, in order to perform step 1.4 of the merge sort algorithm.
+
+\begin{listing}[H]
+\caption{Merge method}
+\begin{javacode}
+private static void merge(int low, int mid, int high) {
+
+    // iterate from low through to high
+    for(int i = low; i <= high; i++) {
+
+        // copy each element from the array to sort, to each element into temp array
+        mergeTempArray[i] = mergeArrayToSort[i];
+    }
+
+    // 1.0 Set i = low, set j = mid + 1, set k = low
+    int i = low;
+    int j = mid + 1;
+    int k = low;
+
+    // 2.0 While i <= mid AND j <= high, repeat:
+    while(i <= mid && j <= high) {
+
+        // 2.1 If mergeTempArray[i] <= mergeTempArray[j],
+        if(mergeTempArray[i] <= mergeTempArray[j]) {
+
+            // 2.1.1 Copy mergeTempArray[i] into mergeArrayToSort[k], then increment i and k
+            mergeArrayToSort[k] = mergeTempArray[i];
+            i++;
+
+        // 2.2 If mergeTempArray[i] > mergeTempArray[j],
+        } else {
+
+            // 2.2.1 Copy mergeTempArray[j] into mergeArrayToSort[k], then increment j and k
+            mergeArrayToSort[k] = mergeTempArray[j];
+            j++;
+        }
+        k++;
+    }
+
+    // 3.0 While i <= mid,
+    while(i <= mid) {
+
+        // 3.1 Copy mergeTempArray[i] into mergeArrayToSort[k], then increment i and k
+        mergeArrayToSort[k] = mergeTempArray[i];
+        k++;
+        i++;
+    }
+}
+\end{javacode}
+\end{listing}
+
+\subsubsection{Merge sort analysis}
+
+As \citet[p. 54]{Watt2001} explains, analysis of the merge sort algorithm's time complexity involves counting the number of comparisons made during the operation. Let $n = right - left + 1$ be the length of the array, and let $C(n)$ be the total number of comparisons required to sort $n$ values.
+
+Step 1.1 involves dividing the array into two subarrays, $n/2$. The left subarray takes around $C(n/2)$ comparisons to sort, and similarly, the right subarray takes around $C(n/2)$ comparisons to sort.
+
+Step 1.4 involves the merging of each subarray into a sorted array and takes about $n - 1$ comparisons to complete. Therefore:
+
+\begin{equation}
+C(n) \approx \left\{\begin{matrix}
+2C(n/2) + n - 1 & \mbox{if n} > 1 \\ 
+0 & \mbox{if n} \leq 1 
+\end{matrix}\right.
+\end{equation}
+
+\newpage
+Simplifying equation 2.1:
+
+\begin{equation}
+C(n) \approx n \times log_2n
+\end{equation}
+
+Therefore the time complexity is $O(n \ log \ n)$.
+\\
+\\
+Space complexity is $O(n)$, since step 1.4 requires an auxiliary array of length $n$ to temporarily store the sorted array.
+
+\subsubsection{Merge sort console output}
+
+The following console outputs indicate that the merge sort algorithm is functioning correctly.
+\\
+\begin{consolecode}
+***********************
+*** UNSORTED ARRAYS ***
+***********************
+
+Player 0001 picks: [16][14][37][31][07][42]
+Player 0002 picks: [20][12][26][23][44][16]
+Player 0003 picks: [10][32][20][35][02][24]
+Player 0004 picks: [06][23][19][35][42][25]
+Player 0005 picks: [07][17][28][41][29][38]
+Player 0006 picks: [16][05][36][31][04][23]
+Player 0007 picks: [20][01][34][37][07][18]
+Player 0008 picks: [30][29][10][27][34][05]
+Player 0009 picks: [03][27][13][38][28][32]
+Player 0010 picks: [08][24][45][14][02][07]
+
+Winning Numbers:   [21][22][10][03][04][13]
+\end{consolecode}
+
+\begin{consolecode}
+***********************
+**** SORTED ARRAYS ****
+***********************
+
+Player 0001 picks: [07][14][16][31][37][42]
+Player 0002 picks: [12][16][20][23][26][44]
+Player 0003 picks: [02][10][20][24][32][35]
+Player 0004 picks: [06][19][23][25][35][42]
+Player 0005 picks: [07][17][28][29][38][41]
+Player 0006 picks: [04][05][16][23][31][36]
+Player 0007 picks: [01][07][18][20][34][37]
+Player 0008 picks: [05][10][27][29][30][34]
+Player 0009 picks: [03][13][27][28][32][38]
+Player 0010 picks: [02][07][08][14][24][45]
+
+Winning Numbers:   [03][04][10][13][21][22]
+\end{consolecode}
+
+\subsection{Searching}
+
+In order to determine the winners of the lotto game, the program must be able to search each number from the winning numbers array within each array of player tickets. Two sort methods have been selected
+

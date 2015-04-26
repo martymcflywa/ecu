@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{float}
 
@@ -80,7 +81,7 @@
 % add multiline comments \begin{comment} \end{comment}
 \usepackage{verbatim}
 
-% add minted package for code highlighting
+% add minted package for code highlighting, number per section
 \usepackage[section]{minted}
 
 % add tcolorbox package to style code
@@ -95,7 +96,19 @@
   listing only,
   minted style=monokai,
   minted language=java,
-  minted options={linenos=true,texcl=true,fontsize=\footnotesize},
+  minted options={linenos=true,texcl=true,fontsize=\scriptsize},
+  left=1mm,
+}
+
+% consolecode style config
+\newtcblisting{consolecode}{
+  listing engine=minted,
+  colback=bg,
+  colframe=black!80,
+  listing only,
+  minted style=vim,
+  minted language=console,
+  minted options={texcl=true,fontsize=\scriptsize},
   left=1mm,
 }
 
@@ -112,6 +125,9 @@
 \renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
 \renewcommand{\theenumiii}{\theenumii\arabic{enumiii}}
 \renewcommand{\theenumiv}{\theenumiii.\arabic{enumiv}}
+
+% number each equation per section
+\numberwithin{equation}{section}
 
 % front matter
 \title{Edith Cowan University\\CSP2348\\Data Structures\\Assignment 2}
