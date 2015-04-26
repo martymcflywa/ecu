@@ -7,7 +7,7 @@ import java.util.Random;
  * Static class, should not be instantiated.
  *
  * @author Martin Ponce ID 10371381
- * @version 0.1.1
+ * @version 1.0.0
  * @since 20150426
  */
 public class Randomizer {

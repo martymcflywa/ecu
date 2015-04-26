@@ -6,7 +6,7 @@ import java.util.Scanner;
  * This is the executable class for the Array Programming task.
  *
  * @author Martin Ponce ID 10371381
- * @version 0.1.1
+ * @version 1.0.0
  * @since 20150426
  */
 public class Main {
