@@ -56,7 +56,7 @@
     \textbf{Column name} & \textbf{Type/Length} & \textbf{Null} & \textbf{Constraints} & \textbf{Other} \\
     pizza\_crust\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
     pizza\_crust\_name & VARCHAR(20) & NOT NULL & UNIQUE &  \\
-    surcharge & SMALLMONEY & NOT NULL &       &  \\
+    surcharge & DECIMAL(3,2) & NOT NULL &       &  \\
     \end{tabular}%
     \end{scriptsize}
 \end{table}%
@@ -69,7 +69,7 @@
     \textbf{Column name} & \textbf{Type/Length} & \textbf{Null} & \textbf{Constraints} & \textbf{Other} \\
     pizza\_sauce\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
     pizza\_sauce\_name & VARCHAR(20) & NOT NULL & UNIQUE &  \\
-    surcharge & SMALLMONEY & NOT NULL &       &  \\
+    surcharge & DECIMAL(3,2) & NOT NULL &       &  \\
     \end{tabular}%
     \end{scriptsize}
 \end{table}%
@@ -82,7 +82,7 @@
     \textbf{Column name} & \textbf{Type/Length} & \textbf{Null} & \textbf{Constraints} & \textbf{Other} \\
     pizza\_range\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
     pizza\_range\_name & VARCHAR(20) & NOT NULL &       &  \\
-    pizza\_range\_price & SMALLMONEY & NOT NULL &       &  \\
+    pizza\_range\_price & DECIMAL(4,2) & NOT NULL &       &  \\
     \end{tabular}%
     \end{scriptsize}
 \end{table}%
