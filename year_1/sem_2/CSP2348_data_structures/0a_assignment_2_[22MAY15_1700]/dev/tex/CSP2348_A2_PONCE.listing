@@ -1,16 +1,9 @@
-***********************
-**** SORTED ARRAYS ****
-***********************
+************************
+****** USER INPUT ******
+************************
 
-Player 0001 picks: [07][14][16][31][37][42]
-Player 0002 picks: [12][16][20][23][26][44]
-Player 0003 picks: [02][10][20][24][32][35]
-Player 0004 picks: [06][19][23][25][35][42]
-Player 0005 picks: [07][17][28][29][38][41]
-Player 0006 picks: [04][05][16][23][31][36]
-Player 0007 picks: [01][07][18][20][34][37]
-Player 0008 picks: [05][10][27][29][30][34]
-Player 0009 picks: [03][13][27][28][32][38]
-Player 0010 picks: [02][07][08][14][24][45]
-
-Winning Numbers:   [03][04][10][13][21][22]
+ENTER YOUR PLAYER NUMBER TO CHECK IF YOU HAVE A WINNING TICKET:
+500
+** MERGE METHOD TICKET CHECK **
+Player 0500 is a 4th class winner!
+Your winning numbers are: [11][33][45]
