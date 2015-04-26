@@ -14,7 +14,7 @@ public class Main {
     // final instance variables
     private final int MAX_PLAYERS = 1000;
     private final int MAX_PICKS = 6;
-    private final int RANGE = 10;
+    private final int RANGE = 45;
 
     // lotto objects
     private PlayerTickets thePlayerTickets;
