@@ -103,7 +103,6 @@ public class WinningPlayers {
     /**
      * Binary search algorithm.
      * To find which (if any) component of the sorted (sub)array a[left...right] equals target:
-     * TODO: Add analysis.
      *
      * @param array int[] - The array to be searched.
      * @param target int - The target to be searched.
@@ -203,7 +202,7 @@ public class WinningPlayers {
 
         // 1.0 Set i = l1, set j = l2
 
-        // i tracks playerPicks left
+        // i tracks playerTicket left
         int i = 0;
         // j tracks winningNumbers left
         int j = 0;
@@ -219,13 +218,13 @@ public class WinningPlayers {
                 // 2.1.1 Increment i
                 i++;
 
-            // 2.2 If a1[i] > a2[j]:
+                // 2.2 If a1[i] > a2[j]:
             } else if(playerTicket[i] > winningNumbers[j]) {
 
                 // 2.2.1 Increment j
                 j++;
 
-            // 2.3 If a1[i] == a2[j]
+                // 2.3 If a1[i] == a2[j]
             } else {
 
                 // 2.3.1 Increment matchTally

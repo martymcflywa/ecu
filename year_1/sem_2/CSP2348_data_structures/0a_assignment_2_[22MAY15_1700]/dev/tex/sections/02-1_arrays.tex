@@ -10,7 +10,7 @@ The following classes have been created to represent the lotto game:
 \item \mintinline{java}{Main}: The executable class, contains \mintinline{java}{main()} method
 \item \mintinline{java}{PlayerTickets}: Generates a two-dimensional array which represents each player, and their picks for the lotto ticket
 \item \mintinline{java}{WinningNumbers}: Generates a one-dimensional array which represents the winning numbers for the lotto game
-\item \mintinline{java}{WinningPlayers}: Contains logic to determine who the winning players are
+\item \mintinline{java}{WinningPlayers}: Contains logic to determine who the winning players are, which of their numbers match the winning numbers, and their winner class category
 \item \mintinline{java}{Sorter}: Helper class to sort \mintinline{java}{PlayerTickets} and \mintinline{java}{WinningNumbers} arrays
 \item \mintinline{java}{Randomizer}: Helper class to generate random numbers for each player pick and winning number
 \end{itemize}
@@ -149,7 +149,7 @@ Space complexity is $O(n)$, since step 1.4 requires an auxiliary array of length
 
 \subsubsection{Merge sort console output}
 
-The following console outputs indicate that the merge sort algorithm is functioning correctly, and sorts player lotto picks and winning numbers in ascending order as desired.
+The following console outputs demonstrate that the merge sort algorithm is functioning correctly, and sorts player lotto picks and winning numbers in ascending order as desired.
 \\
 \begin{consolecode}
 ***********************
@@ -259,8 +259,17 @@ Analysis of the binary search algorithm's time complexity involves counting the 
 \newpage
 \subsubsection{Binary search console output}
 
-The console output below displays the total number of winners in each winner class.
-\\
+The console output below displays the total number of winners in each winner class. To be considered a winner in this lotto game, a player must match at least 3 picks in their ticket to the winning numbers.
+
+Each winner class is categorised by the number of matches a player may have between the picks in their ticket, and the winning numbers:
+
+\begin{itemize}
+\item 1st class: 6 picks match winning numbers
+\item 2nd class: 5 picks match winning numbers
+\item 3rd class: 4 picks match winning numbers
+\item 4th class: 3 picks match winning numbers
+\end{itemize}
+
 \begin{consolecode}
 ***********************
 **** BINARY METHOD ****
@@ -273,7 +282,7 @@ The console output below displays the total number of winners in each winner cla
 \end{consolecode}
 
 \noindent
-The console output below displays result for individual players.
+The console output below displays results for individual players.
 \\
 \begin{consolecode}
 ** BINARY TICKET CHECKING **
@@ -347,7 +356,7 @@ private int mergeSearch(int[] playerTicket, int[] winningNumbers) {
 
     // 1.0 Set i = l1, set j = l2
 
-    // i tracks playerPicks left
+    // i tracks playerTicket left
     int i = 0;
     // j tracks winningNumbers left
     int j = 0;
@@ -363,13 +372,13 @@ private int mergeSearch(int[] playerTicket, int[] winningNumbers) {
             // 2.1.1 Increment i
             i++;
 
-        // 2.2 If a1[i] > a2[j]:
+            // 2.2 If a1[i] > a2[j]:
         } else if(playerTicket[i] > winningNumbers[j]) {
 
             // 2.2.1 Increment j
             j++;
 
-        // 2.3 If a1[i] == a2[j]
+            // 2.3 If a1[i] == a2[j]
         } else {
 
             // 2.3.1 Increment matchTally
@@ -386,7 +395,7 @@ private int mergeSearch(int[] playerTicket, int[] winningNumbers) {
             }
 
             // complete the rest of the string
-            playerMatchString += winningNumbers[i] + "]";
+            playerMatchString += playerTicket[i] + "]";
 
             // increment i
             i++;
@@ -422,7 +431,7 @@ The console output below displays the total number of winners in each winner cla
 \end{consolecode}
 
 \noindent
-The console output below displays result for individual players.
+The console output below displays results for individual players.
 \\
 \begin{consolecode}
 ** MERGE TICKET CHECKING **
