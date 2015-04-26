@@ -91,7 +91,6 @@ public class Main {
         System.out.println(thePlayerTickets);
 
         // sort winning numbers with merge sort
-        //Sorter.insertionSortArray(theWinningNumbers.getArray());
         Sorter.mergeSortArray(theWinningNumbers.getArray());
         // print sorted winning numbers
         System.out.println(theWinningNumbers);
@@ -119,10 +118,10 @@ public class Main {
 
         System.out.println("** MERGE TICKET CHECKING **\n");
 
-        theWinningPlayers.checkTicketBinary(5, thePlayerTickets.getArray(), theWinningNumbers.getArray());
-        theWinningPlayers.checkTicketBinary(500, thePlayerTickets.getArray(), theWinningNumbers.getArray());
-        theWinningPlayers.checkTicketBinary(564, thePlayerTickets.getArray(), theWinningNumbers.getArray());
-        theWinningPlayers.checkTicketBinary(897, thePlayerTickets.getArray(), theWinningNumbers.getArray());
+        theWinningPlayers.checkTicketMerge(5, thePlayerTickets.getArray(), theWinningNumbers.getArray());
+        theWinningPlayers.checkTicketMerge(500, thePlayerTickets.getArray(), theWinningNumbers.getArray());
+        theWinningPlayers.checkTicketMerge(564, thePlayerTickets.getArray(), theWinningNumbers.getArray());
+        theWinningPlayers.checkTicketMerge(897, thePlayerTickets.getArray(), theWinningNumbers.getArray());
 
         // get user input
         getUserInput();

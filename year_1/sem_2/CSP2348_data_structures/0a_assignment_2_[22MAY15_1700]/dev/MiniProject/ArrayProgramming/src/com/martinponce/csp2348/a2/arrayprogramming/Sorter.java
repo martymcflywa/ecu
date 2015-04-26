@@ -22,12 +22,14 @@ public class Sorter {
     }
 
     /**
+     * Deprecated by mergeSort().
      * Method initiates sorting of two-dimensional array of all player tickets.
      * Uses insertion sort algorithm.
      *
      * @param array int[][] - The two-dimensional array of all player tickets.
      * @return int[][] - The two-dimensional array of all player tickets.
      */
+    @Deprecated
     public static final int[][] insertionSortArray(int[][] array) {
 
         for(int i = 0; i < array.length; i++) {
@@ -38,12 +40,14 @@ public class Sorter {
     }
 
     /**
+     * Deprecated by mergeSort().
      * Overloaded method initiates sorting of one-dimensional array of an individual player ticket.
      * Uses insertion sort algorithm.
      *
      * @param array int[] - The one-dimensional array of an individual player ticket.
      * @return int[] - The one-dimensional array of an individual player ticket.
      */
+    @Deprecated
     public static final int[] insertionSortArray(int[] array) {
 
         for(int i = 0; i < array.length; i++) {
@@ -54,6 +58,7 @@ public class Sorter {
     }
 
     /**
+     * Deprecated by mergeSort().
      * Insertion sort algorithm.
      * To sort a[left...right] into ascending order:
      *
@@ -68,6 +73,7 @@ public class Sorter {
      * @param array int[] - The array to sort.
      * @return int[] - The sorted array.
      */
+    @Deprecated
     private static final int[] insertionSort(int[] array) {
 
         // 1.0 For r = left+1, ..., right, repeat:
