@@ -165,7 +165,7 @@ public class Sorter {
             // 1.3 Sort a[m+1...right] into ascending order
             mergeSort(mid + 1, high);
 
-            // 1.5 Merge a[left...m] and a[m+1...right] into auxiliary array b
+            // 1.4 Merge a[left...m] and a[m+1...right] into auxiliary array b
             // call merge() which is O(n)
             merge(low, mid, high);
         }
