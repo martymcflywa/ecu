@@ -196,7 +196,7 @@ public class UnitList {
 			if(current.next == null) {
 
 				// print error message
-				System.out.println("\nError: Student " + ID + "not deleted. Student does not exist!");
+				System.out.println("\nError: Student " + ID + " not deleted. Student does not exist!");
 				return;
 
 				// else continue traversing
