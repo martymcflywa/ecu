@@ -234,7 +234,7 @@ public class UnitList {
 	 * Method reverses order of nodes in list then prints the list in reverse order.
 	 * Calls insertFirst() to rearrange nodes in reverse order, using tempReverseList to store it.
 	 *
-	 * Destruction of original SLL will cause
+	 * Destruction of original SLL will cause...
 	 *
 	 * @param u_list
 	 */
@@ -257,6 +257,15 @@ public class UnitList {
 		print_unit_result(tempReverseList);
 	}
 
+	/**
+	 * Method to insert a node as first node in a linked-list.
+	 *
+	 * @param u_list UnitList - The unit list to be modified.
+	 * @param ID int - The student ID number.
+	 * @param mark1 int - The student's mark for A1
+	 * @param mark2 int - The student's mark for A2
+	 * @param mark3 int - The student's mark for A3
+	 */
 	private static void insertFirst(UnitList u_list, int ID, int mark1, int mark2, int mark3) {
 
 		// create new node called insert
@@ -336,7 +345,7 @@ public class UnitList {
 		delete_unit_result(u_list, 10000);
 		// delete student that is not first
 		delete_unit_result(u_list, 1114);
-
+		// print SLL in reverse order
 		reverse_print_unit_result(u_list);
 	}
 }
