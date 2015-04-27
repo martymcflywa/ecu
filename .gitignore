@@ -16,6 +16,7 @@
 SelfAssessment
 
 # LaTeX
+_minted*/
 *.aux
 *.bbl
 *.blg
