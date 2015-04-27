@@ -9,8 +9,9 @@ package com.martinponce.csp2348.a2.linkedlistprogramming;
  * Hope this helps  understanding of the linked list data structure and concepts and operations, etc.. 
  * (Code tested on BlueJ)
  * 
- * @author jitian XIAO 
- * @version v2
+ * @author jitian XIAO and Martin Ponce ID 10371381
+ * @version 0.0.1
+ * @since 20150427
  */
 public class UnitList {
 
@@ -19,6 +20,9 @@ public class UnitList {
 	private int A2_result; //0 <= a2_mark <= 30
 	private int exam_result; //0 <= a3_mark <= 50
 	private UnitList next = null;
+
+	// stores temp reversed list
+	private static UnitList tempReverseList;
 	
 	private UnitList(int ID, int mark1, int mark2, int mark3) { 
 		 
@@ -60,7 +64,7 @@ public class UnitList {
 				highest_mark = curr;
 			}
 		}
-		System.out.println("\nstudent with highest overall results is the one with Student_No.: "+highest_mark.student_ID);
+		System.out.println("\nStudent with highest overall results is the one with Student_No.: " + highest_mark.student_ID);
 	}
 
 	/**
@@ -74,7 +78,7 @@ public class UnitList {
 			return;
 		}
 		
-		for(UnitList curr= u_list; curr!= null; curr = curr.next) {
+		for(UnitList curr = u_list; curr!= null; curr = curr.next) {
 			
 			System.out.println("\nStudent_No.: " + curr.student_ID +
 				"\nA1_mark: " + curr.A1_result +
@@ -132,7 +136,7 @@ public class UnitList {
 	    if(previous == null) { // the new node to be inserted at the beginning
 	    	new_node.next = u_list;
 	    	// due to void return, changing unit_list link would not work
-	    	UnitList temp = new UnitList (0, 0, 0,0);
+	    	UnitList temp = new UnitList (0, 0, 0, 0);
 	    	temp.student_ID = u_list.student_ID;
 	    	temp.A1_result = u_list.A1_result;
 	    	temp.A2_result = u_list.A2_result;
@@ -152,6 +156,129 @@ public class UnitList {
 	    new_node.next = curr;
 	    previous.next = new_node;
 	    return;
+	}
+
+
+	/****************************************
+	 * Additions by Martin Ponce begin here *
+	 ****************************************/
+
+	/**
+	 * Method deletes node that matches specific target student ID.
+	 *
+	 * Can't delete physically delete first node since HEAD/FIRST is not recorded,
+	 * and void method cannot return resulting list after modification.
+	 *
+	 * If first node's next is made null, then the only node remaining in the list will be
+	 * the first node.
+	 *
+	 * @param u_list UnitList - The SLL to be modified.
+	 * @param ID int - The student ID number.
+	 */
+	private static void delete_unit_result(UnitList u_list, int ID) {
+
+		// if u_list empty, or if ID outside range, print error message
+		if(u_list == null) {
+			System.out.println("\nError: List is empty!");
+			return;
+		} else if(ID < 999 || ID > 9999) {
+			System.out.println("\nError: Student number " + ID + " is outside valid range!");
+			return;
+		}
+
+		// cursors to traverse list
+		UnitList current = u_list;
+		UnitList previous = null;
+
+		while(current.student_ID != ID) {
+
+			// if cursor traversed to end of list and target not found,
+			if(current.next == null) {
+
+				// print error message
+				System.out.println("\nError: Student " + ID + "not deleted. Student does not exist!");
+				return;
+
+				// else continue traversing
+			} else {
+				previous = current;
+				current = current.next;
+			}
+		}
+
+		// if current is at first node, and target matched (implied after exiting while loop and previous being null)
+		if(previous == null) {
+
+			// print action performed
+			System.out.println("\nDeleted first student: " + current.student_ID);
+			// set u_list to current's next node
+			u_list = current.next;
+			// print u_list
+			print_unit_result(u_list);
+
+			// else current is somewhere else down the list, and target matched
+		} else {
+
+			// print action performed
+			System.out.println("\nDeleted student: " + current.student_ID);
+			// set previous's next node to current's next node
+			previous.next = current.next;
+			// set current's next to null
+			current.next = null;
+			// print u_list
+			print_unit_result(u_list);
+		}
+	}
+
+	/**
+	 * Method reverses order of nodes in list then prints the list in reverse order.
+	 * Calls insertFirst() to rearrange nodes in reverse order, using tempReverseList to store it.
+	 *
+	 * Destruction of original SLL will cause
+	 *
+	 * @param u_list
+	 */
+	private static void reverse_print_unit_result(UnitList u_list) {
+
+		// if list is empty, print error message and terminate
+		if(u_list == null) {
+			System.out.println("Error: List is empty. No elements to print!");
+			return;
+		}
+
+		// iterate through list until curr == null:
+		for(UnitList curr = u_list; curr != null; curr = curr.next) {
+
+			// call insertFirst through each iteration, storing list elements in reverse order
+			insertFirst(u_list, curr.student_ID, curr.A1_result, curr.A2_result, curr.exam_result);
+		}
+
+		// print list in reverse order, stored in tempReverseList
+		print_unit_result(tempReverseList);
+	}
+
+	private static void insertFirst(UnitList u_list, int ID, int mark1, int mark2, int mark3) {
+
+		// create new node called insert
+		UnitList insert = new UnitList(ID, mark1, mark2, mark3);
+
+		// if u_list is empty,
+		if(u_list == null) {
+
+			// make insert the first node
+			tempReverseList = insert;
+
+			// else list is not empty,
+		} else {
+
+			// set insert's next as tempReverseList's first node
+			insert.next = tempReverseList;
+			// copy insert into tempReverseList
+			tempReverseList = insert;
+		}
+
+		// print action performed
+		System.out.println("\nStudent " + ID + " inserted as first node.");
 	}
 
 	/**
@@ -198,5 +325,18 @@ public class UnitList {
 		insert_unit_result(u_list, 1225, 17, 20, 20);
 
 		print_unit_result(u_list);
+
+		/**
+		 * TESTS
+		 */
+		// delete first student 1111
+		delete_unit_result(u_list, 1111);
+		// try deleting students outside of range
+		delete_unit_result(u_list, 998);
+		delete_unit_result(u_list, 10000);
+		// delete student that is not first
+		delete_unit_result(u_list, 1114);
+
+		reverse_print_unit_result(u_list);
 	}
 }
