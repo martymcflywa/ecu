@@ -213,8 +213,6 @@ public class UnitList {
 			System.out.println("\nDeleted first student: " + current.student_ID);
 			// set u_list to current's next node
 			u_list = current.next;
-			// print u_list
-			print_unit_result(u_list);
 
 			// else current is somewhere else down the list, and target matched
 		} else {
@@ -225,9 +223,10 @@ public class UnitList {
 			previous.next = current.next;
 			// set current's next to null
 			current.next = null;
-			// print u_list
-			print_unit_result(u_list);
 		}
+
+		// print u_list
+		print_unit_result(u_list);
 	}
 
 	/**
@@ -340,11 +339,10 @@ public class UnitList {
 		 */
 		// delete first student 1111
 		delete_unit_result(u_list, 1111);
-		// try deleting students outside of range
-		delete_unit_result(u_list, 998);
-		delete_unit_result(u_list, 10000);
 		// delete student that is not first
 		delete_unit_result(u_list, 1114);
+		// delete student that is not first
+		delete_unit_result(u_list, 1116);
 		// print SLL in reverse order
 		reverse_print_unit_result(u_list);
 	}
