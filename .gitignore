@@ -17,6 +17,7 @@ SelfAssessment
 
 # LaTeX
 _minted*/
+*.listing
 *.pyg
 *.aux
 *.bbl
