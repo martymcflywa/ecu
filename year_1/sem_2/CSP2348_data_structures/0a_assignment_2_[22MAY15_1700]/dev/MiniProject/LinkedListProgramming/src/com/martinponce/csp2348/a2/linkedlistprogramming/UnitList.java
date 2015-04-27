@@ -14,24 +14,24 @@ package com.martinponce.csp2348.a2.linkedlistprogramming;
  */
 public class UnitList {
 
-	private int student_ID; //of 4 digits
-	private int A1_result; //0<= a1_mark<=20
-	private int A2_result; //0<= a2_mark<=30
-	private int exam_result; //0<= a3_mark<=50
+	private int student_ID; // of 4 digits
+	private int A1_result; // 0 <= a1_mark <= 20
+	private int A2_result; //0 <= a2_mark <= 30
+	private int exam_result; //0 <= a3_mark <= 50
 	private UnitList next = null;
 	
 	private UnitList(int ID, int mark1, int mark2, int mark3) { 
 		 
-		if((ID < 999)||(ID > 9999)) {
+		if((ID < 999) || (ID > 9999)) {
 			return;  
 		}
-		if((mark1 < 0.0)||(mark1 > 20.0)) {
+		if((mark1 < 0.0) || (mark1 > 20.0)) {
 			return; 
 		}
-		if((mark2 < 0.0)||(mark2 > 30.0)) {
+		if((mark2 < 0.0) || (mark2 > 30.0)) {
 			return; 
 		}
-		if((mark3 < 0.0)||(mark1 > 50.0)) {
+		if((mark3 < 0.0) || (mark1 > 50.0)) {
 			return; 
 		}
 		
@@ -40,7 +40,12 @@ public class UnitList {
 		this.A2_result = mark2;
 		this.exam_result = mark3;
 	}
-	
+
+	/**
+	 * Print student with highest overall result of mark1 + mark2 + mark3.
+	 *
+	 * @param u_list UnitList - The list of student unit results.
+	 */
 	private static void highest_result(UnitList u_list) { 
 		
 		// search student with highest overall result, of mark1+mark2+mark3
@@ -58,6 +63,11 @@ public class UnitList {
 		System.out.println("\nstudent with highest overall results is the one with Student_No.: "+highest_mark.student_ID);
 	}
 
+	/**
+	 * Prints student results.
+	 *
+	 * @param u_list UnitList - The list of student unit results.
+	 */
 	private static void print_unit_result(UnitList u_list) {
 	
 		if(u_list == null) {
@@ -75,6 +85,15 @@ public class UnitList {
 
 	/**************************INSERT*****************/
 
+	/**
+	 * Insert unit result for a student.
+	 *
+	 * @param u_list UnitList - The list of student unit results.
+	 * @param ID int - Student ID.
+	 * @param mark1 int - A1 mark.
+	 * @param mark2 int - A2 mark.
+	 * @param mark3 int - Exam result.
+	 */
 	private static void insert_unit_result(UnitList u_list, int ID, int mark1, int mark2, int mark3) {
 	
 	UnitList new_node = new UnitList(ID, mark1, mark2, mark3);
@@ -135,45 +154,49 @@ public class UnitList {
 	    return;
 	}
 
+	/**
+	 * Main method.
+	 *
+	 * @param args String[].
+	 */
+	public static void main(String[] args) {
 
-public static void main(String[] args) {
-	
-	int[] unit1 = {
-			1111, 17, 22, 30,
-			1112, 10, 6,  50,
-			1114, 14, 21, 30,
-			1116, 8,  16, 35,
-			1122, 11, 19, 40,
-			1145, 9,  16, 20,
-			1189, 20, 30, 50
-	};
+		int[] unit1 = {
+				1111, 17, 22, 30,
+				1112, 10, 6,  50,
+				1114, 14, 21, 30,
+				1116, 8,  16, 35,
+				1122, 11, 19, 40,
+				1145, 9,  16, 20,
+				1189, 20, 30, 50
+		};
 
-	//build a link of a unit result
-	
-	//first unit node
-	UnitList u_list = new UnitList(unit1[0], unit1[1],  unit1[2], unit1[3]);
-	UnitList curr = u_list;
-	
-	for(int i = 1; i <= 6; i++) { // to build the rest of the list
-		
-		UnitList one_node = new UnitList(
-				unit1[i * 4], //student_ID
-				unit1[i * 4 + 1], //a1_mark
-				unit1[i * 4 + 2], //a2_mark
-				unit1[i* 4 + 3] //exam_mark
-		);
-		
-		curr.next = one_node;
-		curr = curr.next;
+		//build a link of a unit result
+
+		//first unit node
+		UnitList u_list = new UnitList(unit1[0], unit1[1],  unit1[2], unit1[3]);
+		UnitList curr = u_list;
+
+		for(int i = 1; i <= 6; i++) { // to build the rest of the list
+
+			UnitList one_node = new UnitList(
+					unit1[i * 4], //student_ID
+					unit1[i * 4 + 1], //a1_mark
+					unit1[i * 4 + 2], //a2_mark
+					unit1[i* 4 + 3] //exam_mark
+			);
+
+			curr.next = one_node;
+			curr = curr.next;
+		}
+
+		//print out the student results of unit 1
+		print_unit_result(u_list);
+		//find highest performance student
+		highest_result(u_list);
+
+		insert_unit_result(u_list, 1225, 17, 20, 20);
+
+		print_unit_result(u_list);
 	}
-	
-	//print out the student results of unit 1
-	print_unit_result(u_list);
-	//find highest performance student
-	highest_result(u_list);
-	
-	insert_unit_result(u_list, 1225, 17, 20, 20);
-	
-	print_unit_result(u_list);
-  }
 }
