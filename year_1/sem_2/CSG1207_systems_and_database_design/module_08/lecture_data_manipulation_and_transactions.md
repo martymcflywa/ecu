@@ -116,10 +116,387 @@ VALUES	('ST_ASST', 'Stock Assistant', 3000, 6000),
 - Inserting multiple rows is **not supported** in SQL Server 2005
 	- But **is supported** in SQL Server 2008
 
-### Update rows
+#### `INSERT` with subquery
 
-### Delete rows
+- Another form of insert exists, allowing you to **copy rows from an existing table**
+	- More than one row can be copied / inserted at a time
+	- A subquery is used rather than the `VALUE` list / clause
+
+``` sql
+INSERT INTO breeder (name, area)
+	SELECT name, area
+	FROM owner
+	WHERE breeder = 'Y';
+```
+
+- Columns in a column list / target table of `INSERT` statement must match thos returned in the subquery `SELECT`
+- Both the number of columns and their data types must match
+- Error will occur if trying to copy into a field that is not long enough to hold the data being copied
+	- ie. A shorter `CHAR`
+- Data type matching does not imply matching of **meaning**
+
+#### Key / constraint errors with `INSERT` statements
+
+- An error will be cause if you try to
+	- Insert a value into a **primary key** column that already exists in that column
+	- Insert a value into a **unique** column that already exists for that column in another row
+	- Insert a non-null value in a **foreign key** column that does not exist in the column that the foreign key references
+- If adding data to multiple tables in a batch, you must do the inserts in order of table creation
+	- Else errors in retrieving foreign keys
+
+### `UPDATE` command
+
+**Change `ST_ASST` `max_salary` to 7000:**
+
+![change ST_ASST max_salary to 7000](http://snag.gy/k9aXW.jpg)
+
+- Modify existing rows with the `UPDATE` statement
+- Syntax:
+
+``` sql
+UPDATE table
+SET column = new_value {[, column = new_value]}
+[WHERE condition];
+```
+
+- `SET` clause contains list of columns and new values
+- Can update more than one **column** at a time if required
+- Can update more than one **row** at a time if required
+- Restrict rows to be updated using `WHERE` clause
+
+#### Specify which row/s to update with the `WHERE` clause
+
+``` sql
+UPDATE job
+SET max_salary = 7000
+WHERE job_id = 'ST_ASST';
+```
+
+- Only updates jobs where the `job_id` is equal to `ST_ASST`
+- `max_salary` column is changed to 7000 for all matching rows
+
+#### Omitting the `WHERE` clause updates ALL rows in a table
+
+``` sql
+UPDATE job
+SET max_salary = 7000;
+```
+
+- `max_salary` of **all** jobs changed to 7000
+- Be careful, previous data is lost!
+- Can use expressions, arithmetic, etc in updates
+	- ie. `max_salary * 1.10` will increase max salaries by 10%
+
+#### `UPDATE` with subquery
+
+**Change `ST_ASST` `min_salary` and `max_salary` to match those of `ST_CLERK`:**
+
+![change st_asst min/max_salary to match st_clerk](http://snag.gy/mEWi9.jpg)
+
+- Values of columns in `SET` clause can be the results of subqueries that retrieve data from other rows
+
+``` sql
+UPDATE	job
+SET		min_salary = (SELECT min_salary
+					  FROM	job
+					  WHERE job_id = 'ST_CLERK'),
+		max_salary = (SELECT max_salary
+					  FROM	job
+					  WHERE job_id = 'ST_CLERK')
+WHERE	job_id = 'ST_ASST';
+```
+
+- Subquries in `()` parentheses where needed to obtain values
+- Subqueries evaluated first, resulting in the necessary values
+- Result of subquery must match data type of column
+
+#### Key / constraint errors with `UPDATE` statements
+
+- An error will be caused if you try to
+	- Update the value of a **primary key** column to a value that already exists in that column
+	- Update the value of a **primary key** which is being referenced by a foreign key
+	- Do either of the above with a **unique** column
+	- Update the value in a **foreign key** column to a value that does not exist in the column that the foreign key references
+
+### `DELETE` command
+
+**Delete `ST_ASST` from the `job` table:**
+
+![delete st_asst from the job table](http://snag.gy/6y39N.jpg)
+
+- Delete existing rows with the `DELETE` statement
+- Syntax:
+
+``` sql
+DELETE [FROM] table
+[WHERE condition];
+```
+
+- `WHERE` clause determines which rows are deleted
+- Omitting the `WHERE` clause **deletes all rows in the table!**
+
+``` sql
+DELETE FROM job
+WHERE job_id = 'ST_ASST'
+```
+
+``` sql
+DELETE FROM job;
+```
+
+#### Key / constraint errors with `DELETE` statements
+
+- An error will be caused if you try to
+	- Delete a row that contains a **primary key** or **unique** column which is being referenced by a **foreign key**
+- `DELETE`, `DROP TABLE` and `TRUNCATE TABLE` recap:
+	- `DELETE` statements delete **one or more rows in a table**
+	- `DROP TABLE` statements delete **all rows and the table schema**
+	- `TRUNCATE TABLE` statements delete **all rows, reset any `IDENTITY` columns to their defaults, but keep the table schema**
 
 ### Cascading updates and deletes
 
-## Control transactions
+- Not being able to update or delete rows where the PK is referenced by an FK can be worked around
+- You can specify:
+	- Updates to a PK should **update** any FKs that refer to it
+	- Deleting a PK should **delete** any rows where a FK refers to it
+	- Updating or deleting a PK should set any FKs that refer to it to `NULL` if acceptable
+	- Updating or deleting a PK should set any FKs that refer to it to their **default** value
+		- A default value must be defined and exist as a PK
+	- If you don't specify anything, the default is `NO ACTION`, which will give you an error and refues to update/delete the PK
+	- The behaviour you want to apply is specified when **creating the foriegn key constraint**
+		- Via `CREATE TABLE` or `ALTER TABLE`
+- Syntax:
+
+``` sql
+ON UPDATE {CASCADE | NO ACTION | SET DEFAULT | SET NULL}
+ON DELETE {CASCADE | NO ACTION | SET DEFAULT | SET NULL}
+```
+
+#### Cascading example
+
+- Using the `work_group` database from last week:
+
+``` sql
+CREATE TABLE assignment (
+	assn_id INT NOT NULL IDENTITY PRIMARY KEY,
+	unit_code CHAR(7) NULL FOREIGN KEY REFERENCES unit
+		ON UPDATE CASCADE
+		ON DELETE SET NULL,
+	-- ...
+);
+```
+
+- If a `unit_code` in the unit table is **updated**
+	- Any rows in the assignment table with that `unit_code` will be updated to match
+- If a `unit_code` in the unit table is **deleted**
+	- Any rows in the assignment table with that `unit_code` will be set to `NULL`
+
+#### Cascading updates / deletes notes
+
+- If the PK in question uses `IDENTITY` (auto-incrementing int), the PK is unlikely to every change
+	- Should not need to include `ON UPDATE`
+	- `ON DELETE` may still be required
+- `ON DELETE` cascade can have a flow-on (cascading) effect
+	- One row is deleted, resulting in other rows being deleted, resulting in other rows being deleted etc.
+		- This can be handy for **cleaning up** when data is no longer needed
+		- It can be troublesome if you are careless and end up deleting data that is still
+			- Important
+			- Relevant
+			- Appropriate
+- Since they are used in `CREATE TABLE` and `ALTER TABLE`, `ON UPDATE` and `ON DELETE` are actually **Data Definition Language** (DDL) not **Data Manipulation Language** (DML)
+	- They are covered in this lecture since understanding them requires an understanding of `UPDATE` and `DELETE`
+
+### Cascading updates and deletes example
+
+![cascading updates/deletes example](http://snag.gy/xlXGA.jpg)
+
+### `INSERT`, `UPDATE` and `DELETE` summary
+
+- `INSERT` inserts rows into a table
+	- Multiple rows can be inserted
+	- You can copy rows from another table using a subquery
+- `UPDATE` changes data in one or more rows
+	- Subqueries can be used to update using data already in the database
+- Literal values, expressions, SQL functions etc. can be used for values in `INSERT` and `UPDATE` statements
+- `DELETE` deletes one or more rows from a table
+- Integrity of all constraints must be maintained
+- `WHERE` clauses in `UPDATE` and `DELETE` statements determine which rows to update or delete
+- `ON UPDATE` and `ON DELETE` is used to control cascading updates / deletes
+
+## Transactions
+
+### What are transactions?
+
+- A transaction allows you to define multiple statements as a **single unit of work**
+	- Either all of it will be performed correctly, or none of it
+	- Cannot do some parts but not others
+		- It is indivisible / atomic
+	- Once a transaction starts
+		- It will either complete all statements successfully and then **commit** (write) the results to the database
+		- Or if any part fails in any way, it is **rolled back** (cancelled) and all of the data modifications are erased
+	- Each individual statement is actually a transaction since it is automatically commited when it completes
+		- Known as an **autocommit** transaction
+		- We will focus on **explicit transactions**
+			- Where the start and end are explicitly defined and contains multiple statements
+
+### Transaction scenario
+
+- Consider a **bank database**
+	- When a customer transfers money from one account (Acct A) to another (Acct B), the transaction might consist of three separate operations
+		1. Decrease the funds in Acct A
+		2. Increase the funds in Acct B
+		3. Record the transaction in a transfer logging table
+- The DBMS must guarantee that **all three** SQL statements are performed to maintain the accounts in proper balance
+	- If something prevents one of the statements in the transaction from working
+		- The other statements must be undone
+	- If any of the statements occurs without the others also occuring
+		- The consequences could be severe
+	- All three statements must be performed in one lot
+		- Without any other statements interfering with the data during the process
+
+### Beginning a transaction
+
+- To declare the start of a transaction, the syntax is:
+
+``` sql
+BEGIN TRANSACTION [transaction_name];
+```
+
+- A transaction name is optional, but can make it easier to keep track of multiple transactions
+- The database will be rolled back to its state at this point if an error occurs at any stage of the transaction
+- Statements (`INSERT`, `UPDATE`, `DELETE` etc) that follow this are part of the transaction
+- `TRAN` can be used instead of `TRANSACTION` for all transaction commands
+	- Makes no difference
+
+### Committing a transaction
+
+- To delcare the end of a transaction, the syntax is:
+
+``` sql
+COMMIT TRANSACTION [transaction_name];
+```
+
+- Obviously, a `COMMIT` should only come at a point where all data modified by the transaction is logically correct
+	- ie. All three of the statements in the bank scenario included
+- Also obvious, you must have started a transaction before you can commit one
+- Once commited, the changes made by the transaction are permanent and cannot be rolled back
+- An **automatic commit** occurs when either a DDL or DCL statement is performed, or the server exists normally (no error)
+
+### Creating save points in a transaction
+
+- A save point is a point between one statement and the next within a transaction that can be returned to if needed:
+
+``` sql
+SAVE TRANSACTION savepoint name;
+```
+
+- A save point name **is required** so it can be referred to later
+- Multiple save points can be created in a single transaction
+- Save points do not commit any data
+	- They just save its state at a specific point within the transaction
+- Returning to a save point is done via the `ROLLBACK TRANSACTION` command
+	- Any statements performed since the save point ae rolled back
+	- The transaction then continues until it reaches a `COMMIT TRANSACTION`
+		- Or a `ROLLBACK TRANSACTION` that doesn't specify a save point name
+			- ie. Rolls back the entire transaction
+	- Statements between save point and rollback are **not redone**
+
+### Rolling back a transaction
+
+- To roll back any changes since the start of the transaction, or since a save point, the syntax is:
+
+``` sql
+ROLLBACK TRANSACTION [transaction_name | savepoint_name];
+```
+
+- If a transaction or save point name is not specified, it rolls back to the start of the transaction
+	- Not the most recent save point
+- `ROLLBACK TRANSACTION` is often used in response to error checking statements/code
+	- Not covered in this unit
+- An **automatic rollback** occurs if an error occurs
+	- Such as the network connection between client and server is lost
+	- Or the database server crashes
+- Remember: If a statement is syntactically valid and executes, it is correct as far as SQL is concerned
+	- This does not mean it does what you wanted
+	- The server cannot detect mistakes between your statement and your intended meaning
+
+### Transaction process
+
+1. `BEGIN TRANSACTION`, then any combination of:
+	- **DML Statements** (`SELECT`, `INSERT`, `UPDATE`, `DELETE`...)
+	- `SAVE TRANSACTION` to create a save point
+	- **Code statements** (ie. checking for errors, affected rows...)
+	- `ROLLBACK TRANSACTION` to a save point or all of it
+2. `COMMIT TRANSACTION`
+
+![transaction process](http://snag.gy/lGe6c.jpg)
+
+### State of data during a transaction
+
+- While a transaction is in progress, between `BEGIN` and `COMMIT`/`ROLLBACK`:
+	- The current user (the one that issued the transaction) can see the pending (uncommitted) changes made byt he transaction in `SELECT` statements within the transaction
+	- Other users can only see the state of the data as it was at the **start** of the transaction
+		- Cannot see pending changes
+	- Rows changed by a transaction in progress are **locked**
+		- Other users cannot change them while the transaction is in progress
+		- This prevents inconsistencies and errors caused by users trying to change something which is in the process of being changed
+
+### State of data after a transaction `COMMIT`
+
+- Once a transaction completes successfully and **commits**
+	- All changes to the data made in the transaction become permanent
+		- Are written to the database
+	- The previous state of the data is permanently lost
+		- This and the previous point is the same as what happens whenever any single DML statement is successfully executed
+	- Locks on any affected rows are released so that they can be manipulated by other users once again
+	- Any save points created in that transaction are deleted
+		- As they are no longer relevant or necessary
+
+### State of data after a transaction `ROLLBACK`
+
+- If an error occurs during a transaction and **rolled back**
+	- All pending changes to the data made in the transaction are discarded
+	- Data remains at the state it was when the transaction begain
+	- Any locks on rows are released
+	- Any save points created in that transaction are deleted
+		- As they are no longer relevant or necessary
+
+### Read consistency
+
+- Read consistency ensures that all users (clients connecting to and querying a database) can see **consistent** and **up-to-date** data when using `SELECT` statements
+	- Even when data is in process of being changed
+- Implemented automatically by the server
+- Hiding pending changes within transactions is a major component of this
+	- It ensures that people performing `SELECT` statements while a transaction is in progress do not see data in partially updated state
+	- While transaction in progress, prior (current) state is visible
+	- When it commits, fully changed state becomes visible
+	- If it rolls back, unchanged/prior state remains
+
+### Write consistency and locking
+
+- Locking prevents one user from manipulating a row if it is being manipulated by another user
+	- Reading (viewing only) does not count as maniuplation
+	- Writing (inserting, updating, deleting) is manipulation
+- This prevents inconsistencies
+	- ie. Users trying to update data while a transaction is changing it
+	- Or concurrent transactions trying to change the same thing
+- Implemented automatically by the server
+	- Lowest level of restrictiveness selected
+		- ie. Locking access to a row rather than the whole table
+	- Locks automatically created and released as needed
+	- Also possible to create and release locks manually if required
+
+### Transaction summary
+
+- Transactions allow you to define multiple statements as a single unit of work
+	- So that either all of them occur or none of them do
+- `BEGIN`, `SAVE`, `ROLLBACK` and `COMMIT TRANSACTION` commands are used to define and control transactions
+- Transactions consist of statements, save points, rollbacks to save points and other code, and end with a full commit or rollback
+- Read and write consistency is maintained between concurrent users and transactions by hiding pending changes until commit/rollback
+	- Rows are locked which are in the process of being changed
+
+### Transaction further reading
+
+- http://en.wikipedia.org/wiki/Database_transaction
+- http://www.blurtit.com/q847853.html
+- http://www.sqlteam.com/article/introduction-to-transactions
