@@ -183,3 +183,7 @@ Format: Max 30 presentation slides
 - Storage of passwords in plaintext
 	- See [TV presenter in front of desk with handwritten password sticky notes](http://arstechnica.com/security/2015/04/hacked-french-network-exposed-its-own-passwords-during-tv-interview/)
 	- See [another example](https://twitter.com/pent0thal/status/586284074223984642)
+- Password policy
+	- Link to Snowden video
+	- [Goodin2014](http://arstechnica.com/security/2014/04/25/stanfords-password-policy-shuns-one-size-fits-all-security/)
+	- [StanfordIT2014](https://itservices.stanford.edu/service/accounts/passwords)
