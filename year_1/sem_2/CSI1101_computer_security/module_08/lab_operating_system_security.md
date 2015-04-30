@@ -211,6 +211,15 @@ Describe a good solution to the problem of having a group of students collaborat
 
 You may assume that access rights for directories are `\read,"\write,"` and `\exec,"` where `\read"` means the files and subdirectories in that directory can be listed, `\write"` means members of that directory can be inserted, deleted, or renamed, and `\exec"` on a directory or subdirectory means the user can change his location to that directory or subdirectory so long as he specifies its exact name.
 
+- Assuming that group of students are in the same "user" group
+	- Assign ownership of folder and contents
+	- Assign read/write/execute permissions to owner and group only
+- ie. In Linux
+	- Assign ownership of folder and contents
+		- `chown -R marty:studygroup /users/marty/sharefolder`
+	- Assign read/write/execute to owner and group only
+		- `chmod -R 750 /users/marty/sharefolder`
+
 # References
 
 - Basha, A. (2001). Open-Source versus Closed-Source Sytems. Retrieved April 30, 2015, from http://www.enderunix.org/docs/opensource_vs_closedsource.html
