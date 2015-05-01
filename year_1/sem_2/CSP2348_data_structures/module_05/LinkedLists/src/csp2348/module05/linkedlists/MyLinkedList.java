@@ -80,7 +80,7 @@ public class MyLinkedList<E> {
 
             // set cursors to head
             cursorCurrent = head;
-            cursorPrevious = head;
+            cursorPrevious = null;
 
             // loop while cursorCurrent != null:
             while(cursorCurrent != null) {
@@ -94,8 +94,6 @@ public class MyLinkedList<E> {
             cursorPrevious.setNext(insert);
         }
 
-        // reset cursors
-        resetCursors();
         // increment list
         length++;
 
@@ -131,7 +129,6 @@ public class MyLinkedList<E> {
                 System.out.println("Head: " + "[" + head.getData() + "]");
                 System.out.println("Length: " + length + "\n");
 
-                resetCursors();
                 return;
             }
         }
@@ -160,6 +157,7 @@ public class MyLinkedList<E> {
         if(isEmpty()) {
             // print error message and end algorithm
             System.out.println("Error: Nothing deleted, list is empty!");
+            return;
 
             // else list is not empty,
         } else {
@@ -190,7 +188,8 @@ public class MyLinkedList<E> {
         // easy case: list is empty,
         if(isEmpty()) {
             // print error message and end algorithm
-            System.out.println("Nothing deleted, list is empty!\n" + this);
+            System.out.println("Error: Nothing deleted, list is empty!\n" + this);
+            return;
 
             // else list is not empty,
         } else {
@@ -207,16 +206,36 @@ public class MyLinkedList<E> {
                 cursorCurrent = cursorCurrent.getNext();
             }
 
-            // when arrived at last node,
+            // if last node is only node in list
+            if(cursorCurrent == head) {
 
-            // remove link to final node
-            cursorPrevious.setNext(null);
-            // set remove to the removed link's data
-            remove = cursorCurrent.getData();
+                remove = cursorCurrent.getData();
+                head.setNext(null);
+                head = null;
+
+                length--;
+
+                // print message
+                System.out.println("Warning: No more nodes in the list!");
+                System.out.println("Last node " + "[" + remove + "]" + " deleted:" + this);
+                System.out.println("Head: " + "[]");
+                System.out.println("Length: " + length + "\n");
+
+                return;
+
+                // else last node is not the only node in list,
+            } else {
+
+                // when arrived at last node,
+
+                // set remove to the removed link's data
+                remove = cursorCurrent.getData();
+                // remove link to final node
+                cursorPrevious.setNext(null);
+            }
+
             // decrement length
             length--;
-            // reset cursors
-            resetCursors();
 
             // print message
             System.out.println("Last node " + "[" + remove + "]" + " deleted:\n" + this);
@@ -324,10 +343,6 @@ public class MyLinkedList<E> {
             }
         }
 
-        // done with cursor, reset to null
-        resetCursors();
-        // return -1 if at end of list and target not found
-        //return -1;
         System.out.println("Error: " + "[" + target + "]"  + " was not found in the list!\n" + this);
         System.out.println("Head: " + "[" + head.getData() + "]");
         System.out.println("Length: " + length + "\n");
