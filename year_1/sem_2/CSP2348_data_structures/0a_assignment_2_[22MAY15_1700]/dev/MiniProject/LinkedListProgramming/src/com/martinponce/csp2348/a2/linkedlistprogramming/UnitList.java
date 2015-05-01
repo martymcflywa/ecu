@@ -209,22 +209,10 @@ public class UnitList {
 		// if current is at first node, and target matched (implied after exiting while loop and previous being null)
 		if(previous == null) {
 
-            // store u_list.next as temp
-            UnitList temp = new UnitList(0, 0, 0, 0);
-            temp.student_ID = u_list.next.student_ID;
-            temp.A1_result = u_list.next.A1_result;
-            temp.A2_result = u_list.next.A2_result;
-            temp.exam_result = u_list.next.exam_result;
+            // TODO: fix issue where "deleted" first node not permanent
 
-            // set temp next as u_list.next.next
-            temp.next = u_list.next.next;
-
-            u_list = temp;
-
-			// print action performed
-			System.out.println("\nDeleted first student: " + current.student_ID);
 			// set u_list to current's next node
-			//u_list = current.next;
+			u_list = current.next;
 
 			// else current is somewhere else down the list, and target matched
 		} else {
