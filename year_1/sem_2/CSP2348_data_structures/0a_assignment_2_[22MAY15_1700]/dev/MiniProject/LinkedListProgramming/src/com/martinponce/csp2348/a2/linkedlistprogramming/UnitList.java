@@ -211,6 +211,9 @@ public class UnitList {
 
             // TODO: fix issue where "deleted" first node not permanent
 
+            // print action performed
+            System.out.println("\nDeleted first student: " + current.student_ID);
+
 			// set u_list to current's next node
 			u_list = current.next;
 
