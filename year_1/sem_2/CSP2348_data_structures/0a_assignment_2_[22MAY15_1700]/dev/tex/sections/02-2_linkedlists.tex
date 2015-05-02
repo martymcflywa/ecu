@@ -7,7 +7,7 @@ Additional functions have been added to the list, allowing a specific student to
 
 \mintinline{bash}{com.martinponce.csp2348.a2.linkedlistprogramming} maintains the original self-contained and executable class with additional methods \mintinline{bash}{delete_unit_result()} and \mintinline{bash}{reverse_print_unit_result()} appended.
 
-\mintinline{bash}{com.martinponce.csp2348.a2.linkedlistprogramming.alternative} contains a rewrite of the original \mintinline{bash}{UnitList} class attempting to resolve issues with deleting a first node in the original \mintinline{bash}{UnitList} class.
+\mintinline{bash}{com.martinponce.csp2348.a2.linkedlistprogramming.alternative} contains a rewrite of the original \mintinline{bash}{UnitList} class attempting to resolve issues with deleting a first node in the original \mintinline{bash}{UnitList} class. Methods shown in this report from the alternative package will be labelled appropriately.
 \\
 \\
 The following classes are created within \\
@@ -19,33 +19,63 @@ The following classes are created within \\
 \item \mintinline{bash}{UnitListNode}: Defines the singly linked list node
 \end{itemize}
 
+\newpage
 \subsection{Deleting}
 
-In order to delete a specific node from the linked list, the program must be able to search for a key, which in this case is a student ID number. If the 
-key is found within the list, the program will delete that specific node from the list.
+In order to delete a specific node from the linked list, the program must be able to search for a key, which in this case is a student ID number. If the key is found within the list, the program will delete that specific node from the list.
 
-For the function to be implemented, the singly linked list deletion algorithm has been selected.
+For the function to be implemented, a singly linked list deletion algorithm has been created as shown below.
+
+Implementation of the Java method requires a \mintinline{bash}{void} method and therefore cannot return any data. A first node should not be physically deleted, even if it is logically deleted, otherwise the list will lose reference to all other nodes in the list. This will cause all other nodes to be deleted instead.
+
+The exclusion of a variable which tracks the head of the linked list in the original \mintinline{bash}{UnitList} class, this has caused issues where the deletion of the first node is not permanent. Therefore, the development of an alternative \mintinline{bash}{UnitList} class is included in this report and source files, which tracks the head, and enables permanent deletion of the first node.
 
 \subsubsection{Delete target node algorithm}
 
-To delete node \emph{del} in the nonempty SLL headed by \emph{first}:
+%To delete node \emph{del} in the nonempty SLL headed by \emph{first}:
+
+%\begin{enumerate}
+%\item Let \emph{succ} be node \emph{del}'s successor
+%\item If \emph{del} = \emph{first}:
+%	\begin{enumerate}
+%	\item Set \emph{first} to \emph{succ}
+%	\end{enumerate}
+%\item Otherwise (if \emph{del} $\neq$ \emph{first}):
+%	\begin{enumerate}
+%	\item Let \emph{pred} be node \emph{del}'s predecessor
+%	\item Set node \emph{pred}'s successor to \emph{succ}
+%	\end{enumerate}
+%\item Terminate
+%\end{enumerate}
+
+To delete \emph{del} in SLL headed by \emph{head}:
 
 \begin{enumerate}
-\item Let \emph{succ} be node \emph{del}'s successor
-\item If \emph{del} = \emph{first}:
+\item If list is empty:
 	\begin{enumerate}
-	\item Set \emph{first} to \emph{succ}
+	\item Terminate
 	\end{enumerate}
-\item Otherwise (if \emph{del} $\neq$ \emph{first}):
+\item Else let \emph{current} be node \emph{head}, and \emph{previous} be null
+\item While \emph{current} does not match \emph{del}, repeat:
 	\begin{enumerate}
-	\item Let \emph{pred} be node \emph{del}'s predecessor
-	\item Set node \emph{pred}'s successor to \emph{succ}
+	\item If end of list is reached:
+		\begin{enumerate}
+		\item Terminate
+		\end{enumerate}
+	\item Else set node \emph{previous} to node \emph{current}
+	\item Set node \emph{current} to \emph{current}'s next node
 	\end{enumerate}
+\item If node to be deleted is first node:
+	\begin{enumerate}
+	\item Set \emph{head} to \emph{current}'s next node
+	\end{enumerate}
+\item Else set \emph{previous}'s next node to \emph{current}'s next node
+\item Set \emph{current}'s next node to null
 \item Terminate
 \end{enumerate}
 
-\noindent
-\citep[p. 83]{Watt2001}
+%\noindent
+%\citep[p. 83]{Watt2001}
 
 \subsubsection{Delete target node Java method}
 
@@ -111,3 +141,182 @@ private static void delete_unit_result(UnitList u_list, int ID) {
 }
 \end{javacode}
 \end{listing}
+
+\begin{listing}[H]
+\caption{Alternative delete target node method}
+\begin{javacode}
+public void deleteUnitResult(int studentID) {
+
+    // if list is empty,
+    if(isEmpty()) {
+        // print error message and terminate
+        System.out.println("\nError: List is empty!");
+        return;
+
+    // else if studentID outside rage,
+    } else if(studentID < 999 || studentID > 9999) {
+        // print error message and terminate
+        System.out.println("\nError: Student " + studentID + " is outside valid range!");
+        return;
+    }
+
+    // set cursors to start of list
+    cursorCurrent = head;
+    cursorPrevious = null;
+
+    // while current studentID does not match target studentID
+    while(cursorCurrent.getStudentID() != studentID) {
+
+        // if reached end of list,
+        if(cursorCurrent.getNext() == null) {
+            // print error message and terminate
+            System.out.println("\nError: Student " + studentID 
+            	+ " not deleted. Student does not exist!");
+            return;
+
+        // else continue traversing
+        } else {
+            cursorPrevious = cursorCurrent;
+            cursorCurrent = cursorCurrent.getNext();
+        }
+    }
+
+    // if targetID found in very first node,
+    if(cursorPrevious == null) {
+
+        // set head to current next
+        head = cursorCurrent.getNext();
+        // print success message
+        System.out.println("\nDeleted Student " + studentID + " (first node).");
+
+    // else targetID found somewhere else down the list,
+    } else {
+
+        // print success message
+        System.out.println("\nDeleted Student " + studentID + ".");
+        // set previous next to current next
+        cursorPrevious.setNext(cursorCurrent.getNext());
+        // set current next to null
+        cursorCurrent.setNext(null);
+    }
+    length--;
+}
+\end{javacode}
+\end{listing}
+
+\noindent
+Line 41 in Java code 3.2 shows that an instance variable \mintinline{bash}{head} is set to \mintinline{bash}{cursorCurrent}'s next node, allowing persistent deletion of a first node.
+
+\subsubsection{Delete analysis}
+
+Analysis of this singly linked list delete algorithm involves counting traversals. Assuming \emph{current} and \emph{previous} traverse through each node in a single operation, they traverse between 0 to $n - 1$ nodes before finding or not finding the target key. Or $(n - 1) / 2$ times on average. Therefore, the time complexity of this delete algorithm is $O(n)$ \citep[p. 83]{Watt2001}. Space complexity is $O(1)$ since no copies are made.
+
+\subsubsection{Delete console output}
+
+The series of console outputs below demonstrates the execution of Java code 3.1, the delete implementation within the original \mintinline{bash}{UnitList} class. It successfully ``deletes'' the first student 1111, but after subsequent calls to the method, student 1111 reappears in the list. However, deletions elsewhere in the list are persistent, as seen with student 1114.
+\\
+\begin{consolecode}
+Deleted first student: 1111
+
+Student_No.: 1112
+A1_mark: 10
+A2_mark: 6
+Exam_mark: 50
+
+Student_No.: 1114
+A1_mark: 14
+A2_mark: 21
+Exam_mark: 30
+
+...
+\end{consolecode}
+
+\begin{consolecode}
+Deleted student: 1114
+
+Student_No.: 1111
+A1_mark: 17
+A2_mark: 22
+Exam_mark: 30
+
+Student_No.: 1112
+A1_mark: 10
+A2_mark: 6
+Exam_mark: 50
+
+Student_No.: 1116
+A1_mark: 8
+A2_mark: 16
+Exam_mark: 35
+
+...
+\end{consolecode}
+
+\begin{consolecode}
+Deleted student: 1116
+
+Student_No.: 1111
+A1_mark: 17
+A2_mark: 22
+Exam_mark: 30
+
+Student_No.: 1112
+A1_mark: 10
+A2_mark: 6
+Exam_mark: 50
+
+Student_No.: 1122
+A1_mark: 11
+A2_mark: 19
+Exam_mark: 40
+
+...
+\end{consolecode}
+
+\newpage
+\noindent
+The series of console outputs below demonstrate the execution of Java code 3.2, the deletion implementation within the alternative \mintinline{bash}{UnitList} class. This exhibits a persistent deletion of the first node, or in this case, student 1111.
+\\
+\begin{consolecode}
+Deleted Student 1111 (first node).
+
+Student: 1112
+A1 Mark: 10
+A2 Mark: 6
+Exam Mark: 50
+Next Node: 1114
+
+Student: 1114
+A1 Mark: 14
+A2 Mark: 21
+Exam Mark: 30
+Next Node: 1116
+
+...
+\end{consolecode}
+
+\begin{consolecode}
+Deleted Student 1116.
+
+Deleted Student 1145.
+
+Student: 1112
+A1 Mark: 10
+A2 Mark: 6
+Exam Mark: 50
+Next Node: 1114
+
+Student: 1114
+A1 Mark: 14
+A2 Mark: 21
+Exam Mark: 30
+Next Node: 1122
+
+Student: 1122
+A1 Mark: 11
+A2 Mark: 19
+Exam Mark: 40
+Next Node: 1189
+
+...
+\end{consolecode}
