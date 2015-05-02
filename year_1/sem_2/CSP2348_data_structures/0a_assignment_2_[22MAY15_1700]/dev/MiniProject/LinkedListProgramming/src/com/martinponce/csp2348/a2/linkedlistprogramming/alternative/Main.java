@@ -1,11 +1,11 @@
 package com.martinponce.csp2348.a2.linkedlistprogramming.alternative;
 
 /**
- * Main executable class to test alternative UnitList.
+ * Main executable class to test alternative UnitList SLL.
  *
  * @author jitian XIAO and Martin Ponce ID 10371381
- * @version 0.0.1
- * @since 20150427
+ * @version 1.0.1
+ * @since 20150502
  */
 public class Main {
 
@@ -28,7 +28,7 @@ public class Main {
 
         // fill new list with STUDENT_DATA
         for(int i = 0; i < STUDENT_DATA.length; i += 4) {
-            theUnitList.insertLast(STUDENT_DATA[i], STUDENT_DATA[i + 1], STUDENT_DATA[i + 2], STUDENT_DATA[i + 3]);
+            theUnitList.insertUnitResult(STUDENT_DATA[i], STUDENT_DATA[i + 1], STUDENT_DATA[i + 2], STUDENT_DATA[i + 3]);
         }
 
         // initial print
@@ -37,8 +37,11 @@ public class Main {
         theUnitList.getHighestMark();
 
         // insert another node
-        theUnitList.insertLast(1225, 17, 20, 20);
+        theUnitList.insertUnitResult(1225, 17, 20, 20);
         theUnitList.printUnitResult(theUnitList);
+
+        // test inserting duplicate studentID, expecting marks to  be replaced.
+        theUnitList.insertUnitResult(1145, 12, 8, 35);
 
         // delete first node
         theUnitList.deleteUnitResult(1111);

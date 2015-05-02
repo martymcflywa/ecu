@@ -1,11 +1,11 @@
 package com.martinponce.csp2348.a2.linkedlistprogramming.alternative;
 
 /**
- * Defines a node for alternative UnitList class.
+ * Defines a node for alternative UnitList SLL class.
  *
  * @author Martin Ponce ID 10371381
- * @version 0.0.1
- * @since 20150427
+ * @version 1.0.1
+ * @since 20150502
  */
 public class UnitListNode {
 
@@ -21,10 +21,10 @@ public class UnitListNode {
     /**
      * Constructor.
      *
-     * @param studentID
-     * @param a1Mark
-     * @param a2Mark
-     * @param examMark
+     * @param studentID int.
+     * @param a1Mark int.
+     * @param a2Mark int.
+     * @param examMark int.
      */
     public UnitListNode(int studentID, int a1Mark, int a2Mark, int examMark) {
 
