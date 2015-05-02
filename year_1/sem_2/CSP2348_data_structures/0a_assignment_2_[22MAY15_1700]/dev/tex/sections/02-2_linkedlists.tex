@@ -1,2 +1,113 @@
 \newpage
-\section{Linked-lists}
+\section{Linked lists}
+
+The linked list data structure (singly linked list) is demonstrated through a list of students which stores their marks for a particular unit. Each node in the singly linked list represents a student. A student's ID number is used as the identifier, while storing results for Assignment 1, Assignment 2 and Exam Result. The list includes functions to insert new students into the list (while maintaining an ascending order based on a student's id number) and can determine which student has the highest overall mark within the list.
+
+Additional functions have been added to the list, allowing a specific student to be removed from the list, and print the list in reverse, descending order based on student ID numbers. These additional methods have been implemented twice, in two separate packages.
+
+\mintinline{bash}{com.martinponce.csp2348.a2.linkedlistprogramming} maintains the original self-contained and executable class with additional methods \mintinline{bash}{delete_unit_result()} and \mintinline{bash}{reverse_print_unit_result()} appended.
+
+\mintinline{bash}{com.martinponce.csp2348.a2.linkedlistprogramming.alternative} contains a rewrite of the original \mintinline{bash}{UnitList} class attempting to resolve issues with deleting a first node in the original \mintinline{bash}{UnitList} class.
+\\
+\\
+The following classes are created within \\
+\mintinline{bash}{com.martinponce.csp2348.a2.linkedlistprogramming.alternative}:
+
+\begin{itemize}
+\item \mintinline{bash}{Main}: The executable class, contains \mintinline{bash}{main()} method
+\item \mintinline{bash}{UnitList}: Defines the singly linked list header
+\item \mintinline{bash}{UnitListNode}: Defines the singly linked list node
+\end{itemize}
+
+\subsection{Deleting}
+
+In order to delete a specific node from the linked list, the program must be able to search for a key, which in this case is a student ID number. If the 
+key is found within the list, the program will delete that specific node from the list.
+
+For the function to be implemented, the singly linked list deletion algorithm has been selected.
+
+\subsubsection{Delete target node algorithm}
+
+To delete node \emph{del} in the nonempty SLL headed by \emph{first}:
+
+\begin{enumerate}
+\item Let \emph{succ} be node \emph{del}'s successor
+\item If \emph{del} = \emph{first}:
+	\begin{enumerate}
+	\item Set \emph{first} to \emph{succ}
+	\end{enumerate}
+\item Otherwise (if \emph{del} $\neq$ \emph{first}):
+	\begin{enumerate}
+	\item Let \emph{pred} be node \emph{del}'s predecessor
+	\item Set node \emph{pred}'s successor to \emph{succ}
+	\end{enumerate}
+\item Terminate
+\end{enumerate}
+
+\noindent
+\citep[p. 83]{Watt2001}
+
+\subsubsection{Delete target node Java method}
+
+\begin{listing}[H]
+\caption{Delete target node method}
+\begin{javacode}
+private static void delete_unit_result(UnitList u_list, int ID) {
+
+    if(u_list == null) {
+        System.out.println("\nError: List is empty!");
+        return;
+    } else if(ID < 999 || ID > 9999) {
+        System.out.println("\nError: Student number " 
+                + ID + " is outside valid range!");
+        return;
+    }
+
+    // cursors to traverse list
+    UnitList current = u_list;
+    UnitList previous = null;
+
+    // traverse list
+    while(current.student_ID != ID) {
+
+        // if cursor traversed to end of list and target not found,
+        if(current.next == null) {
+
+            // print error message
+            System.out.println("\nError: Student " 
+                    + ID + " not deleted. Student does not exist!");
+            return;
+
+        // else continue traversing
+        } else {
+            previous = current;
+            current = current.next;
+        }
+    }
+
+    // if current is at first node, and target matched
+    // implied after exiting while loop and previous being null
+    if(previous == null) {
+
+        // TODO: fix issue where "deleted" first node not permanent
+
+        // print action performed
+        System.out.println("\nDeleted first student: " + current.student_ID);
+
+        u_list = current.next;
+
+    // else current is somewhere else down the list, and target matched
+    } else {
+
+        // print action performed
+        System.out.println("\nDeleted student: " + current.student_ID);
+        // set previous's next node to current's next node
+        previous.next = current.next;
+        // set current's next to null
+        current.next = null;
+    }
+
+    print_unit_result(u_list);
+}
+\end{javacode}
+\end{listing}
