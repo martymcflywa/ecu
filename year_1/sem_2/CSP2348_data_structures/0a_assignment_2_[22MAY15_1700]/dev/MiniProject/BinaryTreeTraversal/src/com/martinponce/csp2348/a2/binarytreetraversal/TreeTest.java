@@ -23,16 +23,86 @@ public class TreeTest {
         }
 
         // perform preorder traveral of tree
-        System.out.println("\n\nPreorder traversal");
+        System.out.println("\n\nPreorder traversal:");
         tree.preorderTraversal();
 
         // perform inorder traveral of tree
-        System.out.println("\n\nInorder traversal");
+        System.out.println("\n\nInorder traversal:");
         tree.inorderTraversal();
 
         // perform postorder traveral of tree
-        System.out.println("\n\nPostorder traversal");
+        System.out.println("\n\nPostorder traversal:");
         tree.postorderTraversal();
+        System.out.println();
+
+        /****************************************
+         * Additions by Martin Ponce begin here *
+         ****************************************/
+
+        // test printLeafOnly
+        System.out.println("\nPrint leaf nodes only:");
+        tree.printLeafOnly();
+        System.out.println();
+
+        // test printNonLeafOnly
+        System.out.println("\nPrint non-leaf nodes only:");
+        tree.printNonLeafOnly();
+        System.out.println();
+
+        // test getHeight
+        System.out.println("\nPrint height of tree:");
+        System.out.println(tree.getHeight());
+        System.out.println();
+
+        // test methods with bigTree
+        testBigTree();
+    }
+
+    /**
+     * Method to test more complicated array.
+     */
+    private static void testBigTree() {
+
+        Tree bigTree = new Tree();
+        int bigTreeValue;
+        int[] b = {49, 76, 67, 29, 75, 18, 4, 83, 87, 40, 80, 46, 42, 43, 45, 41};
+
+        // testing bigTree
+        System.out.println("Inserting the following values to bigTree: ");
+
+        // insert 10 random integers from 0-99 in bigTree
+        for (int i = 0; i < 16; i++) {
+            bigTreeValue = b[i];
+            System.out.print(bigTreeValue + " ");
+            bigTree.insertNode(bigTreeValue);
+        }
+
+        // perform preorder traveral of bigTree
+        System.out.println("\n\nPreorder traversal of bigTree:");
+        bigTree.preorderTraversal();
+
+        // perform inorder traveral of bigTree
+        System.out.println("\n\nInorder traversal of bigTree:");
+        bigTree.inorderTraversal();
+
+        // perform postorder traveral of bigTree
+        System.out.println("\n\nPostorder traversal of bigTree:");
+        bigTree.postorderTraversal();
+        System.out.println();
+
+        // test printLeafOnly for bigTree
+        System.out.println("\nPrint leaf nodes only for bigTree:");
+        bigTree.printLeafOnly();
+        System.out.println();
+
+        // test printNonLeafOnly for bigTree
+        System.out.println("\nPrint non-leaf nodes only for bigTree:");
+        bigTree.printNonLeafOnly();
+        System.out.println();
+
+        // test getHeight for bigTree
+        System.out.println("\nPrint height of bigTree:");
+        System.out.println(bigTree.getHeight());
         System.out.println();
     }
 }  // end class TreeTest
