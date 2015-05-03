@@ -80,6 +80,7 @@ public class Tree {
 
     /**
      * Method prints leaf nodes only.
+     * Public method, initiates recursive printLeafHelper().
      */
     public synchronized void printLeafOnly() {
         printLeafHelper(root);
@@ -98,6 +99,7 @@ public class Tree {
 
         printLeafHelper(node.left);
 
+        // only print data if left and right are null
         if(node.left == null && node.right == null) {
             System.out.print(node.data + " ");
         }
@@ -107,6 +109,7 @@ public class Tree {
 
     /**
      * Method prints non-leaf nodes only.
+     * Public method, initiates recursive printNonLeafHelper().
      */
     public synchronized void printNonLeafOnly() {
         printNonLeafHelper(root);
@@ -125,6 +128,7 @@ public class Tree {
 
         printNonLeafHelper(node.left);
 
+        // only print data if left or right != null
         if(node.left != null || node.right != null) {
             System.out.print(node.data + " ");
         }
@@ -132,12 +136,32 @@ public class Tree {
         printNonLeafHelper(node.right);
     }
 
+    /**
+     * Method calculates height of binary search tree.
+     * Public method, initiates recursive getHeightHelper().
+     *
+     * @return int - Height of BST.
+     */
     public synchronized int getHeight() {
         return getHeightHelper(root);
     }
 
+    /**
+     * Recursive method to calculate height of BST.
+     * Adaptation of Matthew Flaschen's method (2014), see References in report.
+     * Returns -1 if tree is empty.
+     * Returns 0 if root is only node.
+     * Returns height if n nodes > 1.
+     *
+     * @param node TreeNode.
+     * @return int - Height of BST.
+     */
     private synchronized int getHeightHelper(TreeNode node) {
-        if(node == null || (node.left == null && node.right == null)) {
+        if(node == null) {
+            return -1;
+        }
+
+        if(node.left == null && node.right == null) {
             return 0;
         }
 

@@ -12,7 +12,7 @@ public class TreeTest {
         int value;
         int[] a = {49, 76, 67, 29, 75, 18, 4, 83, 87, 40};
 
-        System.out.println("Inserting the following values: ");
+        System.out.println("Inserting the following values to tree: ");
 
         // insert 10 random integers from 0-99 in tree
         for (int i = 0; i < 10; i++) {
@@ -23,15 +23,15 @@ public class TreeTest {
         }
 
         // perform preorder traveral of tree
-        System.out.println("\n\nPreorder traversal:");
+        System.out.println("\n\nPre-order traversal of tree:");
         tree.preorderTraversal();
 
         // perform inorder traveral of tree
-        System.out.println("\n\nInorder traversal:");
+        System.out.println("\n\nIn-order traversal of tree:");
         tree.inorderTraversal();
 
         // perform postorder traveral of tree
-        System.out.println("\n\nPostorder traversal:");
+        System.out.println("\n\nPost-order traversal of tree:");
         tree.postorderTraversal();
         System.out.println();
 
@@ -40,12 +40,12 @@ public class TreeTest {
          ****************************************/
 
         // test printLeafOnly
-        System.out.println("\nPrint leaf nodes only:");
+        System.out.println("\nPrint leaf nodes only for tree:");
         tree.printLeafOnly();
         System.out.println();
 
         // test printNonLeafOnly
-        System.out.println("\nPrint non-leaf nodes only:");
+        System.out.println("\nPrint non-leaf nodes only for tree:");
         tree.printNonLeafOnly();
         System.out.println();
 
@@ -78,15 +78,15 @@ public class TreeTest {
         }
 
         // perform preorder traveral of bigTree
-        System.out.println("\n\nPreorder traversal of bigTree:");
+        System.out.println("\n\nPre-order traversal of bigTree:");
         bigTree.preorderTraversal();
 
         // perform inorder traveral of bigTree
-        System.out.println("\n\nInorder traversal of bigTree:");
+        System.out.println("\n\nIn-order traversal of bigTree:");
         bigTree.inorderTraversal();
 
         // perform postorder traveral of bigTree
-        System.out.println("\n\nPostorder traversal of bigTree:");
+        System.out.println("\n\nPost-order traversal of bigTree:");
         bigTree.postorderTraversal();
         System.out.println();
 
@@ -103,7 +103,18 @@ public class TreeTest {
         // test getHeight for bigTree
         System.out.println("\nPrint height of bigTree:");
         System.out.println(bigTree.getHeight());
-        System.out.println();
+
+        // test getHeight for empty tree
+        Tree emptyTree = new Tree();
+        System.out.println("\nPrint height of emptyTree:");
+        System.out.println(emptyTree.getHeight());
+
+        // test getHeight for single node tree
+        Tree oneNodeTree = new Tree();
+        oneNodeTree.insertNode(99);
+        System.out.println("\nPrint height of oneNodeTree:");
+        System.out.println(oneNodeTree.getHeight());
+
     }
 }  // end class TreeTest
 
