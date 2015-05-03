@@ -346,6 +346,8 @@ public class UnitList {
 		delete_unit_result(u_list, 1114);
 		// delete student that is not first
 		delete_unit_result(u_list, 1116);
+        // print SLL in original order
+        print_unit_result(u_list);
 		// print SLL in reverse order
 		reverse_print_unit_result(u_list);
 	}
