@@ -1,7 +1,7 @@
 \newpage
-\section{Linked lists}
+\section{Singly linked lists}
 
-The linked list data structure (singly linked list) is demonstrated through a list of students which stores their marks for a particular unit. Each node in the singly linked list represents a student. A student's ID number is used as the identifier, while storing results for Assignment 1, Assignment 2 and Exam Result. The list includes functions to insert new students into the list (while maintaining an ascending order based on a student's id number) and can determine which student has the highest overall mark within the list.
+The singly linked list data structure is demonstrated through a list of students which stores their marks for a particular unit. Each node in the singly linked list represents a student. A student's ID number is used as the identifier, while storing results for Assignment 1, Assignment 2 and Exam Result. The list includes functions to insert new students into the list (while maintaining an ascending order based on a student's ID number) and can determine which student has the highest overall mark within the list.
 
 Additional functions have been added to the list, allowing a specific student to be removed from the list, and print the list in reverse, descending order based on student ID numbers. These additional methods have been implemented twice, in two separate packages.
 
@@ -28,7 +28,7 @@ For the function to be implemented, a singly linked list deletion algorithm has 
 
 Implementation of the Java method requires a \mintinline{bash}{void} method and therefore cannot return any data. A first node should not be physically deleted, even if it is logically deleted, otherwise the list will lose reference to all other nodes in the list. This will cause all other nodes to be deleted instead.
 
-The exclusion of a variable which tracks the head of the linked list in the original \mintinline{bash}{UnitList} class, this has caused issues where the deletion of the first node is not permanent. Therefore, the development of an alternative \mintinline{bash}{UnitList} class is included in this report and source files, which tracks the head, and enables permanent deletion of the first node.
+The exclusion of a variable which tracks the head of the linked list in the original \mintinline{bash}{UnitList} class has caused an issue where the deletion of the first node is not permanent. Therefore, the development of an alternative \mintinline{bash}{UnitList} class is included in this report and source files, which tracks the head, and enables permanent deletion of the first node.
 
 \subsubsection{Delete target node algorithm}
 
@@ -51,14 +51,14 @@ The exclusion of a variable which tracks the head of the linked list in the orig
 To delete \emph{del} in SLL headed by \emph{head}:
 
 \begin{enumerate}
-\item If list is empty:
+\item If SLL is empty:
 	\begin{enumerate}
 	\item Terminate
 	\end{enumerate}
 \item Else let \emph{current} be node \emph{head}, and \emph{previous} be null
 \item While \emph{current} does not match \emph{del}, repeat:
 	\begin{enumerate}
-	\item If end of list is reached:
+	\item If end of SLL is reached:
 		\begin{enumerate}
 		\item Terminate
 		\end{enumerate}
@@ -207,11 +207,11 @@ public void deleteUnitResult(int studentID) {
 \noindent
 Line 41 in Java code 3.2 shows that an instance variable \mintinline{bash}{head} is set to \mintinline{bash}{cursorCurrent}'s next node, allowing persistent deletion of a first node.
 
-\subsubsection{Delete analysis}
+\subsubsection{Delete target node analysis}
 
 Analysis of this singly linked list delete algorithm involves counting traversals. Assuming \emph{current} and \emph{previous} traverse through each node in a single operation, they traverse between 0 to $n - 1$ nodes before finding or not finding the target key. Or $(n - 1) / 2$ times on average. Therefore, the time complexity of this delete algorithm is $O(n)$ \citep[p. 83]{Watt2001}. Space complexity is $O(1)$ since no copies are made.
 
-\subsubsection{Delete console output}
+\subsubsection{Delete target node console output}
 
 The series of console outputs below demonstrates the execution of Java code 3.1, the delete implementation within the original \mintinline{bash}{UnitList} class. It successfully ``deletes'' the first student 1111, but after subsequent calls to the method, student 1111 reappears in the list. However, deletions elsewhere in the list are persistent, as seen with student 1114.
 \\
@@ -319,4 +319,156 @@ Exam Mark: 40
 Next Node: 1189
 
 ...
+\end{consolecode}
+
+\subsection{Print singly linked list in reverse order}
+
+In order to print the singly linked list in reverse order based on the student ID, the program must copy each node it traverses through to a temporary list. Since the program's existing insertion method \mintinline{bash}{insert_unit_result()} guarantees that the list will be in ascending order based on the student ID, the implementation of this method relies on \mintinline{bash}{insertFirst()} method to sort the temporary list in reverse order. In other words, the current node being copied will be inserted in front of the previous node copied, resulting in the temporary list being in descending order.
+
+After all nodes are successfully copied, the method will then call to print the temporary list. A temporary list is used due to the structure of singly linked lists. If a temporary list is not used and pointers are modified to the actual list itself, references to the following nodes would be subsequently lost, and cause a loss in data.
+
+Note that only the methods for the original \mintinline{bash}{UnitList} class will be displayed below, since the method for the alternative class is almost identical.
+
+\subsubsection{Print singly linked list in reverse order algorithm}
+
+To print in descending order each node in SLL headed by \emph{head} and currently sorted in ascending order:
+
+\begin{enumerate}
+\item If SLL is empty:
+	\begin{enumerate}
+	\item Terminate
+	\end{enumerate}
+\item Else let \emph{current} be node \emph{head}
+\item Let \emph{temp} be a new temporary SLL
+\item While \emph{current} is not null, repeat:
+	\begin{enumerate}
+	\item Insert \emph{current} in \emph{temp} SLL as first node
+	\end{enumerate}
+\item Print SLL \emph{temp}
+\item Terminate
+\end{enumerate}
+
+\subsubsection{Print singly linked list in reverse order Java method}
+
+\begin{listing}[H]
+\caption{Delete target node method}
+\begin{javacode}
+private static void reverse_print_unit_result(UnitList u_list) {
+
+    // if list is empty, print error message and terminate
+    if(u_list == null) {
+        System.out.println("Error: List is empty. No elements to print!");
+        return;
+    }
+
+    // iterate through list until curr == null:
+    for(UnitList curr = u_list; curr != null; curr = curr.next) {
+
+        // call insertFirst through each iteration, storing list elements in reverse order
+        insertFirst(u_list, curr.student_ID, curr.A1_result, curr.A2_result, curr.exam_result);
+    }
+
+    // print list in reverse order, stored in tempReverseList
+    print_unit_result(tempReverseList);
+}
+\end{javacode}
+\end{listing}
+
+\noindent
+Line 13 of Java code 3.3 calls \mintinline{bash}{insertFirst()} which copies the current node and inserts it as the first node in a new temporary SLL.
+
+\subsubsection{Insert node as first node in singly linked list Java method}
+
+\begin{listing}[H]
+\caption{Insert first method}
+\begin{javacode}
+private static void insertFirst(UnitList u_list, int ID, int mark1, int mark2, int mark3) {
+
+    // create new node called insert
+    UnitList insert = new UnitList(ID, mark1, mark2, mark3);
+
+    // if list is empty,
+    if(u_list == null) {
+
+        // make insert the first node
+        tempReverseList = insert;
+
+    // else list is not empty,
+    } else {
+
+        // set insert's next as tempReverseList's first node
+        insert.next = tempReverseList;
+        // copy insert into tempReverseList
+        tempReverseList = insert;
+    }
+
+    // print action performed
+    System.out.println("\nStudent " + ID + " inserted as first node.");
+}
+\end{javacode}
+\end{listing}
+
+\noindent
+Java code 3.4 displays the \mintinline{bash}{insertFirst()} method which performs the copying function for each node into a temporary singly linked list.
+
+\subsubsection{Print singly linked list in reverse order analysis}
+
+Analysis of this algorithm involves counting traversals. At step 4 of the algorithm, each node in the original, ascending ordered list must be traversed in order to be copied into the temporary list, performing $n - 1$ traversals. Step 5 requires a secondary set of traversals of $n - 1$ to print each node in the temporary, descending ordered list. Therefore, time complexity of the algorithm is of $O(n^2)$.
+
+At step 4.1, each node of the ascending ordered list must also be copied into the temporary, descending ordered list, performing $n - 1$ copies. Therefore, the algorithm's space complexity is of $O(n)$.
+
+\newpage
+\subsubsection{Print singly linked list in reverse order console output}
+
+The following console output displays the singly linked list in its original ascending order.
+\\
+\begin{consolecode}
+Student_No.: 1111
+A1_mark: 17
+A2_mark: 22
+Exam_mark: 30
+
+Student_No.: 1112
+A1_mark: 10
+A2_mark: 6
+Exam_mark: 50
+
+Student_No.: 1114
+A1_mark: 14
+A2_mark: 21
+Exam_mark: 30
+
+...
+
+Student_No.: 1225
+A1_mark: 17
+A2_mark: 20
+Exam_mark: 20
+\end{consolecode}
+
+\noindent
+The following console output displays the singly linked list in descending order, after the execution of \mintinline{bash}{reverse_print_unit_result()}.
+\\
+\begin{consolecode}
+Student_No.: 1225
+A1_mark: 17
+A2_mark: 20
+Exam_mark: 20
+
+Student_No.: 1189
+A1_mark: 20
+A2_mark: 30
+Exam_mark: 50
+
+Student_No.: 1145
+A1_mark: 9
+A2_mark: 16
+Exam_mark: 20
+
+...
+
+Student_No.: 1111
+A1_mark: 17
+A2_mark: 22
+Exam_mark: 30
 \end{consolecode}

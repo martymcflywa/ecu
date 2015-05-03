@@ -479,3 +479,17 @@ Your winning numbers are: [11][33][45]
 	\item Space complexity: $O(1)$
 	\end{itemize}
 \end{itemize}
+
+\noindent
+However, the two-dimensional array which stores player tickets are not accounted for in the above calculations of time complexity. Since each method is required to iterate through each ``row'', as well as each ``column'' of the two-dimensional array, the following time complexities would be more appropriate for each method:
+
+\begin{itemize}
+\item Binary search
+	\begin{itemize}
+	\item Time complexity: $O(n \log n)$
+	\end{itemize}
+\item ``Merge search''
+	\begin{itemize}
+	\item Time complexity: $O(n^2)$
+	\end{itemize}
+\end{itemize}
