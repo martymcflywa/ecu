@@ -84,6 +84,7 @@ To delete \emph{del} in SLL headed by \emph{head}:
 \begin{javacode}
 private static void delete_unit_result(UnitList u_list, int ID) {
 
+    // if list is empty, or ID outside range, print error message and terminate
     if(u_list == null) {
         System.out.println("\nError: List is empty!");
         return;
@@ -124,6 +125,7 @@ private static void delete_unit_result(UnitList u_list, int ID) {
         // print action performed
         System.out.println("\nDeleted first student: " + current.student_ID);
 
+        // set list to current next node
         u_list = current.next;
 
     // else current is somewhere else down the list, and target matched
@@ -325,7 +327,7 @@ Next Node: 1189
 
 In order to print the singly linked list in reverse order based on the student ID, the program must copy each node it traverses through to a temporary list. Since the program's existing insertion method \mintinline{bash}{insert_unit_result()} guarantees that the list will be in ascending order based on the student ID, the implementation of this method relies on \mintinline{bash}{insertFirst()} method to sort the temporary list in reverse order. In other words, the current node being copied will be inserted in front of the previous node copied, resulting in the temporary list being in descending order.
 
-After all nodes are successfully copied, the method will then call to print the temporary list. A temporary list is used due to the structure of singly linked lists. If a temporary list is not used and pointers are modified to the actual list itself, references to the following nodes would be subsequently lost, and cause a loss in data.
+After all nodes are successfully copied, the method will then call to print the temporary list. A temporary list is used due to the structure of singly linked lists. If a temporary list is not used and pointers are modified in the actual list itself, references to the following nodes would be subsequently lost, and cause a loss in data.
 
 Note that only the methods for the original \mintinline{bash}{UnitList} class will be displayed below, since the method for the alternative class is almost identical.
 

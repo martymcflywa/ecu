@@ -129,6 +129,11 @@
 % number each equation per section
 \numberwithin{equation}{section}
 
+% tikz graphics package
+\usepackage{tikz}
+\usetikzlibrary{arrows,positioning, calc}
+\tikzstyle{vertex}=[draw,fill=black!15,circle,minimum size=18pt,inner sep=0pt]
+
 % front matter
 \title{Edith Cowan University\\CSP2348\\Data Structures\\Assignment 2}
 \author{Martin Ponce\\Student 10371381\\\\Tutor: Jitian Xiao}
@@ -156,7 +161,7 @@
 \newpage
 \input{./sections/01_introduction}
 \input{./sections/02_main}
-\input{./sections/03_conclusion}
+%\input{./sections/03_conclusion}
 
 \newpage
 \urlstyle{rm}

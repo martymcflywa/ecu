@@ -1,0 +1,227 @@
+\newpage
+\section{Binary search trees}
+
+The binary search tree data structure is demonstrated through a binary search tree of random integers. The following existing classes have been supplied, which construct the binary search tree:
+
+\begin{itemize}
+\item \mintinline{bash}{Tree}: Contains instance variable \mintinline{bash}{root} and defines logic to traverse nodes of a binary tree
+\item \mintinline{bash}{TreeNode}: Contains instance variables for data, pointers for left/right of node and defines logic to insert a new node into the binary tree
+\item \mintinline{bash}{TreeTest}: The executable class, contains \mintinline{bash}{main()} method
+\end{itemize}
+
+Additional methods have been added to the existing code of \mintinline{bash}{Tree} class to print all leaf nodes of a tree, print all non-leaf nodes of a tree and to determine and print the height of a tree.
+
+These new methods have been tested with both the existing array of integers, which will be referred to as \mintinline{bash}{tree}, and with a more complex and larger array of integers, which will be referred to as \mintinline{bash}{bigTree}.
+
+\begin{itemize}
+\item \mintinline{bash}{tree} array: $\{49, 76, 67, 29, 75, 18, 4, 83, 87, 40\}$
+	\begin{itemize}
+	\item Figure 1 models the insertion of these integers into a binary search tree
+	\end{itemize}
+\item \mintinline{bash}{bigTree} array: $\{49, 76, 67, 29, 75, 18, 4, 83, 87, 40, 80, 46, 42, 43, 45, 41\}$
+	\begin{itemize}
+	\item Figure 2 models the insertion of these integers into a binary search tree
+	\end{itemize}
+\end{itemize}
+
+\newpage
+\input{./sections/02-3-1_tikz_tree}
+\input{./sections/02-3-2_tikz_bigTree}
+
+\newpage
+\subsection{Binary search tree traversal}
+
+The traversal methods of pre-order, in-order and post-order were supplied as existing code, and therefore only the console output will be shown.
+
+\subsubsection{Traversal console output}
+
+The following console output demonstrates the insertion of values, pre-order, in-order and post-order traversals of \mintinline{bash}{tree}.
+\\
+\begin{consolecode}
+Inserting the following values to tree: 
+49 76 67 29 75 18 4 83 87 40 
+
+Pre-order traversal of tree:
+49 29 18 4 40 76 67 75 83 87 
+
+In-order traversal of tree:
+4 18 29 40 49 67 75 76 83 87 
+
+Post-order traversal of tree:
+4 18 40 29 75 67 87 83 76 49 
+\end{consolecode}
+
+\noindent
+The following console output demonstrates the insertion of values, pre-order, in-order and post-order traversals of \mintinline{bash}{bigTree}.
+\\
+\begin{consolecode}
+Inserting the following values to bigTree: 
+49 76 67 29 75 18 4 83 87 40 80 46 42 43 45 41 
+
+Pre-order traversal of bigTree:
+49 29 18 4 40 46 42 41 43 45 76 67 75 83 80 87 
+
+In-order traversal of bigTree:
+4 18 29 40 41 42 43 45 46 49 67 75 76 80 83 87 
+
+Post-order traversal of bigTree:
+4 18 41 45 43 42 46 40 29 75 67 80 87 83 76 49
+\end{consolecode}
+
+\newpage
+\subsection{Print leaf nodes only}
+
+A leaf node of a binary tree is a node which does not reference a left node, and does not reference a right node. The following \emph{recursive} method has been created to print all the leaf nodes in a binary search tree. The method utilizes in-order traversal.
+
+\subsubsection{Print leaf nodes only Java method}
+
+\begin{listing}[H]
+\caption{Print leaf nodes only method}
+\begin{javacode}
+// public method, initiates recursive printLeafHelper()
+public synchronized void printLeafOnly() {
+    printLeafHelper(root);
+}
+
+// private recursive method which traverses the tree
+private synchronized void printLeafHelper(TreeNode node) {
+    if(node == null) {
+        return;
+    }
+
+    printLeafHelper(node.left);
+
+    // only print data if left and right are null
+    if(node.left == null && node.right == null) {
+        System.out.print(node.data + " ");
+    }
+
+    printLeafHelper(node.right);
+}
+\end{javacode}
+\end{listing}
+
+\subsubsection{Print leaf nodes only console output}
+
+The following console output demonstrates the execution of Java code 4.1 with the original \mintinline{bash}{tree} binary search tree.
+\\
+\begin{consolecode}
+Print leaf nodes only for tree:
+4 40 75 87 
+\end{consolecode}
+
+\noindent
+The following console output demonstrates the execution of Java code 4.1 with the \mintinline{bash}{bigTree} binary search tree.
+\\
+\begin{consolecode}
+Print leaf nodes only for bigTree:
+4 41 45 75 80 87 
+\end{consolecode}
+
+\newpage
+\subsection{Print non-leaf nodes only}
+
+A non-leaf node is the inverse of a leaf node in a binary tree. A non-leaf node references either a left, or right node. The following \emph{recursive} method has been created to print all non-leaf nodes within a binary search tree. The method utilizes in-order traversal.
+
+\subsubsection{Print non-leaf nodes only Java method}
+
+\begin{listing}[H]
+\caption{Print non-leaf nodes only method}
+\begin{javacode}
+// public method, initiates recursive printNonLeafHelper()
+public synchronized void printNonLeafOnly() {
+    printNonLeafHelper(root);
+}
+
+// private recursive method which traverses the tree
+private synchronized void printNonLeafHelper(TreeNode node) {
+    if(node == null) {
+        return;
+    }
+
+    printNonLeafHelper(node.left);
+
+    // only print data if left or right != null
+    if(node.left != null || node.right != null) {
+        System.out.print(node.data + " ");
+    }
+
+    printNonLeafHelper(node.right);
+}
+\end{javacode}
+\end{listing}
+
+\subsubsection{Print non-leaf nodes only console output}
+
+The following console output demonstrates the execution of Java code 4.2 with the original \mintinline{bash}{tree} binary search tree.
+\\
+\begin{consolecode}
+Print non-leaf nodes only for tree:
+18 29 49 67 76 83 
+\end{consolecode}
+
+\noindent
+The following console output demonstrates the execution of Java code 4.2 with the \mintinline{bash}{bigTree} binary search tree.
+\\
+\begin{consolecode}
+Print non-leaf nodes only for bigTree:
+18 29 40 42 43 46 49 67 76 83 
+\end{consolecode}
+
+\newpage
+\subsubsection{Print height of tree}
+
+The height (also known as depth) of a binary search tree is the depth of the deepest node in a binary search tree. The following \emph{recursive} method is an adaptation of a Java method by \citet{Flaschen2014}. The method has been modified to follow convention that if a binary tree is empty, the method will return $-1$ \citep[p. 239]{Watt2001}.
+
+\subsubsection{Print height of tree Java method}
+
+\begin{listing}[H]
+\caption{Print height of tree method}
+\begin{javacode}
+// public method, initiates recursive getHeightHelper()
+public synchronized int getHeight() {
+    return getHeightHelper(root);
+}
+
+// adaptation of Flaschen's method (2014)
+private synchronized int getHeightHelper(TreeNode node) {
+    if(node == null) {
+        return -1;
+    }
+
+    if(node.left == null && node.right == null) {
+        return 0;
+    }
+
+    return Math.max(getHeightHelper(node.left), getHeightHelper(node.right)) + 1;
+}
+\end{javacode}
+\end{listing}
+
+\subsubsection{Print height of tree console output}
+
+The following console output demonstrates the execution of Java code 4.3 with the \mintinline{bash}{tree} binary search tree.
+\\
+\begin{consolecode}
+Print height of tree:
+3
+\end{consolecode}
+
+\noindent
+The following console output demonstrates the execution of Java code 4.3 with the \mintinline{bash}{bigTree} binary search tree.
+\\
+\begin{consolecode}
+Print height of bigTree:
+6
+\end{consolecode}
+
+\noindent
+The following console output demonstrates the execution of Java code 4.3 where a binary search tree is either empty, or only contains the root node.
+\\
+\begin{consolecode}
+Print height of emptyTree:
+-1
+
+Print height of oneNodeTree:
+0
+\end{consolecode}

@@ -1,0 +1,46 @@
+\begin{figure}[H]
+\centering
+\caption{\mintinline{bash}{tree} binary search tree}
+\begin{tikzpicture}[very thick,level/.style={sibling distance=70mm/#1}]
+% root
+\node [vertex] (r){$49$}
+	% left subtree
+	child {
+		node [vertex] (a) {$29$}
+		child {
+			node [vertex] {$18$}
+			child {
+				node [vertex] {$4$}
+      		}
+      		child {
+      			node [vertex] {}
+      		}
+    	}
+		child {
+			node [vertex] {$40$}
+    	}
+	}
+	% right subtree
+	child {
+		node [vertex] {$76$}
+		child {
+			node [vertex] {$67$}
+			child {
+				node [vertex] {}
+			}
+			child {
+				node [vertex] {$75$}
+			}
+		}
+		child {
+			node [vertex] {$83$}
+			child {
+				node [vertex] {}
+			}
+			child {
+				node [vertex] {$87$}
+			}
+		}
+	};
+\end{tikzpicture}
+\end{figure}
