@@ -37,3 +37,6 @@ _minted*/
 *.ipr
 *.iws
 *.class
+
+# Submission folders
+submission
