@@ -331,7 +331,7 @@ VALUES	('Thick Crust', 0),				-- crust ID 1
 */
 
 -- MP 20150505: Modified sauce to pizza_sauce
-INSERT INTO sauce (sauce_name, sauce_surcharge)
+INSERT INTO pizza_sauce (sauce_name, sauce_surcharge)
 VALUES	('Pizza Sauce', 0),							-- sauce ID 1
 		('BBQ Sauce', 0),							-- sauce ID 2
 		('Traditional Italian Pesto', 1),			-- sauce ID 3
