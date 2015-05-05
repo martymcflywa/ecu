@@ -1,5 +1,6 @@
 -- 1:
-SELECT first_name + ' ' + last_name AS 'full_name', salary, department_name
+SELECT first_name + ' ' + last_name AS 'full_name',
+	salary, department_name
 FROM employee AS e INNER JOIN department AS d
 	ON e.department_id = d.department_id
 WHERE salary > 10000;
@@ -11,7 +12,10 @@ FROM employee AS e INNER JOIN job AS j
 WHERE e.department_id = 50;
 
 -- 3:
-SELECT last_name, commission_pct, department_name, city
+SELECT last_name,
+	commission_pct,
+	department_name,
+	city
 FROM employee as e LEFT OUTER JOIN department AS d
 	ON e.department_id = d.department_id
 	LEFT OUTER JOIN location AS l
@@ -22,26 +26,34 @@ ORDER BY commission_pct DESC;
 -- 4: See .md
 
 -- 5:
-SELECT country_name, region_name
+SELECT country_name,
+	region_name
 FROM country AS c RIGHT OUTER JOIN region AS r
 	ON r.region_id = c.region_id;
 	
 -- 6.1:
-SELECT last_name, job_title, department_name
+SELECT last_name,
+	job_title,
+	department_name
 FROM employee AS e INNER JOIN job AS j
 	ON e.employee_id = j.job_id
 FROM employee AS e RIGHT OUTER JOIN department AS d
 	ON e.department_id = d.department_id;
 	
 -- 6.2:
-SELECT last_name, job_title, department_name
+SELECT last_name,
+	job_title,
+	department_name
 FROM employee AS e INNER JOIN job AS j
 	ON e.job_id = j.job_id
 	LEFT OUTER JOIN department as d
 	ON e.department_id = d.department_id;
 	
 -- 7:
-SELECT last_name, salary, job_title, min_salary
+SELECT last_name,
+	salary,
+	job_title,
+	min_salary
 FROM employee AS e INNER JOIN job AS j
 	ON e.job_id = j.job_id
 WHERE e.salary < j.min_salary;
