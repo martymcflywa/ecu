@@ -234,52 +234,52 @@ CREATE TABLE pizza_order (
 --  Since the primary key uses IDENTITY, we don't specify a value for that column.
 
 INSERT INTO staff (staff_last_name, staff_first_name, staff_dob, staff_phone, supervisor)
-VALUES	('Capone', 'Al', '1979-01-17', '0418991747', NULL),
-		('Luciano', 'Lucky', '1977-11-24', '0418971962', NULL),
-		('Gotti', 'John', '1980-10-27', '0419402002', NULL),
-		('Hill', 'Henry', '1983-06-11', '0419432012', NULL),
-		('Brasco', 'Donnie', '1984-01-01', '0419392015', 4),
-		('Costello', 'Frank', '1976-01-26', '0418911773', 2),
-		('Genovese', 'Vito', '1967-11-27', '0418971969', 1),
-		('Gigante', 'Vincent', '1986-03-29', '0419282005', NULL),
-		('DeMeo', 'Roy', '1989-09-07', '0419421983', 3),
-		('Lucchese', 'Tommy', '1995-07-13', '0418991967', 3),
-		('Giancana', 'Sam', '1983-06-19', '0419081795', 1),
-		('Gravano', 'Sammy', '1994-03-12', '0419452015', 4),
-		('Scarpa', 'Greg', '1988-05-08', '0419281994', 2),
-		('Spilotro', 'Tony', '1998-06-14', '0419381986', 3),
-		('Cohen', 'Mickey', '1993-09-04', '0419131976', 16),
-		('Siegel', 'Bugsy', '1990-06-20', '0419061947', NULL),
-		('Pitera', 'Tommy', '1991-12-02', '0419542015', 4),
-		('Casso', 'Anthony', '1982-05-21', '0419402015', 1),
-		('Bonanno', 'Joseph', '1992-05-11', '0419052002', 3),
-		('Castellano', 'Paul', '1985-12-16', '0419151985', 2);
+VALUES	('Capone', 'Al', '1979-01-17', '0418991747', NULL),			-- staff_id 1
+		('Luciano', 'Lucky', '1977-11-24', '0418971962', NULL),		-- staff_id 2
+		('Gotti', 'John', '1980-10-27', '0419402002', NULL),		-- staff_id 3
+		('Hill', 'Henry', '1983-06-11', '0419432012', NULL),		-- staff_id 4
+		('Brasco', 'Donnie', '1984-01-01', '0419392015', 4),		-- staff_id 5
+		('Costello', 'Frank', '1976-01-26', '0418911773', 2),		-- staff_id 6
+		('Genovese', 'Vito', '1967-11-27', '0418971969', 1),		-- staff_id 7
+		('Gigante', 'Vincent', '1986-03-29', '0419282005', NULL),	-- staff_id 8
+		('DeMeo', 'Roy', '1989-09-07', '0419421983', 3),			-- staff_id 9
+		('Lucchese', 'Tommy', '1995-07-13', '0418991967', 3),		-- staff_id 10
+		('Giancana', 'Sam', '1983-06-19', '0419081795', 1),			-- staff_id 11
+		('Gravano', 'Sammy', '1994-03-12', '0419452015', 4),		-- staff_id 12
+		('Scarpa', 'Greg', '1988-05-08', '0419281994', 2),			-- staff_id 13
+		('Spilotro', 'Tony', '1998-06-14', '0419381986', 3),		-- staff_id 14
+		('Cohen', 'Mickey', '1993-09-04', '0419131976', 16),		-- staff_id 15
+		('Siegel', 'Bugsy', '1990-06-20', '0419061947', NULL),		-- staff_id 16
+		('Pitera', 'Tommy', '1991-12-02', '0419542015', 4),			-- staff_id 17
+		('Casso', 'Anthony', '1982-05-21', '0419402015', 1),		-- staff_id 18
+		('Bonanno', 'Joseph', '1992-05-11', '0419052002', 3),		-- staff_id 19
+		('Castellano', 'Paul', '1985-12-16', '0419151985', 2);		-- staff_id 20
 
 --  **************************************************************************************
 --  Populate the customer table.
 --  Since the primary key uses IDENTITY, we don't specify a value for that column.
 
 INSERT INTO customer (cust_name, cust_adrs, cust_email)
-VALUES	('James Brown', '1 Street Rd, Suburb, 0101', 'soulbrothernumberone@jamesbrown.com'),
-		('Kurt Cobain', '2 Street Rd, Suburb, 0102', 'kurt@nirvana.com'),
-		('Dr. Dre', '3 Street Rd, Compton, 0420', 'dreday@nwa.com'),
-		('Eazy E', '4 Street Rd, Compton, 0420', 'eazy@nwa.com'),
-		('Ice Cube', '5 Street Rd, Compton, 0420', 'doughboy@nwa.com'),
-		('MC Ren', '6 Street Rd, Compton, 0420', 'ren@nwa.com'),
-		('RZA', '7 Street Rd, Staten Island, 0718', 'rza@wutangclan.com'),
-		('Ol Dirty Bastard', '8 Street Rd, Staten Island, 0718', 'odb@wutangclan.com'),
-		('Method Man', '9 Street Rd, Staten Island, 0718', 'meth@wutangclan.com'),
-		('Joseph Simmons', '10 Street Rd, Queens, 1423', 'run@rundmc.com'),
-		('Darryl McDaniels', '11 Street Rd, Queens, 1423', 'dmc@rundmc.com'),
-		('Jason Mizell', '12 Street Rd, Queens, 1423', 'jammasterjay@rundmc.com'),
-		('Adam Yauch', '13 Street Rd, Brooklyn, 1249', 'mca@beastieboys.com'),
-		('Michael Diamond', '14 Street Rd, Brooklyn, 1249', 'miked@beastieboys.com'),
-		('Adam Horovitz', '15 Street Rd, Brooklyn, 1249', 'adrock@beastieboys.com'),
-		('Mixmaster Mike', '16 Street Rd, Brooklyn, 1249', 'mmm@beastieboys.com'),
-		('Chuck D', '17 Street Rd, Long Island, 1101', 'chuckd@publicenemy.com'),
-		('Flavor Flav', '18 Street Rd, Long Island, 1101', 'flav@publicenemy.com'),
-		('DJ Lord', '19 Street Rd, Long Island, 1101', 'djlord@publicenemy.com'),
-		('Zach de la Rocha', '20 Street Rd, Los Angeles, 0323', 'zach@rageagainsthemachine.com');
+VALUES	('James Brown', '1 Street Rd, Suburb, 0101', 'soulbrothernumberone@jamesbrown.com'),		-- cust_id 1
+		('Kurt Cobain', '2 Street Rd, Suburb, 0102', 'kurt@nirvana.com'),							-- cust_id 2
+		('Dr. Dre', '3 Street Rd, Compton, 0420', 'dreday@nwa.com'),								-- cust_id 3
+		('Eazy E', '4 Street Rd, Compton, 0420', 'eazy@nwa.com'),									-- cust_id 4
+		('Ice Cube', '5 Street Rd, Compton, 0420', 'doughboy@nwa.com'),								-- cust_id 5
+		('MC Ren', '6 Street Rd, Compton, 0420', 'ren@nwa.com'),									-- cust_id 6
+		('RZA', '7 Street Rd, Staten Island, 0718', 'rza@wutangclan.com'),							-- cust_id 7
+		('Ol Dirty Bastard', '8 Street Rd, Staten Island, 0718', 'odb@wutangclan.com'),				-- cust_id 8
+		('Method Man', '9 Street Rd, Staten Island, 0718', 'meth@wutangclan.com'),					-- cust_id 9
+		('Joseph Simmons', '10 Street Rd, Queens, 1423', 'run@rundmc.com'),							-- cust_id 10
+		('Darryl McDaniels', '11 Street Rd, Queens, 1423', 'dmc@rundmc.com'),						-- cust_id 11
+		('Jason Mizell', '12 Street Rd, Queens, 1423', 'jammasterjay@rundmc.com'),					-- cust_id 12
+		('Adam Yauch', '13 Street Rd, Brooklyn, 1249', 'mca@beastieboys.com'),						-- cust_id 13
+		('Michael Diamond', '14 Street Rd, Brooklyn, 1249', 'miked@beastieboys.com'),				-- cust_id 14
+		('Adam Horovitz', '15 Street Rd, Brooklyn, 1249', 'adrock@beastieboys.com'),				-- cust_id 15
+		('Mixmaster Mike', '16 Street Rd, Brooklyn, 1249', 'mmm@beastieboys.com'),					-- cust_id 16
+		('Chuck D', '17 Street Rd, Long Island, 1101', 'chuckd@publicenemy.com'),					-- cust_id 17
+		('Flavor Flav', '18 Street Rd, Long Island, 1101', 'flav@publicenemy.com'),					-- cust_id 18
+		('DJ Lord', '19 Street Rd, Long Island, 1101', 'djlord@publicenemy.com'),					-- cust_id 19
+		('Zach de la Rocha', '20 Street Rd, Los Angeles, 0323', 'zach@rageagainsthemachine.com');	-- cust_id 20
 		
 /*	The following statement inserts the details of 3 pizza ranges into a table named "pizza_range".  It specifies values "range_name" and "range_price" columns.
 	Range ID numbers numbers are not specified since it is assumed that an auto-incrementing integer is being used.
@@ -336,3 +336,57 @@ VALUES	('Pizza Sauce', 0),							-- sauce ID 1
 		('BBQ Sauce', 0),							-- sauce ID 2
 		('Traditional Italian Pesto', 1),			-- sauce ID 3
 		('Garlic and Red Wine Tomato Chutney', 2);	-- sauce ID 4
+		
+--  **************************************************************************************
+--  Populate the customer_order table.
+--  Initial orders, not yet delivered.
+
+INSERT INTO customer_order (cust_id, staff_order, cust_order_datetime, staff_delivery)
+VALUES	(2, 15, '02-07-2015 19:23:10', NULL),	-- cust_order_id 1
+		(18, 15, '07-07-2015 18:38:52', NULL),	-- cust_order_id 2
+		(11, 2, '08-07-2015 22:37:54', NULL),	-- cust_order_id 3
+		(19, 9, '06-08-2015 18:31:52', NULL),	-- cust_order_id 4
+		(10, 4, '29-08-2015 21:01:01', NULL),	-- cust_order_id 5
+		(12, 13, '28-09-2015 19:57:04', NULL),	-- cust_order_id 6
+		(1, 11, '02-10-2015 18:16:18', NULL),	-- cust_order_id 7
+		(9, 18, '05-10-2015 20:54:58', NULL),	-- cust_order_id 8
+		(15, 14, '08-11-2015 22:00:44', NULL),	-- cust_order_id 9
+		(4, 6, '21-11-2015 21:35:03', NULL);		-- cust_order_id 10
+
+--  **************************************************************************************
+--  Populate the pizza_order table.
+--	Initial orders, pizza not yet ready.
+
+INSERT INTO pizza_order (pizza_ready, cust_order_id, pizza_id, crust_id, sauce_id)
+VALUES	(DEFAULT, 1, 8, 4, 4), -- pizza_order id
+		(DEFAULT, 1, 9, 2, 2), -- pizza_order id
+		(DEFAULT, 1, 4, 2, 1), -- pizza_order id
+		(DEFAULT, 2, 4, 1, 3), -- pizza_order id
+		(DEFAULT, 2, 4, 2, 4), -- pizza_order id
+		(DEFAULT, 3, 2, 1, 2), -- pizza_order id
+		(DEFAULT, 4, 3, 3, 1), -- pizza_order id
+		(DEFAULT, 4, 1, 2, 3), -- pizza_order id
+		(DEFAULT, 4, 4, 3, 4), -- pizza_order id
+		(DEFAULT, 4, 2, 3, 4), -- pizza_order id
+		(DEFAULT, 5, 4, 2, 3), -- pizza_order id
+		(DEFAULT, 5, 9, 3, 4), -- pizza_order id
+		(DEFAULT, 6, 6, 3, 1), -- pizza_order id
+		(DEFAULT, 6, 7, 1, 2), -- pizza_order id
+		(DEFAULT, 7, 9, 3, 1), -- pizza_order id
+		(DEFAULT, 8, 3, 1, 4), -- pizza_order id
+		(DEFAULT, 9, 6, 1, 4), -- pizza_order id
+		(DEFAULT, 9, 9, 4, 4), -- pizza_order id
+		(DEFAULT, 10, 1, 1, 4), -- pizza_order id
+		(DEFAULT, 10, 7, 3, 1); -- pizza_order id
+
+--  **************************************************************************************
+--  Make pizzas ready.
+
+UPDATE pizza_order
+SET pizza_ready = 'Y'
+WHERE pizza_ready = 'N';
+
+--  **************************************************************************************
+--  Deliver pizzas.
+UPDATE customer_order
+SET staff_delivery = 
