@@ -63,6 +63,39 @@ Research the following terms/projects:
 3. Metasploit project
 4. Damn Vulnerable Web App
 
+### 2.1 Shellcode
+
+- A list of carefully crafted instructions that can be executed once the code is injected into a running application
+	- Stack and heap-based buffer overflows are the most popular way of doing so
+	- The term shellcode literally refers to written code that starts a command shell
+- A small piece of code used as the payload in the exploitation of a software vulnerability [wikipedia](http://en.wikipedia.org/wiki/Shellcode)
+- A shellcode is a group of instructions which can be executed while another program is running [Rosiello2004]
+
+### 2.2 Opcodes
+
+- An opcode (operation code) is the portion of a machine language instruction that specifies the operation to be performed [wikipedia](http://en.wikipedia.org/wiki/Opcode)
+	- Beside the opcode itself, instructions usually specify the data they will process, in the form of operands
+	- In addition to opcodes used in instruction set artchitectures of various CPUs, which are hardware devices, they can also  be used in abstract computing machines as part of their byte code specifications
+
+### 2.3 Metasploit project
+
+- [metasploit.com](http://www.metasploit.com/)
+- Computer science project that provides information about security vulnerabilities and aids in penetration testing and IDS signature development [wikipedia](http://en.wikipedia.org/wiki/Metasploit_Project)
+	- Best known for open-source sub-project Metasploit Framework
+		- A tool for developing and executing exploit code against a remote target machine
+	- Other sub-projects include
+		- Opcode database
+		- Shellcode archive
+		- Related research
+
+### 2.4 Damn Vulnerable Web App
+
+- [dvwa.co.uk](http://www.dvwa.co.uk/)
+- A PHP/MySQL web app that is vulnerable
+	- Aid for security professionals to test their skills and tools in a legal environment
+	- Helps web developers better understand the process of securing web apps
+	- Aids teachers/students to teach/learn web app security
+
 ## 3
 
 Advanced question.
@@ -101,3 +134,27 @@ int main(int argc, char *argv[]) {
 		- Assume for this question only that the pointer is on the stack rather than in the data segment, or a shared memory agent
 3. What is the existing vulnerability when `login()` is not a pointer to the function code, but terminates with a `return()` command?
 	- Note that the function `strcpy` does not check an array's length
+
+#### 3.1
+
+- Is this code vulnerable to a buffer-overflow attack with reference to the variables `password[]` and `continue`?
+	- Yes
+		- It is vulnerable to buffer-overflow attack since `strcpy(password, argv[1]);` does not check `sizeof(password)`
+		- Attacker may input a string larger than `password[8]` aiming to make `continue = 1`
+
+#### 3.2
+
+- To fix the problem, a security expert suggests to remove the variable `continue` and simply use the comparison for login
+	- Does this fix the vulnerability?
+		- No, input may still be larger than allocated array size
+			- Program does not have countermeasure to deal with "larger than array" input
+		- Attacker may manipulate instruction pointer and execute shellcode
+	- What kind of new buffer overflow attack can be achieved in the multiuser system where `login()` function is shared by a lot of users, and used simultaneously
+		- Heap overflow attack??
+
+#### 3.3
+
+- What is the existing vulnerability when `login()` is not a pointer to the function code, but terminates with a `return()` command?
+	- Note that the function `strcpy` does not check an array's length
+		- Stack-based buffer overflow
+		- Not secure anyway since password `"CS166"` is hardcoded into program, and in plain-text
