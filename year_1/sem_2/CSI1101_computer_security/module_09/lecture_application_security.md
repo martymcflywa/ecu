@@ -141,7 +141,7 @@ int b = 1979;
 ### Stack-based buffer overflow
 
 ``` c
-int main(int argc, char * argv[]) {
+int main(int argc, char *argv[]) {
 
 	// create buffer on the stack
 	char buff[256];
@@ -162,7 +162,7 @@ int main(int argc, char * argv[]) {
 #### Stack-based buffer overflow countermeasure
 
 ``` c
-int main(int argc, char * argv[]) {
+int main(int argc, char *argv[]) {
 
 	// create a buffer on the stack
 	char buff[256];
@@ -182,7 +182,7 @@ int main(int argc, char * argv[]) {
 ### Arithmetic overflow example
 
 ``` c
-int main(int argc, char * argv[]) {
+int main(int argc, char *argv[]) {
 
 	unsigned int connections = 0;
 
@@ -206,7 +206,7 @@ int main(int argc, char * argv[]) {
 #### Arithmetic overflow countermeasure
 
 ``` c
-int main(int argc, char argv[]) {
+int main(int argc, char *argv[]) {
 
 	unsigned int connections = 0;
 
@@ -286,7 +286,7 @@ int main(int argc, char argv[]) {
 - Desired shellcode code in C
 
 ``` c
-int main(int argc, char * argv[]) {
+int main(int argc, char *argv[]) {
 	char *sh;
 	char *args[2];
 	sh = */bin/sh*;
