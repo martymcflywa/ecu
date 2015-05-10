@@ -108,3 +108,16 @@ B1L1CoreSwitch(config-if)#ip access-group VLAN_950 out
 WORKS!!!!
 
 Just need to add all other VLAN IPs to list.
+
+# Password protect router/layer 3 switch
+
+```
+Router(config)#enable secret [password]
+Router(config)#line console 0
+Router(config-line)#password [password]
+Router(config-line)#login
+Router(config)#line vty 0 4
+Router(config-line)#password [password]
+Router(config-line)#login
+Router(config)#banner motd { [message] {
+```
