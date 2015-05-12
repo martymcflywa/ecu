@@ -423,6 +423,7 @@ VALUES	('Y', 1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 +
 		('Y', 17, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 39
 		('Y', 17, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 40
 		('Y', 18, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 41
+		-- These pizzas are not yet ready.
 		(DEFAULT, 18, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 42
 		(DEFAULT, 19, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 43
 		(DEFAULT, 19, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 44
@@ -467,7 +468,7 @@ SET staff_delivery =
 		WHEN 15 THEN FLOOR(RAND() * 20 + 1)
 		WHEN 16 THEN FLOOR(RAND() * 20 + 1)
 		WHEN 17 THEN FLOOR(RAND() * 20 + 1)
---		Setting orders 18, 19, 20 not delivered.
+--		Pizzas for orders 18, 19, 20 not ready, not delivered.
 --		WHEN 18 THEN FLOOR(RAND() * 20 + 1)
 --		WHEN 19 THEN FLOOR(RAND() * 20 + 1)
 --		WHEN 20 THEN FLOOR(RAND() * 20 + 1)

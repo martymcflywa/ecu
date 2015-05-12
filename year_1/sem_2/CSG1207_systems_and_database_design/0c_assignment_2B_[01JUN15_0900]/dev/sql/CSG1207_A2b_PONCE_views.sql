@@ -14,12 +14,12 @@ IF EXISTS (SELECT *
 	FROM sys.views
 	WHERE name = 'view_staff'
 	AND schema_id = SCHEMA_ID('dbo'))
-	DROP VIEW dbo.view_staff
+	DROP VIEW dbo.view_staff;
 GO
 
--- Create view_staff
+-- Create view_staff.
 
-PRINT 'Creating view_staff.'
+PRINT 'Creating view_staff.';
 GO
 
 CREATE VIEW view_staff
@@ -31,6 +31,8 @@ AS SELECT	st.staff_id AS 'staff_id',
 	FROM staff AS st LEFT OUTER JOIN staff AS sup
 	ON st.supervisor = sup.staff_id;
 GO
+
+-- Check out view_staff.
 
 SELECT *
 FROM view_staff;
@@ -57,7 +59,12 @@ IF EXISTS (SELECT *
 	FROM sys.views
 	WHERE name = 'view_pizza_orders'
 	AND schema_id = SCHEMA_ID('dbo'))
-	DROP VIEW dbo.view_pizza_orders
+	DROP VIEW dbo.view_pizza_orders;
+GO
+
+-- Create view_pizza_orders.
+
+PRINT 'Creating view_pizza_orders.';
 GO
 
 CREATE VIEW view_pizza_orders
@@ -76,8 +83,10 @@ AS SELECT	po.pizza_order_id AS 'order_id',
 	INNER JOIN view_staff AS st
 	ON co.staff_order = st.staff_id
 	LEFT OUTER JOIN view_staff AS d
-	ON co.staff_delivery = d.staff_id
+	ON co.staff_delivery = d.staff_id;
 GO
+
+-- Check out view_pizza_orders.
 
 SELECT *
 FROM view_pizza_orders;
@@ -103,10 +112,41 @@ IF EXISTS (SELECT *
 	FROM sys.views
 	WHERE name = 'view_ordered_pizzas'
 	AND schema_id = SCHEMA_ID('dbo'))
-	DROP VIEW dbo.view_ordered_pizzas
+	DROP VIEW dbo.view_ordered_pizzas;
 GO
 
+-- Create view_ordered_pizzas.
 
-
+PRINT 'Creating view_ordered_pizzas.';
 GO
+
+CREATE VIEW view_ordered_pizzas
+AS SELECT	po.pizza_order_id AS 'pizza_order_id',
+			po.cust_order_id AS 'cust_order_id',
+			po.pizza_id AS 'pizza_id',
+			pz.pizza_name AS 'pizza_name',
+			pz.range_id AS 'range_id',
+			pr.range_name AS 'range_name',
+			po.crust_id AS 'crust_id',
+			pc.crust_name AS 'crust_name',
+			po.sauce_id AS 'sauce_id',
+			ps.sauce_name AS 'sauce_name',
+			po.pizza_ready AS 'ready',
+			pr.range_price + pc.crust_surcharge + ps.sauce_surcharge AS 'cost'
+	FROM pizza_order AS po INNER JOIN pizza AS pz
+	ON po.pizza_id = pz.pizza_id
+	INNER JOIN pizza_range AS pr
+	ON pz.range_id = pr.range_id
+	INNER JOIN pizza_crust AS pc
+	ON po.crust_id = pc.crust_id
+	INNER JOIN pizza_sauce AS ps
+	ON po.sauce_id = ps.sauce_id;
+GO
+
+-- Check out view_ordered_pizzas.
+
+SELECT *
+FROM view_ordered_pizzas;
+GO
+
 /*	If you wish to create additional views to use in the queries which follow, include them in this file. */
