@@ -1,4 +1,4 @@
-USE name_of_your_database;
+USE pizza_store;
 GO
 
 /*	Staff View (1 mark)
@@ -6,13 +6,36 @@ GO
 	as well as their first name and last name concatenated into a “full name” column.
 */
 
--- Write your Staff View here
+--	Write your Staff View here
 
+-- If view exists, drop it.
 
-
-
-
+IF EXISTS (SELECT *
+	FROM sys.views
+	WHERE name = 'view_staff'
+	AND schema_id = SCHEMA_ID('dbo'))
+	DROP VIEW dbo.view_staff
 GO
+
+-- Create view_staff
+
+PRINT 'Creating view_staff.'
+GO
+
+CREATE VIEW view_staff
+AS SELECT	st.staff_id AS 'staff_id',
+			st.staff_first_name + ' ' + st.staff_last_name AS 'staff_full_name',
+			st.staff_dob AS 'dob',
+			st.staff_phone AS 'phone_number',
+			sup.staff_first_name + ' ' + sup.staff_last_name AS 'supervisor_full_name'
+	FROM staff AS st LEFT OUTER JOIN staff AS sup
+	ON st.supervisor = sup.staff_id;
+GO
+
+SELECT *
+FROM view_staff;
+GO
+
 /*	Pizza Orders View (2 marks)
 	Create a view which shows the following details of all rows in the “pizza order” table:
 	•	The order ID number and order date.
