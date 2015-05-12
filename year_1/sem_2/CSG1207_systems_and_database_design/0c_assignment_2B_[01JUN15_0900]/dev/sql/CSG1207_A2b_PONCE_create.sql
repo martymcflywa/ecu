@@ -239,19 +239,19 @@ INSERT INTO staff (staff_last_name, staff_first_name, staff_dob, staff_phone, su
 VALUES	('Capone', 'Al', '1979-01-17', '0418991747', NULL),			-- staff_id 1
 		('Luciano', 'Lucky', '1977-11-24', '0418971962', NULL),		-- staff_id 2
 		('Gotti', 'John', '1980-10-27', '0419402002', NULL),		-- staff_id 3
-		('Hill', 'Henry', '1983-06-11', '0419432012', NULL),		-- staff_id 4
+		('Hill', 'Henry', '1999-05-12', '0419432012', NULL),		-- staff_id 4
 		('Brasco', 'Donnie', '1984-01-01', '0419392015', 4),		-- staff_id 5
 		('Costello', 'Frank', '1976-01-26', '0418911773', 2),		-- staff_id 6
 		('Genovese', 'Vito', '1967-11-27', '0418971969', 1),		-- staff_id 7
 		('Gigante', 'Vincent', '1986-03-29', '0419282005', NULL),	-- staff_id 8
 		('DeMeo', 'Roy', '1989-09-07', '0419421983', 3),			-- staff_id 9
-		('Lucchese', 'Tommy', '1995-07-13', '0418991967', 3),		-- staff_id 10
+		('Lucchese', 'Tommy', '1998-07-13', '0418991967', 3),		-- staff_id 10
 		('Giancana', 'Sam', '1983-06-19', '0419081795', 1),			-- staff_id 11
 		('Gravano', 'Sammy', '1994-03-12', '0419452015', 4),		-- staff_id 12
 		('Scarpa', 'Greg', '1988-05-08', '0419281994', 2),			-- staff_id 13
 		('Spilotro', 'Tony', '1998-06-14', '0419381986', 3),		-- staff_id 14
 		('Cohen', 'Mickey', '1993-09-04', '0419131976', 16),		-- staff_id 15
-		('Siegel', 'Bugsy', '1990-06-20', '0419061947', NULL),		-- staff_id 16
+		('Siegel', 'Bugsy', '1999-01-20', '0419061947', NULL),		-- staff_id 16
 		('Pitera', 'Tommy', '1991-12-02', '0419542015', 4),			-- staff_id 17
 		('Casso', 'Anthony', '1982-05-21', '0419402015', 1),		-- staff_id 18
 		('Bonanno', 'Joseph', '1992-05-11', '0419052002', 3),		-- staff_id 19

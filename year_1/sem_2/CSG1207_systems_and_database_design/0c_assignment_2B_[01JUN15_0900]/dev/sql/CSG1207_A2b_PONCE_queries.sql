@@ -1,4 +1,4 @@
-USE name_of_your_database;
+USE pizza_store;
 
 /*	Query 1 – Pizza Menu (2 marks)
 	Write a query that shows the range name, pizza name, pizza description and range price of all pizzas.  
@@ -7,7 +7,13 @@ USE name_of_your_database;
 
 -- Write Query 1 here
 
-
+SELECT	pr.range_name,
+		pz.pizza_name,
+		pz.pizza_desc,
+		pr.range_price
+FROM pizza AS pz INNER JOIN pizza_range AS pr
+ON pz.range_id = pr.range_id
+ORDER BY pr.range_id, pz.pizza_name;
 
 
 
@@ -18,7 +24,10 @@ USE name_of_your_database;
 
 -- Write Query 2 here
 
-
+SELECT *
+FROM customer
+WHERE (cust_name LIKE ('F%') OR cust_name LIKE ('J%'))
+	AND LEN(cust_email) >= 15;
 
 
 
@@ -29,7 +38,15 @@ USE name_of_your_database;
 
 -- Write Query 3 here
 
-
+SELECT	po.order_date,
+		op.pizza_name,
+		op.crust_name,
+		op.sauce_name,
+		op.ready
+FROM view_pizza_orders AS po INNER JOIN view_ordered_pizzas AS op
+ON po.order_id = op.cust_order_id
+WHERE op.ready = 'N'
+ORDER BY po.order_date;
 
 
 
@@ -40,7 +57,11 @@ USE name_of_your_database;
 
 -- Write Query 4 here
 
-
+SELECT TOP(3)	pizza_name,
+				COUNT(pizza_id) AS 'times_ordered'
+FROM view_ordered_pizzas
+GROUP BY pizza_name
+ORDER BY times_ordered DESC;
 
 
 
@@ -55,6 +76,19 @@ USE name_of_your_database;
 -- Write Query 5 here
 
 
+/**
+ * NEEDS WORK!!!
+ */
+SELECT	staff_full_name AS 'underage_supervisors',
+		DATEDIFF(YEAR, dob, GETDATE()) AS 'age'
+FROM view_staff
+WHERE staff_full_name IN (
+	SELECT staff_full_name
+	FROM view_staff
+	WHERE staff_full_name IN (supervisor_full_name)	
+);
+
+--DATEDIFF(YEAR, dob, GETDATE()) < 21;
 
 
 
