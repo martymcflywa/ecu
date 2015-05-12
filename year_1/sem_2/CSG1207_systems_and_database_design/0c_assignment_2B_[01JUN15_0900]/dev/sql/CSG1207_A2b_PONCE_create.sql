@@ -381,63 +381,65 @@ VALUES	(1, FLOOR(RAND() * 20 + 1), '2015-07-02 19:23:10', NULL),	-- cust_order_i
 
 PRINT 'Populating pizza_order table...';
 
-INSERT INTO pizza_order (cust_order_id, pizza_id, crust_id, sauce_id)
-VALUES	(1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 1
-		(1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 2
-		(1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 3
-		(2, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 4
-		(2, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 5
-		(3, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 6
-		(4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 7
-		(4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 8
-		(4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 9
-		(4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 10
-		(5, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 11
-		(5, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 12
-		(6, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 13
-		(6, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 14
-		(7, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 15
-		(8, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 16
-		(9, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 17
-		(9, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 18
-		(10, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 19
-		(10, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 20
-		(11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 21
-		(11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 22
-		(11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 23
-		(11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 24
-		(12, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 25
-		(12, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 26
-		(13, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 27
-		(14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 28
-		(14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 29
-		(14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 30
-		(14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 31
-		(14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 32
-		(15, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 33
-		(15, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 34
-		(16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 35
-		(16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 36
-		(16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 37
-		(16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 38
-		(17, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 39
-		(17, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 40
-		(18, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 41
-		(18, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 42
-		(19, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 43
-		(19, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 44
-		(19, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 45
-		(20, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 46
-		(20, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)); -- pizza_order id 47
+INSERT INTO pizza_order (pizza_ready, cust_order_id, pizza_id, crust_id, sauce_id)
+VALUES	('Y', 1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 1
+		('Y', 1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 2
+		('Y', 1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 3
+		('Y', 2, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 4
+		('Y', 2, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 5
+		('Y', 3, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 6
+		('Y', 4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 7
+		('Y', 4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 8
+		('Y', 4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 9
+		('Y', 4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 10
+		('Y', 5, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 11
+		('Y', 5, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 12
+		('Y', 6, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 13
+		('Y', 6, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 14
+		('Y', 7, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 15
+		('Y', 8, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 16
+		('Y', 9, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 17
+		('Y', 9, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 18
+		('Y', 10, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 19
+		('Y', 10, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 20
+		('Y', 11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 21
+		('Y', 11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 22
+		('Y', 11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 23
+		('Y', 11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 24
+		('Y', 12, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 25
+		('Y', 12, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 26
+		('Y', 13, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 27
+		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 28
+		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 29
+		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 30
+		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 31
+		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 32
+		('Y', 15, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 33
+		('Y', 15, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 34
+		('Y', 16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 35
+		('Y', 16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 36
+		('Y', 16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 37
+		('Y', 16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 38
+		('Y', 17, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 39
+		('Y', 17, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 40
+		('Y', 18, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 41
+		(DEFAULT, 18, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 42
+		(DEFAULT, 19, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 43
+		(DEFAULT, 19, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 44
+		(DEFAULT, 19, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 45
+		(DEFAULT, 20, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 46
+		(DEFAULT, 20, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)); -- pizza_order id 47
 
 --  **************************************************************************************
 --  Make pizzas ready.
 
+/*
 PRINT 'Pizzas ready for delivery...';
 
 UPDATE pizza_order
 SET pizza_ready = 'Y'
 WHERE pizza_ready = 'N';
+*/
 
 --  **************************************************************************************
 --  Deliver pizzas.
@@ -465,8 +467,9 @@ SET staff_delivery =
 		WHEN 15 THEN FLOOR(RAND() * 20 + 1)
 		WHEN 16 THEN FLOOR(RAND() * 20 + 1)
 		WHEN 17 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 18 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 19 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 20 THEN FLOOR(RAND() * 20 + 1)
+--		Setting orders 18, 19, 20 not delivered.
+--		WHEN 18 THEN FLOOR(RAND() * 20 + 1)
+--		WHEN 19 THEN FLOOR(RAND() * 20 + 1)
+--		WHEN 20 THEN FLOOR(RAND() * 20 + 1)
 	END
 WHERE cust_order_id IS NOT NULL;

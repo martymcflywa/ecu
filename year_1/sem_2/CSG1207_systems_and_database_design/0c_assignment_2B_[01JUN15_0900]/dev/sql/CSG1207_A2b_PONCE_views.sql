@@ -51,11 +51,38 @@ GO
 
 -- Write your Pizza Orders View here
 
+-- If view exists, drop it.
 
-
-
-
+IF EXISTS (SELECT *
+	FROM sys.views
+	WHERE name = 'view_pizza_orders'
+	AND schema_id = SCHEMA_ID('dbo'))
+	DROP VIEW dbo.view_pizza_orders
 GO
+
+CREATE VIEW view_pizza_orders
+AS SELECT	po.pizza_order_id AS 'order_id',
+			co.cust_order_datetime AS 'order_date',
+			co.cust_id AS 'cust_id',
+			cu.cust_name AS 'cust_name',
+			co.staff_order AS 'taken_by',
+			st.staff_full_name AS 'taker_name',
+			co.staff_delivery AS 'delivered_by',
+			d.staff_full_name AS 'deliverer_name'
+	FROM pizza_order AS po INNER JOIN customer_order AS co
+	ON po.cust_order_id = co.cust_order_id
+	INNER JOIN customer AS cu
+	ON co.cust_id = cu.cust_id
+	INNER JOIN view_staff AS st
+	ON co.staff_order = st.staff_id
+	LEFT OUTER JOIN view_staff AS d
+	ON co.staff_delivery = d.staff_id
+GO
+
+SELECT *
+FROM view_pizza_orders;
+GO
+
 /*	Ordered Pizzas View (3 marks)
 	Create a view which shows the following details of all rows in the “ordered pizza” table:
 	•	The ordered pizza ID number, order ID number and “ready” column.
@@ -70,7 +97,14 @@ GO
 
 -- Write your Ordered Pizzas View here
 
+-- If view exists, drop it.
 
+IF EXISTS (SELECT *
+	FROM sys.views
+	WHERE name = 'view_ordered_pizzas'
+	AND schema_id = SCHEMA_ID('dbo'))
+	DROP VIEW dbo.view_ordered_pizzas
+GO
 
 
 
