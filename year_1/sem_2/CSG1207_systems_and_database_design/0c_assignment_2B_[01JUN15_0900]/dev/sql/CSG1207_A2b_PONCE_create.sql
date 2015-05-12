@@ -73,7 +73,7 @@ CREATE TABLE staff (
 	supervisor TINYINT NULL,
 	
 	CONSTRAINT staff_pk PRIMARY KEY (staff_id),
-	CONSTRAINT staff_age_check CHECK (DATEDIFF(year, GETDATE(), staff_dob) >= 16),
+	CONSTRAINT staff_age_check CHECK (DATEDIFF(year, staff_dob, GETDATE()) >= 16),
 	CONSTRAINT supervisor_fk FOREIGN KEY (supervisor) REFERENCES staff(staff_id)
 );
 
@@ -91,7 +91,7 @@ CREATE TABLE customer (
 	cust_id SMALLINT NOT NULL IDENTITY,
 	cust_name VARCHAR(50) NOT NULL,
 	cust_adrs TEXT NOT NULL,
-	cust_email VARCHAR(20) NOT NULL,
+	cust_email VARCHAR(50) NOT NULL,
 	
 	CONSTRAINT customer_pk PRIMARY KEY (cust_id),
 	CONSTRAINT cust_email_check CHECK (cust_email LIKE '_%@_%.__%')
@@ -148,7 +148,7 @@ PRINT 'Creating pizza_sauce table...';
 
 CREATE TABLE pizza_sauce (
 	sauce_id TINYINT NOT NULL IDENTITY,
-	sauce_name VARCHAR(20) NOT NULL,
+	sauce_name VARCHAR(40) NOT NULL,
 	sauce_surcharge DECIMAL(3,2) NOT NULL DEFAULT 0.00,
 	
 	CONSTRAINT sauce_id_pk PRIMARY KEY (sauce_id),
@@ -185,7 +185,7 @@ PRINT 'Creating pizza table...';
 CREATE TABLE pizza (
 	pizza_id TINYINT NOT NULL IDENTITY,
 	range_id TINYINT NOT NULL,
-	pizza_name VARCHAR(20) NOT NULL,
+	pizza_name VARCHAR(30) NOT NULL,
 	pizza_desc TEXT NOT NULL,
 	
 	CONSTRAINT pizza_id_pk PRIMARY KEY (pizza_id),
@@ -233,6 +233,8 @@ CREATE TABLE pizza_order (
 --  Populate the staff table.
 --  Since the primary key uses IDENTITY, we don't specify a value for that column.
 
+PRINT 'Populating staff table...';
+
 INSERT INTO staff (staff_last_name, staff_first_name, staff_dob, staff_phone, supervisor)
 VALUES	('Capone', 'Al', '1979-01-17', '0418991747', NULL),			-- staff_id 1
 		('Luciano', 'Lucky', '1977-11-24', '0418971962', NULL),		-- staff_id 2
@@ -258,6 +260,8 @@ VALUES	('Capone', 'Al', '1979-01-17', '0418991747', NULL),			-- staff_id 1
 --  **************************************************************************************
 --  Populate the customer table.
 --  Since the primary key uses IDENTITY, we don't specify a value for that column.
+
+PRINT 'Populating customer table...';
 
 INSERT INTO customer (cust_name, cust_adrs, cust_email)
 VALUES	('James Brown', '1 Street Rd, Suburb, 0101', 'soulbrothernumberone@jamesbrown.com'),		-- cust_id 1
@@ -286,6 +290,8 @@ VALUES	('James Brown', '1 Street Rd, Suburb, 0101', 'soulbrothernumberone@jamesb
 	If required, change the table and column names to match those in your database.
 */
 
+PRINT 'Populating pizza_range table...';
+
 INSERT INTO pizza_range (range_name, range_price)
 VALUES	('Budget Range', 8),		-- range ID 1
 		('Traditional Range', 12),	-- range ID 2
@@ -298,6 +304,8 @@ VALUES	('Budget Range', 8),		-- range ID 1
 	If required, change the table and column names to match those in your database.
 */
 
+PRINT 'Populating pizza table...';
+
 INSERT INTO pizza (pizza_name, pizza_desc, range_id) 
 VALUES	('Classic Cheese', 'Who needs toppings?', 1),									-- pizza ID 1
 		('Hawaiian', 'A ham and pineapple classic.', 1),								-- pizza ID 2
@@ -309,12 +317,12 @@ VALUES	('Classic Cheese', 'Who needs toppings?', 1),									-- pizza ID 1
 		('Pulled Pork and Pear', 'Slow-cooked pulled pork and fresh pear slices.', 3),	-- pizza ID 8
 		('Wagyu Beef and Prawn', 'Tender slices of beef and tiger prawns.', 3);			-- pizza ID 9
 
-
-
 /*	The following statement inserts the details of 4 crusts into a table named "crust".  It specifies values for "crust_name" and "crust_surcharge" columns.
 	Crust ID numbers numbers are not specified since it is assumed that an auto-incrementing integer is being used.
 	If required, change the table and column names to match those in your database.
 */
+
+PRINT 'Populating pizza_crust table...';
 
 -- MP 20150505: Modified crust to pizza_crust
 INSERT INTO pizza_crust (crust_name, crust_surcharge)
@@ -322,13 +330,13 @@ VALUES	('Thick Crust', 0),				-- crust ID 1
 		('Thin Crust', 0),				-- crust ID 2
 		('Sauce-Stuffed Crust', 1),		-- crust ID 3
 		('Cheese-Stuffed Crust', 1.5);	-- crust ID 4
-		
-
 
 /*	The following statement inserts the details of 4 sauces into a table named "sauce".  It specifies values for "sauce_name" and "sauce_surcharge" columns.
 	Sauce ID numbers numbers are not specified since it is assumed that an auto-incrementing integer is being used.
 	If required, change the table and column names to match those in your database.
 */
+
+PRINT 'Populating pizza_sauce table...';
 
 -- MP 20150505: Modified sauce to pizza_sauce
 INSERT INTO pizza_sauce (sauce_name, sauce_surcharge)
@@ -340,47 +348,92 @@ VALUES	('Pizza Sauce', 0),							-- sauce ID 1
 --  **************************************************************************************
 --  Populate the customer_order table.
 --  Initial orders, not yet delivered.
+--	Generates random staff_order.
+
+PRINT 'Populating customer_order table...';
 
 INSERT INTO customer_order (cust_id, staff_order, cust_order_datetime, staff_delivery)
-VALUES	(2, 15, '02-07-2015 19:23:10', NULL),	-- cust_order_id 1
-		(18, 15, '07-07-2015 18:38:52', NULL),	-- cust_order_id 2
-		(11, 2, '08-07-2015 22:37:54', NULL),	-- cust_order_id 3
-		(19, 9, '06-08-2015 18:31:52', NULL),	-- cust_order_id 4
-		(10, 4, '29-08-2015 21:01:01', NULL),	-- cust_order_id 5
-		(12, 13, '28-09-2015 19:57:04', NULL),	-- cust_order_id 6
-		(1, 11, '02-10-2015 18:16:18', NULL),	-- cust_order_id 7
-		(9, 18, '05-10-2015 20:54:58', NULL),	-- cust_order_id 8
-		(15, 14, '08-11-2015 22:00:44', NULL),	-- cust_order_id 9
-		(4, 6, '21-11-2015 21:35:03', NULL);		-- cust_order_id 10
+VALUES	(1, FLOOR(RAND() * 20 + 1), '2015-07-02 19:23:10', NULL),	-- cust_order_id 1
+		(2, FLOOR(RAND() * 20 + 1), '2015-07-07 18:38:52', NULL),	-- cust_order_id 2
+		(3, FLOOR(RAND() * 20 + 1), '2015-07-08 22:37:54', NULL),	-- cust_order_id 3
+		(4, FLOOR(RAND() * 20 + 1), '2015-08-06 18:31:52', NULL),	-- cust_order_id 4
+		(5, FLOOR(RAND() * 20 + 1), '2015-08-29 21:01:01', NULL),	-- cust_order_id 5
+		(6, FLOOR(RAND() * 20 + 1), '2015-09-28 19:57:04', NULL),	-- cust_order_id 6
+		(7, FLOOR(RAND() * 20 + 1), '2015-10-02 18:16:18', NULL),	-- cust_order_id 7
+		(8, FLOOR(RAND() * 20 + 1), '2015-10-05 20:54:58', NULL),	-- cust_order_id 8
+		(9, FLOOR(RAND() * 20 + 1), '2015-11-08 22:00:44', NULL),	-- cust_order_id 9
+		(10, FLOOR(RAND() * 20 + 1), '2015-11-21 21:35:03', NULL),	-- cust_order_id 10
+		(11, FLOOR(RAND() * 20 + 1), '2015-11-25 17:40:30', NULL),	-- cust_order_id 11
+		(12, FLOOR(RAND() * 20 + 1), '2015-12-01 16:23:01', NULL),	-- cust_order_id 12
+		(13, FLOOR(RAND() * 20 + 1), '2015-12-03 18:44:21', NULL),	-- cust_order_id 13
+		(14, FLOOR(RAND() * 20 + 1), '2015-12-03 20:01:12', NULL),	-- cust_order_id 14
+		(15, FLOOR(RAND() * 20 + 1), '2015-12-08 22:45:14', NULL),	-- cust_order_id 15
+		(16, FLOOR(RAND() * 20 + 1), '2015-12-10 19:30:44', NULL),	-- cust_order_id 16
+		(17, FLOOR(RAND() * 20 + 1), '2015-12-11 00:10:51', NULL),	-- cust_order_id 17
+		(18, FLOOR(RAND() * 20 + 1), '2015-12-11 23:01:32', NULL),	-- cust_order_id 18
+		(19, FLOOR(RAND() * 20 + 1), '2015-12-16 21:31:38', NULL),	-- cust_order_id 19
+		(20, FLOOR(RAND() * 20 + 1), '2015-12-22 22:50:51', NULL);	-- cust_order_id 20
 
 --  **************************************************************************************
 --  Populate the pizza_order table.
 --	Initial orders, pizza not yet ready.
+--	Generates random selections for pizzas, crust and sauce.
 
-INSERT INTO pizza_order (pizza_ready, cust_order_id, pizza_id, crust_id, sauce_id)
-VALUES	(DEFAULT, 1, 8, 4, 4), -- pizza_order id
-		(DEFAULT, 1, 9, 2, 2), -- pizza_order id
-		(DEFAULT, 1, 4, 2, 1), -- pizza_order id
-		(DEFAULT, 2, 4, 1, 3), -- pizza_order id
-		(DEFAULT, 2, 4, 2, 4), -- pizza_order id
-		(DEFAULT, 3, 2, 1, 2), -- pizza_order id
-		(DEFAULT, 4, 3, 3, 1), -- pizza_order id
-		(DEFAULT, 4, 1, 2, 3), -- pizza_order id
-		(DEFAULT, 4, 4, 3, 4), -- pizza_order id
-		(DEFAULT, 4, 2, 3, 4), -- pizza_order id
-		(DEFAULT, 5, 4, 2, 3), -- pizza_order id
-		(DEFAULT, 5, 9, 3, 4), -- pizza_order id
-		(DEFAULT, 6, 6, 3, 1), -- pizza_order id
-		(DEFAULT, 6, 7, 1, 2), -- pizza_order id
-		(DEFAULT, 7, 9, 3, 1), -- pizza_order id
-		(DEFAULT, 8, 3, 1, 4), -- pizza_order id
-		(DEFAULT, 9, 6, 1, 4), -- pizza_order id
-		(DEFAULT, 9, 9, 4, 4), -- pizza_order id
-		(DEFAULT, 10, 1, 1, 4), -- pizza_order id
-		(DEFAULT, 10, 7, 3, 1); -- pizza_order id
+PRINT 'Populating pizza_order table...';
+
+INSERT INTO pizza_order (cust_order_id, pizza_id, crust_id, sauce_id)
+VALUES	(1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 1
+		(1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 2
+		(1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 3
+		(2, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 4
+		(2, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 5
+		(3, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 6
+		(4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 7
+		(4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 8
+		(4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 9
+		(4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 10
+		(5, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 11
+		(5, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 12
+		(6, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 13
+		(6, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 14
+		(7, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 15
+		(8, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 16
+		(9, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 17
+		(9, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 18
+		(10, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 19
+		(10, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 20
+		(11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 21
+		(11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 22
+		(11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 23
+		(11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 24
+		(12, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 25
+		(12, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 26
+		(13, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 27
+		(14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 28
+		(14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 29
+		(14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 30
+		(14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 31
+		(14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 32
+		(15, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 33
+		(15, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 34
+		(16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 35
+		(16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 36
+		(16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 37
+		(16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 38
+		(17, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 39
+		(17, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 40
+		(18, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 41
+		(18, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 42
+		(19, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 43
+		(19, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 44
+		(19, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 45
+		(20, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 46
+		(20, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)); -- pizza_order id 47
 
 --  **************************************************************************************
 --  Make pizzas ready.
+
+PRINT 'Pizzas ready for delivery...';
 
 UPDATE pizza_order
 SET pizza_ready = 'Y'
@@ -388,5 +441,32 @@ WHERE pizza_ready = 'N';
 
 --  **************************************************************************************
 --  Deliver pizzas.
+--	Generates random staff_delivery.
+
+PRINT 'Pizzas delivered...';
+
 UPDATE customer_order
-SET staff_delivery = 
+SET staff_delivery =
+	CASE cust_order_id
+		WHEN 1 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 2 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 3 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 4 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 5 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 6 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 7 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 8 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 9 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 10 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 11 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 12 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 13 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 14 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 15 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 16 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 17 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 18 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 19 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 20 THEN FLOOR(RAND() * 20 + 1)
+	END
+WHERE cust_order_id IS NOT NULL;
