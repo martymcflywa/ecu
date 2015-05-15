@@ -32,7 +32,8 @@ ORDER BY
 SELECT *
 FROM customer
 WHERE
-	(cust_name LIKE ('F%') OR cust_name LIKE ('J%'))
+	(cust_name LIKE ('F%')
+	OR cust_name LIKE ('J%'))
 	AND LEN(cust_email) >= 15;
 
 
@@ -136,7 +137,17 @@ ORDER BY
 
 -- Write Query 7 here
 
-
+SELECT
+	po.cust_order_id,
+	po.order_date,
+	po.cust_name
+FROM
+	view_ordered_pizzas AS op
+	LEFT OUTER JOIN view_pizza_orders AS po
+	ON op.pizza_order_id = po.pizza_order_id
+WHERE
+	po.delivered_by IS NULL
+	AND op.ready = 'Y';
 
 
 
@@ -149,3 +160,10 @@ ORDER BY
 */
 
 -- Write Query 8 here
+
+SELECT
+	
+FROM
+	view_ordered_pizzas AS op
+	LEFT OUTER JOIN view_pizza_orders AS po
+	ON op.pizza_order_id = po.pizza_order_id
