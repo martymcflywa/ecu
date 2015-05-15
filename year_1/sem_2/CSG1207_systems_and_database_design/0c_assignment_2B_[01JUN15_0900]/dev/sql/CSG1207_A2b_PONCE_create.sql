@@ -239,7 +239,7 @@ INSERT INTO staff (staff_last_name, staff_first_name, staff_dob, staff_phone, su
 VALUES	('Capone', 'Al', '1979-01-17', '0418991747', NULL),			-- staff_id 1
 		('Luciano', 'Lucky', '1977-11-24', '0418971962', NULL),		-- staff_id 2
 		('Gotti', 'John', '1980-10-27', '0419402002', NULL),		-- staff_id 3
-		('Hill', 'Henry', '1999-05-12', '0419432012', NULL),		-- staff_id 4
+		('Hill', 'Henry', '1997-05-12', '0419432012', NULL),		-- staff_id 4
 		('Brasco', 'Donnie', '1984-01-01', '0419392015', 4),		-- staff_id 5
 		('Costello', 'Frank', '1976-01-26', '0418911773', 2),		-- staff_id 6
 		('Genovese', 'Vito', '1967-11-27', '0418971969', 1),		-- staff_id 7
@@ -281,7 +281,7 @@ VALUES	('James Brown', '1 Street Rd, Suburb, 0101', 'soulbrothernumberone@jamesb
 		('Adam Horovitz', '15 Street Rd, Brooklyn, 1249', 'adrock@beastieboys.com'),				-- cust_id 15
 		('Mixmaster Mike', '16 Street Rd, Brooklyn, 1249', 'mmm@beastieboys.com'),					-- cust_id 16
 		('Chuck D', '17 Street Rd, Long Island, 1101', 'chuckd@publicenemy.com'),					-- cust_id 17
-		('Flavor Flav', '18 Street Rd, Long Island, 1101', 'flav@publicenemy.com'),					-- cust_id 18
+		('Flavor Flav', '18 Street Rd, Long Island, 1101', 'flavoroflove@publicenemy.com'),			-- cust_id 18
 		('DJ Lord', '19 Street Rd, Long Island, 1101', 'djlord@publicenemy.com'),					-- cust_id 19
 		('Zach de la Rocha', '20 Street Rd, Los Angeles, 0323', 'zach@rageagainsthemachine.com');	-- cust_id 20
 		
@@ -382,47 +382,47 @@ VALUES	(1, FLOOR(RAND() * 20 + 1), '2015-07-02 19:23:10', NULL),	-- cust_order_i
 PRINT 'Populating pizza_order table...';
 
 INSERT INTO pizza_order (pizza_ready, cust_order_id, pizza_id, crust_id, sauce_id)
-VALUES	('Y', 1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 1
-		('Y', 1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 2
-		('Y', 1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 3
-		('Y', 2, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 4
-		('Y', 2, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 5
-		('Y', 3, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 6
-		('Y', 4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 7
-		('Y', 4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 8
-		('Y', 4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 9
-		('Y', 4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 10
-		('Y', 5, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 11
-		('Y', 5, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 12
-		('Y', 6, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 13
-		('Y', 6, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 14
-		('Y', 7, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 15
-		('Y', 8, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 16
-		('Y', 9, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 17
-		('Y', 9, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 18
-		('Y', 10, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 19
-		('Y', 10, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 20
-		('Y', 11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 21
-		('Y', 11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 22
-		('Y', 11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 23
-		('Y', 11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 24
-		('Y', 12, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 25
-		('Y', 12, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 26
-		('Y', 13, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 27
-		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 28
-		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 29
-		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 30
-		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 31
-		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 32
-		('Y', 15, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 33
-		('Y', 15, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 34
-		('Y', 16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 35
-		('Y', 16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 36
-		('Y', 16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 37
-		('Y', 16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 38
-		('Y', 17, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 39
-		('Y', 17, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 40
-		('Y', 18, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 41
+VALUES	('Y', 1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 1
+		('Y', 1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 2
+		('Y', 1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 3
+		('Y', 2, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 4
+		('Y', 2, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 5
+		('Y', 3, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 6
+		('Y', 4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 7
+		('Y', 4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 8
+		('Y', 4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 9
+		('Y', 4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 10
+		('Y', 5, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 11
+		('Y', 5, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 12
+		('Y', 6, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 13
+		('Y', 6, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 14
+		('Y', 7, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 15
+		('Y', 8, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 16
+		('Y', 9, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 17
+		('Y', 9, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 18
+		('Y', 10, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 19
+		('Y', 10, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 20
+		('Y', 11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 21
+		('Y', 11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 22
+		('Y', 11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 23
+		('Y', 11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 24
+		('Y', 12, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 25
+		('Y', 12, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 26
+		('Y', 13, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 27
+		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 28
+		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 29
+		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 30
+		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 31
+		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 32
+		('Y', 15, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 33
+		('Y', 15, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 34
+		('Y', 16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 35
+		('Y', 16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 36
+		('Y', 16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 37
+		('Y', 16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 38
+		('Y', 17, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 39
+		('Y', 17, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 40
+		('Y', 18, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 41
 		-- These pizzas are not yet ready.
 		(DEFAULT, 18, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 42
 		(DEFAULT, 19, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 43

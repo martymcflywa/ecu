@@ -22,13 +22,18 @@ GO
 PRINT 'Creating view_staff.';
 GO
 
-CREATE VIEW view_staff
-AS SELECT	st.staff_id AS 'staff_id',
-			st.staff_first_name + ' ' + st.staff_last_name AS 'staff_full_name',
-			st.staff_dob AS 'dob',
-			st.staff_phone AS 'phone_number',
-			sup.staff_first_name + ' ' + sup.staff_last_name AS 'supervisor_full_name'
-	FROM staff AS st LEFT OUTER JOIN staff AS sup
+CREATE VIEW
+	view_staff
+AS SELECT
+	st.staff_id AS 'staff_id',
+	st.staff_first_name + ' ' + st.staff_last_name AS 'staff_full_name',
+	st.staff_dob AS 'dob',
+	st.staff_phone AS 'phone_number',
+	st.supervisor AS 'supervisor_id',
+	sup.staff_first_name + ' ' + sup.staff_last_name AS 'supervisor_full_name'
+FROM
+	staff AS st
+	LEFT OUTER JOIN staff AS sup
 	ON st.supervisor = sup.staff_id;
 GO
 
@@ -67,16 +72,21 @@ GO
 PRINT 'Creating view_pizza_orders.';
 GO
 
-CREATE VIEW view_pizza_orders
-AS SELECT	po.pizza_order_id AS 'order_id',
-			co.cust_order_datetime AS 'order_date',
-			co.cust_id AS 'cust_id',
-			cu.cust_name AS 'cust_name',
-			co.staff_order AS 'taken_by',
-			st.staff_full_name AS 'taker_name',
-			co.staff_delivery AS 'delivered_by',
-			d.staff_full_name AS 'deliverer_name'
-	FROM pizza_order AS po INNER JOIN customer_order AS co
+CREATE VIEW
+	view_pizza_orders
+AS SELECT
+	co.cust_order_id AS 'cust_order_id',
+	po.pizza_order_id AS 'pizza_order_id',
+	co.cust_order_datetime AS 'order_date',
+	co.cust_id AS 'cust_id',
+	cu.cust_name AS 'cust_name',
+	co.staff_order AS 'taken_by',
+	st.staff_full_name AS 'taker_name',
+	co.staff_delivery AS 'delivered_by',
+	d.staff_full_name AS 'deliverer_name'
+FROM
+	pizza_order AS po
+	INNER JOIN customer_order AS co
 	ON po.cust_order_id = co.cust_order_id
 	INNER JOIN customer AS cu
 	ON co.cust_id = cu.cust_id
@@ -120,20 +130,26 @@ GO
 PRINT 'Creating view_ordered_pizzas.';
 GO
 
-CREATE VIEW view_ordered_pizzas
-AS SELECT	po.pizza_order_id AS 'pizza_order_id',
-			po.cust_order_id AS 'cust_order_id',
-			po.pizza_id AS 'pizza_id',
-			pz.pizza_name AS 'pizza_name',
-			pz.range_id AS 'range_id',
-			pr.range_name AS 'range_name',
-			po.crust_id AS 'crust_id',
-			pc.crust_name AS 'crust_name',
-			po.sauce_id AS 'sauce_id',
-			ps.sauce_name AS 'sauce_name',
-			po.pizza_ready AS 'ready',
-			pr.range_price + pc.crust_surcharge + ps.sauce_surcharge AS 'cost'
-	FROM pizza_order AS po INNER JOIN pizza AS pz
+CREATE VIEW
+	view_ordered_pizzas
+AS SELECT
+	po.cust_order_id AS 'cust_order_id',
+	po.pizza_order_id AS 'pizza_order_id',
+	po.pizza_id AS 'pizza_id',
+	pz.pizza_name AS 'pizza_name',
+	pz.range_id AS 'range_id',
+	pr.range_name AS 'range_name',
+	po.crust_id AS 'crust_id',
+	pc.crust_name AS 'crust_name',
+	po.sauce_id AS 'sauce_id',
+	ps.sauce_name AS 'sauce_name',
+	po.pizza_ready AS 'ready',
+	pr.range_price 
+		+ pc.crust_surcharge
+		+ ps.sauce_surcharge AS 'cost'
+FROM
+	pizza_order AS po
+	INNER JOIN pizza AS pz
 	ON po.pizza_id = pz.pizza_id
 	INNER JOIN pizza_range AS pr
 	ON pz.range_id = pr.range_id
@@ -150,3 +166,45 @@ FROM view_ordered_pizzas;
 GO
 
 /*	If you wish to create additional views to use in the queries which follow, include them in this file. */
+
+/*	Supervisors View
+	Create a view which shows the following details of all rows in the "staff" table.
+	•	supervisor_id
+	•	supervisor full name
+	•	supervisor age
+*/
+
+-- If view exists, drop it.
+
+IF EXISTS (SELECT *
+	FROM sys.views
+	WHERE name = 'view_supervisors'
+	AND schema_id = SCHEMA_ID('dbo'))
+	DROP VIEW dbo.view_supervisors;
+GO
+
+-- Create view_supervisors.
+
+PRINT 'Creating view_supervisors.';
+GO
+
+CREATE VIEW
+	view_supervisors
+AS SELECT DISTINCT
+	st.staff_id AS 'supervisor_id',
+	st.staff_first_name + ' '
+		+ st.staff_last_name AS 'supervisor_full_name',
+	st.staff_dob AS 'dob',
+	DATEDIFF(YEAR, st.staff_dob, GETDATE()) AS 'age',
+	st.staff_phone AS 'supervisor_ph'
+FROM
+	staff AS st
+	INNER JOIN staff AS sup
+	ON sup.supervisor = st.staff_id;
+GO
+
+-- Check out view_supervisors.
+
+SELECT *
+FROM view_supervisors;
+GO

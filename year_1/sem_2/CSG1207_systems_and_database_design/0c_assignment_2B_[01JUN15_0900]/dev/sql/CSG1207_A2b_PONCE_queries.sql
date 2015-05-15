@@ -7,13 +7,18 @@ USE pizza_store;
 
 -- Write Query 1 here
 
-SELECT	pr.range_name,
-		pz.pizza_name,
-		pz.pizza_desc,
-		pr.range_price
-FROM pizza AS pz INNER JOIN pizza_range AS pr
-ON pz.range_id = pr.range_id
-ORDER BY pr.range_id, pz.pizza_name;
+SELECT
+	pr.range_name,
+	pz.pizza_name,
+	pz.pizza_desc,
+	pr.range_price
+FROM
+	pizza AS pz
+	INNER JOIN pizza_range AS pr
+	ON pz.range_id = pr.range_id
+ORDER BY
+	pr.range_id,
+	pz.pizza_name;
 
 
 
@@ -26,7 +31,8 @@ ORDER BY pr.range_id, pz.pizza_name;
 
 SELECT *
 FROM customer
-WHERE (cust_name LIKE ('F%') OR cust_name LIKE ('J%'))
+WHERE
+	(cust_name LIKE ('F%') OR cust_name LIKE ('J%'))
 	AND LEN(cust_email) >= 15;
 
 
@@ -38,15 +44,20 @@ WHERE (cust_name LIKE ('F%') OR cust_name LIKE ('J%'))
 
 -- Write Query 3 here
 
-SELECT	po.order_date,
-		op.pizza_name,
-		op.crust_name,
-		op.sauce_name,
-		op.ready
-FROM view_pizza_orders AS po INNER JOIN view_ordered_pizzas AS op
-ON po.order_id = op.cust_order_id
-WHERE op.ready = 'N'
-ORDER BY po.order_date;
+SELECT
+	po.order_date,
+	op.pizza_name,
+	op.crust_name,
+	op.sauce_name,
+	op.ready
+FROM
+	view_pizza_orders AS po
+	INNER JOIN view_ordered_pizzas AS op
+	ON po.pizza_order_id = op.pizza_order_id
+WHERE
+	op.ready = 'N'
+ORDER BY
+	po.order_date;
 
 
 
@@ -57,11 +68,15 @@ ORDER BY po.order_date;
 
 -- Write Query 4 here
 
-SELECT TOP(3)	pizza_name,
-				COUNT(pizza_id) AS 'times_ordered'
-FROM view_ordered_pizzas
-GROUP BY pizza_name
-ORDER BY times_ordered DESC;
+SELECT TOP(3)
+	pizza_name,
+	COUNT(pizza_id) AS 'times_ordered'
+FROM
+	view_ordered_pizzas
+GROUP BY
+	pizza_name
+ORDER BY
+	times_ordered DESC;
 
 
 
@@ -75,20 +90,14 @@ ORDER BY times_ordered DESC;
 
 -- Write Query 5 here
 
-
-/**
- * NEEDS WORK!!!
- */
-SELECT	staff_full_name AS 'underage_supervisors',
-		DATEDIFF(YEAR, dob, GETDATE()) AS 'age'
-FROM view_staff
-WHERE staff_full_name IN (
-	SELECT staff_full_name
-	FROM view_staff
-	WHERE staff_full_name IN (supervisor_full_name)	
-);
-
---DATEDIFF(YEAR, dob, GETDATE()) < 21;
+-- view_supervisors does heavy lifting to identify supervisors.
+SELECT
+	supervisor_full_name,
+	age
+FROM
+	view_supervisors
+WHERE
+	age < 21;
 
 
 
@@ -101,7 +110,19 @@ WHERE staff_full_name IN (
 
 -- Write Query 6 here
 
-
+SELECT
+	op.cust_order_id AS 'order_id',
+	po.order_date AS 'order_date',
+	po.cust_name AS 'cust_name',
+	SUM(op.cost) AS 'total_cost'
+FROM
+	view_ordered_pizzas AS op
+	INNER JOIN view_pizza_orders AS po
+	ON po.pizza_order_id = op.pizza_order_id
+GROUP BY
+	op.cust_order_id, po.order_date, po.cust_name
+ORDER BY
+	po.order_date DESC;
 
 
 
