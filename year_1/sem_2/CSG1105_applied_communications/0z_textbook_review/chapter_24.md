@@ -44,7 +44,7 @@
 	1. Computer Security Response Team
 	2. Computer Incident Response Team
 	3. Computer Security Incident Response Team
-		- **Answer:** c) COmputer Security Incident Response Team
+		- **Answer:** c) Computer Security Incident Response Team
 16. The .ru suffix on a domain name indicates that the domain was registered in:
 	1. Romania
 	2. Russia
@@ -60,7 +60,7 @@
 	2. Bad clusters
 	3. Both
 		- **Answer:** c) Both
-19. The chain of \_\_\_\_\_\_\_\_\_\_ is a written record of all interaction with the evidence from the moment it is acquired to the moment it is released
+19. The chain of \_\_\_\_\_\_\_\_\_\_ is a written record of all interaction with the evidence from the moment it is acquired to the moment it is released.
 	1. Custody
 	2. Handlers
 	3. Ownership
