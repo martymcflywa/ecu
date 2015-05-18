@@ -214,8 +214,13 @@ public class UnitList {
             // print action performed
             System.out.println("\nDeleted first student: " + current.student_ID);
 
+            UnitList newHead = new UnitList(current.next.student_ID, current.next.A1_result, current.next.A2_result, current.next.exam_result);
+            newHead.next = current.next.next;
+            u_list = newHead;
+            current.next = null;
+
 			// set u_list to current's next node
-			u_list = current.next;
+			//u_list = current.next;
 
 			// else current is somewhere else down the list, and target matched
 		} else {
