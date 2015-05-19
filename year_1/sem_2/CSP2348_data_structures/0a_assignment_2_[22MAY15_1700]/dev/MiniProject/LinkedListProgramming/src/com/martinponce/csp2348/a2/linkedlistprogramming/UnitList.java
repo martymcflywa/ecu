@@ -214,13 +214,25 @@ public class UnitList {
             // print action performed
             System.out.println("\nDeleted first student: " + current.student_ID);
 
-            UnitList newHead = new UnitList(current.next.student_ID, current.next.A1_result, current.next.A2_result, current.next.exam_result);
-            newHead.next = current.next.next;
-            u_list = newHead;
-            current.next = null;
+            // if node to delete is the only node left in list,
+            if(u_list.next == null) {
+                // print warning message
+                System.out.println("\nWARNING: No more nodes in list!");
+                // set u_list to null
+                u_list = null;
 
-			// set u_list to current's next node
-			//u_list = current.next;
+                // else > 1 node in list,
+            } else {
+
+                // copy u_list.next's data into u_list
+                u_list.student_ID = u_list.next.student_ID;
+                u_list.A1_result = u_list.next.A1_result;
+                u_list.A2_result = u_list.next.A2_result;
+                u_list.exam_result = u_list.next.exam_result;
+
+                // set u_list.next to next.next, skipping over copied u_list.next
+                u_list.next = u_list.next.next;
+            }
 
 			// else current is somewhere else down the list, and target matched
 		} else {
@@ -355,5 +367,13 @@ public class UnitList {
         print_unit_result(u_list);
 		// print SLL in reverse order
 		reverse_print_unit_result(u_list);
+//        delete_unit_result(u_list, 1111);
+//        delete_unit_result(u_list, 1112);
+//        delete_unit_result(u_list, 1114);
+//        delete_unit_result(u_list, 1116);
+//        delete_unit_result(u_list, 1122);
+//        delete_unit_result(u_list, 1145);
+//        delete_unit_result(u_list, 1189);
+//        delete_unit_result(u_list, 1225);
 	}
 }
