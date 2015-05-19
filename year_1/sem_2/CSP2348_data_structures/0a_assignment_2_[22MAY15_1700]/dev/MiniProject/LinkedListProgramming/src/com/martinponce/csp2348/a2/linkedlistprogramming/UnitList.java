@@ -360,7 +360,7 @@ public class UnitList {
 		// delete student that is not first
 		delete_unit_result(u_list, 1114);
 		// delete student that is not first
-		delete_unit_result(u_list, 1116);
+		delete_unit_result(u_list, 1225);
         // print SLL in original order
         print_unit_result(u_list);
 		// print SLL in reverse order
