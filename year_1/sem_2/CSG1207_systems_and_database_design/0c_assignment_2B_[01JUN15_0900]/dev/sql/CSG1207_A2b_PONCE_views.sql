@@ -58,6 +58,10 @@ GO
 
 -- Write your Pizza Orders View here
 
+/************************
+ * customer_order table *
+ ************************/
+
 -- If view exists, drop it.
 
 IF EXISTS (SELECT *
@@ -76,24 +80,21 @@ CREATE VIEW
 	view_pizza_orders
 AS SELECT
 	co.cust_order_id AS 'cust_order_id',
-	po.pizza_order_id AS 'pizza_order_id',
 	co.cust_order_datetime AS 'order_date',
 	co.cust_id AS 'cust_id',
 	cu.cust_name AS 'cust_name',
 	co.staff_order AS 'taken_by',
-	st.staff_full_name AS 'taker_name',
+	ord.staff_first_name + ' ' + ord.staff_last_name AS 'taker_name',
 	co.staff_delivery AS 'delivered_by',
-	d.staff_full_name AS 'deliverer_name'
+	del.staff_first_name + ' ' + del.staff_last_name AS 'deliverer_name'
 FROM
-	pizza_order AS po
-	INNER JOIN customer_order AS co
-	ON po.cust_order_id = co.cust_order_id
+	customer_order AS co
 	INNER JOIN customer AS cu
 	ON co.cust_id = cu.cust_id
-	INNER JOIN view_staff AS st
-	ON co.staff_order = st.staff_id
-	LEFT OUTER JOIN view_staff AS d
-	ON co.staff_delivery = d.staff_id;
+	INNER JOIN staff AS ord
+	ON co.staff_order = ord.staff_id
+	LEFT OUTER JOIN staff AS del
+	ON co.staff_delivery = del.staff_id
 GO
 
 -- Check out view_pizza_orders.
