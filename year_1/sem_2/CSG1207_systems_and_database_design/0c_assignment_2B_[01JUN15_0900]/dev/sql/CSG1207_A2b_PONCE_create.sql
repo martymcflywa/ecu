@@ -264,8 +264,8 @@ VALUES	('Capone', 'Al', '1979-01-17', '0418991747', NULL),			-- staff_id 1
 PRINT 'Populating customer table...';
 
 INSERT INTO customer (cust_name, cust_adrs, cust_email)
-VALUES	('James Brown', '1 Street Rd, Suburb, 0101', 'soulbrothernumberone@jamesbrown.com'),		-- cust_id 1
-		('Kurt Cobain', '2 Street Rd, Suburb, 0102', 'kurt@nirvana.com'),							-- cust_id 2
+VALUES	('James Brown', '1 Street Rd, Augusta, 0706', 'soulbrothernumberone@jamesbrown.com'),		-- cust_id 1
+		('Biggie Smalls', '2 Street Rd, Brooklyn, 1249', 'notorious@bigpoppa.com'),					-- cust_id 2
 		('Dr. Dre', '3 Street Rd, Compton, 0420', 'dreday@nwa.com'),								-- cust_id 3
 		('Eazy E', '4 Street Rd, Compton, 0420', 'eazy@nwa.com'),									-- cust_id 4
 		('Ice Cube', '5 Street Rd, Compton, 0420', 'doughboy@nwa.com'),								-- cust_id 5
@@ -281,7 +281,7 @@ VALUES	('James Brown', '1 Street Rd, Suburb, 0101', 'soulbrothernumberone@jamesb
 		('Adam Horovitz', '15 Street Rd, Brooklyn, 1249', 'adrock@beastieboys.com'),				-- cust_id 15
 		('Mixmaster Mike', '16 Street Rd, Brooklyn, 1249', 'mmm@beastieboys.com'),					-- cust_id 16
 		('Chuck D', '17 Street Rd, Long Island, 1101', 'chuckd@publicenemy.com'),					-- cust_id 17
-		('Flavor Flav', '18 Street Rd, Long Island, 1101', 'flavoroflove@publicenemy.com'),			-- cust_id 18
+		('Flavor Flav', '18 Street Rd, Long Island, 1101', 'yeahhhhhhboiiiiiiiii@publicenemy.com'),	-- cust_id 18
 		('DJ Lord', '19 Street Rd, Long Island, 1101', 'djlord@publicenemy.com'),					-- cust_id 19
 		('Zach de la Rocha', '20 Street Rd, Los Angeles, 0323', 'zach@rageagainsthemachine.com');	-- cust_id 20
 		

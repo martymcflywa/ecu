@@ -164,8 +164,18 @@ WHERE
 -- Write Query 8 here
 
 SELECT
-	
+	st.staff_id AS 'staff_id',
+	st.staff_full_name AS 'staff_name',
+	COUNT(DISTINCT ord.cust_order_id) AS 'orders_taken',
+	COUNT(DISTINCT del.cust_order_id) AS 'orders_delivered'
 FROM
-	view_ordered_pizzas AS op
-	LEFT OUTER JOIN view_pizza_orders AS po
-	ON op.pizza_order_id = po.pizza_order_id
+	view_staff AS st
+	LEFT OUTER JOIN view_pizza_orders AS ord
+	ON st.staff_id = ord.taken_by
+	LEFT OUTER JOIN view_pizza_orders AS del
+	ON st.staff_id = del.delivered_by
+GROUP BY
+	st.staff_id,
+	st.staff_full_name
+ORDER BY
+	st.staff_id;
