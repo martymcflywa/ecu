@@ -54,9 +54,9 @@
   	\begin{scriptsize}
     \begin{tabular}{lllll}
     \textbf{Column name} & \textbf{Type/Length} & \textbf{Null} & \textbf{Constraints} & \textbf{Other} \\
-    pizza\_crust\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
-    pizza\_crust\_name & VARCHAR(20) & NOT NULL & UNIQUE &  \\
-    surcharge & DECIMAL(3,2) & NOT NULL &       & DEFAULT 0.00 \\
+    crust\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
+    crust\_name & VARCHAR(20) & NOT NULL & UNIQUE &  \\
+    crust\_surcharge & DECIMAL(3,2) & NOT NULL &       & DEFAULT 0.00 \\
     \end{tabular}%
     \end{scriptsize}
 \end{table}%
@@ -67,9 +67,9 @@
   	\begin{scriptsize}
     \begin{tabular}{lllll}
     \textbf{Column name} & \textbf{Type/Length} & \textbf{Null} & \textbf{Constraints} & \textbf{Other} \\
-    pizza\_sauce\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
-    pizza\_sauce\_name & VARCHAR(20) & NOT NULL & UNIQUE &  \\
-    surcharge & DECIMAL(3,2) & NOT NULL &       & DEFAULT 0.00 \\
+    sauce\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
+    sauce\_name & VARCHAR(20) & NOT NULL & UNIQUE &  \\
+    sauce\_surcharge & DECIMAL(3,2) & NOT NULL &       & DEFAULT 0.00 \\
     \end{tabular}%
     \end{scriptsize}
 \end{table}%
@@ -80,21 +80,21 @@
   	\begin{scriptsize}
     \begin{tabular}{lllll}
     \textbf{Column name} & \textbf{Type/Length} & \textbf{Null} & \textbf{Constraints} & \textbf{Other} \\
-    pizza\_range\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
-    pizza\_range\_name & VARCHAR(20) & NOT NULL & UNIQUE &  \\
-    pizza\_range\_price & DECIMAL(4,2) & NOT NULL &       &  \\
+    range\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
+    range\_name & VARCHAR(20) & NOT NULL & UNIQUE &  \\
+    range\_price & DECIMAL(4,2) & NOT NULL &       &  \\
     \end{tabular}%
     \end{scriptsize}
 \end{table}%
 
 \begin{table}[H]
   \centering
-  \caption{\textbf{``pizza\_type''} stores details about pizza type}
+  \caption{\textbf{``pizza''} stores details about pizza type}
   	\begin{scriptsize}
     \begin{tabular}{lllll}
     \textbf{Column name} & \textbf{Type/Length} & \textbf{Null} & \textbf{Constraints} & \textbf{Other} \\
-    pizza\_type\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
-    pizza\_range\_id & TINYINT   & NOT NULL & FK (pizza\_range.pizza\_range\_id) &  \\
+    pizza\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
+    range\_id & TINYINT   & NOT NULL & FK (pizza\_range.range\_id) &  \\
     pizza\_name & VARCHAR(20) & NOT NULL & UNIQUE &  \\
     pizza\_desc & TEXT  & NOT NULL &       &  \\
     \end{tabular}%
@@ -110,9 +110,9 @@
     pizza\_order\_id & INT   & NOT NULL & PK    & IDENTITY \\
     pizza\_ready & CHAR(1)   & NOT NULL & CHECK (pizza\_ready IN (`Y', `N')) & DEFAULT `N' \\
     cust\_order\_id & INT   & NOT NULL & FK (customer.cust\_id) &  \\
-    pizza\_type\_id & TINYINT   & NOT NULL & FK (pizza\_type.pizza\_type\_id) &  \\
-    pizza\_crust\_id & TINYINT   & NOT NULL & FK (pizza\_crust.pizza\_crust\_id) &  \\
-    pizza\_sauce\_id & TINYINT   & NOT NULL & FK (pizza\_sauce.pizza\_sauce\_id) &  \\
+    pizza\_id & TINYINT   & NOT NULL & FK (pizza.pizza\_id) &  \\
+    crust\_id & TINYINT   & NOT NULL & FK (pizza\_crust.crust\_id) &  \\
+    sauce\_id & TINYINT   & NOT NULL & FK (pizza\_sauce.sauce\_id) &  \\
     \end{tabular}%
     \end{scriptsize}
 \end{table}%

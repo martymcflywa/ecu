@@ -41,9 +41,9 @@ You are required to design and create a database for a pizza store. The database
 \begin{itemize}
 \item A \mintinline{sql}{customer} must make at least one \mintinline{sql}{customer_order} to exist on database
 \item A \mintinline{sql}{customer_order} must contain at least one \mintinline{sql}{pizza_order}
-\item A \mintinline{sql}{pizza_order} must include one \mintinline{sql}{pizza_type} selection
+\item A \mintinline{sql}{pizza_order} must include one \mintinline{sql}{pizza} selection
 	\begin{itemize}
-	\item It is possible that a \mintinline{sql}{pizza_type} may never be selected for a \mintinline{sql}{pizza_order}
+	\item It is possible that a \mintinline{sql}{pizza} may never be selected for a \mintinline{sql}{pizza_order}
 	\end{itemize}
 \item A \mintinline{sql}{pizza_order} must include one \mintinline{sql}{pizza_crust} selection
 	\begin{itemize}
@@ -53,9 +53,9 @@ You are required to design and create a database for a pizza store. The database
 	\begin{itemize}
 	\item It is possible that a \mintinline{sql}{pizza_sauce} may never be selected for a \mintinline{sql}{pizza_order}
 	\end{itemize}
-\item A \mintinline{sql}{pizza_type} must include one \mintinline{sql}{pizza_range} selection
+\item A \mintinline{sql}{pizza} must include one \mintinline{sql}{pizza_range} selection
 	\begin{itemize}
-	\item It is possible that a \mintinline{sql}{pizza_range} may never be selected for a \mintinline{sql}{pizza_order}
+	\item It is possible that a \mintinline{sql}{pizza_range} may never be selected for a \mintinline{sql}{pizza}
 	\end{itemize}
 \item A \mintinline{sql}{staff} member may be a \mintinline{sql}{supervisor} to many \mintinline{sql}{staff} members
 	\begin{itemize}
