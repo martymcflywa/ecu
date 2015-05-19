@@ -209,8 +209,6 @@ public class UnitList {
 		// if current is at first node, and target matched (implied after exiting while loop and previous being null)
 		if(previous == null) {
 
-            // TODO: fix issue where "deleted" first node not permanent
-
             // print action performed
             System.out.println("\nDeleted first student: " + current.student_ID);
 
