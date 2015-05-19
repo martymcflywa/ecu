@@ -365,13 +365,5 @@ public class UnitList {
         print_unit_result(u_list);
 		// print SLL in reverse order
 		reverse_print_unit_result(u_list);
-//        delete_unit_result(u_list, 1111);
-//        delete_unit_result(u_list, 1112);
-//        delete_unit_result(u_list, 1114);
-//        delete_unit_result(u_list, 1116);
-//        delete_unit_result(u_list, 1122);
-//        delete_unit_result(u_list, 1145);
-//        delete_unit_result(u_list, 1189);
-//        delete_unit_result(u_list, 1225);
 	}
 }
