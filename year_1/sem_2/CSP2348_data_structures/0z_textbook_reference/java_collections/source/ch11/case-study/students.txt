@@ -1,0 +1,159 @@
+990001
+FORREST, Ernest
+Anytown
+1982-04-27
+
+990002
+WILSON, Alex
+Anytown
+1981-07-23
+
+990003
+CRAW, Susan
+Anytown
+1982-11-05
+
+990004
+HARPER, David J
+Anytown
+1981-12-03
+
+990005
+USHER, John R
+Anytown
+1982-10-28
+
+990006
+BROWN, Deryck
+Anytown
+1982-11-25
+
+990007
+CHRISTIE, James R
+Anytown
+1981-01-04
+
+990008
+DAVIDSON, David G
+Anytown
+1982-09-02
+
+990009
+MCCALL, John A W
+Anytown
+1981-12-11
+
+990010
+SIMMONDS, David G
+Anytown
+1980-05-27
+
+990011
+STRACHAN, Peter
+Anytown
+1980-06-12
+
+990012
+TYLER, Jon E M
+Anytown
+1980-09-13
+
+990013
+MAGUIRE, Katherine
+Anytown
+1982-08-10
+
+990014
+ARANA, Ines
+Anytown
+1981-11-26
+
+990015
+MACLEOD, Christopher
+Anytown
+1981-10-03
+
+990016
+CROSSEN, David
+Anytown
+1980-03-06
+
+990017
+FRYER, Audrey
+Anytown
+1980-02-13
+
+990018
+GOKER-ARSLAN, Ayse
+Anytown
+1982-05-10
+
+990019
+GRANT, Robin
+Anytown
+1980-01-23
+
+990020
+JASON, David
+Anytown
+1981-01-23
+
+990021
+LONIE, David
+Anytown
+1982-08-10
+
+990022
+LOWIT, Peter
+Anytown
+1981-11-04
+
+990023
+MCDERMOTT, Roger
+Anytown
+1982-12-09
+
+990024
+MOSS, David
+Anytown
+1980-03-30
+
+990025
+NOBLE, Robert
+Anytown
+1980-07-29
+
+990026
+PETROVSKI, Andrei
+Anytown
+1982-05-23
+
+990027
+PIRIE, Iain
+Anytown
+1982-06-12
+
+990028
+POTTER, Kevin
+Anytown
+1982-03-30
+
+990029
+SALATIAN, Apkar
+Anytown
+1981-09-28
+
+990030
+SHIRREFFS, Derek
+Anytown
+1980-02-28
+
+990031
+CHRISTIE, Kathleen
+Anytown
+1980-01-26
+
+990032
+WILSON, Patricia
+Anytown
+1980-12-25

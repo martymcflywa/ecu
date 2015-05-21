@@ -1,0 +1,17 @@
+ 0  20 1 Standard Computer System
+ 1   5 2 Standard Monitor
+ 2 200 1 Keyboard
+ 3 170 1 Mouse
+ 4  10 1 Standard Base Unit
+ 5  50 1 Floppy Disk Drive
+ 6 100 1 Case + PSU
+ 7   0 1 Standard System Board Assembly
+ 8 120 2 Hard Disk Drive
+ 9  60 1 Motherboard
+10  60 1 Standard CPU
+11 100 1 Memory Module
+12  10 1 Professional Computer System
+13   5 3 Professional Monitor
+14   0 1 Professional Base Unit
+15   0 1 Professional System Board Assembly
+16  15 1 Professional CPU

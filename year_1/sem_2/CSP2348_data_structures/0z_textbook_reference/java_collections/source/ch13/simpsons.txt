@@ -1,0 +1,4 @@
+Simpson Marge F 1960
+Simpson Lisa F 1982
+Simpson Homer M 1958
+Simpson Bart M 1981
