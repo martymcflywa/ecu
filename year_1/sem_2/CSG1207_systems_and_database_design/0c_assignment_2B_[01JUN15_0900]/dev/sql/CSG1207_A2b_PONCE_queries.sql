@@ -32,8 +32,7 @@ ORDER BY
 SELECT *
 FROM customer
 WHERE
-	(cust_name LIKE ('F%')
-	OR cust_name LIKE ('J%'))
+	cust_name LIKE '[FJ]%'
 	AND LEN(cust_email) >= 15;
 
 
@@ -139,9 +138,12 @@ ORDER BY
 
 -- Write Query 7 here
 
-/***************
- * NEEDS WORK! *
- ***************/
+/**
+ * Original query.
+ * Issue: A customer order with multiple pizzas in different ready states are
+ * also included in the query. These should not be included in the query since such
+ * orders are not awaiting delivery yet. All pizzas must be ready before awaiting delivery.
+ * See solution below by Greg Baatard.
 
 SELECT
 	po.cust_order_id,
@@ -159,8 +161,35 @@ GROUP BY
 	po.order_date,
 	po.cust_name
 ORDER BY
-	order_date;
+	order_date;	
+*/
 
+/**
+ * Correlated subquery solution by Greg Baatard.
+ * AND 'N' NOT IN... stops cust_order_id 18 from appearing in query result,
+ * where a multiple pizza customer order has different pizza ready states. 
+ */
+
+SELECT
+	po.cust_order_id,
+	po.order_date,
+	po.cust_name
+FROM
+	view_pizza_orders AS po
+WHERE
+	po.delivered_by IS NULL
+	AND 'N' NOT IN (
+		SELECT pizza_ready
+		FROM pizza_order
+		WHERE cust_order_id = po.cust_order_id
+	)
+GROUP BY
+	po.cust_order_id,
+	po.order_date,
+	po.cust_name
+ORDER BY
+	order_date;
+	
 
 
 /*	Query 8 – Staff Workload (4 marks)

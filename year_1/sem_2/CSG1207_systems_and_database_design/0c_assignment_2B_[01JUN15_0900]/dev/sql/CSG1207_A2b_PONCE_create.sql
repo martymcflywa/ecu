@@ -227,7 +227,8 @@ CREATE TABLE pizza_order (
 	
 	CONSTRAINT pizza_order_id_pk PRIMARY KEY (pizza_order_id),
 	CONSTRAINT pizza_ready_check CHECK (pizza_ready IN ('Y', 'N')),
-	CONSTRAINT pizza_id_fk FOREIGN KEY(pizza_id) REFERENCES pizza(pizza_id),
+	CONSTRAINT cust_order_id_fk FOREIGN KEY (cust_order_id) REFERENCES customer_order(cust_order_id),
+	CONSTRAINT pizza_id_fk FOREIGN KEY (pizza_id) REFERENCES pizza(pizza_id),
 	CONSTRAINT crust_id_fk FOREIGN KEY (crust_id) REFERENCES pizza_crust(crust_id),
 	CONSTRAINT sauce_id_fk FOREIGN KEY (sauce_id) REFERENCES pizza_sauce(sauce_id)
 );
@@ -443,20 +444,20 @@ VALUES
 		('Y', 16, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 35
 		
 		-- Multiple pizza order, all ready, not delivered
-		('Y', 17, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 39
-		('Y', 17, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 40
+		('Y', 17, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 36
+		('Y', 17, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 37
 		
 		-- Multiple pizza order, one not ready, not delivered
-		('Y', 18, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 41
-		(DEFAULT, 18, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),	-- pizza_order id 42
+		('Y', 18, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 38
+		(DEFAULT, 18, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),	-- pizza_order id 39
 		
 		-- Multiple pizza order, all not ready, not delivered
-		(DEFAULT, 19, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)), -- pizza_order id 43
-		(DEFAULT, 19, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)), -- pizza_order id 44
-		(DEFAULT, 19, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)), -- pizza_order id 45
+		(DEFAULT, 19, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)), -- pizza_order id 40
+		(DEFAULT, 19, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)), -- pizza_order id 41
+		(DEFAULT, 19, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)), -- pizza_order id 42
 		
 		-- Single pizza order, not ready, not delivered
-		(DEFAULT, 20, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)), -- pizza_order id 46
+		(DEFAULT, 20, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)); -- pizza_order id 43
 
 --  **************************************************************************************
 --  Make pizzas ready.
