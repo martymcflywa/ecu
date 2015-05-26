@@ -49,6 +49,22 @@ USE pizza_store;
 
 GO
 
+--	Creating UDF to randomize customer selections, staff taking orders, staff delivering orders etc.
+--	param @randomNum FLOAT: use RAND()
+--	param @max INT: the max limit of random number
+--	param @min INT: the min limit of random number
+--	return INT
+
+CREATE FUNCTION RANDINT(@randomNum FLOAT, @max INT, @min INT)
+RETURNS INT
+BEGIN
+	RETURN FLOOR(@randomNum * @max + @min);
+END;
+GO
+
+--	Testing function
+-- SELECT dbo.RANDINT(RAND(), 20, 1);
+
 --  **************************************************************************************
 --  We now create the tables in the database in the correct creation order.
 --  **************************************************************************************
@@ -474,3 +490,4 @@ SET staff_delivery =
 --		WHEN 20 THEN FLOOR(RAND() * 20 + 1)
 	END
 WHERE cust_order_id IS NOT NULL;
+GO
