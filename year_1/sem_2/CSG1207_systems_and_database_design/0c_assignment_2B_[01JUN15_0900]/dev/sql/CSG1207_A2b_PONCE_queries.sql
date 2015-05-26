@@ -149,7 +149,13 @@ FROM
 	ON op.cust_order_id = po.cust_order_id
 WHERE
 	po.delivered_by IS NULL
-	AND op.ready = 'Y';
+	AND op.ready = 'Y'
+GROUP BY
+	po.cust_order_id,
+	po.order_date,
+	po.cust_name
+ORDER BY
+	order_date;
 
 
 

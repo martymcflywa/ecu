@@ -398,12 +398,18 @@ VALUES	(1, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 16:23:10', NULL),	-- cust_ord
 PRINT 'Populating pizza_order table...';
 
 INSERT INTO pizza_order (pizza_ready, cust_order_id, pizza_id, crust_id, sauce_id)
-VALUES	('Y', 1, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 1
+VALUES	
+		-- Multiple pizza order, ready, delivered
+		('Y', 1, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 1
 		('Y', 1, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 2
 		('Y', 1, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 3
+		
 		('Y', 2, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 4
 		('Y', 2, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 5
+		
+		-- Single pizza order, ready, delivered
 		('Y', 3, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 6
+		
 		('Y', 4, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 7
 		('Y', 4, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 8
 		('Y', 4, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 9
@@ -432,20 +438,25 @@ VALUES	('Y', 1, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDIN
 		('Y', 14, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 32
 		('Y', 15, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 33
 		('Y', 15, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 34
+		
+		-- Single pizza order, ready, not delivered
 		('Y', 16, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 35
-		('Y', 16, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 36
-		('Y', 16, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 37
-		('Y', 16, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 38
+		
+		-- Multiple pizza order, all ready, not delivered
 		('Y', 17, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 39
 		('Y', 17, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 40
+		
+		-- Multiple pizza order, one not ready, not delivered
 		('Y', 18, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 41
-		-- These pizzas are not yet ready.
-		(DEFAULT, 18, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)), -- pizza_order id 42
+		(DEFAULT, 18, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),	-- pizza_order id 42
+		
+		-- Multiple pizza order, all not ready, not delivered
 		(DEFAULT, 19, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)), -- pizza_order id 43
 		(DEFAULT, 19, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)), -- pizza_order id 44
 		(DEFAULT, 19, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)), -- pizza_order id 45
+		
+		-- Single pizza order, not ready, not delivered
 		(DEFAULT, 20, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)), -- pizza_order id 46
-		(DEFAULT, 20, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)); -- pizza_order id 47
 
 --  **************************************************************************************
 --  Make pizzas ready.
@@ -482,11 +493,20 @@ SET staff_delivery =
 		WHEN 13 THEN dbo.RANDINT(RAND(), 20, 1)
 		WHEN 14 THEN dbo.RANDINT(RAND(), 20, 1)
 		WHEN 15 THEN dbo.RANDINT(RAND(), 20, 1)
-		WHEN 16 THEN dbo.RANDINT(RAND(), 20, 1)
-		WHEN 17 THEN dbo.RANDINT(RAND(), 20, 1)
---		Pizzas for orders 18, 19, 20 not ready, not delivered.
+		
+--		Order 16: Single pizza, ready, not delivered
+--		WHEN 16 THEN dbo.RANDINT(RAND(), 20, 1)
+
+--		Order 17: Multiple pizzas, all ready, not delivered		
+--		WHEN 17 THEN dbo.RANDINT(RAND(), 20, 1)
+
+--		Order 18: Multiple pizzas, one not ready, not delivered
 --		WHEN 18 THEN dbo.RANDINT(RAND(), 20, 1)
+
+--		Order 19: Multiple pizzas, all not ready, not delivered
 --		WHEN 19 THEN dbo.RANDINT(RAND(), 20, 1)
+
+--		Order 20: Single pizza, not ready, not delivered
 --		WHEN 20 THEN dbo.RANDINT(RAND(), 20, 1)
 	END
 WHERE cust_order_id IS NOT NULL;
