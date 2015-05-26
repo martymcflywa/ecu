@@ -510,5 +510,4 @@ SET staff_delivery =
 --		Order 20: Single pizza, not ready, not delivered
 --		WHEN 20 THEN dbo.RANDINT(RAND(), 20, 1)
 	END
-WHERE cust_order_id IS NOT NULL;
 GO
