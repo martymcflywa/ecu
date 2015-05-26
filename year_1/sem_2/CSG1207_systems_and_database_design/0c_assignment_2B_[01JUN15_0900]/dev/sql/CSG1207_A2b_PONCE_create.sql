@@ -369,26 +369,26 @@ VALUES	('Pizza Sauce', 0),							-- sauce ID 1
 PRINT 'Populating customer_order table...';
 
 INSERT INTO customer_order (cust_id, staff_order, cust_order_datetime, staff_delivery)
-VALUES	(1, FLOOR(RAND() * 20 + 1), '2015-07-02 16:23:10', NULL),	-- cust_order_id 1
-		(2, FLOOR(RAND() * 20 + 1), '2015-07-02 16:43:52', NULL),	-- cust_order_id 2
-		(3, FLOOR(RAND() * 20 + 1), '2015-07-02 17:02:54', NULL),	-- cust_order_id 3
-		(4, FLOOR(RAND() * 20 + 1), '2015-07-02 17:31:52', NULL),	-- cust_order_id 4
-		(5, FLOOR(RAND() * 20 + 1), '2015-07-02 18:01:01', NULL),	-- cust_order_id 5
-		(6, FLOOR(RAND() * 20 + 1), '2015-07-02 18:07:04', NULL),	-- cust_order_id 6
-		(7, FLOOR(RAND() * 20 + 1), '2015-07-02 18:16:18', NULL),	-- cust_order_id 7
-		(8, FLOOR(RAND() * 20 + 1), '2015-07-02 18:34:58', NULL),	-- cust_order_id 8
-		(9, FLOOR(RAND() * 20 + 1), '2015-07-02 18:48:44', NULL),	-- cust_order_id 9
-		(10, FLOOR(RAND() * 20 + 1), '2015-07-02 19:15:03', NULL),	-- cust_order_id 10
-		(11, FLOOR(RAND() * 20 + 1), '2015-07-02 19:20:30', NULL),	-- cust_order_id 11
-		(12, FLOOR(RAND() * 20 + 1), '2015-07-02 19:23:01', NULL),	-- cust_order_id 12
-		(13, FLOOR(RAND() * 20 + 1), '2015-07-02 19:44:21', NULL),	-- cust_order_id 13
-		(14, FLOOR(RAND() * 20 + 1), '2015-07-02 20:01:12', NULL),	-- cust_order_id 14
-		(15, FLOOR(RAND() * 20 + 1), '2015-07-02 20:06:14', NULL),	-- cust_order_id 15
-		(16, FLOOR(RAND() * 20 + 1), '2015-07-02 20:30:44', NULL),	-- cust_order_id 16
-		(17, FLOOR(RAND() * 20 + 1), '2015-07-02 20:38:51', NULL),	-- cust_order_id 17
-		(18, FLOOR(RAND() * 20 + 1), '2015-07-02 20:42:32', NULL),	-- cust_order_id 18
-		(19, FLOOR(RAND() * 20 + 1), '2015-07-02 20:49:38', NULL),	-- cust_order_id 19
-		(20, FLOOR(RAND() * 20 + 1), '2015-07-02 20:50:51', NULL);	-- cust_order_id 20
+VALUES	(1, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 16:23:10', NULL),	-- cust_order_id 1
+		(2, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 16:43:52', NULL),	-- cust_order_id 2
+		(3, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 17:02:54', NULL),	-- cust_order_id 3
+		(4, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 17:31:52', NULL),	-- cust_order_id 4
+		(5, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 18:01:01', NULL),	-- cust_order_id 5
+		(6, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 18:07:04', NULL),	-- cust_order_id 6
+		(7, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 18:16:18', NULL),	-- cust_order_id 7
+		(8, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 18:34:58', NULL),	-- cust_order_id 8
+		(9, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 18:48:44', NULL),	-- cust_order_id 9
+		(10, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 19:15:03', NULL),	-- cust_order_id 10
+		(11, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 19:20:30', NULL),	-- cust_order_id 11
+		(12, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 19:23:01', NULL),	-- cust_order_id 12
+		(13, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 19:44:21', NULL),	-- cust_order_id 13
+		(14, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 20:01:12', NULL),	-- cust_order_id 14
+		(15, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 20:06:14', NULL),	-- cust_order_id 15
+		(16, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 20:30:44', NULL),	-- cust_order_id 16
+		(17, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 20:38:51', NULL),	-- cust_order_id 17
+		(18, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 20:42:32', NULL),	-- cust_order_id 18
+		(19, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 20:49:38', NULL),	-- cust_order_id 19
+		(20, dbo.RANDINT(RAND(), 20, 1), '2015-07-02 20:50:51', NULL);	-- cust_order_id 20
 
 --  **************************************************************************************
 --  Populate the pizza_order table.
@@ -398,54 +398,54 @@ VALUES	(1, FLOOR(RAND() * 20 + 1), '2015-07-02 16:23:10', NULL),	-- cust_order_i
 PRINT 'Populating pizza_order table...';
 
 INSERT INTO pizza_order (pizza_ready, cust_order_id, pizza_id, crust_id, sauce_id)
-VALUES	('Y', 1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 1
-		('Y', 1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 2
-		('Y', 1, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 3
-		('Y', 2, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 4
-		('Y', 2, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 5
-		('Y', 3, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 6
-		('Y', 4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 7
-		('Y', 4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 8
-		('Y', 4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 9
-		('Y', 4, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 10
-		('Y', 5, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 11
-		('Y', 5, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 12
-		('Y', 6, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 13
-		('Y', 6, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 14
-		('Y', 7, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 15
-		('Y', 8, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 16
-		('Y', 9, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 17
-		('Y', 9, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 18
-		('Y', 10, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 19
-		('Y', 10, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 20
-		('Y', 11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 21
-		('Y', 11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 22
-		('Y', 11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 23
-		('Y', 11, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 24
-		('Y', 12, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 25
-		('Y', 12, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 26
-		('Y', 13, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 27
-		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 28
-		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 29
-		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 30
-		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 31
-		('Y', 14, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 32
-		('Y', 15, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 33
-		('Y', 15, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 34
-		('Y', 16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 35
-		('Y', 16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 36
-		('Y', 16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 37
-		('Y', 16, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 38
-		('Y', 17, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 39
-		('Y', 17, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 40
-		('Y', 18, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)),		-- pizza_order id 41
+VALUES	('Y', 1, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 1
+		('Y', 1, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 2
+		('Y', 1, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 3
+		('Y', 2, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 4
+		('Y', 2, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 5
+		('Y', 3, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 6
+		('Y', 4, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 7
+		('Y', 4, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 8
+		('Y', 4, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 9
+		('Y', 4, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 10
+		('Y', 5, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 11
+		('Y', 5, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 12
+		('Y', 6, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 13
+		('Y', 6, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 14
+		('Y', 7, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 15
+		('Y', 8, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 16
+		('Y', 9, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 17
+		('Y', 9, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 18
+		('Y', 10, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 19
+		('Y', 10, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 20
+		('Y', 11, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 21
+		('Y', 11, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 22
+		('Y', 11, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 23
+		('Y', 11, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 24
+		('Y', 12, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 25
+		('Y', 12, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 26
+		('Y', 13, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 27
+		('Y', 14, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 28
+		('Y', 14, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 29
+		('Y', 14, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 30
+		('Y', 14, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 31
+		('Y', 14, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 32
+		('Y', 15, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 33
+		('Y', 15, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 34
+		('Y', 16, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 35
+		('Y', 16, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 36
+		('Y', 16, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 37
+		('Y', 16, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 38
+		('Y', 17, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 39
+		('Y', 17, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 40
+		('Y', 18, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)),		-- pizza_order id 41
 		-- These pizzas are not yet ready.
-		(DEFAULT, 18, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 42
-		(DEFAULT, 19, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 43
-		(DEFAULT, 19, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 44
-		(DEFAULT, 19, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 45
-		(DEFAULT, 20, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)), -- pizza_order id 46
-		(DEFAULT, 20, FLOOR(RAND() * 9 + 1), FLOOR(RAND() * 4 + 1), FLOOR(RAND() * 4 + 1)); -- pizza_order id 47
+		(DEFAULT, 18, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)), -- pizza_order id 42
+		(DEFAULT, 19, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)), -- pizza_order id 43
+		(DEFAULT, 19, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)), -- pizza_order id 44
+		(DEFAULT, 19, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)), -- pizza_order id 45
+		(DEFAULT, 20, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)), -- pizza_order id 46
+		(DEFAULT, 20, dbo.RANDINT(RAND(), 9, 1), dbo.RANDINT(RAND(), 4, 1), dbo.RANDINT(RAND(), 4, 1)); -- pizza_order id 47
 
 --  **************************************************************************************
 --  Make pizzas ready.
@@ -467,27 +467,27 @@ PRINT 'Pizzas delivered...';
 UPDATE customer_order
 SET staff_delivery =
 	CASE cust_order_id
-		WHEN 1 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 2 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 3 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 4 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 5 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 6 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 7 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 8 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 9 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 10 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 11 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 12 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 13 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 14 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 15 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 16 THEN FLOOR(RAND() * 20 + 1)
-		WHEN 17 THEN FLOOR(RAND() * 20 + 1)
+		WHEN 1 THEN dbo.RANDINT(RAND(), 20, 1)
+		WHEN 2 THEN dbo.RANDINT(RAND(), 20, 1)
+		WHEN 3 THEN dbo.RANDINT(RAND(), 20, 1)
+		WHEN 4 THEN dbo.RANDINT(RAND(), 20, 1)
+		WHEN 5 THEN dbo.RANDINT(RAND(), 20, 1)
+		WHEN 6 THEN dbo.RANDINT(RAND(), 20, 1)
+		WHEN 7 THEN dbo.RANDINT(RAND(), 20, 1)
+		WHEN 8 THEN dbo.RANDINT(RAND(), 20, 1)
+		WHEN 9 THEN dbo.RANDINT(RAND(), 20, 1)
+		WHEN 10 THEN dbo.RANDINT(RAND(), 20, 1)
+		WHEN 11 THEN dbo.RANDINT(RAND(), 20, 1)
+		WHEN 12 THEN dbo.RANDINT(RAND(), 20, 1)
+		WHEN 13 THEN dbo.RANDINT(RAND(), 20, 1)
+		WHEN 14 THEN dbo.RANDINT(RAND(), 20, 1)
+		WHEN 15 THEN dbo.RANDINT(RAND(), 20, 1)
+		WHEN 16 THEN dbo.RANDINT(RAND(), 20, 1)
+		WHEN 17 THEN dbo.RANDINT(RAND(), 20, 1)
 --		Pizzas for orders 18, 19, 20 not ready, not delivered.
---		WHEN 18 THEN FLOOR(RAND() * 20 + 1)
---		WHEN 19 THEN FLOOR(RAND() * 20 + 1)
---		WHEN 20 THEN FLOOR(RAND() * 20 + 1)
+--		WHEN 18 THEN dbo.RANDINT(RAND(), 20, 1)
+--		WHEN 19 THEN dbo.RANDINT(RAND(), 20, 1)
+--		WHEN 20 THEN dbo.RANDINT(RAND(), 20, 1)
 	END
 WHERE cust_order_id IS NOT NULL;
 GO
