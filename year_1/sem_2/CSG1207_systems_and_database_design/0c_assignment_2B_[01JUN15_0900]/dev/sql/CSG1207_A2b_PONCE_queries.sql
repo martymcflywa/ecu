@@ -139,6 +139,10 @@ ORDER BY
 
 -- Write Query 7 here
 
+/***************
+ * NEEDS WORK! *
+ ***************/
+
 SELECT
 	po.cust_order_id,
 	po.order_date,
