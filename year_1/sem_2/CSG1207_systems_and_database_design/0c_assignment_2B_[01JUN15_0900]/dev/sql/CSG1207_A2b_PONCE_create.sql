@@ -353,26 +353,26 @@ VALUES	('Pizza Sauce', 0),							-- sauce ID 1
 PRINT 'Populating customer_order table...';
 
 INSERT INTO customer_order (cust_id, staff_order, cust_order_datetime, staff_delivery)
-VALUES	(1, FLOOR(RAND() * 20 + 1), '2015-07-02 19:23:10', NULL),	-- cust_order_id 1
-		(2, FLOOR(RAND() * 20 + 1), '2015-07-07 18:38:52', NULL),	-- cust_order_id 2
-		(3, FLOOR(RAND() * 20 + 1), '2015-07-08 22:37:54', NULL),	-- cust_order_id 3
-		(4, FLOOR(RAND() * 20 + 1), '2015-08-06 18:31:52', NULL),	-- cust_order_id 4
-		(5, FLOOR(RAND() * 20 + 1), '2015-08-29 21:01:01', NULL),	-- cust_order_id 5
-		(6, FLOOR(RAND() * 20 + 1), '2015-09-28 19:57:04', NULL),	-- cust_order_id 6
-		(7, FLOOR(RAND() * 20 + 1), '2015-10-02 18:16:18', NULL),	-- cust_order_id 7
-		(8, FLOOR(RAND() * 20 + 1), '2015-10-05 20:54:58', NULL),	-- cust_order_id 8
-		(9, FLOOR(RAND() * 20 + 1), '2015-11-08 22:00:44', NULL),	-- cust_order_id 9
-		(10, FLOOR(RAND() * 20 + 1), '2015-11-21 21:35:03', NULL),	-- cust_order_id 10
-		(11, FLOOR(RAND() * 20 + 1), '2015-11-25 17:40:30', NULL),	-- cust_order_id 11
-		(12, FLOOR(RAND() * 20 + 1), '2015-12-01 16:23:01', NULL),	-- cust_order_id 12
-		(13, FLOOR(RAND() * 20 + 1), '2015-12-03 18:44:21', NULL),	-- cust_order_id 13
-		(14, FLOOR(RAND() * 20 + 1), '2015-12-03 20:01:12', NULL),	-- cust_order_id 14
-		(15, FLOOR(RAND() * 20 + 1), '2015-12-08 22:45:14', NULL),	-- cust_order_id 15
-		(16, FLOOR(RAND() * 20 + 1), '2015-12-10 19:30:44', NULL),	-- cust_order_id 16
-		(17, FLOOR(RAND() * 20 + 1), '2015-12-11 00:10:51', NULL),	-- cust_order_id 17
-		(18, FLOOR(RAND() * 20 + 1), '2015-12-11 23:01:32', NULL),	-- cust_order_id 18
-		(19, FLOOR(RAND() * 20 + 1), '2015-12-16 21:31:38', NULL),	-- cust_order_id 19
-		(20, FLOOR(RAND() * 20 + 1), '2015-12-22 22:50:51', NULL);	-- cust_order_id 20
+VALUES	(1, FLOOR(RAND() * 20 + 1), '2015-07-02 16:23:10', NULL),	-- cust_order_id 1
+		(2, FLOOR(RAND() * 20 + 1), '2015-07-02 16:43:52', NULL),	-- cust_order_id 2
+		(3, FLOOR(RAND() * 20 + 1), '2015-07-02 17:02:54', NULL),	-- cust_order_id 3
+		(4, FLOOR(RAND() * 20 + 1), '2015-07-02 17:31:52', NULL),	-- cust_order_id 4
+		(5, FLOOR(RAND() * 20 + 1), '2015-07-02 18:01:01', NULL),	-- cust_order_id 5
+		(6, FLOOR(RAND() * 20 + 1), '2015-07-02 18:07:04', NULL),	-- cust_order_id 6
+		(7, FLOOR(RAND() * 20 + 1), '2015-07-02 18:16:18', NULL),	-- cust_order_id 7
+		(8, FLOOR(RAND() * 20 + 1), '2015-07-02 18:34:58', NULL),	-- cust_order_id 8
+		(9, FLOOR(RAND() * 20 + 1), '2015-07-02 18:48:44', NULL),	-- cust_order_id 9
+		(10, FLOOR(RAND() * 20 + 1), '2015-07-02 19:15:03', NULL),	-- cust_order_id 10
+		(11, FLOOR(RAND() * 20 + 1), '2015-07-02 19:20:30', NULL),	-- cust_order_id 11
+		(12, FLOOR(RAND() * 20 + 1), '2015-07-02 19:23:01', NULL),	-- cust_order_id 12
+		(13, FLOOR(RAND() * 20 + 1), '2015-07-02 19:44:21', NULL),	-- cust_order_id 13
+		(14, FLOOR(RAND() * 20 + 1), '2015-07-02 20:01:12', NULL),	-- cust_order_id 14
+		(15, FLOOR(RAND() * 20 + 1), '2015-07-02 20:06:14', NULL),	-- cust_order_id 15
+		(16, FLOOR(RAND() * 20 + 1), '2015-07-02 20:30:44', NULL),	-- cust_order_id 16
+		(17, FLOOR(RAND() * 20 + 1), '2015-07-02 20:38:51', NULL),	-- cust_order_id 17
+		(18, FLOOR(RAND() * 20 + 1), '2015-07-02 20:42:32', NULL),	-- cust_order_id 18
+		(19, FLOOR(RAND() * 20 + 1), '2015-07-02 20:49:38', NULL),	-- cust_order_id 19
+		(20, FLOOR(RAND() * 20 + 1), '2015-07-02 20:50:51', NULL);	-- cust_order_id 20
 
 --  **************************************************************************************
 --  Populate the pizza_order table.
