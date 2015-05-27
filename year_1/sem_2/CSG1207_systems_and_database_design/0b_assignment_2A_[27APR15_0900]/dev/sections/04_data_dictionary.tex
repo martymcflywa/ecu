@@ -28,7 +28,7 @@
     cust\_id & SMALLINT   & NOT NULL & PK    & IDENTITY \\
     cust\_name & VARCHAR(50) & NOT NULL &       &  \\
     cust\_adrs & TEXT  & NOT NULL &       &  \\
-    cust\_email & VARCHAR(20) & NOT NULL & CHECK (cust\_email LIKE `\_\%@\_\%.\_\_\%') &  \\
+    cust\_email & VARCHAR(50) & NOT NULL & CHECK (cust\_email LIKE `\_\%@\_\%.\_\_\%') &  \\
     \end{tabular}%
     \end{scriptsize}
 \end{table}%
@@ -68,7 +68,7 @@
     \begin{tabular}{lllll}
     \textbf{Column name} & \textbf{Type/Length} & \textbf{Null} & \textbf{Constraints} & \textbf{Other} \\
     sauce\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
-    sauce\_name & VARCHAR(20) & NOT NULL & UNIQUE &  \\
+    sauce\_name & VARCHAR(40) & NOT NULL & UNIQUE &  \\
     sauce\_surcharge & DECIMAL(3,2) & NOT NULL &       & DEFAULT 0.00 \\
     \end{tabular}%
     \end{scriptsize}
@@ -95,7 +95,7 @@
     \textbf{Column name} & \textbf{Type/Length} & \textbf{Null} & \textbf{Constraints} & \textbf{Other} \\
     pizza\_id & TINYINT   & NOT NULL & PK    & IDENTITY \\
     range\_id & TINYINT   & NOT NULL & FK (pizza\_range.range\_id) &  \\
-    pizza\_name & VARCHAR(20) & NOT NULL & UNIQUE &  \\
+    pizza\_name & VARCHAR(30) & NOT NULL & UNIQUE &  \\
     pizza\_desc & TEXT  & NOT NULL &       &  \\
     \end{tabular}%
     \end{scriptsize}
