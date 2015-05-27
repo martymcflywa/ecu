@@ -130,7 +130,7 @@ CREATE TABLE customer_order (
 	staff_delivery TINYINT NULL,
 	
 	CONSTRAINT customer_order_pk PRIMARY KEY (cust_order_id),
-	CONSTRAINT cust_id_pk FOREIGN KEY (cust_id) REFERENCES customer(cust_id),
+	CONSTRAINT cust_id_fk FOREIGN KEY (cust_id) REFERENCES customer(cust_id),
 	CONSTRAINT staff_order_fk FOREIGN KEY (staff_order) REFERENCES staff(staff_id),
 	CONSTRAINT staff_delivery_fk FOREIGN KEY (staff_delivery) REFERENCES staff(staff_id)
 );
