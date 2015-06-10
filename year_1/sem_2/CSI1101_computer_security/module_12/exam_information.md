@@ -1005,6 +1005,34 @@ hex: [00] [00] [00] [00] [00] [00] [00] [00] | [65] [00]
 		- Traffic has already entered local network
 		- Only stops/filters traffic at the host
 
+#### Intrusion detection systems
+
+- Intrusion detection system
+	- Detect and react to attacks on network
+	- Identifies intrusion via signatures
+	- Reports intrusion activities
+- Rule based IDS
+	- Rules identify types of actions that match profiles for known intrusion attacks
+	- Signatures must be kept up to date
+		- Like anti virus
+	- Susceptible to undocumented attacks
+	- Attacks could be disguised or modified slighty to avoid detection
+- Anomaly based IDS
+	- Profile built on statistical representation of typical ways a user acts or host is used for what is considered normal
+	- Threshold set to determine what is abnormal
+		- Attacker may draw out attack so thresholds are not reached
+		- Slowly change IDS view of what is normal
+- Ethical issues
+	- Every packet may flow through IDS
+	- Inspected packet may contain confidential information
+
+#### Honeypots
+
+- Countermeasure based on deception
+- Simulates system or entire network
+- Attacker lured into honeypot thinking it is a vulnerable host / network
+	- Diverts attack away from actual resources
+
 ## Module 11: Web security
 
 - What is privacy
@@ -1016,3 +1044,18 @@ hex: [00] [00] [00] [00] [00] [00] [00] [00] | [65] [00]
 	- Pros / cons
 - Government surveillance
 - Methods of monitoring
+
+### Answers
+
+- What is privacy
+	- Protecting information that says
+		- Who we are
+		- What we do
+		- What we think
+		- What we believe
+	- Does it still exist
+		- Harder to maintain
+		- Websites viewed can be tracked
+			- Cookies
+		- Voluntary disclosure
+			- Facebook
