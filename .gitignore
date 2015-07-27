@@ -33,6 +33,7 @@ _minted*/
 *.Rdata*
 
 # Intellij
+.idea
 *.iml
 *.ipr
 *.iws
