@@ -39,5 +39,8 @@ _minted*/
 *.iws
 *.class
 
+# Chrome temp files
+*.crdownload
+
 # Submission folders
 submission
