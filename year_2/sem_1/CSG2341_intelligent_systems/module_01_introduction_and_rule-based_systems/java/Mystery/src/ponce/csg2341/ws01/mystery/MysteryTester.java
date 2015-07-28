@@ -44,16 +44,32 @@ public class MysteryTester {
                     best = cost;
                 }
                 // scramble the current solution
-                for (int i = 0; i < solution.length; i++) {
-                    int index = random.nextInt(solution.length - i);
-                    int swap = solution[solution.length - i - 1];
-                    solution[solution.length - i - 1] = solution[index];
-                    solution[index] = swap;
-                }
+                //origShuffle(solution);
+                fyShuffle(solution);
+                //Permutation.permute(solution);
                 tries++;
             } while (tries < TRIES);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private void origShuffle(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            int index = i + (int) (Math.random() * (array.length - i));
+            int swap = array[array.length - i - 1];
+            array[array.length - i - 1] = array[index];
+            array[index] = swap;
+        }
+    }
+
+    private void fyShuffle(int[] array) {
+
+        for(int i = 0; i < array.length; i++) {
+            int random = i + (int) (Math.random() * (array.length - i));
+            int randomElement = array[random];
+            array[random] = array[i];
+            array[i] = randomElement;
         }
     }
 
@@ -68,6 +84,6 @@ public class MysteryTester {
         return result;
     }
 
-    static private final int TRIES = 100000000;
+    static private final int TRIES = 1000000;
 }
 
