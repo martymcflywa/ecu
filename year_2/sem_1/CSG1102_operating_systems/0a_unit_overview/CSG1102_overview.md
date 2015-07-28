@@ -1,4 +1,4 @@
-# CSG1102 Unit Overview
+# CSG1102 Operating systems
 
 ## Staff details
 
