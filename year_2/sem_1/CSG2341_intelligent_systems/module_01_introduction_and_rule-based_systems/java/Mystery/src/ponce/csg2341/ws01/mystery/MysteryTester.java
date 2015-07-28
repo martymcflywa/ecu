@@ -68,6 +68,6 @@ public class MysteryTester {
         return result;
     }
 
-    static private final int TRIES = 100;
+    static private final int TRIES = 100000000;
 }
 

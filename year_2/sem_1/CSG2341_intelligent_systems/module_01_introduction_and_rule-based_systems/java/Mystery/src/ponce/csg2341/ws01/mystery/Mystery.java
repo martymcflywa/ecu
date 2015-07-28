@@ -11,8 +11,7 @@ import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Mystery
-        extends JPanel {
+public class Mystery extends JPanel {
     private int size;
     private double[][] coords;
     private int[] tour;
@@ -38,8 +37,33 @@ public class Mystery
     }
 
     public Mystery() {
-        this.coords = new double[][]{{0.5013070090572934D, 0.034664301060053915D}, {0.2547956322452125D, 0.6528835382781787D}, {0.10359236705500763D, 0.6614459347554367D}, {0.3944582809295607D, 0.9434001331381733D}, {0.3791463463199203D, 0.5237754291802993D}, {0.23227252904534845D, 0.8000245707361361D}, {0.0397143742444136D, 0.006605346525780709D}, {0.006738041968876729D, 0.10182904797531322D}, {0.42111014143648207D, 0.7166373076311461D}, {0.00895383096708191D, 0.360735753979723D}, {0.48953232242516886D, 0.8640447580633703D}, {0.9145339199620528D, 0.9684423657501484D}, {0.38512944765935675D, 0.6110396828790433D}, {0.7818064811492871D, 0.28070589841395577D}, {0.1240155198932279D, 0.15507045385621332D}, {0.09455839394659793D, 0.873564985090129D}, {0.11108918129200074D, 0.2989089497096754D}, {0.4636734908302318D, 0.9595873116301883D}, {0.3159003172012729D, 0.029945343466889596D}, {0.254203286927687D, 0.7903390821236306D}, {0.9436844268007322D, 0.40325735366067805D}, {0.10843159341037956D, 0.05880168124824192D}, {0.1945450965063209D, 0.6340195010982176D}, {0.29571150530409684D, 0.6344602650978091D}, {0.5471433908292886D, 0.42403014846085174D}};
-
+        this.coords = new double[][]{
+                {0.5013070090572934D, 0.034664301060053915D},
+                {0.2547956322452125D, 0.6528835382781787D},
+                {0.10359236705500763D, 0.6614459347554367D},
+                {0.3944582809295607D, 0.9434001331381733D},
+                {0.3791463463199203D, 0.5237754291802993D},
+                {0.23227252904534845D, 0.8000245707361361D},
+                {0.0397143742444136D, 0.006605346525780709D},
+                {0.006738041968876729D, 0.10182904797531322D},
+                {0.42111014143648207D, 0.7166373076311461D},
+                {0.00895383096708191D, 0.360735753979723D},
+                {0.48953232242516886D, 0.8640447580633703D},
+                {0.9145339199620528D, 0.9684423657501484D},
+                {0.38512944765935675D, 0.6110396828790433D},
+                {0.7818064811492871D, 0.28070589841395577D},
+                {0.1240155198932279D, 0.15507045385621332D},
+                {0.09455839394659793D, 0.873564985090129D},
+                {0.11108918129200074D, 0.2989089497096754D},
+                {0.4636734908302318D, 0.9595873116301883D},
+                {0.3159003172012729D, 0.029945343466889596D},
+                {0.254203286927687D, 0.7903390821236306D},
+                {0.9436844268007322D, 0.40325735366067805D},
+                {0.10843159341037956D, 0.05880168124824192D},
+                {0.1945450965063209D, 0.6340195010982176D},
+                {0.29571150530409684D, 0.6344602650978091D},
+                {0.5471433908292886D, 0.42403014846085174D}
+        };
 
         this.size = this.coords.length;
 
@@ -56,26 +80,30 @@ public class Mystery
         return Math.sqrt((this.coords[from][0] - this.coords[to][0]) * (this.coords[from][0] - this.coords[to][0]) + (this.coords[from][1] - this.coords[to][1]) * (this.coords[from][1] - this.coords[to][1]));
     }
 
-    public double evaluate(int[] tour)
-            throws Exception {
+    public double evaluate(int[] tour) throws Exception {
         double length = 0.0D;
         this.tour = tour;
+
         if (tour.length != this.size) {
             throw new Exception("Solution is wrong length: " + tour.length + " instead of " + this.size + ".");
         }
+
         boolean[] check = new boolean[this.size];
-        for (int i = 0; i < this.size; i++) {
-            if ((tour[i] < 0) || (tour[i] > this.size - 1)) {
+
+        for(int i = 0; i < this.size; i++) {
+            if((tour[i] < 0) || (tour[i] > this.size - 1)) {
                 throw new Exception("Solution entry " + tour[i] + " is invalid. Must be in the range 0 to " + (this.size - 1) + ".");
             }
-            if (check[tour[i]]) {
+            if(check[tour[i]]) {
                 throw new Exception("Solution entry " + tour[i] + " is repeated.");
             }
             check[tour[i]] = true;
         }
+
         for (int i = 0; i < tour.length - 1; i++) {
             length += getDistance(tour[i], tour[(i + 1)]);
         }
+
         length += getDistance(tour[0], tour[(tour.length - 1)]);
 
         return length;
@@ -170,17 +198,19 @@ public class Mystery
         }
     }
 
-    public static void main(String[] args)
-            throws Exception {
+    public static void main(String[] args) throws Exception {
         if (args.length < 1) {
             throw new Exception("No solution provided.");
         }
+
         Mystery mystery = new Mystery();
 
         int[] tour = new int[args.length];
+
         for (int i = 0; i < args.length; i++) {
             tour[i] = Integer.parseInt(args[i]);
         }
+
         System.out.println("Your solution costs " + mystery.evaluate(tour));
     }
 }
