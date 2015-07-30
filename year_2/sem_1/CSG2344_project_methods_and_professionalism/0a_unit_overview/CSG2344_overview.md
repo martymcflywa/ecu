@@ -1,4 +1,4 @@
-# CSG2344 overview
+# CSG2344 Project methods and professionalism
 
 ## Lecturer details
 
