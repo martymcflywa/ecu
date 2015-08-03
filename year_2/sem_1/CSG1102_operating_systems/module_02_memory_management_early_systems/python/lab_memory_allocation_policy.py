@@ -11,7 +11,7 @@ memoryPartition = collections.namedtuple("memoryPartition", ["id", "size", "acti
 # but instead of cpu requirements, we have memory requirements
 job = collections.namedtuple("job", ["id", "memoryReq", "state"])
 
-# job state enum
+# job state dict
 jobState = {'Inactive': 1, 'Running': 2, 'Complete': 3, 'No Space': 4}
 
 def main():
@@ -45,35 +45,32 @@ def main():
     # call scheduler
     scheduler(jobQueue, memorySpace)
 
-# define scheduler()
 def scheduler(jobQueue, memorySpace):
 
     # for each job in queue
     for i in range(len(jobQueue)):
         # for each space in memorySpace and memorySpace.active = false
         for j in range(len(memorySpace)):
-            # if memorySpace.active = false
-            if memorySpace[j].active == False:
-                # if job.memoryReq < space.size
-                if jobQueue[i].memoryReq < memorySpace[j].size:
+            # if job.memoryReq <= space.size and space.active = false
+            if jobQueue[j].memoryReq <= memorySpace[i].size and memorySpace[i].active == False:
 
-                    currentJob = jobQueue[j].id
+                currentJob = jobQueue[j].id
 
-                    # job.state = active
-                    jobQueue[i] = jobQueue[i]._replace(state = jobState['Running'])
-                    # space.state = in_use
-                    memorySpace[j] = memorySpace[j]._replace(active = True)
-                    # space.job = job.id
-                    memorySpace[j] = memorySpace[j]._replace(job = currentJob)
-            # maybe there was nowhere to put it?
-            # if job.state = inactive
-            if jobQueue[i].state == ['Inactive']:
-                # job.state = no_space
-                jobQueue[i].state = jobState['No Space']
+                # job.state = active
+                jobQueue[j] = jobQueue[j]._replace(state = jobState['Running'])
+                # space.state = in_use
+                memorySpace[j] = memorySpace[j]._replace(active = True)
+                # space.job = job.id
+                memorySpace[j] = memorySpace[j]._replace(job = currentJob)
+
+        # maybe there was nowhere to put it?
+        # if job.state = inactive
+        if jobQueue[i].state == jobState['Inactive']:
+            # job.state = no_space
+            jobQueue[i] = jobQueue[i]._replace(state = jobState['No Space'])
 
     # print memory table
     printMemTable(memorySpace)
-    # ...
     # print out job states
     printJobStates(jobQueue)
 
