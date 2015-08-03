@@ -1,5 +1,7 @@
+# First fit allocation algorithm
+
 ```
-Pseudocode:
+Pseudocode: First fit allocation
 
 
 // create memory map
