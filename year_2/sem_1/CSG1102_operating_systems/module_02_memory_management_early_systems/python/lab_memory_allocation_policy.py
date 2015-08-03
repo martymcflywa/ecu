@@ -45,7 +45,7 @@ def main():
     # call scheduler
     scheduler(jobQueue, memorySpace)
 
-def scheduler(jobQueue, memorySpace):
+def scheduler0(jobQueue, memorySpace):
 
     # for each job in queue
     for i in range(len(jobQueue)):
@@ -74,6 +74,46 @@ def scheduler(jobQueue, memorySpace):
     # print out job states
     printJobStates(jobQueue)
 
+
+def scheduler(jobQueue, memorySpace):
+    for job in range(len(jobQueue)):
+        for space in range(len(memorySpace)):
+            if (memorySpace[space].active == False) and (jobQueue[job].memoryReq < memorySpace[space]):
+
+                currentJob = jobQueue[job].id
+
+                jobQueue[job] = jobQueue[job]._replace(state = jobState['Running'])
+                memorySpace[space] = memorySpace[space]._replace(active = True)
+                memorySpace[space] = memorySpace[space]._replace(job = currentJob)
+
+        if jobQueue[job].state == jobState['Inactive']:
+            jobQueue[job] = jobQueue[job]._replace(state = jobState['No Space'])
+
+    printMemTable(memorySpace)
+    printJobStates(jobQueue)
+
+
+def scheduler1(jobQueue, memorySpace):
+
+    currentJob = 0
+
+    while len(jobQueue) > 0:
+
+        for space in range(len(memorySpace)):
+            if(memorySpace[space].active == False) and (jobQueue[currentJob].memoryReq < memorySpace[space]):
+                jobQueue[currentJob] = jobQueue[currentJob]._replace(state = jobState['Running'])
+                memorySpace[space] = memorySpace[space]._replace(active = True)
+                memorySpace[space] = memorySpace[space]._replace(job = currentJob)
+
+        if jobQueue[currentJob].state == jobState['Inactive']:
+            jobQueue[currentJob] = jobQueue[currentJob]._replace(state = jobState['No Space'])
+
+        print jobQueue[currentJob].state
+        jobQueue.pop(currentJob)
+        currentJob = currentJob + 1
+
+    printMemTable(memorySpace)
+    printJobStates(jobQueue)
 
 def printMemTable(memorySpace):
 
