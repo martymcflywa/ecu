@@ -1,4 +1,4 @@
-/**
+package csg2341.skynet.ponce.mortgage; /**
  * Example test driver for the Mortgage expert system.
  * CSG2341 Intelligent Systems, Workshop 2
  *

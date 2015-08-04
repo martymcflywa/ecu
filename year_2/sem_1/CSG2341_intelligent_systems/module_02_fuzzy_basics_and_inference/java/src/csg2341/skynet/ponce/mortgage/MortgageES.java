@@ -1,3 +1,5 @@
+package csg2341.skynet.ponce.mortgage;
+
 import au.edu.ecu.is.fuzzy.*;
 
 /**
