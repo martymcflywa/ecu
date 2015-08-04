@@ -47,3 +47,7 @@ submission
 
 # ASP Server
 0z_asp_server
+
+# Mac stuff
+.DS_Store
+Thumbs.db		
