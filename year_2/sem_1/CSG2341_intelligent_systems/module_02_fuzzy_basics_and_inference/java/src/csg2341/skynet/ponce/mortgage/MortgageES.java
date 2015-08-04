@@ -54,7 +54,7 @@ public class MortgageES {
         marketValue.add(mvLow);
         // *** Step 2f: TO BE DONE *** //
         // *** uncomment the line below *** //
-        //System.out.println(marketValue.checkGaps());
+        System.out.println(marketValue.checkGaps());
         // for illustrative/diagnostic purposes, display the variable graphically
         // (should be removed from the final version)
         //marketValue.display();
@@ -146,10 +146,10 @@ public class MortgageES {
         // *** uncomment the house rating rules *** //
 
         //// if (market value is low) then (house is low)
-//        ruleSet.addRule(marketValue, mvLow, house, houseLow);
+        ruleSet.addRule(marketValue, mvLow, house, houseLow);
 
         //// if (location is bad) then (house is low)
-//        ruleSet.addRule(location, locBad, house, houseLow);
+        ruleSet.addRule(location, locBad, house, houseLow);
 
         // here we add a matrix of rules about house ratings for all
         // combinations of location and market value
@@ -173,11 +173,11 @@ public class MortgageES {
         //// this would be removed in the final version
 
         //// this creates a matrix-based display
-//        ruleSet.displayRuleMatrix(
-//                location, locationSets,
-//                marketValue, mvSets,
-//                house
-//        );
+        ruleSet.displayRuleMatrix(
+                location, locationSets,
+                marketValue, mvSets,
+                house
+        );
 
         //// the following alternative creates a scrolling list of all rules determining house rating
         (new FuzzyRuleSubsetPanel(ruleSet, house)).display();
@@ -214,12 +214,6 @@ public class MortgageES {
                 applicant, applicantMatrix
         );
 
-//        ruleSet.displayRuleMatrix(
-//                asset, assetSets,
-//                income, incomeSets,
-//                applicant
-//        );
-
         //// Credit rules
 
         // if (income is low) and (interest is medium) then (credit is very low)
@@ -245,12 +239,6 @@ public class MortgageES {
                 credit, creditMatrix
         );
 
-//        ruleSet.displayRuleMatrix(
-//                applicant, applicantSets,
-//                house, houseSets,
-//                credit
-//        );
-
         // *** Step 2e: TO BE DONE *** //
         // *** uncomment the lines below to check the rules for applicant rating, credit *** //
 
@@ -259,15 +247,17 @@ public class MortgageES {
 
         //// these would be removed in the final version
 
-        //ruleSet.displayRuleMatrix(
-        //    asset, assetSets,
-        //    income, incomeSets,
-        //    applicant);
+        ruleSet.displayRuleMatrix(
+                asset, assetSets,
+                income, incomeSets,
+                applicant
+        );
 
-        //ruleSet.displayRuleMatrix(
-        //    applicant, applicantSets,
-        //    house, houseSets,
-        //    credit);
+        ruleSet.displayRuleMatrix(
+                applicant, applicantSets,
+                house, houseSets,
+                credit
+        );
 
         // will print a message if there are gaps
         ruleSet.checkInputVariables();
@@ -291,7 +281,7 @@ public class MortgageES {
      */
     public void setLocation(double loc) throws FuzzyException {
         // *** Step 2c: TO BE DONE *** //
-        //location.setValue(loc);
+        location.setValue(loc);
     }
 
     /**
@@ -302,7 +292,7 @@ public class MortgageES {
      */
     public void setAsset(double ass) throws FuzzyException {
         // *** Step 2c: TO BE DONE *** //
-        //asset.setValue(ass);
+        asset.setValue(ass);
     }
 
     /**
@@ -313,7 +303,7 @@ public class MortgageES {
      */
     public void setIncome(double inc) throws FuzzyException {
         // *** Step 2c: TO BE DONE *** //
-        //income.setValue(inc);
+        income.setValue(inc);
     }
 
     /**
@@ -324,7 +314,7 @@ public class MortgageES {
      */
     public void setInterest(double in) throws FuzzyException {
         // *** Step 2c: TO BE DONE *** //
-        //interest.setValue(in);
+        interest.setValue(in);
     }
 
     /**
@@ -336,7 +326,7 @@ public class MortgageES {
      */
     public void update() throws FuzzyException {
         // *** Step 2g: TO BE DONE *** //
-        //ruleSet.update();
+        ruleSet.update();
     }
 
     public FuzzyVariablePanel getMarketValuePanel() {
