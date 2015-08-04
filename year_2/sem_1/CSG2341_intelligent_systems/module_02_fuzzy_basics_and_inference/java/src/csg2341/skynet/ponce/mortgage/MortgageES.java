@@ -173,11 +173,11 @@ public class MortgageES {
         //// this would be removed in the final version
 
         //// this creates a matrix-based display
-        ruleSet.displayRuleMatrix(
-                location, locationSets,
-                marketValue, mvSets,
-                house
-        );
+//        ruleSet.displayRuleMatrix(
+//                location, locationSets,
+//                marketValue, mvSets,
+//                house
+//        );
 
         //// the following alternative creates a scrolling list of all rules determining house rating
         (new FuzzyRuleSubsetPanel(ruleSet, house)).display();
@@ -247,17 +247,17 @@ public class MortgageES {
 
         //// these would be removed in the final version
 
-        ruleSet.displayRuleMatrix(
-                asset, assetSets,
-                income, incomeSets,
-                applicant
-        );
-
-        ruleSet.displayRuleMatrix(
-                applicant, applicantSets,
-                house, houseSets,
-                credit
-        );
+//        ruleSet.displayRuleMatrix(
+//                asset, assetSets,
+//                income, incomeSets,
+//                applicant
+//        );
+//
+//        ruleSet.displayRuleMatrix(
+//                applicant, applicantSets,
+//                house, houseSets,
+//                credit
+//        );
 
         // will print a message if there are gaps
         ruleSet.checkInputVariables();
