@@ -63,73 +63,78 @@ public class MortgageES {
         // *** add the missing parameters and uncomment the code *** //
         // *** also fix the "set" methods below *** //
 
-        //location = new FuzzyVariable("location", "rating", 0.0, 10.0, 1);
-        //FuzzySet locBad = new FuzzySet("bad", , , , );
-        //FuzzySet locFair = new FuzzySet("fair", , , , );
-        //FuzzySet locExcellent = new FuzzySet("excellent", , , , );
-        //location.add(locBad);
-        //location.add(locFair);
-        //location.add(locExcellent);
+        location = new FuzzyVariable("location", "rating", 0.0, 10.0, 1);
+        FuzzySet locBad = new FuzzySet("bad", 0.0, 0.0, 1.5, 4.0);
+        FuzzySet locFair = new FuzzySet("fair", 2.5, 5.0, 6.0, 8.5);
+        FuzzySet locExcellent = new FuzzySet("excellent", 6.0, 8.5, 10.0, 10.0);
+        location.add(locBad);
+        location.add(locFair);
+        location.add(locExcellent);
         //location.display();
 
-        //house = new FuzzyVariable(, , , , );
-        //FuzzySet houseVeryLow = new FuzzySet(, , , , );
-        //FuzzySet houseLow = new FuzzySet(, , , , );
-        //FuzzySet houseMedium = new FuzzySet(, , , , );
-        //FuzzySet houseHigh = new FuzzySet(, , , , );
-        //FuzzySet houseVeryHigh = new FuzzySet(, , , , );
-        //house.add(houseVeryLow);
-        //house.add(houseLow);
-        //house.add(houseMedium);
-        //house.add(houseHigh);
-        //house.add(houseVeryHigh);
+        house = new FuzzyVariable("house", "rating", 0.0, 10.0, 1);
+        FuzzySet houseVeryLow = new FuzzySet("very low", 0.0, 0.0, 0.0, 3.0);
+        FuzzySet houseLow = new FuzzySet("low", 0.0, 3.0, 3.0, 6.0);
+        FuzzySet houseMedium = new FuzzySet("medium", 2.0, 5.0, 5.0, 8.0);
+        FuzzySet houseHigh = new FuzzySet("high", 4.0, 7.0, 7.0, 10.0);
+        FuzzySet houseVeryHigh = new FuzzySet("very high", 7.0, 10.0, 10.0, 10.0);
+        house.add(houseVeryLow);
+        house.add(houseLow);
+        house.add(houseMedium);
+        house.add(houseHigh);
+        house.add(houseVeryHigh);
         //house.display();
 
-        //asset = new FuzzyVariable(, , , , );
-        //FuzzySet assetLow = new FuzzySet(, , , , );
-        //FuzzySet assetMedium = new FuzzySet(, , , , );
-        //FuzzySet assetHigh = new FuzzySet(, , , , );
-        //asset.add(assetLow);
-        //asset.add(assetMedium);
-        //asset.add(assetHigh);
+        asset = new FuzzyVariable("asset", "$000's", 0.0, 1000.0, 3);
+        FuzzySet assetLow = new FuzzySet("low", 0.0, 0.0, 0.0, 150.0);
+        FuzzySet assetMedium = new FuzzySet("medium", 50.0, 250.0, 450.0, 650.0);
+        FuzzySet assetHigh = new FuzzySet("high", 500.0, 700.0, 1000.0, 1000.0);
+        asset.add(assetLow);
+        asset.add(assetMedium);
+        asset.add(assetHigh);
+        //asset.display();
 
-        //income = new FuzzyVariable(, , , , );
-        //FuzzySet incomeLow = new FuzzySet(, , , , );
-        //FuzzySet incomeMedium = new FuzzySet(, , , , );
-        //FuzzySet incomeHigh = new FuzzySet(, , , , );
-        //FuzzySet incomeVeryHigh = new FuzzySet(, , , , );
-        //income.add(incomeLow);
-        //income.add(incomeMedium);
-        //income.add(incomeHigh);
-        //income.add(incomeVeryHigh);
+        income = new FuzzyVariable("income", "$000's", 0.0, 100.0, 3);
+        FuzzySet incomeLow = new FuzzySet("low", 0.0, 0.0, 10.0, 25.0);
+        FuzzySet incomeMedium = new FuzzySet("medium", 15.0, 35.0, 35.0, 55.0);
+        FuzzySet incomeHigh = new FuzzySet("high", 40.0, 60.0, 60.0, 80.0);
+        FuzzySet incomeVeryHigh = new FuzzySet("very high", 60.0, 80.0, 100.0, 100.0);
+        income.add(incomeLow);
+        income.add(incomeMedium);
+        income.add(incomeHigh);
+        income.add(incomeVeryHigh);
+        //income.display();
 
-        //applicant = new FuzzyVariable(, , , , );
-        //FuzzySet applicantLow = new FuzzySet(, , , , );
-        //FuzzySet applicantMedium = new FuzzySet(, , , , );
-        //FuzzySet applicantHigh = new FuzzySet(, , , , );
-        //applicant.add(applicantLow);
-        //applicant.add(applicantMedium);
-        //applicant.add(applicantHigh);
+        applicant = new FuzzyVariable("applicant", "rating", 0.0, 10.0, 1);
+        FuzzySet applicantLow = new FuzzySet("low", 0.0, 0.0, 2.0, 4.0);
+        FuzzySet applicantMedium = new FuzzySet("medium", 2.0, 5.0, 5.0, 8.0);
+        FuzzySet applicantHigh = new FuzzySet("high", 6.0, 8.0, 10.0, 10.0);
+        applicant.add(applicantLow);
+        applicant.add(applicantMedium);
+        applicant.add(applicantHigh);
+        //applicant.display();
 
-        //interest = new FuzzyVariable(, , , , );
-        //FuzzySet interestLow = new FuzzySet(, , , , );
-        //FuzzySet interestMedium = new FuzzySet(, , , , );
-        //FuzzySet interestHigh = new FuzzySet(, , , , );
-        //interest.add(interestLow);
-        //interest.add(interestMedium);
-        //interest.add(interestHigh);
+        interest = new FuzzyVariable("interest", "%", 0.0, 10.0, 1);
+        FuzzySet interestLow = new FuzzySet("low", 0.0, 0.0, 2.0, 5.0);
+        FuzzySet interestMedium = new FuzzySet("medium", 2.0, 4.0, 6.0, 8.0);
+        FuzzySet interestHigh = new FuzzySet("high", 6.0, 8.5, 10.0, 10.0);
+        interest.add(interestLow);
+        interest.add(interestMedium);
+        interest.add(interestHigh);
+        //interest.display();
 
-        //credit = new FuzzyVariable(, , , , );
-        //FuzzySet creditVeryHigh = new FuzzySet(, , , , );
-        //FuzzySet creditHigh = new FuzzySet(, , , , );
-        //FuzzySet creditMedium = new FuzzySet(, , , , );
-        //FuzzySet creditLow = new FuzzySet(, , , , );
-        //FuzzySet creditVeryLow = new FuzzySet(, , , , );
-        //credit.add(creditVeryHigh);
-        //credit.add(creditHigh);
-        //credit.add(creditMedium);
-        //credit.add(creditLow);
-        //credit.add(creditVeryLow);
+        credit = new FuzzyVariable("credit", "$000's", 0.0, 500.0, 3);
+        FuzzySet creditVeryHigh = new FuzzySet("very high", 375.0, 500.0, 500.0, 500.0);
+        FuzzySet creditHigh = new FuzzySet("high", 250.0, 375.0, 375.0, 500.0);
+        FuzzySet creditMedium = new FuzzySet("medium", 125.0, 250.0, 250.0, 375.0);
+        FuzzySet creditLow = new FuzzySet("low", 0.0, 125.0, 125.0, 250.0);
+        FuzzySet creditVeryLow = new FuzzySet("very low", 0.0, 0.0, 0.0, 125.0);
+        credit.add(creditVeryLow);
+        credit.add(creditLow);
+        credit.add(creditMedium);
+        credit.add(creditHigh);
+        credit.add(creditVeryHigh);
+        credit.display();
 
         ////////// now create and add fuzzy rules //////////////////////////////////////
 
