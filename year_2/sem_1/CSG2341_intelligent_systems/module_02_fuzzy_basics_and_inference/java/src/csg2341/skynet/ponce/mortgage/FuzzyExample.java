@@ -1,4 +1,6 @@
-package csg2341.skynet.ponce.mortgage;// import gives access to classes in the fuzzy package
+package csg2341.skynet.ponce.mortgage;
+
+// import gives access to classes in the fuzzy package
 //
 // remember to add C:\Program Files\java\CSG2341\is.jar under Libraries
 //
