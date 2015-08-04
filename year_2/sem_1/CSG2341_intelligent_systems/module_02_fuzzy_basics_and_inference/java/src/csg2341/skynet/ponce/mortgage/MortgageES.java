@@ -146,10 +146,10 @@ public class MortgageES {
         // *** uncomment the house rating rules *** //
 
         //// if (market value is low) then (house is low)
-        ruleSet.addRule(marketValue, mvLow, house, houseLow);
+//        ruleSet.addRule(marketValue, mvLow, house, houseLow);
 
         //// if (location is bad) then (house is low)
-        ruleSet.addRule(location, locBad, house, houseLow);
+//        ruleSet.addRule(location, locBad, house, houseLow);
 
         // here we add a matrix of rules about house ratings for all
         // combinations of location and market value
@@ -214,37 +214,42 @@ public class MortgageES {
                 applicant, applicantMatrix
         );
 
-        ruleSet.displayRuleMatrix(
-                asset, assetSets,
-                income, incomeSets,
-                applicant
-        );
+//        ruleSet.displayRuleMatrix(
+//                asset, assetSets,
+//                income, incomeSets,
+//                applicant
+//        );
 
         //// Credit rules
 
-        //// if (income is low) and (interest is medium) then (credit is very low)
-        //ruleSet.addRule(income, incomeLow, interest, interestMedium, credit, creditVeryLow);
-        //// if (income is low) and (interest is high) then (credit is very low)
-        //ruleSet.addRule(, , , , , );
-        //// if (income is medium) and (interest is high) then (credit is low)
-        //ruleSet.addRule(, , , , , );
-        //// if (house is very low) then (credit is very low)
-        //ruleSet.addRule(, , , , , );
-        //// if (applicant is low) then (credit is very low)
-        //ruleSet.addRule(, , , );
+        // if (income is low) and (interest is medium) then (credit is very low)
+        ruleSet.addRule(income, incomeLow, interest, interestMedium, credit, creditVeryLow);
+        // if (income is low) and (interest is high) then (credit is very low)
+        ruleSet.addRule(income, incomeLow, interest, interestHigh, credit, creditLow);
+        // if (income is medium) and (interest is high) then (credit is low)
+        ruleSet.addRule(income, incomeMedium, interest, interestHigh, credit, creditLow);
+        // if (house is very low) then (credit is very low)
+        ruleSet.addRule(house, houseLow, credit, creditVeryLow);
+        // if (applicant is low) then (credit is very low)
+        ruleSet.addRule(applicant, applicantLow, credit, creditVeryLow);
 
-        //FuzzySet[] applicantSets = {applicantMedium,applicantHigh};
-        //FuzzySet[] houseSets = {houseVeryLow, houseLow, houseMedium, houseHigh, houseVeryHigh};
-        //FuzzySet[][] creditMatrix =
-        //    {
-        //        {creditLow, creditLow, creditMedium, creditHigh, creditHigh},
-        //        {, , , , }
-        //    };
-        //ruleSet.addRuleMatrix(
-        //    applicant, applicantSets,
-        //    house, houseSets,
-        //    credit, creditMatrix
-        //    );
+        FuzzySet[] applicantSets = {applicantMedium, applicantHigh};
+        FuzzySet[] houseSets = {houseVeryLow, houseLow, houseMedium, houseHigh, houseVeryHigh};
+        FuzzySet[][] creditMatrix = {
+                {creditLow, creditLow, creditMedium, creditHigh, creditHigh},
+                {creditLow, creditMedium, creditHigh, creditHigh, creditVeryHigh}
+        };
+        ruleSet.addRuleMatrix(
+                applicant, applicantSets,
+                house, houseSets,
+                credit, creditMatrix
+        );
+
+//        ruleSet.displayRuleMatrix(
+//                applicant, applicantSets,
+//                house, houseSets,
+//                credit
+//        );
 
         // *** Step 2e: TO BE DONE *** //
         // *** uncomment the lines below to check the rules for applicant rating, credit *** //
