@@ -57,7 +57,7 @@ public class MortgageES {
         System.out.println(marketValue.checkGaps());
         // for illustrative/diagnostic purposes, display the variable graphically
         // (should be removed from the final version)
-        //marketValue.display();
+        marketValue.display();
 
         /////////////////// now do likewise for the other fuzzy variables ///////////////////
 
@@ -72,7 +72,7 @@ public class MortgageES {
         location.add(locBad);
         location.add(locFair);
         location.add(locExcellent);
-        //location.display();
+        location.display();
 
         house = new FuzzyVariable("house", "rating", 0.0, 10.0, 1);
         FuzzySet houseVeryLow = new FuzzySet("very low", 0.0, 0.0, 0.0, 3.0);
@@ -85,7 +85,7 @@ public class MortgageES {
         house.add(houseMedium);
         house.add(houseHigh);
         house.add(houseVeryHigh);
-        //house.display();
+        house.display();
 
         asset = new FuzzyVariable("asset", "$000's", 0.0, 1000.0, 3);
         FuzzySet assetLow = new FuzzySet("low", 0.0, 0.0, 0.0, 150.0);
@@ -94,7 +94,7 @@ public class MortgageES {
         asset.add(assetLow);
         asset.add(assetMedium);
         asset.add(assetHigh);
-        //asset.display();
+        asset.display();
 
         income = new FuzzyVariable("income", "$000's", 0.0, 100.0, 3);
         FuzzySet incomeLow = new FuzzySet("low", 0.0, 0.0, 10.0, 25.0);
@@ -105,7 +105,7 @@ public class MortgageES {
         income.add(incomeMedium);
         income.add(incomeHigh);
         income.add(incomeVeryHigh);
-        //income.display();
+        income.display();
 
         applicant = new FuzzyVariable("applicant", "rating", 0.0, 10.0, 1);
         FuzzySet applicantLow = new FuzzySet("low", 0.0, 0.0, 2.0, 4.0);
@@ -114,7 +114,7 @@ public class MortgageES {
         applicant.add(applicantLow);
         applicant.add(applicantMedium);
         applicant.add(applicantHigh);
-        //applicant.display();
+        applicant.display();
 
         interest = new FuzzyVariable("interest", "%", 0.0, 10.0, 1);
         FuzzySet interestLow = new FuzzySet("low", 0.0, 0.0, 2.0, 5.0);
@@ -123,7 +123,7 @@ public class MortgageES {
         interest.add(interestLow);
         interest.add(interestMedium);
         interest.add(interestHigh);
-        //interest.display();
+        interest.display();
 
         credit = new FuzzyVariable("credit", "$000's", 0.0, 500.0, 3);
         FuzzySet creditVeryLow = new FuzzySet("very low", 0.0, 0.0, 0.0, 125.0);
@@ -136,7 +136,7 @@ public class MortgageES {
         credit.add(creditMedium);
         credit.add(creditHigh);
         credit.add(creditVeryHigh);
-        //credit.display();
+        credit.display();
 
         ////////// now create and add fuzzy rules //////////////////////////////////////
 
