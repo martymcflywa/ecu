@@ -10,8 +10,8 @@ import au.edu.ecu.is.fuzzy.*;
  * <p/>
  * Note - the program will compile and run without changes, but will not give sensible results.
  *
- * @author (phi)
- * @version (2015/2)
+ * @author (phi) & Martin Ponce 10371381
+ * @version (2015/2) 20150807
  */
 public class MortgageES {
     // the fuzzy variables needed for this system
