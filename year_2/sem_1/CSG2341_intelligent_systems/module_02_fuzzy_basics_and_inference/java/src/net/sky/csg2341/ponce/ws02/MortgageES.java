@@ -56,7 +56,7 @@ public class MortgageES {
 
         // *** Step 2f: TO BE DONE *** //
         // *** uncomment the line below *** //
-        //System.out.println(marketValue.checkGaps());
+        System.out.println(marketValue.checkGaps());
         // for illustrative/diagnostic purposes, display the variable graphically
         // (should be removed from the final version)
         //marketValue.display();
@@ -74,6 +74,8 @@ public class MortgageES {
         location.add(locBad);
         location.add(locFair);
         location.add(locExcellent);
+
+        System.out.println(location.checkGaps());
         location.display();
 
         house = new FuzzyVariable("house", "rating", 0.0, 10.0, 1);
@@ -87,6 +89,8 @@ public class MortgageES {
         house.add(houseMedium);
         house.add(houseHigh);
         house.add(houseVeryHigh);
+
+        System.out.println(house.checkGaps());
         house.display();
 
         asset = new FuzzyVariable("asset", "$000's", 0.0, 1000.0, 3);
@@ -96,6 +100,8 @@ public class MortgageES {
         asset.add(assetLow);
         asset.add(assetMedium);
         asset.add(assetHigh);
+
+        System.out.println(asset.checkGaps());
         asset.display();
 
         income = new FuzzyVariable("income", "$000's", 0.0, 100.0, 3);
@@ -107,6 +113,8 @@ public class MortgageES {
         income.add(incomeMedium);
         income.add(incomeHigh);
         income.add(incomeVeryHigh);
+
+        System.out.println(income.checkGaps());
         income.display();
 
         applicant = new FuzzyVariable("applicant", "rating", 0.0, 10.0, 1);
@@ -116,6 +124,8 @@ public class MortgageES {
         applicant.add(applicantLow);
         applicant.add(applicantMedium);
         applicant.add(applicantHigh);
+
+        System.out.println(applicant.checkGaps());
         applicant.display();
 
         interest = new FuzzyVariable("interest", "%", 0.0, 10.0, 1);
@@ -125,6 +135,8 @@ public class MortgageES {
         interest.add(interestLow);
         interest.add(interestMedium);
         interest.add(interestHigh);
+
+        System.out.println(interest.checkGaps());
         interest.display();
 
         credit = new FuzzyVariable("credit", "$000's", 0.0, 500.0, 3);
@@ -138,6 +150,8 @@ public class MortgageES {
         credit.add(creditMedium);
         credit.add(creditHigh);
         credit.add(creditVeryHigh);
+
+        System.out.println(credit.checkGaps());
         credit.display();
 
 
