@@ -219,7 +219,7 @@ public class MortgageES {
         // if (income is low) and (interest is medium) then (credit is very low)
         ruleSet.addRule(income, incomeLow, interest, interestMedium, credit, creditVeryLow);
         // if (income is low) and (interest is high) then (credit is very low)
-        ruleSet.addRule(income, incomeLow, interest, interestHigh, credit, creditLow);
+        ruleSet.addRule(income, incomeLow, interest, interestHigh, credit, creditVeryLow);
         // if (income is medium) and (interest is high) then (credit is low)
         ruleSet.addRule(income, incomeMedium, interest, interestHigh, credit, creditLow);
         // if (house is very low) then (credit is very low)
