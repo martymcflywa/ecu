@@ -76,7 +76,7 @@ public class MortgageES {
         location.add(locExcellent);
 
         System.out.println(location.checkGaps());
-        location.display();
+        //location.display();
 
         house = new FuzzyVariable("house", "rating", 0.0, 10.0, 1);
         FuzzySet houseVeryLow = new FuzzySet("very low", 0.0, 0.0, 0.0, 3.0);
@@ -91,7 +91,7 @@ public class MortgageES {
         house.add(houseVeryHigh);
 
         System.out.println(house.checkGaps());
-        house.display();
+        //house.display();
 
         asset = new FuzzyVariable("asset", "$000's", 0.0, 1000.0, 3);
         FuzzySet assetLow = new FuzzySet("low", 0.0, 0.0, 0.0, 150.0);
@@ -102,7 +102,7 @@ public class MortgageES {
         asset.add(assetHigh);
 
         System.out.println(asset.checkGaps());
-        asset.display();
+        //asset.display();
 
         income = new FuzzyVariable("income", "$000's", 0.0, 100.0, 3);
         FuzzySet incomeLow = new FuzzySet("low", 0.0, 0.0, 10.0, 25.0);
@@ -115,7 +115,7 @@ public class MortgageES {
         income.add(incomeVeryHigh);
 
         System.out.println(income.checkGaps());
-        income.display();
+        //income.display();
 
         applicant = new FuzzyVariable("applicant", "rating", 0.0, 10.0, 1);
         FuzzySet applicantLow = new FuzzySet("low", 0.0, 0.0, 2.0, 4.0);
@@ -126,7 +126,7 @@ public class MortgageES {
         applicant.add(applicantHigh);
 
         System.out.println(applicant.checkGaps());
-        applicant.display();
+        //applicant.display();
 
         interest = new FuzzyVariable("interest", "%", 0.0, 10.0, 1);
         FuzzySet interestLow = new FuzzySet("low", 0.0, 0.0, 2.0, 5.0);
@@ -137,7 +137,7 @@ public class MortgageES {
         interest.add(interestHigh);
 
         System.out.println(interest.checkGaps());
-        interest.display();
+        //interest.display();
 
         credit = new FuzzyVariable("credit", "$000's", 0.0, 500.0, 3);
         FuzzySet creditVeryLow = new FuzzySet("very low", 0.0, 0.0, 0.0, 125.0);
@@ -152,7 +152,7 @@ public class MortgageES {
         credit.add(creditVeryHigh);
 
         System.out.println(credit.checkGaps());
-        credit.display();
+        //credit.display();
 
 
         ////////// now create and add fuzzy rules //////////////////////////////////////
@@ -190,11 +190,11 @@ public class MortgageES {
         //// this would be removed in the final version
 
         //// this creates a matrix-based display
-        ruleSet.displayRuleMatrix(
-                location, locationSets,
-                marketValue, mvSets,
-                house
-        );
+//        ruleSet.displayRuleMatrix(
+//                location, locationSets,
+//                marketValue, mvSets,
+//                house
+//        );
 
         //// the following alternative creates a scrolling list of all rules determining house rating
         (new FuzzyRuleSubsetPanel(ruleSet, house)).display();
@@ -205,8 +205,18 @@ public class MortgageES {
 
         //// Applicant evaluation rules
 
+        /**
+         * TODO: NOTE TO SELF
+         * Using addRuleMatrix()
+         * FuzzySet[] antecedent1
+         * FuzzySet[] antecedent2 == AND antecedent
+         * FuzzySet[][] consequent == product of set1 and set2
+         */
+        // IF antecedent
         FuzzySet[] assetSets = {assetLow, assetMedium, assetHigh};
+        // AND antecedent
         FuzzySet[] incomeSets = {incomeLow, incomeMedium, incomeHigh, incomeVeryHigh};
+        // THEN consequent
         FuzzySet[][] applicantMatrix = {
                 {applicantLow, applicantLow, applicantMedium, applicantHigh},
                 {applicantLow, applicantMedium, applicantHigh, applicantHigh},
@@ -221,6 +231,11 @@ public class MortgageES {
 
         //// Credit rules
 
+        /**
+         * TODO: NOTE TO SELF
+         * Add singleton rules using addRule(),
+         * then do use rule matrix for bulk rules with grouped antecedents.
+         */
         //// if (income is low) and (interest is medium) then (credit is very low)
         ruleSet.addRule(income, incomeLow, interest, interestMedium, credit, creditVeryLow);
         //// if (income is low) and (interest is high) then (credit is very low)
@@ -330,7 +345,7 @@ public class MortgageES {
      */
     public void update() throws FuzzyException {
         // *** Step 2g: TO BE DONE *** //
-        //ruleSet.update();
+        ruleSet.update();
     }
 
     public FuzzyVariablePanel getMarketValuePanel() {
