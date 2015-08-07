@@ -126,17 +126,17 @@ public class MortgageES {
         //interest.display();
 
         credit = new FuzzyVariable("credit", "$000's", 0.0, 500.0, 3);
-        FuzzySet creditVeryHigh = new FuzzySet("very high", 375.0, 500.0, 500.0, 500.0);
-        FuzzySet creditHigh = new FuzzySet("high", 250.0, 375.0, 375.0, 500.0);
-        FuzzySet creditMedium = new FuzzySet("medium", 125.0, 250.0, 250.0, 375.0);
-        FuzzySet creditLow = new FuzzySet("low", 0.0, 125.0, 125.0, 250.0);
         FuzzySet creditVeryLow = new FuzzySet("very low", 0.0, 0.0, 0.0, 125.0);
+        FuzzySet creditLow = new FuzzySet("low", 0.0, 125.0, 125.0, 250.0);
+        FuzzySet creditMedium = new FuzzySet("medium", 125.0, 250.0, 250.0, 375.0);
+        FuzzySet creditHigh = new FuzzySet("high", 250.0, 375.0, 375.0, 500.0);
+        FuzzySet creditVeryHigh = new FuzzySet("very high", 375.0, 500.0, 500.0, 500.0);
         credit.add(creditVeryLow);
         credit.add(creditLow);
         credit.add(creditMedium);
         credit.add(creditHigh);
         credit.add(creditVeryHigh);
-        //credit.display();
+        credit.display();
 
         ////////// now create and add fuzzy rules //////////////////////////////////////
 
