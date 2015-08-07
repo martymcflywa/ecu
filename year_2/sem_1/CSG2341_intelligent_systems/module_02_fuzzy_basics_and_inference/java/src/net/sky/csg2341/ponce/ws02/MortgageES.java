@@ -52,6 +52,8 @@ public class MortgageES {
         marketValue.add(mvHigh);
         marketValue.add(mvMedium);
         marketValue.add(mvLow);
+
+
         // *** Step 2f: TO BE DONE *** //
         // *** uncomment the line below *** //
         //System.out.println(marketValue.checkGaps());
@@ -147,27 +149,26 @@ public class MortgageES {
         // *** uncomment the house rating rules *** //
 
         //// if (market value is low) then (house is low)
-        //ruleSet.addRule(marketValue, mvLow, house, houseLow);
+        ruleSet.addRule(marketValue, mvLow, house, houseLow);
 
         //// if (location is bad) then (house is low)
-        //ruleSet.addRule(location, locBad, house, houseLow);
+        ruleSet.addRule(location, locBad, house, houseLow);
 
         // here we add a matrix of rules about house ratings for all
         // combinations of location and market value
-        //FuzzySet[] locationSets = {locBad, locFair, locExcellent};
-        //FuzzySet[] mvSets = {mvLow, mvMedium, mvHigh, mvVeryHigh};
-        //FuzzySet[][] houseMatrix =
-        //    {
-        //        {houseVeryLow, houseLow, houseMedium, houseHigh},
-        //        {houseLow, houseMedium, houseHigh, houseVeryHigh},
-        //        {houseMedium, houseHigh, houseVeryHigh, houseVeryHigh}
-        //    };
+        FuzzySet[] locationSets = {locBad, locFair, locExcellent};
+        FuzzySet[] mvSets = {mvLow, mvMedium, mvHigh, mvVeryHigh};
+        FuzzySet[][] houseMatrix = {
+                {houseVeryLow, houseLow, houseMedium, houseHigh},
+                {houseLow, houseMedium, houseHigh, houseVeryHigh},
+                {houseMedium, houseHigh, houseVeryHigh, houseVeryHigh}
+        };
 
-        //ruleSet.addRuleMatrix(
-        //    location, locationSets,
-        //    marketValue, mvSets,
-        //    house, houseMatrix
-        //    );
+        ruleSet.addRuleMatrix(
+                location, locationSets,
+                marketValue, mvSets,
+                house, houseMatrix
+        );
 
         //////////// create graphical display showing the fuzzy inference process
         //////////// for house rating
@@ -175,60 +176,60 @@ public class MortgageES {
         //// this would be removed in the final version
 
         //// this creates a matrix-based display
-        //ruleSet.displayRuleMatrix(
-        //		location, locationSets,
-        //		marketValue, mvSets,
-        //		house);
+        ruleSet.displayRuleMatrix(
+                location, locationSets,
+                marketValue, mvSets,
+                house
+        );
 
         //// the following alternative creates a scrolling list of all rules determining house rating
-        //(new FuzzyRuleSubsetPanel(ruleSet, house)).display();
+        (new FuzzyRuleSubsetPanel(ruleSet, house)).display();
 
         // *** Step 2e: TO BE COMPLETED *** //
         // *** complete uncomment the remaining rules *** //
-        // *** and uncomment the "upadte" and "get" methods below *** //
+        // *** and uncomment the "update" and "get" methods below *** //
 
         //// Applicant evaluation rules
 
-        //FuzzySet[] assetSets = {assetLow, assetMedium, assetHigh};
-        //FuzzySet[] incomeSets = {incomeLow, incomeMedium, incomeHigh, incomeVeryHigh};
-        //FuzzySet[][] applicantMatrix =
-        //    {
-        //        {applicantLow, applicantLow, applicantMedium, applicantHigh},
-        //        { , , , },
-        //        {, , , }
-        //    };
+        FuzzySet[] assetSets = {assetLow, assetMedium, assetHigh};
+        FuzzySet[] incomeSets = {incomeLow, incomeMedium, incomeHigh, incomeVeryHigh};
+        FuzzySet[][] applicantMatrix = {
+                {applicantLow, applicantLow, applicantMedium, applicantHigh},
+                {applicantLow, applicantMedium, applicantHigh, applicantHigh},
+                {applicantMedium, applicantMedium, applicantHigh, applicantHigh}
+        };
 
-        //ruleSet.addRuleMatrix(
-        //    asset, assetSets,
-        //    income, incomeSets,
-        //    applicant, applicantMatrix
-        //    );
+        ruleSet.addRuleMatrix(
+                asset, assetSets,
+                income, incomeSets,
+                applicant, applicantMatrix
+        );
 
         //// Credit rules
 
         //// if (income is low) and (interest is medium) then (credit is very low)
-        //ruleSet.addRule(income, incomeLow, interest, interestMedium, credit, creditVeryLow);
+        ruleSet.addRule(income, incomeLow, interest, interestMedium, credit, creditVeryLow);
         //// if (income is low) and (interest is high) then (credit is very low)
-        //ruleSet.addRule(, , , , , );
+        ruleSet.addRule(income, incomeLow, interest, interestHigh, credit, creditVeryLow);
         //// if (income is medium) and (interest is high) then (credit is low)
-        //ruleSet.addRule(, , , , , );
-        //// if (house is very low) then (credit is very low)
-        //ruleSet.addRule(, , , , , );
+        ruleSet.addRule(income, incomeMedium, interest, interestHigh, credit, creditLow);
         //// if (applicant is low) then (credit is very low)
-        //ruleSet.addRule(, , , );
+        ruleSet.addRule(applicant, applicantLow, credit, creditVeryLow);
+        //// if (house is very low) then (credit is very low)
+        ruleSet.addRule(house, houseVeryLow, credit, creditVeryLow);
 
-        //FuzzySet[] applicantSets = {applicantMedium,applicantHigh};
-        //FuzzySet[] houseSets = {houseVeryLow, houseLow, houseMedium, houseHigh, houseVeryHigh};
-        //FuzzySet[][] creditMatrix =
-        //    {
-        //        {creditLow, creditLow, creditMedium, creditHigh, creditHigh},
-        //        {, , , , }
-        //    };
-        //ruleSet.addRuleMatrix(
-        //    applicant, applicantSets,
-        //    house, houseSets,
-        //    credit, creditMatrix
-        //    );
+        FuzzySet[] applicantSets = {applicantMedium, applicantHigh};
+        FuzzySet[] houseSets = {houseVeryLow, houseLow, houseMedium, houseHigh, houseVeryHigh};
+        FuzzySet[][] creditMatrix = {
+                {creditLow, creditLow, creditMedium, creditHigh, creditHigh},
+                {creditLow, creditMedium, creditHigh, creditHigh,creditVeryHigh}
+        };
+
+        ruleSet.addRuleMatrix(
+                applicant, applicantSets,
+                house, houseSets,
+                credit, creditMatrix
+        );
 
         // *** Step 2e: TO BE DONE *** //
         // *** uncomment the lines below to check the rules for applicant rating, credit *** //
