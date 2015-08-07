@@ -1,19 +1,18 @@
-package net.sky.csg2341.ponce.ws02;
-
 import au.edu.ecu.is.fuzzy.*;
 
 /**
  * Partial solution for the Mortgage expert system.
  * CSG2341 Intelligent Systems, Workshop 2
- * <p/>
+ *
  * Parts to be completed are indicated by comments in the code.
- * <p/>
+ *
  * Note - the program will compile and run without changes, but will not give sensible results.
  *
- * @author (phi) & Martin Ponce 10371381
- * @version (2015/2) 20150807
+ * @author (phi)
+ * @version (2015/2)
  */
-public class MortgageES {
+public class MortgageES
+{
     // the fuzzy variables needed for this system
     private FuzzyVariable marketValue;
     private FuzzyVariable location;
@@ -27,19 +26,21 @@ public class MortgageES {
     private MamdaniRuleSet ruleSet;
 
     // For testing just calls the constructor
-    public static void main(String[] args) throws FuzzyException {
+    public static void main(String[] args) throws FuzzyException
+    {
         new MortgageES();
     }
-
+    
     /**
      * Constructor for a mortgage expert system instance
      *
      * @throws FuzzyException - shouldn't though
      */
-    public MortgageES() throws FuzzyException {
+    public MortgageES() throws FuzzyException
+    {
         // create a new Mamdani-style ruleset
         ruleSet = new MamdaniRuleSet();
-
+        
         // construct a fuzzy variable to represent the market value of the property
         marketValue = new FuzzyVariable("market value", "$000's", 0.0, 1000.0, 3);
         // create fuzzy sets to represent the possible linguistic values for market value
@@ -54,269 +55,257 @@ public class MortgageES {
         marketValue.add(mvLow);
         // *** Step 2f: TO BE DONE *** //
         // *** uncomment the line below *** //
-        System.out.println(marketValue.checkGaps());
+        //System.out.println(marketValue.checkGaps());
         // for illustrative/diagnostic purposes, display the variable graphically
         // (should be removed from the final version)
-        marketValue.display();
-
+        //marketValue.display();
+        
         /////////////////// now do likewise for the other fuzzy variables ///////////////////
-
+        
         // *** Step 2c: TO BE COMPLETED *** //
         // *** add the missing parameters and uncomment the code *** //
         // *** also fix the "set" methods below *** //
-
-        location = new FuzzyVariable("location", "rating", 0.0, 10.0, 1);
-        FuzzySet locBad = new FuzzySet("bad", 0.0, 0.0, 1.5, 4.0);
-        FuzzySet locFair = new FuzzySet("fair", 2.5, 5.0, 6.0, 8.5);
-        FuzzySet locExcellent = new FuzzySet("excellent", 6.0, 8.5, 10.0, 10.0);
-        location.add(locBad);
-        location.add(locFair);
-        location.add(locExcellent);
-        location.display();
-
-        house = new FuzzyVariable("house", "rating", 0.0, 10.0, 1);
-        FuzzySet houseVeryLow = new FuzzySet("very low", 0.0, 0.0, 0.0, 3.0);
-        FuzzySet houseLow = new FuzzySet("low", 0.0, 3.0, 3.0, 6.0);
-        FuzzySet houseMedium = new FuzzySet("medium", 2.0, 5.0, 5.0, 8.0);
-        FuzzySet houseHigh = new FuzzySet("high", 4.0, 7.0, 7.0, 10.0);
-        FuzzySet houseVeryHigh = new FuzzySet("very high", 7.0, 10.0, 10.0, 10.0);
-        house.add(houseVeryLow);
-        house.add(houseLow);
-        house.add(houseMedium);
-        house.add(houseHigh);
-        house.add(houseVeryHigh);
-        house.display();
-
-        asset = new FuzzyVariable("asset", "$000's", 0.0, 1000.0, 3);
-        FuzzySet assetLow = new FuzzySet("low", 0.0, 0.0, 0.0, 150.0);
-        FuzzySet assetMedium = new FuzzySet("medium", 50.0, 250.0, 450.0, 650.0);
-        FuzzySet assetHigh = new FuzzySet("high", 500.0, 700.0, 1000.0, 1000.0);
-        asset.add(assetLow);
-        asset.add(assetMedium);
-        asset.add(assetHigh);
-        asset.display();
-
-        income = new FuzzyVariable("income", "$000's", 0.0, 100.0, 3);
-        FuzzySet incomeLow = new FuzzySet("low", 0.0, 0.0, 10.0, 25.0);
-        FuzzySet incomeMedium = new FuzzySet("medium", 15.0, 35.0, 35.0, 55.0);
-        FuzzySet incomeHigh = new FuzzySet("high", 40.0, 60.0, 60.0, 80.0);
-        FuzzySet incomeVeryHigh = new FuzzySet("very high", 60.0, 80.0, 100.0, 100.0);
-        income.add(incomeLow);
-        income.add(incomeMedium);
-        income.add(incomeHigh);
-        income.add(incomeVeryHigh);
-        income.display();
-
-        applicant = new FuzzyVariable("applicant", "rating", 0.0, 10.0, 1);
-        FuzzySet applicantLow = new FuzzySet("low", 0.0, 0.0, 2.0, 4.0);
-        FuzzySet applicantMedium = new FuzzySet("medium", 2.0, 5.0, 5.0, 8.0);
-        FuzzySet applicantHigh = new FuzzySet("high", 6.0, 8.0, 10.0, 10.0);
-        applicant.add(applicantLow);
-        applicant.add(applicantMedium);
-        applicant.add(applicantHigh);
-        applicant.display();
-
-        interest = new FuzzyVariable("interest", "%", 0.0, 10.0, 1);
-        FuzzySet interestLow = new FuzzySet("low", 0.0, 0.0, 2.0, 5.0);
-        FuzzySet interestMedium = new FuzzySet("medium", 2.0, 4.0, 6.0, 8.0);
-        FuzzySet interestHigh = new FuzzySet("high", 6.0, 8.5, 10.0, 10.0);
-        interest.add(interestLow);
-        interest.add(interestMedium);
-        interest.add(interestHigh);
-        interest.display();
-
-        credit = new FuzzyVariable("credit", "$000's", 0.0, 500.0, 3);
-        FuzzySet creditVeryLow = new FuzzySet("very low", 0.0, 0.0, 0.0, 125.0);
-        FuzzySet creditLow = new FuzzySet("low", 0.0, 125.0, 125.0, 250.0);
-        FuzzySet creditMedium = new FuzzySet("medium", 125.0, 250.0, 250.0, 375.0);
-        FuzzySet creditHigh = new FuzzySet("high", 250.0, 375.0, 375.0, 500.0);
-        FuzzySet creditVeryHigh = new FuzzySet("very high", 375.0, 500.0, 500.0, 500.0);
-        credit.add(creditVeryLow);
-        credit.add(creditLow);
-        credit.add(creditMedium);
-        credit.add(creditHigh);
-        credit.add(creditVeryHigh);
-        credit.display();
-
+        
+        //location = new FuzzyVariable("location", "rating", 0.0, 10.0, 1);
+        //FuzzySet locBad = new FuzzySet("bad", , , , );
+        //FuzzySet locFair = new FuzzySet("fair", , , , );
+        //FuzzySet locExcellent = new FuzzySet("excellent", , , , );
+        //location.add(locBad);
+        //location.add(locFair);
+        //location.add(locExcellent);
+        //location.display();
+        
+        //house = new FuzzyVariable(, , , , );
+        //FuzzySet houseVeryLow = new FuzzySet(, , , , );
+        //FuzzySet houseLow = new FuzzySet(, , , , );
+        //FuzzySet houseMedium = new FuzzySet(, , , , );
+        //FuzzySet houseHigh = new FuzzySet(, , , , );
+        //FuzzySet houseVeryHigh = new FuzzySet(, , , , );
+        //house.add(houseVeryLow);
+        //house.add(houseLow);
+        //house.add(houseMedium);
+        //house.add(houseHigh);
+        //house.add(houseVeryHigh);
+        //house.display();
+        
+        //asset = new FuzzyVariable(, , , , );
+        //FuzzySet assetLow = new FuzzySet(, , , , );
+        //FuzzySet assetMedium = new FuzzySet(, , , , );
+        //FuzzySet assetHigh = new FuzzySet(, , , , );
+        //asset.add(assetLow);
+        //asset.add(assetMedium);
+        //asset.add(assetHigh);
+        
+        //income = new FuzzyVariable(, , , , );
+        //FuzzySet incomeLow = new FuzzySet(, , , , );
+        //FuzzySet incomeMedium = new FuzzySet(, , , , );
+        //FuzzySet incomeHigh = new FuzzySet(, , , , );
+        //FuzzySet incomeVeryHigh = new FuzzySet(, , , , );
+        //income.add(incomeLow);
+        //income.add(incomeMedium);
+        //income.add(incomeHigh);
+        //income.add(incomeVeryHigh);
+        
+        //applicant = new FuzzyVariable(, , , , );
+        //FuzzySet applicantLow = new FuzzySet(, , , , );
+        //FuzzySet applicantMedium = new FuzzySet(, , , , );
+        //FuzzySet applicantHigh = new FuzzySet(, , , , );
+        //applicant.add(applicantLow);
+        //applicant.add(applicantMedium);
+        //applicant.add(applicantHigh);
+        
+        //interest = new FuzzyVariable(, , , , );
+        //FuzzySet interestLow = new FuzzySet(, , , , );
+        //FuzzySet interestMedium = new FuzzySet(, , , , );
+        //FuzzySet interestHigh = new FuzzySet(, , , , );
+        //interest.add(interestLow);
+        //interest.add(interestMedium);
+        //interest.add(interestHigh);
+        
+        //credit = new FuzzyVariable(, , , , );
+        //FuzzySet creditVeryHigh = new FuzzySet(, , , , );
+        //FuzzySet creditHigh = new FuzzySet(, , , , );
+        //FuzzySet creditMedium = new FuzzySet(, , , , );
+        //FuzzySet creditLow = new FuzzySet(, , , , );
+        //FuzzySet creditVeryLow = new FuzzySet(, , , , );
+        //credit.add(creditVeryHigh);
+        //credit.add(creditHigh);
+        //credit.add(creditMedium);
+        //credit.add(creditLow);
+        //credit.add(creditVeryLow);
+        
         ////////// now create and add fuzzy rules //////////////////////////////////////
-
+        
         //// Home evaluation rules
-
+        
         // *** Step 2d: TO BE COMPLETED *** //
         // *** uncomment the house rating rules *** //
-
+        
         //// if (market value is low) then (house is low)
-        ruleSet.addRule(marketValue, mvLow, house, houseLow);
-
+        //ruleSet.addRule(marketValue, mvLow, house, houseLow);
+        
         //// if (location is bad) then (house is low)
-        ruleSet.addRule(location, locBad, house, houseLow);
-
+        //ruleSet.addRule(location, locBad, house, houseLow);
+        
         // here we add a matrix of rules about house ratings for all
         // combinations of location and market value
-        FuzzySet[] locationSets = {locBad, locFair, locExcellent};
-        FuzzySet[] mvSets = {mvLow, mvMedium, mvHigh, mvVeryHigh};
-        FuzzySet[][] houseMatrix = {
-                {houseVeryLow, houseLow, houseMedium, houseHigh},
-                {houseLow, houseMedium, houseHigh, houseVeryHigh},
-                {houseMedium, houseHigh, houseVeryHigh, houseVeryHigh}
-        };
-
-        ruleSet.addRuleMatrix(
-            location, locationSets,
-            marketValue, mvSets,
-            house, houseMatrix
-        );
-
+        //FuzzySet[] locationSets = {locBad, locFair, locExcellent};
+        //FuzzySet[] mvSets = {mvLow, mvMedium, mvHigh, mvVeryHigh};
+        //FuzzySet[][] houseMatrix =
+        //    {
+        //        {houseVeryLow, houseLow, houseMedium, houseHigh},
+        //        {houseLow, houseMedium, houseHigh, houseVeryHigh},
+        //        {houseMedium, houseHigh, houseVeryHigh, houseVeryHigh}
+        //    };
+        
+        //ruleSet.addRuleMatrix(
+        //    location, locationSets,
+        //    marketValue, mvSets,
+        //    house, houseMatrix
+        //    );
+        
         //////////// create graphical display showing the fuzzy inference process
         //////////// for house rating
-
+        
         //// this would be removed in the final version
-
+        
         //// this creates a matrix-based display
-//        ruleSet.displayRuleMatrix(
-//                location, locationSets,
-//                marketValue, mvSets,
-//                house
-//        );
-
+        //ruleSet.displayRuleMatrix(
+        //		location, locationSets,
+        //		marketValue, mvSets,
+        //		house);
+        
         //// the following alternative creates a scrolling list of all rules determining house rating
-        (new FuzzyRuleSubsetPanel(ruleSet, house)).display();
-
+        //(new FuzzyRuleSubsetPanel(ruleSet, house)).display();
+        
         // *** Step 2e: TO BE COMPLETED *** //
         // *** complete uncomment the remaining rules *** //
-        // *** and uncomment the "update" and "get" methods below *** //
-
+        // *** and uncomment the "upadte" and "get" methods below *** //
+        
         //// Applicant evaluation rules
-
-        /**
-         * TODO: FOR FUTURE REFERENCE
-         * Use below as example for adding matrix of rules.
-         * See IntSysWS02.pdf, pg 8.
-         */
-
-        // IF antecedent
-        FuzzySet[] assetSets = {assetLow, assetMedium, assetHigh};
-        // AND antecedent
-        FuzzySet[] incomeSets = {incomeLow, incomeMedium, incomeHigh, incomeVeryHigh};
-        // THEN consequent
-        FuzzySet[][] applicantMatrix = {
-                // if asset is low
-                {applicantLow, applicantLow, applicantMedium, applicantHigh},
-                // if asset is medium
-                {applicantLow, applicantMedium, applicantHigh, applicantHigh},
-                // if asset is high
-                {applicantMedium, applicantMedium, applicantHigh, applicantHigh}
-        };
-
-        ruleSet.addRuleMatrix(
-                asset, assetSets,
-                income, incomeSets,
-                applicant, applicantMatrix
-        );
-
+        
+        //FuzzySet[] assetSets = {assetLow, assetMedium, assetHigh};
+        //FuzzySet[] incomeSets = {incomeLow, incomeMedium, incomeHigh, incomeVeryHigh};
+        //FuzzySet[][] applicantMatrix =
+        //    {
+        //        {applicantLow, applicantLow, applicantMedium, applicantHigh},
+        //        { , , , },
+        //        {, , , }
+        //    };
+        
+        //ruleSet.addRuleMatrix(
+        //    asset, assetSets,
+        //    income, incomeSets,
+        //    applicant, applicantMatrix
+        //    );
+        
         //// Credit rules
-
-        // if (income is low) and (interest is medium) then (credit is very low)
-        ruleSet.addRule(income, incomeLow, interest, interestMedium, credit, creditVeryLow);
-        // if (income is low) and (interest is high) then (credit is very low)
-        ruleSet.addRule(income, incomeLow, interest, interestHigh, credit, creditVeryLow);
-        // if (income is medium) and (interest is high) then (credit is low)
-        ruleSet.addRule(income, incomeMedium, interest, interestHigh, credit, creditLow);
-        // if (house is very low) then (credit is very low)
-        ruleSet.addRule(house, houseLow, credit, creditVeryLow);
-        // if (applicant is low) then (credit is very low)
-        ruleSet.addRule(applicant, applicantLow, credit, creditVeryLow);
-
-        FuzzySet[] applicantSets = {applicantMedium, applicantHigh};
-        FuzzySet[] houseSets = {houseVeryLow, houseLow, houseMedium, houseHigh, houseVeryHigh};
-        FuzzySet[][] creditMatrix = {
-                {creditLow, creditLow, creditMedium, creditHigh, creditHigh},
-                {creditLow, creditMedium, creditHigh, creditHigh, creditVeryHigh}
-        };
-        ruleSet.addRuleMatrix(
-                applicant, applicantSets,
-                house, houseSets,
-                credit, creditMatrix
-        );
-
+        
+        //// if (income is low) and (interest is medium) then (credit is very low)
+        //ruleSet.addRule(income, incomeLow, interest, interestMedium, credit, creditVeryLow);
+        //// if (income is low) and (interest is high) then (credit is very low)
+        //ruleSet.addRule(, , , , , );
+        //// if (income is medium) and (interest is high) then (credit is low)
+        //ruleSet.addRule(, , , , , );
+        //// if (house is very low) then (credit is very low)
+        //ruleSet.addRule(, , , , , );
+        //// if (applicant is low) then (credit is very low)
+        //ruleSet.addRule(, , , );
+        
+        //FuzzySet[] applicantSets = {applicantMedium,applicantHigh};
+        //FuzzySet[] houseSets = {houseVeryLow, houseLow, houseMedium, houseHigh, houseVeryHigh};
+        //FuzzySet[][] creditMatrix =
+        //    {
+        //        {creditLow, creditLow, creditMedium, creditHigh, creditHigh},
+        //        {, , , , }
+        //    };
+        //ruleSet.addRuleMatrix(
+        //    applicant, applicantSets,
+        //    house, houseSets,
+        //    credit, creditMatrix
+        //    );
+        
         // *** Step 2e: TO BE DONE *** //
         // *** uncomment the lines below to check the rules for applicant rating, credit *** //
-
+        
         //////////// create graphical displays showing the fuzzy inference process
         //////////// for applicant rating, and credit
-
+        
         //// these would be removed in the final version
-
-//        ruleSet.displayRuleMatrix(
-//                asset, assetSets,
-//                income, incomeSets,
-//                applicant
-//        );
-//
-//        ruleSet.displayRuleMatrix(
-//                applicant, applicantSets,
-//                house, houseSets,
-//                credit
-//        );
-
+        
+        //ruleSet.displayRuleMatrix(
+        //    asset, assetSets,
+        //    income, incomeSets,
+        //    applicant);
+        
+        //ruleSet.displayRuleMatrix(
+        //    applicant, applicantSets,
+        //    house, houseSets,
+        //    credit);
+        
         // will print a message if there are gaps
         ruleSet.checkInputVariables();
     }
-
+    
     /**
      * Sets the market value of the property to mv
      *
      * @param mv is the new market value
      * @throws FuzzyException
      */
-    public void setMarketValue(double mv) throws FuzzyException {
+    public void setMarketValue(double mv) throws FuzzyException
+    {
         marketValue.setValue(mv);
     }
-
+    
     /**
      * Sets the location of the property to loc
      *
      * @param loc is the new location
      * @throws FuzzyException
      */
-    public void setLocation(double loc) throws FuzzyException {
+    public void setLocation(double loc) throws FuzzyException
+    {
         // *** Step 2c: TO BE DONE *** //
-        location.setValue(loc);
+        //location.setValue(loc);
     }
-
+    
     /**
      * Sets the assets of the applicant to ass
      *
      * @param ass is the new assets
      * @throws FuzzyException
      */
-    public void setAsset(double ass) throws FuzzyException {
+    public void setAsset(double ass) throws FuzzyException
+    {
         // *** Step 2c: TO BE DONE *** //
-        asset.setValue(ass);
+        //asset.setValue(ass);
     }
-
+    
     /**
      * Sets the income of the applicant to inc
      *
      * @param inc is the new income
      * @throws FuzzyException
      */
-    public void setIncome(double inc) throws FuzzyException {
+    public void setIncome(double inc) throws FuzzyException
+    {
         // *** Step 2c: TO BE DONE *** //
-        income.setValue(inc);
+        //income.setValue(inc);
     }
-
+    
     /**
      * Sets the interest rate on the loan to in
      *
-     * @param in is the new income
+     * @param inc is the new income
      * @throws FuzzyException
      */
-    public void setInterest(double in) throws FuzzyException {
+    public void setInterest(double in) throws FuzzyException
+    {
         // *** Step 2c: TO BE DONE *** //
-        interest.setValue(in);
+        //interest.setValue(in);
     }
-
+       
     /**
      * Carries out fuzzy inference. Will throw an exception if some
      * input variable is not set, or if some needed intermediate
@@ -324,32 +313,39 @@ public class MortgageES {
      *
      * @throws FuzzyException
      */
-    public void update() throws FuzzyException {
+    public void update() throws FuzzyException
+    {
         // *** Step 2g: TO BE DONE *** //
-        ruleSet.update();
+        //ruleSet.update();
     }
-
-    public FuzzyVariablePanel getMarketValuePanel() {
+    
+    public FuzzyVariablePanel getMarketValuePanel()
+    {
         return new FuzzyVariablePanel(marketValue);
     }
-
-    public FuzzyVariablePanel getLocationPanel() {
+    
+    public FuzzyVariablePanel getLocationPanel()
+    {
         return new FuzzyVariablePanel(location);
     }
-
-    public FuzzyVariablePanel getAssetPanel() {
+    
+    public FuzzyVariablePanel getAssetPanel()
+    {
         return new FuzzyVariablePanel(asset);
     }
-
-    public FuzzyVariablePanel getIncomePanel() {
+    
+    public FuzzyVariablePanel getIncomePanel()
+    {
         return new FuzzyVariablePanel(income);
     }
-
-    public FuzzyVariablePanel getInterestPanel() {
+    
+    public FuzzyVariablePanel getInterestPanel()
+    {
         return new FuzzyVariablePanel(interest);
     }
-
-    public FuzzyVariablePanel getCreditPanel() {
+    
+    public FuzzyVariablePanel getCreditPanel()
+    {
         return new FuzzyVariablePanel(credit);
     }
 }
