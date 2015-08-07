@@ -1,4 +1,4 @@
-package csg2341.skynet.ponce.mortgage;
+package net.sky.csg2341.ponce.ws02;
 
 // import gives access to classes in the fuzzy package
 //

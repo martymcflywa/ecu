@@ -1,4 +1,4 @@
-package csg2341.skynet.ponce.mortgage;
+package net.sky.csg2341.ponce.ws02;
 
 import au.edu.ecu.is.fuzzy.*;
 
@@ -10,8 +10,8 @@ import au.edu.ecu.is.fuzzy.*;
  * <p/>
  * Note - the program will compile and run without changes, but will not give sensible results.
  *
- * @author (phi)
- * @version (2015/2)
+ * @author (phi) & Martin Ponce 10371381
+ * @version (2015/2) 20150807
  */
 public class MortgageES {
     // the fuzzy variables needed for this system
@@ -136,7 +136,7 @@ public class MortgageES {
         credit.add(creditMedium);
         credit.add(creditHigh);
         credit.add(creditVeryHigh);
-        credit.display();
+        //credit.display();
 
         ////////// now create and add fuzzy rules //////////////////////////////////////
 
