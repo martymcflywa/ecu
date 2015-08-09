@@ -22,8 +22,33 @@ const MASTER_RESEARCH = 240
 dim studentFullName
 dim studentID
 
-'course details
-dim 
+'unit details
+dim unitArray(3, 29)
+
+dim Item
+dim fieldName, fieldValue
+dim unitDictionary
+dim key, value
+
+'trying to store items to dictionary here
+Set unitDictionary = server.createObject("scripting.dictionary")
+
+for each Item in request.form
+	if Item <> "Firstname" or Item <> "Surname" or Item <> "StudentID" then
+		fieldName = Item
+		fieldValue = request.form(Item)
+		unitDictionary.add fieldName, fieldValue
+	end if
+next
+
+key = unitDictionary.keys
+value = unitDictionary.items
+
+for i = 0 to unitDictionary.count - 1
+	response.write(key(i) & " = " & value(i))
+	response.write("<br />")
+next
+
 
 'check Firstname and Surname provided
 if isPopulated("Firstname") and isPopulated("Surname") then
@@ -41,6 +66,12 @@ else
 	exceptionMessage("Form must include StudentID.")
 	response.end
 end if
+
+for i = 0 to 3
+	for j = 0 to 29
+
+	next
+next
 
 'function checks if field is populated
 '@return isPopulated boolean
