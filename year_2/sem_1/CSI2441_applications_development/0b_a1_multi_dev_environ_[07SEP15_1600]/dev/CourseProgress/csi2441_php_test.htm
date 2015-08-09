@@ -1,0 +1,495 @@
+<!-- assigned default values to each field, for testing purposes only -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>CPA 2015</title>
+</head>
+
+<body>
+<h1>Course Progession Analyser</h1>
+<hr />
+<table width="509" border="1">
+<form method="post" action="cpa_analyser.php">
+  <tr>
+    <td width="106">Firstname</td>
+    <td width="177"><input name="Firstname" type="text" id="Firstname" size="20" maxlength="50" value="Marty"/></td>
+    <td width="99">&nbsp;</td>
+    <td width="99">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Surname</td>
+    <td><input name="Surname" type="text" id="Surname" size="20" maxlength="50" value="Mcfly"/></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Enrolment Type</td>
+    <td><select name="EnrolmentType" id="EnrolmentType">
+      <option value="1" selected="selected">Full-Time</option>
+      <option value="2">Part-Time</option>
+    </select></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Student ID </td>
+    <td><input name="StudentID" type="text" id="StudentID" size="8" maxlength="8" value="10371381"/></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Course Type </td>
+    <td><select name="CourseType" id="CourseType">
+      <option value="1" selected="selected">Undergraduate Degree (360 CP)</option>
+      <option value="2">Undergraduate Double Degree (480 CP)</option>
+      <option value="3">Graduate Diploma (120 CP)</option>
+      <option value="4">Masters by Coursework (180 CP)</option>
+      <option value="5">Masters by Research (240 CP)</option>
+    </select>    </td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><p align="center"><em><strong>Unit Code </strong></em></p></td>
+    <td><p align="center"><em><strong>Credit Points </strong></em></p></td>
+    <td><p align="center"><em><strong>Year / Semester</strong></em></p></td>
+    <td><em><strong>Mark ( / 100) </strong></em></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_1" type="text" id="UnitCode_1" size="7" maxlength="7" value="CSG1132"/>
+    </div></td>
+    <td><div align="center">
+      <input name="CP_1" type="text" id="CP_1" size="2" maxlength="2" value="15"/>
+    </div></td>
+    <td><div align="center">
+        <input name="YS_1" type="text" id="YS_1" size="3" maxlength="3" value="151"/>
+    </div></td>
+    <td><div align="center">
+        <input name="UM_1" type="text" id="UM_1" size="3" maxlength="3" value="76"/>
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_2" type="text" id="UnitCode_2" size="7" maxlength="7" value="CSI1241"/>
+    </div></td>
+    <td><div align="center">
+      <input name="CP_2" type="text" id="CP_2" size="2" maxlength="2" value="15"/>
+    </div></td>
+    <td><div align="center">
+        <input name="YS_2" type="text" id="YS_2" size="3" maxlength="3" value="151"/>
+    </div></td>
+    <td><div align="center">
+        <input name="UM_2" type="text" id="UM_2" size="3" maxlength="3" value="80"/>
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_3" type="text" id="UnitCode_3" size="7" maxlength="7" value="CSP1150"/>
+    </div></td>
+    <td><div align="center">
+      <input name="CP_3" type="text" id="CP_3" size="2" maxlength="2" value="15"/>
+    </div></td>
+    <td><div align="center">
+        <input name="YS_3" type="text" id="YS_3" size="3" maxlength="3" value="151"/>
+    </div></td>
+    <td><div align="center">
+        <input name="UM_3" type="text" id="UM_3" size="3" maxlength="3" value="99"/>
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_4" type="text" id="UnitCode_4" size="7" maxlength="7" value="ENS1161"/>
+    </div></td>
+    <td><div align="center">
+      <input name="CP_4" type="text" id="CP_4" size="2" maxlength="2" value="15"/>
+    </div></td>
+    <td><div align="center">
+        <input name="YS_4" type="text" id="YS_4" size="3" maxlength="3" value="151"/>
+    </div></td>
+    <td><div align="center">
+        <input name="UM_4" type="text" id="UM_4" size="3" maxlength="3" value="91"/>
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_5" type="text" id="UnitCode_5" size="7" maxlength="7" value="CSG1105"/>
+    </div></td>
+    <td><div align="center">
+      <input name="CP_5" type="text" id="CP_5" size="2" maxlength="2" value="15"/>
+    </div></td>
+    <td><div align="center">
+        <input name="YS_5" type="text" id="YS_5" size="3" maxlength="3" value="152"/>
+    </div></td>
+    <td><div align="center">
+        <input name="UM_5" type="text" id="UM_5" size="3" maxlength="3" value="77"/>
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_6" type="text" id="UnitCode_6" size="7" maxlength="7" value="CSG1207"/>
+    </div></td>
+    <td><div align="center">
+      <input name="CP_6" type="text" id="CP_6" size="2" maxlength="2" value="15"/>
+    </div></td>
+    <td><div align="center">
+        <input name="YS_6" type="text" id="YS_6" size="3" maxlength="3" value="152"/>
+    </div></td>
+    <td><div align="center">
+        <input name="UM_6" type="text" id="UM_6" size="3" maxlength="3" value="96"/>
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_7" type="text" id="UnitCode_7" size="7" maxlength="7" value="CSI1101"/>
+    </div></td>
+    <td><div align="center">
+      <input name="CP_7" type="text" id="CP_7" size="2" maxlength="2" value="15"/>
+    </div></td>
+    <td><div align="center">
+        <input name="YS_7" type="text" id="YS_7" size="3" maxlength="3" value="152"/>
+    </div></td>
+    <td><div align="center">
+        <input name="UM_7" type="text" id="UM_7" size="3" maxlength="3" value="81"/>
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_8" type="text" id="UnitCode_8" size="7" maxlength="7" value="CSP2348"/>
+    </div></td>
+    <td><div align="center">
+      <input name="CP_8" type="text" id="CP_8" size="2" maxlength="2" value="15"/>
+    </div></td>
+    <td><div align="center">
+        <input name="YS_8" type="text" id="YS_8" size="3" maxlength="3" value="152"/>
+    </div></td>
+    <td><div align="center">
+        <input name="UM_8" type="text" id="UM_8" size="3" maxlength="3" value="83"/>
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_9" type="text" id="UnitCode_9" size="7" maxlength="7" value="CSG1102"/>
+    </div></td>
+    <td><div align="center">
+      <input name="CP_9" type="text" id="CP_9" size="2" maxlength="2" value="15"/>
+    </div></td>
+    <td><div align="center">
+        <input name="YS_9" type="text" id="YS_9" size="3" maxlength="3" value="161"/>
+    </div></td>
+    <td><div align="center">
+        <input name="UM_9" type="text" id="UM_9" size="3" maxlength="3" value="0"/>
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_10" type="text" id="UnitCode_10" size="7" maxlength="7" value="CSG2341"/>
+    </div></td>
+    <td><div align="center">
+      <input name="CP_10" type="text" id="CP_10" size="2" maxlength="2" value="15"/>
+    </div></td>
+    <td><div align="center">
+        <input name="YS_10" type="text" id="YS_10" size="3" maxlength="3" value="161"/>
+    </div></td>
+    <td><div align="center">
+        <input name="UM_10" type="text" id="UM_10" size="3" maxlength="3" value="0"/>
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_11" type="text" id="UnitCode_11" size="7" maxlength="7" value="CSG2344"/>
+    </div></td>
+    <td><div align="center">
+      <input name="CP_11" type="text" id="CP_11" size="2" maxlength="2" value="15"/>
+    </div></td>
+    <td><div align="center">
+        <input name="YS_11" type="text" id="YS_11" size="3" maxlength="3" value="161"/>
+    </div></td>
+    <td><div align="center">
+        <input name="UM_11" type="text" id="UM_11" size="3" maxlength="3" value="0"/>
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_12" type="text" id="UnitCode_12" size="7" maxlength="7" value="CSI2441"/>
+    </div></td>
+    <td><div align="center">
+      <input name="CP_12" type="text" id="CP_12" size="2" maxlength="2" value="15"/>
+    </div></td>
+    <td><div align="center">
+        <input name="YS_12" type="text" id="YS_12" size="3" maxlength="3" value="161"/>
+    </div></td>
+    <td><div align="center">
+        <input name="UM_12" type="text" id="UM_12" size="3" maxlength="3" value="0"/>
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_13" type="text" id="UnitCode_13" size="7" maxlength="7" />
+    </div></td>
+    <td><div align="center">
+      <input name="CP_13" type="text" id="CP_13" size="2" maxlength="2" />
+    </div></td>
+    <td><div align="center">
+        <input name="YS_13" type="text" id="YS_13" size="3" maxlength="3" />
+    </div></td>
+    <td><div align="center">
+        <input name="UM_13" type="text" id="UM_13" size="3" maxlength="3" />
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_14" type="text" id="UnitCode_14" size="7" maxlength="7" />
+    </div></td>
+    <td><div align="center">
+      <input name="CP_14" type="text" id="CP_14" size="2" maxlength="2" />
+    </div></td>
+    <td><div align="center">
+        <input name="YS_14" type="text" id="YS_14" size="3" maxlength="3" />
+    </div></td>
+    <td><div align="center">
+        <input name="UM_14" type="text" id="UM_14" size="3" maxlength="3" />
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_15" type="text" id="UnitCode_15" size="7" maxlength="7" />
+    </div></td>
+    <td><div align="center">
+      <input name="CP_15" type="text" id="CP_15" size="2" maxlength="2" />
+    </div></td>
+    <td><div align="center">
+        <input name="YS_15" type="text" id="YS_15" size="3" maxlength="3" />
+    </div></td>
+    <td><div align="center">
+        <input name="UM_15" type="text" id="UM_15" size="3" maxlength="3" />
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_16" type="text" id="UnitCode_16" size="7" maxlength="7" />
+    </div></td>
+    <td><div align="center">
+      <input name="CP_16" type="text" id="CP_16" size="2" maxlength="2" />
+    </div></td>
+    <td><div align="center">
+        <input name="YS_16" type="text" id="YS_16" size="3" maxlength="3" />
+    </div></td>
+    <td><div align="center">
+        <input name="UM_16" type="text" id="UM_16" size="3" maxlength="3" />
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_17" type="text" id="UnitCode_17" size="7" maxlength="7" />
+    </div></td>
+    <td><div align="center">
+      <input name="CP_17" type="text" id="CP_17" size="2" maxlength="2" />
+    </div></td>
+    <td><div align="center">
+        <input name="YS_17" type="text" id="YS_17" size="3" maxlength="3" />
+    </div></td>
+    <td><div align="center">
+        <input name="UM_17" type="text" id="UM_17" size="3" maxlength="3" />
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_18" type="text" id="UnitCode_18" size="7" maxlength="7" />
+    </div></td>
+    <td><div align="center">
+      <input name="CP_18" type="text" id="CP_18" size="2" maxlength="2" />
+    </div></td>
+    <td><div align="center">
+        <input name="YS_18" type="text" id="YS_18" size="3" maxlength="3" />
+    </div></td>
+    <td><div align="center">
+        <input name="UM_18" type="text" id="UM_18" size="3" maxlength="3" />
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_19" type="text" id="UnitCode_19" size="7" maxlength="7" />
+    </div></td>
+    <td><div align="center">
+      <input name="CP_19" type="text" id="CP_19" size="2" maxlength="2" />
+    </div></td>
+    <td><div align="center">
+        <input name="YS_19" type="text" id="YS_19" size="3" maxlength="3" />
+    </div></td>
+    <td><div align="center">
+        <input name="UM_19" type="text" id="UM_19" size="3" maxlength="3" />
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_20" type="text" id="UnitCode_20" size="7" maxlength="7" />
+    </div></td>
+    <td><div align="center">
+      <input name="CP_20" type="text" id="CP_20" size="2" maxlength="2" />
+    </div></td>
+    <td><div align="center">
+        <input name="YS_20" type="text" id="YS_20" size="3" maxlength="3" />
+    </div></td>
+    <td><div align="center">
+        <input name="UM_20" type="text" id="UM_20" size="3" maxlength="3" />
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_21" type="text" id="UnitCode_21" size="7" maxlength="7" />
+    </div></td>
+    <td><div align="center">
+      <input name="CP_21" type="text" id="CP_21" size="2" maxlength="2" />
+    </div></td>
+    <td><div align="center">
+        <input name="YS_21" type="text" id="YS_21" size="3" maxlength="3" />
+    </div></td>
+    <td><div align="center">
+        <input name="UM_21" type="text" id="UM_21" size="3" maxlength="3" />
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_22" type="text" id="UnitCode_22" size="7" maxlength="7" />
+    </div></td>
+    <td><div align="center">
+      <input name="CP_22" type="text" id="CP_22" size="2" maxlength="2" />
+    </div></td>
+    <td><div align="center">
+        <input name="YS_22" type="text" id="YS_22" size="3" maxlength="3" />
+    </div></td>
+    <td><div align="center">
+        <input name="UM_22" type="text" id="UM_22" size="3" maxlength="3" />
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_23" type="text" id="UnitCode_23" size="7" maxlength="7" />
+    </div></td>
+    <td><div align="center">
+      <input name="CP_23" type="text" id="CP_23" size="2" maxlength="2" />
+    </div></td>
+    <td><div align="center">
+        <input name="YS_23" type="text" id="YS_23" size="3" maxlength="3" />
+    </div></td>
+    <td><div align="center">
+        <input name="UM_23" type="text" id="UM_23" size="3" maxlength="3" />
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_24" type="text" id="UnitCode_24" size="7" maxlength="7" />
+    </div></td>
+    <td><div align="center">
+      <input name="CP_24" type="text" id="CP_24" size="2" maxlength="2" />
+    </div></td>
+    <td><div align="center">
+        <input name="YS_24" type="text" id="YS_24" size="3" maxlength="3" />
+    </div></td>
+    <td><div align="center">
+        <input name="UM_24" type="text" id="UM_24" size="3" maxlength="3" />
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_25" type="text" id="UnitCode_25" size="7" maxlength="7" />
+    </div></td>
+    <td><div align="center">
+      <input name="CP_25" type="text" id="CP_25" size="2" maxlength="2" />
+    </div></td>
+    <td><div align="center">
+        <input name="YS_25" type="text" id="YS_25" size="3" maxlength="3" />
+    </div></td>
+    <td><div align="center">
+        <input name="UM_25" type="text" id="UM_25" size="3" maxlength="3" />
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_26" type="text" id="UnitCode_26" size="7" maxlength="7" />
+    </div></td>
+    <td><div align="center">
+      <input name="CP_26" type="text" id="CP_26" size="2" maxlength="2" />
+    </div></td>
+    <td><div align="center">
+        <input name="YS_26" type="text" id="YS_26" size="3" maxlength="3" />
+    </div></td>
+    <td><div align="center">
+        <input name="UM_26" type="text" id="UM_26" size="3" maxlength="3" />
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_27" type="text" id="UnitCode_27" size="7" maxlength="7" />
+    </div></td>
+    <td><div align="center">
+      <input name="CP_27" type="text" id="CP_27" size="2" maxlength="2" />
+    </div></td>
+    <td><div align="center">
+        <input name="YS_27" type="text" id="YS_27" size="3" maxlength="3" />
+    </div></td>
+    <td><div align="center">
+        <input name="UM_27" type="text" id="UM_27" size="3" maxlength="3" />
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_28" type="text" id="UnitCode_28" size="7" maxlength="7" />
+    </div></td>
+    <td><div align="center">
+      <input name="CP_28" type="text" id="CP_28" size="2" maxlength="2" />
+    </div></td>
+    <td><div align="center">
+        <input name="YS_28" type="text" id="YS_28" size="3" maxlength="3" />
+    </div></td>
+    <td><div align="center">
+        <input name="UM_28" type="text" id="UM_28" size="3" maxlength="3" />
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_29" type="text" id="UnitCode_29" size="7" maxlength="7" />
+    </div></td>
+    <td><div align="center">
+      <input name="CP_29" type="text" id="CP_29" size="2" maxlength="2" />
+    </div></td>
+    <td><div align="center">
+        <input name="YS_29" type="text" id="YS_29" size="3" maxlength="3" />
+    </div></td>
+    <td><div align="center">
+        <input name="UM_29" type="text" id="UM_29" size="3" maxlength="3" />
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input name="UnitCode_30" type="text" id="UnitCode_30" size="7" maxlength="7" />
+    </div></td>
+    <td><div align="center">
+      <input name="CP_30" type="text" id="CP_30" size="2" maxlength="2" />
+    </div></td>
+    <td><div align="center">
+        <input name="YS_30" type="text" id="YS_30" size="3" maxlength="3" />
+    </div></td>
+    <td><div align="center">
+        <input name="UM_30" type="text" id="UM_30" size="3" maxlength="3" />
+    </div></td>
+  </tr>
+  <tr>
+    <td colspan="4"><input type="submit" name="Submit" value="Submit" /> <input name="Reset" type="reset" id="Reset" value="Reset" /></td>
+  </tr>
+  </form>
+</table>
+
+
+<p>&nbsp;</p>
+</body>
+</html>
