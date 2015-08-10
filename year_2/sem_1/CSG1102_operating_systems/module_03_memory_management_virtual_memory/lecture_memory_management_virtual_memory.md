@@ -499,6 +499,6 @@
 - Cache memory
 	- CPU can execute instructions faster
 
-## Memory allocation scheme comparisons
+### Memory allocation scheme comparisons
 
-![memory allocation scheme comparisons]()
+![memory allocation scheme comparisons](http://snag.gy/AhsrW.jpg)
