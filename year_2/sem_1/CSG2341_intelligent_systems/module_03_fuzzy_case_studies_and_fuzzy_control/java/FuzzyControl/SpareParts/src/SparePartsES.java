@@ -3,8 +3,8 @@ import au.edu.ecu.is.fuzzy.*;
 /**
  * The spare parts expert system.
  *
- * @author phi
- * @version 2004/2
+ * @author phi @ Martin Ponce 10371381
+ * @version 20150811
  */
 public class SparePartsES {
 
