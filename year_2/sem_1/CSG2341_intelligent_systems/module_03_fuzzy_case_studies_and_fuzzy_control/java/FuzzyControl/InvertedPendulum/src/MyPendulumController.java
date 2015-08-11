@@ -27,6 +27,7 @@ public class MyPendulumController implements PendulumController
         theta.add(right);
         theta.add(hardRight);
         theta.checkGaps();
+        theta.display();
         
         // and one for the rate of change of the angle
         double maxLeft = -2500.0;
@@ -43,6 +44,7 @@ public class MyPendulumController implements PendulumController
         dtheta.add(slowRight);
         dtheta.add(fastRight);
         dtheta.checkGaps();
+        dtheta.display();
         
         // and create a fuzzy variable to represent the control variable - force to apply
         final double MAX = 1.5;
@@ -67,6 +69,12 @@ public class MyPendulumController implements PendulumController
                 dtheta, dthetaSets,
                 theta, thetaSets,
                 force, forces);
+
+        rules.displayRuleMatrix(
+                dtheta, dthetaSets,
+                theta, thetaSets,
+                force
+        );
     }
     
     // access methods for the fuzzy objects
