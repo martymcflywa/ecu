@@ -24,12 +24,14 @@ grossPay = 0
 
 'check actual hoursWorked against workload
 if hoursWorked > workload then
-	if salaried = 1 then
-		overtimePay = 0
-	else
-		overtimePay = (hoursWorked - workload) * (overtimeRate * rateOfPay)
-	end if
-	grossPay = (hoursWorked * rateOfPay) + overtimePay
+	sub overtimeModule()
+		if salaried = 1 then
+			overtimePay = 0
+		else
+			overtimePay = (hoursWorked - workload) * (overtimeRate * rateOfPay)
+		end if
+		grossPay = (hoursWorked * rateOfPay) + overtimePay
+	end sub
 else
 	grossPay = hoursWorked * rateOfPay
 end if
