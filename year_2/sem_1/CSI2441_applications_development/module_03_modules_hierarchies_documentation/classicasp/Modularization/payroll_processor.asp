@@ -127,7 +127,7 @@ sub printSummary()
 end sub
 
 'sub print error message
-'@param field String - The form field that is not populated
+'@param field String - The form field that has error
 '@param errorMessage String - The error message to be displayed
 sub printError(field, errorMessage)
 	response.write("<h2>Error</h2>")
