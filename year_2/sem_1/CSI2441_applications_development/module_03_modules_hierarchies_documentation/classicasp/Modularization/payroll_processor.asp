@@ -32,6 +32,7 @@ if hoursWorked > workload then
 		end if
 		grossPay = (hoursWorked * rateOfPay) + overtimePay
 	end sub
+	call overtimeModule()
 else
 	grossPay = hoursWorked * rateOfPay
 end if
