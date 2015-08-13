@@ -1,9 +1,5 @@
 <?php
 
-// suppress "undefined index" error for $salaried,
-// appears when unchecked - otherwise comment out for debugging
-error_reporting(E_ERROR | E_PARSE);
-
 /************************
  **** MAINLINE LOGIC ****
  ************************/
@@ -12,14 +8,17 @@ error_reporting(E_ERROR | E_PARSE);
 $employeeID = $_POST["EmployeeID"];
 $employeeSurname = $_POST["EmployeeSurname"];
 $employeeFirstName = $_POST["EmployeeFirstname"];
-$salaried = $_POST["Salaried"];
 $rateOfPay = $_POST["RateOfPay"];
 $hoursWorked = $_POST["HoursWorked"];
 
+// only init salaried after being set, otherwise will get "undefined index" error
+// see https://youtu.be/OH-BNVNgw1g
+if(isset($_POST["Salaried"])) {
+	$salaried = $_POST["Salaried"];
+}
 
-// variables waiting to be initialised
-$overtimePay;
-$overtimeHours;
+$overtimePay = 0;
+$overtimeHours = 0;
 
 // constants
 define("WORK_LOAD", 40);
