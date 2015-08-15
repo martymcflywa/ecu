@@ -4,12 +4,18 @@
 
 \subsubsection*{Blanchet, G., \& Bertrand, D. (2012). Computer Architecture. Hoboken, NJ: Wiley.}
 
-\begin{itemize}
-\item \citetapos{Blanchet2012} book is aimed at readers wishing to learn about the essential architecture of a computer as a whole. However, chapter 9 (p. 175 - 204) provides insight into the functionality of virtual memory management.
-\item The authors introduce virtual management with a brief history, and explain the purpose and the trade-off when using virtual memory.
-	\begin{itemize}
-	\item \citet{Blanchet2012} assert that delays may occur while data is transferred between physical memory and mass storage.
-	\end{itemize}
-\item They explain how physical memory and a mass storage device interact to provide virtual memory through the use of paging, and briefly cover fetch and page fault algorithms. Page size considerations are also listed, and referred to as ``conflicting criteria''. The chapter also introduces the concept of multi-level paging.
-\item \citet{Blanchet2012} then provide a detailed and technical step-by-step view of virtual memory management at work, using a program execution as an example.
-\end{itemize}
+\citetapos{Blanchet2012} book is aimed at readers wishing to learn about the essential architecture of a computer as a whole. However, chapter 9 (p. 175 - 204) provides insight into the functionality of virtual memory management. The authors introduce virtual management with a brief history, then explain the purpose of virtual memory, and list advantages and disadvantages. %delays may occur while data is transferred between physical memory and mass storage.
+
+They explain how physical memory and a mass storage device interact to provide virtual memory through the use of paging, and briefly cover fetch and page fault algorithms. Page size considerations are also listed, and referred to as ``conflicting criteria''. The chapter also introduces the concept of multi-level paging.
+
+\citet{Blanchet2012} then conclude the chapter by provide a detailed and technical step-by-step view of virtual memory management at work, using a program execution as an example.
+
+\subsubsection*{Blunden, B. (2003). Memory Management Algorithms and Implementation in C/C++. Plano, TX: Wordware.}
+
+Although \citetapos{Blunden2003} book is primarily for C/C++ programmers looking to implement their own memory management system, it provides an overview of operating system memory management in chapters 1 (p. 1 - 43) and 2 (p. 45 - 126), titled ``Memory Management Mechanisms'' and ``Memory Management Policies'', respectively. Blunden's light-hearted approach to writing is a complete departure of the usual, dry textbook content and includes many personal anecdotes from his experiences in the IT industry which makes for an interesting read.
+
+Blunden introduces memory management in chapter 1 at the processor level, which provides functionality for segmentation and paging. While explaining memory hierarchy, he outlines the purpose of the L1 and L2 cache, and as with \citet{Blanchet2012}, states a similar disadvantage of virtual memory: Sacrifice performance for memory space. The author then explains the differences between page frames and pages.
+
+Chapter 2 compares virtual memory management and paging (or lack thereof) between four operating systems: MS-DOS, MMURTL, Linux, and Windows XP. Interestingly, MMURTL's use of paging was not related to virtual memory, but to provide memory protection and allocation.
+
+While the text can be very technical at times (C/C++ code snippets), there is sufficient information in these two chapters relating to virtual memory management and paging for use in further research, particularly the comparisons between different operating systems.
