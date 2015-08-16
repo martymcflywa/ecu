@@ -17,13 +17,17 @@ public class MyCruiseController implements CruiseController {
 
     public MyCruiseController() throws FuzzyException {
 
+        final double MIN_SPEED = -15.0;
+        final double MAX_SPEED = 15.0;
+
         // fuzzy variable and sets for speedError
         speedError = new FuzzyVariable("speed error", "m/s", -15.0, 15.0, 2);
-        FuzzySet verySlow = new FuzzySet("very slow", -15.0, -15.0, -10.0, -5.0);
-        FuzzySet slow = new FuzzySet("slow", -10.0, -5.0, -5.0, 0.0);
-        FuzzySet medium = new FuzzySet("medium", -5.0, 0.0, 0.0, 5.0);
-        FuzzySet fast = new FuzzySet("fast", 0.0, 5.0, 5.0, 10.0);
-        FuzzySet veryFast = new FuzzySet("very fast", 5.0, 10.0, 15.0, 15.0);
+
+        FuzzySet verySlow = new FuzzySet("very slow", MIN_SPEED, MIN_SPEED, 0.5*MIN_SPEED, 0.25*MIN_SPEED);
+        FuzzySet slow = new FuzzySet("slow", 0.3*MIN_SPEED, 0.1*MIN_SPEED, 0.0, 0.0);
+        FuzzySet medium = new FuzzySet("medium", 0.1*MIN_SPEED, 0.0, 0.0, 0.1*MAX_SPEED);
+        FuzzySet fast = new FuzzySet("fast", 0.0, 0.0, 0.1*MAX_SPEED, 0.3*MAX_SPEED);
+        FuzzySet veryFast = new FuzzySet("very fast", 0.25*MAX_SPEED, 0.5*MAX_SPEED, MAX_SPEED, MAX_SPEED);
 
         speedError.add(verySlow);
         speedError.add(slow);
@@ -36,15 +40,20 @@ public class MyCruiseController implements CruiseController {
 
         // fuzzy variable and sets for acceleration
         acceleration = new FuzzyVariable("acceleration", "m/s", -20.0, 20.0, 2);
-        FuzzySet hardReverse = new FuzzySet("hard reverse", -20.0, -20.0, -13.0, -3.0);
-        FuzzySet reverse = new FuzzySet("reverse", -13.0, -3.0, -3.0, 0.0);
-        FuzzySet neutral = new FuzzySet("neutral", -3.0, 0.0, 0.0, 3.0);
-        FuzzySet forward = new FuzzySet("forward", 0.0, 3.0, 3.0, 13.0);
-        FuzzySet hardForward = new FuzzySet("hard forward", 3.0, 13.0, 20.0, 20.0);
+
+        FuzzySet hardReverse = new FuzzySet("hard reverse", -20.0, -20.0, -13.4, -6.7);
+        FuzzySet reverse = new FuzzySet("reverse", -13.4, -13.4, -6.7, -3.4);
+        FuzzySet slightReverse = new FuzzySet("slight reverse", -3.4, -1.8, -1.8, 0.0);
+        FuzzySet neutral = new FuzzySet("neutral", -0.7, -0.7, 0.7, 0.7);
+        FuzzySet slightForward = new FuzzySet("slight forward", 0.0, 1.8, 1.8, 3.4);
+        FuzzySet forward = new FuzzySet("forward", 3.4, 6.7, 13.4, 13.4);
+        FuzzySet hardForward = new FuzzySet("hard forward", 6.7, 13.4, 20.0, 20.0);
 
         acceleration.add(hardReverse);
         acceleration.add(reverse);
+        acceleration.add(slightReverse);
         acceleration.add(neutral);
+        acceleration.add(slightForward);
         acceleration.add(forward);
         acceleration.add(hardForward);
 
@@ -52,21 +61,21 @@ public class MyCruiseController implements CruiseController {
         acceleration.display();
 
         // fuzzy variable for control
-        final double MAX_FORCE = 7000;
-        forceChange = new FuzzyVariable("force", "", -MAX_FORCE, MAX_FORCE, 2);
+        final double MAX_ACCEL = 7000;
+        forceChange = new FuzzyVariable("force", "", -MAX_ACCEL, MAX_ACCEL, 2);
 
         // define rules
         rules = new SugenoRuleSet();
 
         FuzzySet[] speedErrorSets = {verySlow, slow, medium, fast, veryFast};
-        FuzzySet[] accelerationSets = {hardReverse, reverse, neutral, forward, hardForward};
+        FuzzySet[] accelerationSets = {hardReverse, reverse, slightReverse, neutral, slightForward, forward, hardForward};
 
         double[][] forces = {
-                {7000.0, 7000.0, 5000.0, 3000.0, 1500.0},
-                {7000.0, 5000.0, 5000.0, 3000.0, 1000.0},
-                {3000.0, 1000.0, 0.0, -1000.0, -3000.0},
-                {-1000.0, -1000.0, -1500.0, -5000.0, -7000.0},
-                {-1000.0, -1500.0, -3000.0, -7000.0, -7000.0}
+                {MAX_ACCEL, MAX_ACCEL, 0.5*MAX_ACCEL, 0.25*MAX_ACCEL, 0.0, 0.0, -0.5*MAX_ACCEL},
+                {MAX_ACCEL, MAX_ACCEL, 0.25*MAX_ACCEL, 0.125*MAX_ACCEL, 0.0, -0.5*MAX_ACCEL, -MAX_ACCEL},
+                {MAX_ACCEL, MAX_ACCEL, 0.25*MAX_ACCEL, 0.0, -0.25*MAX_ACCEL, -MAX_ACCEL, -MAX_ACCEL},
+                {MAX_ACCEL, 0.5*MAX_ACCEL, 0.0, -0.125*MAX_ACCEL, -0.25*MAX_ACCEL, -MAX_ACCEL, -MAX_ACCEL},
+                {0.05*MAX_ACCEL, 0.0, 0.0, -0.25*MAX_ACCEL, -0.5*MAX_ACCEL, -MAX_ACCEL, -MAX_ACCEL}
         };
 
         rules.addRuleMatrix(
