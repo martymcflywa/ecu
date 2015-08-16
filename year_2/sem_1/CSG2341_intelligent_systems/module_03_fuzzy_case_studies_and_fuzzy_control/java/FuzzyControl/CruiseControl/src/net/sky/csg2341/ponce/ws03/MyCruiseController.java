@@ -43,9 +43,9 @@ public class MyCruiseController implements CruiseController {
 
         FuzzySet hardReverse = new FuzzySet("hard reverse", -20.0, -20.0, -13.4, -6.7);
         FuzzySet reverse = new FuzzySet("reverse", -13.4, -13.4, -6.7, -3.4);
-        FuzzySet slightReverse = new FuzzySet("slight reverse", -3.4, -1.8, -1.8, 0.0);
+        FuzzySet slightReverse = new FuzzySet("slight reverse", -5.0, -2.5, -2.5, 0.0);
         FuzzySet neutral = new FuzzySet("neutral", -0.7, -0.7, 0.7, 0.7);
-        FuzzySet slightForward = new FuzzySet("slight forward", 0.0, 1.8, 1.8, 3.4);
+        FuzzySet slightForward = new FuzzySet("slight forward", 0.0, 2.5, 2.5, 5.0);
         FuzzySet forward = new FuzzySet("forward", 3.4, 6.7, 13.4, 13.4);
         FuzzySet hardForward = new FuzzySet("hard forward", 6.7, 13.4, 20.0, 20.0);
 
@@ -72,9 +72,9 @@ public class MyCruiseController implements CruiseController {
 
         double[][] forces = {
                 {MAX_ACCEL, MAX_ACCEL, 0.5*MAX_ACCEL, 0.25*MAX_ACCEL, 0.0, 0.0, -0.5*MAX_ACCEL},
-                {MAX_ACCEL, MAX_ACCEL, 0.25*MAX_ACCEL, 0.125*MAX_ACCEL, 0.0, -0.5*MAX_ACCEL, -MAX_ACCEL},
+                {MAX_ACCEL, MAX_ACCEL, 0.35*MAX_ACCEL, 0.125*MAX_ACCEL, -0.125*MAX_ACCEL, -0.5*MAX_ACCEL, -MAX_ACCEL},
                 {MAX_ACCEL, MAX_ACCEL, 0.25*MAX_ACCEL, 0.0, -0.25*MAX_ACCEL, -MAX_ACCEL, -MAX_ACCEL},
-                {MAX_ACCEL, 0.5*MAX_ACCEL, 0.0, -0.125*MAX_ACCEL, -0.25*MAX_ACCEL, -MAX_ACCEL, -MAX_ACCEL},
+                {MAX_ACCEL, 0.5*MAX_ACCEL, -0.125*MAX_ACCEL, -0.125*MAX_ACCEL, -0.35*MAX_ACCEL, -MAX_ACCEL, -MAX_ACCEL},
                 {0.5*MAX_ACCEL, 0.0, 0.0, -0.25*MAX_ACCEL, -0.5*MAX_ACCEL, -MAX_ACCEL, -MAX_ACCEL}
         };
 
