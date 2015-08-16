@@ -40,6 +40,9 @@ public class FuzzyController implements SaucerController
         FuzzySet far = new FuzzySet("far", distRamp1, distRamp2, maxDistance, maxDistance);
         distance.add(close);
         distance.add(far);
+
+        // TODO: delete after testing
+        distance.display();
         
         // create fuzzy variable for energy difference
         final double maxDiff = Saucer.START_ENERGY;
@@ -55,6 +58,9 @@ public class FuzzyController implements SaucerController
         energyDifference.add(losing);
         energyDifference.add(even);
         energyDifference.add(winning);
+
+        // TODO: delete after testing
+        energyDifference.display();
         
         // create fuzzy variable for fire power
         final double maxPower = Saucer.MAX_POWER;
