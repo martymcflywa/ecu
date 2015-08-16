@@ -66,9 +66,9 @@ public class Main extends JFrame implements Runnable
         field = new Starfield(Constants.STARFIELD_WIDTH, Constants.STARFIELD_HEIGHT);
         
         // a selection of controllers
-        SaucerController simple = new SimpleController();               
+        SaucerController simple = new SimpleController();
         SaucerController fuzzy = new FuzzyController();
-        SaucerController marty = new MartyController();
+        SaucerController marty = new SprayAndPrayController();
         
         // a saucer using each
         Saucer saucer1 = new Saucer(field, simple);

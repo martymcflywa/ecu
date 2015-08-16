@@ -34,7 +34,7 @@ public class Tournament
         saucers.add(new Saucer(field, new SimpleController()));      
         saucers.add(new Saucer(field, new SimpleController()));
         saucers.add(new Saucer(field, new FuzzyController()));
-        saucers.add(new Saucer(field, new MartyController()));
+        saucers.add(new Saucer(field, new SprayAndPrayController()));
         
         double[] scores = new double[saucers.size()];
         
