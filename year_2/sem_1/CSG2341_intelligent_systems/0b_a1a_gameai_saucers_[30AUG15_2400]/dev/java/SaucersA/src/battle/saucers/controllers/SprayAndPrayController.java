@@ -11,10 +11,11 @@ import java.awt.*;
  */
 public class SprayAndPrayController implements SaucerController {
 
+    // just testing opponent direction here
     private double opDir;
 
     // saucer visual config
-    private static final String NAME = "marty";
+    private static final String NAME = "spray and pray";
     private static final Color BASE = Color.yellow;
     private static final Color ARROW = Color.black;
 
@@ -187,15 +188,6 @@ public class SprayAndPrayController implements SaucerController {
         );
     }
 
-    private void setupFirePowerRules(FuzzySet ant1, FuzzySet ant2, FuzzySet ant3,
-                                     FuzzySet ant4, FuzzySet ant5, FuzzySet ant6,
-                                     double con1, double con2, double con3) {
-
-        double[][] firePowerLevels = {
-
-        };
-    }
-
     @Override
     public void sensorUpdate(double opponentDistance, double opponentDirection, double opponentEnergy, double energy) throws FuzzyException {
 
@@ -242,6 +234,8 @@ public class SprayAndPrayController implements SaucerController {
      */
     @Override
     public double getTurn() throws Exception {
+
+        // just testing here.
         return opDir;
     }
 
