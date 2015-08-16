@@ -75,7 +75,7 @@ public class MyCruiseController implements CruiseController {
                 {MAX_ACCEL, MAX_ACCEL, 0.25*MAX_ACCEL, 0.125*MAX_ACCEL, 0.0, -0.5*MAX_ACCEL, -MAX_ACCEL},
                 {MAX_ACCEL, MAX_ACCEL, 0.25*MAX_ACCEL, 0.0, -0.25*MAX_ACCEL, -MAX_ACCEL, -MAX_ACCEL},
                 {MAX_ACCEL, 0.5*MAX_ACCEL, 0.0, -0.125*MAX_ACCEL, -0.25*MAX_ACCEL, -MAX_ACCEL, -MAX_ACCEL},
-                {0.05*MAX_ACCEL, 0.0, 0.0, -0.25*MAX_ACCEL, -0.5*MAX_ACCEL, -MAX_ACCEL, -MAX_ACCEL}
+                {0.5*MAX_ACCEL, 0.0, 0.0, -0.25*MAX_ACCEL, -0.5*MAX_ACCEL, -MAX_ACCEL, -MAX_ACCEL}
         };
 
         rules.addRuleMatrix(
