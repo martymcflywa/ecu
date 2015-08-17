@@ -14,10 +14,31 @@ They explain how physical memory and a mass storage device interact to provide v
 
 Although \citetapos{Blunden2003} book is primarily for C/C++ programmers looking to implement their own memory management system, it provides an overview of operating system memory management in chapters 1 (p. 1 - 43) and 2 (p. 45 - 126), titled ``Memory Management Mechanisms'' and ``Memory Management Policies'', respectively. Blunden's light-hearted approach to writing is a complete departure of the usual, dry textbook content and includes many personal anecdotes from his experiences in the IT industry which makes for an interesting read.
 
-Blunden introduces memory management in chapter 1 at the processor level, which provides functionality for segmentation and paging. While explaining memory hierarchy, he outlines the purpose of the L1 and L2 cache, and as with \citet{Blanchet2012}, states a similar disadvantage of virtual memory: Sacrifice performance for memory space. The author then explains the differences between page frames and pages.
+Blunden introduces memory management in chapter 1 at the processor level, which provides functionality for segmentation and paging. While explaining memory hierarchy, he outlines the purpose of the L1 and L2 cache, and as with \citet{Blanchet2012}, states a similar disadvantage of virtual memory: Sacrifice performance for memory space. The author then identifies the differences between page frames and pages.
 
 Chapter 2 compares virtual memory management and paging (or lack thereof) between four operating systems: MS-DOS, MMURTL, Linux, and Windows XP. Interestingly, MMURTL's use of paging was not related to virtual memory, but to provide memory protection and allocation.
 
 While the text can be very technical at times (C/C++ code snippets), there is sufficient information in these two chapters relating to virtual memory management and paging for use in further research, particularly the comparisons between different operating systems.
 
+\newpage
+
 \subsubsection*{Jacob, B., Ng, S. W., \& Wang, D. T. (2008). Memory Systems - Cache, DRAM, Disk. Burlington, MA: Morgan Kaufmann Publishers.}
+
+\citetapos{Jacob2008} book provides a complete description of memory systems, and dedicates a section to virtual memory in chapter 31 (p. 883 - 920). \citet{Jacob2008} cite many academic sources throughout their book, and choose to express pseudo-code rather than code specific to a programming language (where applicable) to provide ease of use.
+
+\citet{Jacob2008} begin the chapter by describing a brief history of virtual memory management, and then the technique of combining the cache, main memory and disk to provide virtual memory to a computer system. They point out the advantages of virtual memory, however, unlike \citet{Blanchet2012} or \citet{Blunden2003}, they fail to mention any disadvantages.
+
+This chapter defines the relationship between address spaces and main memory cache. They explain the various designs of main memory cache which dictate how a virtual page is mapped to the main memory cache. \citet{Jacob2008} cite various sources attempting to improve Translation Lookaside Buffer lookup times.
+
+The authors then describe the functionality of page tables and the information they must store to enable the operating system to perform paging. \citet{Jacob2008} then compare hierarchical and inverted page tables structures and their corresponding algorithms to manage page tables.
+
+This book functions well as a dependent source for research, with many academic citations, clear explanations and diagrams for visual representation of concepts.
+
+\subsubsection*{Silberschatz, A., Galvin, P. B., \& Gagne, G. (2013). Operating System Concepts Essentials (2nd ed.). Hoboken, NJ: Wiley.}
+
+\citetapos{Silberschatz2013} book provides overview of operating systems, and contains a chapter describing virtual memory (p. 371 - 438). The authors present a brief history of virtual memory management and explain the organisation of the virtual address space.
+
+The chapter explains the concept of paging, while exploring the functionality of demand paging and page faults. The book offers several mathematical equations to calculate demand paging efficiency and provides considerably more detail of page replacement and frame allocation algorithms compared to other books in this annotated bibliography. \citet{Silberschatz2013} defines thrashing and the working set model. The chapter concludes by comparing the implementation of virtual memory between two operating systems, Windows and Solaris.
+
+Similar to \citet{Jacob2008}, this book provides clear and concise explanations and diagrams to visually represent concepts. 
+
