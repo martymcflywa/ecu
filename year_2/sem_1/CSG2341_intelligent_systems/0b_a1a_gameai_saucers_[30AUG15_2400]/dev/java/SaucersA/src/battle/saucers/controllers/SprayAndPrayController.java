@@ -66,15 +66,17 @@ public class SprayAndPrayController implements SaucerController {
                         Constants.STARFIELD_HEIGHT * Constants.STARFIELD_HEIGHT
         );
 
-        final double ramp1 = 0.25 * maxDistance;
-        final double ramp2 = 0.50 * maxDistance;
-        final double ramp3 = 0.75 * maxDistance;
+        final double ramp1 = 0.05 * maxDistance;
+        final double ramp2 = 0.15 * maxDistance;
+        final double ramp3 = 0.25 * maxDistance;
+        final double ramp4 = 0.35 * maxDistance;
+        final double ramp5 = 0.50 * maxDistance;
 
         distance = new FuzzyVariable("distance to target", "m", 0.0, maxDistance, 2);
 
         FuzzySet close = new FuzzySet("close", 0.0, 0.0, ramp1, ramp2);
-        FuzzySet near = new FuzzySet("near", ramp1, ramp2, ramp2, ramp3);
-        FuzzySet far = new FuzzySet("far", ramp2, ramp3, maxDistance, maxDistance);
+        FuzzySet near = new FuzzySet("near", ramp1, ramp3, ramp3, ramp4);
+        FuzzySet far = new FuzzySet("far", ramp3, ramp5, maxDistance, maxDistance);
 
         distance.add(close);
         distance.add(near);
@@ -152,6 +154,25 @@ public class SprayAndPrayController implements SaucerController {
         turnSets[0] = right;
         turnSets[1] = straight;
         turnSets[2] = left;
+
+        double[][] turnSets = {
+                // losing even winning
+                {-180.0, 0.0, 180.0}, // close
+                {180.0, 0.0, -180.0}, // near
+                {-180.0, 0.0, 180.0} // far
+        };
+
+        rules.addRuleMatrix(
+                distance, distanceSets,
+                energyDifference, energyDiffSets,
+                turn, turnSets
+        );
+
+        rules.displayRuleMatrix(
+                distance, distanceSets,
+                energyDifference, energyDiffSets,
+                turn
+        );
     }
 
     /**
@@ -169,9 +190,9 @@ public class SprayAndPrayController implements SaucerController {
 
         double[][] firePowerLevels = {
                 // losing even winning
-                {lowPower, midPower, highPower}, // close
-                {0.0, 0.0, highPower}, // near
-                {0.0, 0.0, lowPower} // far
+                {0.0, lowPower, highPower}, // close
+                {0.0, midPower, maxPower}, // near
+                {0.0, 0.0, 0.0} // far
         };
 
         rules.addRuleMatrix(
@@ -234,9 +255,7 @@ public class SprayAndPrayController implements SaucerController {
      */
     @Override
     public double getTurn() throws Exception {
-
-        // just testing here.
-        return opDir;
+        return turn.getValue();
     }
 
     @Override
