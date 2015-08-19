@@ -374,3 +374,5 @@
 	- Have zeros for duration estimates
 - PDM shows different dependencies among tasks
 	- AOA only show finsh to start
+
+## Estimating activity resources
