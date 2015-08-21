@@ -11,6 +11,7 @@
 <hr />
 
 <%
+
 'constants
 const UNDERGRAD = 360
 const UNDERGRAD_DOUBLE = 480
@@ -18,60 +19,78 @@ const GRAD_DIPLOMA = 120
 const MASTER_COURSE = 180
 const MASTER_RESEARCH = 240
 
-'student details
-dim studentFullName
-dim studentID
+'variables to work out input array dimensions
+const UNIT_COLS = 4
+const DETAILS_FIELD_COUNT = 6
 
-'unit details
-dim unitArray(3, 29)
+dim item, totalFieldCount, unitFieldCount, unitRows
+totalFieldCount = 0
+unitFieldCount = 0
+unitRows = 0
 
-dim Item
-dim fieldName, fieldValue
-dim unitDictionary
-dim key, value
+'the input array
+dim unitInput()
 
-'trying to store items to dictionary here
-Set unitDictionary = server.createObject("scripting.dictionary")
+'index for unit attributes
+dim uc, cp, ys, um
+uc = 0
+cp = 1
+ys = 2
+um = 3
 
-for each Item in request.form
-	if Item <> "Firstname" or Item <> "Surname" or Item <> "StudentID" then
-		fieldName = Item
-		fieldValue = request.form(Item)
-		unitDictionary.add fieldName, fieldValue
-	end if
-next
+dim errorMessage, badItem
 
-key = unitDictionary.keys
-value = unitDictionary.items
+call setupInputArray()
+call getUnitValues()
 
-for i = 0 to unitDictionary.count - 1
-	response.write(key(i) & " = " & value(i))
-	response.write("<br />")
-next
-
-
-'check Firstname and Surname provided
-if isPopulated("Firstname") and isPopulated("Surname") then
-	studentFullName = request.form("Firstname")
-	studentFullName = studentFullName & " " & request.form("Surname")
-else
-	exceptionMessage("Form must include both Firstname and Surname.")
-	response.end
-end if
-
-'check StudentID provided
-if isPopulated("StudentID") then
-	studentID = request.form("StudentID")
-else
-	exceptionMessage("Form must include StudentID.")
-	response.end
-end if
-
-for i = 0 to 3
-	for j = 0 to 29
-
+'*
+'* Sub sets up the input array.  
+'*
+sub setupInputArray()
+	'count all fields in form
+	for each item in request.form
+		totalFieldCount = totalFieldCount + 1
 	next
-next
+
+	unitFieldCount = totalFieldCount - DETAILS_FIELD_COUNT
+	unitRows = unitFieldCount / UNIT_COLS
+
+	redim unitInput(unitRows, UNIT_COLS)
+end sub
+
+'*
+'* Sub gets all unit values from form,
+'* enters them into input array.
+'*
+sub getUnitValues()
+
+	for i = 0 to unitRows
+
+		'ignore entire row if one field is empty
+		if isPopulated("UnitCode_" & i) and _
+				isPopulated("CP_" & i) and _
+				isPopulated("YS_" & i) and _
+				isPopulated("UM_" & i) then
+			unitInput(i - 1, uc) = request.form("UnitCode_" & i)
+			unitInput(i - 1, cp) = request.form("CP_" & i)
+			unitInput(i - 1, ys) = request.form("YS_" & i)
+			unitInput(i - 1, um) = request.form("UM_" & i)
+		end if
+	next
+
+	for i = 0 to unitRows
+		for j = 0 to UNIT_COLS
+			response.write(unitInput(i, j) & " ")
+		next
+		response.write("<br />")
+	next
+
+end sub
+
+
+sub validate()
+
+end sub
 
 'function checks if field is populated
 '@return isPopulated boolean
@@ -90,6 +109,7 @@ end function
 private sub exceptionMessage(message)
 	response.write("<script language=""javascript"">alert('" + message + " Please try again.');</script>")
 end sub
+
 %>
 
 <p>&nbsp;</p>
