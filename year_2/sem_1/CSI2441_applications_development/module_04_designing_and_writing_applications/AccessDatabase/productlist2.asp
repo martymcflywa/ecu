@@ -38,7 +38,7 @@ call totalItem()
 
 if totalRecords = 0 then
     call printError()
-    call closeHTML
+    call closeHTML()
     response.end
 else
     call printResultHead()
