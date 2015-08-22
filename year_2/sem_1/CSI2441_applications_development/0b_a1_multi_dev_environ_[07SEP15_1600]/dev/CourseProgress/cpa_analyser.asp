@@ -369,7 +369,7 @@ sub iterateUnitDetails()
 			if unitDetails(i, UM) >= MARK_PASS then
 				call getPassedCP(i)
 				call getUnitAttemptPass()
-				call getMarkTotal(i) '<-- getting weird off-by-one error calling this here, investigate why
+				call getMarkTotal(i)
 			end if
 		end if
 	next
@@ -387,6 +387,8 @@ end sub
 
 '**
 '* Sub calculates average mark over units passed.
+'* Also determines grade based on markAverage.
+'*
 '* Confirm if correct, or if need to include failed units as well.
 '*
 sub getMarkAverage()
