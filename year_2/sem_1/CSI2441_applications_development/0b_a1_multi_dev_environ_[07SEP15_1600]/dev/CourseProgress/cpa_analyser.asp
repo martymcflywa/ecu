@@ -26,6 +26,11 @@ const CP_GRAD_DIPLOMA = 120
 const CP_MASTERS_COURSE = 180
 const CP_MASTERS_RESEARCH = 240
 
+const CP_FULLTIME = 60
+const CP_PARTTIME = 30
+
+const MARK_PASS = 50
+
 const UNIT_COLS = 4
 const STUDENT_DETAILS_COUNT = 5
 
@@ -69,7 +74,8 @@ regExDict.add "yearSem", "([0-9]{2}[1|2])"
 regExDict.add "mark", "(^[0-9]+$)"
 
 'variables for calculating summary
-dim cpTotal, cpDelta
+dim passedCPTotal, cpDelta, unitAttemptTotal, unitAttemptPass, semRemaining
+dim progressionStatus, completeStatus
 
 '****************************
 '*** START MAINLINE LOGIC ***
@@ -93,6 +99,10 @@ end if
 '**************************
 '*** SUBS AND FUNCTIONS ***
 '**************************
+
+'*********************
+'*** RETRIEVE DATA ***
+'*********************
 
 '**
 '* Sub sets up the input array.  
@@ -196,6 +206,10 @@ sub getUnitDetails()
 
 end sub
 
+'*********************
+'*** VALIDATE DATA ***
+'*********************
+
 '**
 '* Sub validates student details.
 '* Tests if array index is empty before performing validation.
@@ -232,6 +246,9 @@ end sub
 '* Tests if array index is empty before performing validation.
 '*
 sub validateUnitDetails()
+
+	const MIN_MARK = 0
+	const MAX_MARK = 100
 
 	for i = 0 to unitRows
 
@@ -293,7 +310,7 @@ sub validateUnitDetails()
 
 			if isRegExMatch(unitDetails(i, UM), regExDict.item("mark")) then
 
-				if unitDetails(i, UM) < 0 or unitDetails(i, UM) > 100 then
+				if cInt(unitDetails(i, UM)) < MIN_MARK or cInt(unitDetails(i, UM)) > MAX_MARK then
 
 					call validateError("Mark: " & unitDetails(i, UM) & " at row " & (i + 1), _
 							"must not be less than 0, or greater than 100")
@@ -323,38 +340,72 @@ end sub
 
 sub calculateSummary()
 
-	call getPassedCreditPoints()
+	call iterateUnitDetails()
 	call getCPDelta()
+	call getSemRemaining()
+	call getProgressionStatus()
+	call getCompleteStatus()
 
 end sub
 
-sub getPassedCreditPoints()
+sub iterateUnitDetails()
 	
 	for i = 0 to unitRows
 		if unitDetails(i, UC) <> "" then
-			if unitDetails(i, UM) >= 50 then
-				cpTotal = cpTotal + unitDetails(i, CP)
+			call getUnitAttemptTotal()
+			if unitDetails(i, UM) >= MARK_PASS then
+				call getPassedCP()
+				call getUnitAttemptPass
 			end if
 		end if
 	next
 
 end sub
 
+sub getProgressionStatus()
+	progressionStatus = "Good standing"
+end sub
+
+sub getCompleteStatus()
+	completeStatus = "No"
+end sub
+
+sub getPassedCP()
+	passedCPTotal = passedCPTotal + unitDetails(i, CP)
+end sub
+
+sub getUnitAttemptTotal()
+	unitAttemptTotal = unitAttemptTotal + 1
+end sub
+
+sub getUnitAttemptPass()
+	unitAttemptPass = unitAttemptPass + 1
+end sub
+
 sub getCPDelta()
 	
 	select case studentDetails(CT)
 		case 1
-			cpDelta = CP_UNDERGRAD - cpTotal
+			cpDelta = CP_UNDERGRAD - passedCPTotal
 		case 2
-			cpDelta = CP_UNDERGRAD_DOUBLE - cpTotal
+			cpDelta = CP_UNDERGRAD_DOUBLE - passedCPTotal
 		case 3
-			cpDelta = CP_GRAD_DIPLOMA - cpTotal
+			cpDelta = CP_GRAD_DIPLOMA - passedCPTotal
 		case 4
-			cpDelta = CP_MASTERS_COURSE - cpTotal
+			cpDelta = CP_MASTERS_COURSE - passedCPTotal
 		case 5
-			cpDelta = CP_MASTERS_RESEARCH - cpTotal
+			cpDelta = CP_MASTERS_RESEARCH - passedCPTotal
 	end select
 
+end sub
+
+sub getSemRemaining()
+	select case studentDetails(ET)
+		case 1
+			semRemaining = cpDelta / CP_FULLTIME
+		case 2
+			semRemaining = cpDelta / CP_PARTTIME
+	end select
 end sub
 
 '**********************
@@ -368,7 +419,14 @@ sub displaySummary()
 
 	response.write("<p>")
 
+	'***********************
+	'*** STUDENT DETAILS ***
+	'***********************
+
 	response.write("<h2>Student details</h2>")
+
+	response.write("<p>")
+
 	response.write("<strong>Name:</strong> " & studentDetails(FN) & " " & studentDetails(SN) & "<br />")
 	response.write("<strong>Student ID: </strong>" & studentDetails(ID) & "<br />")
 
@@ -394,10 +452,26 @@ sub displaySummary()
 			response.write("Masters by research (" & CP_MASTERS_RESEARCH & " CP) <br />")
 	end select
 
-	response.write("</p><h2>Progression summary</h2>")
+	response.write("</p>")
 
-	response.write("<strong>Total passed credit points:</strong> " & cpTotal & "<br />")
+	'********************
+	'*** UNIT DETAILS ***
+	'********************
+
+	response.write("<h2>Progression summary</h2>")
+
+	response.write("<p>")
+	response.write("<strong>Progression Status:</strong> " & progressionStatus & "<br />")
+	response.write("<strong>Course requirements complete:</strong> " & completeStatus "<br />")
+	response.write("</p>")
+
+	response.write("<h2>Credit point summary</h2>")
+
+	response.write("<strong>Passed credit points:</strong> " & passedCPTotal & "<br />")
 	response.write("<strong>Credit points required: </strong>" & cpDelta & "<br />")
+	response.write("<strong>Units attempted: </strong>" & unitAttemptTotal & "<br />")
+	response.write("<strong>Units passed: </strong>" & unitAttemptPass & "<br />")
+	response.write("<strong>Semesters remaining: </strong>" & semRemaining & "<br />")
 
 	response.write("</p>")
 
@@ -406,16 +480,16 @@ sub displaySummary()
 	'***************
 
 	'delete after testing
-	for i = 0 to unitRows
-		for j = 0 to UNIT_COLS
-			response.write(unitDetails(i, j) & " ")
+	for i = 0 to unitRows - 1
+		for j = 0 to UNIT_COLS - 1 
+			response.write(" | " & unitDetails(i, j) & " | ")
 		next
 		response.write("<br />")
 	next
 end sub
 
 '**
-'* Sub displays 
+'* Sub displays error messages, by iterating through every item in errorMessage array.
 '*
 sub displayErrors()
 
