@@ -74,8 +74,11 @@ regExDict.add "yearSem", "([0-9]{2}[1|2])"
 regExDict.add "mark", "(^[0-9]+$)"
 
 'variables for calculating summary
-dim passedCPTotal, cpDelta, unitAttemptTotal, unitAttemptPass, semRemaining
+dim passedCPTotal, cpDelta, unitAttemptTotal, unitsPassed, semRemaining
+dim markTotal, markAverage, grade
 dim progressionStatus, completeStatus
+
+markTotal = 0
 
 '****************************
 '*** START MAINLINE LOGIC ***
@@ -250,7 +253,7 @@ sub validateUnitDetails()
 	const MIN_MARK = 0
 	const MAX_MARK = 100
 
-	for i = 0 to unitRows
+	for i = 0 to unitRows - 1
 
 		'only testing for unit code, since if that is empty, the whole row in array is empty
 		if unitDetails(i, UC) <> "" then
@@ -338,6 +341,9 @@ end sub
 '*** BUSINESS LOGIC ***
 '**********************
 
+'**
+'* Sub kicks off the logic for calculating the course progress summary.
+'*
 sub calculateSummary()
 
 	call iterateUnitDetails()
@@ -345,27 +351,70 @@ sub calculateSummary()
 	call getSemRemaining()
 	call getProgressionStatus()
 	call getCompleteStatus()
+	call getMarkAverage()
 
 end sub
 
+'**
+'* Sub iterates through unitDetails array, calling other subs when appropriate.
+'*
 sub iterateUnitDetails()
 	
-	for i = 0 to unitRows
+	for i = 0 to unitRows - 1
 		if unitDetails(i, UC) <> "" then
 			call getUnitAttemptTotal()
 			if unitDetails(i, UM) >= MARK_PASS then
-				call getPassedCP()
-				call getUnitAttemptPass
+				call getPassedCP(i)
+				call getUnitAttemptPass()
+				call getMarkTotal(i) '<-- getting weird off-by-one error calling this here, investigate why
 			end if
 		end if
 	next
 
 end sub
 
+'**
+'* Sub sums mark total.
+'*
+'* @param index int - Current array index.
+'*
+sub getMarkTotal(index)
+	markTotal = markTotal + unitDetails(index, UM)
+end sub
+
+'**
+'* Sub calculates average mark over units passed.
+'* Confirm if correct, or if need to include failed units as well.
+'*
+sub getMarkAverage()
+	markAverage = markTotal / unitsPassed
+
+	if markAverage >= 80 then
+		grade = "HD"
+	elseif markAverage >= 70 then
+		grade = "D"
+	elseif markAverage >= 60 then
+		grade = "CR"
+	elseif markAverage >= 50 then
+		grade = "C"
+	elseif markAverage >= 0 then
+		grade = "N"
+	end if
+end sub
+
+'**
+'* TODO: Implement this!
+'* If student fails same unit 3 times, progressionStatus = "Excluded from course"
+'*
 sub getProgressionStatus()
+	'dummy status at the moment
 	progressionStatus = "Good standing"
 end sub
 
+'**
+'* Sub compares student's course type and passed credit points total.
+'* If greater than, student has completed course, else not complete.
+'*
 sub getCompleteStatus()
 	
 	select case studentDetails(CT)
@@ -402,18 +451,32 @@ sub getCompleteStatus()
 	end select
 end sub
 
-sub getPassedCP()
-	passedCPTotal = passedCPTotal + unitDetails(i, CP)
+'**
+'* Sub sums passed cp total.
+'*
+'* @param index int - Current array index.
+'*
+sub getPassedCP(index)
+	passedCPTotal = passedCPTotal + unitDetails(index, CP)
 end sub
 
+'**
+'* Sub totals number of units attempted.
+'*
 sub getUnitAttemptTotal()
 	unitAttemptTotal = unitAttemptTotal + 1
 end sub
 
+'**
+'* Sub totals number of units passed.
+'*
 sub getUnitAttemptPass()
-	unitAttemptPass = unitAttemptPass + 1
+	unitsPassed = unitsPassed + 1
 end sub
 
+'**
+'* Sub calculates cp required to complete course.
+'*
 sub getCPDelta()
 	
 	select case studentDetails(CT)
@@ -431,6 +494,9 @@ sub getCPDelta()
 
 end sub
 
+'**
+'* Sub calculates remaining semesters based on enrolment type.
+'*
 sub getSemRemaining()
 	select case studentDetails(ET)
 		case 1
@@ -444,6 +510,9 @@ end sub
 '*** VIEW FUNCTIONS ***
 '**********************
 
+'**
+'* Print summary if no errors in data.
+'*
 sub displaySummary()
 
 	response.write("<h1>Course Progression Summary</h1>")
@@ -499,11 +568,12 @@ sub displaySummary()
 
 	response.write("<h2>Credit point summary</h2>")
 
-	response.write("<strong>Passed credit points:</strong> " & passedCPTotal & "<br />")
-	response.write("<strong>Credit points required: </strong>" & cpDelta & "<br />")
+	response.write("<strong>Total achieved credit points:</strong> " & passedCPTotal & "<br />")
+	response.write("<strong>Additional credit points required for completion: </strong>" & cpDelta & "<br />")
 	response.write("<strong>Units attempted: </strong>" & unitAttemptTotal & "<br />")
-	response.write("<strong>Units passed: </strong>" & unitAttemptPass & "<br />")
+	response.write("<strong>Units passed: </strong>" & unitsPassed & "<br />")
 	response.write("<strong>Semesters remaining: </strong>" & semRemaining & "<br />")
+	response.write("<strong>Average mark: </strong>" & markAverage & " " & grade & "<br />")
 
 	response.write("</p>")
 
@@ -512,12 +582,12 @@ sub displaySummary()
 	'***************
 
 	'delete after testing
-	for i = 0 to unitRows - 1
-		for j = 0 to UNIT_COLS - 1 
-			response.write(unitDetails(i, j) & " ")
-		next
-		response.write("<br />")
-	next
+	'for i = 0 to unitRows - 1
+	''	for j = 0 to UNIT_COLS - 1 
+	''		response.write(unitDetails(i, j) & " ")
+	''	next
+	''	response.write("<br />")
+	'next
 end sub
 
 '**
