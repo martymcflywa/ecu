@@ -367,7 +367,39 @@ sub getProgressionStatus()
 end sub
 
 sub getCompleteStatus()
-	completeStatus = "No"
+	
+	select case studentDetails(CT)
+		case 1
+			if passedCPTotal >= CP_UNDERGRAD then
+				completeStatus = "Yes"
+			else
+				completeStatus = "No"
+			end if
+		case 2
+			if passedCPTotal >= CP_UNDERGRAD_DOUBLE then
+				completeStatus = "Yes"
+			else
+				completeStatus = "No"
+			end if
+		case 3
+			if passedCPTotal >= CP_GRAD_DIPLOMA then
+				completeStatus = "Yes"
+			else
+				completeStatus = "No"
+			end if
+		case 4
+			if passedCPTotal >= CP_MASTERS_COURSE then
+				completeStatus = "Yes"
+			else
+				completeStatus = "No"
+			end if
+		case 5
+			if passedCPTotal >= CP_MASTERS_RESEARCH then
+				completeStatus = "Yes"
+			else
+				completeStatus = "No"
+			end if
+	end select
 end sub
 
 sub getPassedCP()
@@ -462,7 +494,7 @@ sub displaySummary()
 
 	response.write("<p>")
 	response.write("<strong>Progression Status:</strong> " & progressionStatus & "<br />")
-	response.write("<strong>Course requirements complete:</strong> " & completeStatus "<br />")
+	response.write("<strong>Course requirements complete:</strong> " & completeStatus & "<br />")
 	response.write("</p>")
 
 	response.write("<h2>Credit point summary</h2>")
@@ -482,7 +514,7 @@ sub displaySummary()
 	'delete after testing
 	for i = 0 to unitRows - 1
 		for j = 0 to UNIT_COLS - 1 
-			response.write(" | " & unitDetails(i, j) & " | ")
+			response.write(unitDetails(i, j) & " ")
 		next
 		response.write("<br />")
 	next
