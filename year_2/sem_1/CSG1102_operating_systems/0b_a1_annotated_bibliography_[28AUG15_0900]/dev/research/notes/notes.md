@@ -82,3 +82,13 @@
 					- Scans a given number of pages per second
 						- Number of pages per second increases as free page pool decreases until reaches maximum value
 		- Cost of algorithm controlled by max scan rate
+
+#### Denning, P. J. (1967). The Working Set Model for Program Behavior. In SOSP ’67 Proceedings of the first ACM symposium on Operating System Principles (pp. 15.1–15.12). New York: ACM.
+
+- Landmark paper
+	- According to google scholar, cited 1076 times
+- Introduces the concept of the working set model
+	- Provides the ability to determine what information is being used by a program during execution
+- At the time, the user and the compiler were commonly proposed to be used as input for dynamic memory allocation
+	- Denning claims that neither sources are adequate. He argues that the user cannot possibly provide reliable estimates of memory requirements of his or her program. Additionally, due to the nature of modularised programming, the compiler may not be able to decide which modules are required until run time, and therefore not be able to approximate appropriately.
+	- Denning therefore proposes a new method to monitor behaviours of programs, and allocate resources based on observations
