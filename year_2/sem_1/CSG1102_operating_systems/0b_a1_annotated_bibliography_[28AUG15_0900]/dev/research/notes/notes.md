@@ -92,3 +92,5 @@
 - At the time, the user and the compiler were commonly proposed to be used as input for dynamic memory allocation
 	- Denning claims that neither sources are adequate. He argues that the user cannot possibly provide reliable estimates of memory requirements of his or her program. Additionally, due to the nature of modularised programming, the compiler may not be able to decide which modules are required until run time, and therefore not be able to approximate appropriately.
 	- Denning therefore proposes a new method to monitor behaviours of programs, and allocate resources based on observations
+
+#### Jantz, M. R., Strickland, C., Kumar, K., Dimitrov, M., & Doshi, K. A. (2013). A framework for application guidance in virtual memory systems. In VEE ’13 Proceedings of the 9th ACM SIGPLAN/SIGOPS international conference on Virtual execution environments (pp. 155–166). New York: ACM. doi:10.1145/2451512.2451543

@@ -2,9 +2,9 @@
 
 \subsubsection*{Blanchet, G., \& Bertrand, D. (2012). Computer Architecture. Hoboken, NJ: Wiley.}
 
-\citetapos{Blanchet2012} book is aimed at readers wishing to learn about the essential architecture of a computer as a whole. However, chapter 9 (p. 175 - 204) provides insight into the functionality of virtual memory management. The authors introduce virtual management with a brief history, then explain the purpose of virtual memory. Advantages of virtual memory are listed, but on the other hand state that the cost of use is the decreased performance during the access of slower mass stoarge.%delays may occur while data is transferred between physical memory and mass storage.
+\citetapos{Blanchet2012} book is aimed at readers wishing to learn about the essential architecture of a computer as a whole. However, chapter 9 (p. 175 - 204) provides insight into the functionality of virtual memory management. The authors introduce virtual management with a brief history, then explain the purpose of virtual memory. Advantages of virtual memory are listed, but on the other hand state that the cost of use is the decreased performance during the access of slower secondary storage.
 
-They explain how physical memory and a mass storage device interact to provide virtual memory through the use of paging, and briefly cover fetch and page fault algorithms. Page size considerations are also listed, and referred to as ``conflicting criteria''. The chapter also introduces the concept of multi-level paging.
+They explain how physical memory and a secondary storage device interact to provide virtual memory through the use of paging, and briefly cover fetch and page fault algorithms. Page size considerations are also listed, and referred to as ``conflicting criteria''. The chapter also introduces the concept of multi-level paging.
 
 \citet{Blanchet2012} then conclude the chapter by provide a detailed and technical step-by-step view of virtual memory management at work, using a program execution as an example.
 
@@ -12,11 +12,25 @@ They explain how physical memory and a mass storage device interact to provide v
 
 Although \citetapos{Blunden2003} book is primarily for C/C++ programmers looking to implement their own memory management system, it provides an overview of operating system memory management in chapters 1 (p. 1 - 43) and 2 (p. 45 - 126), titled ``Memory Management Mechanisms'' and ``Memory Management Policies'', respectively.
 
-Blunden introduces memory management in chapter 1 at the processor level, which provides functionality for segmentation and paging. While explaining memory hierarchy, he outlines the purpose of the L1 and L2 cache, and as with \citet{Blanchet2012}, states a similar disadvantage of virtual memory: Sacrifice performance for memory space. The author then identifies the differences between page frames and pages.
+Blunden introduces memory management in chapter 1 at the processor level, which provides the mechanisms, segmentation and paging. While explaining memory hierarchy, he outlines the purpose of the L1 and L2 cache, and as with \citet{Blanchet2012}, states a similar disadvantage of virtual memory: Sacrifice performance for memory space. The author then identifies the differences between page frames and pages.
 
-Chapter 2 compares virtual memory management and paging (or lack thereof) between four operating systems: MS-DOS, MMURTL, Linux, and Windows XP. Interestingly, MMURTL's use of paging was not related to virtual memory, but to provide memory protection and allocation.
+Chapter 2 explores the policies of memory management while comparing virtual memory management and paging (or lack thereof) between four operating systems: MS-DOS, MMURTL, Linux, and Windows XP. Interestingly, MMURTL's use of paging was not related to virtual memory, but to provide memory protection and allocation.
 
 While the text can be very technical at times (C/C++ code snippets), there is sufficient information in these two chapters relating to virtual memory management and paging for use in further research, particularly the comparisons between different operating systems.
+
+\newpage
+
+\subsubsection*{Denning, P. J. (1970). Virtual Memory. ACM Computing Surveys, 2(3), 153–189. doi:10.1145/356571.356573}
+
+\citet{Denning1970} introduces the paper by comparing static and dynamic approaches to memory management and their assumptions and requirements for implementation. He discusses the current state of programming and identifies factors which make the static approach unsuitable. \citet{Denning1970} further subdivides the dynamic approach between those who believe that the programmer should perform memory allocation, and those who believe that memory allocation should be automatic.
+
+He segues into describing the 1961 Atlas computer, the first to implement virtual memory. \citet{Denning1970} explains that virtual memory creates the illusion that a large main memory is available to the programmer, and that the main concept behind it is the notion of addresses being distinct from physical location. The responsibility of passing information between secondary storage and main memory when required, becomes the responsibility of the hardware and operating system, which defines virtual memory as a ``form of adaptive system''. The author claims that virtual memory is potentially more efficient than a preplanned, static approach, and it is also ``facilitates programming and design objectives especially important in multiprogramming and time-sharing'' \citep[p. 156]{Denning1970}.
+
+The paper outlines some problems with virtual memory, such the loss of usable storage due to fragmentation caused by the nature of paging. Alternatively, time-sharing systems which use ``pure demand paging'' can cause users to experience slower performance, caused by the system only being able to load a single page at a time. \citet[p. 157]{Denning1970} lists thrashing as an issue under multiprogramming environments when memory is ``overcommitted''.
+
+\citet{Denning1970} divides the main body of work into two sections, describing the ``mechanisms'' for implementing virtual memory, and the ``policies'' for using those mechanisms. These two sections are analogous to \citetapos{Blunden2003} chapter titles, and the inspiration can clearly be identified. \citet{Denning1970} goes on to define the operation of virtual memory in every aspect, in technical and mathematical terms. 
+
+The paper concludes by iterating the history of memory management technology and the inherent need for memory management ideologies to change in order to satisfy the requirements of advancements in programming. \citet{Denning1970} claims that the most elegant solution that satisfies these requirements is virtual memory.
 
 \subsubsection*{Jacob, B., Ng, S. W., \& Wang, D. T. (2008). Memory Systems - Cache, DRAM, Disk. Burlington, MA: Morgan Kaufmann Publishers.}
 
@@ -29,3 +43,13 @@ This chapter defines the relationship between address spaces and main memory cac
 The authors then describe the functionality of page tables and the information they must store to enable the operating system to perform paging. \citet{Jacob2008} then compare hierarchical and inverted page tables structures and their corresponding algorithms to manage page tables.
 
 This book functions well as a dependent source for research, with many academic citations, clear explanations and diagrams for visual representation of concepts.
+
+\subsubsection*{Jantz, M. R., Strickland, C., Kumar, K., Dimitrov, M., \& Doshi, K. A. (2013). A framework for application guidance in virtual memory systems. In VEE ’13 Proceedings of the 9th ACM SIGPLAN/SIGOPS international conference on Virtual execution environments (pp. 155–166). New York: ACM. doi:10.1145/2451512.2451543}
+
+\citet{Jantz2013} propose an alternative virtual memory management system in which the program itself communicates information about its patterns of memory use to the operating system. They claim that this method is more efficient in terms of memory usage and power consumption, than an operating system making judgements about a program's demand of resources exclusively without guidance from the program itself.
+
+The authors propose two new constructs to describe their methodology. The program communicates to the operating system through ``colors'', while main memory pages are organised at an additional level through structures called ``trays'' in order to encapsulate program guidance communication from low level operations of the system.
+
+\citet{Jantz2013} implement their alternative virtual memory management system by modifying the Linux kernel to support their design. Performance is compared during several tests between the original unmodified Linux kernel, to their own custom kernel. The first test benchmarks the performance of their ``colors'' framework, which compares memory efficiency and local memory reads. Results indicate that their design outperforms the original management technique. The second test identifies the difference in DRAM power consumption between implementations, to identify performance of their ``trays'' framework. In this case, they did not observe any difference between their design and the original kernel. However, a third test comparing power consumption in a garbage collection environment yielded an almost 9\% drop in DRAM power usage \citep[p. 164]{Jantz2013}.
+
+The paper concludes, reiterating the proposal, and the implementation methods. The authors state the demonstrated benefits of its application, which ``meets a need for a fine-grained, power-aware, flexible provisioning of memory'' \citep[p. 164]{Jantz2013}.
