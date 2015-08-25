@@ -189,11 +189,11 @@ public class SprayAndPrayController implements SaucerController {
 
         final double rearRight = -180.0;
         final double right = -90.0;
-        final double frontRight = -45.0;
-        final double slightRight = -22.5;
+        final double frontRight = -20.0;
+        final double slightRight = -10.0;
         final double straight = 0.0;
-        final double slightLeft = 22.5;
-        final double frontLeft = 45.0;
+        final double slightLeft = 10.;
+        final double frontLeft = 20.0;
         final double left = 90.0;
         final double rearLeft = 180.0;
 
