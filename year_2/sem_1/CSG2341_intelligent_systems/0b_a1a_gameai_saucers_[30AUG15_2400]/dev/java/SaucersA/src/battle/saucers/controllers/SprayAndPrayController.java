@@ -104,16 +104,15 @@ public class SprayAndPrayController implements SaucerController {
         final double maxDiff = Saucer.START_ENERGY;
         final double minDiff = -maxDiff;
 
-        final double ramp1 = 0.1 * maxDiff;
-        final double ramp2 = 0.2 * maxDiff;
-        final double ramp3 = -0.2 * maxDiff;
-        final double ramp4 = -0.1 * maxDiff;
+        final double ramp1 = maxDiff * 0.08;
+        final double ramp2 = maxDiff * 0.05;
+        final double ramp3 = maxDiff * 0.02;
 
         energyDifference = new FuzzyVariable("energy difference", "J", minDiff, maxDiff, 2);
 
-        FuzzySet losing = new FuzzySet("losing", minDiff, minDiff, ramp3, ramp4);
-        FuzzySet even = new FuzzySet("even", ramp3, 0.0, 0.0, ramp2);
-        FuzzySet winning = new FuzzySet("winning", ramp1, ramp2, maxDiff, maxDiff);
+        FuzzySet losing = new FuzzySet("losing", minDiff, minDiff, -ramp1, -ramp3);
+        FuzzySet even = new FuzzySet("even", -ramp3, -ramp3, ramp3, ramp3);
+        FuzzySet winning = new FuzzySet("winning", ramp3, ramp1, maxDiff, maxDiff);
 
         energyDifference.add(losing);
         energyDifference.add(even);
@@ -169,13 +168,13 @@ public class SprayAndPrayController implements SaucerController {
 
         headingAngleSets[0] = rearRight;
         headingAngleSets[1] = hardRight;
-        headingAngleSets[3] = right;
-        headingAngleSets[2] = smallRight;
+        headingAngleSets[2] = right;
+        headingAngleSets[3] = smallRight;
 
         headingAngleSets[4] = straightAhead;
 
-        headingAngleSets[6] = smallLeft;
-        headingAngleSets[5] = left;
+        headingAngleSets[5] = smallLeft;
+        headingAngleSets[6] = left;
         headingAngleSets[7] = hardLeft;
         headingAngleSets[8] = rearLeft;
     }
@@ -191,7 +190,9 @@ public class SprayAndPrayController implements SaucerController {
         final double rearRight = -180.0;
         final double right = -90;
         final double frontRight = -45;
+        final double slightRight = -22.5;
         final double straight = 0.0;
+        final double slightLeft = 22.5;
         final double frontLeft = 45;
         final double left = 90;
         final double rearLeft = 180;
@@ -200,15 +201,15 @@ public class SprayAndPrayController implements SaucerController {
 
         double[][] turnOutput = {
                 // losing even winning
-                {straight, right, rearRight}, // rearRight
-                {straight, frontRight, rearRight}, // hardRight
-                {rearLeft, right, frontRight}, // smallRight
-                {rearRight, right, frontRight}, // rightDir
-                {rearRight, straight, straight}, // straightAhead
-                {rearRight, left, frontLeft}, // leftDir
-                {rearRight, left, frontLeft}, // smallLeft
-                {straight, frontLeft, rearLeft}, // hardLeft
-                {straight, left, rearLeft} // rearLeft
+                {rearLeft, rearRight, rearRight}, // rearRight
+                {left, right, right}, // hardRight
+                {frontLeft, right, frontRight}, // smallRight
+                {slightLeft, frontRight, slightRight}, // rightDir
+                {straight, straight, straight}, // straightAhead
+                {slightRight, frontLeft, slightLeft}, // leftDir
+                {frontRight, left, frontLeft}, // smallLeft
+                {right, left, left}, // hardLeft
+                {rearRight, rearLeft, rearLeft} // rearLeft
         };
 
         rules.addRuleMatrix(
@@ -262,15 +263,14 @@ public class SprayAndPrayController implements SaucerController {
 
         final double maxPower = Saucer.MAX_POWER;
         final double highPower = maxPower * 0.4;
-        final double midPower = maxPower * 0.2;
-        final double lowPower = maxPower * 0.05;
+        final double lowPower = maxPower * 0.2;
 
         firePower = new FuzzyVariable("firepower", "J", -maxPower, maxPower, 2);
 
         double[][] firePowerLevels = {
                 // losing even winning
-                {0.0, lowPower, highPower}, // close
-                {0.0, midPower, maxPower}, // near
+                {0.0, highPower, maxPower}, // close
+                {0.0, maxPower, highPower}, // near
                 {0.0, 0.0, 0.0} // far
         };
 
@@ -297,13 +297,13 @@ public class SprayAndPrayController implements SaucerController {
         // TODO: set new rules
         distance.setValue(opponentDistance);
         energyDifference.setValue(energy -  opponentEnergy);
-        headingAngle.setValue(opponentDirection);
+        headingAngle.setValue(Math.abs(opponentDirection));
 
         // TODO: fire rules
         rules.update();
 
         // testing
-        System.out.println(opponentDirection);
+        System.out.println(Math.abs(opponentDirection));
         opDir = opponentDirection;
 
     }
