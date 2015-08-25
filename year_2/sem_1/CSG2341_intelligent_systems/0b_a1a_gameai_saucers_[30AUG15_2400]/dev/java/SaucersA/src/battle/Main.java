@@ -68,7 +68,7 @@ public class Main extends JFrame implements Runnable
         // a selection of controllers
         SaucerController simple = new SimpleController();
         SaucerController fuzzy = new FuzzyController();
-        SaucerController sprayAndPray = new SprayAndPrayController();
+        SaucerController sprayAndPray = new CheckSixController();
 
         // a saucer using each
         Saucer saucer1 = new Saucer(field, fuzzy);
