@@ -224,41 +224,6 @@ public class SprayAndPrayController implements SaucerController {
                 turn
         );
     }
-//    private void setupTurnOutput() throws FuzzyException {
-//
-//
-//        final double right = -360.0;
-//        final double straight = 0.0;
-//        final double left = 360.0;
-//
-//        turn = new FuzzyVariable("turn", "*", right, left, 2);
-//
-//        double[][] turnRules = {
-//                // losing even winning
-//                {left, straight, right}, // rearRight
-//                {left, straight, right}, // hardRight
-//                {left, right, right}, // smallRight
-//                {left, right, right}, // rightDir
-//                {left, straight, straight}, // straightAhead
-//                {right, left, left}, // leftDir
-//                {right, left, left}, // smallLeft
-//                {right, straight, left}, // hardLeft
-//                {right, straight, left} // rearLeft
-//        };
-//
-//        rules.addRuleMatrix(
-//                headingAngle, headingAngleSets,
-//                energyDifference, energyDiffSets,
-//                turn, turnRules
-//        );
-//
-//        // TODO: delete after testing
-//        rules.displayRuleMatrix(
-//                headingAngle, headingAngleSets,
-//                energyDifference, energyDiffSets,
-//                turn
-//        );
-//    }
 
     private void setupSpeedOutput() throws FuzzyException {
 
