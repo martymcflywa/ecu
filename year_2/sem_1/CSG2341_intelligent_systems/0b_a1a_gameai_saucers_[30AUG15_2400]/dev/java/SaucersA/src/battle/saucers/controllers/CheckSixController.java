@@ -9,7 +9,7 @@ import java.awt.*;
 /**
  * Created by marty on 9/08/2015.
  */
-public class SprayAndPrayController implements SaucerController {
+public class CheckSixController implements SaucerController {
 
     // just testing opponent direction here
     private double opDir;
@@ -38,7 +38,7 @@ public class SprayAndPrayController implements SaucerController {
     // the ruleset
     private SugenoRuleSet rules;
 
-    public SprayAndPrayController() throws FuzzyException {
+    public CheckSixController() throws FuzzyException {
 
         // instantiate rule
         rules = new SugenoRuleSet();
@@ -192,7 +192,7 @@ public class SprayAndPrayController implements SaucerController {
         final double frontRight = -20.0;
         final double slightRight = -10.0;
         final double straight = 0.0;
-        final double slightLeft = 10.;
+        final double slightLeft = 10.0;
         final double frontLeft = 20.0;
         final double left = 90.0;
         final double rearLeft = 180.0;
