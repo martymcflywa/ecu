@@ -137,19 +137,19 @@ public class SprayAndPrayController implements SaucerController {
         final double ramp4 = 168.75;
         final double ramp5 = 90.0;
         final double ramp6 = 56.25;
-        final double ramp7 = 28.15;
+        final double ramp7 = 15.0;
 
         headingAngle = new FuzzyVariable("heading angle", "*", maxRight, maxLeft, 2);
 
         FuzzySet rearRight = new FuzzySet("rear right", maxRight, maxRight, maxRight, -ramp2);
         FuzzySet hardRight = new FuzzySet("hard right", -ramp1, -ramp2, -ramp3, -ramp4);
-        FuzzySet right = new FuzzySet("right dir", -ramp3, -ramp4, -ramp5, -ramp6);
-        FuzzySet smallRight = new FuzzySet("small right", -ramp5, -ramp5, -ramp6, -ramp7);
+        FuzzySet right = new FuzzySet("right", -ramp3, -ramp4, -ramp5, -ramp6);
+        FuzzySet smallRight = new FuzzySet("small right", -ramp6, -ramp6, -ramp6, -ramp7);
 
-        FuzzySet straightAhead = new FuzzySet("straight ahead", -ramp6, 0.0, 0.0, ramp6);
+        FuzzySet straightAhead = new FuzzySet("straight ahead", -ramp7, 0.0, 0.0, ramp7);
 
-        FuzzySet smallLeft = new FuzzySet("small left", ramp7, ramp6, ramp5, ramp5);
-        FuzzySet left = new FuzzySet("left dir", ramp6, ramp5, ramp4, ramp3);
+        FuzzySet smallLeft = new FuzzySet("small left", ramp7, ramp6, ramp6, ramp6);
+        FuzzySet left = new FuzzySet("left", ramp6, ramp5, ramp4, ramp3);
         FuzzySet hardLeft = new FuzzySet("hard left", ramp4, ramp3, ramp2, ramp1);
         FuzzySet rearLeft = new FuzzySet("rear left", ramp2, maxLeft, maxLeft, maxLeft);
 
@@ -236,7 +236,7 @@ public class SprayAndPrayController implements SaucerController {
 
         double[][] speedLevels = {
                 // losing even winning
-                {minSpeed, minSpeed, midSpeed}, // close
+                {minSpeed, minSpeed, minSpeed}, // close
                 {minSpeed, minSpeed, maxSpeed}, // near
                 {minSpeed, midSpeed, maxSpeed}, // far
         };
