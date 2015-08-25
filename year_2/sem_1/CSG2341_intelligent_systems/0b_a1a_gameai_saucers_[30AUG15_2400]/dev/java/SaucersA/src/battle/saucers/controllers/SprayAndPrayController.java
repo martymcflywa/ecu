@@ -49,8 +49,8 @@ public class SprayAndPrayController implements SaucerController {
         setupDistanceInput();
         setupEnergyDifferenceInput();
         setupHeadingAngleInput();
-        setupTurnInput();
 
+        setupTurnOutput();
         setupSpeedOutput();
         setupFirePowerOutput();
 
@@ -75,7 +75,6 @@ public class SprayAndPrayController implements SaucerController {
         final double ramp2 = 0.10 * maxDistance;
         final double ramp3 = 0.15 * maxDistance;
         final double ramp4 = 0.25 * maxDistance;
-        final double ramp5 = 0.50 * maxDistance;
 
         distance = new FuzzyVariable("distance to target", "m", 0.0, maxDistance, 2);
 
@@ -145,21 +144,23 @@ public class SprayAndPrayController implements SaucerController {
 
         FuzzySet rearRight = new FuzzySet("rear right", maxRight, maxRight, maxRight, -ramp2);
         FuzzySet hardRight = new FuzzySet("hard right", -ramp1, -ramp2, -ramp3, -ramp4);
+        FuzzySet right = new FuzzySet("right dir", -ramp3, -ramp4, -ramp5, -ramp6);
         FuzzySet smallRight = new FuzzySet("small right", -ramp5, -ramp5, -ramp6, -ramp7);
-        FuzzySet rightDir = new FuzzySet("right dir", maxRight, maxRight, -ramp6, 0.0);
+
         FuzzySet straightAhead = new FuzzySet("straight ahead", -ramp6, 0.0, 0.0, ramp6);
-        FuzzySet leftDir = new FuzzySet("left dir", 0.0, ramp6, maxLeft, maxLeft);
+
         FuzzySet smallLeft = new FuzzySet("small left", ramp7, ramp6, ramp5, ramp5);
+        FuzzySet left = new FuzzySet("left dir", ramp6, ramp5, ramp4, ramp3);
         FuzzySet hardLeft = new FuzzySet("hard left", ramp4, ramp3, ramp2, ramp1);
         FuzzySet rearLeft = new FuzzySet("rear left", ramp2, maxLeft, maxLeft, maxLeft);
 
         headingAngle.add(rearRight);
         headingAngle.add(hardRight);
+        headingAngle.add(right);
         headingAngle.add(smallRight);
-        headingAngle.add(rightDir);
         headingAngle.add(straightAhead);
-        headingAngle.add(leftDir);
         headingAngle.add(smallLeft);
+        headingAngle.add(left);
         headingAngle.add(hardLeft);
         headingAngle.add(rearLeft);
 
@@ -168,11 +169,13 @@ public class SprayAndPrayController implements SaucerController {
 
         headingAngleSets[0] = rearRight;
         headingAngleSets[1] = hardRight;
+        headingAngleSets[3] = right;
         headingAngleSets[2] = smallRight;
-        headingAngleSets[3] = rightDir;
+
         headingAngleSets[4] = straightAhead;
-        headingAngleSets[5] = leftDir;
+
         headingAngleSets[6] = smallLeft;
+        headingAngleSets[5] = left;
         headingAngleSets[7] = hardLeft;
         headingAngleSets[8] = rearLeft;
     }
@@ -182,52 +185,80 @@ public class SprayAndPrayController implements SaucerController {
      *
      * @throws FuzzyException
      */
-    private void setupTurnInput() throws FuzzyException {
 
-        final double maxLeft = 360.0;
-        final double maxRight = -maxLeft;
+    private void setupTurnOutput() throws FuzzyException {
 
-        final double ramp1 = 0.1 * maxLeft;
-        final double ramp2 = 0.2 * maxLeft;
-        final double ramp3 = 0.2 * maxRight;
-        final double ramp4 = 0.1 * maxRight;
+        final double rearRight = -360.0;
+        final double right = -240.0;
+        final double frontRight = -120.0;
+        final double straight = 0.0;
+        final double frontLeft = 120.0;
+        final double left = 240.0;
+        final double rearLeft = 360.0;
 
-        turn = new FuzzyVariable("turn", "*", maxRight, maxLeft, 2);
+        turn = new FuzzyVariable("turn", "*", rearRight, rearLeft, 2);
 
-        FuzzySet right = new FuzzySet("right", maxRight, maxRight, ramp3, ramp4);
-        FuzzySet straight = new FuzzySet("straight", ramp3, 0.0, 0.0, ramp2);
-        FuzzySet left = new FuzzySet("left", ramp1, ramp2, maxLeft, maxLeft);
-
-        turn.add(right);
-        turn.add(straight);
-        turn.add(left);
-
-        turn.checkGaps();
-        turn.display();
-
-        turnSets[0] = right;
-        turnSets[1] = straight;
-        turnSets[2] = left;
-
-        double[][] turnSets = {
+        double[][] turnOutput = {
                 // losing even winning
-                {-180.0, 0.0, 180.0}, // close
-                {180.0, 0.0, -180.0}, // near
-                {-180.0, 0.0, 180.0} // far
+                {straight, right, rearRight}, // rearRight
+                {straight, frontRight, rearRight}, // hardRight
+                {rearLeft, right, frontRight}, // smallRight
+                {rearRight, right, frontRight}, // rightDir
+                {rearRight, straight, straight}, // straightAhead
+                {rearRight, left, frontLeft}, // leftDir
+                {rearRight, left, frontLeft}, // smallLeft
+                {straight, frontLeft, rearLeft}, // hardLeft
+                {straight, left, rearLeft} // rearLeft
         };
 
         rules.addRuleMatrix(
-                distance, distanceSets,
+                headingAngle, headingAngleSets,
                 energyDifference, energyDiffSets,
-                turn, turnSets
+                turn, turnOutput
         );
 
+        // TODO: Delete after testing
         rules.displayRuleMatrix(
-                distance, distanceSets,
+                headingAngle, headingAngleSets,
                 energyDifference, energyDiffSets,
                 turn
         );
     }
+//    private void setupTurnOutput() throws FuzzyException {
+//
+//
+//        final double right = -360.0;
+//        final double straight = 0.0;
+//        final double left = 360.0;
+//
+//        turn = new FuzzyVariable("turn", "*", right, left, 2);
+//
+//        double[][] turnRules = {
+//                // losing even winning
+//                {left, straight, right}, // rearRight
+//                {left, straight, right}, // hardRight
+//                {left, right, right}, // smallRight
+//                {left, right, right}, // rightDir
+//                {left, straight, straight}, // straightAhead
+//                {right, left, left}, // leftDir
+//                {right, left, left}, // smallLeft
+//                {right, straight, left}, // hardLeft
+//                {right, straight, left} // rearLeft
+//        };
+//
+//        rules.addRuleMatrix(
+//                headingAngle, headingAngleSets,
+//                energyDifference, energyDiffSets,
+//                turn, turnRules
+//        );
+//
+//        // TODO: delete after testing
+//        rules.displayRuleMatrix(
+//                headingAngle, headingAngleSets,
+//                energyDifference, energyDiffSets,
+//                turn
+//        );
+//    }
 
     private void setupSpeedOutput() throws FuzzyException {
 
@@ -250,6 +281,7 @@ public class SprayAndPrayController implements SaucerController {
                 speed, speedLevels
         );
 
+        // TODO: Delete after testing
         rules.displayRuleMatrix(
                 distance, distanceSets,
                 energyDifference, energyDiffSets,
@@ -300,6 +332,7 @@ public class SprayAndPrayController implements SaucerController {
         // TODO: set new rules
         distance.setValue(opponentDistance);
         energyDifference.setValue(energy -  opponentEnergy);
+        headingAngle.setValue(opponentDirection);
 
         // TODO: fire rules
         rules.update();
