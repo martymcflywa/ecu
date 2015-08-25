@@ -22,11 +22,11 @@ public class SprayAndPrayController implements SaucerController {
     // input variables
     private FuzzyVariable distance;
     private FuzzyVariable energyDifference;
-
     private FuzzyVariable headingAngle;
 
     // output variables
     private FuzzyVariable turn;
+    private FuzzyVariable speed;
     private FuzzyVariable firePower;
 
     // fuzzy sets
@@ -51,6 +51,7 @@ public class SprayAndPrayController implements SaucerController {
         setupHeadingAngleInput();
         setupTurnInput();
 
+        setupSpeedOutput();
         setupFirePowerOutput();
 
 
@@ -71,16 +72,16 @@ public class SprayAndPrayController implements SaucerController {
         );
 
         final double ramp1 = 0.05 * maxDistance;
-        final double ramp2 = 0.15 * maxDistance;
-        final double ramp3 = 0.25 * maxDistance;
-        final double ramp4 = 0.35 * maxDistance;
+        final double ramp2 = 0.10 * maxDistance;
+        final double ramp3 = 0.15 * maxDistance;
+        final double ramp4 = 0.25 * maxDistance;
         final double ramp5 = 0.50 * maxDistance;
 
         distance = new FuzzyVariable("distance to target", "m", 0.0, maxDistance, 2);
 
         FuzzySet close = new FuzzySet("close", 0.0, 0.0, ramp1, ramp2);
         FuzzySet near = new FuzzySet("near", ramp1, ramp3, ramp3, ramp4);
-        FuzzySet far = new FuzzySet("far", ramp3, ramp5, maxDistance, maxDistance);
+        FuzzySet far = new FuzzySet("far", ramp3, ramp4, maxDistance, maxDistance);
 
         distance.add(close);
         distance.add(near);
@@ -228,6 +229,34 @@ public class SprayAndPrayController implements SaucerController {
         );
     }
 
+    private void setupSpeedOutput() throws FuzzyException {
+
+        final double minSpeed = Saucer.MIN_SPEED;
+        final double midSpeed = Saucer.MAX_SPEED - Saucer.MIN_SPEED * 0.5;
+        final double maxSpeed = Saucer.MAX_SPEED;
+
+        speed = new FuzzyVariable("speed", "J", Saucer.MIN_SPEED, Saucer.MAX_SPEED, 2);
+
+        double[][] speedLevels = {
+                // losing even winning
+                {minSpeed, minSpeed, midSpeed}, // close
+                {minSpeed, minSpeed, maxSpeed}, // near
+                {minSpeed, midSpeed, maxSpeed}, // far
+        };
+
+        rules.addRuleMatrix(
+                distance, distanceSets,
+                energyDifference, energyDiffSets,
+                speed, speedLevels
+        );
+
+        rules.displayRuleMatrix(
+                distance, distanceSets,
+                energyDifference, energyDiffSets,
+                speed
+        );
+    }
+
     /**
      *
      * @throws FuzzyException
@@ -298,7 +327,7 @@ public class SprayAndPrayController implements SaucerController {
      */
     @Override
     public double getSpeed() throws Exception {
-        return 0;
+        return speed.getValue();
     }
 
     /**
