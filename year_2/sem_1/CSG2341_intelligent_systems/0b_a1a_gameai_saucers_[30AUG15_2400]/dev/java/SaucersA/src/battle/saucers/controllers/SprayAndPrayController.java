@@ -188,13 +188,13 @@ public class SprayAndPrayController implements SaucerController {
 
     private void setupTurnOutput() throws FuzzyException {
 
-        final double rearRight = -360.0;
-        final double right = -240.0;
-        final double frontRight = -120.0;
+        final double rearRight = -180.0;
+        final double right = -90;
+        final double frontRight = -45;
         final double straight = 0.0;
-        final double frontLeft = 120.0;
-        final double left = 240.0;
-        final double rearLeft = 360.0;
+        final double frontLeft = 45;
+        final double left = 90;
+        final double rearLeft = 180;
 
         turn = new FuzzyVariable("turn", "*", rearRight, rearLeft, 2);
 
