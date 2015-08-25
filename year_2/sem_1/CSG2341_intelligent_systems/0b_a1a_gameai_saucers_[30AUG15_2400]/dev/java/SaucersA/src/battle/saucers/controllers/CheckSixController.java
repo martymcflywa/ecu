@@ -11,20 +11,17 @@ import java.awt.*;
  */
 public class CheckSixController implements SaucerController {
 
-    // just testing opponent direction here
-    private double opDir;
-
-    // saucer visual config
-    private static final String NAME = "spray and pray";
+    // saucer config
+    private static final String NAME = "checkSix";
     private static final Color BASE = Color.yellow;
     private static final Color ARROW = Color.black;
 
-    // input variables
+    // linguistic input variables
     private FuzzyVariable distance;
     private FuzzyVariable energyDifference;
     private FuzzyVariable headingAngle;
 
-    // output variables
+    // linguistic output variables
     private FuzzyVariable turn;
     private FuzzyVariable speed;
     private FuzzyVariable firePower;
@@ -33,7 +30,6 @@ public class CheckSixController implements SaucerController {
     private FuzzySet[] distanceSets = new FuzzySet[3];
     private FuzzySet[] energyDiffSets = new FuzzySet[3];
     private FuzzySet[] headingAngleSets = new FuzzySet[9];
-    private FuzzySet[] turnSets = new FuzzySet[3];
 
     // the ruleset
     private SugenoRuleSet rules;
@@ -43,19 +39,15 @@ public class CheckSixController implements SaucerController {
         // instantiate rule
         rules = new SugenoRuleSet();
 
-        // TODO: define fuzzy variables
-
         // set up fuzzy variables
         setupDistanceInput();
         setupEnergyDifferenceInput();
         setupHeadingAngleInput();
 
+        // rules are set up here
         setupTurnOutput();
         setupSpeedOutput();
         setupFirePowerOutput();
-
-
-        // TODO: define rules
 
     }
 
@@ -187,15 +179,15 @@ public class CheckSixController implements SaucerController {
 
     private void setupTurnOutput() throws FuzzyException {
 
-        final double rearRight = -180.0;
-        final double right = -90.0;
+        final double rearRight = -90.0;
+        final double right = -45.0;
         final double frontRight = -20.0;
         final double slightRight = -10.0;
         final double straight = 0.0;
         final double slightLeft = 10.0;
         final double frontLeft = 20.0;
-        final double left = 90.0;
-        final double rearLeft = 180.0;
+        final double left = 45.0;
+        final double rearLeft = 90.0;
 
         turn = new FuzzyVariable("turn", "*", rearRight, rearLeft, 2);
 
@@ -294,22 +286,14 @@ public class CheckSixController implements SaucerController {
         // clear previous values
         rules.clearVariables();
 
-        // TODO: set new rules
         distance.setValue(opponentDistance);
         energyDifference.setValue(energy -  opponentEnergy);
         headingAngle.setValue(Math.abs(opponentDirection));
 
-        // TODO: fire rules
         rules.update();
-
-        // testing
-        System.out.println(Math.abs(opponentDirection));
-        opDir = opponentDirection;
-
     }
 
     /**
-     * TODO: Use fuzzy inference to generate firepower.
      * @return
      * @throws Exception
      */
@@ -319,7 +303,6 @@ public class CheckSixController implements SaucerController {
     }
 
     /**
-     * TODO: Use fuzzy inference to generate speed.
      * @return
      * @throws Exception
      */
@@ -329,7 +312,6 @@ public class CheckSixController implements SaucerController {
     }
 
     /**
-     * TODO: Use fuzzy inference to generate turn.
      * @return
      * @throws Exception
      */
