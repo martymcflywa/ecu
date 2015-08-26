@@ -179,15 +179,16 @@ public class CheckSixController implements SaucerController {
 
     private void setupTurnOutput() throws FuzzyException {
 
-        final double rearRight = -90.0;
-        final double right = -45.0;
-        final double frontRight = -20.0;
-        final double slightRight = -10.0;
         final double straight = 0.0;
         final double slightLeft = 10.0;
-        final double frontLeft = 20.0;
-        final double left = 45.0;
-        final double rearLeft = 90.0;
+        final double frontLeft = 15.0;
+        final double left = 20.0;
+        final double rearLeft = 30.0;
+
+        final double rearRight = -rearLeft;
+        final double right = -left;
+        final double frontRight = -frontLeft;
+        final double slightRight = -slightLeft;
 
         turn = new FuzzyVariable("turn", "*", rearRight, rearLeft, 2);
 
