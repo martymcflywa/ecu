@@ -204,6 +204,20 @@ public class CheckSixController implements SaucerController {
                 {rearRight, rearLeft, rearLeft} // rearLeft
         };
 
+//        double[][] turnOutput = {
+//
+//                {straight, straight, straight},
+//                {straight, straight, straight},
+//                {straight, straight, straight},
+//                {straight, straight, straight},
+//
+//                {straight, straight, straight},
+//                {straight, slightLeft, slightLeft},
+//                {straight, frontLeft, frontLeft},
+//                {straight, left, left},
+//                {straight, rearLeft, rearLeft},
+//        };
+
         rules.addRuleMatrix(
                 headingAngle, headingAngleSets,
                 energyDifference, energyDiffSets,
@@ -288,7 +302,7 @@ public class CheckSixController implements SaucerController {
 
         distance.setValue(opponentDistance);
         energyDifference.setValue(energy -  opponentEnergy);
-        headingAngle.setValue(Math.abs(opponentDirection));
+        headingAngle.setValue(opponentDirection);
 
         rules.update();
     }
