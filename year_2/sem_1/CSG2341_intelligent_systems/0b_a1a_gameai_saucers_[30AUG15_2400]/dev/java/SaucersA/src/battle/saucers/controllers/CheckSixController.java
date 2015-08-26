@@ -103,7 +103,7 @@ public class CheckSixController implements SaucerController {
         energyDifference = new FuzzyVariable("energy difference", "J", minDiff, maxDiff, 2);
 
         FuzzySet losing = new FuzzySet("losing", minDiff, minDiff, -ramp1, -ramp3);
-        FuzzySet even = new FuzzySet("even", -ramp3, -ramp3, ramp3, ramp3);
+        FuzzySet even = new FuzzySet("even", -ramp2, 0.0, 0.0, ramp2);
         FuzzySet winning = new FuzzySet("winning", ramp3, ramp1, maxDiff, maxDiff);
 
         energyDifference.add(losing);
@@ -128,19 +128,19 @@ public class CheckSixController implements SaucerController {
         final double ramp3 = 225.0;
         final double ramp4 = 168.75;
         final double ramp5 = 90.0;
-        final double ramp6 = 56.25;
-        final double ramp7 = 15.0;
+        final double ramp6 = 37.5;
+        final double ramp7 = 20.0;
 
         headingAngle = new FuzzyVariable("heading angle", "*", maxRight, maxLeft, 2);
 
         FuzzySet rearRight = new FuzzySet("rear right", maxRight, maxRight, maxRight, -ramp2);
         FuzzySet hardRight = new FuzzySet("hard right", -ramp1, -ramp2, -ramp3, -ramp4);
         FuzzySet right = new FuzzySet("right", -ramp3, -ramp4, -ramp5, -ramp6);
-        FuzzySet smallRight = new FuzzySet("small right", -ramp5, -ramp6, -ramp6, -ramp7);
+        FuzzySet smallRight = new FuzzySet("small right", -ramp5, -ramp6, -ramp6, 0.0);
 
-        FuzzySet straightAhead = new FuzzySet("straight ahead", -20.0, -10.0, 10.0, 20.0);
+        FuzzySet straightAhead = new FuzzySet("straight ahead", -ramp7, 0.0, 0.0, ramp7);
 
-        FuzzySet smallLeft = new FuzzySet("small left", ramp7, ramp6, ramp6, ramp5);
+        FuzzySet smallLeft = new FuzzySet("small left", 0.0, ramp6, ramp6, ramp5);
         FuzzySet left = new FuzzySet("left", ramp6, ramp5, ramp4, ramp3);
         FuzzySet hardLeft = new FuzzySet("hard left", ramp4, ramp3, ramp2, ramp1);
         FuzzySet rearLeft = new FuzzySet("rear left", ramp2, maxLeft, maxLeft, maxLeft);

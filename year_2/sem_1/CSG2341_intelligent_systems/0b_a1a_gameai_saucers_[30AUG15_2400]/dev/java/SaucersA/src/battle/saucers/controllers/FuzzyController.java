@@ -82,10 +82,10 @@ public class FuzzyController implements SaucerController
 
         // use "pause" to see which rules are firing etc
         // comment this out this when not needed
-        rules.displayRuleMatrix(
-                distance, distanceSets,
-                energyDifference, diffSets,
-                firePower);
+//        rules.displayRuleMatrix(
+//                distance, distanceSets,
+//                energyDifference, diffSets,
+//                firePower);
     }
        
     // Here is where the sensor data comes in
