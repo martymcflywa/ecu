@@ -131,16 +131,24 @@ public class CheckSixController implements SaucerController {
         final double ramp6 = 56.25;
         final double ramp7 = 15.0;
 
+//        final double ramp1 = 220.0;
+//        final double ramp2 = 160.0;
+//        final double ramp3 = 120.0;
+//        final double ramp4 = 90.0;
+//        final double ramp5 = 40.0;
+//        final double ramp6 = 20.0;
+//        final double ramp7 = 10.0;
+
         headingAngle = new FuzzyVariable("heading angle", "*", maxRight, maxLeft, 2);
 
         FuzzySet rearRight = new FuzzySet("rear right", maxRight, maxRight, maxRight, -ramp2);
         FuzzySet hardRight = new FuzzySet("hard right", -ramp1, -ramp2, -ramp3, -ramp4);
         FuzzySet right = new FuzzySet("right", -ramp3, -ramp4, -ramp5, -ramp6);
-        FuzzySet smallRight = new FuzzySet("small right", -ramp6, -ramp6, -ramp6, -ramp7);
+        FuzzySet smallRight = new FuzzySet("small right", -ramp5, -ramp6, -ramp6, -ramp7);
 
-        FuzzySet straightAhead = new FuzzySet("straight ahead", -ramp7, 0.0, 0.0, ramp7);
+        FuzzySet straightAhead = new FuzzySet("straight ahead", -20.0, -10.0, 10.0, 20.0);
 
-        FuzzySet smallLeft = new FuzzySet("small left", ramp7, ramp6, ramp6, ramp6);
+        FuzzySet smallLeft = new FuzzySet("small left", ramp7, ramp6, ramp6, ramp5);
         FuzzySet left = new FuzzySet("left", ramp6, ramp5, ramp4, ramp3);
         FuzzySet hardLeft = new FuzzySet("hard left", ramp4, ramp3, ramp2, ramp1);
         FuzzySet rearLeft = new FuzzySet("rear left", ramp2, maxLeft, maxLeft, maxLeft);
@@ -181,28 +189,28 @@ public class CheckSixController implements SaucerController {
 
         final double straight = 0.0;
         final double slightLeft = 10.0;
-        final double frontLeft = 15.0;
-        final double left = 20.0;
-        final double rearLeft = 30.0;
+        final double frontLeft = 45.0;
+        final double left = 240.0;
+        final double rearLeft = 360.0;
 
         final double rearRight = -rearLeft;
         final double right = -left;
         final double frontRight = -frontLeft;
         final double slightRight = -slightLeft;
 
-        turn = new FuzzyVariable("turn", "*", rearRight, rearLeft, 2);
+        turn = new FuzzyVariable("turn", "*", -360.0, 360.0, 2);
 
         double[][] turnOutput = {
                 // losing even winning
-                {rearLeft, rearRight, rearRight}, // rearRight
-                {left, right, right}, // hardRight
-                {frontLeft, right, frontRight}, // smallRight
-                {slightLeft, frontRight, slightRight}, // rightDir
-                {straight, straight, straight}, // straightAhead
-                {slightRight, frontLeft, slightLeft}, // leftDir
+                {straight, straight, rearLeft}, // rearRight
+                {slightRight, rearLeft, left}, // hardRight
+                {frontRight, left, frontRight}, // smallRight
+                {straight, slightRight, slightRight}, // rightDir
+                {rearRight, straight, straight}, // straightAhead
+                {straight, slightLeft, slightLeft}, // leftDir
                 {frontRight, left, frontLeft}, // smallLeft
-                {right, left, left}, // hardLeft
-                {rearRight, rearLeft, rearLeft} // rearLeft
+                {slightRight, rearLeft, left}, // hardLeft
+                {straight, straight, rearLeft} // rearLeft
         };
 
 //        double[][] turnOutput = {
