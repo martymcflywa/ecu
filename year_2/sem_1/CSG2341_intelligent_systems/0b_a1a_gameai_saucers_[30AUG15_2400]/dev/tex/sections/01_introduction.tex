@@ -1,2 +1,9 @@
 \section{Introduction}
 
+This report examines fuzzy logic and its practical use in a video game called Saucers. Saucers is a two player game, where each player indirectly controls their flying saucer using a fuzzy logic controller. The saucers meet on a battle space, a rectangular xy plane, with the purpose of destroying each other. The walls of this space cannot be travelled through, and will cause the saucer to ricochet off the wall when hit.
+
+The saucers begin with equal amounts of energy at the start of the game, and this energy is consumed as they fly around or fire their auto-aiming cannon mounted on a rotating turret. The rounds fired from the cannon are ballistic. They travel in a straight line from the cannon and are not guided. When a saucer is hit by a round, energy is depleted. Amount of energy depletion depends on how far away the round was fired. In other words, rounds fired will lose energy the further they have to travel, and will eventually fade away. They are much more lethal in close combat.
+
+Saucers cannot stop flying and will always consume energy. However, the speed of a saucer can be controlled. The slowest speed consumes the least amount of energy, while the fastest speed consumes the most. The saucer's heading can also be controlled, and can turn left or right in any direction. Currently, there is no energy penalty for turning. Each saucer is also equipped with a sensor, which determines how far away the opponent is, the opponent direction, and how much energy the opponent has, which are used as inputs for fuzzy logic.
+
+When a saucer loses all of its energy, it disappears from the battle space and loses. The remaining saucer with energy left over is the winner. The goal of this report is to design a fuzzy logic controller so that it's saucer will have the most amount of remaining energy at the end of the battle.
