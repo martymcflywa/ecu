@@ -260,7 +260,7 @@ public class CheckSixController implements SaucerController {
         double[][] firePowerLevels = {
                 // losing even winning
                 {0.0, midPower, maxPower}, // close
-                {0.0, maxPower, midPower}, // near
+                {0.0, maxPower, maxPower}, // near
                 {0.0, 0.0, 0.0} // far
         };
 

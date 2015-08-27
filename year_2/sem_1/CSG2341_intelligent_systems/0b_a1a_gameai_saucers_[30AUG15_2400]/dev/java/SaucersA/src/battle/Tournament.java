@@ -31,7 +31,7 @@ public class Tournament
         field = new Starfield(Constants.STARFIELD_WIDTH, Constants.STARFIELD_HEIGHT);
         
         // list the combatants here
-        saucers.add(new Saucer(field, new SimpleController()));      
+        //saucers.add(new Saucer(field, new SimpleController()));
         saucers.add(new Saucer(field, new SimpleController()));
         saucers.add(new Saucer(field, new FuzzyController()));
         saucers.add(new Saucer(field, new CheckSixController()));
