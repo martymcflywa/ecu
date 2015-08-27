@@ -210,6 +210,12 @@ public class CheckSixController implements SaucerController {
                 energyDifference, energyDiffSets,
                 turn, turnOutput
         );
+
+        rules.displayRuleMatrix(
+                headingAngle, headingAngleSets,
+                energyDifference, energyDiffSets,
+                turn
+        );
     }
 
     private void setupSpeedOutput() throws FuzzyException {
@@ -222,8 +228,8 @@ public class CheckSixController implements SaucerController {
 
         double[][] speedLevels = {
                 // losing even winning
-                {minSpeed, minSpeed, minSpeed}, // close
-                {minSpeed, minSpeed, maxSpeed}, // near
+                {maxSpeed, minSpeed, minSpeed}, // close
+                {midSpeed, minSpeed, maxSpeed}, // near
                 {minSpeed, midSpeed, maxSpeed}, // far
         };
 
@@ -231,6 +237,12 @@ public class CheckSixController implements SaucerController {
                 distance, distanceSets,
                 energyDifference, energyDiffSets,
                 speed, speedLevels
+        );
+
+        rules.displayRuleMatrix(
+                distance, distanceSets,
+                energyDifference, energyDiffSets,
+                speed
         );
     }
 
@@ -241,15 +253,14 @@ public class CheckSixController implements SaucerController {
     private void setupFirePowerOutput() throws FuzzyException {
 
         final double maxPower = Saucer.MAX_POWER;
-        final double highPower = maxPower * 0.4;
-        final double lowPower = maxPower * 0.2;
+        final double midPower = maxPower * 0.5;
 
         firePower = new FuzzyVariable("firepower", "J", -maxPower, maxPower, 2);
 
         double[][] firePowerLevels = {
                 // losing even winning
-                {0.0, highPower, maxPower}, // close
-                {0.0, maxPower, highPower}, // near
+                {0.0, midPower, maxPower}, // close
+                {0.0, maxPower, midPower}, // near
                 {0.0, 0.0, 0.0} // far
         };
 
@@ -257,6 +268,12 @@ public class CheckSixController implements SaucerController {
                 distance, distanceSets,
                 energyDifference, energyDiffSets,
                 firePower, firePowerLevels
+        );
+
+        rules.displayRuleMatrix(
+                distance, distanceSets,
+                energyDifference, energyDiffSets,
+                firePower
         );
     }
 
