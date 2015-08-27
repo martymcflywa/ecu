@@ -194,15 +194,15 @@ public class CheckSixController implements SaucerController {
 
         double[][] turnOutput = {
                 // losing even winning
-                {straight, straight, rearLeft}, // rearRight
-                {slightRight, rearLeft, left}, // hardRight
-                {frontRight, left, frontRight}, // smallRight
-                {straight, slightRight, slightRight}, // rightDir
-                {rearRight, straight, straight}, // straightAhead
-                {straight, slightLeft, slightLeft}, // leftDir
-                {frontRight, left, frontLeft}, // smallLeft
-                {slightRight, rearLeft, left}, // hardLeft
-                {straight, straight, rearLeft} // rearLeft
+                {frontLeft, right, rearRight}, // rearRight
+                {slightLeft, frontRight, right}, // hardRight
+                {20.0, slightRight, frontRight}, // right
+                {160.0, slightRight, slightRight}, // smallRight
+                {180.0, straight, straight}, // straightAhead
+                {-160.0, slightLeft, slightLeft}, // smallLeft
+                {-20.0, slightLeft, frontLeft}, // left
+                {slightRight, frontLeft, left}, // hardLeft
+                {frontRight, left, rearLeft} // rearLeft
         };
 
         rules.addRuleMatrix(
