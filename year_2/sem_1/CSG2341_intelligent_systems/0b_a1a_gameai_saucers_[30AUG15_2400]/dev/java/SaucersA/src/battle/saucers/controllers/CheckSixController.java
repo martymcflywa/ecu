@@ -229,32 +229,62 @@ public class CheckSixController implements SaucerController {
      * @throws FuzzyException
      */
 
+//    private void setupTurnOutput() throws FuzzyException {
+//
+//        final double straight = 0.0;
+//        final double slightLeft = 10.0;
+//        final double frontLeft = 45.0;
+//        final double left = 240.0;
+//        final double rearLeft = 360.0;
+//
+//        final double rearRight = -rearLeft;
+//        final double right = -left;
+//        final double frontRight = -frontLeft;
+//        final double slightRight = -slightLeft;
+//
+//        turn = new FuzzyVariable("turn", "*", -360.0, 360.0, 2);
+//
+//        double[][] turnOutput = {
+//                // losing even winning
+//                {frontLeft, right, rearRight}, // rearRight
+//                {slightLeft, frontRight, right}, // hardRight
+//                {20.0, slightRight, frontRight}, // right
+//                {160.0, slightRight, slightRight}, // smallRight
+//                {180.0, straight, straight}, // straightAhead
+//                {-160.0, slightLeft, slightLeft}, // smallLeft
+//                {-20.0, slightLeft, frontLeft}, // left
+//                {slightRight, frontLeft, left}, // hardLeft
+//                {frontRight, left, rearLeft} // rearLeft
+//        };
+//
+//        rules.addRuleMatrix(
+//                headingAngle, headingAngleSets,
+//                energyDifference, energyDiffSets,
+//                turn, turnOutput
+//        );
+//
+//        rules.displayRuleMatrix(
+//                headingAngle, headingAngleSets,
+//                energyDifference, energyDiffSets,
+//                turn
+//        );
+//    }
+
     private void setupTurnOutput() throws FuzzyException {
 
-        final double straight = 0.0;
-        final double slightLeft = 10.0;
-        final double frontLeft = 45.0;
-        final double left = 240.0;
-        final double rearLeft = 360.0;
-
-        final double rearRight = -rearLeft;
-        final double right = -left;
-        final double frontRight = -frontLeft;
-        final double slightRight = -slightLeft;
-
-        turn = new FuzzyVariable("turn", "*", -360.0, 360.0, 2);
+        turn = new FuzzyVariable("turn", "*", RIGHT_NORTH, LEFT_NORTH, 2);
 
         double[][] turnOutput = {
                 // losing even winning
-                {frontLeft, right, rearRight}, // rearRight
-                {slightLeft, frontRight, right}, // hardRight
-                {20.0, slightRight, frontRight}, // right
-                {160.0, slightRight, slightRight}, // smallRight
-                {180.0, straight, straight}, // straightAhead
-                {-160.0, slightLeft, slightLeft}, // smallLeft
-                {-20.0, slightLeft, frontLeft}, // left
-                {slightRight, frontLeft, left}, // hardLeft
-                {frontRight, left, rearLeft} // rearLeft
+                {NORTH, NORTH, NORTH}, // revRightFront
+                {LEFT_EAST, LEFT_EAST, LEFT_EAST}, // rightLeft
+                {RIGHT_SOUTH, RIGHT_SOUTH, RIGHT_SOUTH}, // rightRear
+                {RIGHT_WEST, RIGHT_WEST, RIGHT_WEST}, // rightFront
+                {NORTH, NORTH, NORTH}, // front
+                {LEFT_EAST, LEFT_EAST, LEFT_EAST}, // leftFront
+                {LEFT_SOUTH, LEFT_SOUTH, LEFT_SOUTH}, // leftRear
+                {RIGHT_EAST, RIGHT_EAST, RIGHT_EAST}, // leftRight
+                {NORTH, NORTH, NORTH} // revLeftFront
         };
 
         rules.addRuleMatrix(
