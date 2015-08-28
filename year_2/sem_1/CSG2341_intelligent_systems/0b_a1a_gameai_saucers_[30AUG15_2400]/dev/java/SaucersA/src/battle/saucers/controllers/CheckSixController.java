@@ -7,7 +7,9 @@ import battle.saucers.Saucer;
 import java.awt.*;
 
 /**
- * Created by marty on 9/08/2015.
+ * checkSix fuzzy controller.
+ * @author Martin Ponce 10371381
+ * @version 20150828
  */
 public class CheckSixController implements SaucerController {
 
@@ -36,9 +38,9 @@ public class CheckSixController implements SaucerController {
 
     // constants for cardinal directions
     private final double LEFT_NORTH = 360.0;
-    private final double LEFT_WEST = 270.0;
-    private final double LEFT_SOUTH = 180.0;
-    private final double LEFT_EAST = 90.0;
+    private final double LEFT_WEST = LEFT_NORTH - 90.0;
+    private final double LEFT_SOUTH = LEFT_WEST - 90.0;
+    private final double LEFT_EAST = LEFT_SOUTH - 90.0;
 
     private final double NORTH = 0.0;
 
@@ -58,7 +60,7 @@ public class CheckSixController implements SaucerController {
         setupEnergyDifferenceInput();
         setupHeadingAngleInput();
 
-        // rules are set up here
+        // setup rules for output
         setupTurnOutput();
         setupSpeedOutput();
         setupFirePowerOutput();
@@ -66,7 +68,7 @@ public class CheckSixController implements SaucerController {
     }
 
     /**
-     * This function sets up the distance variables and sets.
+     * This function sets up the distance linguistic variable and fuzzy sets.
      *
      * @throws FuzzyException
      */
@@ -101,7 +103,7 @@ public class CheckSixController implements SaucerController {
     }
 
     /**
-     * This method sets up the energy difference fuzzy variables and sets.
+     * This method sets up the energy difference linguistic variable and fuzzy sets.
      *
      * @throws FuzzyException
      */
@@ -132,59 +134,12 @@ public class CheckSixController implements SaucerController {
         energyDiffSets[2] = winning;
     }
 
-//    private void setupHeadingAngleInput() throws FuzzyException {
-//
-//        final double maxLeft = 360.0;
-//        final double maxRight = -maxLeft;
-//
-//        final double ramp1 = 330.0;
-//        final double ramp2 = 280.0;
-//        final double ramp3 = 225.0;
-//        final double ramp4 = 170.0;
-//        final double ramp5 = 90.0;
-//        final double ramp6 = 40.0;
-//        final double ramp7 = 20.0;
-//
-//        headingAngle = new FuzzyVariable("heading angle", "*", maxRight, maxLeft, 2);
-//
-//        FuzzySet rearRight = new FuzzySet("rear right", maxRight, maxRight, maxRight, -ramp2);
-//        FuzzySet hardRight = new FuzzySet("hard right", -ramp1, -ramp2, -ramp3, -ramp4);
-//        FuzzySet right = new FuzzySet("right", -ramp3, -ramp4, -ramp5, -ramp6);
-//        FuzzySet smallRight = new FuzzySet("small right", -ramp5, -ramp6, -ramp6, 0.0);
-//
-//        FuzzySet straightAhead = new FuzzySet("straight ahead", -ramp7, 0.0, 0.0, ramp7);
-//
-//        FuzzySet smallLeft = new FuzzySet("small left", 0.0, ramp6, ramp6, ramp5);
-//        FuzzySet left = new FuzzySet("left", ramp6, ramp5, ramp4, ramp3);
-//        FuzzySet hardLeft = new FuzzySet("hard left", ramp4, ramp3, ramp2, ramp1);
-//        FuzzySet rearLeft = new FuzzySet("rear left", ramp2, maxLeft, maxLeft, maxLeft);
-//
-//        headingAngle.add(rearRight);
-//        headingAngle.add(hardRight);
-//        headingAngle.add(right);
-//        headingAngle.add(smallRight);
-//        headingAngle.add(straightAhead);
-//        headingAngle.add(smallLeft);
-//        headingAngle.add(left);
-//        headingAngle.add(hardLeft);
-//        headingAngle.add(rearLeft);
-//
-//        headingAngle.checkGaps();
-//        headingAngle.display();
-//
-//        headingAngleSets[0] = rearRight;
-//        headingAngleSets[1] = hardRight;
-//        headingAngleSets[2] = right;
-//        headingAngleSets[3] = smallRight;
-//
-//        headingAngleSets[4] = straightAhead;
-//
-//        headingAngleSets[5] = smallLeft;
-//        headingAngleSets[6] = left;
-//        headingAngleSets[7] = hardLeft;
-//        headingAngleSets[8] = rearLeft;
-//    }
 
+    /**
+     * This method sets up the heading angle linguistic variable and fuzzy sets.
+     *
+     * @throws FuzzyException
+     */
     private void setupHeadingAngleInput() throws FuzzyException {
 
         headingAngle = new FuzzyVariable("heading angle", "*", RIGHT_NORTH, LEFT_NORTH, 2);
@@ -224,52 +179,10 @@ public class CheckSixController implements SaucerController {
     }
 
     /**
-     * This method sets up the turn fuzzy variables and sets.
+     * This method sets up the turn linguistic variables and fuzzy sets.
      *
      * @throws FuzzyException
      */
-
-//    private void setupTurnOutput() throws FuzzyException {
-//
-//        final double straight = 0.0;
-//        final double slightLeft = 10.0;
-//        final double frontLeft = 45.0;
-//        final double left = 240.0;
-//        final double rearLeft = 360.0;
-//
-//        final double rearRight = -rearLeft;
-//        final double right = -left;
-//        final double frontRight = -frontLeft;
-//        final double slightRight = -slightLeft;
-//
-//        turn = new FuzzyVariable("turn", "*", -360.0, 360.0, 2);
-//
-//        double[][] turnOutput = {
-//                // losing even winning
-//                {frontLeft, right, rearRight}, // rearRight
-//                {slightLeft, frontRight, right}, // hardRight
-//                {20.0, slightRight, frontRight}, // right
-//                {160.0, slightRight, slightRight}, // smallRight
-//                {180.0, straight, straight}, // straightAhead
-//                {-160.0, slightLeft, slightLeft}, // smallLeft
-//                {-20.0, slightLeft, frontLeft}, // left
-//                {slightRight, frontLeft, left}, // hardLeft
-//                {frontRight, left, rearLeft} // rearLeft
-//        };
-//
-//        rules.addRuleMatrix(
-//                headingAngle, headingAngleSets,
-//                energyDifference, energyDiffSets,
-//                turn, turnOutput
-//        );
-//
-//        rules.displayRuleMatrix(
-//                headingAngle, headingAngleSets,
-//                energyDifference, energyDiffSets,
-//                turn
-//        );
-//    }
-
     private void setupTurnOutput() throws FuzzyException {
 
         turn = new FuzzyVariable("turn", "*", RIGHT_NORTH, LEFT_NORTH, 2);
@@ -300,6 +213,11 @@ public class CheckSixController implements SaucerController {
         );
     }
 
+    /**
+     * This method sets up the linguistic variable for speed and rules for output.
+     *
+     * @throws FuzzyException
+     */
     private void setupSpeedOutput() throws FuzzyException {
 
         final double minSpeed = Saucer.MIN_SPEED;
@@ -329,6 +247,7 @@ public class CheckSixController implements SaucerController {
     }
 
     /**
+     * This method sets up the linguistic variable for fire power and rules for output.
      *
      * @throws FuzzyException
      */
