@@ -34,6 +34,20 @@ public class CheckSixController implements SaucerController {
     // the ruleset
     private SugenoRuleSet rules;
 
+    // constants for cardinal directions
+    private final double LEFT_NORTH = 360.0;
+    private final double LEFT_WEST = 270.0;
+    private final double LEFT_SOUTH = 180.0;
+    private final double LEFT_EAST = 90.0;
+
+    private final double NORTH = 0.0;
+
+    // east/west cardinals reversed for negative side, goes counterclockwise
+    private final double RIGHT_WEST = -LEFT_EAST;
+    private final double RIGHT_SOUTH = -LEFT_SOUTH;
+    private final double RIGHT_EAST = -LEFT_WEST;
+    private final double RIGHT_NORTH = -LEFT_NORTH;
+
     public CheckSixController() throws FuzzyException {
 
         // instantiate rule
@@ -118,57 +132,95 @@ public class CheckSixController implements SaucerController {
         energyDiffSets[2] = winning;
     }
 
+//    private void setupHeadingAngleInput() throws FuzzyException {
+//
+//        final double maxLeft = 360.0;
+//        final double maxRight = -maxLeft;
+//
+//        final double ramp1 = 330.0;
+//        final double ramp2 = 280.0;
+//        final double ramp3 = 225.0;
+//        final double ramp4 = 170.0;
+//        final double ramp5 = 90.0;
+//        final double ramp6 = 40.0;
+//        final double ramp7 = 20.0;
+//
+//        headingAngle = new FuzzyVariable("heading angle", "*", maxRight, maxLeft, 2);
+//
+//        FuzzySet rearRight = new FuzzySet("rear right", maxRight, maxRight, maxRight, -ramp2);
+//        FuzzySet hardRight = new FuzzySet("hard right", -ramp1, -ramp2, -ramp3, -ramp4);
+//        FuzzySet right = new FuzzySet("right", -ramp3, -ramp4, -ramp5, -ramp6);
+//        FuzzySet smallRight = new FuzzySet("small right", -ramp5, -ramp6, -ramp6, 0.0);
+//
+//        FuzzySet straightAhead = new FuzzySet("straight ahead", -ramp7, 0.0, 0.0, ramp7);
+//
+//        FuzzySet smallLeft = new FuzzySet("small left", 0.0, ramp6, ramp6, ramp5);
+//        FuzzySet left = new FuzzySet("left", ramp6, ramp5, ramp4, ramp3);
+//        FuzzySet hardLeft = new FuzzySet("hard left", ramp4, ramp3, ramp2, ramp1);
+//        FuzzySet rearLeft = new FuzzySet("rear left", ramp2, maxLeft, maxLeft, maxLeft);
+//
+//        headingAngle.add(rearRight);
+//        headingAngle.add(hardRight);
+//        headingAngle.add(right);
+//        headingAngle.add(smallRight);
+//        headingAngle.add(straightAhead);
+//        headingAngle.add(smallLeft);
+//        headingAngle.add(left);
+//        headingAngle.add(hardLeft);
+//        headingAngle.add(rearLeft);
+//
+//        headingAngle.checkGaps();
+//        headingAngle.display();
+//
+//        headingAngleSets[0] = rearRight;
+//        headingAngleSets[1] = hardRight;
+//        headingAngleSets[2] = right;
+//        headingAngleSets[3] = smallRight;
+//
+//        headingAngleSets[4] = straightAhead;
+//
+//        headingAngleSets[5] = smallLeft;
+//        headingAngleSets[6] = left;
+//        headingAngleSets[7] = hardLeft;
+//        headingAngleSets[8] = rearLeft;
+//    }
+
     private void setupHeadingAngleInput() throws FuzzyException {
 
-        final double maxLeft = 360.0;
-        final double maxRight = -maxLeft;
+        headingAngle = new FuzzyVariable("heading angle", "*", RIGHT_NORTH, LEFT_NORTH, 2);
 
-        final double ramp1 = 330.0;
-        final double ramp2 = 280.0;
-        final double ramp3 = 225.0;
-        final double ramp4 = 170.0;
-        final double ramp5 = 90.0;
-        final double ramp6 = 40.0;
-        final double ramp7 = 20.0;
+        FuzzySet revRightFront = new FuzzySet("reverse right front", RIGHT_NORTH, RIGHT_NORTH, RIGHT_NORTH, RIGHT_EAST);
+        FuzzySet rightLeft = new FuzzySet("right left", RIGHT_NORTH, RIGHT_EAST, RIGHT_EAST, RIGHT_SOUTH);
+        FuzzySet rightRear = new FuzzySet("right rear", RIGHT_EAST, RIGHT_SOUTH, RIGHT_SOUTH, RIGHT_WEST);
+        FuzzySet rightFront = new FuzzySet("right front", RIGHT_SOUTH, RIGHT_WEST, RIGHT_WEST, NORTH);
+        FuzzySet front = new FuzzySet("front", RIGHT_WEST, NORTH, NORTH, LEFT_EAST);
+        FuzzySet leftFront = new FuzzySet("left front", NORTH, LEFT_EAST, LEFT_EAST, LEFT_SOUTH);
+        FuzzySet leftRear = new FuzzySet("left rear", LEFT_EAST, LEFT_SOUTH, LEFT_SOUTH, LEFT_WEST);
+        FuzzySet leftRight = new FuzzySet("left right", LEFT_SOUTH, LEFT_WEST, LEFT_WEST, LEFT_NORTH);
+        FuzzySet revLeftFront = new FuzzySet("reverse left front", LEFT_WEST, LEFT_NORTH, LEFT_NORTH, LEFT_NORTH);
 
-        headingAngle = new FuzzyVariable("heading angle", "*", maxRight, maxLeft, 2);
-
-        FuzzySet rearRight = new FuzzySet("rear right", maxRight, maxRight, maxRight, -ramp2);
-        FuzzySet hardRight = new FuzzySet("hard right", -ramp1, -ramp2, -ramp3, -ramp4);
-        FuzzySet right = new FuzzySet("right", -ramp3, -ramp4, -ramp5, -ramp6);
-        FuzzySet smallRight = new FuzzySet("small right", -ramp5, -ramp6, -ramp6, 0.0);
-
-        FuzzySet straightAhead = new FuzzySet("straight ahead", -ramp7, 0.0, 0.0, ramp7);
-
-        FuzzySet smallLeft = new FuzzySet("small left", 0.0, ramp6, ramp6, ramp5);
-        FuzzySet left = new FuzzySet("left", ramp6, ramp5, ramp4, ramp3);
-        FuzzySet hardLeft = new FuzzySet("hard left", ramp4, ramp3, ramp2, ramp1);
-        FuzzySet rearLeft = new FuzzySet("rear left", ramp2, maxLeft, maxLeft, maxLeft);
-
-        headingAngle.add(rearRight);
-        headingAngle.add(hardRight);
-        headingAngle.add(right);
-        headingAngle.add(smallRight);
-        headingAngle.add(straightAhead);
-        headingAngle.add(smallLeft);
-        headingAngle.add(left);
-        headingAngle.add(hardLeft);
-        headingAngle.add(rearLeft);
+        headingAngle.add(revRightFront);
+        headingAngle.add(rightLeft);
+        headingAngle.add(rightRear);
+        headingAngle.add(rightFront);
+        headingAngle.add(front);
+        headingAngle.add(leftFront);
+        headingAngle.add(leftRear);
+        headingAngle.add(leftRight);
+        headingAngle.add(revLeftFront);
 
         headingAngle.checkGaps();
         headingAngle.display();
 
-        headingAngleSets[0] = rearRight;
-        headingAngleSets[1] = hardRight;
-        headingAngleSets[2] = right;
-        headingAngleSets[3] = smallRight;
-
-        headingAngleSets[4] = straightAhead;
-
-        headingAngleSets[5] = smallLeft;
-        headingAngleSets[6] = left;
-        headingAngleSets[7] = hardLeft;
-        headingAngleSets[8] = rearLeft;
+        headingAngleSets[0] = revRightFront;
+        headingAngleSets[1] = rightLeft;
+        headingAngleSets[2] = rightRear;
+        headingAngleSets[3] = rightFront;
+        headingAngleSets[4] = front;
+        headingAngleSets[5] = leftFront;
+        headingAngleSets[6] = leftRear;
+        headingAngleSets[7] = leftRight;
+        headingAngleSets[8] = revLeftFront;
     }
 
     /**
