@@ -276,15 +276,15 @@ public class CheckSixController implements SaucerController {
 
         double[][] turnOutput = {
                 // losing even winning
-                {NORTH, NORTH, NORTH}, // revRightFront
-                {LEFT_EAST, LEFT_EAST, LEFT_EAST}, // rightLeft
-                {RIGHT_SOUTH, RIGHT_SOUTH, RIGHT_SOUTH}, // rightRear
-                {RIGHT_WEST, RIGHT_WEST, RIGHT_WEST}, // rightFront
-                {NORTH, NORTH, NORTH}, // front
-                {LEFT_EAST, LEFT_EAST, LEFT_EAST}, // leftFront
-                {LEFT_SOUTH, LEFT_SOUTH, LEFT_SOUTH}, // leftRear
-                {RIGHT_EAST, RIGHT_EAST, RIGHT_EAST}, // leftRight
-                {NORTH, NORTH, NORTH} // revLeftFront
+                {RIGHT_SOUTH, NORTH, NORTH}, // revRightFront
+                {RIGHT_WEST, LEFT_EAST, LEFT_EAST}, // rightLeft
+                {LEFT_SOUTH, RIGHT_SOUTH, RIGHT_SOUTH}, // rightRear
+                {LEFT_EAST, RIGHT_WEST, RIGHT_WEST}, // rightFront
+                {RIGHT_SOUTH, NORTH, NORTH}, // front
+                {RIGHT_WEST, LEFT_EAST, LEFT_EAST}, // leftFront
+                {RIGHT_SOUTH, LEFT_SOUTH, LEFT_SOUTH}, // leftRear
+                {LEFT_WEST, RIGHT_EAST, RIGHT_EAST}, // leftRight
+                {RIGHT_SOUTH, NORTH, NORTH} // revLeftFront
         };
 
         rules.addRuleMatrix(
@@ -311,7 +311,7 @@ public class CheckSixController implements SaucerController {
         double[][] speedLevels = {
                 // losing even winning
                 {maxSpeed, minSpeed, minSpeed}, // close
-                {midSpeed, minSpeed, maxSpeed}, // near
+                {maxSpeed, minSpeed, maxSpeed}, // near
                 {minSpeed, midSpeed, maxSpeed}, // far
         };
 
