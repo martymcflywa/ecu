@@ -37,18 +37,18 @@ public class CheckSixController implements SaucerController {
     private SugenoRuleSet rules;
 
     // constants for cardinal directions
-    private final double LEFT_NORTH = 360.0;
-    private final double LEFT_WEST = LEFT_NORTH - 90.0;
-    private final double LEFT_SOUTH = LEFT_WEST - 90.0;
-    private final double LEFT_EAST = LEFT_SOUTH - 90.0;
+    private final double LEFT_TWELVE = 360.0;
+    private final double LEFT_NINE = LEFT_TWELVE - 90.0; // 270
+    private final double LEFT_SIX = LEFT_NINE - 90.0; // 180
+    private final double LEFT_THREE = LEFT_SIX - 90.0; // 90
 
-    private final double NORTH = 0.0;
+    private final double TWELVE = 0.0;
 
     // east/west cardinals reversed for negative side, goes counterclockwise
-    private final double RIGHT_WEST = -LEFT_EAST;
-    private final double RIGHT_SOUTH = -LEFT_SOUTH;
-    private final double RIGHT_EAST = -LEFT_WEST;
-    private final double RIGHT_NORTH = -LEFT_NORTH;
+    private final double RIGHT_THREE = -LEFT_THREE;
+    private final double RIGHT_SIX = -LEFT_SIX;
+    private final double RIGHT_NINE = -LEFT_NINE;
+    private final double RIGHT_TWELVE = -LEFT_TWELVE;
 
     public CheckSixController() throws FuzzyException {
 
@@ -88,7 +88,7 @@ public class CheckSixController implements SaucerController {
 
         FuzzySet close = new FuzzySet("close", 0.0, 0.0, ramp1, ramp2);
         FuzzySet near = new FuzzySet("near", ramp1, ramp3, ramp3, ramp4);
-        FuzzySet far = new FuzzySet("far", ramp3, ramp4, maxDistance, maxDistance);
+        FuzzySet far = new FuzzySet("far", ramp2, ramp4, maxDistance, maxDistance);
 
         distance.add(close);
         distance.add(near);
@@ -142,17 +142,17 @@ public class CheckSixController implements SaucerController {
      */
     private void setupHeadingAngleInput() throws FuzzyException {
 
-        headingAngle = new FuzzyVariable("heading angle", "*", RIGHT_NORTH, LEFT_NORTH, 2);
+        headingAngle = new FuzzyVariable("heading angle", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
 
-        FuzzySet revRightFront = new FuzzySet("reverse right front", RIGHT_NORTH, RIGHT_NORTH, RIGHT_NORTH, RIGHT_EAST);
-        FuzzySet rightLeft = new FuzzySet("right left", RIGHT_NORTH, RIGHT_EAST, RIGHT_EAST, RIGHT_SOUTH);
-        FuzzySet rightRear = new FuzzySet("right rear", RIGHT_EAST, RIGHT_SOUTH, RIGHT_SOUTH, RIGHT_WEST);
-        FuzzySet rightFront = new FuzzySet("right front", RIGHT_SOUTH, RIGHT_WEST, RIGHT_WEST, NORTH);
-        FuzzySet front = new FuzzySet("front", RIGHT_WEST, NORTH, NORTH, LEFT_EAST);
-        FuzzySet leftFront = new FuzzySet("left front", NORTH, LEFT_EAST, LEFT_EAST, LEFT_SOUTH);
-        FuzzySet leftRear = new FuzzySet("left rear", LEFT_EAST, LEFT_SOUTH, LEFT_SOUTH, LEFT_WEST);
-        FuzzySet leftRight = new FuzzySet("left right", LEFT_SOUTH, LEFT_WEST, LEFT_WEST, LEFT_NORTH);
-        FuzzySet revLeftFront = new FuzzySet("reverse left front", LEFT_WEST, LEFT_NORTH, LEFT_NORTH, LEFT_NORTH);
+        FuzzySet revRightFront = new FuzzySet("reverse right front", RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_NINE);
+        FuzzySet rightLeft = new FuzzySet("right left", RIGHT_TWELVE, RIGHT_NINE, RIGHT_NINE, RIGHT_SIX);
+        FuzzySet rightRear = new FuzzySet("right rear", RIGHT_NINE, RIGHT_SIX, RIGHT_SIX, RIGHT_THREE);
+        FuzzySet rightFront = new FuzzySet("right front", RIGHT_SIX, RIGHT_THREE, RIGHT_THREE, TWELVE);
+        FuzzySet front = new FuzzySet("front", RIGHT_THREE, TWELVE, TWELVE, LEFT_THREE);
+        FuzzySet leftFront = new FuzzySet("left front", TWELVE, LEFT_THREE, LEFT_THREE, LEFT_SIX);
+        FuzzySet leftRear = new FuzzySet("left rear", LEFT_THREE, LEFT_SIX, LEFT_SIX, LEFT_NINE);
+        FuzzySet leftRight = new FuzzySet("left right", LEFT_SIX, LEFT_NINE, LEFT_NINE, LEFT_TWELVE);
+        FuzzySet revLeftFront = new FuzzySet("reverse left front", LEFT_NINE, LEFT_TWELVE, LEFT_TWELVE, LEFT_TWELVE);
 
         headingAngle.add(revRightFront);
         headingAngle.add(rightLeft);
@@ -185,19 +185,19 @@ public class CheckSixController implements SaucerController {
      */
     private void setupTurnOutput() throws FuzzyException {
 
-        turn = new FuzzyVariable("turn", "*", RIGHT_NORTH, LEFT_NORTH, 2);
+        turn = new FuzzyVariable("turn", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
 
         double[][] turnOutput = {
                 // losing even winning
-                {RIGHT_SOUTH, NORTH, NORTH}, // revRightFront
-                {RIGHT_WEST, LEFT_EAST, LEFT_EAST}, // rightLeft
-                {LEFT_SOUTH, RIGHT_SOUTH, RIGHT_SOUTH}, // rightRear
-                {LEFT_EAST, RIGHT_WEST, RIGHT_WEST}, // rightFront
-                {RIGHT_SOUTH, NORTH, NORTH}, // front
-                {RIGHT_WEST, LEFT_EAST, LEFT_EAST}, // leftFront
-                {RIGHT_SOUTH, LEFT_SOUTH, LEFT_SOUTH}, // leftRear
-                {LEFT_WEST, RIGHT_EAST, RIGHT_EAST}, // leftRight
-                {RIGHT_SOUTH, NORTH, NORTH} // revLeftFront
+                {RIGHT_SIX, TWELVE, TWELVE}, // revRightFront
+                {RIGHT_THREE, LEFT_THREE, LEFT_THREE}, // rightLeft
+                {LEFT_SIX, RIGHT_SIX, RIGHT_SIX}, // rightRear
+                {LEFT_THREE, RIGHT_THREE, RIGHT_THREE}, // rightFront
+                {RIGHT_SIX, TWELVE, TWELVE}, // front
+                {RIGHT_THREE, LEFT_THREE, LEFT_THREE}, // leftFront
+                {RIGHT_SIX, LEFT_SIX, LEFT_SIX}, // leftRear
+                {LEFT_NINE, RIGHT_NINE, RIGHT_NINE}, // leftRight
+                {RIGHT_SIX, TWELVE, TWELVE} // revLeftFront
         };
 
         rules.addRuleMatrix(
@@ -229,7 +229,7 @@ public class CheckSixController implements SaucerController {
         double[][] speedLevels = {
                 // losing even winning
                 {maxSpeed, minSpeed, minSpeed}, // close
-                {maxSpeed, minSpeed, maxSpeed}, // near
+                {midSpeed, minSpeed, maxSpeed}, // near
                 {minSpeed, midSpeed, maxSpeed}, // far
         };
 
@@ -260,7 +260,7 @@ public class CheckSixController implements SaucerController {
 
         double[][] firePowerLevels = {
                 // losing even winning
-                {0.0, midPower, maxPower}, // close
+                {midPower, midPower, maxPower}, // close
                 {0.0, maxPower, maxPower}, // near
                 {0.0, 0.0, 0.0} // far
         };
