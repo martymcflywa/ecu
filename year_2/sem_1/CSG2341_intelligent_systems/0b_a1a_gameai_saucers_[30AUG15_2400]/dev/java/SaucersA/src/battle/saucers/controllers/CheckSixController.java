@@ -123,12 +123,12 @@ public class CheckSixController implements SaucerController {
         final double maxLeft = 360.0;
         final double maxRight = -maxLeft;
 
-        final double ramp1 = 337.5;
-        final double ramp2 = 281.25;
+        final double ramp1 = 330.0;
+        final double ramp2 = 280.0;
         final double ramp3 = 225.0;
-        final double ramp4 = 168.75;
+        final double ramp4 = 170.0;
         final double ramp5 = 90.0;
-        final double ramp6 = 37.5;
+        final double ramp6 = 40.0;
         final double ramp7 = 20.0;
 
         headingAngle = new FuzzyVariable("heading angle", "*", maxRight, maxLeft, 2);
