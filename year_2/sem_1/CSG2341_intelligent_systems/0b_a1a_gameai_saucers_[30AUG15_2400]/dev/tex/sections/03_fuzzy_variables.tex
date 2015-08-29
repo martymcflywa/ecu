@@ -96,7 +96,7 @@ Far		& 50.0 	& 100.0 & 125.0 \\
 \end{tabular}
 \end{table}
 
-When winning, the strategy is as follows. If close or near, use the minimum speed to prevent overshooting the enemy, and also allow the enemy to overtake so that it can be followed. If near, use maximum speed to catch up to get within a more lethal range for the cannon. When the score is even, the strategy is to be more conservative with energy and only used medium speed if far. Otherwise, use the minimum speed if close or near. When losing, the strategy is to fly fast away from the enemy if close, and fly at a moderate speed if near. Otherwise use the minimum speed if far away.
+When winning, the strategy is as follows. If close, use the minimum speed to prevent overshooting the enemy, and also allow the enemy to overtake so that it can be followed. If near, use medium speed to catch up to get within a more lethal range for the cannon. If far, use maximum speed to close the distance to get within a more lethal firing range. When the score is even, the strategy is to be more conservative with energy and only use medium speed if far. Otherwise, use the minimum speed if close or near. When losing, the strategy is to fly fast away from the enemy if close. Otherwise use medium speed if close and minimum speed if far away.
 
 \subsubsection{Firepower}
 
@@ -108,10 +108,10 @@ The firepower linguistic variable determines how much energy to use when firing 
 \label{Firepower rule table}
 \begin{tabular}{r|r|r|r}
  		& Losing 	& Even 		& Winning	\\ \hline
-Close	& 50.0		& 50.0 		& 100.0		\\
+Close	& 50.0		& 100.0 	& 100.0		\\
 Near	& 0.0 		& 100.0 	& 100.0		\\
 Far		& 0.0 		& 0.0 		& 0.0		\\
 \end{tabular}
 \end{table}
 
-When winning, and the enemy is close or near, fire the cannon using maximum power. Otherwise if the score is even, only fire the cannon at medium power when the enemy is close, or at maximum power when the enemy is near. This is to increase the chance that the cannot round will reach the target. Finally, if losing, do not fire the cannon at all at, unless at close range.
+When winning or the score is even, and the enemy is close or near, fire the cannon at maximum power. Otherwise if the enemy is far, do not fire the cannon at all. This is to increase the chance that the cannon round will reach the target. Finally, if losing, do not fire the cannon at all at, unless at close range, and only fire at medium power.
