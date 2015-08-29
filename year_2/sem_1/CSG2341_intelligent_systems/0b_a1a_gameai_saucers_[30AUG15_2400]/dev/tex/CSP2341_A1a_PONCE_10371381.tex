@@ -134,6 +134,14 @@
 \usetikzlibrary{arrows,positioning, calc}
 \tikzstyle{vertex}=[draw,fill=black!15,circle,minimum size=18pt,inner sep=0pt]
 
+% environ package, used for larger equations
+\usepackage{environ}
+\NewEnviron{lequation}{%
+    \begin{equation}
+    \scalebox{2}{$\BODY$}
+    \end{equation}
+}
+
 % front matter
 \title{Edith Cowan University\\CSG2341\\Intelligent Systems\\Assignment 1A}
 \author{Martin Ponce\\Student 10371381\\\\Tutor: Philip Hingston}

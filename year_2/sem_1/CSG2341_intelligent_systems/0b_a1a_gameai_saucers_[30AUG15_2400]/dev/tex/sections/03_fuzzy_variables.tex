@@ -2,57 +2,57 @@
 
 \section{Fuzzy variables}
 
-Three linguistic variables have been selected for input, based on the sensor readings of the saucer: Distance to target, energy difference and heading angle.
+Three linguistic variables have been selected for input, based on the sensor readings of the saucer: \emph{distance to target}, \emph{energy difference} and \emph{heading angle}.
 
-Conversely, three linguistic variables have been selected for output: Turn, speed and firepower.
+Conversely, three linguistic variables have been selected for output: turn, speed and firepower.
 
 \subsection{Input variables}
 
-\subsubsection{Distance to target}
+\subsubsection{\emph{Distance to target}}
 
-Distance to target is the distance from the saucer to the opponent, and is measured in meters. The universe of disclosure for distance is between 0 meters and the diagonal length of the battle space. The formula has been supplied in the existing code as:
+\emph{Distance to target} is the distance from the saucer to the opponent, and is measured in meters. The universe of disclosure for \emph{distance to target} is between 0 meters and the diagonal length of the battle space. The formula has been supplied in the existing code as:
 \\
 \\
 $\sqrt{\mbox{width} \cdot \mbox{width} + \mbox{height} \cdot \mbox{height}}$
 \\
 \\
-This linguistic variable is used to determine how much energy will be committed to firing the cannon. As mentioned previously, the cannon will only be fired at close or near distances. Therefore, three fuzzy sets are associated with distance:
+This linguistic variable is used to determine how much energy will be committed to firing the cannon. As mentioned previously, the cannon will only be fired at close or near distances. Therefore, three fuzzy sets are associated with \emph{distance to target}:
 
 \begin{figure}[H]
 \centering
-\caption{Distance to target fuzzy sets}
+\caption{\emph{Distance to target} fuzzy sets}
 \includegraphics[scale=0.1]{./img/pdf/distanceSets.pdf}
 \end{figure}
 
-\subsubsection{Energy difference}
+\subsubsection{\emph{Energy difference}}
 
-Energy difference is the difference between the saucer's energy and the opponent's energy. The universe of disclosure for energy difference is between -10,000j to +10,000j, where 10,000j is the amount of energy that the saucers begin with. This linguistic variable determines who is winning, who is losing, or if the score is even. It is used as input to decide how much energy is committed in firing the weapon, as well as whether or not to turn into or away from the enemy. The following fuzzy sets are created for energy difference:
+\emph{Energy difference} is the difference between the saucer's energy and the opponent's energy. The universe of disclosure for \emph{energy difference} is between -10,000j to +10,000j, where 10,000j is the amount of energy that the saucers begin with. This linguistic variable determines who is winning, who is losing, or if the score is even. It is used as input to decide how much energy is committed in firing the weapon, as well as whether or not to turn into or away from the enemy. The following fuzzy sets are created for \emph{energy difference}:
 
 \begin{figure}[H]
 \centering
-\caption{Energy difference fuzzy sets}
+\caption{\emph{Energy difference} fuzzy sets}
 \includegraphics[scale=0.1]{./img/pdf/energyDiffSets.pdf}
 \end{figure}
 
-\subsubsection{Heading angle}
+\subsubsection{\emph{Heading angle}}
 
-Heading angle is the direction of the opponent in relation to the saucer, in degrees. After printing \mintinline{java}{opponentDirection} during execution, it is assumed that the universe of disclosure for this linguistic variable is from -360$^{\circ}$ to +360$^{\circ}$. The variable, in conjunction with energy difference, dictates how the saucer will turn, and has been configured with the following fuzzy sets:
+\emph{Heading angle} is the direction of the opponent in relation to the saucer, in degrees. After printing \mintinline{java}{opponentDirection} during execution, it is assumed that the universe of disclosure for this linguistic variable is from -360$^{\circ}$ to +360$^{\circ}$. The variable, in conjunction with \emph{energy difference}, dictates how the saucer will turn, and has been configured with the following fuzzy sets:
 
 \begin{figure}[H]
 \centering
-\caption{Heading angle fuzzy sets}
+\caption{\emph{Heading angle} fuzzy sets}
 \includegraphics[scale=0.1]{./img/pdf/headingAngleSets.pdf}
 \end{figure}
 
 \subsection{Output variables}
 
-\subsubsection{Turn}
+\subsubsection{\emph{Turn}}
 
-The turn linguistic variable defines which heading the saucer will take, in degrees, according to the rules that govern turning. A zero value will turn towards the opponent, while 180$^{\circ}$ will turn away from the opponent and head into the opposite direction, turning left while doing so. A negative value will turn right, and a positive value will turn left. The linguistic variables used as input for the turning rules are energy difference and heading angle. See Table 1 for the turn rule table.
+The \emph{turn} linguistic variable defines which heading the saucer will take, in degrees, according to the rules that govern turning. A zero value will turn towards the opponent, while 180$^{\circ}$ will turn away from the opponent and head into the opposite direction, turning left while doing so. A negative value will turn right, and a positive value will turn left. The linguistic variables used as input for the turning rules are \emph{energy difference} and \emph{heading angle}. See Table 1 for the \emph{turn} rule table.
 
 \begin{table}[H]
 \centering
-\caption{Turn rule table}
+\caption{\emph{Turn} rule table}
 \label{Turn rule table}
 \begin{tabular}{r|r|r|r}
  				& Losing 	& Even 		& Winning 	\\ \hline
@@ -80,13 +80,13 @@ In contrast: IF (losing) AND (front) THEN (-180.0)
 \\
 This will perform the opposite, and the saucer will turn right, into the opposite direction if the enemy is in front.
 
-\subsubsection{Speed}
+\subsubsection{\emph{Speed}}
 
-The speed linguistic variable defines how much energy to use for flight and is governed by rules which use distance and energy difference as inputs. See Table 2 for the speed rule table.
+The \emph{speed} linguistic variable defines how much energy to use for flight and is governed by rules which use \emph{distance to target} and \emph{energy difference} as inputs. See Table 2 for the \emph{speed} rule table.
 
 \begin{table}[H]
 \centering
-\caption{Speed rule table}
+\caption{\emph{Speed} rule table}
 \label{Speed rule table}
 \begin{tabular}{r|r|r|r}
  		& Losing & Even & Winning \\ \hline
@@ -98,13 +98,13 @@ Far		& 50.0 	& 100.0 & 125.0 \\
 
 When winning, the strategy is as follows. If close, use the minimum speed to prevent overshooting the enemy, and also allow the enemy to overtake so that it can be followed. If near, use medium speed to catch up to get within a more lethal range for the cannon. If far, use maximum speed to close the distance to get within a more lethal firing range. When the score is even, the strategy is to be more conservative with energy and only use medium speed if far. Otherwise, use the minimum speed if close or near. When losing, the strategy is to fly fast away from the enemy if close. Otherwise use medium speed if close and minimum speed if far away.
 
-\subsubsection{Firepower}
+\subsubsection{\emph{Firepower}}
 
-The firepower linguistic variable determines how much energy to use when firing the cannon, and is controlled by rules which use energy difference and distance as inputs. See Table 3 for the firepower rule table.
+The \emph{firepower} linguistic variable determines how much energy to use when firing the cannon, and is controlled by rules which use \emph{energy difference} and \emph{distance to target} as inputs. See Table 3 for the \emph{firepower} rule table.
 
 \begin{table}[H]
 \centering
-\caption{Firepower rule table}
+\caption{\emph{Firepower} rule table}
 \label{Firepower rule table}
 \begin{tabular}{r|r|r|r}
  		& Losing 	& Even 		& Winning	\\ \hline

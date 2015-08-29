@@ -58,8 +58,8 @@ public class FuzzyController implements SaucerController
         
         // create fuzzy variable for fire power
         final double maxPower = Saucer.MAX_POWER;
-        final double midPower = maxPower; // 5.0;
-        final double lowPower = maxPower; // / 20.0;
+        final double midPower = maxPower / 5.0;
+        final double lowPower = maxPower / 20.0;
         firePower = new FuzzyVariable("fire power", "J", -maxPower, maxPower, 2);
         
         // now construct a matrix of fuzzy sugeno-type rules
