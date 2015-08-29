@@ -189,14 +189,14 @@ public class CheckSixController implements SaucerController {
 
         double[][] turnOutput = {
                 // losing even winning
-                {LEFT_SIX, TWELVE, TWELVE}, // revRightFront
+                {RIGHT_SIX, TWELVE, TWELVE}, // revRightFront
                 {RIGHT_THREE, LEFT_THREE, LEFT_THREE}, // rightLeft
-                {RIGHT_TWELVE, RIGHT_SIX, RIGHT_SIX}, // rightRear
-                {LEFT_NINE, RIGHT_THREE, RIGHT_THREE}, // rightFront
+                {TWELVE, RIGHT_SIX, RIGHT_SIX}, // rightRear
+                {LEFT_SIX, RIGHT_THREE, RIGHT_THREE}, // rightFront
                 {RIGHT_SIX, TWELVE, TWELVE}, // front
-                {RIGHT_THREE, LEFT_THREE, LEFT_THREE}, // leftFront
-                {RIGHT_TWELVE, LEFT_SIX, LEFT_SIX}, // leftRear
-                {LEFT_NINE, RIGHT_THREE, RIGHT_THREE}, // leftRight
+                {RIGHT_SIX, LEFT_THREE, LEFT_THREE}, // leftFront
+                {TWELVE, LEFT_SIX, LEFT_SIX}, // leftRear
+                {LEFT_THREE, RIGHT_THREE, RIGHT_THREE}, // leftRight
                 {RIGHT_SIX, TWELVE, TWELVE} // revLeftFront
         };
 
