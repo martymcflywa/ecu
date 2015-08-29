@@ -49,7 +49,7 @@ Figure 6 shows a simplified view of the \emph{heading angle} sets, only displayi
 
 \subsubsection{Rule aggregation}
 
-When multiple inputs are provided by the same linguistic variable antecedent, as seen in Section 4.1.2, Sugeno style inference calculates the weighted average to provide a single, crisp input, using the following formula:
+When multiple inputs are provided by the same linguistic variable antecedent, as seen in Section 4.1.2, Sugeno style inference calculates the weighted average of multiple $\mu$ values to determine a single $\mu$ value, using the following formula: %calculates the weighted average to provide a single, crisp input, using the following formula:
 
 {\LARGE
 	\begin{align}
@@ -68,7 +68,7 @@ Therefore, to calculate the weighted average for the two \emph{heading angle} in
 }
 
 \noindent
-Subsequently, the crisp output from the two \emph{heading angle} antecedents is 0.31. However, $\mu$ for the \emph{energy difference} antecedent must also be considered. As discussed in Section 4.1.1, $\mu$ = 1 for \emph{energy difference}.
+Subsequently, the weighted average of the two \emph{heading angle} antecedents is 0.31. However, $\mu$ for the \emph{energy difference} antecedent must also be considered. As discussed in Section 4.1.1, \emph{energy difference} $\mu$ = 1.
 
 Since the example rule performs an AND operation between the two antecedents, fuzzy set operations dictate that an intersection operation must occur to determine the final, crisp output. Therefore, the following function is appropriate:
 
@@ -89,4 +89,4 @@ When applied to our example rules that have been fired:
 }
 
 \noindent
-Therefore, the final, crisp output for the example scenario is a turn of 0.31$^{\circ}$. In other words, from its current direction of 0.0$^{\circ}$, the saucer will turn LEFT for 0.31$^{\circ}$, in order to follow the enemy, who is in front, and slightly to the left.
+Therefore, the final, crisp consequent output for the example scenario is a turn of 0.31$^{\circ}$. In other words, from its current direction of 0.0$^{\circ}$, the saucer will turn \textbf{left} for 0.31$^{\circ}$, in order to follow the enemy, who is in front, and slightly to the left.

@@ -2,9 +2,9 @@
 
 \section{Learnings}
 
-Although I believe I have a firm grasp on the basic concepts of fuzzy logic, I had a considerable amount of trouble understanding the logic behind \emph{turning} the saucer. I ran several tests, printing the opponent direction values during runtime to understand the relationship between where the player saucer is, and where the enemy is, and the values that were returned each frame. It was only until I imagined that the negative, right-hand turn values as ``turning counter-clockwise'' did I manage to tune the turn rules to a working manner.
+Although I believe I have a firm grasp on the basic concepts of fuzzy logic, I had a considerable amount of trouble understanding the logic behind \emph{turning} the saucer. I ran several tests, printing the opponent direction values during runtime to understand the relationship between where the player saucer is, and where the enemy is, and the values that were returned each frame. It was only until I imagined that the positive, left-hard turn values as ``counter-clockwise'', and negative, right-hand turn values as ``clockwise'' did I manage to tune the turn rules to a working manner.
 
-My initial concept was to aggressively attack the opponent as soon as the game started, which worked fine. However, I could not test my defensive strategy, and initially just hoped that my saucer would immediately overcome the enemy with firepower and always be within the ``winning'' fuzzy set limits. Eventually, I realised that the original \mintinline{console}{FuzzyController.java} class could be made more difficult by changing the values, as listed below:
+My initial concept was to aggressively attack the opponent as soon as the game started, which worked well. However, the existing opponent controllers did not test my defensive strategy at all, and initially just hoped that my saucer would immediately overcome the enemy with firepower and always be within the ``winning'' fuzzy set limits. Eventually, I realised that the original \mintinline{console}{FuzzyController.java} class could be made more difficult by changing the values, as listed below:
 
 \begin{listing}[H]
 \caption{FuzzyController.java modifications}
@@ -20,7 +20,7 @@ public FuzzyController() throws Fuzzy Exception {
 \end{javacode}
 \end{listing}
 
-In doing so, the opponent always fires at maximum power when close, testing whether or not my offensive strategy to always stay right next to the enemy worked. Initial tests proved that my strategy did not work and was destroyed immediately. I needed to develop a substantial defensive strategy.
+In doing so, the opponent always fires at maximum power and at a higher rate, testing whether or not my offensive strategy to always stay right next to the enemy worked. Initial tests proved that my initial control strategy did not work and was destroyed immediately. I needed to develop a substantial defensive strategy.
 
 The heading angle fuzzy sets were modified from my original, arbitrarily chosen sets, to sets that are based on clock positions in relation to the player's position, similar to what a fighter pilot might say during combat, ie. ``Bandit at my six o'clock'', or ``Bogey at my nine''. The turn output spikes were also chosen based on the clock analogy, resulting in much more controlled behaviour, and enabled me to define a defensive strategy through the turn rules.
 
