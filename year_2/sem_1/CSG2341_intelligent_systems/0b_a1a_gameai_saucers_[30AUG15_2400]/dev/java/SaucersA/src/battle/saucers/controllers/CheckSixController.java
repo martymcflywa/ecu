@@ -86,9 +86,9 @@ public class CheckSixController implements SaucerController {
 
         distance = new FuzzyVariable("distance to target", "m", 0.0, maxDistance, 2);
 
-        FuzzySet close = new FuzzySet("close", 0.0, 0.0, ramp1, ramp2);
+        FuzzySet close = new FuzzySet("close", 0.0, 0.0, 0.0, ramp2);
         FuzzySet near = new FuzzySet("near", ramp1, ramp3, ramp3, ramp4);
-        FuzzySet far = new FuzzySet("far", ramp2, ramp4, maxDistance, maxDistance);
+        FuzzySet far = new FuzzySet("far", ramp3, ramp4, maxDistance, maxDistance);
 
         distance.add(close);
         distance.add(near);
@@ -112,15 +112,15 @@ public class CheckSixController implements SaucerController {
         final double maxDiff = Saucer.START_ENERGY;
         final double minDiff = -maxDiff;
 
-        final double ramp1 = maxDiff * 0.08;
-        final double ramp2 = maxDiff * 0.05;
-        final double ramp3 = maxDiff * 0.02;
+        final double ramp1 = maxDiff * 0.05;
+        final double ramp2 = maxDiff * 0.02;
+        final double ramp3 = maxDiff * 0.01;
 
         energyDifference = new FuzzyVariable("energy difference", "J", minDiff, maxDiff, 2);
 
-        FuzzySet losing = new FuzzySet("losing", minDiff, minDiff, -ramp1, -ramp3);
-        FuzzySet even = new FuzzySet("even", -ramp2, 0.0, 0.0, ramp2);
-        FuzzySet winning = new FuzzySet("winning", ramp3, ramp1, maxDiff, maxDiff);
+        FuzzySet losing = new FuzzySet("losing", minDiff, minDiff, -ramp1, 0.0);
+        FuzzySet even = new FuzzySet("even", -ramp2, -ramp2, ramp2, ramp2);
+        FuzzySet winning = new FuzzySet("winning", 0.0, ramp1, maxDiff, maxDiff);
 
         energyDifference.add(losing);
         energyDifference.add(even);
@@ -229,7 +229,7 @@ public class CheckSixController implements SaucerController {
         double[][] speedLevels = {
                 // losing even winning
                 {maxSpeed, minSpeed, minSpeed}, // close
-                {midSpeed, minSpeed, maxSpeed}, // near
+                {midSpeed, minSpeed, midSpeed}, // near
                 {minSpeed, midSpeed, maxSpeed}, // far
         };
 
@@ -260,7 +260,7 @@ public class CheckSixController implements SaucerController {
 
         double[][] firePowerLevels = {
                 // losing even winning
-                {midPower, midPower, maxPower}, // close
+                {midPower, maxPower, maxPower}, // close
                 {0.0, maxPower, maxPower}, // near
                 {0.0, 0.0, 0.0} // far
         };
