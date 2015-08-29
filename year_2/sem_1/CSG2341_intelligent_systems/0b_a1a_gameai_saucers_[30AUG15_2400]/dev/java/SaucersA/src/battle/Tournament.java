@@ -33,8 +33,8 @@ public class Tournament
         // list the combatants here
 
 //        saucers.add(new Saucer(field, new SimpleController()));
-//        saucers.add(new Saucer(field, new FuzzyController()));
-        saucers.add(new Saucer(field, new FuzzyMaxPowerController()));
+        saucers.add(new Saucer(field, new FuzzyController()));
+//        saucers.add(new Saucer(field, new FuzzyMaxPowerController()));
         saucers.add(new Saucer(field, new CheckSixController()));
         
         double[] scores = new double[saucers.size()];
