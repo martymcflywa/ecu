@@ -68,12 +68,13 @@ public class Main extends JFrame implements Runnable
         // a selection of controllers
         SaucerController simple = new SimpleController();
         SaucerController fuzzy = new FuzzyController();
-        SaucerController sprayAndPray = new CheckSixController();
+        SaucerController fuzzyMaxPower = new FuzzyMaxPowerController();
+        SaucerController checkSix = new CheckSixController();
 
         // a saucer using each
         Saucer saucer1 = new Saucer(field, fuzzy);
-        Saucer saucer2 = new Saucer(field, sprayAndPray);
-        //Saucer saucer3 = new Saucer(field, sprayAndPray);
+        Saucer saucer2 = new Saucer(field, checkSix);
+        //Saucer saucer3 = new Saucer(field, checkSix);
         
         // hook them into the game
         saucer1.setOpponent(saucer2);
