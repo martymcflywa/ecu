@@ -118,9 +118,9 @@ public class CheckSixController implements SaucerController {
 
         energyDifference = new FuzzyVariable("energy difference", "J", minDiff, maxDiff, 2);
 
-        FuzzySet losing = new FuzzySet("losing", minDiff, minDiff, -ramp1, 0.0);
-        FuzzySet even = new FuzzySet("even", -ramp2, -ramp2, ramp2, ramp2);
-        FuzzySet winning = new FuzzySet("winning", 0.0, ramp1, maxDiff, maxDiff);
+        FuzzySet losing = new FuzzySet("losing", minDiff, minDiff, -ramp1, -ramp2);
+        FuzzySet even = new FuzzySet("even", -ramp1, 0.0, 0.0, ramp1);
+        FuzzySet winning = new FuzzySet("winning", ramp2, ramp1, maxDiff, maxDiff);
 
         energyDifference.add(losing);
         energyDifference.add(even);

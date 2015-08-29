@@ -98,7 +98,6 @@ public class EvilCheckSixController implements SaucerController {
         distance.add(far);
 
         distance.checkGaps();
-        distance.display();
 
         distanceSets[0] = close;
         distanceSets[1] = near;
@@ -130,7 +129,6 @@ public class EvilCheckSixController implements SaucerController {
         energyDifference.add(winning);
 
         energyDifference.checkGaps();
-        energyDifference.display();
 
         energyDiffSets[0] = losing;
         energyDiffSets[1] = even;
@@ -168,7 +166,6 @@ public class EvilCheckSixController implements SaucerController {
         headingAngle.add(revLeftFront);
 
         headingAngle.checkGaps();
-        headingAngle.display();
 
         headingAngleSets[0] = revRightFront;
         headingAngleSets[1] = rightLeft;
@@ -208,12 +205,6 @@ public class EvilCheckSixController implements SaucerController {
                 energyDifference, energyDiffSets,
                 turn, turnOutput
         );
-
-        rules.displayRuleMatrix(
-                headingAngle, headingAngleSets,
-                energyDifference, energyDiffSets,
-                turn
-        );
     }
 
     /**
@@ -241,12 +232,6 @@ public class EvilCheckSixController implements SaucerController {
                 energyDifference, energyDiffSets,
                 speed, speedLevels
         );
-
-        rules.displayRuleMatrix(
-                distance, distanceSets,
-                energyDifference, energyDiffSets,
-                speed
-        );
     }
 
     /**
@@ -272,12 +257,6 @@ public class EvilCheckSixController implements SaucerController {
                 distance, distanceSets,
                 energyDifference, energyDiffSets,
                 firePower, firePowerLevels
-        );
-
-        rules.displayRuleMatrix(
-                distance, distanceSets,
-                energyDifference, energyDiffSets,
-                firePower
         );
     }
 

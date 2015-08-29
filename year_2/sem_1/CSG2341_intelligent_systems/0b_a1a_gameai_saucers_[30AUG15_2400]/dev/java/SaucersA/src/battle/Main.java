@@ -70,10 +70,10 @@ public class Main extends JFrame implements Runnable
         SaucerController fuzzy = new FuzzyController();
         SaucerController fuzzyMaxPower = new FuzzyMaxPowerController();
         SaucerController checkSix = new CheckSixController();
-        SaucerController evilCheckSix = new EvilCheckSixController();
+        //SaucerController evilCheckSix = new EvilCheckSixController();
 
         // a saucer using each
-        Saucer saucer1 = new Saucer(field, evilCheckSix);
+        Saucer saucer1 = new Saucer(field, fuzzyMaxPower);
         Saucer saucer2 = new Saucer(field, checkSix);
         //Saucer saucer3 = new Saucer(field, checkSix);
         
