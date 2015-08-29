@@ -1,6 +1,9 @@
 package battle.saucers.controllers;
 
-import au.edu.ecu.is.fuzzy.*;
+import au.edu.ecu.is.fuzzy.FuzzyException;
+import au.edu.ecu.is.fuzzy.FuzzySet;
+import au.edu.ecu.is.fuzzy.FuzzyVariable;
+import au.edu.ecu.is.fuzzy.SugenoRuleSet;
 import battle.Constants;
 import battle.saucers.Saucer;
 
@@ -11,11 +14,11 @@ import java.awt.*;
  * @author Martin Ponce 10371381
  * @version 20150828
  */
-public class CheckSixController implements SaucerController {
+public class EvilCheckSixController implements SaucerController {
 
     // saucer config
-    private static final String NAME = "checkSix";
-    private static final Color BASE = Color.yellow;
+    private static final String NAME = "evilCheckSix";
+    private static final Color BASE = Color.black;
     private static final Color ARROW = Color.black;
 
     // linguistic input variables
@@ -50,7 +53,7 @@ public class CheckSixController implements SaucerController {
     private final double RIGHT_NINE = -LEFT_NINE; // -270
     private final double RIGHT_TWELVE = -LEFT_TWELVE; // -360
 
-    public CheckSixController() throws FuzzyException {
+    public EvilCheckSixController() throws FuzzyException {
 
         // instantiate rule
         rules = new SugenoRuleSet();
