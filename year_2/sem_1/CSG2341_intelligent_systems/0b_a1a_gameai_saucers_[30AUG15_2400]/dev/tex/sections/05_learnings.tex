@@ -14,7 +14,7 @@ public FuzzyController() throws Fuzzy Exception {
   // ...
   final double maxPower = Saucer.MAX_POWER;
   final double midPower = maxPower; // originally divided by 5.0
-  final double lowPower = maxPower; // originall divided by 20.0
+  final double lowPower = maxPower; // originally divided by 20.0
   // ...
 }
 \end{javacode}
@@ -24,6 +24,6 @@ In doing so, the opponent always fires at maximum power and at a higher rate, te
 
 The heading angle fuzzy sets were modified from my original, arbitrarily chosen sets, to sets that are based on clock positions in relation to the player's position, similar to what a fighter pilot might say during combat, ie. ``Bandit at my six o'clock'', or ``Bogey at my nine''. The turn output spikes were also chosen based on the clock analogy, resulting in much more controlled behaviour, and enabled me to define a defensive strategy through the turn rules.
 
-However, the rules require refinement, as confusion can occur when the player saucer hits a battle space border and the opponent direction being returned switches between negative and positive values. This confusion results in the player saucer spinning on the spot, and would be a major problem if turns cost energy. Firepower could also be improved by refining input sets or rules. Currently, the player saucer may fire weak shots even though the enemy is far away, resulting in wasted energy.
+However, the rules require refinement, as confusion can occur when the player saucer hits a battle space border and obviously cannot travel beyond it, but attempts to continue travelling in that direction to maintain the heading. This could be resolved if sensors were in place to detect the battle space boundaries, and added as linguistic variables and rules. Confusion also occasionally occurs when too many \emph{heading angle} antecedents fire off rules which result in the player saucer spinning erratically. This would be a major problem if turns cost energy. Firepower could also be improved by refining input sets or rules. Currently, the player saucer may occasionally fire weak shots even though the enemy is far away, resulting in wasted energy.
 
 My offensive strategy is also far from perfect and has much room for improvement. Sitting right behind the enemy and giving chase during offence may suit well to space/aircraft with fixed, forward facing armament, but is a dangerous place to be when the enemy can rotate his weapon to face the rear.
