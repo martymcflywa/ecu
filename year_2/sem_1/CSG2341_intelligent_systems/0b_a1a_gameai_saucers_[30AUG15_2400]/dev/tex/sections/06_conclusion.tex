@@ -17,6 +17,8 @@ An example rule was examined, and the aggregation of a crisp output was explaine
 
 The following tables on the final page display the results of tournaments between the \emph{checkSix} controller versus the \emph{simple} controller, \emph{fuzzy} controller, as well as the modified fuzzy controller, as discussed in Section 5. The modified fuzzy controller is referred to as \emph{fuzzyMaxPower} in the table. The average score over 10 battles per tournament is shown, with five consecutive tournaments executed per opponent.
 
+The final table shows the results when \emph{checkSix} goes head to head with itself. No changes were made to the \emph{evilCheckSix} controller, other than its name and colour. It was expected that the scores would have been more equal. Surprisingly, that is not the case, although it is assumed that further tournament executions may balance out the score averages.
+
 \newpage
 
 \begin{table}[H]
@@ -58,5 +60,19 @@ Tournament	& checkSix	& fuzzyMaxPower	\\ \hline
 3			& 215.79	& 26.21			\\
 4			& 108.29	& 13.24			\\
 5			& 201.97	& 12.72
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Bonus round \emph{checkSix} vs. \emph{evilCheckSix}}
+\label{Bonus round checkSix vs. evilCheckSix}
+\begin{tabular}{r|r|r}
+Tournament	& checkSix	& evilCheckSix	\\ \hline
+1			& 109.72	& 69.16			\\
+2			& 140.43	& 54.01			\\
+3			& 194.95	& 39.28			\\
+4			& 898.02	& 2.83			\\
+5			& 406.34	& 7.17
 \end{tabular}
 \end{table}
