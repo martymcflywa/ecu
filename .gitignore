@@ -1,6 +1,9 @@
 # bin
 [Bb]in
 
+# Mendely bib folder
+bibm
+
 # Visio
 *.~vsdx
 
