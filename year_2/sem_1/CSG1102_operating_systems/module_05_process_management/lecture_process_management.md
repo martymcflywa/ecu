@@ -444,7 +444,7 @@ Describe
 # Conclusion
 
 - Operating systems
-	- Must dynamically allocate reosurces while avoiding deadlock and starvation
+	- Must dynamically allocate resources while avoiding deadlock and starvation
 - Four methods for dealing with deadlocks
 	- Prevention
 	- Avoidance
