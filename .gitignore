@@ -45,8 +45,9 @@ _minted*/
 # Submission folders
 submission
 
-# ASP Server
+# Unit tools
 0z_servers
+0x_tools
 
 # Mac stuff
 .DS_Store
