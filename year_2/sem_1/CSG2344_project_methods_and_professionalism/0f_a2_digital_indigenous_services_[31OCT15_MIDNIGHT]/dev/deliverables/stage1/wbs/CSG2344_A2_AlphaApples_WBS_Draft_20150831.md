@@ -1,0 +1,120 @@
+## DIS WBS
+
+Hypothetical WBS assuming that the project will last for 10 years, as indicated by the brief.
+
+- 1.0 Initiating
+	- 1.1 Select project manager
+	- 1.2 Form project team
+	- 1.3 Feasibility study
+	- 1.4 Develop project charter
+- 2.0 Planning
+	- 2.1 Scope
+		- 2.1.1 Plan scope management
+		- 2.1.2 Gather requirements
+			- 2.1.2.1 Cultural requirements
+			- 2.1.2.2 Technical requirements
+		- 2.1.3 Define scope
+		- 2.1.4 Define assumptions
+		- 2.1.5 Create WBS / WBS dictionary
+		- 2.1.6 Validate scope
+	- 2.2 Time
+		- 2.2.1 Plan schedule management
+		- 2.2.2 Define activities
+		- 2.2.3 Sequence activities
+		- 2.2.4 Estimates
+			- 2.2.4.1 Activity resources
+			- 2.2.4.2 Activity durations
+		- 2.2.6 Develop schedule
+	- 2.3 Cost
+		- 2.3.1 Plan cost management
+		- 2.3.2 Estimate costs
+		- 2.3.3 Determine budget
+	- 2.4 Quality
+		- 2.4.1 Plan quality management
+	- 2.5 Human resources
+		- 2.5.1 Plan human resources management
+		- 2.6.1 Acquire project team
+	- 2.6 Communications
+		- 2.6.1 Plan communications management
+	- 2.7 Risk
+		- 2.7.1 Plan risk management
+		- 2.7.2 Identify risks
+		- 2.7.3 Risk analysis
+			- 2.7.3.1 Qualitative risk analysis
+			- 2.7.3.2 Quantitative risk analysis
+		- 2.7.4 Plan risk responses
+	- 2.8 Procurement
+		- 2.8.1 Plan procurement management
+	- 2.9 Stakeholders
+		- 2.9.1 Identify stakeholders
+		- 2.9.2 Plan stakeholder management
+- 3.0 Executing
+	- 3.1 Tablet
+		- 3.1.1 Procure tablets
+		- 3.1.2 Distribute tablets
+	- 3.2 Wireless internet
+		- 3.2.1 Procure infrastructure
+		- 3.2.2 Install infrastructure
+	- 3.3 Applications
+		- 3.3.1 Develop applications
+		- 3.3.3 Deploy applications to tablet
+	- 3.4 Testing
+		- 3.4.1 Test sample subset of tablets
+		- 3.4.2 Test wireless infrastructure
+			- 3.4.2.1 Pre installation
+			- 3.4.2.2 Post installation
+		- 3.4.3 Test applications
+			- 3.4.3.1 Pre deployment
+			- 3.4.3.2 Post deployment
+	- 3.5 Support
+		- 3.5.1 Develop support for tablets
+		- 3.5.2 Develop support for wifi
+		- 3.5.2 Develop support for applications
+	- 3.6 Stakeholders
+		- 3.6.1 Manage stakeholder engagement
+		- 3.6.2 Control stakeholder engagement
+- 4.0 Monitoring and controlling
+	- 4.1 Project management control
+		- 4.1.1 Control scope
+		- 4.1.2 Control schedule
+		- 4.1.3 Control costs
+		- 4.1.4 Quality
+			- 4.1.4.1 Control quality
+			- 4.1.4.2 Quality assurance
+		- 4.1.5 Control communications
+		- 4.1.6 Control risk
+		- 4.1.7 Control procurements
+	-  4.2 User engagement
+		- 4.2.1 Monitor via social media
+- 5.0 Closing
+	- 5.1 Deliver products
+	- 5.2 Close procurements
+	- 5.3 Update process assets
+
+## Team WBS
+
+Will add this to the Project 2013 file as well, so we can track how we are doing. Based on stages:
+
+- Stage 1
+	- Prelim scope table
+	- Out of scope table
+	- WBS / WBS dictionary
+	- Stage 1 progress report
+- Stage 2
+	- Stakeholder analysis table
+	- HR requirements table
+	- Risk assessment table
+	- Stage 2 progress report
+- Stage 3
+	- Communications strategy table
+	- Quality strategy
+	- Procurement strategy
+	- Stage 3 progress report
+- Stage 4
+	- Project cost breakdown table
+	- Gantt chart
+		- Milestones
+		- Deliverables
+	- Stage 4 progress report
+- Final
+	- Submit proposal
