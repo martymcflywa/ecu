@@ -6,6 +6,19 @@
 '@author Martin Ponce, 10371381
 '@version 20150831
 
+'index for student details array
+const FN = 0
+const SN = 1
+const ET = 2
+const ID = 3
+const CT = 4
+
+'index for unit details array
+const UC = 0
+const CP = 1
+const YS = 2
+const UM = 3
+
 '**
 '* Sub sets up the input array.  
 '*
@@ -61,7 +74,7 @@ end sub
 '*
 sub getUnitDetails()
 
-	for i = 0 to unitRows
+	for i = 0 to unitRows - 1
 
 		'add all completely populated rows to array, ignore completely empty rows
 		if isPopulated("UnitCode_" & i) and _

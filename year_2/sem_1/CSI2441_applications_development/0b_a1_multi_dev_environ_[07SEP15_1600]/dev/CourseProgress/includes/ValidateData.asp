@@ -6,6 +6,7 @@
 '@author Martin Ponce, 10371381
 '@version 20150831
 
+
 '**
 '* Sub validates student details.
 '* Tests if array index is empty before performing validation.

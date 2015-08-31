@@ -16,24 +16,6 @@
 '*** SETTING UP VARIABLES ***
 '****************************
 
-'constants
-const CT_UNDERGRAD = 1
-const CT_UNDERGRAD_DOUBLE = 2
-const CT_GRAD_DIPLOMA = 3
-const CT_MASTERS_COURSE = 4
-const CT_MASTERS_RESEARCH = 5
-
-const CP_UNDERGRAD = 360
-const CP_UNDERGRAD_DOUBLE = 480
-const CP_GRAD_DIPLOMA = 120
-const CP_MASTERS_COURSE = 180
-const CP_MASTERS_RESEARCH = 240
-
-const CP_FULLTIME = 60
-const CP_PARTTIME = 30
-
-const MARK_PASS = 50
-
 const UNIT_COLS = 4
 const STUDENT_DETAILS_COUNT = 5
 
@@ -48,19 +30,6 @@ redim studentDetails(STUDENT_DETAILS_COUNT)
 
 'array for unit details
 dim unitDetails()
-
-'index for student details array
-const FN = 0
-const SN = 1
-const ET = 2
-const ID = 3
-const CT = 4
-
-'index for unit details array
-const UC = 0
-const CP = 1
-const YS = 2
-const UM = 3
 
 'variables to generate error messages
 dim errorMessage(), errorCount
