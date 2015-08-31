@@ -34,7 +34,7 @@ sub displaySummary()
 	else 
 		response.write("Part time")
 	end if
-	
+
 	response.write("<br />")
 
 	response.write("<strong>Course type:</strong> ")
@@ -98,16 +98,29 @@ sub displayErrors()
 	response.write("<hr />")
 	response.write("<p>")
 
-	'write out errors
-	for each item in errorMessage
-		if item <> "" then
-			response.write(item & "<br />")
-		end if
-	next
+	if isStudentPopulated = true and isUnitPopulated = true then
+
+		'write out errors
+		for each item in errorMessage
+			if item <> "" then
+				response.write(item & "<br />")
+			end if
+		next
+
+	elseif isUnitPopulated = false and isStudentPopulated = true then
+		response.write("Unit details are empty.")
+	elseif isStudentPopulated = false and isUnitPopulated = true then
+		response.write("Student details are empty.")
+	else
+		response.write("Form is empty.")
+	end if
 
 	response.write("</p>")
 
 	response.write("<p>Please return to the form, resolve the errors and try again.</p>")
+
+	'back button adapted from: http://www.computerhope.com/issues/ch000317.htm
+	response.write("<input type=""button"" name=""Back"" value=""Back"" onClick=""history.go(-1);return true;"">")
 end sub
 
 %>

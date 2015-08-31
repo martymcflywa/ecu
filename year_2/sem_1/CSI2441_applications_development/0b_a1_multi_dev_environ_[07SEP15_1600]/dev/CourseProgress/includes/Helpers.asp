@@ -11,14 +11,14 @@
 '* Returns boolean.
 '*
 '* @return boolean.
-function isPopulated(field)
+function isFieldPopulated(field)
 	dim b
 	if request.form(field) <> "" then
 		b = true
 	else
 		b = false
 	end if
-	isPopulated = b
+	isFieldPopulated = b
 end function
 
 '**
