@@ -75,18 +75,6 @@ sub displaySummary()
 	response.write("<strong>Average mark: </strong>" & markAverage & " " & grade & "<br />")
 
 	response.write("</p>")
-
-	'***************
-	'*** TESTING ***
-	'***************
-
-	'delete after testing
-	for i = 0 to unitRows - 1
-		for j = 0 to UNIT_COLS - 1 
-			response.write(unitDetails(i, j) & " ")
-		next
-		response.write("<br />")
-	next
 end sub
 
 '**
@@ -163,17 +151,6 @@ sub displayUnitErrors()
 	next
 
 	response.write("</ul>")
-
-	'delete after testing
-	response.write(unitErrorCount & "<br />")
-	for i = 0 to unitErrorCount - 1
-		response.write("| " & unitErrorMessage(i, E_ROW) & " | " & unitErrorMessage(i, E_FIELD) & " | " & unitErrorMessage(i, E_MESSAGE) & " |<br />")
-	next
-
-	'must delete
-	'for i = 0 to unitErrorCount - 1
-	''	response.write("<strong>" & unitErrorMessage(i, E_FIELD) & "</strong> " & unitErrorMessage(i, E_MESSAGE) & "<br />")
-	'next
 end sub
 
 

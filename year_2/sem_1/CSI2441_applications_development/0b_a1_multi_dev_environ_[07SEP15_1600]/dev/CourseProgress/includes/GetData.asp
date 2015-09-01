@@ -23,6 +23,10 @@ dim isStudentPopulated, isUnitPopulated
 isStudentPopulated = false
 isUnitPopulated = false
 
+'keeps track of how many rows in unitDetails is populated
+dim filledRows
+filledRows = 0
+
 '**
 '* Sub sets up the input array.  
 '*
@@ -79,38 +83,26 @@ end sub
 '* Sub gets all unit values from form, enters them into input array.
 '* Generates errors if any values are missing from partially filled row.
 '*
-sub getUnitDetailsTemp()
+sub getUnitDetails()
 	
 	for i = 0 to unitRows - 1
-		if isFieldPopulated("UnitCode_" & i + 1) then
+
+		if isFieldPopulated("UnitCode_" & i + 1) or _
+				isFieldPopulated("CP_" & i + 1) or _
+				isFieldPopulated("YS_" & i + 1) or _
+				isFieldPopulated("UM_" & i + 1) then
 			unitDetails(i, UC) = request.form("UnitCode_" & i + 1)
-		else
-			call missingInputError("unit", "Unit Code", i + 1)
-		end if
-
-		if isFieldPopulated("CP_" & i + 1) then
-			unitDetails(i, UC) = request.form("CP_" & i + 1)
-		else
-			call missingInputError("unit", "Credit Points", i + 1)
-		end if
-
-		if isFieldPopulated("YS_" & i + 1) then
-			unitDetails(i, UC) = request.form("YS_" & i + 1)
-		else
-			call missingInputError("unit", "Year / Semester", i + 1)
-		end if
-
-		if isFieldPopulated("UM_" & i + 1) then
-			unitDetails(i, UC) = request.form("UM_" & i + 1)
-		else
-			call missingInputError("unit", "Unit Mark", i + 1)
+			unitDetails(i, CP) = request.form("CP_" & i + 1)
+			unitDetails(i, YS) = request.form("YS_" & i + 1)
+			unitDetails(i, UM) = request.form("UM_" & i + 1)
+			filledRows = filledRows + 1
 		end if
 	next
 end sub
 
 
 'ISSUE: IF ANY FIELD IS EMPTY, IT IGNORES THE WHOLE ROW
-sub getUnitDetails()
+sub getUnitDetailsTemp()
 
 	for i = 0 to unitRows - 1
 
