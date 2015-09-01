@@ -81,12 +81,12 @@ sub displaySummary()
 	'***************
 
 	'delete after testing
-	'for i = 0 to unitRows - 1
-	''	for j = 0 to UNIT_COLS - 1 
-	''		response.write(unitDetails(i, j) & " ")
-	''	next
-	''	response.write("<br />")
-	'next
+	for i = 0 to unitRows - 1
+		for j = 0 to UNIT_COLS - 1 
+			response.write(unitDetails(i, j) & " ")
+		next
+		response.write("<br />")
+	next
 end sub
 
 '**
