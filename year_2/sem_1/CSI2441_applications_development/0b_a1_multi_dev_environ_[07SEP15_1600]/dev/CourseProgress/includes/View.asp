@@ -100,8 +100,15 @@ sub displayErrors()
 
 	if isStudentPopulated = true and isUnitPopulated = true then
 
-		'write out errors
-		for each item in errorMessage
+		'write out student errors
+		for each item in studentErrorMessage
+			if item <> "" then
+				response.write(item & "<br />")
+			end if
+		next
+
+		'write out unit errors
+		for each item in unitErrorMessage
 			if item <> "" then
 				response.write(item & "<br />")
 			end if
@@ -109,27 +116,31 @@ sub displayErrors()
 
 	elseif isUnitPopulated = false and isStudentPopulated = true then
 
-		'write out errors
-		for each item in errorMessage
+		'write out student errors only
+		for each item in studentErrorMessage
 			if item <> "" then
 				response.write(item & "<br />")
 			end if
 		next
+
+		'no unit details provided so just indicate they need to be provided
 		response.write("<strong>Unit details</strong> must be provided.<br />")
 
 	elseif isUnitPopulated = true and isStudentPopulated = false then
 
-		'write out errors
-		for each item in errorMessage
+		'no student details provided so just indicate they need to be provided
+		response.write("<strong>Student details</strong> must be provided.<br />")
+
+		'write out unit errors
+		for each item in unitErrorMessage
 			if item <> "" then
 				response.write(item & "<br />")
 			end if
 		next
 
-		response.write("<strong>Student details</strong> must be provided.<br />")
-
 	else
-		response.write("Form is empty.<br />")
+		'else form is completely empty.
+		response.write("Form is empty. Please provide student and unit details.<br />")
 	end if
 
 	response.write("</p>")

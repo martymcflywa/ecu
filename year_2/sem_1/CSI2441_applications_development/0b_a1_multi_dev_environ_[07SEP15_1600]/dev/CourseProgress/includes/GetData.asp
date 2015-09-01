@@ -38,7 +38,7 @@ sub setupUnitDetailsArray()
 	redim unitDetails(unitRows, UNIT_COLS)
 
 	'reinit errorMessage array with max size
-	redim errorMessage(STUDENT_DETAILS_COUNT + unitRows)
+	'redim errorMessage(STUDENT_DETAILS_COUNT + unitRows)
 end sub
 
 '**

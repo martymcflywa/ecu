@@ -5,6 +5,15 @@
 '@author Martin Ponce, 10371381
 '@version 20150831
 
+'column index definitions for student/unitErrorMessage(x,y)
+const ERROR_COLS = 3
+
+const E_ROW = 0
+const E_FIELD = 1
+const E_ECODE = 2
+
+const ECODE_MISSING = 0
+const ECODE_VALIDATE = 1
 
 '**
 '* Function checks if field is populated.
@@ -27,28 +36,51 @@ end function
 '*
 '* @param data String - Either "student" or "unit"
 '* @param missingValue String - the missing value.
-'* @param row int - The partially filled row, use -1 if not required.
+'* @param row int - The partially filled row, use -1 if student details.
 '*
 sub missingInputError(data, missingValue, row)
 
-	errorCount = errorCount + 1
+	select case data
+		case "student"
+			studentErrorCount = studentErrorCount + 1
+			redim preserve studentErrorMessage(studentErrorCount, ERROR_COLS)
+			studentErrorMessage(studentErrorCount, E_ROW) = row
+			studentErrorMessage(studentErrorCount, E_FIELD) = missingValue
+			studentErrorMessage(studentErrorCount, E_ECODE) = ECODE_MISSING
+		case "unit"
+			unitErrorCount = unitErrorCount + 1
+			redim preserve unitErrorMessage(unitErrorCount, ERROR_COLS)
+			unitErrorMessage(unitErrorCount, E_ROW) = row
+			unitErrorMessage(unitErrorCount, E_FIELD) = missingValue
+			unitErrorMessage(unitErrorCount, E_ECODE) = ECODE_MISSING		
+	end select
 
-	if data = "student" then
-		errorMessage(errorCount) = "<strong>" & missingValue & "</strong> must be provided."
-	elseif data = "unit" then
-		errorMessage(errorCount) = "<strong>" & missingValue & "</strong> is missing from partially filled <strong>row " & row & "</strong>."
-	end if
 end sub
 
 '**
 '* Sub populates errorMessage array with validation error message.
 '*
+'* @param data String - Either "student" or "unit"
 '* @param field String - The field that failed validation.
-'* @param message String - The error message.
+'* @param row int - The row which failed validation, use -1 if student details.
 '*
-sub validateError(field, message)
-	errorCount = errorCount + 1
-	errorMessage(errorCount) = "<strong>" & field & " </strong> " & message & "."
+sub validateError(data, field, row)
+
+	select case data
+		case "student"
+			studentErrorCount = studentErrorCount + 1
+			redim preserve studentErrorMessage(studentErrorCount, ERROR_COLS)
+			studentErrorMessage(studentErrorCount, E_ROW) = row
+			studentErrorMessage(studentErrorCount, E_FIELD) = field
+			studentErrorMessage(studentErrorCount, E_ECODE) = ECODE_VALIDATE
+		case "unit"
+			unitErrorCount = unitErrorCount + 1
+			redim preserve unitErrorMessage(unitErrorCount, ERROR_COLS)
+			unitErrorMessage(unitErrorCount, E_ROW) = row
+			unitErrorMessage(unitErrorCount, E_FIELD) = field
+			unitErrorMessage(unitErrorCount, E_ECODE) = ECODE_VALIDATE
+	end select
+
 end sub
 
 '**
