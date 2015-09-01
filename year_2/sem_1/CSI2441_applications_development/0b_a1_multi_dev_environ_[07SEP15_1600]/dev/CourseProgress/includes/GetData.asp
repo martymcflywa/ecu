@@ -79,14 +79,45 @@ end sub
 '* Sub gets all unit values from form, enters them into input array.
 '* Generates errors if any values are missing from partially filled row.
 '*
+sub getUnitDetailsTemp()
+	
+	for i = 0 to unitRows - 1
+		if isFieldPopulated("UnitCode_" & i + 1) then
+			unitDetails(i, UC) = request.form("UnitCode_" & i + 1)
+		else
+			call missingInputError("unit", "Unit Code", i + 1)
+		end if
+
+		if isFieldPopulated("CP_" & i + 1) then
+			unitDetails(i, UC) = request.form("CP_" & i + 1)
+		else
+			call missingInputError("unit", "Credit Points", i + 1)
+		end if
+
+		if isFieldPopulated("YS_" & i + 1) then
+			unitDetails(i, UC) = request.form("YS_" & i + 1)
+		else
+			call missingInputError("unit", "Year / Semester", i + 1)
+		end if
+
+		if isFieldPopulated("UM_" & i + 1) then
+			unitDetails(i, UC) = request.form("UM_" & i + 1)
+		else
+			call missingInputError("unit", "Unit Mark", i + 1)
+		end if
+	next
+end sub
+
+
+'ISSUE: IF ANY FIELD IS EMPTY, IT IGNORES THE WHOLE ROW
 sub getUnitDetails()
 
 	for i = 0 to unitRows - 1
 
 		'add all completely populated rows to array, ignore completely empty rows
-		if isFieldPopulated("UnitCode_" & i + 1) and _
-				isFieldPopulated("CP_" & i + 1) and _
-				isFieldPopulated("YS_" & i + 1) and _
+		if isFieldPopulated("UnitCode_" & i + 1) or _
+				isFieldPopulated("CP_" & i + 1) or _
+				isFieldPopulated("YS_" & i + 1) or _
 				isFieldPopulated("UM_" & i + 1) then
 			unitDetails(i, UC) = request.form("UnitCode_" & i + 1)
 			unitDetails(i, CP) = request.form("CP_" & i + 1)

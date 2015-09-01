@@ -165,6 +165,7 @@ sub displayUnitErrors()
 	response.write("</ul>")
 
 	'delete after testing
+	response.write(unitErrorCount & "<br />")
 	for i = 0 to unitErrorCount - 1
 		response.write("| " & unitErrorMessage(i, E_ROW) & " | " & unitErrorMessage(i, E_FIELD) & " | " & unitErrorMessage(i, E_MESSAGE) & " |<br />")
 	next
@@ -175,47 +176,5 @@ sub displayUnitErrors()
 	'next
 end sub
 
-sub displayUnitErrorsTemp()
-
-	dim matchedRows(15), matchedCount
-	'redim matchedRows(1)
-	matchedCount = 0
-
-	response.write(unitErrorTitle)
-
-	'iterate through all error array rows
-	for i = 0 to unitErrorCount - 1
-
-		response.write("test 1<br/>")
-		'iterate through matchedRows array,
-		for j = 0 to matchedCount - 1
-
-			response.write("test 2<br/>")
-			'check if current row is a matched row, if so, don't print since its already been printed
-			if unitErrorMessage(i, E_ROW) <> matchedRows(i) then
-
-				'print error message in list form
-				response.write("Error/s on row " & unitErrorMessage(i, E_ROW) & ":")
-				response.write("<ul>")
-				response.write("<li>" & unitErrorMessage(i, E_FIELD) & " " & unitErrorMessage(i, E_MESSAGE) & "</li>")
-
-				'compare current row with other subsequent rows in array
-				for k = i to unitErrorCount - 1
-
-					'if rows match, 
-					if unitErrorMessage(i, E_ROW) = unitErrorMessage(k, E_ROW) then
-
-						'append that matched row's error message to printed list
-						response.write("<li>" & unitErrorMessage(k, E_FIELD) & " " & unitErrorMessage(k, E_MESSAGE) & "</li>")
-						'add matched row to matchedRows array so we don't print it again
-						matchedCount = matchedCount + 1
-						'redim preserve matchedRows(matchedCount)
-						matchedRows(matchedCount - 1) = unitErrorMessage(k, E_ROW)
-					end if
-				next
-			end if
-		next
-	next
-end sub
 
 %>
