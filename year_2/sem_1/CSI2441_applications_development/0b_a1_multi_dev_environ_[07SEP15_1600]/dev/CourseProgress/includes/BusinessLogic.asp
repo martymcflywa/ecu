@@ -25,8 +25,12 @@ const CP_PARTTIME = 30
 const MARK_PASS = 50
 
 'failed units
-dim failedUnits(), failedUnitsCount
+dim failedUnitsCount
 failedUnitsCount = 0
+
+dim failedUnits()
+redim failedUnits(10)
+'set failedUnits = server.createObject("system.collections.arrayList")
 
 '**
 '* Sub kicks off the logic for calculating the course progress summary.
@@ -50,11 +54,11 @@ sub iterateUnitDetails()
 	for i = 0 to unitRows - 1
 		if unitDetails(i, UC) <> "" then
 			call getUnitAttemptTotal()
+			'call getFailedUnits(i)
 			if unitDetails(i, UM) >= MARK_PASS then
 				call getPassedCP(i)
 				call getUnitAttemptPass()
 				call getMarkTotal(i)
-				call getFailedUnits(i)
 			end if
 		end if
 	next
@@ -95,8 +99,32 @@ end sub
 '* If student fails same unit 3 times, progressionStatus = "Excluded from course"
 '*
 sub getProgressionStatus()
-	'dummy status at the moment
-	progressionStatus = "Good standing"
+	
+	dim matchTally, currentUnitCode, isExcluded
+	matchTally = 0
+	currentUnitCode = ""
+	isExcluded = false
+
+	if failedUnitsCount > 0 then
+
+		call sortArray(failedUnits)
+
+		for i = 0 to failedUnitsCount - 1
+			if currentUnitCode = failedUnits(i) then
+				matchTally = matchTally + 1
+			end if
+		next
+
+		if matchTally >= 3 then
+			progressionStatus = "Excluded"
+		else
+			progressionStatus = "Good standing"
+		end if
+	else
+		progressionStatus = "Good standing"
+	end if
+
+	
 end sub
 
 '**
@@ -200,6 +228,15 @@ end sub
 '* @param index int - Current array index.
 '*
 sub getFailedUnits(index)
+	if unitDetails(index, UM) < MARK_PASS then
+		failedUnitsCount = failedUnitsCount + 1
+		'redim preserve failedUnits(failedUnitsCount)
+		failedUnits(failedUnitsCount) = unitDetails(index, UC)
+	end if
+end sub
+
+
+sub getFailedUnitsTemp(index)
 	if unitDetails(index, UM) < MARK_PASS then
 		failedUnitsCount = failedUnitsCount + 1
 		redim preserve failedUnits(failedUnitsCount, UNIT_COLS)

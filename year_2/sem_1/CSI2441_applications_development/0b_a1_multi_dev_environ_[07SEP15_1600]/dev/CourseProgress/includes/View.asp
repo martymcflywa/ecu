@@ -79,6 +79,9 @@ sub displaySummary()
 	response.write("<strong>Average mark: </strong>" & markAverage & " " & grade & "<br />")
 
 	response.write("</p>")
+
+	'test
+	response.write(failedUnitsCount)
 end sub
 
 '**
