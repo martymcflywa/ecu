@@ -6,6 +6,10 @@
 '@author Martin Ponce, 10371381
 '@version 20150831
 
+dim unitErrorTitle, studentErrorTitle
+unitErrorTitle = "<h2>Unit details errors</h2>"
+studentErrorTitle = "<h2>Student details errors</h2>"
+
 '**
 '* Print summary if no errors in data.
 '*
@@ -82,17 +86,28 @@ end sub
 '*
 sub displayErrors()
 
-	dim unitErrorTitle
-	unitErrorTitle = "<h2>Unit details errors</h2>"
-
 	response.write("<h1>Course Progression Form Errors</h1>")
 	response.write("<hr />")
 	response.write("<p>")
 
 	'if form is empty
-	if isUnitPopulated = false and isStudentPopulated = false then
+	if isStudentPopulated = false and isUnitPopulated = false then
 		response.write("Form is empty. Please provide student and unit details.<br />")
+	elseif isStudentPopulated = true and isUnitPopulated = false then
+		'do this if there are student details errors
+		if studentErrorCount > 0 then
+			call displayStudentErrors()
+		end if
+		response.write(unitErrorTitle)
+		response.write("<strong>Unit details</strong> empty.")
 
+	elseif isStudentPopulated = false and isUnitPopulated = true then
+		response.write(studentErrorTitle)
+		response.write("<strong>Student details</strong> empty.")
+		'do this if there are unit details errors
+		if unitErrorCount > 0 then
+			call displayUnitErrors()
+		end if
 	else
 
 		'do this if there are student details errors
@@ -116,8 +131,6 @@ sub displayErrors()
 end sub
 
 sub displayStudentErrors()
-	dim studentErrorTitle
-	studentErrorTitle = "<h2>Student details errors</h2>"
 
 	response.write(studentErrorTitle)
 

@@ -96,64 +96,9 @@ sub getUnitDetails()
 			unitDetails(i, YS) = request.form("YS_" & i + 1)
 			unitDetails(i, UM) = request.form("UM_" & i + 1)
 			filledRows = filledRows + 1
-		end if
-	next
-end sub
-
-
-'ISSUE: IF ANY FIELD IS EMPTY, IT IGNORES THE WHOLE ROW
-sub getUnitDetailsTemp()
-
-	for i = 0 to unitRows - 1
-
-		'add all completely populated rows to array, ignore completely empty rows
-		if isFieldPopulated("UnitCode_" & i + 1) or _
-				isFieldPopulated("CP_" & i + 1) or _
-				isFieldPopulated("YS_" & i + 1) or _
-				isFieldPopulated("UM_" & i + 1) then
-			unitDetails(i, UC) = request.form("UnitCode_" & i + 1)
-			unitDetails(i, CP) = request.form("CP_" & i + 1)
-			unitDetails(i, YS) = request.form("YS_" & i + 1)
-			unitDetails(i, UM) = request.form("UM_" & i + 1)
 			isUnitPopulated = true
-
-		'else generate errors for partially completed rows
-		else
-			if not isFieldPopulated("UnitCode_" & i + 1) and _
-					(isFieldPopulated("CP_" & i + 1) or _
-					isFieldPopulated("YS_" & i + 1) or _
-					isFieldPopulated("UM_" & i + 1)) then
-				call missingInputError("unit", "Unit Code", i + 1)
-				isUnitPopulated = true
-			end if
-
-			if not isFieldPopulated("CP_" & i + 1) and _
-					(isFieldPopulated("UnitCode_" & i + 1) or _
-					isFieldPopulated("YS_" & i + 1) or _
-					isFieldPopulated("UM_" & i + 1)) then
-				call missingInputError("unit", "Credit Points", i + 1)
-				isUnitPopulated = true
-			end if
-
-			if not isFieldPopulated("YS_" & i + 1) and _
-					(isFieldPopulated("UnitCode_" & i + 1) or _
-					isFieldPopulated("CP_" & i + 1) or _
-					isFieldPopulated("UM_" & i + 1)) then
-				call missingInputError("unit", "Year / Semester", i + 1)
-				isUnitPopulated = true
-			end if
-
-			if not isFieldPopulated("UM_" & i + 1) and _
-					(isFieldPopulated("UnitCode_" & i + 1) or _
-					isFieldPopulated("CP_" & i + 1) or _
-					isFieldPopulated("YS_" & i + 1)) then
-				call missingInputError("unit", "Unit Mark", i + 1)
-				isUnitPopulated = true
-			end if
 		end if
-
 	next
-
 end sub
 
 %>
