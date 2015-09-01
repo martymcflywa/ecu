@@ -39,7 +39,8 @@ dim studentErrorMessage(), studentErrorCount
 dim unitErrorMessage(), unitErrorCount
 'init arrays with single row each
 redim studentErrorMessage(STUDENT_DETAILS_COUNT, 4)
-redim unitErrorMessage(30, 4)
+'init size here, 'redim preserve' not behaving
+redim unitErrorMessage(120, 4)
 
 'define regex dictionary
 dim regExDict

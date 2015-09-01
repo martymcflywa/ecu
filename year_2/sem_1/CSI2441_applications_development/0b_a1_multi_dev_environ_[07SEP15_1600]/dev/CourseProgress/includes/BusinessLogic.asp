@@ -66,13 +66,11 @@ sub getMarkTotal(index)
 end sub
 
 '**
-'* Sub calculates average mark over units passed.
+'* Sub calculates average mark over total units attempted.
 '* Also determines grade based on markAverage.
 '*
-'* Confirm if correct, or if need to include failed units as well.
-'*
 sub getMarkAverage()
-	markAverage = markTotal / unitsPassed
+	markAverage = markTotal / unitAttemptTotal
 
 	if markAverage >= 80 then
 		grade = "HD"
