@@ -164,6 +164,11 @@ sub displayUnitErrors()
 
 	response.write("</ul>")
 
+	'delete after testing
+	for i = 0 to unitErrorCount - 1
+		response.write("| " & unitErrorMessage(i, E_ROW) & " | " & unitErrorMessage(i, E_FIELD) & " | " & unitErrorMessage(i, E_MESSAGE) & " |<br />")
+	next
+
 	'must delete
 	'for i = 0 to unitErrorCount - 1
 	''	response.write("<strong>" & unitErrorMessage(i, E_FIELD) & "</strong> " & unitErrorMessage(i, E_MESSAGE) & "<br />")

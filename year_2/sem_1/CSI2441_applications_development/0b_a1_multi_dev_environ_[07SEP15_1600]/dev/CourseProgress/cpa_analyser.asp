@@ -59,6 +59,10 @@ dim progressionStatus, completeStatus
 
 markTotal = 0
 
+%>
+
+<%
+
 '****************************
 '*** START MAINLINE LOGIC ***
 '****************************
