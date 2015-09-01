@@ -24,6 +24,10 @@ const CP_PARTTIME = 30
 
 const MARK_PASS = 50
 
+'failed units
+dim failedUnits(), failedUnitsCount
+failedUnitsCount = 0
+
 '**
 '* Sub kicks off the logic for calculating the course progress summary.
 '*
@@ -32,9 +36,9 @@ sub calculateSummary()
 	call iterateUnitDetails()
 	call getCPDelta()
 	call getSemRemaining()
-	call getProgressionStatus()
 	call getCompleteStatus()
 	call getMarkAverage()
+	call getProgressionStatus()
 
 end sub
 
@@ -50,6 +54,7 @@ sub iterateUnitDetails()
 				call getPassedCP(i)
 				call getUnitAttemptPass()
 				call getMarkTotal(i)
+				call getFailedUnits(i)
 			end if
 		end if
 	next
@@ -187,6 +192,22 @@ sub getSemRemaining()
 		case 2
 			semRemaining = cpDelta / CP_PARTTIME
 	end select
+end sub
+
+'**
+'* Sub records failed units into array.
+'*
+'* @param index int - Current array index.
+'*
+sub getFailedUnits(index)
+	if unitDetails(index, UM) < MARK_PASS then
+		failedUnitsCount = failedUnitsCount + 1
+		redim preserve failedUnits(failedUnitsCount, UNIT_COLS)
+		failedUnits(failedUnitsCount - 1, UC) = unitDetails(index, UC)
+		failedUnits(failedUnitsCount - 1, CP) = unitDetails(index, CP)
+		failedUnits(failedUnitsCount - 1, YS) = unitDetails(index, YS)
+		failedUnits(failedUnitsCount - 1, UM) = unitDetails(index, UM)
+	end if
 end sub
 
 %>
