@@ -130,23 +130,34 @@ function getRegExMatch(strTarget, strPattern)
 	getRegExMatch = returnString
 end function
 
-function sortArray(arrShort)
-    for i = UBound(arrShort, 2) - 1 To 0 Step - 1
-        for j = 0 to i
-            if arrShort(1,j) < arrShort(1,j+1) then
-				tmpName=arrShort(0,j+1)
-                tmpNum=arrShort(1,j+1)
-				tmpUID=arrShort(2,j+1)
-                arrShort(0,j+1)=arrShort(0,j)
-				arrShort(1,j+1)=arrShort(1,j)
-				arrShort(2,j+1)=arrShort(2,j)
-                arrShort(0,j)=tmpName
-				arrShort(1,j)=tmpNum
-				arrShort(2,j)=tmpUID
+'**
+'* Function performs bubble sort on a one-dimensional array.
+'* Adapted from: http://www.4guysfromrolla.com/demos/bubblesort.asp
+'*
+'* @param theArray - The array to sort.
+'*
+sub bubbleSort(theArray)
+
+    dim originalValue, newValue, swapIndex
+
+    for i = 0 To uBound(theArray) - 1
+
+        originalValue = theArray(i)
+        newValue = theArray(i)
+        swapIndex = i
+	    	
+        for j = i + 1 to uBound(theArray)
+            if theArray(j) < newValue then
+                swapIndex = j
+                newValue = theArray(j)
             end if
         next
+	    
+        if swapIndex <> i then
+            theArray(swapIndex) = originalValue
+            theArray(i) = newValue
+        end if
     next
-    sortArray = arrShort
-end function
+end sub
 
 %>

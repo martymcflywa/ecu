@@ -81,7 +81,10 @@ sub displaySummary()
 	response.write("</p>")
 
 	'test
-	response.write(failedUnitsCount)
+	for each item in failedUnits 
+		response.write(item & "<br />")
+	next
+	'response.write(failedUnitsCount)
 end sub
 
 '**

@@ -28,8 +28,8 @@ const MARK_PASS = 50
 dim failedUnitsCount
 failedUnitsCount = 0
 
-dim failedUnits()
-redim failedUnits(10)
+'dim failedUnits()
+'redim failedUnits(10)
 'set failedUnits = server.createObject("system.collections.arrayList")
 
 '**
@@ -54,11 +54,14 @@ sub iterateUnitDetails()
 	for i = 0 to unitRows - 1
 		if unitDetails(i, UC) <> "" then
 			call getUnitAttemptTotal()
-			'call getFailedUnits(i)
+			'do this if student passed unit
 			if unitDetails(i, UM) >= MARK_PASS then
 				call getPassedCP(i)
 				call getUnitAttemptPass()
 				call getMarkTotal(i)
+			'else do this if failed
+			else
+				call getFailedUnits(i)
 			end if
 		end if
 	next
@@ -95,23 +98,24 @@ sub getMarkAverage()
 end sub
 
 '**
-'* TODO: Implement this!
-'* If student fails same unit 3 times, progressionStatus = "Excluded from course"
+'* Sub determines progression status of student.
+'* If student fails same unit 3 times, progressionStatus == "Excluded"
 '*
 sub getProgressionStatus()
 	
-	dim matchTally, currentUnitCode, isExcluded
+	dim matchTally, currentUnitCode
 	matchTally = 0
 	currentUnitCode = ""
-	isExcluded = false
 
 	if failedUnitsCount > 0 then
 
-		call sortArray(failedUnits)
+		call bubbleSort(failedUnits)
 
 		for i = 0 to failedUnitsCount - 1
 			if currentUnitCode = failedUnits(i) then
 				matchTally = matchTally + 1
+			else
+				currentUnitCode = failedUnits(i)
 			end if
 		next
 
@@ -228,23 +232,9 @@ end sub
 '* @param index int - Current array index.
 '*
 sub getFailedUnits(index)
-	if unitDetails(index, UM) < MARK_PASS then
-		failedUnitsCount = failedUnitsCount + 1
-		'redim preserve failedUnits(failedUnitsCount)
-		failedUnits(failedUnitsCount) = unitDetails(index, UC)
-	end if
-end sub
-
-
-sub getFailedUnitsTemp(index)
-	if unitDetails(index, UM) < MARK_PASS then
-		failedUnitsCount = failedUnitsCount + 1
-		redim preserve failedUnits(failedUnitsCount, UNIT_COLS)
-		failedUnits(failedUnitsCount - 1, UC) = unitDetails(index, UC)
-		failedUnits(failedUnitsCount - 1, CP) = unitDetails(index, CP)
-		failedUnits(failedUnitsCount - 1, YS) = unitDetails(index, YS)
-		failedUnits(failedUnitsCount - 1, UM) = unitDetails(index, UM)
-	end if
+	failedUnitsCount = failedUnitsCount + 1
+	redim preserve failedUnits(failedUnitsCount)
+	failedUnits(failedUnitsCount) = unitDetails(index, UC)
 end sub
 
 %>

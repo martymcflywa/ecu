@@ -60,6 +60,8 @@ dim progressionStatus, completeStatus
 
 markTotal = 0
 
+dim failedUnits()
+
 '****************************
 '*** START MAINLINE LOGIC ***
 '****************************
