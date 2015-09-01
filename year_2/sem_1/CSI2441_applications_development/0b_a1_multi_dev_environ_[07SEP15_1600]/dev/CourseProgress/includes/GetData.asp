@@ -101,6 +101,7 @@ sub getUnitDetails()
 					isFieldPopulated("YS_" & i) or _
 					isFieldPopulated("UM_" & i)) then
 				call missingInputError("unit", "Unit Code", i)
+				isUnitPopulated = true
 			end if
 
 			if not isFieldPopulated("CP_" & i) and _
@@ -108,6 +109,7 @@ sub getUnitDetails()
 					isFieldPopulated("YS_" & i) or _
 					isFieldPopulated("UM_" & i)) then
 				call missingInputError("unit", "Credit Points", i)
+				isUnitPopulated = true
 			end if
 
 			if not isFieldPopulated("YS_" & i) and _
@@ -115,6 +117,7 @@ sub getUnitDetails()
 					isFieldPopulated("CP_" & i) or _
 					isFieldPopulated("UM_" & i)) then
 				call missingInputError("unit", "Year / Semester", i)
+				isUnitPopulated = true
 			end if
 
 			if not isFieldPopulated("UM_" & i) and _
@@ -122,6 +125,7 @@ sub getUnitDetails()
 					isFieldPopulated("CP_" & i) or _
 					isFieldPopulated("YS_" & i)) then
 				call missingInputError("unit", "Unit Mark", i)
+				isUnitPopulated = true
 			end if
 		end if
 

@@ -34,6 +34,10 @@ dim unitDetails()
 'variables to generate error messages
 dim errorMessage(), errorCount
 
+'replacing errorMessage() and errorCount with unit/student specific arrays
+dim studentErrorMessage(), studentErrorCount
+dim unitErrorMessage(), unitErrorCount
+
 'define regex dictionary
 dim regExDict
 set regExDict = server.createObject("scripting.dictionary")
@@ -63,11 +67,11 @@ call getUnitDetails()
 call validateStudentDetails()
 call validateUnitDetails()
 
-if errorCount > 0 then
-	call displayErrors()
-else
+if errorCount = 0 and isUnitPopulated = true then
 	call calculateSummary()
 	call displaySummary()
+else
+	call displayErrors()
 end if
 
 %>

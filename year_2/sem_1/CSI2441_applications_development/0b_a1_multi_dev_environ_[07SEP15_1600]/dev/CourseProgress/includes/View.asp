@@ -108,17 +108,32 @@ sub displayErrors()
 		next
 
 	elseif isUnitPopulated = false and isStudentPopulated = true then
-		response.write("Unit details are empty.")
-	elseif isStudentPopulated = false and isUnitPopulated = true then
-		response.write("Student details are empty.")
+
+		'write out errors
+		for each item in errorMessage
+			if item <> "" then
+				response.write(item & "<br />")
+			end if
+		next
+		response.write("<strong>Unit details</strong> must be provided.<br />")
+
+	elseif isUnitPopulated = true and isStudentPopulated = false then
+
+		'write out errors
+		for each item in errorMessage
+			if item <> "" then
+				response.write(item & "<br />")
+			end if
+		next
+
+		response.write("<strong>Student details</strong> must be provided.<br />")
+
 	else
-		response.write("Form is empty.")
+		response.write("Form is empty.<br />")
 	end if
 
 	response.write("</p>")
-
 	response.write("<p>Please return to the form, resolve the errors and try again.</p>")
-
 	'back button adapted from: http://www.computerhope.com/issues/ch000317.htm
 	response.write("<input type=""button"" name=""Back"" value=""Back"" onClick=""history.go(-1);return true;"">")
 end sub
