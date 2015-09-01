@@ -55,19 +55,7 @@ sub validateUnitDetails()
 		if unitDetails(i, UC) = "" then
 			call missingInputError("unit", "Unit Code", i + 1)
 		else
-			'if unit code is valid
-			if isRegExMatch(unitDetails(i, UC), regExDict.item("unitCode")) then
-				'test course type against unit code
-				if (studentDetails(CT) = CT_UNDERGRAD or studentDetails(CT) = CT_UNDERGRAD_DOUBLE) and _
-						(getRegExMatch(unitDetails(i, UC), regExDict.item("unitCodeSuffix")) >= 6000) then
-
-					call validateError("unit", "Unit Code", i + 1, "is invalid for undergraduate students. Must be a unit code less than 6000 level.")
-
-				end if
-			'else unit code is not valid
-			else
-				call validateError("unit", "Unit Code", i + 1, "must follow the format: ABC1234.")
-			end if
+			call validateUnitCode(i)
 		end if
 
 		'*********************
@@ -78,14 +66,7 @@ sub validateUnitDetails()
 		if unitDetails(i, CP) = "" then
 			call missingInputError("unit", "Credit Points", i + 1)
 		else
-			'if credit points is valid
-			if isRegExMatch(unitDetails(i, CP), regExDict.item("creditPoints")) then
-				'cast to int, so we can do math with it
-				unitDetails(i, CP) = cInt(unitDetails(i, CP))
-			'else credit points is not valid
-			else
-				call validateError("unit", "Credit Points", i + 1, "must only be either 15 or 20.")
-			end if
+			call validateCreditPoints(i)
 		end if
 
 		'******************
@@ -96,11 +77,7 @@ sub validateUnitDetails()
 		if unitDetails(i, YS) = "" then
 			call missingInputError("unit", "Year / Semester", i + 1)
 		else
-			'if year/sem is not valid
-			if not isRegExMatch(unitDetails(i, YS), regExDict.item("yearSem")) then
-				call validateError("unit", "Year / Semester", i + 1, "must follow the format:" & _
-						"YYS. For example 151. Semester must only be 1 or 2.")
-			end if
+			call validateYearSem(i)
 		end if
 
 		'*****************
@@ -111,21 +88,79 @@ sub validateUnitDetails()
 		if unitDetails(i, UM) = "" then
 			call missingInputError("unit", "Unit Mark", i + 1)
 		else
-			'if unit mark is valid
-			if isRegExMatch(unitDetails(i, UM), regExDict.item("mark")) then
-				'test unit mark against min/max range
-				if cInt(unitDetails(i, UM)) < MIN_MARK or cInt(unitDetails(i, UM)) > MAX_MARK then
-					call validateError("unit", "Unit Mark", i + 1, "cannot be less than 0 or greater than 100.")
-				else
-					'cast to int, so we can do math with it
-					unitDetails(i, UM) = cInt(unitDetails(i, UM))
-				end if
-			'regex not checking if > 3 digit here, since input is limited to 3 chars anyway
-			else
-				call validateError("unit", "Unit Mark", i + 1, "must be between 1 and 3 digits.")
-			end if
+			call validateUnitMark(i)
 		end if
 	next
 end sub
 
+'**
+'* Sub validates Unit Code.
+'*
+'* @param index int - The current index.
+'*
+sub validateUnitCode(index)
+	'if unit code is valid
+	if isRegExMatch(unitDetails(index, UC), regExDict.item("unitCode")) then
+		'test course type against unit code
+		if (studentDetails(CT) = CT_UNDERGRAD or studentDetails(CT) = CT_UNDERGRAD_DOUBLE) and _
+				(getRegExMatch(unitDetails(index, UC), regExDict.item("unitCodeSuffix")) >= 6000) then
+
+			call validateError("unit", "Unit Code", index + 1, "is invalid for undergraduate students. Must be a unit code less than 6000 level.")
+
+		end if
+	'else unit code is not valid
+	else
+		call validateError("unit", "Unit Code", index + 1, "must follow the format: ABC1234.")
+	end if
+end sub
+
+'**
+'* Sub validates Credit Points.
+'*
+'* @param index int - The current index.
+'*
+sub validateCreditPoints(index)
+	'if credit points is valid
+	if isRegExMatch(unitDetails(index, CP), regExDict.item("creditPoints")) then
+		'cast to int, so we can do math with it
+		unitDetails(index, CP) = cInt(unitDetails(index, CP))
+	'else credit points is not valid
+	else
+		call validateError("unit", "Credit Points", index + 1, "must only be either 15 or 20.")
+	end if
+end sub
+
+'**
+'* Sub validates Year / Sem.
+'*
+'* @param index int - The current index.
+'*
+sub validateYearSem(index)
+	'if year/sem is not valid
+	if not isRegExMatch(unitDetails(index, YS), regExDict.item("yearSem")) then
+		call validateError("unit", "Year / Semester", index + 1, "must follow the format:" & _
+				"YYS. For example 151. Semester must only be 1 or 2.")
+	end if
+end sub
+
+'**
+'* Sub validates Unit Mark.
+'*
+'* @param index int - The current index.
+'*
+sub validateUnitMark(index)
+	'if unit mark is valid
+	if isRegExMatch(unitDetails(index, UM), regExDict.item("mark")) then
+		'test unit mark against min/max range
+		if cInt(unitDetails(index, UM)) < MIN_MARK or cInt(unitDetails(index, UM)) > MAX_MARK then
+			call validateError("unit", "Unit Mark", index + 1, "cannot be less than 0 or greater than 100.")
+		else
+			'cast to int, so we can do math with it
+			unitDetails(index, UM) = cInt(unitDetails(index, UM))
+		end if
+	'regex not checking if > 3 digit here, since input is limited to 3 chars anyway
+	else
+		call validateError("unit", "Unit Mark", index + 1, "must be between 1 and 3 digits.")
+	end if
+end sub
 %>
