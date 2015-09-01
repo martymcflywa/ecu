@@ -6,11 +6,12 @@
 '@version 20150831
 
 'column index definitions for student/unitErrorMessage(x,y)
-const ERROR_COLS = 3
+const ERROR_COLS = 4
 
 const E_ROW = 0
 const E_FIELD = 1
 const E_ECODE = 2
+const E_MESSAGE = 3
 
 const ECODE_MISSING = 0
 const ECODE_VALIDATE = 1
@@ -40,19 +41,24 @@ end function
 '*
 sub missingInputError(data, missingValue, row)
 
+	dim message
+	message = "is missing."
+
 	select case data
 		case "student"
 			studentErrorCount = studentErrorCount + 1
-			redim preserve studentErrorMessage(studentErrorCount, ERROR_COLS)
-			studentErrorMessage(studentErrorCount, E_ROW) = row
-			studentErrorMessage(studentErrorCount, E_FIELD) = missingValue
-			studentErrorMessage(studentErrorCount, E_ECODE) = ECODE_MISSING
+			'redim preserve studentErrorMessage(studentErrorCount, ERROR_COLS)
+			studentErrorMessage(studentErrorCount - 1, E_ROW) = row
+			studentErrorMessage(studentErrorCount - 1, E_FIELD) = missingValue
+			studentErrorMessage(studentErrorCount - 1, E_ECODE) = ECODE_MISSING
+			studentErrorMessage(studentErrorCount - 1, E_MESSAGE) = message
 		case "unit"
 			unitErrorCount = unitErrorCount + 1
-			redim preserve unitErrorMessage(unitErrorCount, ERROR_COLS)
-			unitErrorMessage(unitErrorCount, E_ROW) = row
-			unitErrorMessage(unitErrorCount, E_FIELD) = missingValue
-			unitErrorMessage(unitErrorCount, E_ECODE) = ECODE_MISSING		
+			'redim preserve unitErrorMessage(unitErrorCount, ERROR_COLS)
+			unitErrorMessage(unitErrorCount - 1, E_ROW) = row
+			unitErrorMessage(unitErrorCount - 1, E_FIELD) = missingValue
+			unitErrorMessage(unitErrorCount - 1, E_ECODE) = ECODE_MISSING	
+			unitErrorMessage(unitErrorCount - 1, E_MESSAGE) = message	
 	end select
 
 end sub
@@ -64,21 +70,23 @@ end sub
 '* @param field String - The field that failed validation.
 '* @param row int - The row which failed validation, use -1 if student details.
 '*
-sub validateError(data, field, row)
+sub validateError(data, field, row, message)
 
 	select case data
 		case "student"
 			studentErrorCount = studentErrorCount + 1
-			redim preserve studentErrorMessage(studentErrorCount, ERROR_COLS)
-			studentErrorMessage(studentErrorCount, E_ROW) = row
-			studentErrorMessage(studentErrorCount, E_FIELD) = field
-			studentErrorMessage(studentErrorCount, E_ECODE) = ECODE_VALIDATE
+			'redim preserve studentErrorMessage(studentErrorCount, ERROR_COLS)
+			studentErrorMessage(studentErrorCount - 1, E_ROW) = row
+			studentErrorMessage(studentErrorCount - 1, E_FIELD) = field
+			studentErrorMessage(studentErrorCount - 1, E_ECODE) = ECODE_VALIDATE
+			studentErrorMessage(studentErrorCount - 1, E_MESSAGE) = message
 		case "unit"
 			unitErrorCount = unitErrorCount + 1
-			redim preserve unitErrorMessage(unitErrorCount, ERROR_COLS)
-			unitErrorMessage(unitErrorCount, E_ROW) = row
-			unitErrorMessage(unitErrorCount, E_FIELD) = field
-			unitErrorMessage(unitErrorCount, E_ECODE) = ECODE_VALIDATE
+			'redim preserve unitErrorMessage(unitErrorCount, ERROR_COLS)
+			unitErrorMessage(unitErrorCount - 1, E_ROW) = row
+			unitErrorMessage(unitErrorCount - 1, E_FIELD) = field
+			unitErrorMessage(unitErrorCount - 1, E_ECODE) = ECODE_VALIDATE
+			unitErrorMessage(unitErrorCount - 1, E_MESSAGE) = message
 	end select
 
 end sub

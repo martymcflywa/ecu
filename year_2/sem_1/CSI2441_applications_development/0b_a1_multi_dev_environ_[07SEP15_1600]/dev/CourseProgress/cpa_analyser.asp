@@ -37,12 +37,15 @@ dim errorMessage(), errorCount
 'replacing errorMessage() and errorCount with unit/student specific arrays
 dim studentErrorMessage(), studentErrorCount
 dim unitErrorMessage(), unitErrorCount
+'init arrays with single row each
+redim studentErrorMessage(STUDENT_DETAILS_COUNT, 4)
+redim unitErrorMessage(30, 4)
 
 'define regex dictionary
 dim regExDict
 set regExDict = server.createObject("scripting.dictionary")
 regExDict.add "name", "(^[a-zA-Z]+$)"
-regExDict.add "studentID", "(^[0-9]+$)"
+regExDict.add "studentID", "(^[0-9]{8}$)"
 regExDict.add "unitCode", "([A-Z]{3}[0-9]{4})"
 regExDict.add "unitCodeSuffix", "([0-9]{4})"
 regExDict.add "creditPoints", "(15|20)"
@@ -67,7 +70,7 @@ call getUnitDetails()
 call validateStudentDetails()
 call validateUnitDetails()
 
-if errorCount = 0 and isUnitPopulated = true then
+if studentErrorCount = 0 and unitErrorCount = 0 then
 	call calculateSummary()
 	call displaySummary()
 else

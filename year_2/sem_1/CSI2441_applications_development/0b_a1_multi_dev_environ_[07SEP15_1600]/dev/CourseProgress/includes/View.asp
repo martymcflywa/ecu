@@ -94,59 +94,123 @@ end sub
 '*
 sub displayErrors()
 
+	dim unitErrorTitle
+	unitErrorTitle = "<h2>Unit details errors</h2>"
+
 	response.write("<h1>Course Progression Form Errors</h1>")
 	response.write("<hr />")
 	response.write("<p>")
 
-	if isStudentPopulated = true and isUnitPopulated = true then
-
-		'write out student errors
-		for each item in studentErrorMessage
-			if item <> "" then
-				response.write(item & "<br />")
-			end if
-		next
-
-		'write out unit errors
-		for each item in unitErrorMessage
-			if item <> "" then
-				response.write(item & "<br />")
-			end if
-		next
-
-	elseif isUnitPopulated = false and isStudentPopulated = true then
-
-		'write out student errors only
-		for each item in studentErrorMessage
-			if item <> "" then
-				response.write(item & "<br />")
-			end if
-		next
-
-		'no unit details provided so just indicate they need to be provided
-		response.write("<strong>Unit details</strong> must be provided.<br />")
-
-	elseif isUnitPopulated = true and isStudentPopulated = false then
-
-		'no student details provided so just indicate they need to be provided
-		response.write("<strong>Student details</strong> must be provided.<br />")
-
-		'write out unit errors
-		for each item in unitErrorMessage
-			if item <> "" then
-				response.write(item & "<br />")
-			end if
-		next
+	'if form is empty
+	if isUnitPopulated = false and isStudentPopulated = false then
+		response.write("Form is empty. Please provide student and unit details.<br />")
 
 	else
-		'else form is completely empty.
-		response.write("Form is empty. Please provide student and unit details.<br />")
+
+		'do this if there are student details errors
+		if studentErrorCount > 0 then
+			call displayStudentErrors()
+		end if
+
+		'do this if there are unit details errors
+		if unitErrorCount > 0 then
+			call displayUnitErrors()
+		end if
+
 	end if
 
+	'error view footer
 	response.write("</p>")
 	response.write("<p>Please return to the form, resolve the errors and try again.</p>")
 	'back button adapted from: http://www.computerhope.com/issues/ch000317.htm
 	response.write("<input type=""button"" name=""Back"" value=""Back"" onClick=""history.go(-1);return true;"">")
+
+end sub
+
+sub displayStudentErrors()
+	dim studentErrorTitle
+	studentErrorTitle = "<h2>Student details errors</h2>"
+
+	response.write(studentErrorTitle)
+
+	for i = 0 to studentErrorCount - 1
+		response.write("<strong>" & studentErrorMessage(i, E_FIELD) & "</strong> " & studentErrorMessage(i, E_MESSAGE) & "<br />")
+	next
+end sub
+
+sub displayUnitErrors()
+
+	dim currentRow
+	currentRow = 0
+
+	dim unitErrorTitle
+	unitErrorTitle = "<h2>Unit details errors</h2>"
+
+	response.write(unitErrorTitle)
+
+	'loop over unitErrorMessage
+	for i = 0 to unitErrorCount - 1
+
+		if currentRow = unitErrorMessage(i, E_ROW) then
+			response.write("<li><strong>" & unitErrorMessage(i, E_FIELD) & "</strong> " & unitErrorMessage(i, E_MESSAGE) & "</li>")
+		else
+			currentRow = unitErrorMessage(i, E_ROW)
+			response.write("</ul>")
+			response.write("Error/s on <strong>Row " & unitErrorMessage(i, E_ROW) & ":</strong>")
+			response.write("<ul>")
+			response.write("<li><strong>" & unitErrorMessage(i, E_FIELD) & "</strong> " & unitErrorMessage(i, E_MESSAGE) & "</li>")
+		end if
+	next
+
+	response.write("</ul>")
+
+	'must delete
+	'for i = 0 to unitErrorCount - 1
+	''	response.write("<strong>" & unitErrorMessage(i, E_FIELD) & "</strong> " & unitErrorMessage(i, E_MESSAGE) & "<br />")
+	'next
+end sub
+
+sub displayUnitErrorsTemp()
+
+	dim matchedRows(15), matchedCount
+	'redim matchedRows(1)
+	matchedCount = 0
+
+	response.write(unitErrorTitle)
+
+	'iterate through all error array rows
+	for i = 0 to unitErrorCount - 1
+
+		response.write("test 1<br/>")
+		'iterate through matchedRows array,
+		for j = 0 to matchedCount - 1
+
+			response.write("test 2<br/>")
+			'check if current row is a matched row, if so, don't print since its already been printed
+			if unitErrorMessage(i, E_ROW) <> matchedRows(i) then
+
+				'print error message in list form
+				response.write("Error/s on row " & unitErrorMessage(i, E_ROW) & ":")
+				response.write("<ul>")
+				response.write("<li>" & unitErrorMessage(i, E_FIELD) & " " & unitErrorMessage(i, E_MESSAGE) & "</li>")
+
+				'compare current row with other subsequent rows in array
+				for k = i to unitErrorCount - 1
+
+					'if rows match, 
+					if unitErrorMessage(i, E_ROW) = unitErrorMessage(k, E_ROW) then
+
+						'append that matched row's error message to printed list
+						response.write("<li>" & unitErrorMessage(k, E_FIELD) & " " & unitErrorMessage(k, E_MESSAGE) & "</li>")
+						'add matched row to matchedRows array so we don't print it again
+						matchedCount = matchedCount + 1
+						'redim preserve matchedRows(matchedCount)
+						matchedRows(matchedCount - 1) = unitErrorMessage(k, E_ROW)
+					end if
+				next
+			end if
+		next
+	next
 end sub
 
 %>

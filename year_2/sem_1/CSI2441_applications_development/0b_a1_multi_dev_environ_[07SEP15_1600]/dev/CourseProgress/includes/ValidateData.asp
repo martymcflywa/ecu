@@ -16,24 +16,20 @@ sub validateStudentDetails()
 	'validate names
 	if studentDetails(FN) <> "" then
 		if not isRegExMatch(studentDetails(FN), regExDict.item("name")) then
-			call validateError("Firstname", "must be a name")
+			call validateError("student", "Firstname", -1, "must be a name.")
 		end if
 	end if
 
 	if studentDetails(SN) <> "" then
 		if not isRegExMatch(studentDetails(SN), regExDict.item("name")) then
-			call validateError("Surname", "must be a name")
+			call validateError("student", "Surname", -1, "must be a name.")
 		end if
 	end if
 
 	'validate student id
 	if studentDetails(ID) <> "" then
 		if not isRegExMatch(studentDetails(ID), regExDict.item("studentID")) then
-			call validateError("Student ID", "must be numeric")
-		end if
-
-		if len(studentDetails(ID)) < 8 then
-			call validateError("Student ID", "must be at least 8 numbers")
+			call validateError("student", "Student ID", -1, "must be eight digits.")
 		end if
 	end if
 end sub
@@ -63,14 +59,13 @@ sub validateUnitDetails()
 				if (studentDetails(CT) = CT_UNDERGRAD or studentDetails(CT) = CT_UNDERGRAD_DOUBLE) and _
 						(getRegExMatch(unitDetails(i, UC), regExDict.item("unitCodeSuffix")) >= 6000) then
 
-					call validateError("Unit Code " & unitDetails(i, UC) & " at row " & (i + 1), _
-							"is invalid for undergraduate students. Must be a unit code less than 6000 level.")
+					call validateError("unit", "Unit Code", i + 1, "is invalid for undergraduate students. Must be a unit code less than 6000 level.")
 
 				end if
 
 			else
 
-				call validateError("Unit Code: " & unitDetails(i, UC) & " at row " & (i + 1), "must follow the format: ABC1234")
+				call validateError("unit", "Unit Code", i + 1, "must follow the format: ABC1234.")
 
 			end if
 
@@ -85,7 +80,7 @@ sub validateUnitDetails()
 
 			else
 
-				call validateError("Credit Points: " & unitDetails(i, CP) & " at row " & (i + 1), "must only be either 15 or 20")
+				call validateError("unit", "Credit Points", i + 1, "must only be either 15 or 20.")
 
 			end if
 
@@ -95,8 +90,8 @@ sub validateUnitDetails()
 
 			if not isRegExMatch(unitDetails(i, YS), regExDict.item("yearSem")) then
 
-				call validateError("Year / Semester: " & unitDetails(i, YS) & " at row " & (i + 1), "must follow the format: " & _
-						"YYS, ie 151 or 152. Semester must only be 1 or 2")
+				call validateError("unit", "Year / Semester", i + 1, "must follow the format:" & _
+						"YYS. For example 151. Semester must only be 1 or 2.")
 
 			end if
 
@@ -109,8 +104,7 @@ sub validateUnitDetails()
 
 				if cInt(unitDetails(i, UM)) < MIN_MARK or cInt(unitDetails(i, UM)) > MAX_MARK then
 
-					call validateError("Mark: " & unitDetails(i, UM) & " at row " & (i + 1), _
-							"must not be less than 0, or greater than 100")
+					call validateError("unit", "Mark", i + 1, "cannot be less than 0 or greater than 100.")
 
 				else
 
@@ -122,7 +116,7 @@ sub validateUnitDetails()
 			'regex not checking if > 3 digit here, since input is limited to 3 chars anyway
 			else
 
-				call validateError("Mark: " & unitDetails(i, UM) & " at row " & (i + 1), "must be between 1 and 3 digits")
+				call validateError("unit", "Mark", i + 1, "must be between 1 and 3 digits.")
 
 			end if
 
