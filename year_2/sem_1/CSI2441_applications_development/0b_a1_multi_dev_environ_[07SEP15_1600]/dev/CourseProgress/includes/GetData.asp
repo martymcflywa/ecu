@@ -28,9 +28,9 @@ dim filledRows
 filledRows = 0
 
 '**
-'* Sub sets up the input array.  
+'* Sub sets up the arrays.  
 '*
-sub setupUnitDetailsArray()
+sub setupArrays()
 	'count all fields in form
 	for each item in request.form
 		totalFieldCount = totalFieldCount + 1
@@ -41,8 +41,11 @@ sub setupUnitDetailsArray()
 
 	redim unitDetails(unitRows, UNIT_COLS)
 
-	'reinit errorMessage array with max size
-	'redim errorMessage(STUDENT_DETAILS_COUNT + unitRows)
+	'init error/fail arrays
+	redim studentErrorMessage(STUDENT_DETAILS_COUNT, UNIT_COLS)
+	'going for max amount of rows here since can't redim preserve 2d arrays
+	redim unitErrorMessage(unitRows * UNIT_COLS, UNIT_COLS)
+	redim failedUnits(unitRows, UNIT_COLS)
 end sub
 
 '**

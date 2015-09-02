@@ -24,23 +24,20 @@ totalFieldCount = 0
 unitFieldCount = 0
 unitRows = 0
 
-'array for student details
+'array for student/unit details
 dim studentDetails()
+'set up with known length
 redim studentDetails(STUDENT_DETAILS_COUNT)
-
-'array for unit details
 dim unitDetails()
 
-'variables to generate error messages
-dim errorMessage(), errorCount
-
-'replacing errorMessage() and errorCount with unit/student specific arrays
+'error/failed units arrays
 dim studentErrorMessage(), studentErrorCount
 dim unitErrorMessage(), unitErrorCount
+dim failedUnits()
 'init arrays with single row each
-redim studentErrorMessage(STUDENT_DETAILS_COUNT, 4)
+'redim studentErrorMessage(STUDENT_DETAILS_COUNT, 4)
 'init size here, 'redim preserve' not behaving
-redim unitErrorMessage(120, 4)
+'redim unitErrorMessage(120, 4)
 
 'define regex dictionary
 dim regExDict
@@ -60,13 +57,11 @@ dim progressionStatus, completeStatus
 
 markTotal = 0
 
-dim failedUnits()
-
 '****************************
 '*** START MAINLINE LOGIC ***
 '****************************
 
-call setupUnitDetailsArray()
+call setupArrays()
 call getStudentDetails()
 call getUnitDetails()
 

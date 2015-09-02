@@ -160,4 +160,61 @@ sub bubbleSort(theArray)
     next
 end sub
 
+Sub bubbleSort2D( byRef arrArray, DimensionToSort )
+    Dim row, j, StartingKeyValue, StartingOtherValue, _
+        NewStartingKey, NewStartingOther, _
+        swap_pos, OtherDimension
+    Const column = 1
+    
+    ' Ensure that the user has picked a valid DimensionToSort
+    If DimensionToSort = 1 then
+		OtherDimension = 0
+	ElseIf DimensionToSort = 0 then
+		OtherDimension = 1
+	Else
+	    'Shoot, invalid value of DimensionToSort
+	    Response.Write "Invalid dimension for DimensionToSort: " & _
+	                   "must be value of 1 or 0."
+	    Response.End
+	End If
+    
+    For row = 0 To UBound( arrArray, column ) - 1
+    'Start outer loop.
+    
+        'Take a snapshot of the first element
+        'in the array because if there is a 
+        'smaller value elsewhere in the array 
+        'we'll need to do a swap.
+        StartingKeyValue = arrArray ( row, DimensionToSort )
+        StartingOtherValue = arrArray ( row, OtherDimension )
+        
+        ' Default the Starting values to the First Record
+        NewStartingKey = arrArray ( row, DimensionToSort )
+        NewStartingOther = arrArray ( row, OtherDimension )
+        
+        swap_pos = row
+		
+        For j = row + 1 to UBound( arrArray, column )
+        'Start inner loop.
+            If arrArray ( j, DimensionToSort ) < NewStartingKey Then
+            'This is now the lowest number - 
+            'remember it's position.
+                swap_pos = j
+                NewStartingKey = arrArray ( j, DimensionToSort )
+                NewStartingOther = arrArray ( j, OtherDimension )
+            End If
+        Next
+		
+        If swap_pos <> row Then
+        'If we get here then we are about to do a swap
+        'within the array.
+            arrArray ( swap_pos, DimensionToSort ) = StartingKeyValue
+            arrArray ( swap_pos, OtherDimension ) = StartingOtherValue
+            
+            arrArray ( row, DimensionToSort ) = NewStartingKey
+            arrArray ( row, OtherDimension ) = NewStartingOther
+            
+        End If	
+    Next
+End Sub
 %>

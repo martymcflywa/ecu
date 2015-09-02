@@ -109,13 +109,13 @@ sub getProgressionStatus()
 
 	if failedUnitsCount > 0 then
 
-		call bubbleSort(failedUnits)
+		call bubbleSort2D(failedUnits, 1)
 
 		for i = 0 to failedUnitsCount - 1
-			if currentUnitCode = failedUnits(i) then
+			if currentUnitCode = failedUnits(i, UC) then
 				matchTally = matchTally + 1
 			else
-				currentUnitCode = failedUnits(i)
+				currentUnitCode = failedUnits(i, UC)
 			end if
 		next
 
@@ -233,8 +233,11 @@ end sub
 '*
 sub getFailedUnits(index)
 	failedUnitsCount = failedUnitsCount + 1
-	redim preserve failedUnits(failedUnitsCount)
-	failedUnits(failedUnitsCount) = unitDetails(index, UC)
+	'redim preserve failedUnits(failedUnitsCount)
+	failedUnits(failedUnitsCount - 1, UC) = unitDetails(index, UC)
+	failedUnits(failedUnitsCount - 1, CP) = unitDetails(index, CP)
+	failedUnits(failedUnitsCount - 1, YS) = unitDetails(index, YS)
+	failedUnits(failedUnitsCount - 1, UM) = unitDetails(index, UM)
 end sub
 
 %>
