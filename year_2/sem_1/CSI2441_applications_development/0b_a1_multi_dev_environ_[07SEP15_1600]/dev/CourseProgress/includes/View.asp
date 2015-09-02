@@ -203,5 +203,10 @@ sub displayLogicErrors()
 	next
 
 	response.write("</ul>")
+
+	'test
+	for i = 0 to logicErrorCount - 1
+		response.write(logicErrorMessage(i, 0) & " " & logicErrorMessage(i, 1) & "<br/>")
+	next
 end sub
 %>

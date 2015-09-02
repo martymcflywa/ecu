@@ -238,7 +238,7 @@ sub validatePassMatchUnits(theArray, matchTally)
 		end if
 	next
 
-	
+	response.write(MARK_PASS)
 end sub
 
 '**
@@ -258,6 +258,7 @@ sub validateSemMatchUnits(theArray, matchTally)
 
 			if i = 0 then
 				currentUnitCode = theArray(i, UC)
+				currentSem = theArray(i, YS)
 			end if
 
 			if currentUnitCode = theArray(i, UC) and currentSem = theArray(i, YS) then
@@ -266,6 +267,7 @@ sub validateSemMatchUnits(theArray, matchTally)
 				currentSem = theArray(i, YS)
 			else
 				currentUnitCode = theArray(i, UC)
+				currentSem = theArray(i, YS)
 			end if
 		end if
 	next
