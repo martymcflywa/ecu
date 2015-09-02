@@ -25,8 +25,9 @@ const CP_PARTTIME = 30
 const MARK_PASS = 50
 
 'failed units
-dim failedUnitsCount
+dim failedUnitsCount, matchFailedCount
 failedUnitsCount = 0
+matchFailedCount = 0
 'to assist calculating remaining semesters
 dim failedUnitsCP
 failedUnitsCP = 0
@@ -40,7 +41,7 @@ sub calculateSummary()
 	call getCPDelta()
 	call getCompleteStatus()
 	call getMarkAverage()
-	call getProgressionStatus()
+	call setProgressionStatus()
 	call getSemRemaining()
 
 end sub
@@ -60,7 +61,7 @@ sub iterateUnitDetails()
 				call getMarkTotal(i)
 			'else do this if failed
 			elseif unitDetails(i, UM) < MARK_PASS then
-				call getFailedUnits(i)
+				call getProgressionStatus(i)
 			end if
 		end if
 	next
@@ -97,10 +98,76 @@ sub getMarkAverage()
 end sub
 
 '**
+'* Sub determines progression status.
+'*
+'* @param index int - The current array index.
+'*
+sub getProgressionStatus(index)
+
+	dim currentUnitCode
+
+	currentUnitCode = unitDetails(index, UC)
+
+	failedUnitsCount = failedUnitsCount + 1
+
+	for i = index + 1 to filledRows - 1
+		if currentUnitCode = unitDetails(i, UC) and unitDetails(i, UM) < MARK_PASS then
+			matchFailedCount = matchFailedCount + 1
+		end if
+	next
+
+end sub
+
+sub setProgressionStatus()
+
+	const MAX_FAILS = 3
+
+	if matchFailedCount >= MAX_FAILS then
+		progressionStatus = "<font color=""red"">Excluded</font>"
+	else
+		progressionStatus = "Good standing"
+	end if
+end sub
+
+'**
 '* Sub determines progression status of student.
 '* If student fails same unit 3 times, progressionStatus == "Excluded"
 '*
-sub getProgressionStatus()
+sub getProgressionStatusTemp()
+
+	dim currentUnitCode, matchFailedCount
+	
+	const MAX_FAILS = 3
+
+	for i = 0 to filledRows - 1
+		if unitDetails(i, UC) <> "" then
+			
+			currentUnitCode = unitDetails(i, UC)
+
+			if unitDetails(i, UM) < MARK_PASS then
+				failedUnitsCount = failedUnitsCount + 1
+			end if
+
+			for j = i + 1 to filledRows - 1
+				if currentUnitCode = unitDetails(j, UC) and unitDetails(j, UM) < MARK_PASS then
+					matchFailedCount = matchFailedCount + 1
+				end if
+			next
+		end if
+	next
+
+	response.write(matchTally)
+
+	if matchTally >= MAX_FAILS then
+		progressionStatus = "<font color=""red"">Excluded</font>"
+	else
+		progressionStatus = "Good standing"
+	end if
+end sub
+
+%>
+
+<!-- sub getProgressionStatusTemp()
 	
 	dim matchTally, currentUnitCode
 	matchTally = 0
@@ -140,8 +207,9 @@ sub getProgressionStatus()
 	end if
 
 	
-end sub
+end sub -->
 
+<%
 '**
 '* Sub compares student's course type and passed credit points total.
 '* If greater than, student has completed course, else not complete.
