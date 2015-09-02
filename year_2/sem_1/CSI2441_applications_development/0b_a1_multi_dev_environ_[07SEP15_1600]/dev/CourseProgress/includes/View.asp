@@ -6,12 +6,8 @@
 '@author Martin Ponce, 10371381
 '@version 20150831
 
-dim unitErrorTitle, studentErrorTitle
-unitErrorTitle = "<h2>Unit details errors</h2>"
-studentErrorTitle = "<h2>Student details errors</h2>"
-
 '**
-'* Print summary if no errors in data.
+'* Sub initiates the summary view.
 '*
 sub displaySummary()
 
@@ -33,11 +29,12 @@ sub displaySummary()
 
 	response.write("<strong>Enrolment type:</strong> ")
 
-	if studentDetails(ET) = 1 then
-		response.write("Full time")
-	else 
-		response.write("Part time")
-	end if
+	select case studentDetails(ET)
+		case 1
+			response.write("Full time")
+		case 2
+			response.write("Part time")
+	end select
 
 	response.write("<br />")
 
@@ -81,6 +78,7 @@ sub displaySummary()
 	response.write("</p>")
 
 	'test
+	'response.write(logicErrorCount)
 	'for i = 0 to uBound(failedUnits)
 	''	for j = 0 to lBound(failedUnits)
 	''		response.write(failedUnits(i, j) & " | <br/>")
@@ -89,7 +87,7 @@ sub displaySummary()
 end sub
 
 '**
-'* Sub displays error messages, by iterating through every item in errorMessage array.
+'* Sub initiates the error view.
 '*
 sub displayErrors()
 
@@ -115,6 +113,7 @@ sub displayErrors()
 		if unitErrorCount > 0 then
 			call displayUnitErrors()
 		end if
+
 	else
 
 		'do this if there are student details errors
@@ -125,6 +124,11 @@ sub displayErrors()
 		'do this if there are unit details errors
 		if unitErrorCount > 0 then
 			call displayUnitErrors()
+		end if
+
+		'do this if there are logic errors
+		if logicErrorCount > 0 then
+			call displayLogicErrors()
 		end if
 
 	end if
@@ -139,11 +143,16 @@ end sub
 
 sub displayStudentErrors()
 
+	dim studentErrorTitle
+	studentErrorTitle = "<h2>Student details errors</h2>"
+
 	response.write(studentErrorTitle)
 
+	response.write("<ul>")
 	for i = 0 to studentErrorCount - 1
-		response.write("<strong>" & studentErrorMessage(i, E_FIELD) & "</strong> " & studentErrorMessage(i, E_MESSAGE) & "<br />")
+		response.write("<li><strong>" & studentErrorMessage(i, E_FIELD) & "</strong> " & studentErrorMessage(i, E_MESSAGE) & "</li>")
 	next
+	response.write("</ul>")
 end sub
 
 sub displayUnitErrors()
@@ -173,5 +182,19 @@ sub displayUnitErrors()
 	response.write("</ul>")
 end sub
 
+sub displayLogicErrors()
 
+	dim logicErrorTitle
+	logicErrorTitle = "<h2>Logical errors</h2>"
+
+	response.write(logicErrorTitle)
+
+	response.write("<ul>")
+
+	for i = 0 to logicErrorCount - 1
+		response.write("<li><strong>" & logicErrorMessage(i, 0) & "</strong> " & logicErrorMessage(i, 1))
+	next
+
+	response.write("</ul>")
+end sub
 %>

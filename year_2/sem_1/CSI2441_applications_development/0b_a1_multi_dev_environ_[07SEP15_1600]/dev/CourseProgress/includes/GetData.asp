@@ -46,6 +46,7 @@ sub setupArrays()
 	'going for max amount of rows here since can't redim preserve 2d arrays
 	redim unitErrorMessage(unitRows * UNIT_COLS, UNIT_COLS)
 	redim failedUnits(unitRows, UNIT_COLS)
+	redim logicErrorMessage(unitRows, 2)
 end sub
 
 '**

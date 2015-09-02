@@ -33,6 +33,7 @@ dim unitDetails()
 'error/failed units arrays
 dim studentErrorMessage(), studentErrorCount
 dim unitErrorMessage(), unitErrorCount
+dim logicErrorMessage(), logicErrorCount
 dim failedUnits()
 
 'define regex dictionary
@@ -65,7 +66,7 @@ call validateStudentDetails()
 call validateUnitDetails()
 call validateLogic()
 
-if studentErrorCount = 0 and unitErrorCount = 0 then
+if studentErrorCount = 0 and unitErrorCount = 0 and logicErrorCount = 0 then
 	call calculateSummary()
 	call displaySummary()
 else

@@ -36,10 +36,10 @@ end function
 '* when input is missing from the form.
 '*
 '* @param data String - Either "student" or "unit"
-'* @param missingValue String - the missing value.
+'* @param field String - the missing value.
 '* @param row int - The partially filled row, use -1 if student details.
 '*
-sub missingInputError(data, missingValue, row)
+sub missingInputError(data, field, row)
 
 	dim message
 	message = "is missing."
@@ -49,14 +49,14 @@ sub missingInputError(data, missingValue, row)
 			studentErrorCount = studentErrorCount + 1
 			'redim preserve studentErrorMessage(studentErrorCount, ERROR_COLS)
 			studentErrorMessage(studentErrorCount - 1, E_ROW) = row
-			studentErrorMessage(studentErrorCount - 1, E_FIELD) = missingValue
+			studentErrorMessage(studentErrorCount - 1, E_FIELD) = field
 			studentErrorMessage(studentErrorCount - 1, E_ECODE) = ECODE_MISSING
 			studentErrorMessage(studentErrorCount - 1, E_MESSAGE) = message
 		case "unit"
 			unitErrorCount = unitErrorCount + 1
 			'redim preserve unitErrorMessage(unitErrorCount, ERROR_COLS)
 			unitErrorMessage(unitErrorCount - 1, E_ROW) = row
-			unitErrorMessage(unitErrorCount - 1, E_FIELD) = missingValue
+			unitErrorMessage(unitErrorCount - 1, E_FIELD) = field
 			unitErrorMessage(unitErrorCount - 1, E_ECODE) = ECODE_MISSING	
 			unitErrorMessage(unitErrorCount - 1, E_MESSAGE) = message	
 	end select
