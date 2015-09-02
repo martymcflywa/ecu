@@ -147,7 +147,8 @@ sub bubbleSort(theArray)
         swapIndex = i
 	    	
         for j = i + 1 to uBound(theArray)
-            if theArray(j) < newValue then
+        	'ignore empty rows
+            if theArray(j) < newValue and theArray(j) <> "" then
                 swapIndex = j
                 newValue = theArray(j)
             end if
