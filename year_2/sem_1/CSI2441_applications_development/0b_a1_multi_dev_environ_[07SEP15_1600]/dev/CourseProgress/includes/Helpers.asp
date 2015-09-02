@@ -160,61 +160,65 @@ sub bubbleSort(theArray)
     next
 end sub
 
-Sub bubbleSort2D( byRef arrArray, DimensionToSort )
-    Dim row, j, StartingKeyValue, StartingOtherValue, _
-        NewStartingKey, NewStartingOther, _
-        swap_pos, OtherDimension
-    Const column = 1
+'**
+'* Function performs bubble sort on a two-dimensional array.
+'* Adapted from: http://www.4guysfromrolla.com/webtech/011601-1.shtml
+'*
+'* @param theArray - The array to sort.
+'* @param dimToSort - The dimension to sort the 2d array by. Either 0 or 1.
+'*
+sub bubbleSort2D(theArray, dimToSort)
+
+    dim originalValue, originalOtherValue
+    dim newKey, newOtherKey
+    dim swapIndex, otherDim
+
+    const column = 1
     
-    ' Ensure that the user has picked a valid DimensionToSort
-    If DimensionToSort = 1 then
-		OtherDimension = 0
-	ElseIf DimensionToSort = 0 then
-		OtherDimension = 1
-	Else
-	    'Shoot, invalid value of DimensionToSort
-	    Response.Write "Invalid dimension for DimensionToSort: " & _
-	                   "must be value of 1 or 0."
-	    Response.End
-	End If
+    'validate dimToSort param
+    if dimToSort = 1 then
+		otherDim = 0
+	elseif dimToSort = 0 then
+		otherDim = 1
+	else
+	    response.write "Invalid dimension for dimToSort: " & "must be value of 1 or 0."
+	    'kill exec
+	    response.end
+	end if
     
-    For row = 0 To UBound( arrArray, column ) - 1
-    'Start outer loop.
-    
-        'Take a snapshot of the first element
-        'in the array because if there is a 
-        'smaller value elsewhere in the array 
-        'we'll need to do a swap.
-        StartingKeyValue = arrArray ( row, DimensionToSort )
-        StartingOtherValue = arrArray ( row, OtherDimension )
+    'outer loop
+    for i = 0 To uBound(theArray, column) - 1
+
+        originalValue = theArray(i, dimToSort)
+        originalOtherValue = theArray(i, otherDim)
         
-        ' Default the Starting values to the First Record
-        NewStartingKey = arrArray ( row, DimensionToSort )
-        NewStartingOther = arrArray ( row, OtherDimension )
+        newKey = theArray(i, dimToSort)
+        newOtherKey = theArray(i, otherDim)
         
-        swap_pos = row
+        swapIndex = i
 		
-        For j = row + 1 to UBound( arrArray, column )
-        'Start inner loop.
-            If arrArray ( j, DimensionToSort ) < NewStartingKey Then
-            'This is now the lowest number - 
-            'remember it's position.
-                swap_pos = j
-                NewStartingKey = arrArray ( j, DimensionToSort )
-                NewStartingOther = arrArray ( j, OtherDimension )
-            End If
-        Next
+		'inner loop
+        for j = i + 1 to uBound(theArray, column)
+
+            if theArray(j, dimToSort) < newKey then
+
+            	'store lowest value's index
+                swapIndex = j
+                newKey = theArray(j, dimToSort)
+                newOtherKey = theArray(j, otherDim)
+            end if
+        next
 		
-        If swap_pos <> row Then
-        'If we get here then we are about to do a swap
-        'within the array.
-            arrArray ( swap_pos, DimensionToSort ) = StartingKeyValue
-            arrArray ( swap_pos, OtherDimension ) = StartingOtherValue
+        if swapIndex <> i then
+
+        	'swap within array
+            theArray(swapIndex, dimToSort) = originalValue
+            theArray(swapIndex, otherDim) = originalOtherValue
             
-            arrArray ( row, DimensionToSort ) = NewStartingKey
-            arrArray ( row, OtherDimension ) = NewStartingOther
+            theArray(i, dimToSort) = newKey
+            theArray(i, otherDim) = newOtherKey
             
-        End If	
-    Next
-End Sub
+        end if	
+    next
+end sub
 %>
