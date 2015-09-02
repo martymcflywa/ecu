@@ -165,19 +165,19 @@ sub validateUnitMark(index)
 	end if
 end sub
 
+'**
+'* Sub initiates logic validation.
+'*
 sub validateLogic()
-	
-	dim unitDetailsCopy
-	unitDetailsCopy = unitDetails
-
-	call getUnitCodeMatches(unitDetails)
-
+	call getUnitMatches(unitDetails)
 end sub
 
-sub getUnitCodeMatches(theArray)
+'**
+'* Sub initiates logic validation.
+'*
+sub getUnitMatches(theArray)
 
-	dim matchedUnits(15, 4)
-	dim matchTally, currentUnitCode, currentSem
+	dim currentUnitCode, currentSem
 
 	for i = 0 to filledRows - 1
 
