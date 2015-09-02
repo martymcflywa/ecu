@@ -171,11 +171,11 @@ sub validateLogic()
 	unitDetailsCopy = unitDetails
 
 	'sort copy by unit code
-	bubbleSort2D(unitDetailsCopy, 0)
+	call bubbleSort2D(unitDetailsCopy, 0)
 
 	call iterateCopy(unitDetailsCopy)
 
-sub
+end sub
 
 sub iterateCopy(theCopyArray)
 	
