@@ -22,6 +22,8 @@ const CP_MASTERS_RESEARCH = 240
 const CP_FULLTIME = 60
 const CP_PARTTIME = 30
 
+const MARK_PASS = 50
+
 'failed units
 dim failedUnitsCount
 failedUnitsCount = 0
@@ -47,8 +49,6 @@ end sub
 '* Sub iterates through unitDetails array, calling other subs when appropriate.
 '*
 sub iterateUnitDetails()
-
-	const MARK_PASS = 50
 	
 	for i = 0 to unitRows - 1
 		if unitDetails(i, UC) <> "" then

@@ -232,13 +232,17 @@ sub validatePassMatchUnits(theArray, matchTally)
 
 			if currentUnitCode = theArray(i, UC) and theArray(i, UM) >= MARK_PASS then
 				call logicError(theArray(i, UC), "is passed more than once.")
+
+				response.write(theArray(i, UC) & "<br />")
+				response.write(theArray(i, CP) & "<br />")
+				response.write(theArray(i, YS) & "<br />")
+				response.write(theArray(i, UM) & "<br />")
+
 			else
 				currentUnitCode = theArray(i, UC)
 			end if
 		end if
 	next
-
-	response.write(MARK_PASS)
 end sub
 
 '**
