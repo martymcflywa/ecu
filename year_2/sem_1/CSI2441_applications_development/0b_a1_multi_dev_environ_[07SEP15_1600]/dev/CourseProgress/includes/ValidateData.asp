@@ -189,7 +189,7 @@ sub getUnitCodeMatches(theArray)
 			for j = i + 1 to filledRows - 1
 
 				call validatePassMatchUnits(currentUnitCode, theArray, i, j)
-				call validateSemMatchUnits(currentUnitCode, theArray, i, j)
+				call validateSemMatchUnits(currentUnitCode, currentSem, theArray, i, j)
 				'if currentUnitCode = theArray(j, UC) and theArray(j, UM) >= MARK_PASS then
 				''	call logicError(theArray(i, UC), "is passed more than once.")
 				'end if
@@ -208,7 +208,7 @@ sub validatePassMatchUnits(currentUnitCode, theArray, indexI, indexJ)
 	end if
 end sub
 
-sub validateSemMatchUnits(currentUnitCode, theArray, indexI, indexJ)
+sub validateSemMatchUnits(currentUnitCode, currentSem, theArray, indexI, indexJ)
 	if currentUnitCode = theArray(indexJ, UC) and currentSem = theArray(indexJ, YS) then
 		call logicError(theArray(indexI, UC), "appears more than once in the same semester " & theArray(indexI, YS) & ".")
 	end if
