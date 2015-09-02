@@ -232,7 +232,6 @@ sub validatePassMatchUnits(theArray, matchTally)
 
 			if currentUnitCode = theArray(i, UC) and theArray(i, UM) >= MARK_PASS then
 				call logicError(theArray(i, UC), "is passed more than once.")
-				response.write(currentUnitCode & "<br/>" & matchTally & "<br/>")
 			else
 				currentUnitCode = theArray(i, UC)
 			end if
@@ -260,7 +259,7 @@ sub validateSemMatchUnits(theArray, matchTally)
 			if i = 0 then
 				currentUnitCode = theArray(i, UC)
 			end if
-			
+
 			if currentUnitCode = theArray(i, UC) and currentSem = theArray(i, YS) then
 				call logicError(theArray(i, UC), "appears more than once in the same semester " & theArray(i, YS) & ".")
 			elseif currentUnitCode = theArray(i, UC) and currentSem <> theArray(i, YS) then
