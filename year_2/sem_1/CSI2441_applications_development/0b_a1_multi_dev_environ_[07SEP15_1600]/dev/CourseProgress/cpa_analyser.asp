@@ -34,10 +34,6 @@ dim unitDetails()
 dim studentErrorMessage(), studentErrorCount
 dim unitErrorMessage(), unitErrorCount
 dim failedUnits()
-'init arrays with single row each
-'redim studentErrorMessage(STUDENT_DETAILS_COUNT, 4)
-'init size here, 'redim preserve' not behaving
-'redim unitErrorMessage(120, 4)
 
 'define regex dictionary
 dim regExDict
@@ -79,11 +75,11 @@ end if
 
 <!-- BEGIN INCLUDES -->
 
-<!-- #include file ="includes/GetData.asp" -->
-<!-- #include file ="includes/ValidateData.asp" -->
-<!-- #include file ="includes/BusinessLogic.asp" -->
-<!-- #include file ="includes/View.asp" -->
-<!-- #include file ="includes/Helpers.asp" -->
+<!-- #include file = "includes/GetData.asp" -->
+<!-- #include file = "includes/ValidateData.asp" -->
+<!-- #include file = "includes/BusinessLogic.asp" -->
+<!-- #include file = "includes/View.asp" -->
+<!-- #include file = "includes/Helpers.asp" -->
 
 <p>&nbsp;</p>
 </body>

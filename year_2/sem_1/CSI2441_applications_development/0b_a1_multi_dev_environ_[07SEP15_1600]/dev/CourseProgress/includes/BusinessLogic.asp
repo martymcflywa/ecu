@@ -22,8 +22,6 @@ const CP_MASTERS_RESEARCH = 240
 const CP_FULLTIME = 60
 const CP_PARTTIME = 30
 
-const MARK_PASS = 50
-
 'failed units
 dim failedUnitsCount
 failedUnitsCount = 0
@@ -53,6 +51,8 @@ end sub
 '* Sub iterates through unitDetails array, calling other subs when appropriate.
 '*
 sub iterateUnitDetails()
+
+	const MARK_PASS = 50
 	
 	for i = 0 to unitRows - 1
 		if unitDetails(i, UC) <> "" then
@@ -63,7 +63,7 @@ sub iterateUnitDetails()
 				call getUnitAttemptPass()
 				call getMarkTotal(i)
 			'else do this if failed
-			else
+			elseif unitDetails(i, UM) < MARK_PASS then
 				call getFailedUnits(i)
 			end if
 		end if
@@ -108,7 +108,9 @@ sub getProgressionStatus()
 	
 	dim matchTally, currentUnitCode
 	matchTally = 0
-	'currentUnitCode = ""
+	currentUnitCode = "null"
+
+	const MAX_FAILS = 3
 
 	if failedUnitsCount > 0 then
 
@@ -120,16 +122,19 @@ sub getProgressionStatus()
 			'sum failed units cp
 			failedUnitsCP = failedUnitsCP + failedUnits(i, CP)
 
+			if i = 0 then
+				currentUnitCode = failedUnits(i, UC)
+			end if
+
 			if currentUnitCode = failedUnits(i, UC) then
 				matchTally = matchTally + 1
 			else
 				currentUnitCode = failedUnits(i, UC)
 			end if
 
-			response.write(currentUnitCode & "!")
 		next
 
-		if matchTally >= 3 then
+		if matchTally >= MAX_FAILS then
 			progressionStatus = "<font color=""red"">Excluded</font>"
 		else
 			progressionStatus = "Good standing"

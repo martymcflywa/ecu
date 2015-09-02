@@ -200,7 +200,8 @@ sub bubbleSort2D(theArray, dimToSort)
 		'inner loop
         for j = i + 1 to uBound(theArray, column)
 
-            if theArray(j, dimToSort) < newKey then
+        	'lets ignore empty rows here, sort populated rows only
+            if theArray(j, dimToSort) < newKey and theArray(j, dimToSort) <> "" then
 
             	'store lowest value's index
                 swapIndex = j
