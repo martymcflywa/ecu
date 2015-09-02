@@ -95,20 +95,21 @@ end sub
 '*
 '* @param field String - The field that failed validation.
 '* @param message String - The error message.
+'* @param rows String - The rows affected.
 '*
-sub logicError(field, message, row)
+sub logicError(field, message, rows)
 	logicErrorCount = logicErrorCount + 1
 	logicErrorMessage(logicErrorCount - 1, 0) = field
 	logicErrorMessage(logicErrorCount - 1, 1) = message
-	logicErrorMessage(logicErrorCount - 1, 2) = row
+	logicErrorMessage(logicErrorCount - 1, 2) = rows
 end sub
 
 '**
 '* Function performs regex match between target and pattern. Returns boolean.
 '* Adapted from: http://www.mikesdotnetting.com/article/24/regular-expressions-and-vbscript
 '* 
-'* @param strTarget - The target to match.
-'* @param strPattern - The regex pattern.
+'* @param strTarget String - The target to match.
+'* @param strPattern String - The regex pattern.
 '* @return boolean.
 '*
 function isRegExMatch(strTarget, strPattern)

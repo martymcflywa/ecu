@@ -173,7 +173,9 @@ sub validateLogic()
 end sub
 
 '**
-'* Sub initiates logic validation.
+'* Sub searches array for matched Unit Codes, calls appropriate sub when found.
+'*
+'* @param theArray - The array to search.
 '*
 sub getUnitMatches(theArray)
 
@@ -194,15 +196,33 @@ sub getUnitMatches(theArray)
 	next
 end sub
 
+'**
+'* Sub implements business rule:
+'* A unit cannot appear as Passed more than once.
+'*
+'* @param currentUnitCode String - The current unit code during iteration.
+'* @param theArray - The array with data being validated.
+'* @param indexI int - The current index during iteration.
+'* @param indexJ int - The current index + 1.
+'*
 sub validatePassMatchUnits(currentUnitCode, theArray, indexI, indexJ)
 	if currentUnitCode = theArray(indexJ, UC) and theArray(indexJ, UM) >= MARK_PASS then
-		call logicError(theArray(indexI, UC), "is passed more than once.")
+		call logicError(theArray(indexI, UC), "is passed more than once at rows ", indexI + 1 & " & " & indexJ + 1)
 	end if
 end sub
 
+'**
+'* Sub implements business rule:
+'* A unit cannot appear more than once in the same semester.
+'*
+'* @param currentUnitCode String - The current unit code during iteration.
+'* @param theArray - The array with data being validated.
+'* @param indexI int - The current index during iteration.
+'* @param indexJ int - The current index + 1.
+'*
 sub validateSemMatchUnits(currentUnitCode, currentSem, theArray, indexI, indexJ)
 	if currentUnitCode = theArray(indexJ, UC) and currentSem = theArray(indexJ, YS) then
-		call logicError(theArray(indexI, UC), "appears more than once in the same semester " & theArray(indexI, YS) & ".")
+		call logicError(theArray(indexI, UC), "appears more than once in the same semester " & theArray(indexI, YS) & " at rows ", indexI + 1 & " & " & indexJ + 1)
 	end if
 end sub
 
