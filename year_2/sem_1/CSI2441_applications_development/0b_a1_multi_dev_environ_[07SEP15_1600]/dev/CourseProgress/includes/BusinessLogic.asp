@@ -27,6 +27,9 @@ const MARK_PASS = 50
 'failed units
 dim failedUnitsCount
 failedUnitsCount = 0
+'to assist calculating remaining semesters
+dim failedUnitsCP
+failedUnitsCP = 0
 
 'dim failedUnits()
 'redim failedUnits(10)
@@ -39,10 +42,10 @@ sub calculateSummary()
 
 	call iterateUnitDetails()
 	call getCPDelta()
-	call getSemRemaining()
 	call getCompleteStatus()
 	call getMarkAverage()
 	call getProgressionStatus()
+	call getSemRemaining()
 
 end sub
 
@@ -105,23 +108,29 @@ sub getProgressionStatus()
 	
 	dim matchTally, currentUnitCode
 	matchTally = 0
-	currentUnitCode = ""
+	'currentUnitCode = ""
 
 	if failedUnitsCount > 0 then
 
-		'sort by first dim
+		'sort by first dim, ie. unit code
 		call bubbleSort2D(failedUnits, 0)
 
 		for i = 0 to failedUnitsCount - 1
+
+			'sum failed units cp
+			failedUnitsCP = failedUnitsCP + failedUnits(i, CP)
+
 			if currentUnitCode = failedUnits(i, UC) then
 				matchTally = matchTally + 1
 			else
 				currentUnitCode = failedUnits(i, UC)
 			end if
+
+			response.write(currentUnitCode & "!")
 		next
 
 		if matchTally >= 3 then
-			progressionStatus = "Excluded"
+			progressionStatus = "<font color=""red"">Excluded</font>"
 		else
 			progressionStatus = "Good standing"
 		end if
@@ -221,9 +230,17 @@ end sub
 sub getSemRemaining()
 	select case studentDetails(ET)
 		case 1
-			semRemaining = cpDelta / CP_FULLTIME
+			if failedUnitsCount = 0 then
+				semRemaining = cpDelta / CP_FULLTIME
+			else
+				semRemaining = (cpDelta + failedUnitsCP) / CP_FULLTIME
+			end if
 		case 2
-			semRemaining = cpDelta / CP_PARTTIME
+			if failedUnitsCount = 0 then
+				semRemaining = cpDelta / CP_PARTTIME
+			else
+				semRemaining = (cpDelta + failedUnitsCP) / CP_PARTTIME
+			end if
 	end select
 end sub
 
