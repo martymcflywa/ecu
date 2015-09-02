@@ -6,6 +6,13 @@
 '@author Martin Ponce, 10371381
 '@version 20150831
 
+dim studentErrorTitle
+studentErrorTitle = "<h2>Student details errors</h2>"
+dim unitErrorTitle
+unitErrorTitle = "<h2>Unit details errors</h2>"
+dim logicErrorTitle
+logicErrorTitle = "<h2>Logical errors</h2>"
+
 '**
 '* Sub initiates the summary view.
 '*
@@ -141,10 +148,10 @@ sub displayErrors()
 
 end sub
 
+'**
+'* Sub displays student errors.
+'*
 sub displayStudentErrors()
-
-	dim studentErrorTitle
-	studentErrorTitle = "<h2>Student details errors</h2>"
 
 	response.write(studentErrorTitle)
 
@@ -155,13 +162,13 @@ sub displayStudentErrors()
 	response.write("</ul>")
 end sub
 
+'**
+'* Sub displays unit errors.
+'*
 sub displayUnitErrors()
 
 	dim currentRow
 	currentRow = 0
-
-	dim unitErrorTitle
-	unitErrorTitle = "<h2>Unit details errors</h2>"
 
 	response.write(unitErrorTitle)
 
@@ -182,10 +189,10 @@ sub displayUnitErrors()
 	response.write("</ul>")
 end sub
 
+'**
+'* Sub displays logic errors.
+'*
 sub displayLogicErrors()
-
-	dim logicErrorTitle
-	logicErrorTitle = "<h2>Logical errors</h2>"
 
 	response.write(logicErrorTitle)
 

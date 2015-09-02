@@ -224,12 +224,22 @@ sub validatePassMatchUnits(theArray, matchTally)
 	dim currentUnitCode
 	
 	for i = 0 to matchTally - 1
-		if theArray(i, UC) <> "" and currentUnitCode = theArray(i, UC) and theArray(i, UM) >= MARK_PASS then
-			call logicError(theArray(i, UC), "is passed more than once.")
-		else
-			currentUnitCode = theArray(i, UC)
+		if theArray(i, UC) <> "" then
+
+			if i = 0 then
+				currentUnitCode = theArray(i, UC)
+			end if
+
+			if currentUnitCode = theArray(i, UC) and theArray(i, UM) >= MARK_PASS then
+				call logicError(theArray(i, UC), "is passed more than once.")
+				response.write(currentUnitCode & "<br/>" & matchTally & "<br/>")
+			else
+				currentUnitCode = theArray(i, UC)
+			end if
 		end if
 	next
+
+	
 end sub
 
 '**
@@ -244,12 +254,20 @@ sub validateSemMatchUnits(theArray, matchTally)
 	dim currentUnitCode, currentSem
 
 	for i = 0 to matchTally - 1
-		if theArray(i, UC) <> "" and currentUnitCode = theArray(i, UC) and currentSem = theArray(i, YS) then
-			call logicError(theArray(i, UC), "appears more than once in the same semester " & theArray(i, YS) & ".")
-		elseif currentUnitCode = theArray(i, UC) and currentSem <> theArray(i, YS) then
-			currentSem = theArray(i, YS)
-		else
-			currentUnitCode = theArray(i, UC)
+
+		if theArray(i, UC) <> "" then
+
+			if i = 0 then
+				currentUnitCode = theArray(i, UC)
+			end if
+			
+			if currentUnitCode = theArray(i, UC) and currentSem = theArray(i, YS) then
+				call logicError(theArray(i, UC), "appears more than once in the same semester " & theArray(i, YS) & ".")
+			elseif currentUnitCode = theArray(i, UC) and currentSem <> theArray(i, YS) then
+				currentSem = theArray(i, YS)
+			else
+				currentUnitCode = theArray(i, UC)
+			end if
 		end if
 	next
 end sub
