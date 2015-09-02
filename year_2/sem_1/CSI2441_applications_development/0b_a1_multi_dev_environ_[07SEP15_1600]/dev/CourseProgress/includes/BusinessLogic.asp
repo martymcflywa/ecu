@@ -115,9 +115,11 @@ sub getProgressionStatus(index)
 			matchFailedCount = matchFailedCount + 1
 		end if
 	next
-
 end sub
 
+'**
+'* Sub sets progression status.
+'*
 sub setProgressionStatus()
 
 	const MAX_FAILS = 3
@@ -129,87 +131,6 @@ sub setProgressionStatus()
 	end if
 end sub
 
-'**
-'* Sub determines progression status of student.
-'* If student fails same unit 3 times, progressionStatus == "Excluded"
-'*
-sub getProgressionStatusTemp()
-
-	dim currentUnitCode, matchFailedCount
-	
-	const MAX_FAILS = 3
-
-	for i = 0 to filledRows - 1
-		if unitDetails(i, UC) <> "" then
-			
-			currentUnitCode = unitDetails(i, UC)
-
-			if unitDetails(i, UM) < MARK_PASS then
-				failedUnitsCount = failedUnitsCount + 1
-			end if
-
-			for j = i + 1 to filledRows - 1
-				if currentUnitCode = unitDetails(j, UC) and unitDetails(j, UM) < MARK_PASS then
-					matchFailedCount = matchFailedCount + 1
-				end if
-			next
-		end if
-	next
-
-	response.write(matchTally)
-
-	if matchTally >= MAX_FAILS then
-		progressionStatus = "<font color=""red"">Excluded</font>"
-	else
-		progressionStatus = "Good standing"
-	end if
-end sub
-
-%>
-
-<!-- sub getProgressionStatusTemp()
-	
-	dim matchTally, currentUnitCode
-	matchTally = 0
-	currentUnitCode = "null"
-
-	const MAX_FAILS = 3
-
-	if failedUnitsCount > 0 then
-
-		'sort by first dim, ie. unit code
-		call bubbleSort2D(failedUnits, 0)
-
-		for i = 0 to failedUnitsCount - 1
-
-			'sum failed units cp
-			failedUnitsCP = failedUnitsCP + failedUnits(i, CP)
-
-			if i = 0 then
-				currentUnitCode = failedUnits(i, UC)
-			end if
-
-			if currentUnitCode = failedUnits(i, UC) then
-				matchTally = matchTally + 1
-			else
-				currentUnitCode = failedUnits(i, UC)
-			end if
-
-		next
-
-		if matchTally >= MAX_FAILS then
-			progressionStatus = "<font color=""red"">Excluded</font>"
-		else
-			progressionStatus = "Good standing"
-		end if
-	else
-		progressionStatus = "Good standing"
-	end if
-
-	
-end sub -->
-
-<%
 '**
 '* Sub compares student's course type and passed credit points total.
 '* If greater than, student has completed course, else not complete.
@@ -260,21 +181,21 @@ sub getPassedCP(index)
 end sub
 
 '**
-'* Sub totals number of units attempted.
+'* Sub sums number of units attempted.
 '*
 sub getUnitAttemptTotal()
 	unitAttemptTotal = unitAttemptTotal + 1
 end sub
 
 '**
-'* Sub totals number of units passed.
+'* Sub sums number of units passed.
 '*
 sub getUnitAttemptPass()
 	unitsPassed = unitsPassed + 1
 end sub
 
 '**
-'* Sub calculates cp required to complete course.
+'* Sub calculates CP required to complete course.
 '*
 sub getCPDelta()
 	
@@ -313,18 +234,5 @@ sub getSemRemaining()
 	end select
 end sub
 
-'**
-'* Sub records failed units into array.
-'*
-'* @param index int - Current array index.
-'*
-sub getFailedUnits(index)
-	failedUnitsCount = failedUnitsCount + 1
-	'redim preserve failedUnits(failedUnitsCount)
-	failedUnits(failedUnitsCount - 1, UC) = unitDetails(index, UC)
-	failedUnits(failedUnitsCount - 1, CP) = unitDetails(index, CP)
-	failedUnits(failedUnitsCount - 1, YS) = unitDetails(index, YS)
-	failedUnits(failedUnitsCount - 1, UM) = unitDetails(index, UM)
-end sub
 
 %>
