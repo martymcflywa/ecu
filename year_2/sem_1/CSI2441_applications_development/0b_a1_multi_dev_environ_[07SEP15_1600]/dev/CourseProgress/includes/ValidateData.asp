@@ -187,16 +187,8 @@ sub getUnitCodeMatches(theArray)
 			currentSem = theArray(i, YS)
 		
 			for j = i + 1 to filledRows - 1
-
 				call validatePassMatchUnits(currentUnitCode, theArray, i, j)
 				call validateSemMatchUnits(currentUnitCode, currentSem, theArray, i, j)
-				'if currentUnitCode = theArray(j, UC) and theArray(j, UM) >= MARK_PASS then
-				''	call logicError(theArray(i, UC), "is passed more than once.")
-				'end if
-				
-				'if currentUnitCode = theArray(j, UC) and currentSem = theArray(j, YS) then
-				''	call logicError(theArray(i, UC), "appears more than once in the same semester " & theArray(i, YS) & ".")
-				'end if
 			next
 		end if
 	next
@@ -214,121 +206,4 @@ sub validateSemMatchUnits(currentUnitCode, currentSem, theArray, indexI, indexJ)
 	end if
 end sub
 
-'!!!!!!!!!!!!!!!!!!!!
-'!!!! DELETE HERE!!!!
-'!!!!!!!!!!!!!!!!!!!!
-
 %>
-
-<!-- 
-'**
-'* Sub initiates logic validation.
-'* Creates a copy of unitDetails array and sorts it by Unit Code.
-'*
-sub validateLogic()
-
-	dim unitDetailsCopy
-	unitDetailsCopy = unitDetails
-
-	'sort copy by unit code
-	call bubbleSort2D(unitDetailsCopy, 0)
-
-	call getUnitCodeMatches(unitDetailsCopy)
-end sub
-
-'**
-'* Sub collects any Unit Code matches from an array.
-'* Stores those matches in matchedUnits array.
-'* matchedUnits array then sent for validation.
-'*
-'* @parm theArray - The array to look for matches.
-'*
-sub getUnitCodeMatches(theArray)
-	
-	dim matchedUnits(15, 4)
-	dim matchTally, currentUnitCode
-
-	for i = 0 to filledRows - 1
-
-		'put all matched units in a temp array
-		if currentUnitCode = theArray(i, UC) then
-			matchTally = matchTally + 1
-			matchedUnits(matchTally - 1, UC) = theArray(i, UC)
-			matchedUnits(matchTally - 1, CP) = theArray(i, CP)
-			matchedUnits(matchTally - 1, YS) = theArray(i, YS)
-			matchedUnits(matchTally - 1, UM) = theArray(i, UM)
-		else
-			currentUnitCode = theArray(i, UC)
-		end if
-	next
-
-	if matchTally > 0 then
-		call validatePassMatchUnits(matchedUnits, matchTally)
-		call validateSemMatchUnits(matchedUnits, matchTally)
-	end if
-end sub
-
-'**
-'* Sub implements business rule:
-'* A unit cannot appear as passed more than once.
-'*
-'* @param theArray - The array containing matched Unit Codes
-'* @param matchTally int - The number of matches found, used for upper bound.
-'*
-sub validatePassMatchUnits(theArray, matchTally)
-
-	dim currentUnitCode
-	
-	for i = 0 to matchTally - 1
-		if theArray(i, UC) <> "" then
-
-			if i = 0 then
-				currentUnitCode = theArray(i, UC)
-			end if
-
-			if currentUnitCode = theArray(i, UC) and theArray(i, UM) >= MARK_PASS then
-				call logicError(theArray(i, UC), "is passed more than once.")
-
-				response.write(theArray(i, UC) & "<br />")
-				response.write(theArray(i, CP) & "<br />")
-				response.write(theArray(i, YS) & "<br />")
-				response.write(theArray(i, UM) & "<br />")
-
-			else
-				currentUnitCode = theArray(i, UC)
-			end if
-		end if
-	next
-end sub
-
-'**
-'* Sub implements business rule:
-'* A unit cannot appear more than once in the same semester.
-'*
-'* @param theArray - The array containing matched Unit Codes
-'* @param matchTally int - The number of matches found, used for upper bound.
-'*
-sub validateSemMatchUnits(theArray, matchTally)
-	
-	dim currentUnitCode, currentSem
-
-	for i = 0 to matchTally - 1
-
-		if theArray(i, UC) <> "" then
-
-			if i = 0 then
-				currentUnitCode = theArray(i, UC)
-				currentSem = theArray(i, YS)
-			end if
-
-			if currentUnitCode = theArray(i, UC) and currentSem = theArray(i, YS) then
-				call logicError(theArray(i, UC), "appears more than once in the same semester " & theArray(i, YS) & ".")
-			elseif currentUnitCode = theArray(i, UC) and currentSem <> theArray(i, YS) then
-				currentSem = theArray(i, YS)
-			else
-				currentUnitCode = theArray(i, UC)
-				currentSem = theArray(i, YS)
-			end if
-		end if
-	next
-end sub -->
