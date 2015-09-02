@@ -63,6 +63,7 @@ call getUnitDetails()
 
 call validateStudentDetails()
 call validateUnitDetails()
+call validateLogic()
 
 if studentErrorCount = 0 and unitErrorCount = 0 then
 	call calculateSummary()

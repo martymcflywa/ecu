@@ -164,4 +164,26 @@ sub validateUnitMark(index)
 		call validateError("unit", "Unit Mark", index + 1, "must be between 1 and 3 digits.")
 	end if
 end sub
+
+sub validateLogic()
+
+	dim unitDetailsCopy
+	unitDetailsCopy = unitDetails
+
+	'sort copy by unit code
+	bubbleSort2D(unitDetailsCopy, 0)
+
+	call iterateCopy(unitDetailsCopy)
+
+sub
+
+sub iterateCopy(theCopyArray)
+	
+	dim currentUnitCode
+
+	for i = 0 to filledRows - 1
+		
+	next
+
+end sub
 %>
