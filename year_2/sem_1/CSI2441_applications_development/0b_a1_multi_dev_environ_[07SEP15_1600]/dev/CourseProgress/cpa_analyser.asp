@@ -54,6 +54,12 @@ dim progressionStatus, completeStatus
 
 markTotal = 0
 
+'some title strings for error view
+dim studentErrorTitle, unitErrorTitle, logicErrorTitle
+studentErrorTitle = "<h2>Student details errors</h2>"
+unitErrorTitle = "<h2>Unit details errors</h2>"
+logicErrorTitle = "<h2>Logical errors</h2>"
+
 '****************************
 '*** START MAINLINE LOGIC ***
 '****************************

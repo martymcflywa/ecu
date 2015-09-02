@@ -21,6 +21,7 @@ const ECODE_VALIDATE = 1
 '* Returns boolean.
 '*
 '* @return boolean.
+'*
 function isFieldPopulated(field)
 	dim b
 	if request.form(field) <> "" then
@@ -127,6 +128,7 @@ end function
 '* @param strTarget - The target to match.
 '* @param strPattern - The regex pattern.
 '* @return String.
+'*
 function getRegExMatch(strTarget, strPattern)
 
 	dim matchString, returnString
@@ -144,97 +146,4 @@ function getRegExMatch(strTarget, strPattern)
 	getRegExMatch = returnString
 end function
 
-'**
-'* Function performs bubble sort on a one-dimensional array.
-'* Adapted from: http://www.4guysfromrolla.com/demos/bubblesort.asp
-'*
-'* @param theArray - The array to sort.
-'*
-sub bubbleSort(theArray)
-
-    dim originalValue, newValue, swapIndex
-
-    for i = 0 To uBound(theArray) - 1
-
-        originalValue = theArray(i)
-        newValue = theArray(i)
-        swapIndex = i
-	    	
-        for j = i + 1 to uBound(theArray)
-        	'ignore empty rows
-            if theArray(j) < newValue and theArray(j) <> "" then
-                swapIndex = j
-                newValue = theArray(j)
-            end if
-        next
-	    
-        if swapIndex <> i then
-            theArray(swapIndex) = originalValue
-            theArray(i) = newValue
-        end if
-    next
-end sub
-
-'**
-'* Function performs bubble sort on a two-dimensional array.
-'* Adapted from: http://www.4guysfromrolla.com/webtech/011601-1.shtml
-'*
-'* @param theArray - The array to sort.
-'* @param dimToSort - The dimension to sort the 2d array by. Either 0 or 1.
-'*
-sub bubbleSort2D(theArray, dimToSort)
-
-    dim originalValue, originalOtherValue
-    dim newKey, newOtherKey
-    dim swapIndex, otherDim
-
-    const COLUMN = 1
-    
-    'validate dimToSort param
-    if dimToSort = 1 then
-		otherDim = 0
-	elseif dimToSort = 0 then
-		otherDim = 1
-	else
-	    response.write "Invalid dimension for dimToSort: " & "must be value of 1 or 0."
-	    'kill exec
-	    response.end
-	end if
-    
-    'outer loop
-    for i = 0 To uBound(theArray, COLUMN) - 1
-
-        originalValue = theArray(i, dimToSort)
-        originalOtherValue = theArray(i, otherDim)
-        
-        newKey = theArray(i, dimToSort)
-        newOtherKey = theArray(i, otherDim)
-        
-        swapIndex = i
-		
-		'inner loop
-        for j = i + 1 to uBound(theArray, COLUMN)
-
-        	'lets ignore empty rows here, sort populated rows only
-            if theArray(j, dimToSort) < newKey and theArray(j, dimToSort) <> "" then
-
-            	'store lowest value's index
-                swapIndex = j
-                newKey = theArray(j, dimToSort)
-                newOtherKey = theArray(j, otherDim)
-            end if
-        next
-		
-        if swapIndex <> i then
-
-        	'swap within array
-            theArray(swapIndex, dimToSort) = originalValue
-            theArray(swapIndex, otherDim) = originalOtherValue
-            
-            theArray(i, dimToSort) = newKey
-            theArray(i, otherDim) = newOtherKey
-            
-        end if	
-    next
-end sub
 %>

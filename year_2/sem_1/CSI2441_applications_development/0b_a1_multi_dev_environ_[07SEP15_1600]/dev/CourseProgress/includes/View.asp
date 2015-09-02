@@ -6,13 +6,6 @@
 '@author Martin Ponce, 10371381
 '@version 20150831
 
-dim studentErrorTitle
-studentErrorTitle = "<h2>Student details errors</h2>"
-dim unitErrorTitle
-unitErrorTitle = "<h2>Unit details errors</h2>"
-dim logicErrorTitle
-logicErrorTitle = "<h2>Logical errors</h2>"
-
 '**
 '* Sub initiates the summary view.
 '*
@@ -192,41 +185,12 @@ sub displayUnitErrors()
 	response.write("</ul>")
 end sub
 
-'**
-'* Sub displays logic errors.
-'*
-sub displayLogicErrorsTemp()
-	dim currentRow, currentMessage
-	dim skipRow
-
-	response.write(logicErrorTitle)
-	response.write("<ul>")
-
-	for i = 0 to logicErrorCount - 1
-
-		if i = 0 then
-			currentRow = logicErrorMessage(i, 0)
-			currentMessage = logicErrorMessage(i, 1)
-		end if
-
-		'if currentRow = logicErrorMessage(i, 0) and currentMessage = logicErrorMessage(i, 1) then
-			if logicErrorMessage(i, 0) = logicErrorMessage(i + 1, 0) and logicErrorMessage(i, 1) = logicErrorMessage(i + 1, 1) then
-				response.write("<li><strong>" & logicErrorMessage(i, 0) & "</strong> " & logicErrorMessage(i, 1) & " on rows " & logicErrorMessage(i, 2) & " and " & logicErrorMessage(i + 1, 2))
-				i = i + 1
-			end if
-		'else
-			'currentRow = logicErrorMessage(i, 0)
-			'currentMessage = logicErrorMessage(i, 1)
-		'end if
-	next
-end sub
-
-
 sub displayLogicErrors()
 
 	dim currentRow, currentMessage
 
 	response.write(logicErrorTitle)
+
 	response.write("<ul>")
 
 	for i = 0 to logicErrorCount - 1
