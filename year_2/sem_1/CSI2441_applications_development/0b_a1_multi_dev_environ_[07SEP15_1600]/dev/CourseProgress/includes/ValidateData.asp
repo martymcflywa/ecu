@@ -39,9 +39,6 @@ end sub
 '* Tests if array index is empty before performing validation.
 '*
 sub validateUnitDetails()
-	
-	const MIN_MARK = 0
-	const MAX_MARK = 100
 
 	'loop over unitDetailsArray
 	'using filledRows counter to avoid intentionally blank rows
@@ -149,6 +146,10 @@ end sub
 '* @param index int - The current index.
 '*
 sub validateUnitMark(index)
+
+	const MIN_MARK = 0
+	const MAX_MARK = 100
+
 	'if unit mark is valid
 	if isRegExMatch(unitDetails(index, UM), regExDict.item("mark")) then
 		'test unit mark against min/max range
