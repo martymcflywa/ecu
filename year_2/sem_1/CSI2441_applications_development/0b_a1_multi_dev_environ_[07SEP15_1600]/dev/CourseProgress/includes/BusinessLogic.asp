@@ -109,7 +109,8 @@ sub getProgressionStatus()
 
 	if failedUnitsCount > 0 then
 
-		call bubbleSort2D(failedUnits, 1)
+		'sort by first dim
+		call bubbleSort2D(failedUnits, 0)
 
 		for i = 0 to failedUnitsCount - 1
 			if currentUnitCode = failedUnits(i, UC) then
