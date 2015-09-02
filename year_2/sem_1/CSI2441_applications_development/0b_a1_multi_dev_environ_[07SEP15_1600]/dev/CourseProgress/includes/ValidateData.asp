@@ -165,6 +165,62 @@ sub validateUnitMark(index)
 	end if
 end sub
 
+sub validateLogic()
+	
+	dim unitDetailsCopy
+	unitDetailsCopy = unitDetails
+
+	call getUnitCodeMatches(unitDetails)
+
+end sub
+
+sub getUnitCodeMatches(theArray)
+
+	dim matchedUnits(15, 4)
+	dim matchTally, currentUnitCode, currentSem
+
+	for i = 0 to filledRows - 1
+
+		if theArray(i, UC) <> "" then
+
+			currentUnitCode = theArray(i, UC)
+			currentSem = theArray(i, YS)
+		
+			for j = i + 1 to filledRows - 1
+
+				call validatePassMatchUnits(currentUnitCode, theArray, i, j)
+				call validateSemMatchUnits(currentUnitCode, theArray, i, j)
+				'if currentUnitCode = theArray(j, UC) and theArray(j, UM) >= MARK_PASS then
+				''	call logicError(theArray(i, UC), "is passed more than once.")
+				'end if
+				
+				'if currentUnitCode = theArray(j, UC) and currentSem = theArray(j, YS) then
+				''	call logicError(theArray(i, UC), "appears more than once in the same semester " & theArray(i, YS) & ".")
+				'end if
+			next
+		end if
+	next
+end sub
+
+sub validatePassMatchUnits(currentUnitCode, theArray, indexI, indexJ)
+	if currentUnitCode = theArray(indexJ, UC) and theArray(indexJ, UM) >= MARK_PASS then
+		call logicError(theArray(indexI, UC), "is passed more than once.")
+	end if
+end sub
+
+sub validateSemMatchUnits(currentUnitCode, theArray, indexI, indexJ)
+	if currentUnitCode = theArray(indexJ, UC) and currentSem = theArray(indexJ, YS) then
+		call logicError(theArray(indexI, UC), "appears more than once in the same semester " & theArray(indexI, YS) & ".")
+	end if
+end sub
+
+'!!!!!!!!!!!!!!!!!!!!
+'!!!! DELETE HERE!!!!
+'!!!!!!!!!!!!!!!!!!!!
+
+%>
+
+<!-- 
 '**
 '* Sub initiates logic validation.
 '* Creates a copy of unitDetails array and sorts it by Unit Code.
@@ -275,5 +331,4 @@ sub validateSemMatchUnits(theArray, matchTally)
 			end if
 		end if
 	next
-end sub
-%>
+end sub -->
