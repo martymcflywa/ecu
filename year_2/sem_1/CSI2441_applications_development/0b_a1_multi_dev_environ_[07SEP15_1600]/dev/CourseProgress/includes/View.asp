@@ -157,7 +157,8 @@ sub displayStudentErrors()
 
 	response.write("<ul>")
 	for i = 0 to studentErrorCount - 1
-		response.write("<li><strong>" & studentErrorMessage(i, E_FIELD) & "</strong> " & studentErrorMessage(i, E_MESSAGE) & "</li>")
+		response.write("<li><strong>" & studentErrorMessage(i, E_FIELD) & "</strong> " & _
+				studentErrorMessage(i, E_MESSAGE) & "</li>")
 	next
 	response.write("</ul>")
 end sub
@@ -176,13 +177,15 @@ sub displayUnitErrors()
 	for i = 0 to unitErrorCount - 1
 
 		if currentRow = unitErrorMessage(i, E_ROW) then
-			response.write("<li><strong>" & unitErrorMessage(i, E_FIELD) & "</strong> " & unitErrorMessage(i, E_MESSAGE) & "</li>")
+			response.write("<li><strong>" & unitErrorMessage(i, E_FIELD) & "</strong> " & _
+					unitErrorMessage(i, E_MESSAGE) & "</li>")
 		else
 			currentRow = unitErrorMessage(i, E_ROW)
 			response.write("</ul>")
 			response.write("Error/s on <strong>Row " & unitErrorMessage(i, E_ROW) & ":</strong>")
 			response.write("<ul>")
-			response.write("<li><strong>" & unitErrorMessage(i, E_FIELD) & "</strong> " & unitErrorMessage(i, E_MESSAGE) & "</li>")
+			response.write("<li><strong>" & unitErrorMessage(i, E_FIELD) & "</strong> " & _
+					unitErrorMessage(i, E_MESSAGE) & "</li>")
 		end if
 	next
 
@@ -194,19 +197,21 @@ end sub
 '*
 sub displayLogicErrors()
 
-	response.write(logicErrorTitle)
+	dim currentRow, currentMessage
 
+	response.write(logicErrorTitle)
 	response.write("<ul>")
 
 	for i = 0 to logicErrorCount - 1
-		response.write("<li><strong>" & logicErrorMessage(i, 0) & "</strong> " & logicErrorMessage(i, 1))
+
+		if currentRow <> logicErrorMessage(i, 0) and currentMessage <> logicErrorMessage(i, 1) then
+			response.write("<li><strong>" & logicErrorMessage(i, 0) & "</strong> " & logicErrorMessage(i, 1))
+		else 
+			currentRow = logicErrorMessage(i, 0)
+			currentMessage = logicErrorMessage(i, 1)
+		end if
 	next
 
 	response.write("</ul>")
-
-	'test
-	for i = 0 to logicErrorCount - 1
-		response.write(logicErrorMessage(i, 0) & " " & logicErrorMessage(i, 1) & "<br/>")
-	next
 end sub
 %>

@@ -64,7 +64,7 @@ sub missingInputError(data, field, row)
 end sub
 
 '**
-'* Sub populates errorMessage array with validation error message.
+'* Sub populates student/unit error message array with validation error message.
 '*
 '* @param data String - Either "student" or "unit"
 '* @param field String - The field that failed validation.
@@ -96,10 +96,11 @@ end sub
 '* @param field String - The field that failed validation.
 '* @param message String - The error message.
 '*
-sub logicError(field, message)
+sub logicError(field, message, row)
 	logicErrorCount = logicErrorCount + 1
 	logicErrorMessage(logicErrorCount - 1, 0) = field
 	logicErrorMessage(logicErrorCount - 1, 1) = message
+	logicErrorMessage(logicErrorCount - 1, 2) = row
 end sub
 
 '**
