@@ -29,10 +29,6 @@ failedUnitsCount = 0
 dim failedUnitsCP
 failedUnitsCP = 0
 
-'dim failedUnits()
-'redim failedUnits(10)
-'set failedUnits = server.createObject("system.collections.arrayList")
-
 '**
 '* Sub kicks off the logic for calculating the course progress summary.
 '*

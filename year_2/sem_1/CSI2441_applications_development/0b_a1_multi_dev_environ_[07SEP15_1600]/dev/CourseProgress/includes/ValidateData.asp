@@ -165,6 +165,10 @@ sub validateUnitMark(index)
 	end if
 end sub
 
+'**
+'* Sub initiates logic validation.
+'* Creates a copy of unitDetails array and sorts it by Unit Code.
+'*
 sub validateLogic()
 
 	dim unitDetailsCopy
@@ -173,17 +177,80 @@ sub validateLogic()
 	'sort copy by unit code
 	call bubbleSort2D(unitDetailsCopy, 0)
 
-	call iterateCopy(unitDetailsCopy)
-
+	call getUnitCodeMatches(unitDetailsCopy)
 end sub
 
-sub iterateCopy(theCopyArray)
+'**
+'* Sub collects any Unit Code matches from an array.
+'* Stores those matches in matchedUnits array.
+'* matchedUnits array then sent for validation.
+'*
+'* @parm theArray - The array to look for matches.
+'*
+sub getUnitCodeMatches(theArray)
 	
-	dim currentUnitCode
+	dim matchedUnits(15, 4)
+	dim matchTally, currentUnitCode
 
 	for i = 0 to filledRows - 1
-		
+
+		'put all matched units in a temp array
+		if currentUnitCode = theArray(i, UC) then
+			matchTally = matchTally + 1
+			matchedUnits(matchTally - 1, UC) = theArray(i, UC)
+			matchedUnits(matchTally - 1, CP) = theArray(i, CP)
+			matchedUnits(matchTally - 1, YS) = theArray(i, YS)
+			matchedUnits(matchTally - 1, UM) = theArray(i, UM)
+		else
+			currentUnitCode = theArray(i, UC)
+		end if
 	next
 
+	if matchTally > 0 then
+		call validatePassMatchUnits(matchedUnits, matchTally)
+		call validateSemMatchUnits(matchedUnits, matchTally)
+	end if
+end sub
+
+'**
+'* Sub implements business rule:
+'* A unit cannot appear as passed more than once.
+'*
+'* @param theArray - The array containing matched Unit Codes
+'* @param matchTally int - The number of matches found, used for upper bound.
+'*
+sub validatePassMatchUnits(theArray, matchTally)
+
+	dim currentUnitCode
+	
+	for i = 0 to matchTally - 1
+		if currentUnitCode = theArray(i, UC) and theArray(i, UM) >= MARK_PASS then
+			call logicError(theArray(i, UC), "is passed more than once.")
+		else
+			currentUnitCode = theArray(i, UC)
+		end if
+	next
+end sub
+
+'**
+'* Sub implements business rule:
+'* A unit cannot appear more than once in the same semester.
+'*
+'* @param theArray - The array containing matched Unit Codes
+'* @param matchTally int - The number of matches found, used for upper bound.
+'*
+sub validateSemMatchUnits(theArray, matchTally)
+	
+	dim currentUnitCode, currentSem
+
+	for i = 0 to matchTally - 1
+		if currentUnitCode = theArray(i, UC) and currentSem = theArray(i, YS) then
+			call logicError(theArray(i, UC), "appears more than once in the same semester " & theArray(i, YS))
+		elseif currentUnitCode = theArray(i, UC) and currentSem <> theArray(i, YS) then
+			currentSem = theArray(i, YS)
+		else
+			currentUnitCode = theArray(i, UC)
+		end if
+	next
 end sub
 %>

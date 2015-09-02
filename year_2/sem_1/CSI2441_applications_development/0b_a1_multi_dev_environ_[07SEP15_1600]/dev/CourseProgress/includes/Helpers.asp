@@ -69,9 +69,9 @@ end sub
 '* @param data String - Either "student" or "unit"
 '* @param field String - The field that failed validation.
 '* @param row int - The row which failed validation, use -1 if student details.
+'* @param message String - The error message.
 '*
 sub validateError(data, field, row, message)
-
 	select case data
 		case "student"
 			studentErrorCount = studentErrorCount + 1
@@ -88,7 +88,18 @@ sub validateError(data, field, row, message)
 			unitErrorMessage(unitErrorCount - 1, E_ECODE) = ECODE_VALIDATE
 			unitErrorMessage(unitErrorCount - 1, E_MESSAGE) = message
 	end select
+end sub
 
+'**
+'* Sub populates logicError array with logic error message.
+'*
+'* @param field String - The field that failed validation.
+'* @param message String - The error message.
+'*
+sub logicError(field, message)
+	logicErrorCount = logicErrorCount + 1
+	logicErrorMessage(logicErrorCount - 1, 0) = field
+	logicErrorMessage(logicErrorCount - 1, 1) = message
 end sub
 
 '**
@@ -98,6 +109,7 @@ end sub
 '* @param strTarget - The target to match.
 '* @param strPattern - The regex pattern.
 '* @return boolean.
+'*
 function isRegExMatch(strTarget, strPattern)
 	set regEx = new RegExp
 	regEx.pattern = strPattern
@@ -174,7 +186,7 @@ sub bubbleSort2D(theArray, dimToSort)
     dim newKey, newOtherKey
     dim swapIndex, otherDim
 
-    const column = 1
+    const COLUMN = 1
     
     'validate dimToSort param
     if dimToSort = 1 then
@@ -188,7 +200,7 @@ sub bubbleSort2D(theArray, dimToSort)
 	end if
     
     'outer loop
-    for i = 0 To uBound(theArray, column) - 1
+    for i = 0 To uBound(theArray, COLUMN) - 1
 
         originalValue = theArray(i, dimToSort)
         originalOtherValue = theArray(i, otherDim)
@@ -199,7 +211,7 @@ sub bubbleSort2D(theArray, dimToSort)
         swapIndex = i
 		
 		'inner loop
-        for j = i + 1 to uBound(theArray, column)
+        for j = i + 1 to uBound(theArray, COLUMN)
 
         	'lets ignore empty rows here, sort populated rows only
             if theArray(j, dimToSort) < newKey and theArray(j, dimToSort) <> "" then
