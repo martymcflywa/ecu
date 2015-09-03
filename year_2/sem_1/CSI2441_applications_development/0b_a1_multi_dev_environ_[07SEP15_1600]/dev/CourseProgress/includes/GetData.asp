@@ -102,6 +102,8 @@ sub getUnitDetails()
 			unitDetails(i, CP) = request.form("CP_" & i + 1)
 			unitDetails(i, YS) = request.form("YS_" & i + 1)
 			unitDetails(i, UM) = request.form("UM_" & i + 1)
+			'get grade
+			unitDetails(i, GR) = getGrade(unitDetails(i, UM))
 			filledRows = filledRows + 1
 			isUnitPopulated = true
 		end if

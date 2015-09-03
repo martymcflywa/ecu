@@ -34,7 +34,7 @@ matchFailedCount = 0
 dim failedUnitsCP
 failedUnitsCP = 0
 'to assist calculating supplementary assessment
-dim unitsPerSem
+dim unitRequiredTotal
 
 '**
 '* Sub kicks off the logic for calculating the course progress summary.

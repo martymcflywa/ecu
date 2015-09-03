@@ -79,11 +79,12 @@ sub displaySummary()
 
 	'test
 	'response.write(logicErrorCount)
-	'for i = 0 to uBound(failedUnits)
-	''	for j = 0 to lBound(failedUnits)
-	''		response.write(failedUnits(i, j) & " | <br/>")
-	''	next 
-	'next
+	for i = 0 to filledRows - 1
+		for j = 0 to 4
+			response.write(unitDetails(i, j) & " | ")
+		next
+		response.write("<br/>")
+	next
 end sub
 
 '**
