@@ -91,17 +91,20 @@ sub getSupUnit(index)
 
 	dim currentSem
 
+	'problem: is looking ahead to the next row if matched, and is reset each iteration
+				'so if next unit is in different sem, causes fail 
 	for i = index + 1 to filledRows - 1
 		if unitDetails(index, YS) = unitDetails(i, YS) then
 			isMoreThanOneUnitInSem = true
 		end if
 		if unitDetails(index, YS) = unitDetails(i, YS) and unitDetails(i, UM) < MARK_PASS then
 			isFailedSameSem = true
+		elseif unitDetails(index, YS) = unitDetails(i - 2, YS) and unitDetails(i, UM) < MARK_PASS then
+			isFailedSameSem = true
 		end if
-
-	'test
-	response.write(isFailedSameSem)
 	next
+
+	response.write(isMoreThanOneUnitInSem & " " & isFailedSameSem & " |<br/>")
 
 	'test for failed units in same semester, and if at least one other 
 	'if isFailedSameSem = false and isMoreThanOneUnitInSem = true then
@@ -109,10 +112,13 @@ sub getSupUnit(index)
 		select case studentDetails(ET)
 			case CP_FULLTIME
 				'first sem fails, can only have one sup mark
-				if (supFirstCount < 1 and unitAttemptTotal <= fullTimeUnits) and _
-						(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index, UM) <= MARK_SUP_MAX) then
-					unitDetails(index, GR) = "S?"
-					supFirstCount = supFirstCount + 1
+				if supFirstCount < 1 and unitAttemptTotal <= fullTimeUnits then 
+
+					if (unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index, UM) <= MARK_SUP_MAX) then
+						unitDetails(index, GR) = "S?"
+						supFirstCount = supFirstCount + 1
+						response.write(supFirstCount & " " & unitAttemptTotal & " " & fullTimeUnits & " fire one<br/>")
+					end if
 				end if
 
 				'last sem fails, can only have one sup mark
@@ -120,6 +126,7 @@ sub getSupUnit(index)
 						(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index,UM) <= MARK_SUP_MAX) then
 					unitDetails(index, GR) = "S?"
 					supFirstCount = supLastCount + 1
+					response.write("fire two<br/>")	
 				end if
 
 			case CP_PARTTIME
@@ -128,6 +135,7 @@ sub getSupUnit(index)
 						(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index, UM) <= MARK_SUP_MAX) then
 					unitDetails(index, GR) = "S?"
 					supFirstCount = supFirstCount + 1
+					response.write("fire three<br/>")	
 				end if
 
 				'last sem fails, can only have one sup mark
@@ -135,6 +143,7 @@ sub getSupUnit(index)
 						(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index,UM) <= MARK_SUP_MAX) then
 					unitDetails(index, GR) = "S?"
 					supFirstCount = supLastCount + 1
+					response.write("fire four<br/>")	
 				end if
 		end select
 	end if
