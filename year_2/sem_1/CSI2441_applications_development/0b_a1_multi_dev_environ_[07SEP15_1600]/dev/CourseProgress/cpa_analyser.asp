@@ -51,10 +51,6 @@ regExDict.add "mark", "(^[0-9]+$)"
 dim passedCPTotal, cpDelta, unitAttemptTotal, unitsPassed, semRemaining
 dim markTotal, markAverage, gradeAverage
 dim progressionStatus, completeStatus
-'to assist calculating supplementary assessment
-dim isMoreThanOneUnitInSem, isFailedSameSem, semTotal
-isMoreThanOneUnitInSem = false
-isFailedSameSem = false
 
 'some title strings for error view
 dim studentErrorTitle, unitErrorTitle, logicErrorTitle

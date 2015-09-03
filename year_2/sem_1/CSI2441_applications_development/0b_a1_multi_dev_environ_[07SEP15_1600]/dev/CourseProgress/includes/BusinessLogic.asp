@@ -43,6 +43,7 @@ sub calculateSummary()
 	call getMarkAverage()
 	call setProgressionStatus()
 	call getSemRemaining()
+	call getSupUnit()
 
 end sub
 
@@ -64,7 +65,6 @@ sub iterateUnitDetails()
 		'else do this if failed
 		else
 			call getProgressionStatus(i)
-			call getSupUnit(i)
 		end if
 
 	next
@@ -79,17 +79,147 @@ end sub
 '* then the grade for that unit should read "S?" for possible
 '* supplementary assessment.
 '*
-'* !! ASSUMPTION !!
-'* Only considers 15 CP per unit, not 20.
+'* !! ASSUMPTIONS/LIMITATIONS !!
+'* 1. Only considers 15 CP per unit, not 20.
+'* 2. User input must be in correct order according to semester.
 '*
-'* @param currentUnitCode String - The current unit code during iteration.
-sub getSupUnit(index)
+sub getSupUnit()
+	
+	dim firstSem, lastSem, fullTimeUnits, partTimeUnits
+	dim supFirstCount, supLastCount
+	dim isMultiFirstSem, isMultiLastSem, firstSemFails, lastSemFails
+	dim markSupMin, markSupMax
+	'range of marks elegible for "S?"
+	markSupMin = 45
+	markSupMax = 49
+
+	'assuming that user will enter their first sem FIRST!
+	firstSem = unitDetails(0, YS)
+	fullTimeUnits = 4
+	partTimeUnits = 2
+
+	'work out what is "last semester",
+	'again assuming that user enters units by order of year/sem
+	dim lastSemStartFT, lastSemStartPT
+	lastSemStartFT = (semTotal * fullTimeUnits) - fullTimeUnits
+	lastSemStartPT = (semTotal * partTimeUnits) - partTimeUnits
+
+	select case studentDetails(ET)
+
+		'****************
+		'*** FULLTIME ***
+		'****************
+
+		case CP_FULLTIME
+
+			'*****************
+			'*** FIRST SEM ***
+			'*****************
+
+			if unitAttemptTotal > 1 then
+				'set the flags used for testing
+				for i = 0 to fullTimeUnits - 1
+					if firstSem = unitDetails(i, YS) then
+						isMultiFirstSem = true
+					end if
+					if unitDetails(i, UM) < MARK_PASS then
+						firstSemFails = firstSemFails + 1
+					end if
+				next
+				'test flags for "S?", only until fullTimeUnits, no point checking the rest
+				for i = 0 to fullTimeUnits - 1
+					if isMultiFirstSem and firstSemFails < 2 and _
+							unitDetails(i, UM) >= markSupMin and unitDetails(i, UM) <= markSupMax then
+						unitDetails(i, GR) = "S?"
+					end if
+				next
+
+			'****************
+			'*** LAST SEM ***
+			'****************
+
+			elseif unitAttemptTotal >= lastSemStartFT then
+				'set lastSem as the last input from user
+				lastSem = unitDetails(unitAttemptTotal - 1, YS)
+				'set the flags used for testing
+				for i = unitAttemptTotal - 1 to filledRows - 1
+					if lastSem = unitDetails(i, YS) then
+						isMultiLastSem = true
+					end if
+					if unitDetails(i, UM) < MARK_PASS then
+						lastSemFails = lastSemFails + 1
+					end if
+				next
+				'test flags for "S?", let's go to the end of the array this time
+				for i = 0 to filledRows - 1
+					if isMultiLastSem and lastSemFails < 2 and _
+							unitDetails(i, UM) >= markSupMin and unitDetails(i, UM) <= markSupMax then
+						unitDetails(i, GR) = "S?"
+					end if
+				next
+			end if
+
+		'****************
+		'*** PARTTIME ***
+		'****************
+
+		case CP_PARTTIME
+
+			'*****************
+			'*** FIRST SEM ***
+			'*****************
+
+			if unitAttemptTotal > 1 then
+				'set the flags used for testing
+				for i = 0 to partTimeUnits - 1
+					if firstSem = unitDetails(i, YS) then
+						isMultiFirstSem = true
+					end if
+					if unitDetails(i, UM) < MARK_PASS then
+						firstSemFails = firstSemFails + 1
+					end if
+				next
+				'test flags for "S?", only until partTimeUnits, no point checking the rest
+				for i = 0 to partTimeUnits - 1
+					if isMultiFirstSem and firstSemFails < 2 and _
+							unitDetails(i, UM) >= markSupMin and unitDetails(i, UM) <= markSupMax then
+						unitDetails(i, GR) = "S?"
+					end if
+				next
+
+			'****************
+			'*** LAST SEM ***
+			'****************
+
+			elseif unitAttemptTotal >= lastSemStartPT then
+				'set lastSem as the last input from user
+				lastSem = unitDetails(unitAttemptTotal - 1, YS)
+				'set the flags used for testing
+				for i = unitAttemptTotal - 1 to filledRows - 1
+					if lastSem = unitDetails(i, YS) then
+						isMultiLastSem = true
+					end if
+					if unitDetails(i, UM) < MARK_PASS then
+						lastSemFails = lastSemFails + 1
+					end if
+				next
+				'test flags for "S?", let's go to the end of the array this time
+				for i = 0 to filledRows - 1
+					if isMultiLastSem and lastSemFails < 2 and _
+							unitDetails(i, UM) >= markSupMin and unitDetails(i, UM) <= markSupMax then
+						unitDetails(i, GR) = "S?"
+					end if
+				next
+			end if
+	end select
+
+end sub
+%>
+<!-- sub getSupUnit(index)
 
 	dim fullTimeUnits, partTimeUnits
 	fullTimeUnits = 4
 	partTimeUnits = 2
-
-	dim currentSem
 
 	'problem: is looking ahead to the next row if matched, and is reset each iteration
 				'so if next unit is in different sem, causes fail 
@@ -98,8 +228,6 @@ sub getSupUnit(index)
 			isMoreThanOneUnitInSem = true
 		end if
 		if unitDetails(index, YS) = unitDetails(i, YS) and unitDetails(i, UM) < MARK_PASS then
-			isFailedSameSem = true
-		elseif unitDetails(index, YS) = unitDetails(i - 2, YS) and unitDetails(i, UM) < MARK_PASS then
 			isFailedSameSem = true
 		end if
 	next
@@ -147,8 +275,8 @@ sub getSupUnit(index)
 				end if
 		end select
 	end if
-end sub
-
+end sub -->
+<%
 '**
 '* Function determines the grade of a mark.
 '*
