@@ -49,7 +49,7 @@ regExDict.add "mark", "(^[0-9]+$)"
 
 'variables for calculating summary
 dim passedCPTotal, cpDelta, unitAttemptTotal, unitsPassed, semRemaining
-dim markTotal, markAverage, gradeAverage
+dim markTotal, markAverage, gradeAverage, semTotal
 dim progressionStatus, completeStatus
 
 'some title strings for error view

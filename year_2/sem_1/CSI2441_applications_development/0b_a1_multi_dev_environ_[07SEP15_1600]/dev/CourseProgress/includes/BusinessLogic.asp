@@ -74,7 +74,7 @@ end sub
 '**
 '* Sub implements business rule:
 '* If a student does more than one unit in a given semester,
-'* and fails only one unit with a mark in the rage of 45-49,
+'* and fails only one unit with a mark in the range of 45-49,
 '* and is in the first or last semester of their course,
 '* then the grade for that unit should read "S?" for possible
 '* supplementary assessment.
@@ -83,10 +83,13 @@ end sub
 '* 1. Only considers 15 CP per unit, not 20.
 '* 2. User input must be in correct order according to semester.
 '*
+'* TODO: 	Operation is expensive, multiple consecutive loops.
+'* 			Needs simplifying. But at least it works.
+'*			Also lots of code repeating, can add more subs.
+'*
 sub getSupUnit()
 	
 	dim firstSem, lastSem, fullTimeUnits, partTimeUnits
-	dim supFirstCount, supLastCount
 	dim isMultiFirstSem, isMultiLastSem, firstSemFails, lastSemFails
 	dim markSupMin, markSupMax
 	'range of marks elegible for "S?"
@@ -133,16 +136,17 @@ sub getSupUnit()
 						unitDetails(i, GR) = "S?"
 					end if
 				next
+			end if
 
 			'****************
 			'*** LAST SEM ***
 			'****************
 
-			elseif unitAttemptTotal >= lastSemStartFT then
+			if unitAttemptTotal >= lastSemStartFT then
 				'set lastSem as the last input from user
 				lastSem = unitDetails(unitAttemptTotal - 1, YS)
 				'set the flags used for testing
-				for i = unitAttemptTotal - 1 to filledRows - 1
+				for i = lastSemStartFT to filledRows - 1
 					if lastSem = unitDetails(i, YS) then
 						isMultiLastSem = true
 					end if
@@ -151,7 +155,7 @@ sub getSupUnit()
 					end if
 				next
 				'test flags for "S?", let's go to the end of the array this time
-				for i = 0 to filledRows - 1
+				for i = lastSemStartFT to filledRows - 1
 					if isMultiLastSem and lastSemFails < 2 and _
 							unitDetails(i, UM) >= markSupMin and unitDetails(i, UM) <= markSupMax then
 						unitDetails(i, GR) = "S?"
@@ -186,16 +190,17 @@ sub getSupUnit()
 						unitDetails(i, GR) = "S?"
 					end if
 				next
+			end if
 
 			'****************
 			'*** LAST SEM ***
 			'****************
 
-			elseif unitAttemptTotal >= lastSemStartPT then
+			if unitAttemptTotal >= lastSemStartPT then
 				'set lastSem as the last input from user
 				lastSem = unitDetails(unitAttemptTotal - 1, YS)
 				'set the flags used for testing
-				for i = unitAttemptTotal - 1 to filledRows - 1
+				for i = lastSemStartPT to filledRows - 1
 					if lastSem = unitDetails(i, YS) then
 						isMultiLastSem = true
 					end if
@@ -204,7 +209,7 @@ sub getSupUnit()
 					end if
 				next
 				'test flags for "S?", let's go to the end of the array this time
-				for i = 0 to filledRows - 1
+				for i = lastSemStartPT to filledRows - 1
 					if isMultiLastSem and lastSemFails < 2 and _
 							unitDetails(i, UM) >= markSupMin and unitDetails(i, UM) <= markSupMax then
 						unitDetails(i, GR) = "S?"
@@ -214,69 +219,7 @@ sub getSupUnit()
 	end select
 
 end sub
-%>
-<!-- sub getSupUnit(index)
 
-	dim fullTimeUnits, partTimeUnits
-	fullTimeUnits = 4
-	partTimeUnits = 2
-
-	'problem: is looking ahead to the next row if matched, and is reset each iteration
-				'so if next unit is in different sem, causes fail 
-	for i = index + 1 to filledRows - 1
-		if unitDetails(index, YS) = unitDetails(i, YS) then
-			isMoreThanOneUnitInSem = true
-		end if
-		if unitDetails(index, YS) = unitDetails(i, YS) and unitDetails(i, UM) < MARK_PASS then
-			isFailedSameSem = true
-		end if
-	next
-
-	response.write(isMoreThanOneUnitInSem & " " & isFailedSameSem & " |<br/>")
-
-	'test for failed units in same semester, and if at least one other 
-	'if isFailedSameSem = false and isMoreThanOneUnitInSem = true then
-	if isMoreThanOneUnitInSem = true and isFailedSameSem = false then
-		select case studentDetails(ET)
-			case CP_FULLTIME
-				'first sem fails, can only have one sup mark
-				if supFirstCount < 1 and unitAttemptTotal <= fullTimeUnits then 
-
-					if (unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index, UM) <= MARK_SUP_MAX) then
-						unitDetails(index, GR) = "S?"
-						supFirstCount = supFirstCount + 1
-						response.write(supFirstCount & " " & unitAttemptTotal & " " & fullTimeUnits & " fire one<br/>")
-					end if
-				end if
-
-				'last sem fails, can only have one sup mark
-				if (supLastCount < 1 and unitAttemptTotal >= ((semTotal * fullTimeUnits) - fullTimeUnits)) and _
-						(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index,UM) <= MARK_SUP_MAX) then
-					unitDetails(index, GR) = "S?"
-					supFirstCount = supLastCount + 1
-					response.write("fire two<br/>")	
-				end if
-
-			case CP_PARTTIME
-				'first sem fails, can only have one sup mark
-				if (supFirstCount < 1 and unitAttemptTotal <= partTimeUnits) and _
-						(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index, UM) <= MARK_SUP_MAX) then
-					unitDetails(index, GR) = "S?"
-					supFirstCount = supFirstCount + 1
-					response.write("fire three<br/>")	
-				end if
-
-				'last sem fails, can only have one sup mark
-				if (supLastCount < 1 and unitAttemptTotal >= ((semTotal * partTimeUnits) - partTimeUnits)) and _
-						(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index,UM) <= MARK_SUP_MAX) then
-					unitDetails(index, GR) = "S?"
-					supFirstCount = supLastCount + 1
-					response.write("fire four<br/>")	
-				end if
-		end select
-	end if
-end sub -->
-<%
 '**
 '* Function determines the grade of a mark.
 '*
@@ -314,6 +257,7 @@ end sub
 
 '**
 '* Sub calculates average mark over total units attempted.
+'* Also sets grade for average.
 '*
 sub getMarkAverage()
 	markAverage = markTotal / unitAttemptTotal
