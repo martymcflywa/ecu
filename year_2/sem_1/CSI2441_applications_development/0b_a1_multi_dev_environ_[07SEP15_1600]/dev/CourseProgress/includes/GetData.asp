@@ -71,15 +71,13 @@ sub getStudentDetails()
 		call missingInputError("student", "Surname", -1)
 	end if
 
+	'convert definition into literal value
 	select case cInt(request.form("EnrolmentType"))
 		case 1
 			studentDetails(ET) = CP_FULLTIME
 		case 2
 			studentDetails(ET) = CP_PARTTIME
 	end select
-
-	'not testing this for population since it has default value
-	'studentDetails(ET) = cInt(request.form("EnrolmentType"))
 
 	if isFieldPopulated("StudentID") then
 		studentDetails(ID) = request.form("StudentID")
@@ -88,9 +86,19 @@ sub getStudentDetails()
 		call missingInputError("student", "StudentID", -1)
 	end if
 
-	'not testing this for population since it has default value
-	studentDetails(CT) = cInt(request.form("CourseType"))
-
+	'convert definition code into literal value
+	select case cInt(request.form("CourseType"))
+		case 1
+			studentDetails(CT) = CP_UNDERGRAD
+		case 2
+			studentDetails(CT) = CP_UNDERGRAD_DOUBLE
+		case 3
+			studentDetails(CT) = CP_GRAD_DIPLOMA
+		case 4
+			studentDetails(CT) = CP_MASTERS_COURSE
+		case 5
+			studentDetails(CT) = CP_MASTERS_RESEARCH
+	end select
 end sub
 
 '**

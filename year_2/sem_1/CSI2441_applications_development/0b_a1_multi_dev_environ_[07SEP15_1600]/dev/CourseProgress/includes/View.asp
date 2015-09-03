@@ -41,15 +41,15 @@ sub displaySummary()
 	response.write("<strong>Course type:</strong> ")
 
 	select case studentDetails(CT)
-		case 1
+		case CP_UNDERGRAD
 			response.write("Undergraduate degree (" & CP_UNDERGRAD & " CP) <br />")
-		case 2
+		case CP_UNDERGRAD_DOUBLE
 			response.write("Undergraduate degree (" & CP_UNDERGRAD_DOUBLE & " CP) <br />")
-		case 3
+		case CP_GRAD_DIPLOMA
 			response.write("Graduate diploma (" & CP_GRAD_DIPLOMA & " CP) <br />")
-		case 4
+		case CP_MASTERS_COURSE
 			response.write("Masters by coursework (" & CP_MASTERS_COURSE & " CP) <br />")
-		case 5
+		case CP_MASTERS_RESEARCH
 			response.write("Masters by research (" & CP_MASTERS_RESEARCH & " CP) <br />")
 	end select
 

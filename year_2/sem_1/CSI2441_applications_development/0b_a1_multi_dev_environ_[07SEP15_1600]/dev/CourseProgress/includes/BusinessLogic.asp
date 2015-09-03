@@ -155,31 +155,31 @@ end sub
 sub getCompleteStatus()
 	
 	select case studentDetails(CT)
-		case 1
+		case CP_UNDERGRAD
 			if passedCPTotal >= CP_UNDERGRAD then
 				completeStatus = "Yes"
 			else
 				completeStatus = "No"
 			end if
-		case 2
+		case CP_UNDERGRAD_DOUBLE
 			if passedCPTotal >= CP_UNDERGRAD_DOUBLE then
 				completeStatus = "Yes"
 			else
 				completeStatus = "No"
 			end if
-		case 3
+		case CP_GRAD_DIPLOMA
 			if passedCPTotal >= CP_GRAD_DIPLOMA then
 				completeStatus = "Yes"
 			else
 				completeStatus = "No"
 			end if
-		case 4
+		case CP_MASTERS_COURSE
 			if passedCPTotal >= CP_MASTERS_COURSE then
 				completeStatus = "Yes"
 			else
 				completeStatus = "No"
 			end if
-		case 5
+		case CP_MASTERS_RESEARCH
 			if passedCPTotal >= CP_MASTERS_RESEARCH then
 				completeStatus = "Yes"
 			else
@@ -217,15 +217,15 @@ end sub
 sub getCPDelta()
 	
 	select case studentDetails(CT)
-		case 1
+		case CP_UNDERGRAD
 			cpDelta = CP_UNDERGRAD - passedCPTotal
-		case 2
+		case CP_UNDERGRAD_DOUBLE
 			cpDelta = CP_UNDERGRAD_DOUBLE - passedCPTotal
-		case 3
+		case CP_GRAD_DIPLOMA
 			cpDelta = CP_GRAD_DIPLOMA - passedCPTotal
-		case 4
+		case CP_MASTERS_COURSE
 			cpDelta = CP_MASTERS_COURSE - passedCPTotal
-		case 5
+		case CP_MASTERS_RESEARCH
 			cpDelta = CP_MASTERS_RESEARCH - passedCPTotal
 	end select
 
