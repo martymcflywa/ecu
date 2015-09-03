@@ -53,21 +53,23 @@ end sub
 '* Sub iterates through unitDetails array, calling other subs when appropriate.
 '*
 sub iterateUnitDetails()
+
+	dim currentSem, semUnits, semFails
 	
-	for i = 0 to unitRows - 1
-		if unitDetails(i, UC) <> "" then
-			call getUnitAttemptTotal()
-			'do this if student passed unit
-			if unitDetails(i, UM) >= MARK_PASS then
-				call getPassedCP(i)
-				call getUnitAttemptPass()
-				call getMarkTotal(i)
-			'else do this if failed
-			else
-				call getProgressionStatus(i)
-				call getSupUnit(i)
-			end if
+	for i = 0 to filledRows - 1
+
+		call getUnitAttemptTotal()
+		'do this if student passed unit
+		if unitDetails(i, UM) >= MARK_PASS then
+			call getPassedCP(i)
+			call getUnitAttemptPass()
+			call getMarkTotal(i)
+		'else do this if failed
+		else
+			call getProgressionStatus(i)
+			call getSupUnit(i)
 		end if
+
 	next
 
 end sub
@@ -80,7 +82,7 @@ end sub
 '* then the grade for that unit should read "S?" for possible
 '* supplementary assessment.
 '*
-'* @param currentUnitCode String - The current unit code during iteration.`
+'* @param currentUnitCode String - The current unit code during iteration.
 sub getSupUnit(index)
 
 	dim fullTimeUnits, partTimeUnits
@@ -100,7 +102,7 @@ sub getSupUnit(index)
 			if (supLastCount < 1 and unitAttemptTotal >= ((semTotal * fullTimeUnits) - fullTimeUnits)) and _
 					(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index,UM) <= MARK_SUP_MAX) then
 				unitDetails(index, GR) = "S?"
-				supFirstCount = supFirstCount + 1
+				supFirstCount = supLastCount + 1
 			end if
 
 		case CP_PARTTIME
@@ -115,7 +117,7 @@ sub getSupUnit(index)
 			if (supLastCount < 1 and unitAttemptTotal >= ((semTotal * partTimeUnits) - partTimeUnits)) and _
 					(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index,UM) <= MARK_SUP_MAX) then
 				unitDetails(index, GR) = "S?"
-				supFirstCount = supFirstCount + 1
+				supFirstCount = supLastCount + 1
 			end if
 	end select
 end sub
