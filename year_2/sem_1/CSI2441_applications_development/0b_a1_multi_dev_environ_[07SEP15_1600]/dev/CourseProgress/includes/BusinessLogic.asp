@@ -28,11 +28,8 @@ const MARK_SUP_MAX = 49
 
 'failed units
 dim failedUnitsCount, matchFailedCount, supFirstCount, supLastCount
-'failedUnitsCount = 0
-'matchFailedCount = 0
 'to assist calculating remaining semesters
 dim failedUnitsCP
-'failedUnitsCP = 0
 
 '**
 '* Sub kicks off the logic for calculating the course progress summary.
@@ -82,6 +79,9 @@ end sub
 '* then the grade for that unit should read "S?" for possible
 '* supplementary assessment.
 '*
+'* !! ASSUMPTION !!
+'* Only considers 15 CP per unit, not 20.
+'*
 '* @param currentUnitCode String - The current unit code during iteration.
 sub getSupUnit(index)
 
@@ -89,37 +89,55 @@ sub getSupUnit(index)
 	fullTimeUnits = 4
 	partTimeUnits = 2
 
-	select case studentDetails(ET)
-		case CP_FULLTIME
-			'first sem fails, can only have one sup mark
-			if (supFirstCount < 1 and unitAttemptTotal <= fullTimeUnits) and _
-					(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index, UM) <= MARK_SUP_MAX) then
-				unitDetails(index, GR) = "S?"
-				supFirstCount = supFirstCount + 1
-			end if
+	dim currentSem
 
-			'last sem fails, can only have one sup mark
-			if (supLastCount < 1 and unitAttemptTotal >= ((semTotal * fullTimeUnits) - fullTimeUnits)) and _
-					(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index,UM) <= MARK_SUP_MAX) then
-				unitDetails(index, GR) = "S?"
-				supFirstCount = supLastCount + 1
-			end if
+	for i = index + 1 to filledRows - 1
+		if unitDetails(index, YS) = unitDetails(i, YS) then
+			isMoreThanOneUnitInSem = true
+		end if
+		if unitDetails(index, YS) = unitDetails(i, YS) and unitDetails(i, UM) < MARK_PASS then
+			isFailedSameSem = true
+		end if
 
-		case CP_PARTTIME
-			'first sem fails, can only have one sup mark
-			if (supFirstCount < 1 and unitAttemptTotal <= partTimeUnits) and _
-					(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index, UM) <= MARK_SUP_MAX) then
-				unitDetails(index, GR) = "S?"
-				supFirstCount = supFirstCount + 1
-			end if
+	'test
+	response.write(isFailedSameSem)
+	next
 
-			'last sem fails, can only have one sup mark
-			if (supLastCount < 1 and unitAttemptTotal >= ((semTotal * partTimeUnits) - partTimeUnits)) and _
-					(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index,UM) <= MARK_SUP_MAX) then
-				unitDetails(index, GR) = "S?"
-				supFirstCount = supLastCount + 1
-			end if
-	end select
+	'test for failed units in same semester, and if at least one other 
+	'if isFailedSameSem = false and isMoreThanOneUnitInSem = true then
+	if isMoreThanOneUnitInSem = true and isFailedSameSem = false then
+		select case studentDetails(ET)
+			case CP_FULLTIME
+				'first sem fails, can only have one sup mark
+				if (supFirstCount < 1 and unitAttemptTotal <= fullTimeUnits) and _
+						(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index, UM) <= MARK_SUP_MAX) then
+					unitDetails(index, GR) = "S?"
+					supFirstCount = supFirstCount + 1
+				end if
+
+				'last sem fails, can only have one sup mark
+				if (supLastCount < 1 and unitAttemptTotal >= ((semTotal * fullTimeUnits) - fullTimeUnits)) and _
+						(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index,UM) <= MARK_SUP_MAX) then
+					unitDetails(index, GR) = "S?"
+					supFirstCount = supLastCount + 1
+				end if
+
+			case CP_PARTTIME
+				'first sem fails, can only have one sup mark
+				if (supFirstCount < 1 and unitAttemptTotal <= partTimeUnits) and _
+						(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index, UM) <= MARK_SUP_MAX) then
+					unitDetails(index, GR) = "S?"
+					supFirstCount = supFirstCount + 1
+				end if
+
+				'last sem fails, can only have one sup mark
+				if (supLastCount < 1 and unitAttemptTotal >= ((semTotal * partTimeUnits) - partTimeUnits)) and _
+						(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index,UM) <= MARK_SUP_MAX) then
+					unitDetails(index, GR) = "S?"
+					supFirstCount = supLastCount + 1
+				end if
+		end select
+	end if
 end sub
 
 '**

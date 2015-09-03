@@ -52,7 +52,9 @@ dim passedCPTotal, cpDelta, unitAttemptTotal, unitsPassed, semRemaining
 dim markTotal, markAverage, gradeAverage
 dim progressionStatus, completeStatus
 'to assist calculating supplementary assessment
-dim semTotal
+dim isMoreThanOneUnitInSem, isFailedSameSem
+isMoreThanOneUnitInSem = false
+isFailedSameSem = false
 
 markTotal = 0
 
