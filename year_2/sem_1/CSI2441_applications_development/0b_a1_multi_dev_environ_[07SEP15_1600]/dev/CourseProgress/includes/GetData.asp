@@ -18,7 +18,7 @@ const UC = 0
 const CP = 1
 const YS = 2
 const UM = 3
-'additional index for transcript array
+'additional grade index, for transcript display
 const GR = 4
 
 dim isStudentPopulated, isUnitPopulated
@@ -86,7 +86,7 @@ sub getStudentDetails()
 		call missingInputError("student", "StudentID", -1)
 	end if
 
-	'convert definition code into literal value
+	'convert definition into literal value
 	select case cInt(request.form("CourseType"))
 		case 1
 			studentDetails(CT) = CP_UNDERGRAD

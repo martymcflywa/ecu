@@ -27,18 +27,19 @@ const MARK_SUP_MIN = 45
 const MARK_SUP_MAX = 49
 
 'failed units
-dim failedUnitsCount, matchFailedCount
-failedUnitsCount = 0
-matchFailedCount = 0
+dim failedUnitsCount, matchFailedCount, supFirstCount, supLastCount
+'failedUnitsCount = 0
+'matchFailedCount = 0
 'to assist calculating remaining semesters
 dim failedUnitsCP
-failedUnitsCP = 0
+'failedUnitsCP = 0
 
 '**
 '* Sub kicks off the logic for calculating the course progress summary.
 '*
 sub calculateSummary()
 
+	call getSemTotal()
 	call iterateUnitDetails()
 	call getCPDelta()
 	call getCompleteStatus()
@@ -62,12 +63,61 @@ sub iterateUnitDetails()
 				call getUnitAttemptPass()
 				call getMarkTotal(i)
 			'else do this if failed
-			elseif unitDetails(i, UM) < MARK_PASS then
+			else
 				call getProgressionStatus(i)
+				call getSupUnit(i)
 			end if
 		end if
 	next
 
+end sub
+
+'**
+'* Sub implements business rule:
+'* If a student does more than one unit in a given semester,
+'* and fails only one unit with a mark in the rage of 45-49,
+'* and is in the first or last semester of their course,
+'* then the grade for that unit should read "S?" for possible
+'* supplementary assessment.
+'*
+'* @param currentUnitCode String - The current unit code during iteration.`
+sub getSupUnit(index)
+
+	dim fullTimeUnits, partTimeUnits
+	fullTimeUnits = 4
+	partTimeUnits = 2
+
+	select case studentDetails(ET)
+		case CP_FULLTIME
+			'first sem fails, can only have one sup mark
+			if (supFirstCount < 1 and unitAttemptTotal <= fullTimeUnits) and _
+					(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index, UM) <= MARK_SUP_MAX) then
+				unitDetails(index, GR) = "S?"
+				supFirstCount = supFirstCount + 1
+			end if
+
+			'last sem fails, can only have one sup mark
+			if (supLastCount < 1 and unitAttemptTotal >= ((semTotal * fullTimeUnits) - fullTimeUnits)) and _
+					(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index,UM) <= MARK_SUP_MAX) then
+				unitDetails(index, GR) = "S?"
+				supFirstCount = supFirstCount + 1
+			end if
+
+		case CP_PARTTIME
+			'first sem fails, can only have one sup mark
+			if (supFirstCount < 1 and unitAttemptTotal <= partTimeUnits) and _
+					(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index, UM) <= MARK_SUP_MAX) then
+				unitDetails(index, GR) = "S?"
+				supFirstCount = supFirstCount + 1
+			end if
+
+			'last sem fails, can only have one sup mark
+			if (supLastCount < 1 and unitAttemptTotal >= ((semTotal * partTimeUnits) - partTimeUnits)) and _
+					(unitDetails(index, UM) >= MARK_SUP_MIN and unitDetails(index,UM) <= MARK_SUP_MAX) then
+				unitDetails(index, GR) = "S?"
+				supFirstCount = supFirstCount + 1
+			end if
+	end select
 end sub
 
 '**
@@ -107,7 +157,6 @@ end sub
 
 '**
 '* Sub calculates average mark over total units attempted.
-'* Also determines grade based on markAverage.
 '*
 sub getMarkAverage()
 	markAverage = markTotal / unitAttemptTotal
@@ -189,7 +238,7 @@ sub getCompleteStatus()
 end sub
 
 '**
-'* Sub sums passed cp total.
+'* Sub sums passed CP total.
 '*
 '* @param index int - Current array index.
 '*
@@ -251,7 +300,7 @@ sub getSemRemaining()
 	end select
 end sub
 
-sub getUnitRequiredTotal()
-	unitRequiredTotal = unitsPassed
+sub getSemTotal()
+	semTotal = studentDetails(CT) / studentDetails(ET)
 end sub
 %>
