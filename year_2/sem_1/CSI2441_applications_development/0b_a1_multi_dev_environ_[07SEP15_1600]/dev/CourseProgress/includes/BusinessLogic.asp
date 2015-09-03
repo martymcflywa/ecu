@@ -23,6 +23,8 @@ const CP_FULLTIME = 60
 const CP_PARTTIME = 30
 
 const MARK_PASS = 50
+const MARK_SUP_MIN = 45
+const MARK_SUP_MAX = 49
 
 'failed units
 dim failedUnitsCount, matchFailedCount
@@ -31,6 +33,8 @@ matchFailedCount = 0
 'to assist calculating remaining semesters
 dim failedUnitsCP
 failedUnitsCP = 0
+'to assist calculating supplementary assessment
+dim unitsPerSem
 
 '**
 '* Sub kicks off the logic for calculating the course progress summary.
@@ -69,6 +73,32 @@ sub iterateUnitDetails()
 end sub
 
 '**
+'* Function determines the grade of a mark.
+'*
+'* @param mark int - The mark to grade.
+'* @return grade String - The grade.
+'*
+function getGrade(mark)
+
+	dim grade
+
+	if mark >= 80 then
+		grade = "HD"
+	elseif mark >= 70 then
+		grade = "D"
+	elseif mark >= 60 then
+		grade = "CR"
+	elseif mark >= 50 then
+		grade = "C"
+	elseif mark >= 0 then
+		grade = "N"
+	end if
+
+	getGrade = grade
+
+end function
+
+'**
 '* Sub sums mark total.
 '*
 '* @param index int - Current array index.
@@ -83,18 +113,7 @@ end sub
 '*
 sub getMarkAverage()
 	markAverage = markTotal / unitAttemptTotal
-
-	if markAverage >= 80 then
-		grade = "HD"
-	elseif markAverage >= 70 then
-		grade = "D"
-	elseif markAverage >= 60 then
-		grade = "CR"
-	elseif markAverage >= 50 then
-		grade = "C"
-	elseif markAverage >= 0 then
-		grade = "N"
-	end if
+	gradeAverage = getGrade(markAverage)
 end sub
 
 '**

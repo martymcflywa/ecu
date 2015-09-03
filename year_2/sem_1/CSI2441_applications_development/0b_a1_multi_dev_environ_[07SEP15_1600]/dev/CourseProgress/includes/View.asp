@@ -73,7 +73,7 @@ sub displaySummary()
 	response.write("<strong>Units attempted: </strong>" & unitAttemptTotal & "<br />")
 	response.write("<strong>Units passed: </strong>" & unitsPassed & "<br />")
 	response.write("<strong>Semesters remaining: </strong>" & semRemaining & "<br />")
-	response.write("<strong>Average mark: </strong>" & markAverage & " " & grade & "<br />")
+	response.write("<strong>Average mark: </strong>" & markAverage & " " & gradeAverage & "<br />")
 
 	response.write("</p>")
 

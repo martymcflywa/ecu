@@ -18,6 +18,8 @@ const UC = 0
 const CP = 1
 const YS = 2
 const UM = 3
+'additional index for transcript array
+const GR = 4
 
 dim isStudentPopulated, isUnitPopulated
 isStudentPopulated = false
@@ -39,7 +41,8 @@ sub setupArrays()
 	unitFieldCount = totalFieldCount - STUDENT_DETAILS_COUNT + 1 '+1 for submit button
 	unitRows = unitFieldCount / UNIT_COLS
 
-	redim unitDetails(unitRows, UNIT_COLS)
+	'store all unit details here, adding extra column for grade
+	redim unitDetails(unitRows, UNIT_COLS + 1) '+1 for grade
 
 	'init error/fail arrays
 	redim studentErrorMessage(STUDENT_DETAILS_COUNT, UNIT_COLS)
