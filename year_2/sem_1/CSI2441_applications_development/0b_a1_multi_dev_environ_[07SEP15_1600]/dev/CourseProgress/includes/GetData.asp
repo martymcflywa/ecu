@@ -71,8 +71,15 @@ sub getStudentDetails()
 		call missingInputError("student", "Surname", -1)
 	end if
 
+	select case cInt(request.form("EnrolmentType"))
+		case 1
+			studentDetails(ET) = CP_FULLTIME
+		case 2
+			studentDetails(ET) = CP_PARTTIME
+	end select
+
 	'not testing this for population since it has default value
-	studentDetails(ET) = cInt(request.form("EnrolmentType"))
+	'studentDetails(ET) = cInt(request.form("EnrolmentType"))
 
 	if isFieldPopulated("StudentID") then
 		studentDetails(ID) = request.form("StudentID")

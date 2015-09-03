@@ -30,9 +30,9 @@ sub displaySummary()
 	response.write("<strong>Enrolment type:</strong> ")
 
 	select case studentDetails(ET)
-		case 1
+		case CP_FULLTIME
 			response.write("Full time")
-		case 2
+		case CP_PARTTIME
 			response.write("Part time")
 	end select
 

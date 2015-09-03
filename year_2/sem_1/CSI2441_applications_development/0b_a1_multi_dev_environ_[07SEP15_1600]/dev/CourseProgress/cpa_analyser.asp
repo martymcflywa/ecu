@@ -51,6 +51,8 @@ regExDict.add "mark", "(^[0-9]+$)"
 dim passedCPTotal, cpDelta, unitAttemptTotal, unitsPassed, semRemaining
 dim markTotal, markAverage, gradeAverage
 dim progressionStatus, completeStatus
+'to assist calculating supplementary assessment
+dim unitRequiredTotal
 
 markTotal = 0
 

@@ -33,8 +33,6 @@ matchFailedCount = 0
 'to assist calculating remaining semesters
 dim failedUnitsCP
 failedUnitsCP = 0
-'to assist calculating supplementary assessment
-dim unitRequiredTotal
 
 '**
 '* Sub kicks off the logic for calculating the course progress summary.
@@ -238,13 +236,13 @@ end sub
 '*
 sub getSemRemaining()
 	select case studentDetails(ET)
-		case 1
+		case CP_FULLTIME
 			if failedUnitsCount = 0 then
 				semRemaining = cpDelta / CP_FULLTIME
 			else
 				semRemaining = (cpDelta + failedUnitsCP) / CP_FULLTIME
 			end if
-		case 2
+		case CP_PARTTIME
 			if failedUnitsCount = 0 then
 				semRemaining = cpDelta / CP_PARTTIME
 			else
@@ -253,5 +251,7 @@ sub getSemRemaining()
 	end select
 end sub
 
-
+sub getUnitRequiredTotal()
+	unitRequiredTotal = unitsPassed
+end sub
 %>
