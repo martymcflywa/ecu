@@ -5,30 +5,6 @@
 '@author Martin Ponce, 10371381
 '@version 20150831
 
-'column index for student/unitErrorMessage
-const E_ROW = 0
-const E_FIELD = 1
-const E_ECODE = 2
-
-'column index for logicErrorMessage
-const LE_FIELD = 0
-const LE_ECODE = 1
-const LE_SEM = 2
-const LE_ROW_1 = 3
-const LE_ROW_2 = 4
-
-'studentErrorMessage
-'| 0   | 1     | 2     |
-'| row | field | ecode |
-
-'unitErrorMessage
-'| 0   | 1     | 2     |
-'| row | field | ecode |
-
-'logicErrorMessage
-'| 0     | 1     | 2   | 3    | 4
-'| field | ecode | sem | row1 | row2
-
 '**
 '* Function checks if field is populated.
 '* Returns boolean.

@@ -34,7 +34,19 @@ dim unitDetails()
 dim studentErrorMessage(), studentErrorCount
 dim unitErrorMessage(), unitErrorCount
 dim logicErrorMessage(), logicErrorCount
-dim failedUnits()
+dim failedUnits() 'can i delete this?
+
+'column index for student/unitErrorMessage
+const E_ROW = 0
+const E_FIELD = 1
+const E_ECODE = 2
+
+'column index for logicErrorMessage
+const LE_FIELD = 0
+const LE_ECODE = 1
+const LE_SEM = 2
+const LE_ROW_1 = 3
+const LE_ROW_2 = 4
 
 'error codes
 dim errorCode(11)
@@ -49,7 +61,7 @@ errorCode(4) = "must follow the format: ABC1234."
 'creditpoints
 errorCode(5) = "must only be either 15 or 20."
 'year/sem
-errorCode(6) = "must follow the format ""YYS"". For example, 151. Semester must only be 1 or 2"
+errorCode(6) = "must follow the format ""YYS"". For example, 151. Semester must only be 1 or 2."
 'unitmark
 errorCode(7) = "can't be less than 0 or greater than 100."
 errorCode(8) = "must be between 1 and 3 digits."
@@ -57,6 +69,18 @@ errorCode(8) = "must be between 1 and 3 digits."
 errorCode(9) = "is passed more than once at rows " 'then state the rows
 'semMatchUnits
 errorCode(10) = "appears more than once in semester " 'then state sem and rows
+
+'studentErrorMessage
+'| 0   | 1     | 2     |
+'| row | field | ecode |
+
+'unitErrorMessage
+'| 0   | 1     | 2     |
+'| row | field | ecode |
+
+'logicErrorMessage
+'| 0     | 1     | 2   | 3    | 4
+'| field | ecode | sem | row1 | row2
 
 'define regex dictionary
 dim regExDict
