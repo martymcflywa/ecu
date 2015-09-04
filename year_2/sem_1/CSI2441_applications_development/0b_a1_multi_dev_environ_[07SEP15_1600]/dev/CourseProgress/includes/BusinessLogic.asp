@@ -85,16 +85,17 @@ end sub
 '*
 '* TODO: 	Operation is expensive, multiple consecutive loops.
 '* 			Needs simplifying. But at least it works.
-'*			Also lots of code repeating, can add more subs.
+'*			Not following DRY, to more subs.
 '*
 sub getSupUnit()
 	
-	dim firstSem, lastSem, fullTimeUnits, partTimeUnits
+	dim isSup, firstSem, lastSem, fullTimeUnits, partTimeUnits
 	dim isMultiFirstSem, isMultiLastSem, firstSemFails, lastSemFails
 	dim markSupMin, markSupMax
 	'range of marks elegible for "S?"
 	markSupMin = 45
 	markSupMax = 49
+	isSup = false
 
 	'assuming that user will enter their first sem FIRST!
 	firstSem = unitDetails(0, YS)
@@ -134,6 +135,7 @@ sub getSupUnit()
 					if isMultiFirstSem and firstSemFails < 2 and _
 							unitDetails(i, UM) >= markSupMin and unitDetails(i, UM) <= markSupMax then
 						unitDetails(i, GR) = "S?"
+						isSup = true
 					end if
 				next
 			end if
@@ -159,6 +161,7 @@ sub getSupUnit()
 					if isMultiLastSem and lastSemFails < 2 and _
 							unitDetails(i, UM) >= markSupMin and unitDetails(i, UM) <= markSupMax then
 						unitDetails(i, GR) = "S?"
+						isSup = true
 					end if
 				next
 			end if
@@ -188,6 +191,7 @@ sub getSupUnit()
 					if isMultiFirstSem and firstSemFails < 2 and _
 							unitDetails(i, UM) >= markSupMin and unitDetails(i, UM) <= markSupMax then
 						unitDetails(i, GR) = "S?"
+						isSup = true
 					end if
 				next
 			end if
@@ -213,10 +217,17 @@ sub getSupUnit()
 					if isMultiLastSem and lastSemFails < 2 and _
 							unitDetails(i, UM) >= markSupMin and unitDetails(i, UM) <= markSupMax then
 						unitDetails(i, GR) = "S?"
+						isSup = true
 					end if
 				next
 			end if
 	end select
+
+	'implementing rule:
+	'if same unit x3 fails but supp, then still good standing
+	if isSup and progressionStatus = "Excluded" then
+		progressionStatus = "Good standing, pending supp"
+	end if
 
 end sub
 

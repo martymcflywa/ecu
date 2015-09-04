@@ -72,6 +72,10 @@ sub displaySummary()
 			response.write("<font color=""red"">")
 			response.write(progressionStatus)
 			response.write("</font>")
+		case "Good standing, pending supp"
+			response.write("<font color=""red"">")
+			response.write(progressionStatus)
+			response.write("</font>")
 	end select
 
 	response.write("<br />")
