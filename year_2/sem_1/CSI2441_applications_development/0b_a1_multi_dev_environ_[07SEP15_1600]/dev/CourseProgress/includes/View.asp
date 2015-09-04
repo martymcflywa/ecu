@@ -252,88 +252,27 @@ sub displayUnitErrors()
 	response.write("</ul>")
 end sub
 
-sub displayLogicErrorsD()
 
-	dim currentRow, currentCode
+%>
 
-	response.write(logicErrorTitle)
-	response.write("<ul>")
+<!--
+response.write("<li><strong>")
+response.write(logicErrorMessage(i, LE_FIELD))
+response.write("</strong> ")
+response.write(selectErrorMessage(logicErrorMessage(i, LE_ECODE)))
 
-	for i = 0 to logicErrorCount - 1
-
-		if currentRow <> logicErrorMessage(i, LE_ROW_1) and currentCode <> logicErrorMessage(i, LE_ECODE) then
-
-			response.write("<li><strong>")
-			response.write(logicErrorMessage(i, LE_FIELD))
-			response.write("</strong> ")
-			response.write(selectErrorMessage(logicErrorMessage(i, LE_ECODE)))
-
-			select case logicErrorMessage(i, LE_ECODE)
-				case 9
-					response.write(logicErrorMessage(i, LE_ROW_1))
-					response.write(" and ")
-					response.write(logicErrorMessage(i, LE_ROW_2))
-				case 10
-					response.write(logicErrorMessage(i, LE_SEM))
-					response.write(" at rows ")
-					response.write(logicErrorMessage(i, LE_ROW_1))
-					response.write(" and ")
-					response.write(logicErrorMessage(i, LE_ROW_2))
-			end select
-		else 
-			currentRow = logicErrorMessage(i, LE_ROW_1)
-			currentCode = logicErrorMessage(i, LE_ECODE)
-		end if
-	next
-
-	response.write("</ul>")
-end sub
-
-sub displayLogicErrorsNewModel()
-
-	dim i, j
-
-	response.write(logicErrorTitle)
-	response.write("<ul>")
-
-	for i = 0 to logicErrorCount - 1
-		j = logicErrorCount - 1
-		do while j > i
-
-			response.write(j & "<br />")
-
-			if logicErrorMessage(i, LE_FIELD) <> logicErrorMessage(j, LE_FIELD) and _
-					logicErrorMessage(i, LE_ECODE) <> logicErrorMessage(j, LE_ECODE) and _
-					logicErrorMessage(i, LE_ROW_1) <> logicErrorMessage(j, LE_ROW_1) then
-
-				response.write("<li><strong>")
-				response.write(logicErrorMessage(i, LE_FIELD))
-				response.write("</strong> ")
-				response.write(selectErrorMessage(logicErrorMessage(i, LE_ECODE)))
-
-				select case logicErrorMessage(i, LE_ECODE)
-					case 9
-						response.write(logicErrorMessage(i, LE_ROW_1))
-						response.write(" and ")
-						response.write(logicErrorMessage(i, LE_ROW_2))
-					case 10
-						response.write(logicErrorMessage(i, LE_SEM))
-						response.write(" at rows ")
-						response.write(logicErrorMessage(i, LE_ROW_1))
-						response.write(" and ")
-						response.write(logicErrorMessage(i, LE_ROW_2))
-				end select
-
-				'response.write("</ul>")
-
-			end if
-			j = j - 1
-		loop
-	next
-
-	response.write("</ul>")
-
-end sub
+select case logicErrorMessage(i, LE_ECODE)
+	case 9
+		response.write(logicErrorMessage(i, LE_ROW_1))
+		response.write(" and ")
+		response.write(logicErrorMessage(i, LE_ROW_2))
+	case 10
+		response.write(logicErrorMessage(i, LE_SEM))
+		response.write(" at rows ")
+		response.write(logicErrorMessage(i, LE_ROW_1))
+		response.write(" and ")
+		response.write(logicErrorMessage(i, LE_ROW_2))
+end select
 
 sub displayLogicErrorsOldModel()
 
@@ -356,83 +295,5 @@ sub displayLogicErrorsOldModel()
 	response.write("</ul>")
 end sub
 
-sub displayLogicErrors()
+-->
 
-	dim j
-	dim ignoreRow(), ignoreCount', matchSem()
-	ignoreCount = 0
-
-	response.write(logicErrorTitle)
-	response.write("<ul>")
-
-	'scan logicErrorMessage for any repeated entries
-	for i = 0 to logicErrorCount - 1
-		
-		j = logicErrorCount - 1
-
-		do while j > i
-			if logicErrorMessage(i, LE_ECODE) = logicErrorMessage(j, LE_ECODE) then
-				if logicErrorMessage(i, LE_ROW_1) = logicErrorMessage(j, LE_ROW_1) then
-					'record index for repeated entry
-					ignoreCount = ignoreCount + 1
-					redim preserve ignoreRow(ignoreCount)
-					ignoreRow(ignoreCount - 1) = j - 1
-				end if
-			end if
-
-			j = j - 1
-		loop
-	next
-
-	response.write(ignoreCount)
-
-	if ignoreCount > 0 then
-		for k = 0 to logicErrorCount - 1
-			for m = 0 to ignoreCount - 1
-				if k <> ignoreRow(m) then
-
-					response.write("<li><strong>")
-					response.write(logicErrorMessage(k, LE_FIELD))
-					response.write("</strong> ")
-					response.write(selectErrorMessage(logicErrorMessage(k, LE_ECODE)))
-
-					select case logicErrorMessage(k, LE_ECODE)
-						case 9
-							response.write(logicErrorMessage(k, LE_ROW_1))
-							response.write(" and ")
-							response.write(logicErrorMessage(k, LE_ROW_2))
-						case 10
-							response.write(logicErrorMessage(k, LE_SEM))
-							response.write(" at rows ")
-							response.write(logicErrorMessage(k, LE_ROW_1))
-							response.write(" and ")
-							response.write(logicErrorMessage(k, LE_ROW_2))
-					end select
-				end if
-			next
-		next
-	else
-
-		response.write("<li><strong>")
-		response.write(logicErrorMessage(k, LE_FIELD))
-		response.write("</strong> ")
-		response.write(selectErrorMessage(logicErrorMessage(k, LE_ECODE)))
-
-		select case logicErrorMessage(k, LE_ECODE)
-			case 9
-				response.write(logicErrorMessage(k, LE_ROW_1))
-				response.write(" and ")
-				response.write(logicErrorMessage(k, LE_ROW_2))
-			case 10
-				response.write(logicErrorMessage(k, LE_SEM))
-				response.write(" at rows ")
-				response.write(logicErrorMessage(k, LE_ROW_1))
-				response.write(" and ")
-				response.write(logicErrorMessage(k, LE_ROW_2))
-		end select
-	end if
-
-	response.write("</ul>")
-
-end sub
-%>
