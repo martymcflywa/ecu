@@ -11,6 +11,7 @@
 '*
 sub displaySummary()
 
+	'summary header
 	response.write("<h1>Course Progression Summary</h1>")
 	response.write("<hr />")
 
@@ -103,15 +104,56 @@ sub displaySummary()
 	response.write("</ul>")
 	response.write("</p>")
 
-	'test
-	'response.write(logicErrorCount)
-	response.write("<h2>TEST TRANSCRIPT ONLY!</h2>")
+	response.write("<h2>Transcript</h2>")
+
+	'would be nicer in css, rather than inline
+	response.write("<table border=""1"" cellpadding=""10"" style=""border-collapse:collapse;"">")
+	response.write("<tr>")
+	response.write("<th>UnitCode</th>")
+	response.write("<th>CreditPoints</th>")
+	response.write("<th>Year/Sem</th>")
+	response.write("<th>Mark</th>")
+	response.write("<th>Grade</th>")
+	response.write("</tr>")
+
 	for i = 0 to filledRows - 1
-		for j = 0 to UNIT_COLS - 1
-			response.write(unitDetails(i, j) & " | ")
-		next
-		response.write("<br/>")
+		response.write("<tr>")
+		response.write("<td>")
+		response.write(unitDetails(i, UC))
+		response.write("</td>")
+		response.write("<td align=""center"">")
+		response.write(unitDetails(i, CP))
+		response.write("</td>")
+		response.write("<td align=""center"">")
+		response.write(unitDetails(i, YS))
+		response.write("</td>")
+		response.write("<td align=""right"">")
+
+		'lets show any mark less than pass show up as red
+		if unitDetails(i, UM) < MARK_PASS then
+			response.write("<font color=""red"">")
+			response.write(unitDetails(i, UM))
+			response.write("</font>")
+			response.write("</td>")
+			response.write("<td>")
+			response.write("<font color=""red"">")
+			response.write(unitDetails(i, GR))
+			response.write("</font>")
+			response.write("</td>")
+			response.write("</tr>")
+		else
+			response.write(unitDetails(i, UM))
+			response.write("</td>")
+			response.write("<td>")
+			response.write(unitDetails(i, GR))
+			response.write("</td>")
+			response.write("</tr>")
+		end if
+
+
 	next
+
+	response.write("</table>")
 end sub
 
 '**
