@@ -15,19 +15,23 @@ sub displaySummary()
 	response.write("<h1>Course Progression Summary</h1>")
 	response.write("<hr />")
 
-	response.write("<p>")
+	call displayStudentDetails()
+	call displayUnitDetails()
+	call displayHighestMark()
+	call displayTranscript()
 
-	'***********************
-	'*** STUDENT DETAILS ***
-	'***********************
+end sub
 
+'**
+'* Sub displays student details.
+'*
+sub displayStudentDetails()
 	response.write("<h2>Student details</h2>")
 
 	response.write("<p>")
 
 	response.write("<strong>Name:</strong> " & studentDetails(FN) & " " & studentDetails(SN) & "<br />")
 	response.write("<strong>Student ID: </strong>" & studentDetails(ID) & "<br />")
-
 	response.write("<strong>Enrolment type:</strong> ")
 
 	select case studentDetails(ET)
@@ -38,7 +42,6 @@ sub displaySummary()
 	end select
 
 	response.write("<br />")
-
 	response.write("<strong>Course type:</strong> ")
 
 	select case studentDetails(CT)
@@ -55,17 +58,19 @@ sub displaySummary()
 	end select
 
 	response.write("</p>")
+end sub
 
-	'********************
-	'*** UNIT DETAILS ***
-	'********************
+'**
+'* Sub displays unit details/summary.
+'*
+sub displayUnitDetails()
 
 	response.write("<h2>Progression summary</h2>")
 
 	response.write("<p>")
 	response.write("<strong>Progression Status:</strong> ")
 
-	'add red font if excluded
+	'show in red font if excluded, or pending supp
 	select case progressionStatus
 		case "Good standing"
 			response.write(progressionStatus)
@@ -84,6 +89,7 @@ sub displaySummary()
 	response.write("<strong>Course requirements complete:</strong> " & completeStatus & "<br />")
 	response.write("</p>")
 
+	response.write("<p>")
 	response.write("<h2>Credit point summary</h2>")
 
 	response.write("<strong>Total achieved credit points:</strong> " & passedCPTotal & "<br />")
@@ -93,20 +99,49 @@ sub displaySummary()
 	response.write("<strong>Semesters remaining: </strong>" & semRemaining & "<br />")
 	response.write("<strong>Average mark: </strong>" & markAverage & " " & gradeAverage & "<br />")
 	response.write("</p>")
+end sub
 
-	response.write("<p>")
-	response.write("<h3>Highest mark:</h3>")
-	response.write("<ul>")
-	response.write("<li><strong>Unit Code: </strong>" & highestMark(UC) & "</li>")
-	response.write("<li><strong>Credit Points: </strong>" & highestMark(CP) & "</li>")
-	response.write("<li><strong>Year / Sem: </strong>" & highestMark(YS) & "</li>")
-	response.write("<li><strong>Mark: </strong>" & highestMark(UM) & " " & highestMark(GR) & "</li>")
-	response.write("</ul>")
-	response.write("</p>")
+'**
+'* Sub displays highest mark table.
+'*
+sub displayHighestMark()
+	response.write("<h2>Highest mark</h2>")
 
+	response.write("<table border=""1"" cellpadding=""10"" style=""border-collapse:collapse;"">")
+	response.write("<tr>")
+	response.write("<th>UnitCode</th>")
+	response.write("<th>CreditPoints</th>")
+	response.write("<th>Year/Sem</th>")
+	response.write("<th>Mark</th>")
+	response.write("<th>Grade</th>")
+	response.write("</tr>")
+
+	response.write("<tr>")
+	response.write("<td>")
+	response.write(highestMark(UC))
+	response.write("</td>")
+	response.write("<td align=""center"">")
+	response.write(highestMark(CP))
+	response.write("</td>")
+	response.write("<td align=""center"">")
+	response.write(highestMark(YS))
+	response.write("</td>")
+	response.write("<td align=""right"">")
+	response.write(highestMark(UM))
+	response.write("</td>")
+	response.write("<td>")
+	response.write(highestMark(GR))
+	response.write("</td>")
+	response.write("</tr>")
+	response.write("</table>")
+end sub
+
+'**
+'* Sub displays transcript table.
+'*
+sub displayTranscript()
 	response.write("<h2>Transcript</h2>")
-
-	'would be nicer in css, rather than inline
+	'would be nicer in css rather than inline
 	response.write("<table border=""1"" cellpadding=""10"" style=""border-collapse:collapse;"">")
 	response.write("<tr>")
 	response.write("<th>UnitCode</th>")
@@ -129,7 +164,7 @@ sub displaySummary()
 		response.write("</td>")
 		response.write("<td align=""right"">")
 
-		'lets show any mark less than pass show up as red
+		' show any mark less than pass as red
 		if unitDetails(i, UM) < MARK_PASS then
 			response.write("<font color=""red"">")
 			response.write(unitDetails(i, UM))
@@ -149,8 +184,6 @@ sub displaySummary()
 			response.write("</td>")
 			response.write("</tr>")
 		end if
-
-
 	next
 
 	response.write("</table>")
