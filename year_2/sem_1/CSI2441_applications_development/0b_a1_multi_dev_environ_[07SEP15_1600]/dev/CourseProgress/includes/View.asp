@@ -79,6 +79,7 @@ sub displaySummary()
 
 	'test
 	'response.write(logicErrorCount)
+	response.write("<h2>TEST TRANSCRIPT ONLY!</h2>")
 	for i = 0 to filledRows - 1
 		for j = 0 to 4
 			response.write(unitDetails(i, j) & " | ")
