@@ -5,41 +5,29 @@
 '@author Martin Ponce, 10371381
 '@version 20150831
 
-'column index definitions for student/unitErrorMessage(x,y)
-const ERROR_COLS = 4
-
+'column index for student/unitErrorMessage
 const E_ROW = 0
 const E_FIELD = 1
 const E_ECODE = 2
-const E_MESSAGE = 3
 
-const ECODE_MISSING = 0
-const ECODE_VALIDATE = 1
+'column index for logicErrorMessage
+const LE_FIELD = 0
+const LE_ECODE = 1
+const LE_SEM = 2
+const LE_ROW_1 = 3
+const LE_ROW_2 = 4
 
-dim errorCodes(11)
-'names
-errorCodes(0) = "is missing."
-errorCodes(1) = "must be a name."
-'studentid
-errorCodes(2) = "must be eight digits."
-'unitcode
-errorCodes(3) = "is invalid for undergraduate students. Must be a unit code less than 6000 level."
-errorCodes(4) = "must follow the format: ABC1234."
-'creditpoints
-errorCodes(5) = "must only be either 15 or 20."
-'year/sem
-errorCodes(6) = "must follow the format ""YYS"". For example, 151. Semester must only be 1 or 2"
-'unitmark
-errorCodes(7) = "cannt be less than 0 or greater than 100."
-errorCodes(8) = "must be between 1 and 3 digits."
-'passMatchUnits
-errorCodes(9) = "is passed more than once at rows " 'then state the rows
-'semMatchUnits
-errorCodes(10) = "appears more than once in semester " 'then state sem and rows
+'studentErrorMessage
+'| 0   | 1     | 2     |
+'| row | field | ecode |
 
-'sketch of error message arrays
-'| 0   | 1     | 2     | 3         |
-'| row | field | ecode | extra msg |
+'unitErrorMessage
+'| 0   | 1     | 2     |
+'| row | field | ecode |
+
+'logicErrorMessage
+'| 0     | 1     | 2   | 3    | 4
+'| field | ecode | sem | row1 | row2
 
 '**
 '* Function checks if field is populated.
@@ -58,17 +46,14 @@ function isFieldPopulated(field)
 end function
 
 '**
-'* Sub populates errorMessage array with missing value,
+'* Sub populates error array with missing value,
 '* when input is missing from the form.
 '*
 '* @param data String - Either "student" or "unit"
-'* @param field String - the missing value.
 '* @param row int - The partially filled row, use -1 if student details.
+'* @param field String - the missing value.
 '*
-sub missingInputError(data, field, row)
-
-	dim message
-	message = "is missing."
+sub missingInputError(data, row, field)
 
 	select case data
 		case "student"
@@ -76,15 +61,13 @@ sub missingInputError(data, field, row)
 			'redim preserve studentErrorMessage(studentErrorCount, ERROR_COLS)
 			studentErrorMessage(studentErrorCount - 1, E_ROW) = row
 			studentErrorMessage(studentErrorCount - 1, E_FIELD) = field
-			studentErrorMessage(studentErrorCount - 1, E_ECODE) = ECODE_MISSING
-			studentErrorMessage(studentErrorCount - 1, E_MESSAGE) = message
+			studentErrorMessage(studentErrorCount - 1, E_ECODE) = 0
 		case "unit"
 			unitErrorCount = unitErrorCount + 1
 			'redim preserve unitErrorMessage(unitErrorCount, ERROR_COLS)
 			unitErrorMessage(unitErrorCount - 1, E_ROW) = row
 			unitErrorMessage(unitErrorCount - 1, E_FIELD) = field
-			unitErrorMessage(unitErrorCount - 1, E_ECODE) = ECODE_MISSING	
-			unitErrorMessage(unitErrorCount - 1, E_MESSAGE) = message	
+			unitErrorMessage(unitErrorCount - 1, E_ECODE) = 0
 	end select
 
 end sub
@@ -93,26 +76,25 @@ end sub
 '* Sub populates student/unit error message array with validation error message.
 '*
 '* @param data String - Either "student" or "unit"
-'* @param field String - The field that failed validation.
 '* @param row int - The row which failed validation, use -1 if student details.
-'* @param message String - The error message.
+'* @param field String - The field that failed validation.
+'* @param code int - The error code. See errorCode() array.
 '*
-sub validateError(data, field, row, message)
+'unitErrorMessage
+'| 0   | 1     | 2     |
+'| row | field | ecode |
+sub validateError(data, row, field, code)
 	select case data
 		case "student"
 			studentErrorCount = studentErrorCount + 1
-			'redim preserve studentErrorMessage(studentErrorCount, ERROR_COLS)
 			studentErrorMessage(studentErrorCount - 1, E_ROW) = row
 			studentErrorMessage(studentErrorCount - 1, E_FIELD) = field
-			studentErrorMessage(studentErrorCount - 1, E_ECODE) = ECODE_VALIDATE
-			studentErrorMessage(studentErrorCount - 1, E_MESSAGE) = message
+			studentErrorMessage(studentErrorCount - 1, E_ECODE) = code
 		case "unit"
 			unitErrorCount = unitErrorCount + 1
-			'redim preserve unitErrorMessage(unitErrorCount, ERROR_COLS)
 			unitErrorMessage(unitErrorCount - 1, E_ROW) = row
 			unitErrorMessage(unitErrorCount - 1, E_FIELD) = field
-			unitErrorMessage(unitErrorCount - 1, E_ECODE) = ECODE_VALIDATE
-			unitErrorMessage(unitErrorCount - 1, E_MESSAGE) = message
+			unitErrorMessage(unitErrorCount - 1, E_ECODE) = code
 	end select
 end sub
 
@@ -120,14 +102,18 @@ end sub
 '* Sub populates logicError array with logic error message.
 '*
 '* @param field String - The field that failed validation.
-'* @param message String - The error message.
-'* @param rows String - The rows affected.
+'* @param code int - The error code. See errorCode() array.
+'* @param sem String - The affected semester.
+'* @param row1 int - The first row affected.
+'* @param row2 int - The second row affected.
 '*
-sub logicError(field, message, rows)
+sub logicError(field, code, sem, row1, row2)
 	logicErrorCount = logicErrorCount + 1
-	logicErrorMessage(logicErrorCount - 1, 0) = field
-	logicErrorMessage(logicErrorCount - 1, 1) = message
-	logicErrorMessage(logicErrorCount - 1, 2) = rows
+	logicErrorMessage(logicErrorCount - 1, LE_FIELD) = field
+	logicErrorMessage(logicErrorCount - 1, LE_ECODE) = code
+	logicErrorMessage(logicErrorCount - 1, LE_SEM) = sem
+	logicErrorMessage(logicErrorCount - 1, LE_ROW_1) = row1
+	logicErrorMessage(logicErrorCount - 1, LE_ROW_2) = row2
 end sub
 
 '**

@@ -16,20 +16,20 @@ sub validateStudentDetails()
 	'validate names
 	if studentDetails(FN) <> "" then
 		if not isRegExMatch(studentDetails(FN), regExDict.item("name")) then
-			call validateError("student", "Firstname", -1, "must be a name.")
+			call validateError("student", -1, "Firstname", 1)
 		end if
 	end if
 
 	if studentDetails(SN) <> "" then
 		if not isRegExMatch(studentDetails(SN), regExDict.item("name")) then
-			call validateError("student", "Surname", -1, "must be a name.")
+			call validateError("student", -1, "Surname", 1)
 		end if
 	end if
 
 	'validate student id
 	if studentDetails(ID) <> "" then
 		if not isRegExMatch(studentDetails(ID), regExDict.item("studentID")) then
-			call validateError("student", "Student ID", -1, "must be eight digits.")
+			call validateError("student", -1, "Student ID", 2)
 		end if
 	end if
 end sub
@@ -50,7 +50,7 @@ sub validateUnitDetails()
 
 		'if unit code element is empty
 		if unitDetails(i, UC) = "" then
-			call missingInputError("unit", "Unit Code", i + 1)
+			call missingInputError("unit", i + 1, "Unit Code")
 		else
 			call validateUnitCode(i)
 		end if
@@ -61,7 +61,7 @@ sub validateUnitDetails()
 
 		'if credit points element is empty
 		if unitDetails(i, CP) = "" then
-			call missingInputError("unit", "Credit Points", i + 1)
+			call missingInputError("unit", i + 1, "Credit Points")
 		else
 			call validateCreditPoints(i)
 		end if
@@ -72,7 +72,7 @@ sub validateUnitDetails()
 
 		'if year/sem element is empty
 		if unitDetails(i, YS) = "" then
-			call missingInputError("unit", "Year / Semester", i + 1)
+			call missingInputError("unit", i + 1, "Year / Semester")
 		else
 			call validateYearSem(i)
 		end if
@@ -83,7 +83,7 @@ sub validateUnitDetails()
 
 		'if unit mark element is empty
 		if unitDetails(i, UM) = "" then
-			call missingInputError("unit", "Unit Mark", i + 1)
+			call missingInputError("unit", i + 1, "Unit Mark")
 		else
 			call validateUnitMark(i)
 		end if
@@ -102,12 +102,12 @@ sub validateUnitCode(index)
 		if (studentDetails(CT) = CT_UNDERGRAD or studentDetails(CT) = CT_UNDERGRAD_DOUBLE) and _
 				(getRegExMatch(unitDetails(index, UC), regExDict.item("unitCodeSuffix")) >= 6000) then
 
-			call validateError("unit", "Unit Code", index + 1, "is invalid for undergraduate students. Must be a unit code less than 6000 level.")
+			call validateError("unit", index + 1, "Unit Code", 3)
 
 		end if
 	'else unit code is not valid
 	else
-		call validateError("unit", "Unit Code", index + 1, "must follow the format: ABC1234.")
+		call validateError("unit", index + 1, "Unit Code", 4)
 	end if
 end sub
 
@@ -123,7 +123,7 @@ sub validateCreditPoints(index)
 		unitDetails(index, CP) = cInt(unitDetails(index, CP))
 	'else credit points is not valid
 	else
-		call validateError("unit", "Credit Points", index + 1, "must only be either 15 or 20.")
+		call validateError("unit", index + 1, "Credit Points", 5)
 	end if
 end sub
 
@@ -135,8 +135,7 @@ end sub
 sub validateYearSem(index)
 	'if year/sem is not valid
 	if not isRegExMatch(unitDetails(index, YS), regExDict.item("yearSem")) then
-		call validateError("unit", "Year / Semester", index + 1, "must follow the format:" & _
-				"YYS. For example 151. Semester must only be 1 or 2.")
+		call validateError("unit", index + 1, "Year / Semester", 6)
 	end if
 end sub
 
@@ -154,14 +153,14 @@ sub validateUnitMark(index)
 	if isRegExMatch(unitDetails(index, UM), regExDict.item("mark")) then
 		'test unit mark against min/max range
 		if cInt(unitDetails(index, UM)) < MIN_MARK or cInt(unitDetails(index, UM)) > MAX_MARK then
-			call validateError("unit", "Unit Mark", index + 1, "cannot be less than 0 or greater than 100.")
+			call validateError("unit", index + 1, "Unit Mark", 7)
 		else
 			'cast to int, so we can do math with it
 			unitDetails(index, UM) = cInt(unitDetails(index, UM))
 		end if
-	'regex not checking if > 3 digit here, since input is limited to 3 chars anyway
+	'regex not testing > 3 digit here, since input is limited to 3 chars anyway
 	else
-		call validateError("unit", "Unit Mark", index + 1, "must be between 1 and 3 digits.")
+		call validateError("unit", index + 1, "Unit Mark", 8)
 	end if
 end sub
 
@@ -207,7 +206,7 @@ end sub
 '*
 sub validatePassMatchUnits(currentUnitCode, theArray, indexI, indexJ)
 	if currentUnitCode = theArray(indexJ, UC) and theArray(indexJ, UM) >= MARK_PASS then
-		call logicError(theArray(indexI, UC), "is passed more than once at rows ", indexI + 1 & " & " & indexJ + 1)
+		call logicError(theArray(indexI, UC), 9, theArray(indexI, YS), indexI + 1, indexJ + 1)
 	end if
 end sub
 
@@ -222,7 +221,7 @@ end sub
 '*
 sub validateSemMatchUnits(currentUnitCode, currentSem, theArray, indexI, indexJ)
 	if currentUnitCode = theArray(indexJ, UC) and currentSem = theArray(indexJ, YS) then
-		call logicError(theArray(indexI, UC), "appears more than once in the same semester " & theArray(indexI, YS) & " at rows ", indexI + 1 & " & " & indexJ + 1)
+		call logicError(theArray(indexI, UC), 10, theArray(indexI, YS), indexI + 1, indexJ + 1)
 	end if
 end sub
 

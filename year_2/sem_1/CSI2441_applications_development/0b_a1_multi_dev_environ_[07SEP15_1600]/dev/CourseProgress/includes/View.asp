@@ -162,14 +162,57 @@ end sub
 sub displayStudentErrors()
 
 	response.write(studentErrorTitle)
-
 	response.write("<ul>")
+
 	for i = 0 to studentErrorCount - 1
-		response.write("<li><strong>" & studentErrorMessage(i, E_FIELD) & "</strong> " & _
-				studentErrorMessage(i, E_MESSAGE) & "</li>")
+		response.write("<li><strong>")
+		response.write(studentErrorMessage(i, E_FIELD))
+		response.write("</strong> ")
+		response.write(selectErrorMessage(studentErrorMessage(i, E_ECODE)))
+		response.write("</li>")
 	next
 	response.write("</ul>")
 end sub
+
+'**
+'* Function selects the appropriate error message to print,
+'* according to predefined messages in errorCode array.
+'*
+'* @param code int - The error code.
+'* @return String - The error message.
+'*
+function selectErrorMessage(code)
+
+	dim errorMessage
+
+	select case code
+		case 0
+			errorMessage = errorCode(0)
+		case 1
+			errorMessage = errorCode(1)
+		case 2
+			errorMessage = errorCode(2)
+		case 3
+			errorMessage = errorCode(3)
+		case 4
+			errorMessage = errorCode(4)
+		case 5
+			errorMessage = errorCode(5)
+		case 6
+			errorMessage = errorCode(6)
+		case 7
+			errorMessage = errorCode(7)
+		case 8
+			errorMessage = errorCode(8)
+		case 9
+			errorMessage = errorCode(9)
+		case 10
+			errorMessage = errorCode(10)
+	end select
+
+	selectErrorMessage = errorMessage
+
+end function
 
 '**
 '* Sub displays unit errors.
@@ -185,15 +228,24 @@ sub displayUnitErrors()
 	for i = 0 to unitErrorCount - 1
 
 		if currentRow = unitErrorMessage(i, E_ROW) then
-			response.write("<li><strong>" & unitErrorMessage(i, E_FIELD) & "</strong> " & _
-					unitErrorMessage(i, E_MESSAGE) & "</li>")
+			
+			response.write("<li><strong>")
+			response.write(unitErrorMessage(i, E_FIELD))
+			response.write("</strong> ")
+			response.write(selectErrorMessage(unitErrorMessage(i, E_ECODE)))
+			response.write("</li>")
 		else
 			currentRow = unitErrorMessage(i, E_ROW)
 			response.write("</ul>")
-			response.write("Error/s on <strong>Row " & unitErrorMessage(i, E_ROW) & ":</strong>")
+			response.write("Error/s on <strong>Row ") 
+			response.write(unitErrorMessage(i, E_ROW))
+			response.write(":</strong>")
 			response.write("<ul>")
-			response.write("<li><strong>" & unitErrorMessage(i, E_FIELD) & "</strong> " & _
-					unitErrorMessage(i, E_MESSAGE) & "</li>")
+			response.write("<li><strong>")
+			response.write(unitErrorMessage(i, E_FIELD))
+			response.write("</strong> ")
+			response.write(selectErrorMessage(unitErrorMessage(i, E_ECODE)))
+			response.write("</li>")
 		end if
 	next
 
@@ -201,6 +253,49 @@ sub displayUnitErrors()
 end sub
 
 sub displayLogicErrors()
+
+	dim i, j
+
+	response.write(logicErrorTitle)
+	response.write("<ul>")
+
+	for i = 0 to logicErrorCount - 1
+		j = logicErrorCount - 1
+		do while j > i
+			if logicErrorMessage(i, LE_FIELD) <> logicErrorMessage(j, LE_FIELD) and _
+					logicErrorMessage(i, LE_ECODE) <> logicErrorMessage(j, LE_ECODE) and _
+					logicErrorMessage(i, LE_ROW_1) <> logicErrorMessage(j, LE_ROW_1) then
+
+				response.write("<li><strong>")
+				response.write(logicErrorMessage(i, LE_FIELD))
+				response.write("</strong> ")
+				response.write(selectErrorMessage(logicErrorMessage(i, LE_ECODE)))
+
+				select case logicErrorMessage(i, LE_ECODE)
+					case 9
+						response.write(logicErrorMessage(i, LE_ROW_1))
+						response.write(" and ")
+						response.write(logicErrorMessage(i, LE_ROW_2))
+					case 10
+						response.write(logicErrorMessage(i, LE_SEM))
+						response.write(" at rows ")
+						response.write(logicErrorMessage(i, LE_ROW_1))
+						response.write(" and ")
+						response.write(logicErrorMessage(i, LE_ROW_2))
+				end select
+
+				response.write("</ul>")
+
+			end if
+			j = j - 1
+		loop
+	next
+
+	response.write("</ul>")
+
+end sub
+
+sub displayLogicErrorsTemp()
 
 	dim currentRow, currentMessage
 

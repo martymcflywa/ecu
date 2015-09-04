@@ -45,11 +45,11 @@ sub setupArrays()
 	redim unitDetails(unitRows, UNIT_COLS + 1) '+1 for grade
 
 	'init error/fail arrays
-	redim studentErrorMessage(STUDENT_DETAILS_COUNT, UNIT_COLS)
+	redim studentErrorMessage(STUDENT_DETAILS_COUNT, 3)
 	'going for max amount of rows here since can't redim preserve 2d arrays
-	redim unitErrorMessage(unitRows * UNIT_COLS, UNIT_COLS)
-	redim failedUnits(unitRows, UNIT_COLS)
-	redim logicErrorMessage(unitRows, 2)
+	redim unitErrorMessage(unitRows * UNIT_COLS, 3)
+	redim failedUnits(unitRows, UNIT_COLS) 'delete this
+	redim logicErrorMessage(unitRows, 5)
 end sub
 
 '**
@@ -61,14 +61,14 @@ sub getStudentDetails()
 		studentDetails(FN) = request.form("Firstname")
 		isStudentPopulated = true
 	else
-		call missingInputError("student", "Firstname", -1)
+		call missingInputError("student", -1, "Firstname")
 	end if
 
 	if isFieldPopulated("Surname") then
 		studentDetails(SN) = request.form("Surname")
 		isStudentPopulated = true
 	else
-		call missingInputError("student", "Surname", -1)
+		call missingInputError("student", -1, "Surname")
 	end if
 
 	'convert definition into literal value
@@ -83,7 +83,7 @@ sub getStudentDetails()
 		studentDetails(ID) = request.form("StudentID")
 		isStudentPopulated = true
 	else
-		call missingInputError("student", "StudentID", -1)
+		call missingInputError("student", -1, "StudentID")
 	end if
 
 	'convert definition into literal value
@@ -111,7 +111,8 @@ sub getUnitDetails()
 
 		if isFieldPopulated("UnitCode_" & i + 1) or _
 				isFieldPopulated("CP_" & i + 1) or _
-				isFieldPopulated("YS_" & i + 1) then
+				isFieldPopulated("YS_" & i + 1) or _
+				isFieldPopulated("UM_" & i + 1) then
 			unitDetails(i, UC) = request.form("UnitCode_" & i + 1)
 			unitDetails(i, CP) = request.form("CP_" & i + 1)
 			unitDetails(i, YS) = request.form("YS_" & i + 1)
