@@ -113,13 +113,19 @@ sub displayErrors()
 	'if form is empty
 	if isStudentPopulated = false and isUnitPopulated = false then
 		response.write("Form is empty. Please provide student and unit details.<br />")
+
 	elseif isStudentPopulated = true and isUnitPopulated = false then
+
 		'do this if there are student details errors
 		if studentErrorCount > 0 then
 			call displayStudentErrors()
 		end if
 		response.write(unitErrorTitle)
 		response.write("<strong>Unit details</strong> empty.")
+		'do this if there are logic errors
+		if logicErrorCount > 0 then
+			call displayLogicErrors()
+		end if
 
 	elseif isStudentPopulated = false and isUnitPopulated = true then
 		response.write(studentErrorTitle)
@@ -128,9 +134,12 @@ sub displayErrors()
 		if unitErrorCount > 0 then
 			call displayUnitErrors()
 		end if
+		'do this if there are logic errors
+		if logicErrorCount > 0 then
+			call displayLogicErrors()
+		end if
 
 	else
-
 		'do this if there are student details errors
 		if studentErrorCount > 0 then
 			call displayStudentErrors()
@@ -275,47 +284,6 @@ sub displayLogicErrors()
 	next
 
 end sub
+
 %>
-
-<!--
-response.write("<li><strong>")
-response.write(logicErrorMessage(i, LE_FIELD))
-response.write("</strong> ")
-response.write(selectErrorMessage(logicErrorMessage(i, LE_ECODE)))
-
-select case logicErrorMessage(i, LE_ECODE)
-	case 9
-		response.write(logicErrorMessage(i, LE_ROW_1))
-		response.write(" and ")
-		response.write(logicErrorMessage(i, LE_ROW_2))
-	case 10
-		response.write(logicErrorMessage(i, LE_SEM))
-		response.write(" at rows ")
-		response.write(logicErrorMessage(i, LE_ROW_1))
-		response.write(" and ")
-		response.write(logicErrorMessage(i, LE_ROW_2))
-end select
-
-sub displayLogicErrorsOldModel()
-
-	dim currentRow, currentMessage
-
-	response.write(logicErrorTitle)
-
-	response.write("<ul>")
-
-	for i = 0 to logicErrorCount - 1
-
-		if currentRow <> logicErrorMessage(i, 0) and currentMessage <> logicErrorMessage(i, 1) then
-			response.write("<li><strong>" & logicErrorMessage(i, 0) & "</strong> " & logicErrorMessage(i, 1) & logicErrorMessage(i, 2))
-		else 
-			currentRow = logicErrorMessage(i, 0)
-			currentMessage = logicErrorMessage(i, 1)
-		end if
-	next
-
-	response.write("</ul>")
-end sub
-
--->
 
