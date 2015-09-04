@@ -12,6 +12,7 @@ class Student {
     private $studentID;
     private $courseType;
 
+    // studentDetails array index
     const FN = 0;
     const SN = 1;
     const ET = 2;
@@ -22,13 +23,16 @@ class Student {
     private $isPopulated;
 
     private $studentDetails = array();
-    public $studentErrorMessage = array(array());
+    private $studentErrorMessage = array(array());
 
     public static $studentDetailsTally = 5;
 
+    /**
+     * The constructor.
+     */
     function __construct() {
 
-        $this->getStudentDetails();
+        $this->retrieveStudentDetails();
         $this->packStudentDetails();
     }
 
@@ -43,15 +47,18 @@ class Student {
     /**
      * Function retrieves student data from the form.
      */
-    private function getStudentDetails() {
+    private function retrieveStudentDetails() {
 
         global $firstName;
         global $surname;
         global $enrolmentType;
         global $studentID;
         global $courseType;
-
         global $isPopulated;
+
+        /**
+         * Test fields are populated before retrieving them.
+         */
 
         if(Helpers::isPopulated("Firstname")) {
             $firstName = $_POST["Firstname"];
@@ -102,6 +109,9 @@ class Student {
         }
     }
 
+    /**
+     * Function packs student details into an array.
+     */
     private function packStudentDetails() {
 
         global $studentDetails;
@@ -116,6 +126,16 @@ class Student {
         $studentDetails[Student::ET] = $enrolmentType;
         $studentDetails[Student::ID] = $studentID;
         $studentDetails[Student::CT] = $courseType;
+    }
+
+    /**
+     * Function returns $studentDetails array.
+     *
+     * @return mixed $studentDetails - Student details array.
+     */
+    public function getStudentDetails() {
+        global $studentDetails;
+        return $studentDetails;
     }
 }
 
