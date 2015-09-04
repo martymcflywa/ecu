@@ -50,6 +50,9 @@ sub setupArrays()
 	redim unitErrorMessage(unitRows * UNIT_COLS, 3)
 	redim failedUnits(unitRows, UNIT_COLS) 'delete this
 	redim logicErrorMessage(unitRows, 5)
+	redim highestMark(UNIT_COLS + 1) '+1 for grade
+	'init mark with 0
+	highestMark(UM) = 0
 end sub
 
 '**
@@ -122,6 +125,25 @@ sub getUnitDetails()
 			isUnitPopulated = true
 		end if
 	next
+end sub
+
+'**
+'* Sub sets highest mark.
+'* Limitation: Does not display ties.
+'* Only first highest will be shown if there are ties.
+'*
+'* @param unitCode String.
+'* @param creditPoints int.
+'* @param sem String.
+'* @param mark int.
+'* @param grade String. 
+'*
+sub setHighestMark(unitCode, creditPoints, sem, mark, grade)
+	highestMark(UC) = unitCode
+	highestMark(CP)	= creditPoints
+	highestMark(YS)	= sem
+	highestMark(UM) = mark
+	highestMark(GR) = grade 
 end sub
 
 %>

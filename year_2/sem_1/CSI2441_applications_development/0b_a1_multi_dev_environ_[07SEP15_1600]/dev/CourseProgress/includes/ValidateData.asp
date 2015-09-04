@@ -159,6 +159,11 @@ sub validateUnitMark(index)
 			unitDetails(index, UM) = cInt(unitDetails(index, UM))
 			'get grade after validation
 			unitDetails(index, GR) = getGrade(unitDetails(index, UM))
+			'get highest mark after validation
+			if unitDetails(index, UM) > highestMark(UM) then
+				call setHighestMark(unitDetails(index, UC), unitDetails(index, CP), unitDetails(index, YS), unitDetails(index, UM), unitDetails(index, GR))
+			end if 
+
 		end if
 	'regex not testing > 3 digit here, since input is limited to 3 chars anyway
 	else

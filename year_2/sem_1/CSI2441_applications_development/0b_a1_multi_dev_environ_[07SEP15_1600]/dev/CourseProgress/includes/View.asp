@@ -91,14 +91,23 @@ sub displaySummary()
 	response.write("<strong>Units passed: </strong>" & unitsPassed & "<br />")
 	response.write("<strong>Semesters remaining: </strong>" & semRemaining & "<br />")
 	response.write("<strong>Average mark: </strong>" & markAverage & " " & gradeAverage & "<br />")
+	response.write("</p>")
 
+	response.write("<p>")
+	response.write("<h3>Highest mark:</h3>")
+	response.write("<ul>")
+	response.write("<li><strong>Unit Code: </strong>" & highestMark(UC) & "</li>")
+	response.write("<li><strong>Credit Points: </strong>" & highestMark(CP) & "</li>")
+	response.write("<li><strong>Year / Sem: </strong>" & highestMark(YS) & "</li>")
+	response.write("<li><strong>Mark: </strong>" & highestMark(UM) & " " & highestMark(GR) & "</li>")
+	response.write("</ul>")
 	response.write("</p>")
 
 	'test
 	'response.write(logicErrorCount)
 	response.write("<h2>TEST TRANSCRIPT ONLY!</h2>")
 	for i = 0 to filledRows - 1
-		for j = 0 to 4
+		for j = 0 to UNIT_COLS - 1
 			response.write(unitDetails(i, j) & " | ")
 		next
 		response.write("<br/>")

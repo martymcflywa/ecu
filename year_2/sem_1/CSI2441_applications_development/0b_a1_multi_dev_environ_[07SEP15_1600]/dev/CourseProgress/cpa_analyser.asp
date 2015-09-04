@@ -93,6 +93,9 @@ dim passedCPTotal, cpDelta, unitAttemptTotal, unitsPassed, semRemaining
 dim markTotal, markAverage, gradeAverage, semTotal
 dim progressionStatus, completeStatus
 
+'store highest mark here
+dim highestMark()
+
 'some title strings for error view
 dim studentErrorTitle, unitErrorTitle, logicErrorTitle
 studentErrorTitle = "<h2>Student details errors</h2>"
