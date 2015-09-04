@@ -2,6 +2,8 @@
 namespace includes;
 
 class BusinessRules {
+
+    // constants used to validate business rules
     const CT_UNDERGRAD = 1;
     const CT_UNDERGRAD_DOUBLE = 2;
     const CT_GRAD_DIPLOMA = 3;
@@ -20,6 +22,33 @@ class BusinessRules {
     const MARK_PASS = 50;
     const MARK_SUP_MIN = 45;
     const MARK_SUP_MAX = 49;
+
+    // TODO: Define the constructor
+    function __construct() {
+
+    }
+
+    /**
+     * Function determines the grade of a mark.
+     *
+     * @param $mark int - The mark to grade.
+     * @return string - The grade.
+     */
+    public function getGrade($mark) {
+
+        switch($mark) {
+            case $mark >= 80:
+                return "HD";
+            case $mark >= 70:
+                return "D";
+            case $mark >= 60:
+                return "CR";
+            case $mark >= 50:
+                return "C";
+            case $mark >= 0:
+                return "N";
+        }
+    }
 }
 
 ?>

@@ -106,7 +106,6 @@ end sub
 
 '**
 '* Sub gets all unit values from form, enters them into input array.
-'* Generates errors if any values are missing from partially filled row.
 '*
 sub getUnitDetails()
 	

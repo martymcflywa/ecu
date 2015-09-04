@@ -1,9 +1,15 @@
 <?php
 
 namespace includes;
-require 'includes/php/BusinessRules.php';
-use includes\BusinessRules;
+use includes\Validator;
 
+/**
+ * Class Student contains data and functions related to a student.
+ *
+ * @author Martin Ponce, 10371381
+ * @version 20150904
+ * @package includes
+ */
 class Student {
 
     private $firstName;
@@ -23,23 +29,19 @@ class Student {
 
     private $studentDetails = array();
 
-    public static $studentDetailsTally = 5;
+    const STUDENT_DETAILS_TALLY = 5;
+
+    private $theValidator;
 
     /**
-     * The constructor.
+     * The constructor for the Student class.
      */
     function __construct() {
 
+        $this->isPopulated = false;
+
         $this->retrieveStudentDetails();
         $this->packStudentDetails();
-    }
-
-    /**
-     * Function increments private $studentErrorCount.
-     */
-    public static function incrementStudentErrorCount() {
-        global $studentErrorCount;
-        $studentErrorCount++;
     }
 
     /**
@@ -47,62 +49,61 @@ class Student {
      */
     private function retrieveStudentDetails() {
 
-        global $firstName;
-        global $surname;
-        global $enrolmentType;
-        global $studentID;
-        global $courseType;
-        global $isPopulated;
+        global $theValidator;
 
         /**
          * Test the fields are populated before retrieving them.
+         * TODO: Might remove Helpers, isPopulated can easily be replaced.
+         * TODO: Most of Helper functions from classic ASP is now in Validator class.
          */
 
         if(Helpers::isPopulated("Firstname")) {
-            $firstName = $_POST["Firstname"];
-            $isPopulated = true;
+            $this->firstName = $_POST["Firstname"];
+            $this->isPopulated = true;
         } else {
-            Helpers::missingInputError("student", -1, "Firstname");
+            $theValidator->missingInputError("student", -1, "Firstname");
         }
 
         if(Helpers::isPopulated("Surname")) {
-            $surname = $_POST["Surname"];
-            $isPopulated = true;
+            $this->surname = $_POST["Surname"];
+            $this->isPopulated = true;
         } else {
-            Helpers::missingInputError("student", -1, "Surname");
+            $theValidator->missingInputError("student", -1, "Surname");
         }
 
+        // convert from code definition to actual value
         switch(intval($_POST["EnrolmentType"])) {
             case 1:
-                $enrolmentType = BusinessRules::CP_FULLTIME;
+                $this->enrolmentType = BusinessRules::CP_FULLTIME;
                 break;
             case 2:
-                $enrolmentType = BusinessRules::CP_PARTTIME;
+                $this->enrolmentType = BusinessRules::CP_PARTTIME;
                 break;
         }
 
         if(Helpers::isPopulated("StudentID")) {
-            $studentID = $_POST["StudentID"];
-            $isPopulated = true;
+            $this->studentID = $_POST["StudentID"];
+            $this->isPopulated = true;
         } else {
-            Helpers::missingInputError("student", -1, "StudentID");
+            $theValidator->missingInputError("student", -1, "StudentID");
         }
 
+        // convert from code definition to actual value
         switch(intval($_POST["CourseType"])) {
             case 1:
-                $courseType = BusinessRules::CP_UNDERGRAD;
+                $this->courseType = BusinessRules::CP_UNDERGRAD;
                 break;
             case 2:
-                $courseType = BusinessRules::CP_UNDERGRAD_DOUBLE;
+                $this->courseType = BusinessRules::CP_UNDERGRAD_DOUBLE;
                 break;
             case 3:
-                $courseType = BusinessRules::CP_GRAD_DIPLOMA;
+                $this->courseType = BusinessRules::CP_GRAD_DIPLOMA;
                 break;
             case 4:
-                $courseType = BusinessRules::CP_MASTERS_COURSE;
+                $this->courseType = BusinessRules::CP_MASTERS_COURSE;
                 break;
             case 5:
-                $courseType = BusinessRules::CP_MASTERS_RESEARCH;
+                $this->courseType = BusinessRules::CP_MASTERS_RESEARCH;
                 break;
         }
     }
@@ -111,19 +112,20 @@ class Student {
      * Function packs student details into an array.
      */
     private function packStudentDetails() {
+        $this->studentDetails[Student::FN] = $this->firstName;
+        $this->studentDetails[Student::SN] = $this->surname;
+        $this->studentDetails[Student::ET] = $this->enrolmentType;
+        $this->studentDetails[Student::ID] = $this->studentID;
+        $this->studentDetails[Student::CT] = $this->courseType;
+    }
 
-        global $studentDetails;
-        global $firstName;
-        global $surname;
-        global $enrolmentType;
-        global $studentID;
-        global $courseType;
-
-        $studentDetails[Student::FN] = $firstName;
-        $studentDetails[Student::SN] = $surname;
-        $studentDetails[Student::ET] = $enrolmentType;
-        $studentDetails[Student::ID] = $studentID;
-        $studentDetails[Student::CT] = $courseType;
+    /**
+     * Function imports the Validator class.
+     *
+     * @param $theValidator
+     */
+    public function setTheValidator($theValidator) {
+        $this->theValidator = $theValidator;
     }
 
     /**
@@ -132,8 +134,16 @@ class Student {
      * @return mixed $studentDetails - Student details array.
      */
     public function getStudentDetails() {
-        global $studentDetails;
-        return $studentDetails;
+        return $this->studentDetails;
+    }
+
+    /**
+     * Function returns $isPopulated boolean.
+     *
+     * @return bool $isPopulated.
+     */
+    public function isStudentPopulated() {
+        return $this->isPopulated;
     }
 }
 
