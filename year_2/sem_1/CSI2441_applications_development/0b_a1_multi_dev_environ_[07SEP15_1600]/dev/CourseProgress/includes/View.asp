@@ -265,7 +265,12 @@ sub displayUnitErrors()
 	response.write("</ul>")
 end sub
 
+'**
+'* Sub displays logic errors.
+'*
 sub displayLogicErrors()
+
+	response.write(logicErrorTitle)
 
 	for i = 0 to logicErrorCount - 1
 		response.write("<li><strong>")
