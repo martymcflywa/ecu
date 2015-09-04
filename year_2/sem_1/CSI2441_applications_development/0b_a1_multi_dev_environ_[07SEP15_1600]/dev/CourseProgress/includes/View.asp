@@ -62,7 +62,20 @@ sub displaySummary()
 	response.write("<h2>Progression summary</h2>")
 
 	response.write("<p>")
-	response.write("<strong>Progression Status:</strong> " & progressionStatus & "<br />")
+	response.write("<strong>Progression Status:</strong> ")
+
+	'add red font if excluded
+	select case progressionStatus
+		case "Good standing"
+			response.write(progressionStatus)
+		case "Excluded"
+			response.write("<font color=""red"">")
+			response.write(progressionStatus)
+			response.write("</font>")
+	end select
+
+	response.write("<br />")
+
 	response.write("<strong>Course requirements complete:</strong> " & completeStatus & "<br />")
 	response.write("</p>")
 

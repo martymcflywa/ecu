@@ -292,7 +292,7 @@ sub setProgressionStatus()
 	const MAX_FAILS = 3
 
 	if matchFailedCount >= MAX_FAILS then
-		progressionStatus = "<font color=""red"">Excluded</font>"
+		progressionStatus = "Excluded"
 	else
 		progressionStatus = "Good standing"
 	end if
