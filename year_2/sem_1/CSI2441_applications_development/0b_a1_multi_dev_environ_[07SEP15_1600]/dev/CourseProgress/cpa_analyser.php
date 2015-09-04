@@ -21,5 +21,4 @@ use includes\Helpers;
 
 $theStudent = new Student();
 
-
 ?>

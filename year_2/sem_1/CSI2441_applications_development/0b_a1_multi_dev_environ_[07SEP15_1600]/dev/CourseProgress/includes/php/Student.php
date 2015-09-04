@@ -19,11 +19,9 @@ class Student {
     const ID = 3;
     const CT = 4;
 
-    private $studentErrorCount;
     private $isPopulated;
 
     private $studentDetails = array();
-    private $studentErrorMessage = array(array());
 
     public static $studentDetailsTally = 5;
 
@@ -57,7 +55,7 @@ class Student {
         global $isPopulated;
 
         /**
-         * Test fields are populated before retrieving them.
+         * Test the fields are populated before retrieving them.
          */
 
         if(Helpers::isPopulated("Firstname")) {
