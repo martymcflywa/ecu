@@ -212,7 +212,7 @@ sub validatePassMatchUnits(currentUnitCode, theArray, indexI, indexJ)
 	isWrite = true
 
 	'main test to validate business rule
-	if currentUnitCode = theArray(indexJ, UC) and theArray(J, UM) >= MARK_PASS then
+	if currentUnitCode = theArray(indexJ, UC) and theArray(indexJ, UM) >= MARK_PASS then
 
 		'if there are more then one entries in logicErrorMessage,
 		if logicErrorCount > 0 then
