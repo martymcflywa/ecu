@@ -157,6 +157,8 @@ sub validateUnitMark(index)
 		else
 			'cast to int, so we can do math with it
 			unitDetails(index, UM) = cInt(unitDetails(index, UM))
+			'get grade after validation
+			unitDetails(index, GR) = getGrade(unitDetails(index, UM))
 		end if
 	'regex not testing > 3 digit here, since input is limited to 3 chars anyway
 	else

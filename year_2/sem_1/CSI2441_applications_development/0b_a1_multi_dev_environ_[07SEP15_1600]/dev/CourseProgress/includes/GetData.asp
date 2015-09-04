@@ -118,11 +118,6 @@ sub getUnitDetails()
 			unitDetails(i, YS) = request.form("YS_" & i + 1)
 			unitDetails(i, UM) = request.form("UM_" & i + 1)
 
-			'only get grade if unit mark is populated
-			if isFieldPopulated("UM_" & i + 1) then
-				unitDetails(i, GR) = getGrade(unitDetails(i, UM))
-			end if
-
 			filledRows = filledRows + 1
 			isUnitPopulated = true
 		end if
