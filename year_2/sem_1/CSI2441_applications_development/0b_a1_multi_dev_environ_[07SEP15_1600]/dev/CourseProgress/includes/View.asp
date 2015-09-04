@@ -217,7 +217,7 @@ end function
 '**
 '* Sub displays unit errors.
 '*
-sub displayUnitErrorsT()
+sub displayUnitErrors()
 
 	dim currentRow
 	currentRow = 0
