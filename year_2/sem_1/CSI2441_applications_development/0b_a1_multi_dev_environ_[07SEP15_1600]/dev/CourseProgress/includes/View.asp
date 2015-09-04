@@ -252,7 +252,29 @@ sub displayUnitErrors()
 	response.write("</ul>")
 end sub
 
+sub displayLogicErrors()
 
+	for i = 0 to logicErrorCount - 1
+		response.write("<li><strong>")
+		response.write(logicErrorMessage(i, LE_FIELD))
+		response.write("</strong> ")
+		response.write(selectErrorMessage(logicErrorMessage(i, LE_ECODE)))
+
+		select case logicErrorMessage(i, LE_ECODE)
+			case 9
+				response.write(logicErrorMessage(i, LE_ROW_1))
+				response.write(" and ")
+				response.write(logicErrorMessage(i, LE_ROW_2))
+			case 10
+				response.write(logicErrorMessage(i, LE_SEM))
+				response.write(" at rows ")
+				response.write(logicErrorMessage(i, LE_ROW_1))
+				response.write(" and ")
+				response.write(logicErrorMessage(i, LE_ROW_2))
+		end select
+	next
+
+end sub
 %>
 
 <!--
