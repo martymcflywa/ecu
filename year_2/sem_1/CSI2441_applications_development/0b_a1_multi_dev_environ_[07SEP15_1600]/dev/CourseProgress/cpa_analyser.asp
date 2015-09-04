@@ -34,7 +34,6 @@ dim unitDetails()
 dim studentErrorMessage(), studentErrorCount
 dim unitErrorMessage(), unitErrorCount
 dim logicErrorMessage(), logicErrorCount
-dim failedUnits() 'can i delete this?
 
 'column index for student/unitErrorMessage
 const E_ROW = 0
