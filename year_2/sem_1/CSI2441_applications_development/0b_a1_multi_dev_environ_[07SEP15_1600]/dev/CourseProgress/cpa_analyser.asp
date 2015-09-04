@@ -125,11 +125,11 @@ end if
 
 <!-- BEGIN INCLUDES -->
 
-<!-- #include file = "includes/GetData.asp" -->
-<!-- #include file = "includes/ValidateData.asp" -->
-<!-- #include file = "includes/BusinessLogic.asp" -->
-<!-- #include file = "includes/View.asp" -->
-<!-- #include file = "includes/Helpers.asp" -->
+<!-- #include file = "includes/asp/GetData.asp" -->
+<!-- #include file = "includes/asp/ValidateData.asp" -->
+<!-- #include file = "includes/asp/BusinessLogic.asp" -->
+<!-- #include file = "includes/asp/View.asp" -->
+<!-- #include file = "includes/asp/Helpers.asp" -->
 
 <p>&nbsp;</p>
 </body>
