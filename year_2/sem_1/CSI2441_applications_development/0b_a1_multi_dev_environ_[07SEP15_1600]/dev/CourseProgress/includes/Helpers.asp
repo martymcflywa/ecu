@@ -16,6 +16,31 @@ const E_MESSAGE = 3
 const ECODE_MISSING = 0
 const ECODE_VALIDATE = 1
 
+dim errorCodes(11)
+'names
+errorCodes(0) = "is missing."
+errorCodes(1) = "must be a name."
+'studentid
+errorCodes(2) = "must be eight digits."
+'unitcode
+errorCodes(3) = "is invalid for undergraduate students. Must be a unit code less than 6000 level."
+errorCodes(4) = "must follow the format: ABC1234."
+'creditpoints
+errorCodes(5) = "must only be either 15 or 20."
+'year/sem
+errorCodes(6) = "must follow the format ""YYS"". For example, 151. Semester must only be 1 or 2"
+'unitmark
+errorCodes(7) = "cannt be less than 0 or greater than 100."
+errorCodes(8) = "must be between 1 and 3 digits."
+'passMatchUnits
+errorCodes(9) = "is passed more than once at rows " 'then state the rows
+'semMatchUnits
+errorCodes(10) = "appears more than once in semester " 'then state sem and rows
+
+'sketch of error message arrays
+'| 0   | 1     | 2     | 3         |
+'| row | field | ecode | extra msg |
+
 '**
 '* Function checks if field is populated.
 '* Returns boolean.
