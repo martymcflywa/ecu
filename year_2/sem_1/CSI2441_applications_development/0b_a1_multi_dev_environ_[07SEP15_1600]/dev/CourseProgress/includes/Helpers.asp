@@ -56,9 +56,6 @@ end sub
 '* @param field String - The field that failed validation.
 '* @param code int - The error code. See errorCode() array.
 '*
-'unitErrorMessage
-'| 0   | 1     | 2     |
-'| row | field | ecode |
 sub validateError(data, row, field, code)
 	select case data
 		case "student"

@@ -81,11 +81,11 @@ end sub
 '*
 '* !! ASSUMPTIONS/LIMITATIONS !!
 '* 1. Only considers 15 CP per unit, not 20.
-'* 2. User input must be in correct order according to semester.
+'* 2. User input must be in correct order according to semester!
 '*
 '* TODO: 	Operation is expensive, multiple consecutive loops.
 '* 			Needs simplifying. But at least it works.
-'*			Not following DRY, to more subs.
+'*			Not DRY, to add more subs.
 '*
 sub getSupUnit()
 	
