@@ -189,7 +189,7 @@ sub getUnitMatches(theArray)
 		
 			for j = i + 1 to filledRows - 1
 				call validatePassMatchUnits(currentUnitCode, theArray, i, j)
-				call validateSemMatchUnits(currentUnitCode, currentSem, theArray, i, j)
+				'call validateSemMatchUnits(currentUnitCode, currentSem, theArray, i, j)
 			next
 		end if
 	next
@@ -205,8 +205,35 @@ end sub
 '* @param indexJ int - The current index + 1.
 '*
 sub validatePassMatchUnits(currentUnitCode, theArray, indexI, indexJ)
-	if currentUnitCode = theArray(indexJ, UC) and theArray(indexJ, UM) >= MARK_PASS then
-		call logicError(theArray(indexI, UC), 9, theArray(indexI, YS), indexI + 1, indexJ + 1)
+
+	dim isWrite
+	isWrite = true
+
+	'main test to validate business rule
+	if currentUnitCode = theArray(indexJ, UC) and theArray(J, UM) >= MARK_PASS then
+
+		'if there are more then one entries in logicErrorMessage
+		if logicErrorCount > 0 then
+			'loop over logic errors to find matches before storing new entry
+			for k = 0 to logicErrorCount - 1
+				'if a match is found,
+				if currentUnitCode = logicErrorMessage(k, LE_FIELD) and _
+						logicErrorMessage(k, LE_ECODE) = 9 and _
+						logicErrorMessage(k, LE_ROW_1) = indexI + 1 then
+
+					'set isWrite to false
+					isWrite = false
+				end if
+			next
+
+			'only write error if isWrite is true
+			if isWrite then
+				call logicError(theArray(indexI, UC), 9, theArray(indexI, YS), indexI + 1, indexJ + 1)
+			end if
+		'else this is the first entry, post it up
+		else 
+			call logicError(theArray(indexI, UC), 9, theArray(indexI, YS), indexI + 1, indexJ + 1)
+		end if
 	end if
 end sub
 
