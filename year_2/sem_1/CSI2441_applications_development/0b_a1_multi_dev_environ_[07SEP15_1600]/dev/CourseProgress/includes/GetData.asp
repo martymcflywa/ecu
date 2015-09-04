@@ -111,14 +111,17 @@ sub getUnitDetails()
 
 		if isFieldPopulated("UnitCode_" & i + 1) or _
 				isFieldPopulated("CP_" & i + 1) or _
-				isFieldPopulated("YS_" & i + 1) or _
-				isFieldPopulated("UM_" & i + 1) then
+				isFieldPopulated("YS_" & i + 1) then
 			unitDetails(i, UC) = request.form("UnitCode_" & i + 1)
 			unitDetails(i, CP) = request.form("CP_" & i + 1)
 			unitDetails(i, YS) = request.form("YS_" & i + 1)
 			unitDetails(i, UM) = request.form("UM_" & i + 1)
-			'get grade
-			unitDetails(i, GR) = getGrade(unitDetails(i, UM))
+
+			'only get grade if unit mark is populated
+			if isFieldPopulated("UM_" & i + 1) then
+				unitDetails(i, GR) = getGrade(unitDetails(i, UM))
+			end if
+
 			filledRows = filledRows + 1
 			isUnitPopulated = true
 		end if
