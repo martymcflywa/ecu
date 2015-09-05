@@ -249,6 +249,7 @@ end sub
 '* A unit cannot appear more than once in the same semester.
 '*
 '* @param currentUnitCode String - The current unit code during iteration.
+'* @param currentSem String - The current semester during iteration.
 '* @param theArray - The array with data being validated.
 '* @param indexI int - The current index during iteration.
 '* @param indexJ int - The current index + 1.
