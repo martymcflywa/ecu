@@ -249,8 +249,119 @@ class Validator {
         }
     }
 
+    /**
+     * Function initiates logic validation.
+     */
     private final function validateLogic() {
+        $this->getUnitMatches($this->unitDetailsArray);
+    }
 
+    /**
+     * Function searches array for matched Unit Codes,
+     * then validates them for passed matching units, and semester matching units.
+     *
+     * @param array $theArray - The array to search.
+     */
+    private final function getUnitMatches(array $theArray) {
+
+        $currentUnitCode = "";
+        $currentSem = "";
+
+        for($i = 0; $i < Units::$filledRows; $i++) {
+
+            if(strlen($theArray[$i][Units::UC]) > 0) {
+
+                $currentUnitCode = $theArray[$i][Units::UC];
+                $currentSem = $theArray[$i][Units::YS];
+
+                for($j = $i + 1; $j <  Units::$filledRows; $j++) {
+                    $this->validatePassMatchUnits($currentUnitCode, $theArray, $i, $j);
+                    $this->validateSemMatchUnits($currentUnitCode, $currentSem, $theArray, $i, $j);
+                }
+            }
+        }
+    }
+
+    /**
+     * Function implements business rule:
+     * A unit cannot appear as passed more than once.
+     * To be used inside for loop, @see getUnitMatches().
+     *
+     * @param $currentUnitCode String - The current unit code during iteration.
+     * @param array $theArray - The array with data being validated.
+     * @param $indexI int - The current index during iteration.
+     * @param $indexJ int - The current index + 1.
+     */
+    private final function validatePassMatchUnits($currentUnitCode, array $theArray, $indexI, $indexJ) {
+
+        $isWrite = true;
+
+        // main test to validate business rule
+        if($currentUnitCode == $theArray[$indexJ][Units::UC] && $theArray[$indexJ][Units::UM] >= BusinessRules::MARK_PASS) {
+
+            // if there are more than one entries in logicErrorMessage
+            if($this->logicErrorTally > 0) {
+                // loop over logic errors to find matches before storing new entry
+                for($k = 0; $k < $this->logicErrorTally; $k++) {
+                    // if a match is found,
+                    if($currentUnitCode == $this->logicErrorMessage[$k][$this::LE_FIELD] &&
+                            $this->logicErrorMessage[$k][$this::LE_ECODE] == 9 &&
+                            $this->logicErrorMessage[$k][$this::LE_ROW_1] == $indexI + 1) {
+                        // set isWrite to false
+                        $isWrite = false;
+                    }
+                }
+                // only write error if isWrite is true
+                if($isWrite) {
+                    $this->logicError($theArray[$indexI][Units::UC], 9, $theArray[$indexI][Units::YS], $indexI + 1, $indexJ + 1);
+                }
+            }
+        } else {
+            // else this is the first entry, post it up
+            $this->logicError($theArray[$indexI][Units::UC], 9, $theArray[$indexI][Units::YS], $indexI + 1, $indexJ + 1);
+        }
+    }
+
+    /**
+     * Function implements business rule:
+     * A unit cannot appear more than once in the same semester.
+     * To be used inside for loop, @see getUnitMatches().
+     *
+     * @param $currentUnitCode String - The current unit code during iteration.
+     * @param $currentSem String - The current semester during iteration.
+     * @param array $theArray - The array with data being validated.
+     * @param $indexI - The current index during iteration.
+     * @param $indexJ - The current index + 1.
+     */
+    private final function validateSemMatchUnits($currentUnitCode, $currentSem, array $theArray, $indexI, $indexJ) {
+
+        $isWrite = true;
+
+        // main test to validate business rule
+        if($currentUnitCode == $theArray[$indexJ][Units::UC] && $currentSem == $theArray[$indexJ][Units::YS]) {
+
+            // if there are more than one entries in logicErrorMessage
+            if($this->logicErrorTally > 0) {
+                // loop over logic errors to find matches before storing entry
+                for($k = 0; $k < $this->logicErrorTally; $k++) {
+                    // if a match is found
+                    if($currentUnitCode == $this->logicErrorMessage[$k][$this::LE_FIELD] &&
+                            $currentSem == $this->logicErrorMessage[$k][$this::LE_SEM] &&
+                            $this->logicErrorMessage[$k][$this::LE_ECODE] ==  10 &&
+                            $this->logicErrorMessage[$k][$this::LE_ROW_1] == $indexI + 1) {
+                        // set isWrite to false
+                        $isWrite = false;
+                    }
+                }
+                // only write error if isWrite is true
+                if($isWrite) {
+                    $this->logicError($theArray[$indexI][Units::UC], 10, $theArray[$indexI][Units::YS], $indexI + 1, $indexJ + 1);
+                }
+            }
+        } else {
+            // else this is the first entry, post it up
+            $this->logicError($theArray[$indexI][Units::UC], 10, $theArray[$indexI][Units::YS], $indexI + 1, $indexJ + 1);
+        }
     }
 
     /**
