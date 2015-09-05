@@ -81,7 +81,7 @@ class Validator {
      * Function validates student details.
      * Tests each array index for population before proceeding.
      */
-    private function validateStudentDetails() {
+    private final function validateStudentDetails() {
 
         // validate names
         if(strlen($this->studentDetailsArray[Student::FN]) > 0) {
@@ -108,7 +108,7 @@ class Validator {
      * Function validates unit details.
      * Tests each array index for population before proceeding.
      */
-    private function validateUnitDetails() {
+    private final function validateUnitDetails() {
 
         // iterate each row
         for($i = 0; $i < Units::$filledRows; $i++) {
@@ -161,7 +161,7 @@ class Validator {
      *
      * @param $index int - The current array index.
      */
-    private function validateUnitCode($index) {
+    private final function validateUnitCode($index) {
 
         // if unit code is valid
         if(preg_match($this->regExDict["unitCode"], $this->unitDetailsArray[$index][Units::UC])) {
@@ -185,7 +185,7 @@ class Validator {
      *
      * @param $index int - The current array index.
      */
-    private function validateCreditPoints($index) {
+    private final function validateCreditPoints($index) {
 
         // if credit points is valid
         if(preg_match($this->regExDict["creditPoints"], $this->unitDetailsArray[$index][Units::CP])) {
@@ -202,7 +202,7 @@ class Validator {
      *
      * @param $index int - The current array index.
      */
-    private function validateYearSem($index) {
+    private final function validateYearSem($index) {
 
         if(!preg_match($this->regExDict["yearSem"], $this->unitDetailsArray[$index][Units::YS])) {
             $this->validateError("unit", $index + 1, "Year / Semester", 6);
@@ -215,7 +215,7 @@ class Validator {
      *
      * @param $index int - The current array index.
      */
-    private function validateUnitMark($index) {
+    private final function validateUnitMark($index) {
 
         global $theRules;
         global $theUnits;
@@ -249,6 +249,10 @@ class Validator {
         }
     }
 
+    private final function validateLogic() {
+
+    }
+
     /**
      * Function populates student/unitErrorMessage when input is missing from the form.
      *
@@ -256,7 +260,7 @@ class Validator {
      * @param $row int - The partially filled row, use -1 if $data == "student".
      * @param $field String - The missing value.
      */
-    public function missingInputError($data, $row, $field) {
+    public final function missingInputError($data, $row, $field) {
 
         switch($data) {
             case "student":
@@ -283,7 +287,7 @@ class Validator {
      * @param $field String - The field that failed validation.
      * @param $code int - The error code, @see buildErrorCode().
      */
-    public function validateError($data, $row, $field, $code) {
+    public final function validateError($data, $row, $field, $code) {
 
         switch($data) {
             case "student":
@@ -310,7 +314,7 @@ class Validator {
      * @param $row1 int - The first row affected.
      * @param $row2 int - The second row affected.
      */
-    public function logicError($field, $code, $sem, $row1, $row2) {
+    public final function logicError($field, $code, $sem, $row1, $row2) {
         $this->logicErrorTally++;
         $this->logicErrorMessage[$this->logicErrorTally - 1][$this::LE_FIELD] = $field;
         $this->logicErrorMessage[$this->logicErrorTally - 1][$this::LE_ECODE] = $code;
@@ -323,7 +327,7 @@ class Validator {
      * This function builds the regExDict(ionary),
      * which will be used for input validation.
      */
-    private function buildRegExDict() {
+    private final function buildRegExDict() {
 
         $this->regExDict = array(
             "name" => "(^[a-zA-Z]+$)",
@@ -341,7 +345,7 @@ class Validator {
      * with preset error messages. Using indexes here
      * so that each message's index is more visible.
      */
-    private function buildErrorCode() {
+    private final function buildErrorCode() {
 
         // names
         $this->errorCode[0] = "is missing.";
@@ -372,7 +376,7 @@ class Validator {
      * @param array $studentDetails
      * @param array $unitDetails
      */
-    public function setInputArrays(array $studentDetails, array $unitDetails) {
+    public final function setInputArrays(array $studentDetails, array $unitDetails) {
         $this->studentDetailsArray = $studentDetails;
         $this->unitDetailsArray = $unitDetails;
     }
