@@ -77,7 +77,7 @@ class BusinessRules {
     /**
      * Function determines the grade of a mark.
      *
-     * @param $mark int - The mark to grade.
+     * @param int $mark - The mark to grade.
      * @return string - The grade.
      */
     public function getGrade($mark) {

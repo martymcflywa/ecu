@@ -48,7 +48,7 @@ class Units {
 
     /**
      * Function kicks off Units.
-     * Can't do these functions until theValidator is imported,
+     * Can't call these functions until theValidator is imported,
      * so rather than calling them from the constructor, call startUnits AFTER
      * theValidator has been imported.
      */
@@ -83,11 +83,11 @@ class Units {
     /**
      * Function sets the highestMark array.
      *
-     * @param $unitCode String.
-     * @param $creditPoints int.
-     * @param $sem String.
-     * @param $mark int.
-     * @param $grade String.
+     * @param String $unitCode.
+     * @param int $creditPoints.
+     * @param String $sem.
+     * @param int $mark.
+     * @param String $grade.
      */
     public function setHighestMark($unitCode, $creditPoints, $sem, $mark, $grade) {
 
@@ -103,8 +103,8 @@ class Units {
     /**
      * Function returns the highestMark array.
      *
-     * @param $index - The desired index of the array.
-     * @return mixed $highestMark;
+     * @param int $index - The desired index of the array.
+     * @return int $highestMark[$index] - The highest mark.
      */
     public function getHighestMark($index) {
         return $this->highestMark[$index];
@@ -113,7 +113,7 @@ class Units {
     /**
      * Function returns unitDetails array.
      *
-     * @return mixed $unitDetails - Unit details array.
+     * @return array $unitDetails - Unit details array.
      */
     public function getUnitDetails() {
         return $this->unitDetails;

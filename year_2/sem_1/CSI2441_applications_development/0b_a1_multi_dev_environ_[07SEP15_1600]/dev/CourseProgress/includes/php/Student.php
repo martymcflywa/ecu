@@ -56,8 +56,8 @@ class Student {
 
     /**
      * Function kicks off the Student.
-     * Can't do these functions until theValidator is imported, so rather
-     * than calling them from the constructor, call startStudent AFTER
+     * Can't call these functions until theValidator is imported, so rather
+     * than calling them from the constructor, call startStudent() AFTER
      * theValidator has been imported.
      */
     public final function startStudent() {

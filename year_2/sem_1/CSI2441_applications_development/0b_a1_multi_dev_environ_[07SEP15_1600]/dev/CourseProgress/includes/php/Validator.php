@@ -57,9 +57,9 @@ class Validator {
     /**
      * The constructor for ValidateData class.
      *
-     * @param $theStudent Student - An instance of the Student class.
-     * @param $theUnits Units - An instance of the Units class
-     * @param $theRules BusinessRules - An instance of the BusinessRules class.
+     * @param Student $theStudent - An instance of the Student class.
+     * @param Units $theUnits - An instance of the Units class
+     * @param BusinessRules $theRules - An instance of the BusinessRules class.
      */
     function __construct(Student $theStudent, Units $theUnits, BusinessRules $theRules) {
 
@@ -169,7 +169,7 @@ class Validator {
      * Function validates Unit Code using regex, @see buildRegExDict.
      * To be used inside for loop, @see validateUnitDetails().
      *
-     * @param $index int - The current array index.
+     * @param int $index - The current array index.
      */
     private final function validateUnitCode($index) {
 
@@ -193,7 +193,7 @@ class Validator {
      * Function validates Credit Points using regex, @see buildRegExDict.
      * To be used inside for loop, @see validateUnitDetails().
      *
-     * @param $index int - The current array index.
+     * @param int $index - The current array index.
      */
     private final function validateCreditPoints($index) {
 
@@ -210,7 +210,7 @@ class Validator {
      * Function validates Year / Sem using regex, @see buildRegExDict.
      * To be used inside for loop, @see validateUnitDetails().
      *
-     * @param $index int - The current array index.
+     * @param int $index - The current array index.
      */
     private final function validateYearSem($index) {
 
@@ -223,7 +223,7 @@ class Validator {
      * Function validates Unit Mark using regex, @see buildRegExDict.
      * To be used inside for loop, @see validateUnitDetails().
      *
-     * @param $index int - The current array index.
+     * @param int $index - The current array index.
      */
     private final function validateUnitMark($index) {
 
@@ -297,10 +297,10 @@ class Validator {
      * A unit cannot appear as passed more than once.
      * To be used inside for loop, @see getUnitMatches().
      *
-     * @param $currentUnitCode String - The current unit code during iteration.
+     * @param String $currentUnitCode - The current unit code during iteration.
      * @param array $theArray - The array with data being validated.
-     * @param $indexI int - The current index during iteration.
-     * @param $indexJ int - The current index + 1.
+     * @param int $indexI - The current index during iteration.
+     * @param int $indexJ - The current index + 1.
      */
     private final function validatePassMatchUnits($currentUnitCode, array $theArray, $indexI, $indexJ) {
 
@@ -337,11 +337,11 @@ class Validator {
      * A unit cannot appear more than once in the same semester.
      * To be used inside for loop, @see getUnitMatches().
      *
-     * @param $currentUnitCode String - The current unit code during iteration.
-     * @param $currentSem String - The current semester during iteration.
+     * @param String $currentUnitCode - The current unit code during iteration.
+     * @param String $currentSem - The current semester during iteration.
      * @param array $theArray - The array with data being validated.
-     * @param $indexI - The current index during iteration.
-     * @param $indexJ - The current index + 1.
+     * @param int $indexI - The current index during iteration.
+     * @param int $indexJ - The current index + 1.
      */
     private final function validateSemMatchUnits($currentUnitCode, $currentSem, array $theArray, $indexI, $indexJ) {
 
@@ -377,9 +377,9 @@ class Validator {
     /**
      * Function populates student/unitErrorMessage when input is missing from the form.
      *
-     * @param $data String - Either "student" or "unit".
-     * @param $row int - The partially filled row, use -1 if $data == "student".
-     * @param $field String - The missing value.
+     * @param String $data - Either "student" or "unit".
+     * @param int $row - The partially filled row, use -1 if $data == "student".
+     * @param String $field - The missing value.
      */
     public final function missingInputError($data, $row, $field) {
 
@@ -403,10 +403,10 @@ class Validator {
      * Function populates student/unitErrorMessage with appropriate validation code.
      * Note to self: Could have probably just overloaded with missingInputError().
      *
-     * @param $data String - Either "student" or "unit"
-     * @param $row int - The affected row.
-     * @param $field String - The field that failed validation.
-     * @param $code int - The error code, @see buildErrorCode().
+     * @param String $data - Either "student" or "unit"
+     * @param int $row - The affected row.
+     * @param String $field - The field that failed validation.
+     * @param int $code - The error code, @see buildErrorCode().
      */
     public final function validateError($data, $row, $field, $code) {
 
@@ -429,11 +429,11 @@ class Validator {
     /**
      * Function populates logicErrorMessage array with error messages.
      *
-     * @param $field String - The field that failed validation.
-     * @param $code int - The error code, @see buildErrorCode().
-     * @param $sem String - The affected semester.
-     * @param $row1 int - The first row affected.
-     * @param $row2 int - The second row affected.
+     * @param String $field - The field that failed validation.
+     * @param int $code - The error code, @see buildErrorCode().
+     * @param String $sem - The affected semester.
+     * @param int $row1 - The first row affected.
+     * @param int $row2 - The second row affected.
      */
     public final function logicError($field, $code, $sem, $row1, $row2) {
         $this->logicErrorTally++;
@@ -527,7 +527,7 @@ class Validator {
 
     /**
      * This function returns logicErrorTally.
-     * 
+     *
      * @return int logicErrorTally.
      */
     public final function getLogicErrorTally() {
