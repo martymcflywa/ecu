@@ -12,7 +12,7 @@ namespace includes;
  */
 class Validator {
 
-    // import references to student/unit/rules class
+    // import references to student/unit/rules objects
     private $theStudent;
     private $theUnits;
     private $theRules;
@@ -504,6 +504,34 @@ class Validator {
         $this->unitDetailsArray = $unitDetails;
         // now that we have all the input data, we can start validation
         $this->startValidation();
+    }
+
+
+    /**
+     * This function returns studentErrorTally.
+     *
+     * @return int studentErrorTally.
+     */
+    public final function getStudentErrorTally() {
+        return $this->studentErrorTally;
+    }
+
+    /**
+     * This function returns unitErrorTally.
+     *
+     * @return int unitErrorTally.
+     */
+    public final function getUnitErrorTally() {
+        return $this->unitErrorTally;
+    }
+
+    /**
+     * This function returns logicErrorTally.
+     * 
+     * @return int logicErrorTally.
+     */
+    public final function getLogicErrorTally() {
+        return $this->logicErrorTally;
     }
 }
 

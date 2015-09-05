@@ -24,9 +24,11 @@ use includes\Validator;
  *
  * It is designed and written in an object oriented style, attempting to implement MVC.
  * Student, Units and BusinessRules classes represent the Model,
- * Validator class as the controller, and the View class as the View.
+ * Validator class (and $this::cpa_analyser.php) as the controller,
+ * and the View class as the View.
  *
- * Basic and advanced validation/business rules, per the assignment brief have been implemented.
+ * Basic and advanced validation/criteria/business rules,
+ * per the assignment brief have been implemented.
  *
  * @author Martin Ponce, 10371381
  * @version 20150904
@@ -50,6 +52,9 @@ $theUnits->startUnits();
 // import the input arrays to theValidator
 // this function also kicks off the validation, @see Validator->setInputArrays()
 $theValidator->setInputArrays($theStudent->getStudentDetails(), $theUnits->getUnitDetails());
+
+// if no validation errors,
+// import input arrays to theRules, again, kicks off business rules validation, @see BusinessRules->setInputArrays()
 
 /**
  * BEGIN TEST
