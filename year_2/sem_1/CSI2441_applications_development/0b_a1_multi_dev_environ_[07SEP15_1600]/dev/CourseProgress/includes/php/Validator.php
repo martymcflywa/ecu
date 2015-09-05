@@ -78,7 +78,7 @@ class Validator {
     }
 
     /**
-     * Function initiates the validation for
+     * This function initiates the validation for
      * student and unit input, as well as logical.
      */
     private final function startValidation() {
@@ -88,7 +88,7 @@ class Validator {
     }
 
     /**
-     * Function validates student details.
+     * This function validates student details.
      * Tests each array index for population before proceeding.
      */
     private final function validateStudentDetails() {
@@ -115,7 +115,7 @@ class Validator {
     }
 
     /**
-     * Function validates unit details.
+     * This function validates unit details.
      * Tests each array index for population before proceeding.
      */
     private final function validateUnitDetails() {
@@ -166,7 +166,7 @@ class Validator {
     }
 
     /**
-     * Function validates Unit Code using regex, @see buildRegExDict.
+     * This function validates Unit Code using regex, @see buildRegExDict().
      * To be used inside for loop, @see validateUnitDetails().
      *
      * @param int $index - The current array index.
@@ -190,7 +190,7 @@ class Validator {
     }
 
     /**
-     * Function validates Credit Points using regex, @see buildRegExDict.
+     * This function validates Credit Points using regex, @see buildRegExDict().
      * To be used inside for loop, @see validateUnitDetails().
      *
      * @param int $index - The current array index.
@@ -207,7 +207,7 @@ class Validator {
     }
 
     /**
-     * Function validates Year / Sem using regex, @see buildRegExDict.
+     * This function validates Year / Sem using regex, @see buildRegExDict().
      * To be used inside for loop, @see validateUnitDetails().
      *
      * @param int $index - The current array index.
@@ -220,7 +220,7 @@ class Validator {
     }
 
     /**
-     * Function validates Unit Mark using regex, @see buildRegExDict.
+     * This function validates Unit Mark using regex, @see buildRegExDict().
      * To be used inside for loop, @see validateUnitDetails().
      *
      * @param int $index - The current array index.
@@ -260,14 +260,14 @@ class Validator {
     }
 
     /**
-     * Function initiates logic validation.
+     * This function initiates logic validation.
      */
     private final function validateLogic() {
         $this->getUnitMatches($this->unitDetailsArray);
     }
 
     /**
-     * Function searches array for matched Unit Codes,
+     * This function searches array for matched Unit Codes,
      * then validates them for passed matching units, and semester matching units.
      *
      * @param array $theArray - The array to search.
@@ -293,7 +293,7 @@ class Validator {
     }
 
     /**
-     * Function implements business rule:
+     * This function implements business rule:
      * A unit cannot appear as passed more than once.
      * To be used inside for loop, @see getUnitMatches().
      *
@@ -333,7 +333,7 @@ class Validator {
     }
 
     /**
-     * Function implements business rule:
+     * This function implements business rule:
      * A unit cannot appear more than once in the same semester.
      * To be used inside for loop, @see getUnitMatches().
      *
@@ -375,7 +375,7 @@ class Validator {
     }
 
     /**
-     * Function populates student/unitErrorMessage when input is missing from the form.
+     * This function populates student/unitErrorMessage when input is missing from the form.
      *
      * @param String $data - Either "student" or "unit".
      * @param int $row - The partially filled row, use -1 if $data == "student".
@@ -400,7 +400,7 @@ class Validator {
     }
 
     /**
-     * Function populates student/unitErrorMessage with appropriate validation code.
+     * This function populates student/unitErrorMessage with appropriate validation code.
      * Note to self: Could have probably just overloaded with missingInputError().
      *
      * @param String $data - Either "student" or "unit"
@@ -427,7 +427,7 @@ class Validator {
     }
 
     /**
-     * Function populates logicErrorMessage array with error messages.
+     * This function populates logicErrorMessage array with error messages.
      *
      * @param String $field - The field that failed validation.
      * @param int $code - The error code, @see buildErrorCode().
@@ -490,6 +490,60 @@ class Validator {
     }
 
     /**
+     * This function returns studentErrorTally.
+     *
+     * @return int studentErrorTally.
+     */
+    public final function getStudentErrorTally() {
+        return $this->studentErrorTally;
+    }
+
+    /**
+     * This function returns the studentErrorMessage array.
+     *
+     * @return array studentErrorMessage.
+     */
+    public final function getStudentErrorMessage() {
+        return $this->studentErrorMessage;
+    }
+
+    /**
+     * This function returns unitErrorTally.
+     *
+     * @return int unitErrorTally.
+     */
+    public final function getUnitErrorTally() {
+        return $this->unitErrorTally;
+    }
+
+    /**
+     * This function returns the unitErrorMessage array.
+     *
+     * @return array unitErrorMessage.
+     */
+    public final function getUnitErrorMessage() {
+        return $this->unitErrorMessage;
+    }
+
+    /**
+     * This function returns logicErrorTally.
+     *
+     * @return int logicErrorTally.
+     */
+    public final function getLogicErrorTally() {
+        return $this->logicErrorTally;
+    }
+
+    /**
+     * This function returns the logicErrorMessage array.
+     *
+     * @return array logicErrorMessage.
+     */
+    public final function getLogicErrorMessage() {
+        return $this->logicErrorMessage;
+    }
+
+    /**
      * This function imports the input arrays from the Student and Units class.
      * This must occur post construction of theStudent and theUnits,
      * otherwise, their input arrays will be empty.
@@ -504,34 +558,6 @@ class Validator {
         $this->unitDetailsArray = $unitDetails;
         // now that we have all the input data, we can start validation
         $this->startValidation();
-    }
-
-
-    /**
-     * This function returns studentErrorTally.
-     *
-     * @return int studentErrorTally.
-     */
-    public final function getStudentErrorTally() {
-        return $this->studentErrorTally;
-    }
-
-    /**
-     * This function returns unitErrorTally.
-     *
-     * @return int unitErrorTally.
-     */
-    public final function getUnitErrorTally() {
-        return $this->unitErrorTally;
-    }
-
-    /**
-     * This function returns logicErrorTally.
-     *
-     * @return int logicErrorTally.
-     */
-    public final function getLogicErrorTally() {
-        return $this->logicErrorTally;
     }
 }
 

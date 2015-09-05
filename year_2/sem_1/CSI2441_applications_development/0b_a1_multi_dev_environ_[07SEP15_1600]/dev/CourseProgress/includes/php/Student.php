@@ -35,7 +35,7 @@ class Student {
     const STUDENT_DETAILS_TALLY = 5;
 
     // object ref to theValidator, created at main in cpa_analyser.php
-    // don't want to create a new Validator here, just pass the initial object around
+    // don't want to create a new Validator here, just pass the reference around
     private $theValidator;
 
     /**
