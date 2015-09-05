@@ -42,6 +42,7 @@ use includes\ViewSummary;
 $theStudent = new Student();
 $theUnits = new Units();
 $theRules = new BusinessRules();
+$theSummaryView;
 
 // create theValidator, pass theStudent, theUnits, and theRules so it can use them to validate
 $theValidator = new Validator($theStudent, $theUnits, $theRules);
@@ -64,6 +65,7 @@ if($theValidator->getStudentErrorTally() == 0 && $theValidator->getUnitErrorTall
     $theRules->setInputArrays($theStudent->getStudentDetails(), $theUnits->getUnitDetails());
     // then show me the summary view
     $theSummaryView = new View("Course Progression Summary", $theStudent->getStudentDetails(), $theUnits->getUnitDetails());
+    echo("WE ARE HERE!");
 } else {
     // else there are errors, go to the error view immediately
     //$theErrorView = new ViewError();

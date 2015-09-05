@@ -22,7 +22,7 @@ class View {
      * @param array $studentDetails
      * @param array $unitDetails
      */
-    function __const($h1Header, array $studentDetails, array $unitDetails) {
+    public function __const($h1Header, array $studentDetails, array $unitDetails) {
 
         $this->h1Header = $h1Header;
         $this->backButton = "<input type=\"button\" name=\"Back\" value=\"Back\" onClick=\"history.go(-1);return true;\">";
@@ -32,6 +32,12 @@ class View {
 
         // print the header
         echo($this->printTitle("h1", $h1Header, true));
+
+        $this->test();
+    }
+
+    function test() {
+        echo($this->h1Header);
     }
 
     /**
