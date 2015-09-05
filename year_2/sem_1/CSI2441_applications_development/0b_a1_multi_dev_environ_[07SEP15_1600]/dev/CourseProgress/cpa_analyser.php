@@ -17,8 +17,6 @@ require_once 'includes/php/BusinessRules.php';
 use includes\BusinessRules;
 require_once 'includes/php/Validator.php';
 use includes\Validator;
-require_once 'includes/php/Helpers.php';
-use includes\Helpers;
 
 /**
  * This php script accepts student and unit input data and presents
@@ -34,17 +32,25 @@ use includes\Helpers;
  * @version 20150904
  */
 
+
 // create instance of each object
 $theStudent = new Student();
 $theUnits = new Units();
 $theRules = new BusinessRules();
 
-// create the validator, pass student, unit, and rules so it can do the validation
+// create theValidator, pass theStudent, theUnits, and theRules so it can use them to validate
 $theValidator = new Validator($theStudent, $theUnits, $theRules);
 
-// import the validator to student and unit
-$theStudent->setTheValidator($theValidator);
-$theUnits->setTheValidator($theValidator);
+// import theValidator to Student and Units so they can use some of theValidator's functions
+$theStudent->setValidator($theValidator);
+$theUnits->setValidator($theValidator);
 
-echo(strlen(0));
+// start theStudent and theUnits
+$theStudent->startStudent();
+$theUnits->startUnits();
+
 ?>
+
+<p>&nbsp;</p>
+</body>
+</html>

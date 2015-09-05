@@ -46,8 +46,24 @@ class Units {
             0,
             0
         );
+    }
 
-        // go get unit details from the form
+    /**
+     * Function imports the Validator class.
+     *
+     * @param $theValidator
+     */
+    public function setValidator(Validator $theValidator) {
+        $this->theValidator = $theValidator;
+    }
+
+    /**
+     * Function kicks off Units.
+     * Can't do these functions until theValidator is imported,
+     * so rather than calling them from the constructor, call startUnits AFTER
+     * theValidator has been imported.
+     */
+    public function startUnits() {
         $this->retrieveUnitDetails();
     }
 
@@ -60,14 +76,16 @@ class Units {
 
         for($i = 0; $i < $this::UNIT_ROWS; $i++) {
 
-            if(Helpers::isPopulated("UnitCode_" . $i++) ||
-                    Helpers::isPopulated("CP_" . $i++) ||
-                    Helpers::isPopulated("YS_" . $i++) ||
-                    Helpers::isPopulated("UM_" . $i++)) {
-                $this->unitDetails[$i][$this::UC] = $_POST["UnitCode_" . $i++];
-                $this->unitDetails[$i][$this::CP] = $_POST["CP_" . $i++];
-                $this->unitDetails[$i][$this::YS] = $_POST["YS_" . $i++];
-                $this->unitDetails[$i][$this::UM] = $_POST["UM_" . $i++];
+            $h = ++$i;
+
+            if(strlen($_POST["UnitCode_" . ++$i] > 0) ||
+                    strlen($_POST["CP_" . ++$i] > 0) ||
+                    strlen($_POST["YS_" . ++$i] > 0) ||
+                    strlen($_POST["UM_" . ++$i] > 0)) {
+                $this->unitDetails[$i][$this::UC] = $_POST["UnitCode_" . ++$i];
+                $this->unitDetails[$i][$this::CP] = $_POST["CP_" . ++$i];
+                $this->unitDetails[$i][$this::YS] = $_POST["YS_" . ++$i];
+                $this->unitDetails[$i][$this::UM] = $_POST["UM_" . ++$i];
 
                 $filledRows++;
                 $this->isPopulated = true;
@@ -103,15 +121,6 @@ class Units {
      */
     public function getHighestMark($index) {
         return $this->highestMark[$index];
-    }
-
-    /**
-     * Function imports the Validator class.
-     *
-     * @param $theValidator
-     */
-    public function setTheValidator($theValidator) {
-        $this->theValidator = $theValidator;
     }
 
     /**

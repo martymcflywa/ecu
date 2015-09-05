@@ -61,7 +61,7 @@ class Validator {
      * @param $theUnits Units - An instance of the Units class
      * @param $theRules BusinessRules - An instance of the BusinessRules class.
      */
-    function __construct($theStudent, $theUnits, $theRules) {
+    function __construct(Student $theStudent, Units $theUnits, BusinessRules $theRules) {
 
         // import student/unit/rules classes
         $this->theStudent = $theStudent;
@@ -69,16 +69,16 @@ class Validator {
         $this->theRules = $theRules;
 
         // import student/unitDetails arrays
-        $this->studentDetails = $theStudent->getStudentDetails();
-        $this->unitDetails = $theUnits->getUnitDetails();
+        //$this->studentDetails = $theStudent->getStudentDetails();
+        //$this->unitDetails = $theUnits->getUnitDetails();
 
         // build regex and error code definitions
         $this->buildRegExDict();
         $this->buildErrorCode();
 
         // then call the methods to validate received data
-        $this->validateStudentDetails();
-        $this->validateUnitDetails();
+        //$this->validateStudentDetails();
+        //$this->validateUnitDetails();
     }
 
     /**

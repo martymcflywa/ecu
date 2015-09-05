@@ -1,7 +1,6 @@
 <?php
 
 namespace includes;
-use includes\Validator;
 
 /**
  * Class Student contains data and functions related to a student.
@@ -12,11 +11,15 @@ use includes\Validator;
  */
 class Student {
 
+    // storing student details as individual variables
     private $firstName;
     private $surname;
     private $enrolmentType;
     private $studentID;
     private $courseType;
+
+    // and in an array to pass around easier
+    private $studentDetails;
 
     // studentDetails array index
     const FN = 0;
@@ -25,21 +28,39 @@ class Student {
     const ID = 3;
     const CT = 4;
 
+    // is true if studentDetails populated
     private $isPopulated;
 
-    private $studentDetails = array();
-
+    // how many student details we are expecting
     const STUDENT_DETAILS_TALLY = 5;
 
+    // object ref to theValidator, created at main in cpa_analyser.php
+    // don't want to create a new Validator here, just pass the initial object around
     private $theValidator;
 
     /**
      * The constructor for the Student class.
      */
     function __construct() {
-
         $this->isPopulated = false;
+    }
 
+    /**
+     * Function imports theValidator object.
+     *
+     * @param $theValidator Validator - An instance of the Validator class
+     */
+    public function setValidator(Validator $theValidator) {
+        $this->theValidator = $theValidator;
+    }
+
+    /**
+     * Function kicks off the Student.
+     * Can't do these functions until theValidator is imported, so rather
+     * than calling them from the constructor, call startStudent AFTER
+     * theValidator has been imported.
+     */
+    public function startStudent() {
         $this->retrieveStudentDetails();
         $this->packStudentDetails();
     }
@@ -57,14 +78,14 @@ class Student {
          * TODO: Most of Helper functions from classic ASP is now in Validator class.
          */
 
-        if(Helpers::isPopulated("Firstname")) {
+        if(strlen($_POST["Firstname"]) > 0) {
             $this->firstName = $_POST["Firstname"];
             $this->isPopulated = true;
         } else {
             $theValidator->missingInputError("student", -1, "Firstname");
         }
 
-        if(Helpers::isPopulated("Surname")) {
+        if(strlen($_POST["Surname"]) > 0) {
             $this->surname = $_POST["Surname"];
             $this->isPopulated = true;
         } else {
@@ -81,7 +102,7 @@ class Student {
                 break;
         }
 
-        if(Helpers::isPopulated("StudentID")) {
+        if(strlen($_POST["StudentID"]) > 0) {
             $this->studentID = $_POST["StudentID"];
             $this->isPopulated = true;
         } else {
@@ -117,15 +138,6 @@ class Student {
         $this->studentDetails[Student::ET] = $this->enrolmentType;
         $this->studentDetails[Student::ID] = $this->studentID;
         $this->studentDetails[Student::CT] = $this->courseType;
-    }
-
-    /**
-     * Function imports the Validator class.
-     *
-     * @param $theValidator
-     */
-    public function setTheValidator($theValidator) {
-        $this->theValidator = $theValidator;
     }
 
     /**
