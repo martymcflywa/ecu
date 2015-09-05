@@ -127,7 +127,7 @@ class Validator {
              * UNIT CODE *
              *************/
 
-            if(strlen($this->unitDetailsArray[$i][Units::UC]) > 0) {
+            if(strlen($this->unitDetailsArray[$i][Units::UC]) == 0) {
                 $this->missingInputError("unit", $i + 1, "Unit Code");
             } else {
                 $this->validateUnitCode($i);
@@ -137,7 +137,7 @@ class Validator {
              * CREDIT POINTS *
              *****************/
 
-            if(strlen($this->unitDetailsArray[$i][Units::CP]) > 0) {
+            if(strlen($this->unitDetailsArray[$i][Units::CP]) == 0) {
                 $this->missingInputError("unit", $i + 1, "Credit Points");
             } else {
                 $this->validateCreditPoints($i);
@@ -147,7 +147,7 @@ class Validator {
              * YEAR / SEM *
              **************/
 
-            if(strlen($this->unitDetailsArray[$i][Units::YS]) > 0) {
+            if(strlen($this->unitDetailsArray[$i][Units::YS]) == 0) {
                 $this->missingInputError("unit", $i + 1, "Year / Semester");
             } else {
                 $this->validateYearSem($i);
@@ -157,7 +157,7 @@ class Validator {
              * UNIT MARK *
              *************/
 
-            if(strlen($this->unitDetailsArray[$i][Units::UM]) > 0) {
+            if(strlen($this->unitDetailsArray[$i][Units::UM]) == 0) {
                 $this->missingInputError("units", $i + 1, "Unit Mark");
             } else {
                 $this->validateUnitMark($i);

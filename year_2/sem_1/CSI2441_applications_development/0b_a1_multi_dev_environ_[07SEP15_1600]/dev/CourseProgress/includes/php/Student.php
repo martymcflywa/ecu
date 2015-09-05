@@ -139,6 +139,7 @@ class Student {
         $this->studentDetails[Student::ET] = $this->enrolmentType;
         $this->studentDetails[Student::ID] = $this->studentID;
         $this->studentDetails[Student::CT] = $this->courseType;
+
     }
 
     /**

@@ -19,6 +19,8 @@ require_once 'includes/php/Validator.php';
 use includes\Validator;
 require_once 'includes/php/View.php';
 use includes\View;
+require_once 'includes/php/ViewSummary.php';
+use includes\ViewSummary;
 
 /**
  * This php script accepts student and unit input data and presents
@@ -61,7 +63,7 @@ if($theValidator->getStudentErrorTally() == 0 && $theValidator->getUnitErrorTall
     // this function also kicks off summary calculation, @see BusinessRules->setInputArrays()
     $theRules->setInputArrays($theStudent->getStudentDetails(), $theUnits->getUnitDetails());
     // then show me the summary view
-    //$theSummaryView = new ViewSummary();
+    $theSummaryView = new View("Course Progression Summary", $theStudent->getStudentDetails(), $theUnits->getUnitDetails());
 } else {
     // else there are errors, go to the error view immediately
     //$theErrorView = new ViewError();
@@ -71,6 +73,7 @@ if($theValidator->getStudentErrorTally() == 0 && $theValidator->getUnitErrorTall
  * BEGIN TEST
  */
 //echo(var_dump($theUnits->getUnitDetails()[0][Units::UM]));
+echo(var_dump($theValidator->getLogicErrorTally()));
 /**
  * END TEST
  */

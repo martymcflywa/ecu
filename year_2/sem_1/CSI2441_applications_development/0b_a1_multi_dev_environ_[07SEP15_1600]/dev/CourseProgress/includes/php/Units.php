@@ -59,8 +59,6 @@ class Units {
      */
     private function retrieveUnitDetails() {
 
-        global $filledRows;
-
         for($i = 0; $i < $this::UNIT_ROWS; $i++) {
 
             $j = $i + 1;
