@@ -50,7 +50,7 @@ class Student {
      *
      * @param $theValidator Validator - An instance of the Validator class
      */
-    public function setValidator(Validator $theValidator) {
+    public final function setValidator(Validator $theValidator) {
         $this->theValidator = $theValidator;
     }
 
@@ -60,7 +60,7 @@ class Student {
      * than calling them from the constructor, call startStudent AFTER
      * theValidator has been imported.
      */
-    public function startStudent() {
+    public final function startStudent() {
         $this->retrieveStudentDetails();
         $this->packStudentDetails();
     }
@@ -68,14 +68,12 @@ class Student {
     /**
      * Function retrieves student data from the form.
      */
-    private function retrieveStudentDetails() {
+    private final function retrieveStudentDetails() {
 
         global $theValidator;
 
         /**
          * Test the fields are populated before retrieving them.
-         * TODO: Might remove Helpers, isPopulated can easily be replaced.
-         * TODO: Most of Helper functions from classic ASP is now in Validator class.
          */
 
         if(strlen($_POST["Firstname"]) > 0) {
@@ -132,7 +130,7 @@ class Student {
     /**
      * Function packs student details into an array.
      */
-    private function packStudentDetails() {
+    private final function packStudentDetails() {
         $this->studentDetails[Student::FN] = $this->firstName;
         $this->studentDetails[Student::SN] = $this->surname;
         $this->studentDetails[Student::ET] = $this->enrolmentType;
@@ -145,7 +143,7 @@ class Student {
      *
      * @return mixed $studentDetails - Student details array.
      */
-    public function getStudentDetails() {
+    public final function getStudentDetails() {
         return $this->studentDetails;
     }
 
@@ -154,7 +152,7 @@ class Student {
      *
      * @return bool $isPopulated.
      */
-    public function isStudentPopulated() {
+    public final function isStudentPopulated() {
         return $this->isPopulated;
     }
 }

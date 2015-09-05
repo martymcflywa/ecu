@@ -45,9 +45,20 @@ $theValidator = new Validator($theStudent, $theUnits, $theRules);
 $theStudent->setValidator($theValidator);
 $theUnits->setValidator($theValidator);
 
-// start theStudent and theUnits
+// start theStudent and theUnits so they can retrieve user input
 $theStudent->startStudent();
 $theUnits->startUnits();
+
+// import the input arrays to theValidator
+$theValidator->setInputArrays($theStudent->getStudentDetails(), $theUnits->getUnitDetails());
+
+/**
+ * BEGIN TEST
+ */
+echo(var_dump($theStudent->getStudentDetails()))
+/**
+ * END TEST
+ */
 
 ?>
 

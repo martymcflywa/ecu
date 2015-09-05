@@ -17,17 +17,16 @@ class Validator {
     private $theUnits;
     private $theRules;
 
-    // import references to student and unit details
-    private $studentDetails;
-    private $unitDetails;
+    // import references to student/unitDetails arrays
+    // note: avoid shadowing variable names for arrays, causes array to string conversion error
+    private $studentDetailsArray;
+    private $unitDetailsArray;
 
     // error tallies and arrays
     private $studentErrorTally;
     private $studentErrorMessage;
-
     private $unitErrorTally;
     private $unitErrorMessage;
-
     private $logicErrorTally;
     private $logicErrorMessage;
 
@@ -48,11 +47,12 @@ class Validator {
     const LE_ROW_2 = 4;
 
     // logicErrorMessage
-    // | 0     | 1     | 2   | 3    | 4
-    // | field | ecode | sem | row1 | row2
+    // | 0     | 1     | 2   | 3    | 4    |
+    // | field | ecode | sem | row1 | row2 |
 
+    // regex dictionary and error codes
     private $regExDict;
-    private $errorCode = array();
+    private $errorCode;
 
     /**
      * The constructor for ValidateData class.
@@ -88,21 +88,21 @@ class Validator {
     private function validateStudentDetails() {
 
         // validate names
-        if(strlen($this->studentDetails[Student::FN]) > 0) {
-            if(!preg_match($this->regExDict["name"], $this->studentDetails[Student::FN])) {
+        if(strlen($this->studentDetailsArray[Student::FN]) > 0) {
+            if(!preg_match($this->regExDict["name"], $this->studentDetailsArray[Student::FN])) {
                 $this->validateError("student", -1, "Firstname", 1);
             }
         }
 
-        if(strlen($this->studentDetails[Student::SN]) > 0) {
-            if(!preg_match($this->regExDict["name"], $this->studentDetails[Student::SN])) {
+        if(strlen($this->studentDetailsArray[Student::SN]) > 0) {
+            if(!preg_match($this->regExDict["name"], $this->studentDetailsArray[Student::SN])) {
                 $this->validateError("student", -1, "Surname", 1);
             }
         }
 
         // validate student id
-        if(strlen($this->studentDetails[Student::ID]) > 0) {
-            if(!preg_match($this->regExDict["studentID"], $this->studentDetails[Student::ID])) {
+        if(strlen($this->studentDetailsArray[Student::ID]) > 0) {
+            if(!preg_match($this->regExDict["studentID"], $this->studentDetailsArray[Student::ID])) {
                 $this->validateError("student", -1, "Surname", 1);
             }
         }
@@ -121,7 +121,7 @@ class Validator {
              * UNIT CODE *
              *************/
 
-            if(strlen($this->unitDetails[$i][Units::UC]) > 0) {
+            if(strlen($this->unitDetailsArray[$i][Units::UC]) > 0) {
                 $this->missingInputError("unit", $i + 1, "Unit Code");
             } else {
                 $this->validateUnitCode($i);
@@ -131,7 +131,7 @@ class Validator {
              * CREDIT POINTS *
              *****************/
 
-            if(strlen($this->unitDetails[$i][Units::CP]) > 0) {
+            if(strlen($this->unitDetailsArray[$i][Units::CP]) > 0) {
                 $this->missingInputError("unit", $i + 1, "Credit Points");
             } else {
                 $this->validateCreditPoints($i);
@@ -141,7 +141,7 @@ class Validator {
              * YEAR / SEM *
              **************/
 
-            if(strlen($this->unitDetails[$i][Units::YS]) > 0) {
+            if(strlen($this->unitDetailsArray[$i][Units::YS]) > 0) {
                 $this->missingInputError("unit", $i + 1, "Year / Semester");
             } else {
                 $this->validateYearSem($i);
@@ -151,7 +151,7 @@ class Validator {
              * UNIT MARK *
              *************/
 
-            if(strlen($this->unitDetails[$i][Units::UM]) > 0) {
+            if(strlen($this->unitDetailsArray[$i][Units::UM]) > 0) {
                 $this->missingInputError("units", $i + 1, "Unit Mark");
             } else {
                 $this->validateUnitMark($i);
@@ -168,12 +168,12 @@ class Validator {
     private function validateUnitCode($index) {
 
         // if unit code is valid
-        if(preg_match($this->regExDict["unitCode"], $this->unitDetails[$index][Units::UC])) {
+        if(preg_match($this->regExDict["unitCode"], $this->unitDetailsArray[$index][Units::UC])) {
 
             // test course type against unit code (wow this is a mouthful in php!)
-            if(($this->studentDetails[Student::CT] == BusinessRules::CT_UNDERGRAD ||
-                    $this->studentDetails[Student::CT] == BusinessRules::CT_UNDERGRAD_DOUBLE) &&
-                    (preg_grep($this->regExDict["unitCodeSuffix"], $this->unitDetails[$index][Units::UC]) >= 6000)) {
+            if(($this->studentDetailsArray[Student::CT] == BusinessRules::CT_UNDERGRAD ||
+                    $this->studentDetailsArray[Student::CT] == BusinessRules::CT_UNDERGRAD_DOUBLE) &&
+                    (preg_grep($this->regExDict["unitCodeSuffix"], $this->unitDetailsArray[$index][Units::UC]) >= 6000)) {
 
                 $this->validateError("unit", $index + 1, "Unit Code", 3);
             }
@@ -192,9 +192,9 @@ class Validator {
     private function validateCreditPoints($index) {
 
         // if credit points is valid
-        if(preg_match($this->regExDict["creditPoints"], $this->unitDetails[$index][Units::CP])) {
+        if(preg_match($this->regExDict["creditPoints"], $this->unitDetailsArray[$index][Units::CP])) {
             // cast to int so we can do math with it
-            $this->unitDetails[$index][Units::CP] = intval($this->unitDetails[$index][Units::CP]);
+            $this->unitDetailsArray[$index][Units::CP] = intval($this->unitDetailsArray[$index][Units::CP]);
         } else {
             $this->validateError("unit", $index + 1, "Credit Points", 5);
         }
@@ -208,7 +208,7 @@ class Validator {
      */
     private function validateYearSem($index) {
 
-        if(!preg_match($this->regExDict["yearSem"], $this->unitDetails[$index][Units::YS])) {
+        if(!preg_match($this->regExDict["yearSem"], $this->unitDetailsArray[$index][Units::YS])) {
             $this->validateError("unit", $index + 1, "Year / Semester", 6);
         }
     }
@@ -228,23 +228,23 @@ class Validator {
         $maxMark = 100;
 
         // if unit mark is valid
-        if(preg_match($this->regExDict["mark"], $this->unitDetails[$index][Units::UM])) {
+        if(preg_match($this->regExDict["mark"], $this->unitDetailsArray[$index][Units::UM])) {
             // test unit mark against min/max range
-            if(intval($this->unitDetails[$index][Units::UM] < $minMark || intval($this->unitDetails[$index][Units::UM]) > $maxMark)) {
+            if(intval($this->unitDetailsArray[$index][Units::UM] < $minMark || intval($this->unitDetailsArray[$index][Units::UM]) > $maxMark)) {
                 $this->validateError("unit", $index + 1, "Unit Mark", 7);
             } else {
                 // cast to int so we can do math with it
-                $this->unitDetails[$index][Units::UM] = intval($this->unitDetails[$index][Units::UM]);
+                $this->unitDetailsArray[$index][Units::UM] = intval($this->unitDetailsArray[$index][Units::UM]);
                 // get the grade for this mark
-                $this->unitDetails[$index][Units::GR] = $theRules->getGrade($this->unitDetails[$index][Units::UM]);
+                $this->unitDetailsArray[$index][Units::GR] = $theRules->getGrade($this->unitDetailsArray[$index][Units::UM]);
                 // then store the highest mark found in theUnits->highestMark array
-                if($this->unitDetails[$index][Units::UM] > $theUnits->getHighestMark(Units::UM)) {
+                if($this->unitDetailsArray[$index][Units::UM] > $theUnits->getHighestMark(Units::UM)) {
                     $theUnits->setHighestMark(
-                        $this->unitDetails[$index][Units::UC],
-                        $this->unitDetails[$index][Units::CP],
-                        $this->unitDetails[$index][Units::YS],
-                        $this->unitDetails[$index][Units::UM],
-                        $this->unitDetails[$index][Units::GR]
+                        $this->unitDetailsArray[$index][Units::UC],
+                        $this->unitDetailsArray[$index][Units::CP],
+                        $this->unitDetailsArray[$index][Units::YS],
+                        $this->unitDetailsArray[$index][Units::UM],
+                        $this->unitDetailsArray[$index][Units::GR]
                     );
                 }
             }
@@ -366,6 +366,19 @@ class Validator {
         $this->errorCode[9] = "is passed more than once at rows "; // then state the rows
         // semMatchUnits
         $this->errorCode[10] = "appears more than once in semester "; // then state sem and rows
+    }
+
+    /**
+     * This function imports the input arrays from the Student and Units class.
+     * This must occur post construction of theStudent and theUnits,
+     * otherwise, their input arrays will be empty.
+     *
+     * @param array $studentDetails
+     * @param array $unitDetails
+     */
+    public function setInputArrays(array $studentDetails, array $unitDetails) {
+        $this->studentDetailsArray = $studentDetails;
+        $this->unitDetailsArray = $unitDetails;
     }
 }
 
