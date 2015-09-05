@@ -63,6 +63,7 @@ class Units {
 
         global $filledRows;
 
+        // TODO: FIX THIS PROBLEM !
         for($i = 0; $i < $this::UNIT_ROWS - 1; $i++) {
 
             if(strlen($_POST["UnitCode_" . ++$i] > 0) ||

@@ -54,12 +54,20 @@ $theUnits->startUnits();
 $theValidator->setInputArrays($theStudent->getStudentDetails(), $theUnits->getUnitDetails());
 
 // if no validation errors,
-// import input arrays to theRules, again, kicks off business rules validation, @see BusinessRules->setInputArrays()
+if($theValidator->getStudentErrorTally() == 0 && $theValidator->getUnitErrorTally() == 0 && $theValidator->getLogicErrorTally() == 0) {
+    // import input arrays to theRules,
+    // this function also kicks off summary calculation, @see BusinessRules->setInputArrays()
+    $theRules->setInputArrays($theStudent->getStudentDetails(), $theUnits->getUnitDetails());
+    // then show me the summary view
+
+} else {
+    // else there are errors, go to the error view immediately
+}
 
 /**
  * BEGIN TEST
  */
-echo(var_dump($theStudent->getStudentDetails()))
+echo(var_dump($theStudent->getStudentDetails()));
 /**
  * END TEST
  */

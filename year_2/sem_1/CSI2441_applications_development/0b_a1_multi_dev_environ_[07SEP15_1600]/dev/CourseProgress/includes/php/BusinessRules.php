@@ -14,7 +14,7 @@ class BusinessRules {
     private $studentDetailsArray;
     private $unitDetailsArray;
 
-    // constants used to validate business rules
+    // constants used to calculate summary according to business rules
     const CT_UNDERGRAD = 1;
     const CT_UNDERGRAD_DOUBLE = 2;
     const CT_GRAD_DIPLOMA = 3;
@@ -33,6 +33,11 @@ class BusinessRules {
     const MARK_PASS = 50;
     const MARK_SUP_MIN = 45;
     const MARK_SUP_MAX = 49;
+    const MAX_FAILS = 3;
+
+    const EXCLUDED = "Excluded";
+    const GOOD_STANDING = "Good standing";
+    const GOOD_STANDING_SUPP = "Good standing, pending supp";
 
     // variables for calculating summary
 
@@ -53,7 +58,7 @@ class BusinessRules {
 
     // progression/complete status
     private $progressionStatus;
-    private $completeStatus;
+    private $isComplete;
 
     // fails
     private $failedUnitsTally;
@@ -66,13 +71,204 @@ class BusinessRules {
     // TODO: Define the constructor
     function __construct() {
 
+        $this->isComplete = false;
     }
 
     public final function calculateSummary() {
         // call all the things
+        $this->setSemTotal();
+        //$this->iterateUnitDetails();
+        $this->setCPDelta();
+        $this->setIsComplete();
+        $this->setMarkAverage();
+        $this->setProgressionStatus();
+        $this->setSemRemaining();
+        $this->setSupUnit();
     }
 
+    /**
+     * Function sets the total number of semesters a student requires to complete for their course.
+     * Student course type / Student enrolment type.
+     */
+    private final function setSemTotal() {
+        $this->semTotal = $this->studentDetailsArray[Student::CT] / $this->studentDetailsArray[Student::ET];
+    }
 
+    /**
+     * Function sets the required credit points to complete course.
+     * Already stored course type value in studentDetails array,
+     * so just subtract passedCPTotal from it.
+     *
+     * TODO: Remember to convert asp's implementation to this much simpler version as well.
+     */
+    private final function setCPDelta() {
+        $this->cpDelta = $this->studentDetailsArray[Student::CT] - $this->passedCPTotal;
+    }
+
+    /**
+     * Function sets isComplete, the complete status for a student.
+     * If passedCPTotal >= student's course type, then isComplete = true.
+     *
+     * TODO: Remember to convert asp's implementation to this much simpler version as well.
+     */
+    private final function setIsComplete() {
+        if($this->passedCPTotal >= $this->studentDetailsArray[Student::CT]) {
+            $this->isComplete = true;
+        } else {
+            $this->isComplete = false;
+        }
+    }
+
+    /**
+     * Function calculates average mark over total units attempted.
+     * Also sets the grade for the average.
+     */
+    private final function setMarkAverage() {
+        $this->markAverage = $this->markTotal / $this->unitAttemptTotal;
+        // go set the grade too
+        $this->gradeAverage = $this->getGrade($this->markAverage);
+    }
+
+    /**
+     * Function sets the progression status.
+     * If student fails same unit 3 times or more,
+     * status is "Excluded".
+     */
+    private final function setProgressionStatus() {
+        if($this->matchedFailedTally >= $this::MAX_FAILS) {
+            $this->progressionStatus = $this::EXCLUDED;
+        } else {
+            $this->progressionStatus = $this::GOOD_STANDING;
+        }
+    }
+
+    /**
+     * Function sets the number of semesters remaining for a student.
+     * If student has no failed units: Divide remaining CP required by student's enrolment type value.
+     * Else student has failed a unit: Add remaining CP to failedUnitsCP, then divide by student's enrolment type value.
+     *
+     * TODO: Remember to convert asp's implementation to this much simpler version as well.
+     */
+    private final function setSemRemaining() {
+        if($this->failedUnitsTally == 0) {
+            $this->semRemaining = $this->cpDelta / $this->studentDetailsArray[Student::ET];
+        } else {
+            $this->semRemaining = ($this->cpDelta + $this->failedUnitsCP) / $this->studentDetailsArray[Student::ET];
+        }
+    }
+
+    /**
+     * Function implements business rule:
+     * If a student does more than one unit in a given semester,
+     * and fails only one unit with a mark in the range of 45-49,
+     * and is in the first or last semester of their course,
+     * then the grade for that unit should read "S?" for possible
+     * supplementary assessment.
+     *
+     * !! ASSUMPTIONS/LIMITATIONS !!
+     * 1. Only considers 15 CP per unit, not 20
+     * 2. User input must be in correct order according to semester!
+     *
+     * TODO:    Managed to reduce conditional code for fulltime/parttime
+     * TODO:    students by pre-calculating the lastSemStart and unitsPerSem.
+     * TODO:    Remember to update asp with this change.
+     */
+    private final function setSupUnit() {
+
+        // assuming user will enter their first sem FIRST!
+        $firstSem = $this->unitDetailsArray[0][Units::YS];
+        $lastSemStart = 0;
+        $lastSem = "";
+
+        $fullTimeUnits = 4;
+        $partTimeUnits = 2;
+        $unitsPerSem = 0;
+
+        $firstSemFails = 0;
+        $lastSemFails = 0;
+
+        $isSup = false;
+        $isMultiFirstSem = false;
+        $isMultiLastSem = false;
+
+        // work out what the lastSem and unitsPerSem values will be
+        // this saves conditional code for fulltime/parttime students
+        if($this->studentDetailsArray[Student::ET] == BusinessRules::CP_FULLTIME) {
+            $lastSemStart = ($this->semTotal * $fullTimeUnits) - $fullTimeUnits;
+            $unitsPerSem = $fullTimeUnits;
+        } else {
+            $lastSemStart = ($this->semTotal * $partTimeUnits) - $partTimeUnits;
+            $unitsPerSem = $partTimeUnits;
+        }
+
+        /*************
+         * FIRST SEM *
+         *************/
+
+        // if student has attempted a unit during first sem,
+        // TODO: Try > 0
+        if($this->unitAttemptTotal > 1) {
+            // first loop sets the flags used for testing
+            for($i = 0; $i < $unitsPerSem; $i++) {
+                // test for more than one units attempted during first semester
+                if($firstSem == $this->unitDetailsArray[$i][Units::YS]) {
+                    $isMultiFirstSem = true;
+                }
+                // test for more than one fails during first semester
+                if($this->unitDetailsArray[$i][Units::UM] < $this::MARK_PASS) {
+                    $firstSemFails++;
+                }
+            }
+            // second loop uses flags to determine if eligible for "S?" grade
+            for($i = 0; $i < $unitsPerSem; $i++) {
+                if($isMultiFirstSem && $firstSemFails < 2 &&
+                        $this->unitDetailsArray[$i][Units::UM] >= $this::MARK_SUP_MIN &&
+                        $this->unitDetailsArray[$i][Units::UM] <= $this::MARK_SUP_MAX) {
+                    $this->unitDetailsArray[$i][Units::GR] = "S?";
+                    $isSup = true;
+                }
+            }
+        }
+
+        /************
+         * LAST SEM *
+         ************/
+
+        // if student has attempted a unit during last sem,
+        if($this->unitAttemptTotal >= $lastSemStart) {
+            // set the last sem as the last input from the user
+            $lastSem = $this->unitDetailsArray[$this->unitAttemptTotal - 1][Units::YS];
+            // first loop sets the flags used for testing
+            for($i = $lastSemStart + 1; $i < Units::$filledRows; $i++) {
+                // test for more than one units attempted during last semester
+                if($lastSem == $this->unitDetailsArray[$i - 1][Units::YS]) {
+                    $isMultiLastSem = true;
+                }
+                // test for more than one fails during last semester
+                if($this->unitDetailsArray[$i][Units::UM] < $this::MARK_PASS) {
+                    $lastSemFails++;
+                }
+            }
+            // second loop uses flags to determine if eligible for "S?" grade
+            for($i = $lastSemStart; $i < Units::$filledRows; $i++) {
+                if($isMultiLastSem && $lastSemFails < 2 &&
+                        $this->unitDetailsArray[$i][Units::UM] >= $this::MARK_SUP_MIN &&
+                        $this->unitDetailsArray[$i][Units::UM] <= $this::MARK_SUP_MAX) {
+                    $this->unitDetailsArray[$i][Units::GR] = "S?";
+                    $isSup = true;
+                }
+            }
+        }
+
+        /*************************
+         * POST S? DETERMINATION *
+         *************************/
+
+        // if same unit has x3 fails, but are supp, then student is still in good standing
+        if($isSup && $this->progressionStatus = $this::EXCLUDED) {
+            $this->progressionStatus = $this::GOOD_STANDING_SUPP;
+        }
+    }
 
     /**
      * Function determines the grade of a mark.
@@ -97,7 +293,7 @@ class BusinessRules {
     }
 
     /**
-     * This function imports the input arrays from the Student and Units class.@deprecated
+     * This function imports the input arrays from the Student and Units class.
      * This must occur post validation by Validator.
      *
      * Once input arrays have been imported, it will kick off calculation of the summary.
