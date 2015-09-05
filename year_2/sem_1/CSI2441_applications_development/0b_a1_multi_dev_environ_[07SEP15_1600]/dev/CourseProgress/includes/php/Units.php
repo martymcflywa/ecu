@@ -31,7 +31,7 @@ class Units {
 
     // so using this instead: sizeof(unitDetailsArray)
 
-    private $unitDetails;
+    private $unitDetails = array();
     private $highestMark;
 
     /**

@@ -17,27 +17,22 @@ class View {
     protected $studentDetailsArray;
     protected $unitDetailsArray;
 
-    /**
-     * @param $h1Header
-     * @param array $studentDetails
-     * @param array $unitDetails
-     */
-    public function __const($h1Header, array $studentDetails, array $unitDetails) {
+    function __construct($h1Header, array $studentDetails, array $unitDetails) {
 
         $this->h1Header = $h1Header;
-        $this->backButton = "<input type=\"button\" name=\"Back\" value=\"Back\" onClick=\"history.go(-1);return true;\">";
 
         $this->studentDetailsArray = $studentDetails;
         $this->unitDetailsArray = $unitDetails;
 
-        // print the header
-        echo($this->printTitle("h1", $h1Header, true));
+        $this->backButton = "<input type=\"button\" name=\"Back\" value=\"Back\" onClick=\"history.go(-1);return true;\">";
 
-        $this->test();
+        echo($this->printTitle("h1", $this->h1Header, true));
+        $this->startView();
+        echo($this->backButton);
     }
 
-    function test() {
-        echo($this->h1Header);
+    protected function startView() {
+
     }
 
     /**

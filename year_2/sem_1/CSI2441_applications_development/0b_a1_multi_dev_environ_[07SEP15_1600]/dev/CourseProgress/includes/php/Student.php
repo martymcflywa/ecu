@@ -21,7 +21,7 @@ class Student {
     private $courseType;
 
     // and in an array to pass around easier
-    private $studentDetails;
+    private $studentDetails = array();
 
     // studentDetails array index
     const FN = 0;
