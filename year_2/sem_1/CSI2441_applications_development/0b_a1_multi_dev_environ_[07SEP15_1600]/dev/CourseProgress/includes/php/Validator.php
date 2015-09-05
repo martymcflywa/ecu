@@ -325,10 +325,10 @@ class Validator {
                 if($isWrite) {
                     $this->logicError($theArray[$indexI][Units::UC], 9, $theArray[$indexI][Units::YS], $indexI + 1, $indexJ + 1);
                 }
+            } else {
+                // else this is the first entry, post it up
+                $this->logicError($theArray[$indexI][Units::UC], 9, $theArray[$indexI][Units::YS], $indexI + 1, $indexJ + 1);
             }
-        } else {
-            // else this is the first entry, post it up
-            $this->logicError($theArray[$indexI][Units::UC], 9, $theArray[$indexI][Units::YS], $indexI + 1, $indexJ + 1);
         }
     }
 
@@ -367,10 +367,10 @@ class Validator {
                 if($isWrite) {
                     $this->logicError($theArray[$indexI][Units::UC], 10, $theArray[$indexI][Units::YS], $indexI + 1, $indexJ + 1);
                 }
+            } else {
+                // else this is the first entry, post it up
+                $this->logicError($theArray[$indexI][Units::UC], 10, $theArray[$indexI][Units::YS], $indexI + 1, $indexJ + 1);
             }
-        } else {
-            // else this is the first entry, post it up
-            $this->logicError($theArray[$indexI][Units::UC], 10, $theArray[$indexI][Units::YS], $indexI + 1, $indexJ + 1);
         }
     }
 
