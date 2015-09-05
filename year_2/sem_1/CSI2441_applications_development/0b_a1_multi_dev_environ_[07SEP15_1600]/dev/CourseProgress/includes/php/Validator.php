@@ -68,10 +68,6 @@ class Validator {
         $this->theUnits = $theUnits;
         $this->theRules = $theRules;
 
-        // import student/unitDetails arrays
-        //$this->studentDetails = $theStudent->getStudentDetails();
-        //$this->unitDetails = $theUnits->getUnitDetails();
-
         // build regex and error code definitions
         $this->buildRegExDict();
         $this->buildErrorCode();

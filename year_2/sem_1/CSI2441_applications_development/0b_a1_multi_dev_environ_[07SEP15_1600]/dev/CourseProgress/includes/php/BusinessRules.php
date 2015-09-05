@@ -1,6 +1,12 @@
 <?php
 namespace includes;
 
+/**
+ * Class BusinessRules contains all the business related logic to
+ * provide a summary of a student's progress, and validate user input.
+ *
+ * @package includes
+ */
 class BusinessRules {
 
     // constants used to validate business rules
