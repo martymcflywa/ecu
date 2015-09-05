@@ -67,7 +67,7 @@ if($theValidator->getStudentErrorTally() == 0 && $theValidator->getUnitErrorTall
 /**
  * BEGIN TEST
  */
-echo(var_dump($theStudent->getStudentDetails()));
+//echo(var_dump($theUnits->getUnitDetails()[0][Units::UM]));
 /**
  * END TEST
  */

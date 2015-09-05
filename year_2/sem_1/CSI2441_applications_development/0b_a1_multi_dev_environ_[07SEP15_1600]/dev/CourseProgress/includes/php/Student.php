@@ -4,6 +4,8 @@ namespace includes;
 
 /**
  * Class Student contains data and functions related to a student.
+ * It retrieves student data from the form, and performs light validation
+ * on empty form fields.
  *
  * @author Martin Ponce, 10371381
  * @version 20150904
@@ -46,16 +48,16 @@ class Student {
     }
 
     /**
-     * Function imports theValidator object.
+     * This function imports theValidator object.
      *
-     * @param $theValidator Validator - An instance of the Validator class
+     * @param $theValidator Validator - An instance of the Validator class.
      */
     public final function setValidator(Validator $theValidator) {
         $this->theValidator = $theValidator;
     }
 
     /**
-     * Function kicks off the Student.
+     * This function kicks off the Student.
      * Can't call these functions until theValidator is imported, so rather
      * than calling them from the constructor, call startStudent() AFTER
      * theValidator has been imported.
@@ -66,7 +68,7 @@ class Student {
     }
 
     /**
-     * Function retrieves student data from the form.
+     * This function retrieves student data from the form.
      */
     private final function retrieveStudentDetails() {
 
@@ -74,6 +76,7 @@ class Student {
 
         /**
          * Test the fields are populated before retrieving them.
+         * Requires Validator reference to call missingInputError().
          */
 
         if(strlen($_POST["Firstname"]) > 0) {
@@ -128,7 +131,7 @@ class Student {
     }
 
     /**
-     * Function packs student details into an array.
+     * This function packs student details into an array.
      */
     private final function packStudentDetails() {
         $this->studentDetails[Student::FN] = $this->firstName;
@@ -139,16 +142,16 @@ class Student {
     }
 
     /**
-     * Function returns $studentDetails array.
+     * This function returns the studentDetails array.
      *
-     * @return mixed $studentDetails - Student details array.
+     * @return array $studentDetails - Student details array.
      */
     public final function getStudentDetails() {
         return $this->studentDetails;
     }
 
     /**
-     * Function returns $isPopulated boolean.
+     * This function returns the isPopulated boolean.
      *
      * @return bool $isPopulated.
      */

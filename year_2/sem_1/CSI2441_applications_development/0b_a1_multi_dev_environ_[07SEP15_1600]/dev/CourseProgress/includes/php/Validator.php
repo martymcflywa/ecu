@@ -121,7 +121,7 @@ class Validator {
     private final function validateUnitDetails() {
 
         // iterate each row
-        for($i = 0; $i < Units::$filledRows; $i++) {
+        for($i = 0; $i < sizeof($this->unitDetailsArray); $i++) {
 
             /*************
              * UNIT CODE *
@@ -277,14 +277,14 @@ class Validator {
         $currentUnitCode = "";
         $currentSem = "";
 
-        for($i = 0; $i < Units::$filledRows; $i++) {
+        for($i = 0; $i < sizeof($this->unitDetailsArray); $i++) {
 
             if(strlen($theArray[$i][Units::UC]) > 0) {
 
                 $currentUnitCode = $theArray[$i][Units::UC];
                 $currentSem = $theArray[$i][Units::YS];
 
-                for($j = $i + 1; $j <  Units::$filledRows; $j++) {
+                for($j = $i + 1; $j <  sizeof($this->unitDetailsArray); $j++) {
                     $this->validatePassMatchUnits($currentUnitCode, $theArray, $i, $j);
                     $this->validateSemMatchUnits($currentUnitCode, $currentSem, $theArray, $i, $j);
                 }

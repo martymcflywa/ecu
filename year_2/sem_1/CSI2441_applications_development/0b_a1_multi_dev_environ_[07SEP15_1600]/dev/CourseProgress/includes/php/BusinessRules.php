@@ -3,7 +3,7 @@ namespace includes;
 
 /**
  * Class BusinessRules contains all the business related logic to
- * calculate a summary of a student's course progress.
+ * calculate the summary of a student's course progress.
  *
  * @package includes
  */
@@ -65,19 +65,41 @@ class BusinessRules {
     private $failedUnitsCP;
     // supplementary
     private $matchedFailedTally;
-    private $supFirstSemTally;
-    private $supLastSemTally;
 
-    // TODO: Define the constructor
+    /**
+     * The BusinessRules constructor.
+     */
     function __construct() {
 
+        // init variables with defaults
+        $this->passedCPTotal = 0;
+        $this->cpDelta = 0;
+
+        $this->unitAttemptTotal = 0;
+        $this->unitsPassed = 0;
+        $this->semRemaining = 0;
+        $this->semTotal = 0;
+
+        $this->markTotal = 0;
+        $this->markAverage = 0;
+        $this->gradeAverage = "";
+
+        $this->progressionStatus = "";
         $this->isComplete = false;
+
+        $this->failedUnitsTally = 0;
+        $this->failedUnitsCP = 0;
+        $this->matchedFailedTally = 0;
     }
 
+    /**
+     * This function initiates the calculation of a student's summary.
+     */
     public final function calculateSummary() {
+
         // call all the things
         $this->setSemTotal();
-        //$this->iterateUnitDetails();
+        $this->iterateUnitDetails();
         $this->setCPDelta();
         $this->setIsComplete();
         $this->setMarkAverage();
@@ -86,13 +108,18 @@ class BusinessRules {
         $this->setSupUnit();
     }
 
+    /**
+     * This function iterates through the unitDetails array,
+     * and performs calculations at each iteration.
+     * Some called functions may also perform their own iteration.
+     */
     private final function iterateUnitDetails() {
 
         $currentSem = "";
         $semUnits = "";
         $semFails = "";
 
-        for($i = 0; $i < Units::$filledRows; $i++) {
+        for($i = 0; $i < sizeof($this->unitDetailsArray); $i++) {
 
             $this->incrementUnitAttemptTotal();
 
@@ -101,6 +128,7 @@ class BusinessRules {
                 $this->setPassedCPTotal($i);
                 $this->incrementUnitsPassed();
                 $this->setMarkTotal($i);
+
             } else {
                 $this->calculateProgression($i);
             }
@@ -108,14 +136,14 @@ class BusinessRules {
     }
 
     /**
-     * Function increments unitAttemptTotal.
+     * This function increments unitAttemptTotal.
      */
     private final function incrementUnitAttemptTotal() {
         $this->unitAttemptTotal++;
     }
 
     /**
-     * Function sums passedCPTotal from unitDetailsArray.
+     * This function sums passedCPTotal from unitDetailsArray.
      * To be used inside for loop, @see iterateUnitDetails().
      *
      * @param int $index - The current array index.
@@ -125,14 +153,14 @@ class BusinessRules {
     }
 
     /**
-     * Function increments unitsPassed.
+     * This function increments unitsPassed.
      */
     private final function incrementUnitsPassed() {
         $this->unitsPassed++;
     }
 
     /**
-     * Function sums markTotal from unitDetailsArray.
+     * This function sums markTotal from unitDetailsArray.
      * To be used inside for loop, @see iterateUnitDetails().
      *
      * @param int $index - The current array index.
@@ -142,7 +170,7 @@ class BusinessRules {
     }
 
     /**
-     * Function calculates student's progression.
+     * This function calculates student's progression.
      * To be used inside for loop, @see iterateUnitDetails().
      *
      * @param int $index - The current array index.
@@ -153,7 +181,7 @@ class BusinessRules {
         $this->failedUnitsTally++;
 
         // loop from current index + 1 to remaining entries
-        for($i = $index + 1; $i < Units::$filledRows; $i++) {
+        for($i = $index + 1; $i < sizeof($this->unitDetailsArray); $i++) {
             // if unitcodes match and unit is failed,
             if($currentUnitCode == $this->unitDetailsArray[$index][Units::UC] &&
                     $this->unitDetailsArray[$index][Units::UM] < $this::MARK_PASS) {
@@ -164,7 +192,7 @@ class BusinessRules {
     }
 
     /**
-     * Function sets the total number of semesters a student requires to complete for their course.
+     * This function sets the total number of semesters a student requires to complete for their course.
      * Student course type / Student enrolment type.
      */
     private final function setSemTotal() {
@@ -172,7 +200,7 @@ class BusinessRules {
     }
 
     /**
-     * Function sets the required credit points to complete course.
+     * This function sets the required credit points to complete course.
      * Already stored course type value in studentDetails array,
      * so just subtract passedCPTotal from it.
      *
@@ -183,7 +211,7 @@ class BusinessRules {
     }
 
     /**
-     * Function sets isComplete, the complete status for a student.
+     * This function sets isComplete, the complete status for a student.
      * If passedCPTotal >= student's course type, then isComplete = true.
      *
      * TODO: Remember to convert asp's implementation to this much simpler version as well.
@@ -197,7 +225,7 @@ class BusinessRules {
     }
 
     /**
-     * Function calculates average mark over total units attempted.
+     * This function calculates average mark over total units attempted.
      * Also sets the grade for the average.
      */
     private final function setMarkAverage() {
@@ -207,7 +235,7 @@ class BusinessRules {
     }
 
     /**
-     * Function sets the progression status.
+     * This function sets the progression status.
      * If student fails same unit 3 times or more,
      * status is "Excluded".
      */
@@ -220,7 +248,7 @@ class BusinessRules {
     }
 
     /**
-     * Function sets the number of semesters remaining for a student.
+     * This function sets the number of semesters remaining for a student.
      * If student has no failed units: Divide remaining CP required by student's enrolment type value.
      * Else student has failed a unit: Add remaining CP to failedUnitsCP, then divide by student's enrolment type value.
      *
@@ -235,7 +263,7 @@ class BusinessRules {
     }
 
     /**
-     * Function implements business rule:
+     * This function implements business rule:
      * If a student does more than one unit in a given semester,
      * and fails only one unit with a mark in the range of 45-49,
      * and is in the first or last semester of their course,
@@ -315,7 +343,7 @@ class BusinessRules {
             // set the last sem as the last input from the user
             $lastSem = $this->unitDetailsArray[$this->unitAttemptTotal - 1][Units::YS];
             // first loop sets the flags used for testing
-            for($i = $lastSemStart + 1; $i < Units::$filledRows; $i++) {
+            for($i = $lastSemStart + 1; $i < sizeof($this->unitDetailsArray); $i++) {
                 // test for more than one units attempted during last semester
                 if($lastSem == $this->unitDetailsArray[$i - 1][Units::YS]) {
                     $isMultiLastSem = true;
@@ -326,7 +354,7 @@ class BusinessRules {
                 }
             }
             // second loop uses flags to determine if eligible for "S?" grade
-            for($i = $lastSemStart; $i < Units::$filledRows; $i++) {
+            for($i = $lastSemStart; $i < sizeof($this->unitDetailsArray); $i++) {
                 if($isMultiLastSem && $lastSemFails < 2 &&
                         $this->unitDetailsArray[$i][Units::UM] >= $this::MARK_SUP_MIN &&
                         $this->unitDetailsArray[$i][Units::UM] <= $this::MARK_SUP_MAX) {
@@ -347,7 +375,7 @@ class BusinessRules {
     }
 
     /**
-     * Function determines the grade of a mark.
+     * This function determines the grade of a mark.
      *
      * @param int $mark - The mark to grade.
      * @return string - The grade.
@@ -390,7 +418,7 @@ class BusinessRules {
         $this->studentDetailsArray = $studentDetails;
         $this->unitDetailsArray = $unitDetails;
         // now that we have all the input data, we can start validation
-        //$this->calculateSummary();
+        $this->calculateSummary();
     }
 }
 

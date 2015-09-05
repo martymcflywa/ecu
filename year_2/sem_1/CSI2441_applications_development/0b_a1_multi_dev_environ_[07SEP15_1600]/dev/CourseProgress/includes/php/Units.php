@@ -4,6 +4,8 @@ namespace includes;
 
 /**
  * Class Units contains data and functions related to the units.
+ * It retrieves unit data from the form. It does not perform any validation.
+ * This class also knows about the highestMark.
  *
  * @author Martin Ponce, 10371381
  * @version 20150904
@@ -21,7 +23,13 @@ class Units {
     const UNIT_ROWS = 30;
 
     private $isPopulated = false;
-    public static $filledRows;
+
+    // $filledRows not working for me like in asp,
+    // getting NULL when referred statically,
+
+    // public static $filledRows;
+
+    // so using this instead: sizeof(unitDetailsArray)
 
     private $unitDetails;
     private $highestMark;
@@ -31,23 +39,13 @@ class Units {
      */
     function __construct() {
 
-        global $filledRows;
-
         // init some default values
         $this->isPopulated = false;
-        $filledRows = 0;
-        // fill highestMark with zeros for now
-        $this->highestMark = array(
-            0,
-            0,
-            0,
-            0,
-            0
-        );
+
     }
 
     /**
-     * Function kicks off Units.
+     * This function kicks off Units.
      * Can't call these functions until theValidator is imported,
      * so rather than calling them from the constructor, call startUnits AFTER
      * theValidator has been imported.
@@ -57,7 +55,7 @@ class Units {
     }
 
     /**
-     * Function retrieves unit data from the form.
+     * This function retrieves unit data from the form.
      */
     private function retrieveUnitDetails() {
 
@@ -71,19 +69,19 @@ class Units {
                     strlen($_POST["CP_" . $j] > 0) ||
                     strlen($_POST["YS_" . $j] > 0) ||
                     strlen($_POST["UM_" . $j] > 0)) {
+
                 $this->unitDetails[$i][$this::UC] = $_POST["UnitCode_" . $j];
                 $this->unitDetails[$i][$this::CP] = $_POST["CP_" . $j];
                 $this->unitDetails[$i][$this::YS] = $_POST["YS_" . $j];
                 $this->unitDetails[$i][$this::UM] = $_POST["UM_" . $j];
 
-                $filledRows++;
                 $this->isPopulated = true;
             }
         }
     }
 
     /**
-     * Function sets the highestMark array.
+     * This function sets the highestMark array.
      *
      * @param String $unitCode.
      * @param int $creditPoints.
@@ -103,7 +101,7 @@ class Units {
     }
 
     /**
-     * Function returns the highestMark array.
+     * This function returns the highestMark array.
      *
      * @param int $index - The desired index of the array.
      * @return int $highestMark[$index] - The highest mark.
@@ -113,7 +111,7 @@ class Units {
     }
 
     /**
-     * Function returns unitDetails array.
+     * This function returns the unitDetails array.
      *
      * @return array $unitDetails - Unit details array.
      */
@@ -122,7 +120,7 @@ class Units {
     }
 
     /**
-     * Function returns isPopulated boolean.
+     * This function returns the isPopulated boolean.
      *
      * @return bool $isPopulated.
      */
