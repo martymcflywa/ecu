@@ -37,7 +37,7 @@ class BusinessRules {
 
     const EXCLUDED = "Excluded";
     const GOOD_STANDING = "Good standing";
-    const GOOD_STANDING_SUPP = "Good standing, pending supp";
+    const GOOD_STANDING_SUP = "Good standing, pending supp";
 
     // variables for calculating summary
 
@@ -84,6 +84,83 @@ class BusinessRules {
         $this->setProgressionStatus();
         $this->setSemRemaining();
         $this->setSupUnit();
+    }
+
+    private final function iterateUnitDetails() {
+
+        $currentSem = "";
+        $semUnits = "";
+        $semFails = "";
+
+        for($i = 0; $i < Units::$filledRows; $i++) {
+
+            $this->incrementUnitAttemptTotal();
+
+            // if student passed unit
+            if($this->unitDetailsArray[$i][Units::UM] >= $this::MARK_PASS) {
+                $this->setPassedCPTotal($i);
+                $this->incrementUnitsPassed();
+                $this->setMarkTotal($i);
+            } else {
+                $this->calculateProgression($i);
+            }
+        }
+    }
+
+    /**
+     * Function increments unitAttemptTotal.
+     */
+    private final function incrementUnitAttemptTotal() {
+        $this->unitAttemptTotal++;
+    }
+
+    /**
+     * Function sums passedCPTotal from unitDetailsArray.
+     * To be used inside for loop, @see iterateUnitDetails().
+     *
+     * @param int $index - The current array index.
+     */
+    private final function setPassedCPTotal($index) {
+        $this->passedCPTotal += $this->unitDetailsArray[$index][Units::CP];
+    }
+
+    /**
+     * Function increments unitsPassed.
+     */
+    private final function incrementUnitsPassed() {
+        $this->unitsPassed++;
+    }
+
+    /**
+     * Function sums markTotal from unitDetailsArray.
+     * To be used inside for loop, @see iterateUnitDetails().
+     *
+     * @param int $index - The current array index.
+     */
+    private final function setMarkTotal($index) {
+        $this->markTotal += $this->unitDetailsArray[$index][Units::UM];
+    }
+
+    /**
+     * Function calculates student's progression.
+     * To be used inside for loop, @see iterateUnitDetails().
+     *
+     * @param int $index - The current array index.
+     */
+    private final function calculateProgression($index) {
+
+        $currentUnitCode = $this->unitDetailsArray[$index][Units::UC];
+        $this->failedUnitsTally++;
+
+        // loop from current index + 1 to remaining entries
+        for($i = $index + 1; $i < Units::$filledRows; $i++) {
+            // if unitcodes match and unit is failed,
+            if($currentUnitCode == $this->unitDetailsArray[$index][Units::UC] &&
+                    $this->unitDetailsArray[$index][Units::UM] < $this::MARK_PASS) {
+                // increment matchFailedTally
+                $this->matchedFailedTally++;
+            }
+        }
     }
 
     /**
@@ -206,8 +283,7 @@ class BusinessRules {
          *************/
 
         // if student has attempted a unit during first sem,
-        // TODO: Try > 0
-        if($this->unitAttemptTotal > 1) {
+        if($this->unitAttemptTotal > 0) {
             // first loop sets the flags used for testing
             for($i = 0; $i < $unitsPerSem; $i++) {
                 // test for more than one units attempted during first semester
@@ -266,7 +342,7 @@ class BusinessRules {
 
         // if same unit has x3 fails, but are supp, then student is still in good standing
         if($isSup && $this->progressionStatus = $this::EXCLUDED) {
-            $this->progressionStatus = $this::GOOD_STANDING_SUPP;
+            $this->progressionStatus = $this::GOOD_STANDING_SUP;
         }
     }
 
@@ -278,18 +354,27 @@ class BusinessRules {
      */
     public function getGrade($mark) {
 
+        $grade = "";
+
         switch($mark) {
             case $mark >= 80:
-                return "HD";
+                $grade = "HD";
+                break;
             case $mark >= 70:
-                return "D";
+                $grade = "D";
+                break;
             case $mark >= 60:
-                return "CR";
+                $grade = "CR";
+                break;
             case $mark >= 50:
-                return "C";
+                $grade = "C";
+                break;
             case $mark >= 0:
-                return "N";
+                $grade = "N";
+                break;
         }
+
+        return $grade;
     }
 
     /**
