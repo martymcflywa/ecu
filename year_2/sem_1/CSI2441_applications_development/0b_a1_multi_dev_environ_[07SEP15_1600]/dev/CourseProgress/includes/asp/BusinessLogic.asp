@@ -95,7 +95,10 @@ sub getSupUnit()
 	'range of marks elegible for "S?"
 	markSupMin = 45
 	markSupMax = 49
+
 	isSup = false
+	isMultiFirstSem = false
+	isMultiLastSem = false
 
 	'assuming that user will enter their first sem FIRST!
 	firstSem = unitDetails(0, YS)
@@ -120,7 +123,7 @@ sub getSupUnit()
 			'*** FIRST SEM ***
 			'*****************
 
-			if unitAttemptTotal > 1 then
+			if unitAttemptTotal > 0 then
 				'set the flags used for testing
 				for i = 0 to fullTimeUnits - 1
 					if firstSem = unitDetails(i, YS) then
@@ -148,11 +151,11 @@ sub getSupUnit()
 				'set lastSem as the last input from user
 				lastSem = unitDetails(unitAttemptTotal - 1, YS)
 				'set the flags used for testing
-				for i = lastSemStartFT to filledRows - 1
+				for i = lastSemStartFT + 1 to filledRows - 1 '!changes here
 					if lastSem = unitDetails(i, YS) then
 						isMultiLastSem = true
 					end if
-					if unitDetails(i, UM) < MARK_PASS then
+					if unitDetails(i - 1, UM) < MARK_PASS then '!changes here
 						lastSemFails = lastSemFails + 1
 					end if
 				next
