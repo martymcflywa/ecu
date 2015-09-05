@@ -63,17 +63,18 @@ class Units {
 
         global $filledRows;
 
-        // TODO: FIX THIS PROBLEM !
-        for($i = 0; $i < $this::UNIT_ROWS - 1; $i++) {
+        for($i = 0; $i < $this::UNIT_ROWS; $i++) {
 
-            if(strlen($_POST["UnitCode_" . ++$i] > 0) ||
-                    strlen($_POST["CP_" . ++$i] > 0) ||
-                    strlen($_POST["YS_" . ++$i] > 0) ||
-                    strlen($_POST["UM_" . ++$i] > 0)) {
-                $this->unitDetails[$i][$this::UC] = $_POST["UnitCode_" . ++$i];
-                $this->unitDetails[$i][$this::CP] = $_POST["CP_" . ++$i];
-                $this->unitDetails[$i][$this::YS] = $_POST["YS_" . ++$i];
-                $this->unitDetails[$i][$this::UM] = $_POST["UM_" . ++$i];
+            $j = $i + 1;
+
+            if(strlen($_POST["UnitCode_" . $j] > 0) ||
+                    strlen($_POST["CP_" . $j] > 0) ||
+                    strlen($_POST["YS_" . $j] > 0) ||
+                    strlen($_POST["UM_" . $j] > 0)) {
+                $this->unitDetails[$i][$this::UC] = $_POST["UnitCode_" . $j];
+                $this->unitDetails[$i][$this::CP] = $_POST["CP_" . $j];
+                $this->unitDetails[$i][$this::YS] = $_POST["YS_" . $j];
+                $this->unitDetails[$i][$this::UM] = $_POST["UM_" . $j];
 
                 $filledRows++;
                 $this->isPopulated = true;
