@@ -32,7 +32,6 @@ use includes\Validator;
  * @version 20150904
  */
 
-
 // create instance of each object
 $theStudent = new Student();
 $theUnits = new Units();
@@ -41,15 +40,15 @@ $theRules = new BusinessRules();
 // create theValidator, pass theStudent, theUnits, and theRules so it can use them to validate
 $theValidator = new Validator($theStudent, $theUnits, $theRules);
 
-// import theValidator to Student and Units so they can use some of theValidator's functions
+// import theValidator to theStudent so it can use Validator->missingInputError() as it retrieves data
 $theStudent->setValidator($theValidator);
-$theUnits->setValidator($theValidator);
 
-// start theStudent and theUnits so they can retrieve user input
+// start theStudent and theUnits, these calls initiate the retrieval and storage of user input into arrays
 $theStudent->startStudent();
 $theUnits->startUnits();
 
 // import the input arrays to theValidator
+// this function also kicks off the validation, @see Validator->setInputArrays()
 $theValidator->setInputArrays($theStudent->getStudentDetails(), $theUnits->getUnitDetails());
 
 /**

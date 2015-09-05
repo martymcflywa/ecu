@@ -78,6 +78,16 @@ class Validator {
     }
 
     /**
+     * Function initiates the validation for
+     * student and unit input, as well as logical.
+     */
+    private final function startValidation() {
+        $this->validateStudentDetails();
+        $this->validateUnitDetails();
+        $this->validateLogic();
+    }
+
+    /**
      * Function validates student details.
      * Tests each array index for population before proceeding.
      */
@@ -484,12 +494,16 @@ class Validator {
      * This must occur post construction of theStudent and theUnits,
      * otherwise, their input arrays will be empty.
      *
+     * Once input arrays have been imported, it will kick off validation.
+     *
      * @param array $studentDetails
      * @param array $unitDetails
      */
     public final function setInputArrays(array $studentDetails, array $unitDetails) {
         $this->studentDetailsArray = $studentDetails;
         $this->unitDetailsArray = $unitDetails;
+        // now that we have all the input data, we can start validation
+        $this->startValidation();
     }
 }
 

@@ -26,8 +26,6 @@ class Units {
     private $unitDetails;
     private $highestMark;
 
-    private $theValidator;
-
     /**
      * The constructor for the Units class.
      */
@@ -46,15 +44,6 @@ class Units {
             0,
             0
         );
-    }
-
-    /**
-     * Function imports the Validator class.
-     *
-     * @param $theValidator
-     */
-    public function setValidator(Validator $theValidator) {
-        $this->theValidator = $theValidator;
     }
 
     /**
