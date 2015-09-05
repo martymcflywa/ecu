@@ -58,13 +58,13 @@ $theUnits->startUnits();
 // this function also kicks off the validation, @see Validator->setInputArrays()
 $theValidator->setInputArrays($theStudent->getStudentDetails(), $theUnits->getUnitDetails());
 
-// if no validation errors,
+// if no errors,
 if($theValidator->getStudentErrorTally() == 0 && $theValidator->getUnitErrorTally() == 0 && $theValidator->getLogicErrorTally() == 0) {
     // import input arrays to theRules,
     // this function also kicks off summary calculation, @see BusinessRules->setInputArrays()
     $theRules->setInputArrays($theStudent->getStudentDetails(), $theUnits->getUnitDetails());
-    // then show me the summary view
-    $theSummaryView = new ViewSummary("Course Progression Summary", $theStudent->getStudentDetails(), $theUnits->getUnitDetails());
+    // then show me the summary
+    $theSummaryView = new ViewSummary("Course Progression Summary", $theStudent->getStudentDetails(), $theUnits->getUnitDetails(), $theRules);
 
 } else {
     // else there are errors, go to the error view immediately

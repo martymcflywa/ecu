@@ -17,22 +17,78 @@ class View {
     protected $studentDetailsArray;
     protected $unitDetailsArray;
 
-    function __construct($h1Header, array $studentDetails, array $unitDetails) {
+    // import the rules
+    protected $theRules;
+
+    // time to convert enrolment/course type back from value to meaning
+    protected $enrolmentType;
+    protected $courseType;
+
+    // some shortcuts
+    protected $br = "<br />";
+
+    function __construct($h1Header, array $studentDetails, array $unitDetails, BusinessRules $theRules) {
 
         $this->h1Header = $h1Header;
 
         $this->studentDetailsArray = $studentDetails;
         $this->unitDetailsArray = $unitDetails;
 
+        $this->convertEnrolmentType();
+        $this->convertCourseType();
+
         $this->backButton = "<input type=\"button\" name=\"Back\" value=\"Back\" onClick=\"history.go(-1);return true;\">";
 
         echo($this->printTitle("h1", $this->h1Header, true));
         $this->startView();
+
+        echo($this-br);
         echo($this->backButton);
     }
 
-    protected function startView() {
+    /**
+     * This function converts the enrolment type value to its actual meaning.
+     */
+    protected final function convertEnrolmentType() {
+        switch($this->studentDetailsArray[Student::CT]) {
+            case BusinessRules::CP_FULLTIME:
+                $this->enrolmentType = "Full time";
+                break;
+            case BusinessRules::CP_PARTTIME:
+                $this->enrolmentType = "Part time";
+                break;
+        }
+    }
 
+    /**
+     * This function converts the course type value to its actual meaning.
+     */
+    protected final function convertCourseType() {
+        switch($this->studentDetailsArray[Student::CT]) {
+            case BusinessRules::CP_UNDERGRAD:
+                $this->courseType = "Undergraduate degree (" . $this->studentDetailsArray[Student::CT] . " CP)";
+                break;
+            case BusinessRules::CP_UNDERGRAD_DOUBLE:
+                $this->courseType = "Undergraduate double degree (" . $this->studentDetailsArray[Student::CT] . " CP)";
+                break;
+            case BusinessRules::CP_GRAD_DIPLOMA:
+                $this->courseType = "Graduate diploma (" . $this->studentDetailsArray[Student::CT] . " CP)";
+                break;
+            case BusinessRules::CP_MASTERS_COURSE:
+                $this->courseType = "Masters by coursework (" . $this->studentDetailsArray[Student::CT] . " CP)";
+                break;
+            case BusinessRules::CP_MASTERS_RESEARCH:
+                $this->courseType = "Masters by research (" . $this->studentDetailsArray[Student::CT] . " CP)";
+                break;
+        }
+    }
+
+    /**
+     * Override me!
+     */
+    protected function startView() {
+        // add what you want to do here
+        // it is called at construction
     }
 
     /**
@@ -41,7 +97,7 @@ class View {
      * @param String $hType - The heading type, only accepts "h1", "h2", "h3", "h4".
      * @param String $title - The title to print.
      * @param bool $isRuled - Want a rule underneath?
-     * @return String - The final string to print.
+     * @return String - The string to print.
      */
     protected final function printTitle($hType, $title, $isRuled) {
 
@@ -67,6 +123,10 @@ class View {
         }
 
         return $toPrint;
+    }
+
+    protected final function bold($string) {
+        return "<strong>" . $string . "</strong>";
     }
 
     /**

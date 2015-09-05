@@ -406,6 +406,26 @@ class BusinessRules {
     }
 
     /**
+     * This function returns the student's progression status.
+     *
+     * @return string progressionStatus.
+     */
+    public function getProgressionStatus() {
+        return $this->progressionStatus;
+    }
+
+    /**
+     * This function returns the boolean isComplete.
+     * Finished course == true,
+     * Not finished course == false
+     *
+     * @return bool isComplete.
+     */
+    public function isComplete() {
+        return $this->isComplete;
+    }
+
+    /**
      * This function imports the input arrays from the Student and Units class.
      * This must occur post validation by Validator.
      *
