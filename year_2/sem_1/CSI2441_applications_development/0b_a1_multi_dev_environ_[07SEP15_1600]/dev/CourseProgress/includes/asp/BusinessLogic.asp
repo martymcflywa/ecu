@@ -297,6 +297,8 @@ end sub
 
 '**
 '* Sub sets progression status.
+'* If student fails same unit 3 times or more,
+'* status is "Excluded".
 '*
 sub setProgressionStatus()
 
@@ -393,7 +395,9 @@ sub getCPDelta()
 end sub
 
 '**
-'* Sub calculates remaining semesters based on enrolment type.
+'* Function sets the number of semesters remaining for a student.
+'* If student has no failed units: Divide remaining CP required by student's enrolment type value.
+'* Else student has failed a unit: Add remaining CP to failedUnitsCP, then divide by student's enrolment type value.
 '*
 sub getSemRemaining()
 	select case studentDetails(ET)
