@@ -12,7 +12,11 @@ class ViewSummary extends View {
     private $isComplete;
     private $passedCPTotal;
     private $cpDelta;
-    private $unitsAttempted;
+    private $unitAttemptTotal;
+    private $semRemaining;
+    private $markAverage;
+
+    private $highestMark;
 
 
 
@@ -25,17 +29,38 @@ class ViewSummary extends View {
 
         global $theRules;
 
-        $this->setRuleValues($theRules->getProgressionStatus(), $theRules->isComplete());
+        $this->setRuleValues(
+            $theRules->getProgressionStatus(),
+            $theRules->isComplete(),
+            $theRules->getPassedCP(),
+            $theRules->getCPDelta(),
+            $theRules->getUnitsAttempted(),
+            $theRules->getSemRemaining(),
+            $theRules->getMarkAverage()
+        );
 
         $this->printStudentDetails();
+        $this->printProgressionSummary();
 
-        $this->printCreditPointSummary();
-        $this->printHighestMark();
-        $this->printTranscript();
+//        $this->printCreditPointSummary();
+//        $this->printHighestMark();
+//        $this->printTranscript();
     }
 
-    protected final function setRuleValues($progressionStatus, $isComplete, $) {
-
+    protected final function setRuleValues($progressionStatus,
+                                           $isComplete,
+                                           $passedCPTotal,
+                                           $cpDelta,
+                                           $unitAttemptTotal,
+                                           $semRemaining,
+                                           $markAverage) {
+        $this->progressionStatus = $progressionStatus;
+        $this->isComplete = $isComplete;
+        $this->passedCPTotal = $passedCPTotal;
+        $this->cpDelta = $cpDelta;
+        $this->unitAttemptTotal = $unitAttemptTotal;
+        $this->semRemaining = $semRemaining;
+        $this->markAverage = $markAverage;
     }
 
     /**
@@ -55,7 +80,31 @@ class ViewSummary extends View {
 
     protected final function printProgressionSummary() {
 
+        echo($this->printTitle("h2", $this->h2ProgressSummary, false));
+        echo("<p>");
 
+        // make the status red if anything other than good standing
+        echo($this->bold("Progression status: "));
+        if($this->progressionStatus != BusinessRules::GOOD_STANDING) {
+            echo("<font color=\"red\">");
+            echo($this->progressionStatus);
+            echo("</font>" . $this->br);
+        } else {
+            echo($this->progressionStatus . $this->br);
+        }
+
+        // choose between true or false
+        echo($this->bold("Course requirements complete: "));
+        switch($this->isComplete) {
+            case true:
+                echo("Yes");
+                break;
+            case false:
+                echo("No");
+                break;
+        }
+
+        echo("</p>");
     }
 }
 

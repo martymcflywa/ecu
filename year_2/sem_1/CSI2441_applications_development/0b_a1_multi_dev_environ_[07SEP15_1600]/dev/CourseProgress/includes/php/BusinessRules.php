@@ -426,6 +426,51 @@ class BusinessRules {
     }
 
     /**
+     * This function returns passedCPTotal.
+     *
+     * @return int passedCPTotal.
+     */
+    public function getPassedCP() {
+        return $this->passedCPTotal;
+    }
+
+    /**
+     * This function returns cpDelta.
+     *
+     * @return int cpDelta.
+     */
+    public function getCPDelta() {
+        return $this->cpDelta;
+    }
+
+    /**
+     * This function returns unitAttemptTotal.
+     *
+     * @return int unitAttemptTotal.
+     */
+    public function getUnitsAttempted() {
+        return $this->unitAttemptTotal;
+    }
+
+    /**
+     * This function returns semRemaining.
+     *
+     * @return int semRemaining.
+     */
+    public function getSemRemaining() {
+        return $this->semRemaining;
+    }
+
+    /**
+     * This function returns markAverage.
+     *
+     * @return int markAverage.
+     */
+    public function getMarkAverage() {
+        return $this->markAverage;
+    }
+
+    /**
      * This function imports the input arrays from the Student and Units class.
      * This must occur post validation by Validator.
      *
