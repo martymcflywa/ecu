@@ -227,6 +227,7 @@ class ViewSummary extends View {
         }
         // close the table
         echo("</table>");
+        echo($this->br);
     }
 
     /**

@@ -165,7 +165,6 @@ class ViewError extends View {
     private function printEmptyStudent() {
         $this->printTitle("h2", $this->h2StudentErrors, false);
         echo($this->messageEmptyStudent);
-        echo($this->br);
     }
 
     /**
@@ -174,7 +173,6 @@ class ViewError extends View {
     private function printEmptyUnits() {
         $this->printTitle("h2", $this->h2UnitErrors, false);
         echo($this->messageEmptyUnits);
-        echo($this->br);
     }
 
 }

@@ -44,7 +44,6 @@ class View {
         $this->printTitle("h1", $this->h1Header, true);
         $this->startView();
 
-        echo($this->br);
         echo($this->backButton);
     }
 
