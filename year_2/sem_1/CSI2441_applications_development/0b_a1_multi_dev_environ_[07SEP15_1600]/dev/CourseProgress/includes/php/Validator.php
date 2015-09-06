@@ -258,12 +258,13 @@ class Validator {
 
         for($i = 0; $i < sizeof($theArray); $i++) {
 
-            if(!empty($theArray[$i][Units::UC])) {
+            // only perform logic validation if unit code is populated, and matches regex
+            if(!empty($theArray[$i][Units::UC]) && preg_match($this->regExDict["unitCode"], $theArray[$i][Units::UC])) {
 
                 $currentUnitCode = $theArray[$i][Units::UC];
                 $currentSem = $theArray[$i][Units::YS];
 
-                for($j = $i + 1; $j <  sizeof($theArray); $j++) {
+                for($j = $i + 1; $j < sizeof($theArray); $j++) {
                     $this->validatePassMatchUnits($currentUnitCode, $theArray, $i, $j);
                     $this->validateSemMatchUnits($currentUnitCode, $currentSem, $theArray, $i, $j);
                 }
