@@ -132,7 +132,7 @@ class BusinessRules {
             // get the grade for this mark
             $this->unitDetailsArray[$i][Units::GR] = $this->getGrade($this->unitDetailsArray[$i][Units::UM]);
             // then store the highest mark found in theUnits->highestMark array
-            if($this->unitDetailsArray[$i][Units::UM] > $theUnits->getHighestMark(Units::UM)) {
+            if($this->unitDetailsArray[$i][Units::UM] > $theUnits->getHighestMark()[Units::UM]) {
                 $theUnits->setHighestMark(
                     $this->unitDetailsArray[$i][Units::UC],
                     $this->unitDetailsArray[$i][Units::CP],

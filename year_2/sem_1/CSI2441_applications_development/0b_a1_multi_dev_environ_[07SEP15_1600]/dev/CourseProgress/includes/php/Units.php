@@ -101,11 +101,10 @@ class Units {
     /**
      * This function returns the highestMark array.
      *
-     * @param int $index - The desired index of the array.
-     * @return int $highestMark[$index] - The highest mark.
+     * @return int $highestMark - The highest mark array.
      */
-    public function getHighestMark($index) {
-        return $this->highestMark[$index];
+    public function getHighestMark() {
+        return $this->highestMark;
     }
 
     /**
