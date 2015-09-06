@@ -232,7 +232,7 @@ class Validator {
                 $this->validateError("unit", $index + 1, "Unit Mark", 7);
             } else {
                 // cast to int so we can do math with it
-                $this->theUnits->setUnitMark($index, $theUnits->getUnitDetails()[$index][Units::UM]);
+                $this->theUnits->setUnitMark($index, $this->theUnits->getUnitDetails()[$index][Units::UM]);
             }
         } else {
             $this->validateError("unit", $index + 1, "Unit Mark", 8);
