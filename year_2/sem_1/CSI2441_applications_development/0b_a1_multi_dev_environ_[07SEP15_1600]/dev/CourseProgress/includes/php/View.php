@@ -11,7 +11,7 @@ class View {
 
     // the main title of the view
     protected $h1Header;
-    protected $backButton;
+    protected $backButton = "<input type=\"button\" name=\"Back\" value=\"Back\" onClick=\"history.go(-1);return true;\">";
 
     // import the objects
     protected $theStudent;
@@ -28,10 +28,10 @@ class View {
     /**
      * The View constructor.
      *
-     * @param $h1Header
-     * @param Student $theStudent
-     * @param Units $theUnits
-     * @param BusinessRules $theRules
+     * @param String $h1Header - The main title for this view.
+     * @param Student $theStudent - The Student object.
+     * @param Units $theUnits - The Units object.
+     * @param BusinessRules $theRules - The BusinessRules object.
      */
     function __construct($h1Header, Student $theStudent, Units $theUnits, BusinessRules $theRules) {
 
@@ -43,8 +43,6 @@ class View {
 
         $this->convertEnrolmentType();
         $this->convertCourseType();
-
-        $this->backButton = "<input type=\"button\" name=\"Back\" value=\"Back\" onClick=\"history.go(-1);return true;\">";
 
         $this->printTitle("h1", $this->h1Header, true);
         $this->startView();
