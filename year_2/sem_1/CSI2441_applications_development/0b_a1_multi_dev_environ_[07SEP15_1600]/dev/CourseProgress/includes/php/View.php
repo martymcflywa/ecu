@@ -50,7 +50,7 @@ class View {
      * This function converts the enrolment type value to its actual meaning.
      */
     protected final function convertEnrolmentType() {
-        switch($this->studentDetailsArray[Student::CT]) {
+        switch($this->studentDetailsArray[Student::ET]) {
             case BusinessRules::CP_FULLTIME:
                 $this->enrolmentType = "Full time";
                 break;

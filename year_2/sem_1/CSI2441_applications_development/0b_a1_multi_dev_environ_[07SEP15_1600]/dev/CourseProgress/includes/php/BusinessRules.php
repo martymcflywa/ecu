@@ -185,6 +185,7 @@ class BusinessRules {
             // if unitcodes match and unit is failed,
             if($currentUnitCode == $this->unitDetailsArray[$i][Units::UC] &&
                     $this->unitDetailsArray[$index][Units::UM] < $this::MARK_PASS) {
+
                 // increment matchFailedTally
                 $this->matchedFailedTally++;
 
