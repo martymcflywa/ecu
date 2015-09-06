@@ -27,6 +27,16 @@ class View {
     // some shortcuts
     protected $br = "<br />";
 
+    /**
+     * The View constructor.
+     * Provide a h1Header for the title of this view,
+     * pass in student/unitDetails array and theRules object.
+     *
+     * @param String $h1Header
+     * @param array $studentDetails
+     * @param array $unitDetails
+     * @param BusinessRules $theRules
+     */
     function __construct($h1Header, array $studentDetails, array $unitDetails, BusinessRules $theRules) {
 
         $this->h1Header = $h1Header;
@@ -125,6 +135,12 @@ class View {
         echo($toPrint);
     }
 
+    /**
+     * This function performs a shortcut to make the font bold in html.
+     *
+     * @param String $string - The string you want to show up as bold.
+     * @return String - The string in bold.
+     */
     protected final function bold($string) {
         return "<strong>" . $string . "</strong>";
     }

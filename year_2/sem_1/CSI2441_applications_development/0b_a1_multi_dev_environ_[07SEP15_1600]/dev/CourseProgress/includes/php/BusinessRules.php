@@ -115,10 +115,6 @@ class BusinessRules {
      */
     private final function iterateUnitDetails() {
 
-        $currentSem = "";
-        $semUnits = "";
-        $semFails = "";
-
         for($i = 0; $i < sizeof($this->unitDetailsArray); $i++) {
 
             $this->incrementUnitAttemptTotal();

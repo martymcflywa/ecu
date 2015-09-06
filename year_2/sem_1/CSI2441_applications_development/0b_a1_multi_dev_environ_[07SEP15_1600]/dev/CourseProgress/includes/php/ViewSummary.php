@@ -20,7 +20,7 @@ class ViewSummary extends View {
     private $semRemaining;
     private $markAverage;
 
-    private $highestMark;
+    private $highestMarkArray;
 
 
 
@@ -133,6 +133,9 @@ class ViewSummary extends View {
         echo("</p>");
     }
 
+    /**
+     * This function prints the progression summary.
+     */
     private final function printCreditPointSummary() {
         // print the title
         $this->printTitle("h2", $this->h2CreditPointSummary, false);
