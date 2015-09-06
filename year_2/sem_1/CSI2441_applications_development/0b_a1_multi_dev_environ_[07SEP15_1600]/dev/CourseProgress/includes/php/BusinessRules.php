@@ -9,13 +9,9 @@ namespace includes;
  */
 class BusinessRules {
 
-    // import references to student/unitDetails arrays
-    // note: avoid shadowing variable names for arrays, causes array to string conversion error
-    private $studentDetailsArray;
-//    private $unitDetailsArray;
-
-    // import the instance of theUnits
+    // import the instance of theStudent and theUnits
     private $theUnits;
+    private $theStudent;
 
     // constants used to calculate summary according to business rules
     const CT_UNDERGRAD = 1;
@@ -73,10 +69,12 @@ class BusinessRules {
      * The BusinessRules constructor.
      * Accepts theUnits as parameter so we can use Units->getGrade().
      *
+     * @param Student $theStudent - The reference to theStudent object.
      * @param Units $theUnits - The reference to theUnits object.
      */
-    function __construct(Units $theUnits) {
+    function __construct(Student $theStudent, Units $theUnits) {
 
+        $this->theStudent = $theStudent;
         $this->theUnits = $theUnits;
 
         // init variables with defaults
@@ -222,7 +220,8 @@ class BusinessRules {
      * Student course type / Student enrolment type.
      */
     private final function setSemTotal() {
-        $this->semTotal = $this->studentDetailsArray[Student::CT] / $this->studentDetailsArray[Student::ET];
+        global $theStudent;
+        $this->semTotal = $theStudent->getStudentDetails()[Student::CT] / $theStudent->getStudentDetails()[Student::ET];
     }
 
     /**
@@ -233,7 +232,8 @@ class BusinessRules {
      * TODO: Remember to convert asp's implementation to this much simpler version as well.
      */
     private final function setCPDelta() {
-        $this->cpDelta = $this->studentDetailsArray[Student::CT] - $this->passedCPTotal;
+        global $theStudent;
+        $this->cpDelta = $theStudent->getStudentDetails()[Student::CT] - $this->passedCPTotal;
     }
 
     /**
@@ -243,7 +243,8 @@ class BusinessRules {
      * TODO: Remember to convert asp's implementation to this much simpler version as well.
      */
     private final function setIsComplete() {
-        if($this->passedCPTotal >= $this->studentDetailsArray[Student::CT]) {
+        global $theStudent;
+        if($this->passedCPTotal >= $theStudent->getStudentDetails()[Student::CT]) {
             $this->isComplete = true;
         } else {
             $this->isComplete = false;
@@ -281,10 +282,11 @@ class BusinessRules {
      * TODO: Remember to convert asp's implementation to this much simpler version as well.
      */
     private final function setSemRemaining() {
+        global $theStudent;
         if($this->failedUnitsTally == 0) {
-            $this->semRemaining = $this->cpDelta / $this->studentDetailsArray[Student::ET];
+            $this->semRemaining = $this->cpDelta / $theStudent->getStudentDetails()[Student::ET];
         } else {
-            $this->semRemaining = ($this->cpDelta + $this->failedUnitsCP) / $this->studentDetailsArray[Student::ET];
+            $this->semRemaining = ($this->cpDelta + $this->failedUnitsCP) / $theStudent->getStudentDetails()[Student::ET];
         }
     }
 
@@ -305,6 +307,8 @@ class BusinessRules {
      * TODO:    Remember to update asp with this change.
      */
     private final function setSupUnit() {
+
+        global $theStudent;
         global $theUnits;
 
         // assuming user will enter their first sem FIRST!
@@ -325,7 +329,7 @@ class BusinessRules {
 
         // work out what the lastSem and unitsPerSem values will be
         // this saves conditional code for fulltime/parttime students
-        if($this->studentDetailsArray[Student::ET] == BusinessRules::CP_FULLTIME) {
+        if($theStudent->getStudentDetails()[Student::ET] == BusinessRules::CP_FULLTIME) {
             $lastSemStart = ($this->semTotal * $fullTimeUnits) - $fullTimeUnits;
             $unitsPerSem = $fullTimeUnits;
         } else {

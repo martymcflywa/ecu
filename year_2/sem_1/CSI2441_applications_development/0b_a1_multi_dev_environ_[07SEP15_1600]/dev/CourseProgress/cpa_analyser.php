@@ -41,8 +41,8 @@ use includes\ViewSummary;
 // create instance of each object
 $theStudent = new Student();
 $theUnits = new Units();
-// pass theUnits to theRules so it can use Units->get/setHighestMark()
-$theRules = new BusinessRules($theUnits);
+// pass theStudent/theUnits to theRules so it can use Units->get/setHighestMark()
+$theRules = new BusinessRules($theStudent, $theUnits);
 $theValidator = new Validator();
 
 // import theValidator to theStudent so it can use Validator->missingInputError() as it retrieves data
