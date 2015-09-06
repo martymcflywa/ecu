@@ -12,11 +12,6 @@ namespace includes;
  */
 class Validator {
 
-    // import references to student/unit/rules objects
-    private $theStudent;
-    private $theUnits;
-    private $theRules;
-
     // import references to student/unitDetails arrays
     // note: avoid shadowing variable names for arrays, causes array to string conversion error
     private $studentDetailsArray;
@@ -56,30 +51,17 @@ class Validator {
 
     /**
      * The constructor for ValidateData class.
-     *
-     * @param Student $theStudent - An instance of the Student class.
-     * @param Units $theUnits - An instance of the Units class
-     * @param BusinessRules $theRules - An instance of the BusinessRules class.
      */
-    function __construct(Student $theStudent, Units $theUnits, BusinessRules $theRules) {
-
-        // import student/unit/rules classes
-        $this->theStudent = $theStudent;
-        $this->theUnits = $theUnits;
-        $this->theRules = $theRules;
+    function __construct() {
 
         // build regex and error code definitions
         $this->buildRegExDict();
         $this->buildErrorCode();
-
-        // then call the methods to validate received data
-        //$this->validateStudentDetails();
-        //$this->validateUnitDetails();
     }
 
     /**
      * This function initiates the validation for
-     * student and unit input, as well as logical.
+     * student and unit input, as well as logical errors.
      */
     private final function startValidation() {
         $this->validateStudentDetails();

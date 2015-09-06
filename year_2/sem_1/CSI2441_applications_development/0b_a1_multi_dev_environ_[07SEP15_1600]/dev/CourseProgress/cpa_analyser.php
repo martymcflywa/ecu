@@ -43,10 +43,7 @@ $theStudent = new Student();
 $theUnits = new Units();
 // pass theUnits to theRules so it can use Units->get/setHighestMark()
 $theRules = new BusinessRules($theUnits);
-
-
-// create theValidator, pass theStudent, theUnits, and theRules so it can use them to validate
-$theValidator = new Validator($theStudent, $theUnits, $theRules);
+$theValidator = new Validator();
 
 // import theValidator to theStudent so it can use Validator->missingInputError() as it retrieves data
 $theStudent->setValidator($theValidator);
