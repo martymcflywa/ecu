@@ -12,9 +12,10 @@ namespace includes;
  */
 class Validator {
 
-    // import the instance of theStudent and theUnits
+    // import reference to objects
     private $theStudent;
     private $theUnits;
+    private $theRules;
 
     // error tallies and arrays
     private $studentErrorTally;
@@ -49,16 +50,19 @@ class Validator {
     private $errorCode;
 
     /**
-     * The constructor for ValidateData class.
-     * Pass in Student and Units so we can access their input arrays.
+     * The constructor for Validator class.
+     * Validator will act as the controller, passing data around from
+     * models to view, so import the model references.
      *
      * @param Student $theStudent
      * @param Units $theUnits
+     * @param BusinessRules $theRules
      */
-    function __construct(Student $theStudent, Units $theUnits) {
+    function __construct(Student $theStudent, Units $theUnits, BusinessRules $theRules) {
 
         $this->theStudent = $theStudent;
         $this->theUnits = $theUnits;
+        $this->theRules = $theRules;
 
         // build regex and error code definitions
         $this->buildRegExDict();
@@ -478,6 +482,38 @@ class Validator {
         $this->errorCode[10] = "appears more than once in semester "; // then state sem and rows
     }
 
+    /*******************
+     * OWN GET/SETTERS *
+     *******************/
+
+    /**
+     * This function converts an error code to its string message.
+     *
+     * @param int $index - The error code.
+     * @return String - The error message.
+     */
+    public final function getErrorCode($index) {
+        return $this->errorCode[$index];
+    }
+
+    /**
+     * This function returns logicErrorTally.
+     *
+     * @return int logicErrorTally.
+     */
+    public final function getLogicErrorTally() {
+        return $this->logicErrorTally;
+    }
+
+    /**
+     * This function returns the logicErrorMessage array.
+     *
+     * @return array logicErrorMessage.
+     */
+    public final function getLogicErrorMessage() {
+        return $this->logicErrorMessage;
+    }
+
     /**
      * This function returns studentErrorTally.
      *
@@ -514,23 +550,9 @@ class Validator {
         return $this->unitErrorMessage;
     }
 
-    /**
-     * This function returns logicErrorTally.
-     *
-     * @return int logicErrorTally.
-     */
-    public final function getLogicErrorTally() {
-        return $this->logicErrorTally;
-    }
-
-    /**
-     * This function returns the logicErrorMessage array.
-     *
-     * @return array logicErrorMessage.
-     */
-    public final function getLogicErrorMessage() {
-        return $this->logicErrorMessage;
-    }
+    /***********************
+     * STUDENT GET/SETTERS *
+     ***********************/
 
     /**
      * This function returns isPopulated from Student.
@@ -542,6 +564,19 @@ class Validator {
     }
 
     /**
+     * This function returns studentDetails array from Student.
+     *
+     * @return array studentDetails.
+     */
+    public final function getStudentDetails() {
+        return $this->theStudent->getStudentDetails();
+    }
+
+    /********************
+     * UNIT GET/SETTERS *
+     ********************/
+
+    /**
      * This function returns isPopulated from Units.
      *
      * @return bool isUnitsPopulated.
@@ -551,13 +586,144 @@ class Validator {
     }
 
     /**
-     * This function converts an error code to its string message.
+     * This function returns the unitDetails array from Units.
      *
-     * @param int $index - The error code.
-     * @return String - The error message.
+     * @return array $unitDetails - Unit details array.
      */
-    public final function getErrorCode($index) {
-        return $this->errorCode[$index];
+    public function getUnitDetails() {
+        return $this->theUnits->getUnitDetails();
+    }
+
+    /**
+     * This function returns the highestMark array at Units.
+     *
+     * @return int $highestMark - The highest mark array.
+     */
+    public function getHighestMark() {
+        return $this->theUnits->getHighestMark();
+    }
+
+    /**
+     * This function sets the credit point for an entry in the input array at Units.
+     * Casts credit points as int.
+     *
+     * @param int $index - The array index, where to set the credit points.
+     * @param int $cp - The credit points to set.
+     */
+    public function setCreditPoints($index, $cp) {
+        $this->theUnits->setCreditPoints($index, $cp);
+    }
+
+    /**
+     * This function sets the unit mark for an entry in the input array at Units.
+     * Casts unit mark as int.
+     *
+     * @param $index - The array index, where to set the credit points.
+     * @param int $mark - The unit mark to set.
+     */
+    public function setUnitMark($index, $mark) {
+        $this->theUnits->setUnitMark($index, $mark);
+    }
+
+    /**
+     * This function sets the unit grade for an entry in the input array at Units.
+     *
+     * @param int $index - The array index, where to set the grade.
+     * @param String $grade - The grade to set.
+     */
+    public function setUnitGrade($index, $grade) {
+        $this->theUnits->setUnitGrade($index, $grade);
+    }
+
+    /**
+     * This function sets the highestMark array at Units.
+     *
+     * @param String $unitCode.
+     * @param int $creditPoints.
+     * @param String $sem.
+     * @param int $mark.
+     * @param String $grade.
+     */
+    public function setHighestMark($unitCode, $creditPoints, $sem, $mark, $grade) {
+        $this->theUnits->setHighestMark($unitCode, $creditPoints, $sem, $mark, $grade);
+    }
+
+    /*********************
+     * RULES GET/SETTERS *
+     *********************/
+
+    /**
+     * This function returns progressionStatus from BusinessRules.
+     *
+     * @return string progressionStatus.
+     */
+    public final function getProgressionStatus() {
+        return $this->theRules->getProgressionStatus();
+    }
+
+    /**
+     * This function returns the completion status from BusinessRules.
+     * Finished course == true;
+     * Not finished course == false;
+     *
+     * @return bool isComplete.
+     */
+    public final function isComplete() {
+        return $this->theRules->isComplete();
+    }
+
+    /**
+     * This function returns passedCPTotal from BusinessRules.
+     *
+     * @return int passedCPTotal.
+     */
+    public final function getPassedCP() {
+        return $this->theRules->getPassedCP();
+    }
+
+    /**
+     * This function returns cpDelta from BusinessRules.
+     *
+     * @return int cpDelta.
+     */
+    public function getCPDelta() {
+        return $this->theRules->getCPDelta();
+    }
+
+    /**
+     * This function returns unitAttemptTotal from BusinessRules.
+     *
+     * @return int unitAttemptTotal.
+     */
+    public function getUnitsAttempted() {
+        return $this->theRules->getUnitsAttempted();
+    }
+
+    /**
+     * This function returns unitsPassed from BusinessRules.
+     *
+     * @return int unitsPassed.
+     */
+    public function getUnitsPassed() {
+        return $this->theRules->getUnitsPassed();
+    }
+
+    /**
+     * This function returns semRemaining from BusinessRules.
+     *
+     * @return int semRemaining.
+     */
+    public function getSemRemaining() {
+        return $this->theRules->getSemRemaining();
+    }
+
+    /**
+     * This function returns markAverage from BusinessRules.
+     *
+     * @return int markAverage.
+     */
+    public function getMarkAverage() {
+        return $this->theRules->getMarkAverage();
     }
 }
 

@@ -43,7 +43,7 @@ $theStudent = new Student();
 $theUnits = new Units();
 // pass theStudent/theUnits to theRules and Validator so it can access their input arrays.
 $theRules = new BusinessRules($theStudent, $theUnits);
-$theValidator = new Validator($theStudent, $theUnits);
+$theValidator = new Validator($theStudent, $theUnits, $theRules);
 
 // import theValidator to theStudent so it can use Validator->missingInputError() as it retrieves data
 $theStudent->setValidator($theValidator);
