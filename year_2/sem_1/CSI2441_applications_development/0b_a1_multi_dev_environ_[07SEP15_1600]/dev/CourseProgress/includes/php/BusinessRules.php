@@ -229,7 +229,7 @@ class BusinessRules {
      * Already stored course type value in studentDetails array,
      * so just subtract passedCPTotal from it.
      *
-     * TODO: Remember to convert asp's implementation to this much simpler version as well.
+     * TODO: If there's time, remember to convert asp's implementation to this much simpler version as well.
      */
     private final function setCPDelta() {
         global $theStudent;
@@ -240,7 +240,7 @@ class BusinessRules {
      * This function sets isComplete, the complete status for a student.
      * If passedCPTotal >= student's course type, then isComplete = true.
      *
-     * TODO: Remember to convert asp's implementation to this much simpler version as well.
+     * TODO: If there's time, remember to convert asp's implementation to this much simpler version as well.
      */
     private final function setIsComplete() {
         global $theStudent;
@@ -279,7 +279,7 @@ class BusinessRules {
      * If student has no failed units: Divide remaining CP required by student's enrolment type value.
      * Else student has failed a unit: Add remaining CP to failedUnitsCP, then divide by student's enrolment type value.
      *
-     * TODO: Remember to convert asp's implementation to this much simpler version as well.
+     * TODO: If there's time, remember to convert asp's implementation to this much simpler version as well.
      */
     private final function setSemRemaining() {
         global $theStudent;
@@ -304,7 +304,7 @@ class BusinessRules {
      *
      * TODO:    Managed to reduce conditional code for fulltime/parttime
      * TODO:    students by pre-calculating the lastSemStart and unitsPerSem.
-     * TODO:    Remember to update asp with this change.
+     * TODO:    If there's time, remember to update asp with this implementation.
      */
     private final function setSupUnit() {
 
@@ -401,8 +401,8 @@ class BusinessRules {
          * POST S? DETERMINATION *
          *************************/
 
-        // if same unit has x3 fails, but are supp, then student is still in good standing
-        if($isSup && $this->progressionStatus = $this::EXCLUDED) {
+        // if same unit has x3 fails, but have supp, then student is still in good standing
+        if($isSup && $this->progressionStatus == $this::EXCLUDED) {
             $this->progressionStatus = $this::GOOD_STANDING_SUP;
         }
     }
