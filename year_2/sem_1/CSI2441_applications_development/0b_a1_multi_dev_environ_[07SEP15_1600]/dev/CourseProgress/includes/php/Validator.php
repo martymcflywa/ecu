@@ -531,6 +531,34 @@ class Validator {
     public final function getLogicErrorMessage() {
         return $this->logicErrorMessage;
     }
+
+    /**
+     * This function returns isPopulated from Student.
+     *
+     * @return bool isStudentPopulated.
+     */
+    public final function isStudentPopulated() {
+        return $this->theStudent->isStudentPopulated();
+    }
+
+    /**
+     * This function returns isPopulated from Units.
+     *
+     * @return bool isUnitsPopulated.
+     */
+    public final function isUnitsPopulated() {
+        return $this->theUnits->isUnitsPopulated();
+    }
+
+    /**
+     * This function converts an error code to its string message.
+     *
+     * @param int $index - The error code.
+     * @return String - The error message.
+     */
+    public final function getErrorCode($index) {
+        return $this->errorCode[$index];
+    }
 }
 
 ?>

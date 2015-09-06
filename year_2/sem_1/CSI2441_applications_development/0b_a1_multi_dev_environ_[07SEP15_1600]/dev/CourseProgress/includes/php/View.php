@@ -95,7 +95,7 @@ class View {
     }
 
     /**
-     * Override me!
+     * Override me! Would probably be more appropriate as an interface.
      */
     protected function startView() {
         // add what you want to do here
@@ -127,6 +127,9 @@ class View {
             case "h4":
                 $toPrint = "<h4>" . $title . "</h4>";
                 break;
+            // if not any of accepted params, just print the string as normal
+            default:
+                $toPrint = $title;
         }
 
         if($isRuled) {

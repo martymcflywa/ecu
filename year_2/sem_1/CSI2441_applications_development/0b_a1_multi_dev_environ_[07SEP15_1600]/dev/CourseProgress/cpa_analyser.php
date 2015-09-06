@@ -61,7 +61,9 @@ if($theValidator->getStudentErrorTally() == 0 &&
     
     // calculate the summary
     $theRules->calculateSummary();
-    // then show me the summary - note: view probably shouldn't know about other objects for mvc, could use another controller for that
+    // then show me the summary
+        // note:   view probably shouldn't know about these objects for mvc,
+        //         could route inter-class get/setters through theValidator or theRules if time permits
     $theSummaryView = new ViewSummary(
         "Course Progression Summary",
         $theStudent,
