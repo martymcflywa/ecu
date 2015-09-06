@@ -27,8 +27,8 @@ use includes\ViewSummary;
  * a course progression summary to the user, if input passes validation.
  *
  * It is designed and written in an object oriented style, attempting to implement MVC.
- * Student, Units represent the Model,
- * Validator, BusinessRules (and $this::cpa_analyser.php) as the controller,
+ * Student, Units, BusinessRules represent the Model,
+ * Validator (and $this::cpa_analyser.php) as the controller,
  * and the View (and its subclasses) as the View.
  *
  * Basic and advanced validation/criteria/business rules,
@@ -42,11 +42,12 @@ use includes\ViewSummary;
 $theStudent = new Student();
 $theUnits = new Units();
 // pass theStudent/theUnits to theRules and Validator so it can access their input arrays.
-$theRules = new BusinessRules($theStudent, $theUnits);
+$theRules = new BusinessRules();
 $theValidator = new Validator($theStudent, $theUnits, $theRules);
 
-// import theValidator to theStudent so it can use Validator->missingInputError() as it retrieves data
-$theStudent->setValidator($theValidator);
+// import the controller
+$theStudent->setController($theValidator);
+$theRules->setController($theValidator);
 
 // start theStudent and theUnits, these calls initiate the retrieval and storage of user input into arrays
 $theStudent->startStudent();

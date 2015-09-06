@@ -52,7 +52,7 @@ class Student {
      *
      * @param $theValidator Validator - An instance of the Validator class.
      */
-    public final function setValidator(Validator $theValidator) {
+    public final function setController(Validator $theValidator) {
         $this->theValidator = $theValidator;
     }
 
