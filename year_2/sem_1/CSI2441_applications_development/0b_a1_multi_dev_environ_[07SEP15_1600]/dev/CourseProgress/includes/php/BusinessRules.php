@@ -14,6 +14,9 @@ class BusinessRules {
     private $studentDetailsArray;
     private $unitDetailsArray;
 
+    // import the instance of theUnits
+    private $theUnits;
+
     // constants used to calculate summary according to business rules
     const CT_UNDERGRAD = 1;
     const CT_UNDERGRAD_DOUBLE = 2;
@@ -68,8 +71,13 @@ class BusinessRules {
 
     /**
      * The BusinessRules constructor.
+     * Accepts theUnits as parameter so we can use Units->getGrade().
+     *
+     * @param Units $theUnits - The reference to theUnits object.
      */
-    function __construct() {
+    function __construct(Units $theUnits) {
+
+        $this->theUnits = $theUnits;
 
         // init variables with defaults
         $this->passedCPTotal = 0;
@@ -115,9 +123,24 @@ class BusinessRules {
      */
     private final function iterateUnitDetails() {
 
+        global $theUnits;
+
         for($i = 0; $i < sizeof($this->unitDetailsArray); $i++) {
 
             $this->incrementUnitAttemptTotal();
+
+            // get the grade for this mark
+            $this->unitDetailsArray[$i][Units::GR] = $this->getGrade($this->unitDetailsArray[$i][Units::UM]);
+            // then store the highest mark found in theUnits->highestMark array
+            if($this->unitDetailsArray[$i][Units::UM] > $theUnits->getHighestMark(Units::UM)) {
+                $theUnits->setHighestMark(
+                    $this->unitDetailsArray[$i][Units::UC],
+                    $this->unitDetailsArray[$i][Units::CP],
+                    $this->unitDetailsArray[$i][Units::YS],
+                    $this->unitDetailsArray[$i][Units::UM],
+                    $this->unitDetailsArray[$i][Units::GR]
+                );
+            }
 
             // if student passed unit
             if($this->unitDetailsArray[$i][Units::UM] >= $this::MARK_PASS) {

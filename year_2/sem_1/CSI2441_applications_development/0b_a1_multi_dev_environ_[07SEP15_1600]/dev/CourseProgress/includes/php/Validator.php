@@ -227,9 +227,6 @@ class Validator {
      */
     private final function validateUnitMark($index) {
 
-        global $theRules;
-        global $theUnits;
-
         $minMark = 0;
         $maxMark = 100;
 
@@ -241,18 +238,6 @@ class Validator {
             } else {
                 // cast to int so we can do math with it
                 $this->unitDetailsArray[$index][Units::UM] = intval($this->unitDetailsArray[$index][Units::UM]);
-                // get the grade for this mark
-                $this->unitDetailsArray[$index][Units::GR] = $theRules->getGrade($this->unitDetailsArray[$index][Units::UM]);
-                // then store the highest mark found in theUnits->highestMark array
-                if($this->unitDetailsArray[$index][Units::UM] > $theUnits->getHighestMark(Units::UM)) {
-                    $theUnits->setHighestMark(
-                        $this->unitDetailsArray[$index][Units::UC],
-                        $this->unitDetailsArray[$index][Units::CP],
-                        $this->unitDetailsArray[$index][Units::YS],
-                        $this->unitDetailsArray[$index][Units::UM],
-                        $this->unitDetailsArray[$index][Units::GR]
-                    );
-                }
             }
         } else {
             $this->validateError("unit", $index + 1, "Unit Mark", 8);
