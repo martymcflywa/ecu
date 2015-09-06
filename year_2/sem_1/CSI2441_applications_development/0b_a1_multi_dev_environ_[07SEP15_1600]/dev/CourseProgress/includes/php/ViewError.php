@@ -2,6 +2,15 @@
 
 namespace includes;
 
+/**
+ * Class ViewError is a subclass of View.
+ * This class prints error messages to screen,
+ * when user input is invalidated.
+ *
+ * @author Martin Ponce, 10371381
+ * @version 20150906
+ * @package includes
+ */
 class ViewError extends View {
 
     private $h2StudentErrors = "Student details errors";
@@ -20,6 +29,7 @@ class ViewError extends View {
     /**
      * @Override
      * This function initializes the error view.
+     * It initializes some states to test/decide what kind of message to print.
      */
     protected function startView() {
 

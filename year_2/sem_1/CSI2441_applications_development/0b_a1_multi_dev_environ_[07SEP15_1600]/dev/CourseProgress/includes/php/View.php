@@ -19,7 +19,7 @@ class View {
     // import the objects
     protected $theValidator;
 
-    // time to convert enrolment/course types back from value to meaning
+    // time to convert enrolment/course types from value to meaning
     protected $enrolmentType;
     protected $courseType;
 
@@ -99,7 +99,7 @@ class View {
      *
      * @param String $hType - The heading type, only accepts "h1", "h2", "h3", "h4".
      * @param String $title - The title to print.
-     * @param bool $isRuled - Want a rule underneath?
+     * @param bool $isRuled - Want a horiz rule underneath?
      * @return String - The string to print.
      */
     protected final function printTitle($hType, $title, $isRuled) {

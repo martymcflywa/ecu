@@ -1,10 +1,13 @@
 <?php
+
 namespace includes;
 
 /**
  * Class BusinessRules contains all the business related logic to
  * calculate the summary of a student's course progress.
  *
+ * @author Martin Ponce, 10371381
+ * @version 20150906
  * @package includes
  */
 class BusinessRules {
@@ -201,9 +204,9 @@ class BusinessRules {
         // loop from current index + 1 to remaining entries
         for($i = $index + 1; $i < sizeof($this->theValidator->getUnitDetails()); $i++) {
             // if unitcodes match and unit is failed,
-            if($currentUnitCode == $this->theValidator->getUnitDetails()[$i][Units::UC] &&
-                    $this->theValidator->getUnitDetails()[$index][Units::UM] < $this::MARK_PASS) {
-
+            if ($currentUnitCode == $this->theValidator->getUnitDetails()[$i][Units::UC] &&
+                $this->theValidator->getUnitDetails()[$index][Units::UM] < $this::MARK_PASS
+            ) {
                 // increment matchFailedTally
                 $this->matchedFailedTally++;
 
@@ -406,7 +409,7 @@ class BusinessRules {
 
         $grade = "";
         // make sure its int
-        $test = intval($mark);
+        $test = (int) $mark;
 
         switch($test) {
             case $test < 50:
@@ -508,7 +511,7 @@ class BusinessRules {
     /**
      * This function returns gradeAverage.
      *
-     * @return string gradeAverage.
+     * @return String gradeAverage.
      */
     public function getGradeAverage() {
         return $this->gradeAverage;

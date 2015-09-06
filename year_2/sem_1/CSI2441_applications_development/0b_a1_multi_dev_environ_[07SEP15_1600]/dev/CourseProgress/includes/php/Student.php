@@ -8,7 +8,7 @@ namespace includes;
  * on empty form fields.
  *
  * @author Martin Ponce, 10371381
- * @version 20150904
+ * @version 20150906
  * @package includes
  */
 class Student {

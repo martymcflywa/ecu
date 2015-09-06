@@ -46,9 +46,6 @@ class Units {
 
     /**
      * This function kicks off Units.
-     * Can't call these functions until theValidator is imported,
-     * so rather than calling them from the constructor, call startUnits AFTER
-     * theValidator has been imported.
      */
     public function startUnits() {
         $this->retrieveUnitDetails();
@@ -63,12 +60,12 @@ class Units {
 
             $j = $i + 1;
 
+            // if any unit form posts are not blank, store them in array
             if ($_POST["UnitCode_" . $j] != "" ||
                 $_POST["CP_" . $j] != "" ||
                 $_POST["YS_" . $j] != "" ||
                 $_POST["UM_" . $j] != ""
             ) {
-
                 $this->unitDetails[$i][$this::UC] = $_POST["UnitCode_" . $j];
                 $this->unitDetails[$i][$this::CP] = $_POST["CP_" . $j];
                 $this->unitDetails[$i][$this::YS] = $_POST["YS_" . $j];

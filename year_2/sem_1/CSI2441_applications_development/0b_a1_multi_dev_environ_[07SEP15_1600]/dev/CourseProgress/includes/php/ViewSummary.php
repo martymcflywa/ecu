@@ -2,7 +2,16 @@
 
 namespace includes;
 
-
+/**
+ * Class ViewSummary is a subclass of View.
+ * This class prints a student's progression summary to screen,
+ * when user input is validated, and a summary is calculated.
+ * It also provides the user with a transcript of their marks.
+ *
+ * @author Martin Ponce, 10371381
+ * @version 20150906
+ * @package includes
+ */
 class ViewSummary extends View {
 
     private $h2StudentDetails = "Student details";
@@ -25,7 +34,10 @@ class ViewSummary extends View {
 
     /**
      * @Override
-     * Customizing startView for ViewSummary.
+     * This function initiates the summary view.
+     * It retrieves values calculated by BusinessRule,
+     * and prints them to screen, along with a table
+     * of the highestMark, and the student transcript.
      */
     protected function startView() {
 
@@ -43,7 +55,6 @@ class ViewSummary extends View {
 
         $this->printStudentDetails();
         $this->printProgressionSummary();
-
         $this->printCreditPointSummary();
         $this->printHighestMark();
         $this->printTranscript();
@@ -121,7 +132,7 @@ class ViewSummary extends View {
             echo($this->progressionStatus . $this->br);
         }
 
-        // choose between true or false
+        // test isComplete, ie. is student completed their course
         echo($this->bold("Course requirements complete: "));
         switch($this->isComplete) {
             case true:
@@ -158,8 +169,6 @@ class ViewSummary extends View {
      */
     private final function printHighestMark() {
 
-        global $theUnits;
-
         // print the title
         $this->printTitle("h2", $this->h2HighestMark, false);
 
@@ -169,24 +178,27 @@ class ViewSummary extends View {
 
         echo("<tr>");
         echo("<td>");
-        echo($theUnits->getHighestMark()[Units::UC]);
+        echo($this->theValidator->getHighestMark()[Units::UC]);
         echo("</td>");
         echo("<td align=\"center\">");
-        echo($theUnits->getHighestMark()[Units::CP]);
+        echo($this->theValidator->getHighestMark()[Units::CP]);
         echo("</td>");
         echo("<td align=\"center\">");
-        echo($theUnits->getHighestMark()[Units::YS]);
+        echo($this->theValidator->getHighestMark()[Units::YS]);
         echo("</td>");
         echo("<td align=\"right\">");
-        echo($theUnits->getHighestMark()[Units::UM]);
+        echo($this->theValidator->getHighestMark()[Units::UM]);
         echo("</td>");
         echo("<td>");
-        echo($theUnits->getHighestMark()[Units::GR]);
+        echo($this->theValidator->getHighestMark()[Units::GR]);
         echo("</td>");
         echo("</tr>");
         echo("</table>");
     }
 
+    /**
+     * This function prints the transcript table.
+     */
     private final function printTranscript() {
 
         // print the title
