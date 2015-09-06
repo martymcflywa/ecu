@@ -86,15 +86,13 @@ class ViewSummary extends View {
      */
     private final function printStudentDetails() {
 
-        global $theStudent;
-
         // print the title
         $this->printTitle("h2", $this->h2StudentDetails, false);
 
         // print student details
         echo("<p>");
-        echo($this->bold("Name: ") . $theStudent->getStudentDetails()[Student::FN] . " " . $theStudent->getStudentDetails()[Student::SN] . $this->br);
-        echo($this->bold("Student ID: ") . $theStudent->getStudentDetails()[Student::ID] . $this->br);
+        echo($this->bold("Name: ") . $this->theValidator->getStudentDetails()[Student::FN] . " " . $this->theValidator->getStudentDetails()[Student::SN] . $this->br);
+        echo($this->bold("Student ID: ") . $this->theValidator->getStudentDetails()[Student::ID] . $this->br);
         echo($this->bold("Enrolment type: ") . $this->enrolmentType . $this->br);
         echo($this->bold("Course type: ") . $this->courseType . $this->br);
         echo("</p>");
@@ -187,8 +185,6 @@ class ViewSummary extends View {
 
     private final function printTranscript() {
 
-        global $theUnits;
-
         // print the title
         $this->printTitle("h2", $this->h2Transcript, false);
 
@@ -196,30 +192,30 @@ class ViewSummary extends View {
         echo("<table $this->tableConfig>");
         $this->printTableHeaders();
 
-        for($i = 0; $i < sizeof($theUnits->getUnitDetails()); $i++) {
+        for($i = 0; $i < sizeof($this->theValidator->getUnitDetails()); $i++) {
             echo("<tr>");
             echo("<td>");
-            echo($theUnits->getUnitDetails()[$i][Units::UC]);
+            echo($this->theValidator->getUnitDetails()[$i][Units::UC]);
             echo("</td>");
             echo("<td align=\"center\">");
-            echo($theUnits->getUnitDetails()[$i][Units::CP]);
+            echo($this->theValidator->getUnitDetails()[$i][Units::CP]);
             echo("</td>");
             echo("<td align=\"center\">");
-            echo($theUnits->getUnitDetails()[$i][Units::YS]);
+            echo($this->theValidator->getUnitDetails()[$i][Units::YS]);
             echo("</td>");
             echo("<td align=\"right\">");
 
             // show any mark less than pass as red
-            if($theUnits->getUnitDetails()[$i][Units::UM] < BusinessRules::MARK_PASS) {
-                $this->printRed($theUnits->getUnitDetails()[$i][Units::UM]);
+            if($this->theValidator->getUnitDetails()[$i][Units::UM] < BusinessRules::MARK_PASS) {
+                $this->printRed($this->theValidator->getUnitDetails()[$i][Units::UM]);
                 echo("</td>");
                 echo("<td>");
-                $this->printRed($theUnits->getUnitDetails()[$i][Units::GR]);
+                $this->printRed($this->theValidator->getUnitDetails()[$i][Units::GR]);
             } else {
-                echo($theUnits->getUnitDetails()[$i][Units::UM]);
+                echo($this->theValidator->getUnitDetails()[$i][Units::UM]);
                 echo("</td>");
                 echo("<td>");
-                echo($theUnits->getUnitDetails()[$i][Units::GR]);
+                echo($this->theValidator->getUnitDetails()[$i][Units::GR]);
             }
 
             echo("</td>");

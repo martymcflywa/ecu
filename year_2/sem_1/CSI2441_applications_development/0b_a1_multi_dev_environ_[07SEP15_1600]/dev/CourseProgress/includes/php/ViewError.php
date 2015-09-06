@@ -9,8 +9,6 @@ class ViewError extends View {
     private $h2LogicErrors = "Logical errors";
     private $footer = "Please return to the form, resolve the errors and try again.";
 
-    private $theValidator;
-
     private $isFormEmpty;
     private $isOnlyStudent;
     private $isOnlyUnits;
@@ -19,30 +17,32 @@ class ViewError extends View {
     private $messageEmptyStudent = "<p>No student details were provided.</p>";
     private $messageEmptyUnits = "<p>No unit details were provided.</p>";
 
-    function __construct($h1Header, Validator $theValidator) {
+//    function __construct($h1Header, Validator $theValidator) {
+//
+//        //parent::__construct($h1Header, );
+//
+//        $this->$h1Header = $h1Header;
+//        $this->theValidator = $theValidator;
+//
+//        $this->printTitle("h1", $this->h1Header, true);
+//
+//
+//
+//        $this->startView();
+//
+//        echo($this->br);
+//        echo("</p>");
+//        echo("<p> $this->footer </p>");
+//        echo($this->backButton);
+//
+//    }
 
-        //parent::__construct($h1Header, );
-
-        $this->$h1Header = $h1Header;
-        $this->theValidator = $theValidator;
-
-        $this->printTitle("h1", $this->h1Header, true);
+    protected function startView() {
 
         // some states to test before printing
         $this->isFormEmpty = $this->theValidator->isStudentPopulated() && $this->theValidator->isUnitsPopulated();
         $this->isOnlyStudent = $this->theValidator->isStudentPopulated() && !$this->theValidator->isUnitsPopulated();
         $this->isOnlyUnits = !$this->theValidator->isStudentPopulated() && $this->theValidator->isUnitsPopulated();
-
-        $this->startView();
-
-        echo($this->br);
-        echo("</p>");
-        echo("<p> $this->footer </p>");
-        echo($this->backButton);
-
-    }
-
-    protected function startView() {
 
         if($this->isFormEmpty) {
             echo($this->messageEmptyForm);

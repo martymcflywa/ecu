@@ -21,6 +21,8 @@ require_once 'includes/php/View.php';
 use includes\View;
 require_once 'includes/php/ViewSummary.php';
 use includes\ViewSummary;
+require_once 'includes/php/ViewError.php';
+use includes\ViewError;
 
 /**
  * This php script accepts student and unit input data and presents
@@ -28,7 +30,7 @@ use includes\ViewSummary;
  *
  * It is designed and written in an object oriented style, attempting to implement MVC.
  * Student, Units, BusinessRules represent the Model,
- * Validator (and $this::cpa_analyser.php) as the controller,
+ * Validator (and $this::cpa_analyser.php) as the Controller,
  * and the View (and its subclasses) as the View.
  *
  * Basic and advanced validation/criteria/business rules,
@@ -38,14 +40,16 @@ use includes\ViewSummary;
  * @version 20150904
  */
 
-// create instance of each object
+// create the models, they shouldn't know each other
 $theStudent = new Student();
 $theUnits = new Units();
-// pass theStudent/theUnits to theRules and Validator so it can access their input arrays.
 $theRules = new BusinessRules();
+// create the controller, knows about everyone
 $theValidator = new Validator($theStudent, $theUnits, $theRules);
 
-// import the controller
+// import the controller, would do at construction, but having "chicken or the egg" issues
+// theStudent also shouldn't refer the controller, but it needs Validator->missingInputError()
+// which proves that a separate controller class should be defined, but... running out of time
 $theStudent->setController($theValidator);
 $theRules->setController($theValidator);
 
@@ -65,16 +69,11 @@ if($theValidator->getStudentErrorTally() == 0 &&
     // then show me the summary
         // note:   view probably shouldn't know about these objects for mvc,
         //         could route inter-class get/setters through theValidator or theRules if time permits
-    $theSummaryView = new ViewSummary(
-        "Course Progression Summary",
-        $theStudent,
-        $theUnits,
-        $theRules
-    );
+    $theSummaryView = new ViewSummary("Course Progression Summary", $theValidator);
 
 } else {
     // else there are errors, go to the error view immediately
-    //$theErrorView = new ViewError();
+    $theErrorView = new ViewError("Course Progression Form Errors", $theValidator);
 }
 
 /**

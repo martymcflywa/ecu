@@ -14,9 +14,7 @@ class View {
     protected $backButton = "<input type=\"button\" name=\"Back\" value=\"Back\" onClick=\"history.go(-1);return true;\">";
 
     // import the objects
-    protected $theStudent;
-    protected $theUnits;
-    protected $theRules;
+    protected $theValidator;
 
     // time to convert enrolment/course types back from value to meaning
     protected $enrolmentType;
@@ -29,17 +27,13 @@ class View {
      * The View constructor.
      *
      * @param String $h1Header - The main title for this view.
-     * @param Student $theStudent - The Student object.
-     * @param Units $theUnits - The Units object.
-     * @param BusinessRules $theRules - The BusinessRules object.
+     * @param Validator - The controller.
      */
-    function __construct($h1Header, Student $theStudent, Units $theUnits, BusinessRules $theRules) {
+    function __construct($h1Header, Validator $theValidator) {
 
         $this->h1Header = $h1Header;
 
-        $this->theStudent = $theStudent;
-        $this->theUnits = $theUnits;
-        $this->theRules = $theRules;
+        $this->theValidator = $theValidator;
 
         $this->convertEnrolmentType();
         $this->convertCourseType();
@@ -56,9 +50,7 @@ class View {
      */
     protected final function convertEnrolmentType() {
 
-        global $theStudent;
-
-        switch($theStudent->getStudentDetails()[Student::ET]) {
+        switch($this->theValidator->getStudentDetails()[Student::ET]) {
             case BusinessRules::CP_FULLTIME:
                 $this->enrolmentType = "Full time";
                 break;
@@ -73,23 +65,21 @@ class View {
      */
     protected final function convertCourseType() {
 
-        global $theStudent;
-
-        switch($theStudent->getStudentDetails()[Student::CT]) {
+        switch($this->theValidator->getStudentDetails()[Student::CT]) {
             case BusinessRules::CP_UNDERGRAD:
-                $this->courseType = "Undergraduate degree (" . $theStudent->getStudentDetails()[Student::CT] . " CP)";
+                $this->courseType = "Undergraduate degree (" . $this->theValidator->getStudentDetails()[Student::CT] . " CP)";
                 break;
             case BusinessRules::CP_UNDERGRAD_DOUBLE:
-                $this->courseType = "Undergraduate double degree (" . $theStudent->getStudentDetails()[Student::CT] . " CP)";
+                $this->courseType = "Undergraduate double degree (" . $this->theValidator->getStudentDetails()[Student::CT] . " CP)";
                 break;
             case BusinessRules::CP_GRAD_DIPLOMA:
-                $this->courseType = "Graduate diploma (" . $theStudent->getStudentDetails()[Student::CT] . " CP)";
+                $this->courseType = "Graduate diploma (" . $this->theValidator->getStudentDetails()[Student::CT] . " CP)";
                 break;
             case BusinessRules::CP_MASTERS_COURSE:
-                $this->courseType = "Masters by coursework (" . $theStudent->getStudentDetails()[Student::CT] . " CP)";
+                $this->courseType = "Masters by coursework (" . $this->theValidator->getStudentDetails()[Student::CT] . " CP)";
                 break;
             case BusinessRules::CP_MASTERS_RESEARCH:
-                $this->courseType = "Masters by research (" . $theStudent->getStudentDetails()[Student::CT] . " CP)";
+                $this->courseType = "Masters by research (" . $this->theValidator->getStudentDetails()[Student::CT] . " CP)";
                 break;
         }
     }
