@@ -32,7 +32,7 @@ class Units {
     // so using this instead: sizeof(unitDetailsArray)
 
     private $unitDetails = array();
-    private $highestMark;
+    private $highestMark = array();
 
     /**
      * The constructor for the Units class.
@@ -41,7 +41,7 @@ class Units {
 
         // init some default values
         $this->isPopulated = false;
-
+        $this->setHighestMark( "", 0, "", 0, "");
     }
 
     /**

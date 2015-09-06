@@ -62,7 +62,13 @@ if($theValidator->getStudentErrorTally() == 0 && $theValidator->getUnitErrorTall
     // this function also kicks off summary calculation, @see BusinessRules->setInputArrays()
     $theRules->setInputArrays($theStudent->getStudentDetails(), $theUnits->getUnitDetails());
     // then show me the summary
-    $theSummaryView = new ViewSummary("Course Progression Summary", $theStudent->getStudentDetails(), $theUnits->getUnitDetails(), $theRules);
+    $theSummaryView = new ViewSummary(
+        "Course Progression Summary",
+        $theStudent->getStudentDetails(),
+        $theUnits->getUnitDetails(),
+        $theUnits->getHighestMark(),
+        $theRules
+    );
 
 } else {
     // else there are errors, go to the error view immediately

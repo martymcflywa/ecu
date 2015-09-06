@@ -19,12 +19,7 @@ class ViewSummary extends View {
     private $unitsPassed;
     private $semRemaining;
     private $markAverage;
-
-    private $highestMarkArray;
-
-
-
-
+    
     /**
      * @Override
      * Customizing startView for ViewSummary.

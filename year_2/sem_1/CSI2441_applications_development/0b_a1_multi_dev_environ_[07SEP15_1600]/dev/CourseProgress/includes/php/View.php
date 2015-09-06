@@ -16,6 +16,7 @@ class View {
     // import the arrays
     protected $studentDetailsArray;
     protected $unitDetailsArray;
+    protected $highestMarkArray;
 
     // import the rules
     protected $theRules;
@@ -35,14 +36,16 @@ class View {
      * @param String $h1Header
      * @param array $studentDetails
      * @param array $unitDetails
+     * @param array $highestMark
      * @param BusinessRules $theRules
      */
-    function __construct($h1Header, array $studentDetails, array $unitDetails, BusinessRules $theRules) {
+    function __construct($h1Header, array $studentDetails, array $unitDetails, array $highestMark, BusinessRules $theRules) {
 
         $this->h1Header = $h1Header;
 
         $this->studentDetailsArray = $studentDetails;
         $this->unitDetailsArray = $unitDetails;
+        $this->highestMarkArray = $highestMark;
 
         $this->convertEnrolmentType();
         $this->convertCourseType();
