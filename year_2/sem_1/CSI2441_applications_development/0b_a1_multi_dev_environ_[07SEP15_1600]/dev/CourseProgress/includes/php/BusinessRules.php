@@ -504,6 +504,15 @@ class BusinessRules {
     public function getMarkAverage() {
         return $this->markAverage;
     }
+
+    /**
+     * This function returns gradeAverage.
+     *
+     * @return string gradeAverage.
+     */
+    public function getGradeAverage() {
+        return $this->gradeAverage;
+    }
 }
 
 ?>

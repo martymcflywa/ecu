@@ -17,30 +17,14 @@ class ViewError extends View {
     private $messageEmptyStudent = "<p>No student details were provided.</p>";
     private $messageEmptyUnits = "<p>No unit details were provided.</p>";
 
-//    function __construct($h1Header, Validator $theValidator) {
-//
-//        //parent::__construct($h1Header, );
-//
-//        $this->$h1Header = $h1Header;
-//        $this->theValidator = $theValidator;
-//
-//        $this->printTitle("h1", $this->h1Header, true);
-//
-//
-//
-//        $this->startView();
-//
-//        echo($this->br);
-//        echo("</p>");
-//        echo("<p> $this->footer </p>");
-//        echo($this->backButton);
-//
-//    }
-
+    /**
+     * @Override
+     * Customizing startView for ViewError.
+     */
     protected function startView() {
 
-        // some states to test before printing
-        $this->isFormEmpty = $this->theValidator->isStudentPopulated() && $this->theValidator->isUnitsPopulated();
+        // init some states to test before printing
+        $this->isFormEmpty = !$this->theValidator->isStudentPopulated() && !$this->theValidator->isUnitsPopulated();
         $this->isOnlyStudent = $this->theValidator->isStudentPopulated() && !$this->theValidator->isUnitsPopulated();
         $this->isOnlyUnits = !$this->theValidator->isStudentPopulated() && $this->theValidator->isUnitsPopulated();
 
@@ -60,6 +44,8 @@ class ViewError extends View {
             $this->printUnitErrors();
             $this->printLogicErrors();
         }
+
+        echo("<p> $this->footer </p>");
     }
 
     /**
@@ -101,8 +87,6 @@ class ViewError extends View {
         if($this->theValidator->getUnitErrorTally() > 0) {
             // print the title
             $this->printTitle("h2", $this->h2UnitErrors, false);
-            // start the list
-            echo("<ul>");
 
             for($i = 0; $i < sizeof($this->theValidator->getUnitErrorMessage()); $i++) {
 
@@ -116,10 +100,8 @@ class ViewError extends View {
                     echo("</li>");
                 // else they don't match, so start a new list for the new row
                 } else {
-                    // if this isn't the first entry, close the previous list
-                    if($i != 0) {
-                        echo("</ul>");
-                    }
+                    $currentRow = $this->theValidator->getUnitErrorMessage()[$i][Validator::E_ROW];
+                    echo("</ul>");
                     // start new list
                     echo($rowTitle . $this->bold($this->theValidator->getUnitErrorMessage()[$i][Validator::E_ROW] . ":"));
                     echo("<ul>");
@@ -130,6 +112,7 @@ class ViewError extends View {
                     echo("</li>");
                 }
             }
+            echo("</ul>");
         }
     }
 

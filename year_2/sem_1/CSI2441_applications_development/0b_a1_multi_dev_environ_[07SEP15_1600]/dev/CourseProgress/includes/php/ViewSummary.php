@@ -19,6 +19,7 @@ class ViewSummary extends View {
     private $unitsPassed;
     private $semRemaining;
     private $markAverage;
+    private $gradeAverage;
 
     private $tableConfig = "border=\"1\" cellpadding=\"10\" style=\"border-collapse:collapse;\"";
 
@@ -28,17 +29,16 @@ class ViewSummary extends View {
      */
     protected function startView() {
 
-        global $theRules;
-
         $this->setRuleValues(
-            $theRules->getProgressionStatus(),
-            $theRules->isComplete(),
-            $theRules->getPassedCP(),
-            $theRules->getCPDelta(),
-            $theRules->getUnitsAttempted(),
-            $theRules->getUnitsPassed(),
-            $theRules->getSemRemaining(),
-            $theRules->getMarkAverage()
+            $this->theValidator->getProgressionStatus(),
+            $this->theValidator->isComplete(),
+            $this->theValidator->getPassedCP(),
+            $this->theValidator->getCPDelta(),
+            $this->theValidator->getUnitsAttempted(),
+            $this->theValidator->getUnitsPassed(),
+            $this->theValidator->getSemRemaining(),
+            $this->theValidator->getMarkAverage(),
+            $this->theValidator->getGradeAverage()
         );
 
         $this->printStudentDetails();
@@ -55,13 +55,14 @@ class ViewSummary extends View {
      * for printing.
      *
      * @param String $progressionStatus.
-     * @param bool $isComplete
-     * @param int $passedCPTotal
-     * @param int $cpDelta
-     * @param int $unitAttemptTotal
-     * @param int $unitsPassed
-     * @param double $semRemaining
-     * @param double $markAverage
+     * @param bool $isComplete.
+     * @param int $passedCPTotal.
+     * @param int $cpDelta.
+     * @param int $unitAttemptTotal.
+     * @param int $unitsPassed.
+     * @param float $semRemaining.
+     * @param float $markAverage.
+     * @param String $gradeAverage.
      */
     protected final function setRuleValues($progressionStatus,
                                            $isComplete,
@@ -70,7 +71,9 @@ class ViewSummary extends View {
                                            $unitAttemptTotal,
                                            $unitsPassed,
                                            $semRemaining,
-                                           $markAverage) {
+                                           $markAverage,
+                                           $gradeAverage)
+    {
         $this->progressionStatus = $progressionStatus;
         $this->isComplete = $isComplete;
         $this->passedCPTotal = $passedCPTotal;
@@ -79,6 +82,7 @@ class ViewSummary extends View {
         $this->unitsPassed = $unitsPassed;
         $this->semRemaining = $semRemaining;
         $this->markAverage = $markAverage;
+        $this->gradeAverage = $gradeAverage;
     }
 
     /**
@@ -145,7 +149,7 @@ class ViewSummary extends View {
         echo($this->bold("Units attempted: ") . $this->unitAttemptTotal . $this->br);
         echo($this->bold("Units passed: ") . $this->unitsPassed . $this->br);
         echo($this->bold("Semesters remaining: ") . $this->semRemaining . $this->br);
-        echo($this->bold("Average mark: ") . $this->markAverage . $this->br);
+        echo($this->bold("Average mark: ") . $this->markAverage . " " . $this->gradeAverage . $this->br);
         echo("</p>");
     }
 

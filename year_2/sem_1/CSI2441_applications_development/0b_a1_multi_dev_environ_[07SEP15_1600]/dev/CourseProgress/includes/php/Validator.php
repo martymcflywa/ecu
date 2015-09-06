@@ -103,7 +103,7 @@ class Validator {
         // validate student id
         if(strlen($theStudent->getStudentDetails()[Student::ID]) > 0) {
             if(!preg_match($this->regExDict["studentID"], $theStudent->getStudentDetails()[Student::ID])) {
-                $this->validateError("student", -1, "Surname", 1);
+                $this->validateError("student", -1, "Student ID", 2);
             }
         }
     }
@@ -724,6 +724,15 @@ class Validator {
      */
     public function getMarkAverage() {
         return $this->theRules->getMarkAverage();
+    }
+
+    /**
+     * This function returns gradeAverage from BusinessRules.
+     *
+     * @return string gradeAverage.
+     */
+    public function getGradeAverage() {
+        return $this->theRules->getGradeAverage();
     }
 }
 
