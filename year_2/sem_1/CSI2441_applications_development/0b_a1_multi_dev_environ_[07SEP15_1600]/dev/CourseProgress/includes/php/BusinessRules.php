@@ -183,10 +183,11 @@ class BusinessRules {
         // loop from current index + 1 to remaining entries
         for($i = $index + 1; $i < sizeof($this->unitDetailsArray); $i++) {
             // if unitcodes match and unit is failed,
-            if($currentUnitCode == $this->unitDetailsArray[$index][Units::UC] &&
+            if($currentUnitCode == $this->unitDetailsArray[$i][Units::UC] &&
                     $this->unitDetailsArray[$index][Units::UM] < $this::MARK_PASS) {
                 // increment matchFailedTally
                 $this->matchedFailedTally++;
+
             }
         }
     }
