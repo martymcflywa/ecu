@@ -82,6 +82,7 @@ if ($theValidator->getStudentErrorTally() == 0 &&
 //echo(var_dump($theValidator->getStudentErrorTally()) . " " . var_dump($theValidator->getUnitErrorTally()) . " " . var_dump($theValidator->getLogicErrorTally()));
 //echo(var_dump($theUnits->getUnitDetails()));
 //echo(var_dump(!isset($theUnits->getUnitDetails()[0][Units::UM])));
+//echo(var_dump(preg_match($this->regExDict["unitCodeSuffix"], $this->theUnits->getUnitDetails()[0][Units::UC]))) // >= 6000
 /**
  * END DEBUG
  */

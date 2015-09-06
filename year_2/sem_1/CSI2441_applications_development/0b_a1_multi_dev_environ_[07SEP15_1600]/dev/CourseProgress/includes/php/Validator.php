@@ -169,11 +169,15 @@ class Validator {
         // if unit code is valid
         if(preg_match($this->regExDict["unitCode"], $this->theUnits->getUnitDetails()[$index][Units::UC])) {
 
-            // test course type against unit code (wow this is a mouthful in php!)
-            if(($this->theStudent->getStudentDetails()[Student::CT] == BusinessRules::CT_UNDERGRAD ||
-                    $this->theStudent->getStudentDetails()[Student::CT] == BusinessRules::CT_UNDERGRAD_DOUBLE) &&
-                    (preg_grep($this->regExDict["unitCodeSuffix"], $this->theUnits->getUnitDetails()[$index][Units::UC]) >= 6000)) {
+            $matches = array();
+            // stores matched regex (last 4 digits of unit code) in $matches, test $matches[0] >= 6000
+            preg_match($this->regExDict["unitCodeSuffix"], $this->theUnits->getUnitDetails()[$index][Units::UC], $matches);
 
+            // test course type against unit code
+            if(($this->theStudent->getStudentDetails()[Student::CT] == BusinessRules::CP_UNDERGRAD ||
+                    $this->theStudent->getStudentDetails()[Student::CT] == BusinessRules::CP_UNDERGRAD_DOUBLE) &&
+                    $matches[0] >= 6000
+            ) {
                 $this->validateError("unit", $index + 1, "Unit Code", 3);
             }
 
