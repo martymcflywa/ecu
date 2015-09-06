@@ -63,10 +63,11 @@ class Units {
 
             $j = $i + 1;
 
-            if(strlen($_POST["UnitCode_" . $j] > 0) ||
-                    strlen($_POST["CP_" . $j] > 0) ||
-                    strlen($_POST["YS_" . $j] > 0) ||
-                    strlen($_POST["UM_" . $j] > 0)) {
+            if ($_POST["UnitCode_" . $j] != "" ||
+                $_POST["CP_" . $j] != "" ||
+                $_POST["YS_" . $j] != "" ||
+                $_POST["UM_" . $j] != ""
+            ) {
 
                 $this->unitDetails[$i][$this::UC] = $_POST["UnitCode_" . $j];
                 $this->unitDetails[$i][$this::CP] = $_POST["CP_" . $j];
