@@ -51,8 +51,6 @@ end sub
 '* Sub iterates through unitDetails array, calling other subs when appropriate.
 '*
 sub iterateUnitDetails()
-
-	dim currentSem, semUnits, semFails
 	
 	for i = 0 to filledRows - 1
 

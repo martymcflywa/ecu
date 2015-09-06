@@ -129,8 +129,10 @@ class BusinessRules {
 
             $this->incrementUnitAttemptTotal();
 
-            // get the grade for this mark
-            $this->unitDetailsArray[$i][Units::GR] = $this->getGrade($this->unitDetailsArray[$i][Units::UM]);
+            // set the grade for this mark
+            //$this->unitDetailsArray[$i][Units::GR] = $this->getGrade(intval($this->unitDetailsArray[$i][Units::UM]));
+            $theUnits->setUnitGrade($i, $this->getGrade($this->unitDetailsArray[$i][Units::UM]));
+
             // then store the highest mark found in theUnits->highestMark array
             if($this->unitDetailsArray[$i][Units::UM] > $theUnits->getHighestMark()[Units::UM]) {
                 $theUnits->setHighestMark(
@@ -404,23 +406,24 @@ class BusinessRules {
     public function getGrade($mark) {
 
         $grade = "";
+        // make sure its int
+        $test = intval($mark);
 
-        switch($mark) {
-            case $mark >= 80:
-                $grade = "HD";
-                break;
-            case $mark >= 70:
-                $grade = "D";
-                break;
-            case $mark >= 60:
-                $grade = "CR";
-                break;
-            case $mark >= 50:
+        switch($test) {
+            case $test < 60:
                 $grade = "C";
                 break;
-            case $mark >= 0:
-                $grade = "N";
+            case $test < 70:
+                $grade = "CR";
                 break;
+            case $test < 80:
+                $grade = "D";
+                break;
+            case $test <= 100:
+                $grade = "HD";
+                break;
+            default:
+                $grade = "N";
         }
 
         return $grade;

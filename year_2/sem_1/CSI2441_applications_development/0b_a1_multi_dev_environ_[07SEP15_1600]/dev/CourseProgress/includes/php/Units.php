@@ -72,10 +72,15 @@ class Units {
                 $this->unitDetails[$i][$this::CP] = $_POST["CP_" . $j];
                 $this->unitDetails[$i][$this::YS] = $_POST["YS_" . $j];
                 $this->unitDetails[$i][$this::UM] = $_POST["UM_" . $j];
+                $this->unitDetails[$i][$this::GR] = "";
 
                 $this->isPopulated = true;
             }
         }
+    }
+
+    public function setUnitGrade($index, $grade) {
+        $this->unitDetails[$index][$this::GR] = $grade;
     }
 
     /**
