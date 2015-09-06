@@ -296,6 +296,7 @@ class BusinessRules {
      * !! ASSUMPTIONS/LIMITATIONS !!
      * 1. Only considers 15 CP per unit, not 20
      * 2. User input must be in correct order according to semester!
+     * 3. @see *POST S? DETERMINATION*, in function below.
      *
      * TODO:    Managed to reduce conditional code for fulltime/parttime
      * TODO:    students by pre-calculating the lastSemStart and unitsPerSem.
@@ -392,6 +393,10 @@ class BusinessRules {
         /*************************
          * POST S? DETERMINATION *
          *************************/
+
+        // problem with this if statement:
+        // if student has S?, N, S? for one unit, and also fails a different unit three times during course,
+        // the if statement below will negate exclusion.
 
         // if same unit has x3 fails, but have supp, then student is still in good standing
         if($isSup && $this->progressionStatus == $this::EXCLUDED) {
