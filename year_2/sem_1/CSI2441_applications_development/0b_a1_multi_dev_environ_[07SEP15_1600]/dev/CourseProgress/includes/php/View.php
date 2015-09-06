@@ -14,11 +14,13 @@ class View {
     protected $backButton;
 
     // import the arrays
-    protected $studentDetailsArray;
-    protected $unitDetailsArray;
-    protected $highestMarkArray;
+//    protected $studentDetailsArray;
+//    protected $unitDetailsArray;
+//    protected $highestMarkArray;
 
-    // import the rules
+    // import the objects
+    protected $theStudent;
+    protected $theUnits;
     protected $theRules;
 
     // time to convert enrolment/course type back from value to meaning
@@ -31,19 +33,18 @@ class View {
     /**
      * The View constructor.
      *
-     * @param String $h1Header
-     * @param array $studentDetails
-     * @param array $unitDetails
-     * @param array $highestMark
+     * @param $h1Header
+     * @param Student $theStudent
+     * @param Units $theUnits
      * @param BusinessRules $theRules
      */
-    function __construct($h1Header, array $studentDetails, array $unitDetails, array $highestMark, BusinessRules $theRules) {
+    function __construct($h1Header, Student $theStudent, Units $theUnits, BusinessRules $theRules) {
 
         $this->h1Header = $h1Header;
 
-        $this->studentDetailsArray = $studentDetails;
-        $this->unitDetailsArray = $unitDetails;
-        $this->highestMarkArray = $highestMark;
+        $this->theStudent = $theStudent;
+        $this->theUnits = $theUnits;
+        $this->theRules = $theRules;
 
         $this->convertEnrolmentType();
         $this->convertCourseType();

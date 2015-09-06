@@ -27,8 +27,8 @@ use includes\ViewSummary;
  * a course progression summary to the user, if input passes validation.
  *
  * It is designed and written in an object oriented style, attempting to implement MVC.
- * Student, Units and BusinessRules classes represent the Model,
- * Validator class (and $this::cpa_analyser.php) as the controller,
+ * Student, Units classes represent the Model,
+ * Validator, BusinessRules class (and $this::cpa_analyser.php) as the controller,
  * and the View class as the View.
  *
  * Basic and advanced validation/criteria/business rules,
@@ -58,7 +58,7 @@ $theValidator->startValidator();
 if($theValidator->getStudentErrorTally() == 0 && $theValidator->getUnitErrorTally() == 0 && $theValidator->getLogicErrorTally() == 0) {
     // import input arrays to theRules,
     // this function also kicks off summary calculation, @see BusinessRules->setInputArrays()
-    $theRules->setInputArrays($theStudent->getStudentDetails(), $theUnits->getUnitDetails());
+    $theRules->calculateSummary();
     // then show me the summary
     $theSummaryView = new ViewSummary(
         "Course Progression Summary",

@@ -512,22 +512,6 @@ class BusinessRules {
     public function getMarkAverage() {
         return $this->markAverage;
     }
-
-    /**
-     * This function imports the input arrays from the Student and Units class.
-     * This must occur post validation by Validator.
-     *
-     * Once input arrays have been imported, it will kick off calculation of the summary.
-     *
-     * @param array $studentDetails
-     * @param array $unitDetails
-     */
-    public final function setInputArrays(array $studentDetails, array $unitDetails) {
-        $this->studentDetailsArray = $studentDetails;
-//        $this->unitDetailsArray = $unitDetails;
-        // now that we have all the input data, we can start validation
-        $this->calculateSummary();
-    }
 }
 
 ?>
