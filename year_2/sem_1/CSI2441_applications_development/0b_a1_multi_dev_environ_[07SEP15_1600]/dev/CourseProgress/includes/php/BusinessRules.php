@@ -455,6 +455,15 @@ class BusinessRules {
     }
 
     /**
+     * This function returns unitsPassed.
+     *
+     * @return int unitsPassed.
+     */
+    public function getUnitsPassed() {
+        return $this->unitsPassed;
+    }
+
+    /**
      * This function returns semRemaining.
      *
      * @return int semRemaining.

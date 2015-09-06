@@ -39,7 +39,7 @@ class View {
 
         $this->backButton = "<input type=\"button\" name=\"Back\" value=\"Back\" onClick=\"history.go(-1);return true;\">";
 
-        echo($this->printTitle("h1", $this->h1Header, true));
+        $this->printTitle("h1", $this->h1Header, true);
         $this->startView();
 
         echo($this->br);
@@ -122,7 +122,7 @@ class View {
             $toPrint = $toPrint . "\n<hr />\n";
         }
 
-        return $toPrint;
+        echo($toPrint);
     }
 
     protected final function bold($string) {
