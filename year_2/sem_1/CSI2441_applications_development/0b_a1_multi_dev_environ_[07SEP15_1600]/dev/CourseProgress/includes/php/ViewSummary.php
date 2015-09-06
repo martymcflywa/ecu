@@ -19,7 +19,9 @@ class ViewSummary extends View {
     private $unitsPassed;
     private $semRemaining;
     private $markAverage;
-    
+
+    private $tableConfig = "border=\"1\" cellpadding=\"10\" style=\"border-collapse:collapse;\"";
+
     /**
      * @Override
      * Customizing startView for ViewSummary.
@@ -43,8 +45,8 @@ class ViewSummary extends View {
         $this->printProgressionSummary();
 
         $this->printCreditPointSummary();
-//        $this->printHighestMark();
-//        $this->printTranscript();
+        $this->printHighestMark();
+        $this->printTranscript();
     }
 
     /**
@@ -136,6 +138,7 @@ class ViewSummary extends View {
         $this->printTitle("h2", $this->h2CreditPointSummary, false);
 
         // print credit point summary
+        echo("<p>");
         echo($this->bold("Total achieved credit points: ") . $this->passedCPTotal . $this->br);
         echo($this->bold("Additional credit points required for completion: ") . $this->cpDelta . $this->br);
         echo($this->bold("Units attempted: ") . $this->unitAttemptTotal . $this->br);
@@ -143,6 +146,100 @@ class ViewSummary extends View {
         echo($this->bold("Semesters remaining: ") . $this->semRemaining . $this->br);
         echo($this->bold("Average mark: ") . $this->markAverage . $this->br);
         echo("</p>");
+    }
+
+    /**
+     * This function prints the highest mark as a table.
+     */
+    private final function printHighestMark() {
+        // print the title
+        $this->printTitle("h2", $this->h2HighestMark, false);
+
+        // print the highest mark
+        echo("<table $this->tableConfig>");
+        $this->printTableHeaders();
+
+        echo("<tr>");
+        echo("<td>");
+        echo($this->highestMarkArray[Units::UC]);
+        echo("</td>");
+        echo("<td align=\"center\">");
+        echo($this->highestMarkArray[Units::CP]);
+        echo("</td>");
+        echo("<td align=\"center\">");
+        echo($this->highestMarkArray[Units::YS]);
+        echo("</td>");
+        echo("<td align=\"right\">");
+        echo($this->highestMarkArray[Units::UM]);
+        echo("</td>");
+        echo("<td>");
+        echo($this->highestMarkArray[Units::GR]);
+        echo("</td>");
+        echo("</tr>");
+        echo("</table>");
+    }
+
+    private final function printTranscript() {
+        // print the title
+        $this->printTitle("h2", $this->h2Transcript, false);
+
+        // print the transcript
+        echo("<table $this->tableConfig>");
+        $this->printTableHeaders();
+
+        for($i = 0; $i < sizeof($this->unitDetailsArray); $i++) {
+            echo("<tr>");
+            echo("<td>");
+            echo($this->unitDetailsArray[$i][Units::UC]);
+            echo("</td>");
+            echo("<td align=\"center\">");
+            echo($this->unitDetailsArray[$i][Units::CP]);
+            echo("</td>");
+            echo("<td align=\"center\">");
+            echo($this->unitDetailsArray[$i][Units::YS]);
+            echo("</td>");
+            echo("<td align=\"right\">");
+
+            // show any mark less than pass as red
+            if($this->unitDetailsArray[$i][Units::UM] < BusinessRules::MARK_PASS) {
+                $this->printRed($this->unitDetailsArray[$i][Units::UM]);
+                echo("</td>");
+                echo("<td>");
+                $this->printRed($this->unitDetailsArray[$i][Units::GR]);
+            } else {
+                echo($this->unitDetailsArray[$i][Units::UM]);
+                echo("</td>");
+                echo("<td>");
+                echo($this->unitDetailsArray[$i][Units::GR]);
+            }
+
+            echo("</td>");
+            echo("</tr>");
+            echo("</table>");
+        }
+    }
+
+    /**
+     * This function prints the table headers.
+     * Added as function since used more than once.
+     */
+    private final function printTableHeaders() {
+        echo("<tr>");
+        echo("<th>UnitCode</th>");
+        echo("<th>CreditPoints</th>");
+        echo("<th>Year/Sem</th>");
+        echo("<th>Mark</th>");
+        echo("<th>Grade</th>");
+        echo("</tr>");
+    }
+
+    /**
+     * This function prints a string in red color.
+     *
+     * @param $string - The string to print in red.
+     */
+    private final function printRed($string) {
+        echo("<font color=\"red\"> $string </font>");
     }
 }
 

@@ -30,8 +30,6 @@ class View {
 
     /**
      * The View constructor.
-     * Provide a h1Header for the title of this view,
-     * pass in student/unitDetails array and theRules object.
      *
      * @param String $h1Header
      * @param array $studentDetails
