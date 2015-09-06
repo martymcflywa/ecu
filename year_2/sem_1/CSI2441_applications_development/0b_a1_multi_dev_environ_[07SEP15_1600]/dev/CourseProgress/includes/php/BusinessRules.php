@@ -12,7 +12,7 @@ class BusinessRules {
     // import references to student/unitDetails arrays
     // note: avoid shadowing variable names for arrays, causes array to string conversion error
     private $studentDetailsArray;
-    private $unitDetailsArray;
+//    private $unitDetailsArray;
 
     // import the instance of theUnits
     private $theUnits;
@@ -125,27 +125,27 @@ class BusinessRules {
 
         global $theUnits;
 
-        for($i = 0; $i < sizeof($this->unitDetailsArray); $i++) {
+        for($i = 0; $i < sizeof($theUnits->getUnitDetails()); $i++) {
 
             $this->incrementUnitAttemptTotal();
 
             // set the grade for this mark
             //$this->unitDetailsArray[$i][Units::GR] = $this->getGrade(intval($this->unitDetailsArray[$i][Units::UM]));
-            $theUnits->setUnitGrade($i, $this->getGrade($this->unitDetailsArray[$i][Units::UM]));
+            $theUnits->setUnitGrade($i, $this->getGrade($theUnits->getUnitDetails()[$i][Units::UM]));
 
             // then store the highest mark found in theUnits->highestMark array
-            if($this->unitDetailsArray[$i][Units::UM] > $theUnits->getHighestMark()[Units::UM]) {
+            if($theUnits->getUnitDetails()[$i][Units::UM] > $theUnits->getHighestMark()[Units::UM]) {
                 $theUnits->setHighestMark(
-                    $this->unitDetailsArray[$i][Units::UC],
-                    $this->unitDetailsArray[$i][Units::CP],
-                    $this->unitDetailsArray[$i][Units::YS],
-                    $this->unitDetailsArray[$i][Units::UM],
-                    $this->unitDetailsArray[$i][Units::GR]
+                    $theUnits->getUnitDetails()[$i][Units::UC],
+                    $theUnits->getUnitDetails()[$i][Units::CP],
+                    $theUnits->getUnitDetails()[$i][Units::YS],
+                    $theUnits->getUnitDetails()[$i][Units::UM],
+                    $theUnits->getUnitDetails()[$i][Units::GR]
                 );
             }
 
             // if student passed unit
-            if($this->unitDetailsArray[$i][Units::UM] >= $this::MARK_PASS) {
+            if($theUnits->getUnitDetails()[$i][Units::UM] >= $this::MARK_PASS) {
                 $this->setPassedCPTotal($i);
                 $this->incrementUnitsPassed();
                 $this->setMarkTotal($i);
@@ -170,7 +170,8 @@ class BusinessRules {
      * @param int $index - The current array index.
      */
     private final function setPassedCPTotal($index) {
-        $this->passedCPTotal += $this->unitDetailsArray[$index][Units::CP];
+        global $theUnits;
+        $this->passedCPTotal += $theUnits->getUnitDetails()[$index][Units::CP];
     }
 
     /**
@@ -187,7 +188,8 @@ class BusinessRules {
      * @param int $index - The current array index.
      */
     private final function setMarkTotal($index) {
-        $this->markTotal += $this->unitDetailsArray[$index][Units::UM];
+        global $theUnits;
+        $this->markTotal += $theUnits->getUnitDetails()[$index][Units::UM];
     }
 
     /**
@@ -197,15 +199,16 @@ class BusinessRules {
      * @param int $index - The current array index.
      */
     private final function calculateProgression($index) {
+        global $theUnits;
 
-        $currentUnitCode = $this->unitDetailsArray[$index][Units::UC];
+        $currentUnitCode = $theUnits->getUnitDetails()[$index][Units::UC];
         $this->failedUnitsTally++;
 
         // loop from current index + 1 to remaining entries
-        for($i = $index + 1; $i < sizeof($this->unitDetailsArray); $i++) {
+        for($i = $index + 1; $i < sizeof($theUnits->getUnitDetails()); $i++) {
             // if unitcodes match and unit is failed,
-            if($currentUnitCode == $this->unitDetailsArray[$i][Units::UC] &&
-                    $this->unitDetailsArray[$index][Units::UM] < $this::MARK_PASS) {
+            if($currentUnitCode == $theUnits->getUnitDetails()[$i][Units::UC] &&
+                    $theUnits->getUnitDetails()[$index][Units::UM] < $this::MARK_PASS) {
 
                 // increment matchFailedTally
                 $this->matchedFailedTally++;
@@ -302,9 +305,10 @@ class BusinessRules {
      * TODO:    Remember to update asp with this change.
      */
     private final function setSupUnit() {
+        global $theUnits;
 
         // assuming user will enter their first sem FIRST!
-        $firstSem = $this->unitDetailsArray[0][Units::YS];
+        $firstSem = $theUnits->getUnitDetails()[0][Units::YS];
         $lastSemStart = 0;
         $lastSem = "";
 
@@ -338,20 +342,21 @@ class BusinessRules {
             // first loop sets the flags used for testing
             for($i = 0; $i < $unitsPerSem; $i++) {
                 // test for more than one units attempted during first semester
-                if($firstSem == $this->unitDetailsArray[$i][Units::YS]) {
+                if($firstSem == $theUnits->getUnitDetails()[$i][Units::YS]) {
                     $isMultiFirstSem = true;
                 }
                 // test for more than one fails during first semester
-                if($this->unitDetailsArray[$i][Units::UM] < $this::MARK_PASS) {
+                if($theUnits->getUnitDetails()[$i][Units::UM] < $this::MARK_PASS) {
                     $firstSemFails++;
                 }
             }
             // second loop uses flags to determine if eligible for "S?" grade
             for($i = 0; $i < $unitsPerSem; $i++) {
                 if($isMultiFirstSem && $firstSemFails < 2 &&
-                        $this->unitDetailsArray[$i][Units::UM] >= $this::MARK_SUP_MIN &&
-                        $this->unitDetailsArray[$i][Units::UM] <= $this::MARK_SUP_MAX) {
-                    $this->unitDetailsArray[$i][Units::GR] = "S?";
+                        $theUnits->getUnitDetails()[$i][Units::UM] >= $this::MARK_SUP_MIN &&
+                        $theUnits->getUnitDetails()[$i][Units::UM] <= $this::MARK_SUP_MAX) {
+
+                    $theUnits->setUnitGrade($i, "S?");
                     $isSup = true;
                 }
             }
@@ -364,24 +369,25 @@ class BusinessRules {
         // if student has attempted a unit during last sem,
         if($this->unitAttemptTotal >= $lastSemStart) {
             // set the last sem as the last input from the user
-            $lastSem = $this->unitDetailsArray[$this->unitAttemptTotal - 1][Units::YS];
+            $lastSem = $theUnits->getUnitDetails()[$this->unitAttemptTotal - 1][Units::YS];
             // first loop sets the flags used for testing
-            for($i = $lastSemStart + 1; $i < sizeof($this->unitDetailsArray); $i++) {
+            for($i = $lastSemStart + 1; $i < sizeof($theUnits->getUnitDetails()); $i++) {
                 // test for more than one units attempted during last semester
-                if($lastSem == $this->unitDetailsArray[$i - 1][Units::YS]) {
+                if($lastSem == $theUnits->getUnitDetails()[$i - 1][Units::YS]) {
                     $isMultiLastSem = true;
                 }
                 // test for more than one fails during last semester
-                if($this->unitDetailsArray[$i][Units::UM] < $this::MARK_PASS) {
+                if($theUnits->getUnitDetails()[$i][Units::UM] < $this::MARK_PASS) {
                     $lastSemFails++;
                 }
             }
             // second loop uses flags to determine if eligible for "S?" grade
-            for($i = $lastSemStart; $i < sizeof($this->unitDetailsArray); $i++) {
+            for($i = $lastSemStart; $i < sizeof($theUnits->getUnitDetails()); $i++) {
                 if($isMultiLastSem && $lastSemFails < 2 &&
-                        $this->unitDetailsArray[$i][Units::UM] >= $this::MARK_SUP_MIN &&
-                        $this->unitDetailsArray[$i][Units::UM] <= $this::MARK_SUP_MAX) {
-                    $this->unitDetailsArray[$i][Units::GR] = "S?";
+                        $theUnits->getUnitDetails()[$i][Units::UM] >= $this::MARK_SUP_MIN &&
+                        $theUnits->getUnitDetails()[$i][Units::UM] <= $this::MARK_SUP_MAX) {
+
+                    $theUnits->setUnitGrade($i, "S?");
                     $isSup = true;
                 }
             }
@@ -514,7 +520,7 @@ class BusinessRules {
      */
     public final function setInputArrays(array $studentDetails, array $unitDetails) {
         $this->studentDetailsArray = $studentDetails;
-        $this->unitDetailsArray = $unitDetails;
+//        $this->unitDetailsArray = $unitDetails;
         // now that we have all the input data, we can start validation
         $this->calculateSummary();
     }

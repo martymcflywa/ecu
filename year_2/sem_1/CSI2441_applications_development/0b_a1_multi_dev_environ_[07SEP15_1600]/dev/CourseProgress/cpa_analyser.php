@@ -80,7 +80,7 @@ if($theValidator->getStudentErrorTally() == 0 && $theValidator->getUnitErrorTall
  */
 //echo(var_dump($theUnits->getUnitDetails()[0][Units::UM]));
 //echo(var_dump($theValidator->getStudentErrorTally()) . " " . var_dump($theValidator->getUnitErrorTally()) . " " . var_dump($theValidator->getLogicErrorTally()));
-echo(var_dump($theUnits->getUnitDetails()));
+//echo(var_dump($theUnits->getUnitDetails()));
 /**
  * END TEST
  */
