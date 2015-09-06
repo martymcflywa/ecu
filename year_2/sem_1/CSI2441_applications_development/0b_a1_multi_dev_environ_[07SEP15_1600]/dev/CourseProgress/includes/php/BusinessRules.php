@@ -67,7 +67,7 @@ class BusinessRules {
 
     /**
      * The BusinessRules constructor.
-     * Accepts theUnits as parameter so we can use Units->getGrade().
+     * Pass in Student and Units so we can get access their input arrays.
      *
      * @param Student $theStudent - The reference to theStudent object.
      * @param Units $theUnits - The reference to theUnits object.
