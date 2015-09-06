@@ -4,7 +4,10 @@ namespace includes;
 
 /**
  * Class View is the super class of ViewSummary and ViewError.
+ * It defines base fields and functions to display either the summary view or the error view.
  *
+ * @author Martin Ponce, 10371381
+ * @version 20150906
  * @package includes
  */
 class View {
@@ -27,7 +30,7 @@ class View {
      * The View constructor.
      *
      * @param String $h1Header - The main title for this view.
-     * @param Validator - The controller.
+     * @param Validator $theValidator - The controller.
      */
     function __construct($h1Header, Validator $theValidator) {
 
@@ -88,7 +91,7 @@ class View {
      * Override me! Would probably be more appropriate as an interface.
      */
     protected function startView() {
-        // add what you want to do here
+        // add what you want to do here,
         // it is called at construction
     }
 
@@ -146,7 +149,5 @@ class View {
         echo($this->backButton);
     }
 }
-
-
 
 ?>

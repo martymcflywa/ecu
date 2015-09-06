@@ -358,11 +358,24 @@ class Validator {
                 }
                 // only write error if isWrite is true
                 if($isWrite) {
-                    $this->logicError($theArray[$indexI][Units::UC], 10, $theArray[$indexI][Units::YS], $indexI + 1, $indexJ + 1);
+
+                    $this->logicError(
+                        $theArray[$indexI][Units::UC],
+                        10,
+                        $theArray[$indexI][Units::YS],
+                        $indexI + 1,
+                        $indexJ + 1
+                    );
                 }
             } else {
                 // else this is the first entry, post it up
-                $this->logicError($theArray[$indexI][Units::UC], 10, $theArray[$indexI][Units::YS], $indexI + 1, $indexJ + 1);
+                $this->logicError(
+                    $theArray[$indexI][Units::UC],
+                    10,
+                    $theArray[$indexI][Units::YS],
+                    $indexI + 1,
+                    $indexJ + 1
+                );
             }
         }
     }
@@ -406,7 +419,7 @@ class Validator {
         switch($data) {
             case "student":
                 $this->studentErrorTally++;
-                $this->studentErrorMessage[$this->studentErrorTally -1][$this::E_ROW] = $row;
+                $this->studentErrorMessage[$this->studentErrorTally - 1][$this::E_ROW] = $row;
                 $this->studentErrorMessage[$this->studentErrorTally - 1][$this::E_FIELD] = $field;
                 $this->studentErrorMessage[$this->studentErrorTally - 1][$this::E_ECODE] = $code;
                 break;

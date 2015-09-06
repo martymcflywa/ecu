@@ -19,7 +19,7 @@ class ViewError extends View {
 
     /**
      * @Override
-     * Customizing startView for ViewError.
+     * This function initializes the error view.
      */
     protected function startView() {
 
@@ -28,6 +28,7 @@ class ViewError extends View {
         $this->isOnlyStudent = $this->theValidator->isStudentPopulated() && !$this->theValidator->isUnitsPopulated();
         $this->isOnlyUnits = !$this->theValidator->isStudentPopulated() && $this->theValidator->isUnitsPopulated();
 
+        // test states to determine what to print
         if($this->isFormEmpty) {
             echo($this->messageEmptyForm);
             echo($this->br);
@@ -132,13 +133,13 @@ class ViewError extends View {
 
                 echo("<li>");
                 // print the field
-                echo($this->bold($this->theValidator->getLogicErrorMessage()[$i][Validator::E_FIELD]));
+                echo($this->bold($this->theValidator->getLogicErrorMessage()[$i][Validator::LE_FIELD]));
                 echo(" ");
                 // convert code to message
-                echo($this->theValidator->getErrorCode($this->theValidator->getLogicErrorMessage()[$i][Validator::E_ECODE]));
+                echo($this->theValidator->getErrorCode($this->theValidator->getLogicErrorMessage()[$i][Validator::LE_ECODE]));
 
                 // decide whether to display semester or not
-                switch($this->theValidator->getLogicErrorMessage()[$i][Validator::E_ECODE]) {
+                switch($this->theValidator->getLogicErrorMessage()[$i][Validator::LE_ECODE]) {
                     case 9:
                         echo($this->theValidator->getLogicErrorMessage()[$i][Validator::LE_ROW_1]);
                         echo(" and ");
