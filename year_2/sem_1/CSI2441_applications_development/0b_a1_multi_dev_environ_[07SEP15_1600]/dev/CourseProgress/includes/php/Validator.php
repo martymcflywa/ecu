@@ -88,20 +88,20 @@ class Validator {
         global $theStudent;
 
         // validate names
-        if(strlen($theStudent->getStudentDetails()[Student::FN]) > 0) {
+        if(!empty($theStudent->getStudentDetails()[Student::FN])) {
             if(!preg_match($this->regExDict["name"], $theStudent->getStudentDetails()[Student::FN])) {
                 $this->validateError("student", -1, "Firstname", 1);
             }
         }
 
-        if(strlen($theStudent->getStudentDetails()[Student::SN]) > 0) {
+        if(!empty($theStudent->getStudentDetails()[Student::SN])) {
             if(!preg_match($this->regExDict["name"], $theStudent->getStudentDetails()[Student::SN])) {
                 $this->validateError("student", -1, "Surname", 1);
             }
         }
 
         // validate student id
-        if(strlen($theStudent->getStudentDetails()[Student::ID]) > 0) {
+        if(!empty($theStudent->getStudentDetails()[Student::ID])) {
             if(!preg_match($this->regExDict["studentID"], $theStudent->getStudentDetails()[Student::ID])) {
                 $this->validateError("student", -1, "Student ID", 2);
             }
@@ -123,7 +123,7 @@ class Validator {
              * UNIT CODE *
              *************/
 
-            if(strlen($theUnits->getUnitDetails()[$i][Units::UC]) == 0) {
+            if(empty($theUnits->getUnitDetails()[$i][Units::UC])) {
                 $this->missingInputError("unit", $i + 1, "Unit Code");
             } else {
                 $this->validateUnitCode($i);
@@ -133,7 +133,7 @@ class Validator {
              * CREDIT POINTS *
              *****************/
 
-            if(strlen($theUnits->getUnitDetails()[$i][Units::CP]) == 0) {
+            if(empty($theUnits->getUnitDetails()[$i][Units::CP])) {
                 $this->missingInputError("unit", $i + 1, "Credit Points");
             } else {
                 $this->validateCreditPoints($i);
@@ -143,7 +143,7 @@ class Validator {
              * YEAR / SEM *
              **************/
 
-            if(strlen($theUnits->getUnitDetails()[$i][Units::YS]) == 0) {
+            if(empty($theUnits->getUnitDetails()[$i][Units::YS])) {
                 $this->missingInputError("unit", $i + 1, "Year / Semester");
             } else {
                 $this->validateYearSem($i);
@@ -153,7 +153,7 @@ class Validator {
              * UNIT MARK *
              *************/
 
-            if(strlen($theUnits->getUnitDetails()[$i][Units::UM]) == 0) {
+            if(empty($theUnits->getUnitDetails()[$i][Units::UM])) {
                 $this->missingInputError("units", $i + 1, "Unit Mark");
             } else {
                 $this->validateUnitMark($i);
@@ -272,7 +272,7 @@ class Validator {
 
         for($i = 0; $i < sizeof($theArray); $i++) {
 
-            if(strlen($theArray[$i][Units::UC]) > 0) {
+            if(!empty($theArray[$i][Units::UC])) {
 
                 $currentUnitCode = $theArray[$i][Units::UC];
                 $currentSem = $theArray[$i][Units::YS];
