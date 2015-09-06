@@ -98,9 +98,15 @@ end sub
 sub validateUnitCode(index)
 	'if unit code is valid
 	if isRegExMatch(unitDetails(index, UC), regExDict.item("unitCode")) then
+
+
+		dim suffix
+		'stores matched regex (last 4 digits of unit code) in suffix, test suffix >= 6000
+		suffix = cInt(getRegExMatch(unitDetails(index, UC), regExDict.item("unitCodeSuffix")))
+
 		'test course type against unit code
-		if (studentDetails(CT) = CT_UNDERGRAD or studentDetails(CT) = CT_UNDERGRAD_DOUBLE) and _
-				(getRegExMatch(unitDetails(index, UC), regExDict.item("unitCodeSuffix")) >= 6000) then
+		if (studentDetails(CT) = CP_UNDERGRAD or studentDetails(CT) = CP_UNDERGRAD_DOUBLE) and _
+				(suffix >= 6000) then
 
 			call validateError("unit", index + 1, "Unit Code", 3)
 
