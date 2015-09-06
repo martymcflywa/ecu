@@ -189,7 +189,8 @@ sub getUnitMatches(theArray)
 
 	for i = 0 to filledRows - 1
 
-		if theArray(i, UC) <> "" then
+		'only perform logic validation if unit code is populated, and matches regex
+		if theArray(i, UC) <> "" and isRegExMatch(unitDetails(index, UC), regExDict.item("unitCode")) then
 
 			currentUnitCode = theArray(i, UC)
 			currentSem = theArray(i, YS)
