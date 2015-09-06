@@ -149,9 +149,8 @@ class Validator {
              * UNIT MARK *
              *************/
 
-            if(empty($this->theUnits->getUnitDetails()[$i][Units::UM])) {
-                $this->missingInputError("units", $i + 1, "Unit Mark");
-                echo("BREAKPOINT?");
+            if(!isset($this->theUnits->getUnitDetails()[$i][Units::UM])) {
+                $this->missingInputError("unit", $i + 1, "Unit Mark");
             } else {
                 $this->validateUnitMark($i);
             }
