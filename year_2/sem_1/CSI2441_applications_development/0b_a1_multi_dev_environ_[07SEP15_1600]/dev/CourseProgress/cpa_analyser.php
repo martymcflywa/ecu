@@ -27,9 +27,9 @@ use includes\ViewSummary;
  * a course progression summary to the user, if input passes validation.
  *
  * It is designed and written in an object oriented style, attempting to implement MVC.
- * Student, Units classes represent the Model,
- * Validator, BusinessRules class (and $this::cpa_analyser.php) as the controller,
- * and the View class as the View.
+ * Student, Units represent the Model,
+ * Validator, BusinessRules (and $this::cpa_analyser.php) as the controller,
+ * and the View (and its subclasses) as the View.
  *
  * Basic and advanced validation/criteria/business rules,
  * per the assignment brief have been implemented.
@@ -51,20 +51,21 @@ $theStudent->setValidator($theValidator);
 // start theStudent and theUnits, these calls initiate the retrieval and storage of user input into arrays
 $theStudent->startStudent();
 $theUnits->startUnits();
-// start theValidator, only do this after theStudent/Unit has started
+// start theValidator, only do this after theStudent/Unit has retrieved their data
 $theValidator->startValidator();
 
 // if no errors,
-if($theValidator->getStudentErrorTally() == 0 && $theValidator->getUnitErrorTally() == 0 && $theValidator->getLogicErrorTally() == 0) {
-    // import input arrays to theRules,
-    // this function also kicks off summary calculation, @see BusinessRules->setInputArrays()
+if($theValidator->getStudentErrorTally() == 0 &&
+        $theValidator->getUnitErrorTally() == 0 &&
+        $theValidator->getLogicErrorTally() == 0) {
+    
+    // calculate the summary
     $theRules->calculateSummary();
-    // then show me the summary
+    // then show me the summary - note: view probably shouldn't know about other objects for mvc, could use another controller for that
     $theSummaryView = new ViewSummary(
         "Course Progression Summary",
-        $theStudent->getStudentDetails(),
-        $theUnits->getUnitDetails(),
-        $theUnits->getHighestMark(),
+        $theStudent,
+        $theUnits,
         $theRules
     );
 

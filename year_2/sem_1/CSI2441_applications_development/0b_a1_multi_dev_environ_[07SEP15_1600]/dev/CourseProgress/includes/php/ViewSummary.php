@@ -85,13 +85,16 @@ class ViewSummary extends View {
      * This function prints the student details.
      */
     private final function printStudentDetails() {
+
+        global $theStudent;
+
         // print the title
         $this->printTitle("h2", $this->h2StudentDetails, false);
 
         // print student details
         echo("<p>");
-        echo($this->bold("Name: ") . $this->studentDetailsArray[Student::FN] . " " . $this->studentDetailsArray[Student::SN] . $this->br);
-        echo($this->bold("Student ID: ") . $this->studentDetailsArray[Student::ID] . $this->br);
+        echo($this->bold("Name: ") . $theStudent->getStudentDetails()[Student::FN] . " " . $theStudent->getStudentDetails()[Student::SN] . $this->br);
+        echo($this->bold("Student ID: ") . $theStudent->getStudentDetails()[Student::ID] . $this->br);
         echo($this->bold("Enrolment type: ") . $this->enrolmentType . $this->br);
         echo($this->bold("Course type: ") . $this->courseType . $this->br);
         echo("</p>");
@@ -152,6 +155,9 @@ class ViewSummary extends View {
      * This function prints the highest mark as a table.
      */
     private final function printHighestMark() {
+
+        global $theUnits;
+
         // print the title
         $this->printTitle("h2", $this->h2HighestMark, false);
 
@@ -161,25 +167,28 @@ class ViewSummary extends View {
 
         echo("<tr>");
         echo("<td>");
-        echo($this->highestMarkArray[Units::UC]);
+        echo($theUnits->getHighestMark()[Units::UC]);
         echo("</td>");
         echo("<td align=\"center\">");
-        echo($this->highestMarkArray[Units::CP]);
+        echo($theUnits->getHighestMark()[Units::CP]);
         echo("</td>");
         echo("<td align=\"center\">");
-        echo($this->highestMarkArray[Units::YS]);
+        echo($theUnits->getHighestMark()[Units::YS]);
         echo("</td>");
         echo("<td align=\"right\">");
-        echo($this->highestMarkArray[Units::UM]);
+        echo($theUnits->getHighestMark()[Units::UM]);
         echo("</td>");
         echo("<td>");
-        echo($this->highestMarkArray[Units::GR]);
+        echo($theUnits->getHighestMark()[Units::GR]);
         echo("</td>");
         echo("</tr>");
         echo("</table>");
     }
 
     private final function printTranscript() {
+
+        global $theUnits;
+
         // print the title
         $this->printTitle("h2", $this->h2Transcript, false);
 
@@ -187,36 +196,37 @@ class ViewSummary extends View {
         echo("<table $this->tableConfig>");
         $this->printTableHeaders();
 
-        for($i = 0; $i < sizeof($this->unitDetailsArray); $i++) {
+        for($i = 0; $i < sizeof($theUnits->getUnitDetails()); $i++) {
             echo("<tr>");
             echo("<td>");
-            echo($this->unitDetailsArray[$i][Units::UC]);
+            echo($theUnits->getUnitDetails()[$i][Units::UC]);
             echo("</td>");
             echo("<td align=\"center\">");
-            echo($this->unitDetailsArray[$i][Units::CP]);
+            echo($theUnits->getUnitDetails()[$i][Units::CP]);
             echo("</td>");
             echo("<td align=\"center\">");
-            echo($this->unitDetailsArray[$i][Units::YS]);
+            echo($theUnits->getUnitDetails()[$i][Units::YS]);
             echo("</td>");
             echo("<td align=\"right\">");
 
             // show any mark less than pass as red
-            if($this->unitDetailsArray[$i][Units::UM] < BusinessRules::MARK_PASS) {
-                $this->printRed($this->unitDetailsArray[$i][Units::UM]);
+            if($theUnits->getUnitDetails()[$i][Units::UM] < BusinessRules::MARK_PASS) {
+                $this->printRed($theUnits->getUnitDetails()[$i][Units::UM]);
                 echo("</td>");
                 echo("<td>");
-                $this->printRed($this->unitDetailsArray[$i][Units::GR]);
+                $this->printRed($theUnits->getUnitDetails()[$i][Units::GR]);
             } else {
-                echo($this->unitDetailsArray[$i][Units::UM]);
+                echo($theUnits->getUnitDetails()[$i][Units::UM]);
                 echo("</td>");
                 echo("<td>");
-                echo($this->unitDetailsArray[$i][Units::GR]);
+                echo($theUnits->getUnitDetails()[$i][Units::GR]);
             }
 
             echo("</td>");
             echo("</tr>");
-            echo("</table>");
         }
+        // close the table
+        echo("</table>");
     }
 
     /**

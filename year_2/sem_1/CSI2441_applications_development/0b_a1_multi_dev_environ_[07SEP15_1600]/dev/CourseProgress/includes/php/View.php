@@ -13,17 +13,12 @@ class View {
     protected $h1Header;
     protected $backButton;
 
-    // import the arrays
-//    protected $studentDetailsArray;
-//    protected $unitDetailsArray;
-//    protected $highestMarkArray;
-
     // import the objects
     protected $theStudent;
     protected $theUnits;
     protected $theRules;
 
-    // time to convert enrolment/course type back from value to meaning
+    // time to convert enrolment/course types back from value to meaning
     protected $enrolmentType;
     protected $courseType;
 
@@ -62,7 +57,10 @@ class View {
      * This function converts the enrolment type value to its actual meaning.
      */
     protected final function convertEnrolmentType() {
-        switch($this->studentDetailsArray[Student::ET]) {
+
+        global $theStudent;
+
+        switch($theStudent->getStudentDetails()[Student::ET]) {
             case BusinessRules::CP_FULLTIME:
                 $this->enrolmentType = "Full time";
                 break;
@@ -76,21 +74,24 @@ class View {
      * This function converts the course type value to its actual meaning.
      */
     protected final function convertCourseType() {
-        switch($this->studentDetailsArray[Student::CT]) {
+
+        global $theStudent;
+
+        switch($theStudent->getStudentDetails()[Student::CT]) {
             case BusinessRules::CP_UNDERGRAD:
-                $this->courseType = "Undergraduate degree (" . $this->studentDetailsArray[Student::CT] . " CP)";
+                $this->courseType = "Undergraduate degree (" . $theStudent->getStudentDetails()[Student::CT] . " CP)";
                 break;
             case BusinessRules::CP_UNDERGRAD_DOUBLE:
-                $this->courseType = "Undergraduate double degree (" . $this->studentDetailsArray[Student::CT] . " CP)";
+                $this->courseType = "Undergraduate double degree (" . $theStudent->getStudentDetails()[Student::CT] . " CP)";
                 break;
             case BusinessRules::CP_GRAD_DIPLOMA:
-                $this->courseType = "Graduate diploma (" . $this->studentDetailsArray[Student::CT] . " CP)";
+                $this->courseType = "Graduate diploma (" . $theStudent->getStudentDetails()[Student::CT] . " CP)";
                 break;
             case BusinessRules::CP_MASTERS_COURSE:
-                $this->courseType = "Masters by coursework (" . $this->studentDetailsArray[Student::CT] . " CP)";
+                $this->courseType = "Masters by coursework (" . $theStudent->getStudentDetails()[Student::CT] . " CP)";
                 break;
             case BusinessRules::CP_MASTERS_RESEARCH:
-                $this->courseType = "Masters by research (" . $this->studentDetailsArray[Student::CT] . " CP)";
+                $this->courseType = "Masters by research (" . $theStudent->getStudentDetails()[Student::CT] . " CP)";
                 break;
         }
     }
