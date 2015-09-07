@@ -56,6 +56,47 @@ class Units {
      */
     private function retrieveUnitDetails() {
 
+        // loop over post items
+        for($i = 0; $i < $this::UNIT_ROWS; $i++) {
+
+            $j = $i + 1;
+
+            $this->retrieveField("UnitCode_", $this::UC, $i, $j);
+            $this->retrieveField("CP_", $this::CP, $i, $j);
+            $this->retrieveField("YS_", $this::YS, $i, $j);
+            $this->retrieveField("UM_", $this::UM, $i, $j);
+            // store empty string for grade, will be populated correctly by BusinessRules
+            $this->unitDetails[$i][$this::GR] = "";
+        }
+    }
+
+    /**
+     * This function retrieves an individual unit field from the form.
+     * If the form field is empty, it will store an empty string in the array.
+     * Else it will store the data into the array, and update isPopulated.
+     *
+     * To be used inside a for loop, @see retrieveUnitDetails().
+     *
+     * @param String $postID - The ID of the post item to retrieve.
+     * @param int $col - The current array column.
+     * @param int $arrayRow - The current array row.
+     * @param int $formRow - The current form row.
+     */
+    private function retrieveField($postID, $col, $arrayRow, $formRow) {
+        if($_POST[$postID . $formRow] != "") {
+            $this->unitDetails[$arrayRow][$col] = $_POST[$postID . $formRow];
+            $this->isPopulated = true;
+        } else {
+            $this->unitDetails[$arrayRow][$col] = "";
+        }
+    }
+
+    /**
+     * This function retrieves unit data from the form.
+     * TODO: DELETE THIS FUNCTION AFTER REWRITE!
+     */
+    private function retrieveUnitDetailsDELETE() {
+
         for($i = 0; $i < $this::UNIT_ROWS; $i++) {
 
             $j = $i + 1;
@@ -73,6 +114,14 @@ class Units {
                 $this->unitDetails[$i][$this::GR] = "";
 
                 $this->isPopulated = true;
+
+            } else {
+                // else make an empty row
+                $this->unitDetails[$i][$this::UC] = "";
+                $this->unitDetails[$i][$this::CP] = "";
+                $this->unitDetails[$i][$this::YS] = "";
+                $this->unitDetails[$i][$this::UM] = "";
+                $this->unitDetails[$i][$this::GR] = "";
             }
         }
     }
