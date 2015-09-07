@@ -80,19 +80,12 @@ end sub
 '* !! ASSUMPTIONS/LIMITATIONS !!
 '* 1. Only considers 15 CP per unit, not 20.
 '* 2. User input must be in correct order according to semester!
-'*
-'* TODO: 	Operation is expensive, multiple consecutive loops.
-'* 			Needs simplifying. But at least it works.
-'*			Not DRY, to add more subs.
+'* 3. See *POST S? DETERMINATION*, in function below
 '*
 sub getSupUnit()
 	
 	dim isSup, firstSem, lastSem, fullTimeUnits, partTimeUnits
 	dim isMultiFirstSem, isMultiLastSem, firstSemFails, lastSemFails
-	dim markSupMin, markSupMax
-	'range of marks elegible for "S?"
-	markSupMin = 45
-	markSupMax = 49
 
 	isSup = false
 	isMultiFirstSem = false
@@ -102,127 +95,87 @@ sub getSupUnit()
 	firstSem = unitDetails(0, YS)
 	fullTimeUnits = 4
 	partTimeUnits = 2
+	
+	dim unitsPerSem, lastSemStart
 
-	'work out what is "last semester",
-	'again assuming that user enters units by order of year/sem
-	dim lastSemStartFT, lastSemStartPT
-	lastSemStartFT = (semTotal * fullTimeUnits) - fullTimeUnits
-	lastSemStartPT = (semTotal * partTimeUnits) - partTimeUnits
+	'work out what lastSem and unitsPerSem will be,
+	'saves conditional code for full/parttime students
+	if studentDetails(ET) = CP_FULLTIME then
+		lastSemStart = (semTotal * fullTimeUnits) - fullTimeUnits
+		unitsPerSem = fullTimeUnits
+	else
+		lastSemStart = (semTotal * partTimeUnits) - partTimeUnits
+		unitsPerSem = partTimeUnits
+	end if
 
-	select case studentDetails(ET)
+	'*****************
+	'*** FIRST SEM ***
+	'*****************
 
-		'****************
-		'*** FULLTIME ***
-		'****************
-
-		case CP_FULLTIME
-
-			'*****************
-			'*** FIRST SEM ***
-			'*****************
-
-			if unitAttemptTotal > 0 then
-				'set the flags used for testing
-				for i = 0 to fullTimeUnits - 1
-					if firstSem = unitDetails(i, YS) then
-						isMultiFirstSem = true
-					end if
-					if unitDetails(i, UM) < MARK_PASS then
-						firstSemFails = firstSemFails + 1
-					end if
-				next
-				'test flags for "S?", only until fullTimeUnits, no point checking the rest
-				for i = 0 to fullTimeUnits - 1
-					if isMultiFirstSem and firstSemFails < 2 and _
-							unitDetails(i, UM) >= markSupMin and unitDetails(i, UM) <= markSupMax then
-						unitDetails(i, GR) = "S?"
-						isSup = true
-					end if
-				next
+	'if student has attempted a unit during first sem,
+	if unitAttemptTotal > 0 then
+		'first loop sets the flags used for testing
+		for i = 0 to unitsPerSem - 1
+			'test for more than one units attempted during first sem
+			if firstSem = unitDetails(i, YS) then
+				isMultiFirstSem = true
 			end if
-
-			'****************
-			'*** LAST SEM ***
-			'****************
-
-			if unitAttemptTotal >= lastSemStartFT then
-				'set lastSem as the last input from user
-				lastSem = unitDetails(unitAttemptTotal - 1, YS)
-				'set the flags used for testing
-				for i = lastSemStartFT + 1 to filledRows - 1 '!changes here
-					if lastSem = unitDetails(i, YS) then
-						isMultiLastSem = true
-					end if
-					if unitDetails(i - 1, UM) < MARK_PASS then '!changes here
-						lastSemFails = lastSemFails + 1
-					end if
-				next
-				'test flags for "S?", let's go to the end of the array this time
-				for i = lastSemStartFT to filledRows - 1
-					if isMultiLastSem and lastSemFails < 2 and _
-							unitDetails(i, UM) >= markSupMin and unitDetails(i, UM) <= markSupMax then
-						unitDetails(i, GR) = "S?"
-						isSup = true
-					end if
-				next
+			'test for more than one fails during first semester
+			if unitDetails(i, UM) < MARK_PASS then
+				firstSemFails = firstSemFails + 1
 			end if
+		next
+		'second loop uses flags to determine if eligible for "S?" grade
+		for i = 0 to unitsPerSem - 1
+			if isMultiFirstSem and firstSemFails < 2 and _
+					unitDetails(i, UM) >= MARK_SUP_MIN and _
+					unitDetails(i, UM) <= MARK_SUP_MAX then
 
-		'****************
-		'*** PARTTIME ***
-		'****************
-
-		case CP_PARTTIME
-
-			'*****************
-			'*** FIRST SEM ***
-			'*****************
-
-			if unitAttemptTotal > 1 then
-				'set the flags used for testing
-				for i = 0 to partTimeUnits - 1
-					if firstSem = unitDetails(i, YS) then
-						isMultiFirstSem = true
-					end if
-					if unitDetails(i, UM) < MARK_PASS then
-						firstSemFails = firstSemFails + 1
-					end if
-				next
-				'test flags for "S?", only until partTimeUnits, no point checking the rest
-				for i = 0 to partTimeUnits - 1
-					if isMultiFirstSem and firstSemFails < 2 and _
-							unitDetails(i, UM) >= markSupMin and unitDetails(i, UM) <= markSupMax then
-						unitDetails(i, GR) = "S?"
-						isSup = true
-					end if
-				next
+				unitDetails(i, GR) = "S?"
+				isSup = true
 			end if
+		next
+	end if
 
-			'****************
-			'*** LAST SEM ***
-			'****************
+	'****************
+	'*** LAST SEM ***
+	'****************
 
-			if unitAttemptTotal >= lastSemStartPT then
-				'set lastSem as the last input from user
-				lastSem = unitDetails(unitAttemptTotal - 1, YS)
-				'set the flags used for testing
-				for i = lastSemStartPT to filledRows - 1
-					if lastSem = unitDetails(i, YS) then
-						isMultiLastSem = true
-					end if
-					if unitDetails(i, UM) < MARK_PASS then
-						lastSemFails = lastSemFails + 1
-					end if
-				next
-				'test flags for "S?", let's go to the end of the array this time
-				for i = lastSemStartPT to filledRows - 1
-					if isMultiLastSem and lastSemFails < 2 and _
-							unitDetails(i, UM) >= markSupMin and unitDetails(i, UM) <= markSupMax then
-						unitDetails(i, GR) = "S?"
-						isSup = true
-					end if
-				next
+	'if student has attempted a unit during last sem,
+	if unitAttemptTotal >= lastSemStart then
+		'set the last sem as the last input from the user
+		lastSem = unitDetails(unitAttemptTotal - 1, YS)
+
+		'first loop sets the flags used for testing
+		for i = lastSemStart + 1 to filledRows - 1
+			'test for more than one units attempted during last semester
+			if lastSem = unitDetails(i - 1, YS) then
+				isMultiLastSem = true
 			end if
-	end select
+			'test for more than one fails during last semester
+			if unitDetails(i, UM) < MARK_PASS then
+				lastSemFails = lastSemFails + 1
+			end if
+		next
+		'second loop uses flags to determine if eligible for "S?" grade
+		for i = lastSemStart to filledRows - 1
+			if isMultiLastSem and lastSemFails < 2 and _
+					unitDetails(i, UM) >= MARK_SUP_MIN and _
+					unitDetails(i, UM) <= MARK_SUP_MAX then
+
+				unitDetails(i, GR) = "S?"
+				isSup = true
+			end if
+		next
+	end if
+
+	'*****************************
+	'*** POST S? DETERMINATION ***
+	'*****************************
+
+	'problem with this if statement:
+	'if student has S?, N, S? for one unit, and also fails a different unit three times during course,
+	'the if statement below will negate exclusion.
 
 	'implementing rule:
 	'if same unit x3 fails but supp, then still good standing
