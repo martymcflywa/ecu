@@ -103,7 +103,7 @@ class BusinessRules {
     /**
      * This function initiates the calculation of a student's summary.
      */
-    public final function validateBusinessRules() {
+    public final function calculateSummary() {
 
         // call all the things
         $this->setSemTotal();

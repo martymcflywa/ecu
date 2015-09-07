@@ -77,20 +77,7 @@ $theUnits->startUnits();
 // start theValidator, only do this after theStudent/Unit has retrieved their data
 $theValidator->startValidator();
 
-// if no errors,
-if ($theValidator->getStudentErrorTally() == 0 &&
-    $theValidator->getUnitErrorTally() == 0 &&
-    $theValidator->getLogicErrorTally() == 0
-) {
-    // calculate the summary
-    $theRules->calculateSummary();
-    // then show me the summary
-    $theSummaryView = new ViewSummary("Course Progression Summary", $theValidator);
 
-} else {
-    // else there are errors, show me the error view instead
-    $theErrorView = new ViewError("Course Progression Form Errors", $theValidator);
-}
 
 /**
  * BEGIN DEBUG

@@ -32,6 +32,21 @@ class Controller {
         $this->theValidator->validateStudentDetails();
         $this->theValidator->validateUnitDetails();
         $this->theValidator->validateLogic();
+
+        // if no errors,
+        if ($this->theValidator->getStudentErrorTally() == 0 &&
+            $this->theValidator->getUnitErrorTally() == 0 &&
+            $this->theValidator->getLogicErrorTally() == 0
+        ) {
+            // calculate the summary
+            $this->theRules->calculateSummary();
+            // then show me the summary
+            $theSummaryView = new ViewSummary("Course Progression Summary");
+
+        } else {
+            // else there are errors, show me the error view instead
+            $theErrorView = new ViewError("Course Progression Form Errors");
+        }
     }
 
     /**
