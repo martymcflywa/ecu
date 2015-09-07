@@ -32,8 +32,6 @@ class View {
 
         $this->h1Header = $h1Header;
         $this->printTitle("h1", $this->h1Header, true);
-        // TODO: may have to move this, will appear right under the hr rule
-        echo($this->backButton);
     }
 
     /**

@@ -97,6 +97,8 @@ class ViewSummary extends View {
         $this->printCreditPointSummary();
         $this->printHighestMark();
         $this->printTranscript();
+
+        echo($this->backButton);
     }
 
     /**

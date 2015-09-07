@@ -82,6 +82,7 @@ class ViewError extends View {
         }
 
         echo("<p> $this->footer </p>");
+        echo($this->backButton);
     }
 
     /**
