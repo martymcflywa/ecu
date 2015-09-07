@@ -63,6 +63,9 @@ class ViewError extends View {
         $this->isOnlyStudent = $isStudentPopulated && !$isUnitPopulated;
         $this->isOnlyUnits = !$isStudentPopulated && $isUnitPopulated;
 
+        // TODO: FIX THIS! NOT WORKING CORRECTLY
+        echo("BREAKPOINT: " . var_dump($this->isOnlyUnits));
+
         // test the states to determine what to print
         if ($this->isFormEmpty) {
             echo($this->messageEmptyForm);
