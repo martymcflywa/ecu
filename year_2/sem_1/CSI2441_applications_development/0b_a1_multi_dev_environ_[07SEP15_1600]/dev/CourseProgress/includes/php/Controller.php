@@ -39,6 +39,7 @@ class Controller {
             // send the view everything it needs and show me the summary
             $theSummaryView = new ViewSummary(
                 "Course Progression Summary",
+                $this->theRules->getProgressionStatus(),
                 $this->theRules->isComplete(),
                 $this->theRules->getPassedCP(),
                 $this->theRules->getCPDelta(),
@@ -54,7 +55,18 @@ class Controller {
 
         } else {
             // else there are errors, show me the error view instead
-            $theErrorView = new ViewError("Course Progression Form Errors");
+            $theErrorView = new ViewError(
+                "Course Progression Form Errors",
+                $this->theValidator->getStudentErrorMessage(),
+                $this->theValidator->getUnitErrorMessage(),
+                $this->theValidator->getLogicErrorMessage(),
+                $this->theValidator->getStudentErrorTally(),
+                $this->theValidator->getUnitErrorTally(),
+                $this->theValidator->getLogicErrorTally(),
+                $this->theStudent->isStudentPopulated(),
+                $this->theUnits->isUnitsPopulated(),
+                $this->theValidator->getErrorCodeArray()
+            );
         }
     }
 

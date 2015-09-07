@@ -41,11 +41,11 @@ class ViewError extends View {
     // get the error code array
     private $errorCode;
 
-    function __construct(array $studentErrorMessage, array $unitErrorMessage,
-                         array $logicErrorMessage, $studentErrorTally,
-                         $unitErrorTally, $logicErrorTally,
-                         $isStudentPopulated, $isUnitPopulated,
-                         array $errorCode
+    function __construct($h1Header, array $studentErrorMessage,
+                         array $unitErrorMessage, array $logicErrorMessage,
+                         $studentErrorTally, $unitErrorTally,
+                         $logicErrorTally, $isStudentPopulated,
+                         $isUnitPopulated, array $errorCode
     ) {
         // call super constructor
         parent::__construct($this->h1Header);

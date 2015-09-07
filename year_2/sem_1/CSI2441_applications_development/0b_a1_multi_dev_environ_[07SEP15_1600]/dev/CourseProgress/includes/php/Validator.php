@@ -501,13 +501,12 @@ class Validator {
     }
 
     /**
-     * This function converts an error code to its string message.
+     * This function returns the errorCode array.
      *
-     * @param int $index - The error code.
-     * @return String - The error message.
+     * @return array errorCode.
      */
-    public final function getErrorCode($index) {
-        return $this->errorCode[$index];
+    public final function getErrorCodeArray() {
+        return $this->errorCode;
     }
 
     /**

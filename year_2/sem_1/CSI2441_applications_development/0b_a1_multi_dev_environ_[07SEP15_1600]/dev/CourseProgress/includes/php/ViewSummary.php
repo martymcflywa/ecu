@@ -49,6 +49,7 @@ class ViewSummary extends View {
      * along with a table of the highestMark,
      * and the student transcript.
      *
+     * @param String $h1Header.
      * @param String $progressionStatus.
      * @param bool $isComplete.
      * @param int $passedCPTotal.
@@ -62,12 +63,13 @@ class ViewSummary extends View {
      * @param array $unitDetails.
      * @param array $highestMark.
      */
-    function __construct($progressionStatus, $isComplete,
-                         $passedCPTotal, $cpDelta,
-                         $unitAttemptTotal, $unitsPassed,
-                         $semRemaining, $markAverage,
-                         $gradeAverage, array $studentDetails,
-                         array $unitDetails, array $highestMark
+    function __construct($h1Header, $progressionStatus,
+                         $isComplete, $passedCPTotal,
+                         $cpDelta, $unitAttemptTotal,
+                         $unitsPassed, $semRemaining,
+                         $markAverage, $gradeAverage,
+                         array $studentDetails, array $unitDetails,
+                         array $highestMark
     ) {
         // call super constructor
         parent::__construct($this->h1Header);
