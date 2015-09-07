@@ -393,6 +393,12 @@ sub getCPDelta()
 			cpDelta = CP_MASTERS_RESEARCH - passedCPTotal
 	end select
 
+	'make sure we don't get negative values if a student has passed more than required units
+	'in turn, it also ensures that semesters remaining doesn't go negative
+	if cpDelta < 0 then
+		cpDelta = 0
+	end if
+
 end sub
 
 '**
