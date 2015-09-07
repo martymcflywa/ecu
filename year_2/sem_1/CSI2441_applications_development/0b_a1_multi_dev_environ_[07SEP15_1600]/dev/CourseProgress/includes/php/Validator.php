@@ -171,7 +171,7 @@ class Validator {
 
             $suffix = array();
             // stores matched regex (last 4 digits of unit code) in $suffix, test $suffix[0] >= 6000
-            preg_match($this->regExDict["unitCodeSuffix"], $this->theUnits->getUnitDetails()[$index][Units::UC], $matches);
+            preg_match($this->regExDict["unitCodeSuffix"], $this->theUnits->getUnitDetails()[$index][Units::UC], $suffix);
 
             // test course type against unit code
             if(($this->theStudent->getStudentDetails()[Student::CT] == BusinessRules::CP_UNDERGRAD ||
