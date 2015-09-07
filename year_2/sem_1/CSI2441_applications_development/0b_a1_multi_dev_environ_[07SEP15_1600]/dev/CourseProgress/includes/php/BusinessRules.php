@@ -274,8 +274,8 @@ class BusinessRules {
 
     /**
      * This function sets the number of semesters remaining for a student.
-     * If student has no failed units: Divide remaining CP required by student's enrolment type value.
-     * Else student has failed a unit: Add remaining CP to failedUnitsCP, then divide by student's enrolment type value.
+     * If student has no failed units: Divide cpDelta by student's enrolment type value.
+     * Else student has failed a unit: Sum cpDelta and failedUnitsCP, then divide by student's enrolment type value.
      *
      * TODO: If there's time, remember to convert asp's implementation to this much simpler version as well.
      */
