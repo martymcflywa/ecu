@@ -263,15 +263,18 @@ class Validator {
 
         for($i = 0; $i < sizeof($theArray); $i++) {
 
-            // only perform logic validation if unit code is populated, and matches regex
-            if(!empty($theArray[$i][Units::UC]) && preg_match($this->regExDict["unitCode"], $theArray[$i][Units::UC])) {
+            // test if array index issset(), preempting undefined offset in validatePass/SemMatchUnits()
+            // @see error_reporting() in cpa_analyser.php
+            if(isset($theArray[$i][Units::UC])) {
+                if(preg_match($this->regExDict["unitCode"], $theArray[$i][Units::UC])) {
 
-                $currentUnitCode = $theArray[$i][Units::UC];
-                $currentSem = $theArray[$i][Units::YS];
+                    $currentUnitCode = $theArray[$i][Units::UC];
+                    $currentSem = $theArray[$i][Units::YS];
 
-                for($j = $i + 1; $j < sizeof($theArray); $j++) {
-                    $this->validatePassMatchUnits($currentUnitCode, $theArray, $i, $j);
-                    $this->validateSemMatchUnits($currentUnitCode, $currentSem, $theArray, $i, $j);
+                    for($j = $i + 1; $j < sizeof($theArray); $j++) {
+                        $this->validatePassMatchUnits($currentUnitCode, $theArray, $i, $j);
+                        $this->validateSemMatchUnits($currentUnitCode, $currentSem, $theArray, $i, $j);
+                    }
                 }
             }
         }
@@ -282,6 +285,10 @@ class Validator {
      * A unit cannot appear as passed more than once.
      * To be used inside for loop, @see getUnitMatches().
      *
+     * Preempting undefined offset by testing isset($theArray) before calling this function.
+     * However, notices still generate if being displayed.
+     * @see error_reporting() in cpa_analyser.php
+     *
      * @param String $currentUnitCode - The current unit code during iteration.
      * @param array $theArray - The array with data being validated.
      * @param int $indexI - The current index during iteration.
@@ -291,9 +298,10 @@ class Validator {
 
         $isWrite = true;
 
-        // main test to validate business rule
-        if($currentUnitCode == $theArray[$indexJ][Units::UC] && $theArray[$indexJ][Units::UM] >= BusinessRules::MARK_PASS) {
-
+        // main test to validate business rule, also text existence of current array key
+        if ($currentUnitCode == $theArray[$indexJ][Units::UC] &&
+            $theArray[$indexJ][Units::UM] >= BusinessRules::MARK_PASS
+        ) {
             // if there are more than one entries in logicErrorMessage
             if($this->logicErrorTally > 0) {
                 // loop over logic errors to find matches before storing new entry
@@ -308,11 +316,25 @@ class Validator {
                 }
                 // only write error if isWrite is true
                 if($isWrite) {
-                    $this->logicError($theArray[$indexI][Units::UC], 9, $theArray[$indexI][Units::YS], $indexI + 1, $indexJ + 1);
+
+                    $this->logicError(
+                        $theArray[$indexI][Units::UC],
+                        9,
+                        $theArray[$indexI][Units::YS],
+                        $indexI + 1,
+                        $indexJ + 1
+                    );
                 }
             } else {
+
                 // else this is the first entry, post it up
-                $this->logicError($theArray[$indexI][Units::UC], 9, $theArray[$indexI][Units::YS], $indexI + 1, $indexJ + 1);
+                $this->logicError(
+                    $theArray[$indexI][Units::UC],
+                    9,
+                    $theArray[$indexI][Units::YS],
+                    $indexI + 1,
+                    $indexJ + 1
+                );
             }
         }
     }
@@ -321,6 +343,10 @@ class Validator {
      * This function implements business rule:
      * A unit cannot appear more than once in the same semester.
      * To be used inside for loop, @see getUnitMatches().
+     *
+     * Preempting undefined offset by testing isset($theArray) before calling this function.
+     * However, notices still generate if being displayed.
+     * @see error_reporting() in cpa_analyser.php
      *
      * @param String $currentUnitCode - The current unit code during iteration.
      * @param String $currentSem - The current semester during iteration.
