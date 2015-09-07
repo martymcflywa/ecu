@@ -2,6 +2,31 @@
 
 namespace includes;
 
+use includes\Student;
+use includes\Units;
+use includes\BusinessRules;
+use includes\Validator;
+use includes\View;
+use includes\ViewSummary;
+use includes\ViewError;
+
+/**
+ * Class Controller performs controlling duties.
+ *
+ * When constructed, it accepts the model objects,
+ * and then retrieves user input.
+ *
+ * The input is then passed to Validator to be validated.
+ *
+ * If there are no errors, it then passes data to BusinessRules to
+ * calculate the summary, then passes relevant data to ViewSummary,
+ * to display the summary view.
+ *
+ * Else if there are errors, it passes data to ViewError,
+ * then displays the error view.
+ *
+ * @package includes
+ */
 class Controller {
 
     private $theStudent;
@@ -9,6 +34,15 @@ class Controller {
     private $theRules;
     private $theValidator;
 
+    /**
+     * This is the Controller constructor.
+     * Mainline logic happens here.
+     *
+     * @param Student $theStudent.
+     * @param Units $theUnits.
+     * @param BusinessRules $theRules.
+     * @param Validator $theValidator.
+     */
     function __construct(Student $theStudent, Units $theUnits,
                          BusinessRules $theRules,
                          Validator $theValidator)
@@ -36,7 +70,7 @@ class Controller {
             // calculate the summary
             $this->theRules->calculateSummary();
 
-            // send the view everything it needs and show me the summary
+            // send the view everything it needs and show the summary
             $theSummaryView = new ViewSummary(
                 "Course Progression Summary",
                 $this->theRules->getProgressionStatus(),
@@ -54,7 +88,7 @@ class Controller {
             );
 
         } else {
-            // else there are errors, show me the error view instead
+            // else there are errors, send the view everything it needs and show the errors
             $theErrorView = new ViewError(
                 "Course Progression Form Errors",
                 $this->theValidator->getStudentErrorMessage(),
