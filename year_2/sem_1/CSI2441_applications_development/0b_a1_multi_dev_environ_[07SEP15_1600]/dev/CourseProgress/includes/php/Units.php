@@ -52,41 +52,6 @@ class Units {
     }
 
     /**
-     * This function sets the credit point for an entry in the input array.
-     * Casts credit points as int.
-     *
-     * @param int $index - The array index, where to set the credit points.
-     * @param int $cp - The credit points to set.
-     * @deprecated by setUnitDetailsAt(). TODO: delete
-     */
-    public function setCreditPoints($index, $cp) {
-        $this->unitDetails[$index][$this::CP] = (int) $cp;
-    }
-
-    /**
-     * This function sets the unit mark for an entry in the input array.
-     * Casts unit mark as int.
-     *
-     * @param $index - The array index, where to set the credit points.
-     * @param int $mark - The unit mark to set.
-     * @deprecated by setUnitDetailsAt(). TODO: delete
-     */
-    public function setUnitMark($index, $mark) {
-        $this->unitDetails[$index][$this::UM] = (int) $mark;
-    }
-
-    /**
-     * This function sets the unit grade for an entry in the input array.
-     *
-     * @param int $index - The array index, where to set the grade.
-     * @param String $grade - The grade to set.
-     * @deprecated by setUnitDetailsAt(). TODO: delete
-     */
-    public function setUnitGrade($index, $grade) {
-        $this->unitDetails[$index][$this::GR] = $grade;
-    }
-
-    /**
      * This function sets the highestMark array.
      *
      * @param String $unitCode.
