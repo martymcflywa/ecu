@@ -24,12 +24,7 @@ class Units {
 
     private $isPopulated = false;
 
-    // $filledRows not working for me like in asp,
-    // getting NULL when referred statically,
-
-    // public static $filledRows;
-
-    // so using this instead: sizeof(unitDetailsArray)
+    private $filledRows;
 
     private $unitDetails = array();
     private $highestMark = array();
@@ -41,6 +36,7 @@ class Units {
 
         // init some default values
         $this->isPopulated = false;
+        $this->filledRows = 0;
         $this->setHighestMark( "", 0, "", 0, "");
     }
 
@@ -77,7 +73,7 @@ class Units {
      *
      * To be used inside a for loop, @see retrieveUnitDetails().
      *
-     * @param String $postID - The ID of the post item to retrieve.
+     * @param String $postID - The ID 0of the post item to retrieve.
      * @param int $col - The current array column.
      * @param int $arrayRow - The current array row.
      * @param int $formRow - The current form row.
@@ -176,6 +172,15 @@ class Units {
             $mark,
             $grade
         );
+    }
+
+    /**
+     * This function returns filledRows.
+     *
+     * @return int filledRows - How many rows have been filled in the array.
+     */
+    public function getFilledRows() {
+        return $this->filledRows;
     }
 
     /**
