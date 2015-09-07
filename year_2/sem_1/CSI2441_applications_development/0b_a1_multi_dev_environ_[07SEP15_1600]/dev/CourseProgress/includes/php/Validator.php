@@ -107,29 +107,11 @@ class Validator {
         }
     }
 
-    private final function validateUnitDetails() {
-
-        // iterate each row
-        for($i = 0; $i < sizeof($this->theUnits->getUnitDetails()); $i++) {
-
-            // if the whole row is not empty,
-            if ($this->theUnits->getUnitDetails()[$i][Units::UC] != "" &&
-                $this->theUnits->getUnitDetails()[$i][Units::CP] != "" &&
-                $this->theUnits->getUnitDetails()[$i][Units::YS] != "" &&
-                $this->theUnits->getUnitDetails()[$i][Units::UM] != ""
-            ) {
-
-            }
-        }
-    }
-
-
     /**
      * This function validates unit details.
      * Tests each array index for population before proceeding.
-     * TODO: DELETE AFTER REWRITE!
      */
-    private final function validateUnitDetailsDELETE() {
+    private final function validateUnitDetails() {
 
         // iterate each row
         for($i = 0; $i < sizeof($this->theUnits->getUnitDetails()); $i++) {
@@ -138,7 +120,7 @@ class Validator {
              * UNIT CODE *
              *************/
 
-            if($this->theUnits->getUnitDetails()[$i][Units::UC] == "") {
+            if(empty($this->theUnits->getUnitDetails()[$i][Units::UC])) {
                 $this->missingInputError("unit", $i + 1, "Unit Code");
             } else {
                 $this->validateUnitCode($i);
@@ -194,7 +176,7 @@ class Validator {
             // test course type against unit code
             if(($this->theStudent->getStudentDetails()[Student::CT] == BusinessRules::CP_UNDERGRAD ||
                     $this->theStudent->getStudentDetails()[Student::CT] == BusinessRules::CP_UNDERGRAD_DOUBLE) &&
-                    $suffix[0] >= 6000
+                $suffix[0] >= 6000
             ) {
                 $this->validateError("unit", $index + 1, "Unit Code", 3);
             }
@@ -249,7 +231,7 @@ class Validator {
         if(preg_match($this->regExDict["mark"], $this->theUnits->getUnitDetails()[$index][Units::UM])) {
             // test unit mark against min/max range
             if(intval($this->theUnits->getUnitDetails()[$index][Units::UM] < $minMark ||
-                    intval($this->theUnits->getUnitDetails()[$index][Units::UM]) > $maxMark)) {
+                intval($this->theUnits->getUnitDetails()[$index][Units::UM]) > $maxMark)) {
 
                 $this->validateError("unit", $index + 1, "Unit Mark", 7);
             } else {
@@ -281,14 +263,6 @@ class Validator {
 
         for($i = 0; $i < sizeof($theArray); $i++) {
 
-<<<<<<< HEAD
-            if($theArray[$i][Units::UC] != "") {
-                if(preg_match($this->regExDict["unitCode"], $theArray[$i][Units::UC])) {
-                    $currentUnitCode = $theArray[$i][Units::UC];
-                    $currentSem = $theArray[$i][Units::YS];
-
-//                    echo(var_dump($theArray));
-=======
             // test if array index issset(), preempting undefined offset in validatePass/SemMatchUnits()
             // @see error_reporting() in cpa_analyser.php
             if(isset($theArray[$i][Units::UC])) {
@@ -296,7 +270,6 @@ class Validator {
 
                     $currentUnitCode = $theArray[$i][Units::UC];
                     $currentSem = $theArray[$i][Units::YS];
->>>>>>> phpfix
 
                     for($j = $i + 1; $j < sizeof($theArray); $j++) {
                         $this->validatePassMatchUnits($currentUnitCode, $theArray, $i, $j);
@@ -304,18 +277,6 @@ class Validator {
                     }
                 }
             }
-
-//            // only perform logic validation if unit code is populated, and matches regex
-//            if($theArray[$i][Units::UC] != "" && preg_match($this->regExDict["unitCode"], $theArray[$i][Units::UC])) {
-//
-//                $currentUnitCode = $theArray[$i][Units::UC];
-//                $currentSem = $theArray[$i][Units::YS];
-//
-//                for($j = $i + 1; $j < sizeof($theArray); $j++) {
-//                    $this->validatePassMatchUnits($currentUnitCode, $theArray, $i, $j);
-//                    $this->validateSemMatchUnits($currentUnitCode, $currentSem, $theArray, $i, $j);
-//                }
-//            }
         }
     }
 
@@ -347,8 +308,8 @@ class Validator {
                 for($k = 0; $k < $this->logicErrorTally; $k++) {
                     // if a match is found,
                     if($currentUnitCode == $this->logicErrorMessage[$k][$this::LE_FIELD] &&
-                            $this->logicErrorMessage[$k][$this::LE_ECODE] == 9 &&
-                            $this->logicErrorMessage[$k][$this::LE_ROW_1] == $indexI + 1) {
+                        $this->logicErrorMessage[$k][$this::LE_ECODE] == 9 &&
+                        $this->logicErrorMessage[$k][$this::LE_ROW_1] == $indexI + 1) {
                         // set isWrite to false
                         $isWrite = false;
                     }
@@ -406,9 +367,9 @@ class Validator {
                 for($k = 0; $k < $this->logicErrorTally; $k++) {
                     // if a match is found
                     if($currentUnitCode == $this->logicErrorMessage[$k][$this::LE_FIELD] &&
-                            $currentSem == $this->logicErrorMessage[$k][$this::LE_SEM] &&
-                            $this->logicErrorMessage[$k][$this::LE_ECODE] ==  10 &&
-                            $this->logicErrorMessage[$k][$this::LE_ROW_1] == $indexI + 1) {
+                        $currentSem == $this->logicErrorMessage[$k][$this::LE_SEM] &&
+                        $this->logicErrorMessage[$k][$this::LE_ECODE] ==  10 &&
+                        $this->logicErrorMessage[$k][$this::LE_ROW_1] == $indexI + 1) {
                         // set isWrite to false
                         $isWrite = false;
                     }
