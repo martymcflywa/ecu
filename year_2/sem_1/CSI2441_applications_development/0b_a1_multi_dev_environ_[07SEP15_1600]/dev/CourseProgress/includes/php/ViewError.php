@@ -56,7 +56,7 @@ class ViewError extends View {
         $this->studentErrorTally = $studentErrorTally;
         $this->unitErrorTally = $unitErrorTally;
         $this->logicErrorTally = $logicErrorTally;
-        $this->$errorCode = $errorCode;
+        $this->errorCode = $errorCode;
 
         // set some states to test before printing
         $this->isFormEmpty = !$isStudentPopulated && !$isUnitPopulated;
