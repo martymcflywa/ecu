@@ -75,7 +75,7 @@ class ViewSummary extends View {
      * @param float $markAverage.
      * @param String $gradeAverage.
      */
-    protected final function setRuleValues($progressionStatus,
+    public final function setRuleValues($progressionStatus,
                                            $isComplete,
                                            $passedCPTotal,
                                            $cpDelta,

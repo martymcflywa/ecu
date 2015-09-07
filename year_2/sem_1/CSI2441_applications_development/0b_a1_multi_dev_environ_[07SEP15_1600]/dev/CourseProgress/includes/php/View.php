@@ -31,12 +31,7 @@ class View {
     function __construct($h1Header) {
 
         $this->h1Header = $h1Header;
-
-        $this->convertCourseType();
-
         $this->printTitle("h1", $this->h1Header, true);
-        $this->startView();
-
         echo($this->backButton);
     }
 
