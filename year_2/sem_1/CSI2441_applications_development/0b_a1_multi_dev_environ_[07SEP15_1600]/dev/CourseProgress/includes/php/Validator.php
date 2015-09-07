@@ -62,6 +62,10 @@ class Validator {
         $this->theStudent = $theStudent;
         $this->theUnits = $theUnits;
 
+        $this->studentErrorMessage = array();
+        $this->unitErrorMessage = array();
+        $this->logicErrorMessage = array();
+
         // build regex and error code definitions
         $this->buildRegExDict();
         $this->buildErrorCode();
