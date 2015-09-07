@@ -107,11 +107,29 @@ class Validator {
         }
     }
 
+    private final function validateUnitDetails() {
+
+        // iterate each row
+        for($i = 0; $i < sizeof($this->theUnits->getUnitDetails()); $i++) {
+
+            // if the whole row is not empty,
+            if ($this->theUnits->getUnitDetails()[$i][Units::UC] != "" &&
+                $this->theUnits->getUnitDetails()[$i][Units::CP] != "" &&
+                $this->theUnits->getUnitDetails()[$i][Units::YS] != "" &&
+                $this->theUnits->getUnitDetails()[$i][Units::UM] != ""
+            ) {
+
+            }
+        }
+    }
+
+
     /**
      * This function validates unit details.
      * Tests each array index for population before proceeding.
+     * TODO: DELETE AFTER REWRITE!
      */
-    private final function validateUnitDetails() {
+    private final function validateUnitDetailsDELETE() {
 
         // iterate each row
         for($i = 0; $i < sizeof($this->theUnits->getUnitDetails()); $i++) {
@@ -120,7 +138,7 @@ class Validator {
              * UNIT CODE *
              *************/
 
-            if(empty($this->theUnits->getUnitDetails()[$i][Units::UC])) {
+            if($this->theUnits->getUnitDetails()[$i][Units::UC] == "") {
                 $this->missingInputError("unit", $i + 1, "Unit Code");
             } else {
                 $this->validateUnitCode($i);
@@ -263,17 +281,31 @@ class Validator {
 
         for($i = 0; $i < sizeof($theArray); $i++) {
 
-            // only perform logic validation if unit code is populated, and matches regex
-            if(!empty($theArray[$i][Units::UC]) && preg_match($this->regExDict["unitCode"], $theArray[$i][Units::UC])) {
+            if($theArray[$i][Units::UC] != "") {
+                if(preg_match($this->regExDict["unitCode"], $theArray[$i][Units::UC])) {
+                    $currentUnitCode = $theArray[$i][Units::UC];
+                    $currentSem = $theArray[$i][Units::YS];
 
-                $currentUnitCode = $theArray[$i][Units::UC];
-                $currentSem = $theArray[$i][Units::YS];
+//                    echo(var_dump($theArray));
 
-                for($j = $i + 1; $j < sizeof($theArray); $j++) {
-                    $this->validatePassMatchUnits($currentUnitCode, $theArray, $i, $j);
-                    $this->validateSemMatchUnits($currentUnitCode, $currentSem, $theArray, $i, $j);
+                    for($j = $i + 1; $j < sizeof($theArray); $j++) {
+                        $this->validatePassMatchUnits($currentUnitCode, $theArray, $i, $j);
+                        $this->validateSemMatchUnits($currentUnitCode, $currentSem, $theArray, $i, $j);
+                    }
                 }
             }
+
+//            // only perform logic validation if unit code is populated, and matches regex
+//            if($theArray[$i][Units::UC] != "" && preg_match($this->regExDict["unitCode"], $theArray[$i][Units::UC])) {
+//
+//                $currentUnitCode = $theArray[$i][Units::UC];
+//                $currentSem = $theArray[$i][Units::YS];
+//
+//                for($j = $i + 1; $j < sizeof($theArray); $j++) {
+//                    $this->validatePassMatchUnits($currentUnitCode, $theArray, $i, $j);
+//                    $this->validateSemMatchUnits($currentUnitCode, $currentSem, $theArray, $i, $j);
+//                }
+//            }
         }
     }
 

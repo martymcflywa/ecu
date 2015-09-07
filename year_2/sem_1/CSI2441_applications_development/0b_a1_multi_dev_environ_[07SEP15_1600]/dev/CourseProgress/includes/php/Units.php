@@ -57,11 +57,33 @@ class Units {
 
             $j = $i + 1;
 
-            $this->retrieveField("UnitCode_", $this::UC, $i, $j);
-            $this->retrieveField("CP_", $this::CP, $i, $j);
-            $this->retrieveField("YS_", $this::YS, $i, $j);
-            $this->retrieveField("UM_", $this::UM, $i, $j);
-            // store empty string for grade, will be populated correctly by BusinessRules
+            // if any row is partially/fully populated, go get the value
+            if ($_POST["UnitCode_" . $j] != "" ||
+                $_POST["CP_" . $j] != "" ||
+                $_POST["YS_" . $j] != "" ||
+                $_POST["UM_" . $j] != ""
+            ) {
+                $this->retrieveField("UnitCode_", $this::UC, $i, $j);
+                $this->retrieveField("CP_", $this::CP, $i, $j);
+                $this->retrieveField("YS_", $this::YS, $i, $j);
+                $this->retrieveField("UM_", $this::UM, $i, $j);
+
+                $this->isPopulated = true;
+                $this->filledRows++;
+            }
+
+//            else {
+//                // else its completely empty,
+//                // store empty strings to create this row in the array,
+//                // otherwise will get errors when iterating the array again during validation
+//                $this->unitDetails[$i][Units::UC] = "";
+//                $this->unitDetails[$i][Units::CP] = "";
+//                $this->unitDetails[$i][Units::YS] = "";
+//                $this->unitDetails[$i][Units::UM] = "";
+//            }
+
+
+            // init grade, will be populated by BusinessRules
             $this->unitDetails[$i][$this::GR] = "";
         }
     }
