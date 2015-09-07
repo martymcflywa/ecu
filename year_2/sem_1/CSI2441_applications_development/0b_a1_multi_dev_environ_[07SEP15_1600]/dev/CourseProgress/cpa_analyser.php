@@ -19,6 +19,9 @@ require_once 'includes/php/Validator.php';
 use includes\Validator;
 require_once 'includes/php/Controller.php';
 use includes\Controller;
+require_once 'includes/php/View.php';
+require_once 'includes/php/ViewSummary.php';
+require_once 'includes/php/ViewError.php';
 
 /**
  * This php script accepts student and unit input data and presents
@@ -27,8 +30,9 @@ use includes\Controller;
  * the action they need to take to correct their input.
  *
  * It is designed and written in an object oriented style, attempting to implement MVC.
- * Student, Units, BusinessRules represent the Model,
- * Validator (and $this::cpa_analyser.php) as the Controller,
+ * Student, Units represent the Model,
+ * Validator, BusinessRules as sub controllers,
+ * Controller as the Controller,
  * and the View (and its subclasses) as the View.
  *
  * Basic and advanced validation/criteria/business rules,
