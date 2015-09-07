@@ -230,8 +230,8 @@ class BusinessRules {
      * TODO: If there's time, remember to convert asp's implementation to this much simpler version as well.
      */
     private final function setCPDelta() {
-        // cpDelta min == 0, so that negative values are not shown if user has passed more than required units,
-        // also implies that semRemaining min == 0.
+        // limit cpDelta to >= 0, to avoid showing negative int when student has passed more than required units for their course
+        // also implies semRemaining >= 0
         $this->cpDelta = max(0, $this->theValidator->getStudentDetails()[Student::CT] - $this->passedCPTotal);
     }
 

@@ -393,8 +393,8 @@ sub getCPDelta()
 			cpDelta = CP_MASTERS_RESEARCH - passedCPTotal
 	end select
 
-	'make sure we don't get negative values if a student has passed more than required units
-	'in turn, it also ensures that semesters remaining doesn't go negative
+	'limit cpDelta to >= 0, to avoid showing negative int when student has passed more than required units for their course
+	'also implies semRemaining >= 0
 	if cpDelta < 0 then
 		cpDelta = 0
 	end if
