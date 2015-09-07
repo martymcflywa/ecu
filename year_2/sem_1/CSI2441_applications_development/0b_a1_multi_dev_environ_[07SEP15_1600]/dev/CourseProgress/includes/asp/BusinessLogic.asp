@@ -317,39 +317,12 @@ end sub
 '* If greater than, student has completed course, else not complete.
 '*
 sub getCompleteStatus()
-	
-	select case studentDetails(CT)
-		case CP_UNDERGRAD
-			if passedCPTotal >= CP_UNDERGRAD then
-				completeStatus = "Yes"
-			else
-				completeStatus = "No"
-			end if
-		case CP_UNDERGRAD_DOUBLE
-			if passedCPTotal >= CP_UNDERGRAD_DOUBLE then
-				completeStatus = "Yes"
-			else
-				completeStatus = "No"
-			end if
-		case CP_GRAD_DIPLOMA
-			if passedCPTotal >= CP_GRAD_DIPLOMA then
-				completeStatus = "Yes"
-			else
-				completeStatus = "No"
-			end if
-		case CP_MASTERS_COURSE
-			if passedCPTotal >= CP_MASTERS_COURSE then
-				completeStatus = "Yes"
-			else
-				completeStatus = "No"
-			end if
-		case CP_MASTERS_RESEARCH
-			if passedCPTotal >= CP_MASTERS_RESEARCH then
-				completeStatus = "Yes"
-			else
-				completeStatus = "No"
-			end if
-	end select
+
+	if passedCPTotal >= studentDetails(CT) then
+		completeStatus = "Yes"
+	else
+		completeStatus = "No"
+	end if
 end sub
 
 '**
@@ -379,22 +352,13 @@ end sub
 '* Sub calculates CP required to complete course.
 '*
 sub getCPDelta()
-	
-	select case studentDetails(CT)
-		case CP_UNDERGRAD
-			cpDelta = CP_UNDERGRAD - passedCPTotal
-		case CP_UNDERGRAD_DOUBLE
-			cpDelta = CP_UNDERGRAD_DOUBLE - passedCPTotal
-		case CP_GRAD_DIPLOMA
-			cpDelta = CP_GRAD_DIPLOMA - passedCPTotal
-		case CP_MASTERS_COURSE
-			cpDelta = CP_MASTERS_COURSE - passedCPTotal
-		case CP_MASTERS_RESEARCH
-			cpDelta = CP_MASTERS_RESEARCH - passedCPTotal
-	end select
+
+	cpDelta = studentDetails(CT) - passedCPTotal
 
 	'limit cpDelta to >= 0, to avoid showing negative int when student has passed more than required units for their course
 	'also implies semRemaining >= 0
+
+	'couldn't find a max() function for asp, use if instead
 	if cpDelta < 0 then
 		cpDelta = 0
 	end if
@@ -403,26 +367,21 @@ end sub
 
 '**
 '* Function sets the number of semesters remaining for a student.
-'* If student has no failed units: Divide remaining CP required by student's enrolment type value.
-'* Else student has failed a unit: Add remaining CP to failedUnitsCP, then divide by student's enrolment type value.
+'* If student has no failed units: Divide cpDelta by student's enrolment type value.
+'* Else student has failed a unit: Sum cpDelta and failedUnitsCP, then divide by student's enrolment type value.
 '*
 sub getSemRemaining()
-	select case studentDetails(ET)
-		case CP_FULLTIME
-			if failedUnitsCount = 0 then
-				semRemaining = cpDelta / CP_FULLTIME
-			else
-				semRemaining = (cpDelta + failedUnitsCP) / CP_FULLTIME
-			end if
-		case CP_PARTTIME
-			if failedUnitsCount = 0 then
-				semRemaining = cpDelta / CP_PARTTIME
-			else
-				semRemaining = (cpDelta + failedUnitsCP) / CP_PARTTIME
-			end if
-	end select
+
+	if failedUnitsCount = 0 then
+		semRemaining = cpDelta / studentDetails(ET)
+	else
+		semRemaining = (cpDelta + failedUnitsCP) / studentDetails(ET)
+	end if
 end sub
 
+'**
+'* Sub calculates total required semesters for student.
+'*
 sub getSemTotal()
 	semTotal = studentDetails(CT) / studentDetails(ET)
 end sub
