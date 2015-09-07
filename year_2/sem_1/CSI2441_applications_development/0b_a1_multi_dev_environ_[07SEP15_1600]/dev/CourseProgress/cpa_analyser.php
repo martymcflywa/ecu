@@ -51,9 +51,9 @@ error_reporting(E_ALL & ~E_NOTICE);
 // create the models
 $theStudent = new Student();
 $theUnits = new Units();
-$theRules = new BusinessRules();
-// pass student and units to validator, so it can validate their data
+// pass student and units to theValidator and theRules, so they can validate their data
 $theValidator = new Validator($theStudent, $theUnits);
+$theRules = new BusinessRules($theStudent, $theUnits);
 
 // create the views, TODO: maybe delete these, just have controller create them like below
 $theSummaryView = new ViewSummary("Course Progression Summary");

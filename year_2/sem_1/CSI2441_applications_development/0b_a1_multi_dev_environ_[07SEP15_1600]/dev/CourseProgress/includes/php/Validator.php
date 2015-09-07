@@ -13,7 +13,7 @@ namespace includes;
  */
 class Validator {
 
-    // import reference to objects
+    // import theStudent and theUnits
     private $theStudent;
     private $theUnits;
 

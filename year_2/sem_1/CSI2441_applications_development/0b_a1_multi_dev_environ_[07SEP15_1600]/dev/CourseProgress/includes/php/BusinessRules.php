@@ -12,8 +12,9 @@ namespace includes;
  */
 class BusinessRules {
 
-    // import the controller
-    private $theValidator;
+    // import theStudent and theUnits
+    private $theStudent;
+    private $theUnits;
 
     // constants used to calculate summary according to business rules
     const CT_UNDERGRAD = 1;
@@ -69,8 +70,14 @@ class BusinessRules {
 
     /**
      * The BusinessRules constructor.
+     *
+     * @param Student $theStudent
+     * @param Units $theUnits
      */
-    function __construct() {
+    function __construct(Student $theStudent, Units $theUnits) {
+
+        $this->theStudent = $theStudent;
+        $this->theUnits = $theUnits;
 
         // init variables with defaults
         $this->passedCPTotal = 0;
@@ -94,19 +101,9 @@ class BusinessRules {
     }
 
     /**
-     * This function sets the controller.
-     * Can't do it at construction because chicken or the egg problem.
-     *
-     * @param Validator $theValidator - The controller.
-     */
-    public function setController(Validator $theValidator) {
-        $this->theValidator = $theValidator;
-    }
-
-    /**
      * This function initiates the calculation of a student's summary.
      */
-    public final function calculateSummary() {
+    public final function validateBusinessRules() {
 
         // call all the things
         $this->setSemTotal();
@@ -126,31 +123,32 @@ class BusinessRules {
      */
     private final function iterateUnitDetails() {
 
-        for($i = 0; $i < sizeof($this->theValidator->getUnitDetails()); $i++) {
+        for($i = 0; $i < sizeof($this->theUnits->getUnitDetails()); $i++) {
 
             $this->incrementUnitAttemptTotal();
 
             // set the grade for this mark
-            $this->theValidator->setUnitGrade($i, $this->getGrade($this->theValidator->getUnitDetails()[$i][Units::UM]));
+            $this->theUnits->setUnitDetailsAt($i, Units::GR, $this->theUnits->getUnitDetails()[$i][Units::UM]);
 
             // then store the highest mark found in theUnits->highestMark array
-            if($this->theValidator->getUnitDetails()[$i][Units::UM] > $this->theValidator->getHighestMark()[Units::UM]) {
-                $this->theValidator->setHighestMark(
-                    $this->theValidator->getUnitDetails()[$i][Units::UC],
-                    $this->theValidator->getUnitDetails()[$i][Units::CP],
-                    $this->theValidator->getUnitDetails()[$i][Units::YS],
-                    $this->theValidator->getUnitDetails()[$i][Units::UM],
-                    $this->theValidator->getUnitDetails()[$i][Units::GR]
+            if($this->theUnits->getUnitDetails()[$i][Units::UM] > $this->theUnits->getHighestMark()[Units::UM]) {
+                $this->theUnits->setHighestMark(
+                    $this->theUnits->getUnitDetails()[$i][Units::UC],
+                    $this->theUnits->getUnitDetails()[$i][Units::CP],
+                    $this->theUnits->getUnitDetails()[$i][Units::YS],
+                    $this->theUnits->getUnitDetails()[$i][Units::UM],
+                    $this->theUnits->getUnitDetails()[$i][Units::GR]
                 );
             }
 
             // if student passed unit
-            if($this->theValidator->getUnitDetails()[$i][Units::UM] >= $this::MARK_PASS) {
+            if($this->theUnits->getUnitDetails()[$i][Units::UM] >= $this::MARK_PASS) {
                 $this->setPassedCPTotal($i);
                 $this->incrementUnitsPassed();
                 $this->setMarkTotal($i);
 
             } else {
+                // else test student's progression status
                 $this->calculateProgression($i);
             }
         }
@@ -170,7 +168,7 @@ class BusinessRules {
      * @param int $index - The current array index.
      */
     private final function setPassedCPTotal($index) {
-        $this->passedCPTotal += $this->theValidator->getUnitDetails()[$index][Units::CP];
+        $this->passedCPTotal += $this->theUnits->getUnitDetails()[$index][Units::CP];
     }
 
     /**
@@ -187,7 +185,7 @@ class BusinessRules {
      * @param int $index - The current array index.
      */
     private final function setMarkTotal($index) {
-        $this->markTotal += $this->theValidator->getUnitDetails()[$index][Units::UM];
+        $this->markTotal += $this->theUnits->getUnitDetails()[$index][Units::UM];
     }
 
     /**
@@ -198,14 +196,14 @@ class BusinessRules {
      */
     private final function calculateProgression($index) {
 
-        $currentUnitCode = $this->theValidator->getUnitDetails()[$index][Units::UC];
+        $currentUnitCode = $this->theUnits->getUnitDetails()[$index][Units::UC];
         $this->failedUnitsTally++;
 
         // loop from current index + 1 to remaining entries
-        for($i = $index + 1; $i < sizeof($this->theValidator->getUnitDetails()); $i++) {
+        for($i = $index + 1; $i < sizeof($this->theUnits->getUnitDetails()); $i++) {
             // if unitcodes match and unit is failed,
-            if ($currentUnitCode == $this->theValidator->getUnitDetails()[$i][Units::UC] &&
-                $this->theValidator->getUnitDetails()[$index][Units::UM] < $this::MARK_PASS
+            if ($currentUnitCode == $this->theUnits->getUnitDetails()[$i][Units::UC] &&
+                $this->theUnits->getUnitDetails()[$index][Units::UM] < $this::MARK_PASS
             ) {
                 // increment matchFailedTally
                 $this->matchedFailedTally++;
@@ -219,7 +217,7 @@ class BusinessRules {
      * Student course type / Student enrolment type.
      */
     private final function setSemTotal() {
-        $this->semTotal = $this->theValidator->getStudentDetails()[Student::CT] / $this->theValidator->getStudentDetails()[Student::ET];
+        $this->semTotal = $this->theStudent->getStudentDetails()[Student::CT] / $this->theStudent->getStudentDetails()[Student::ET];
     }
 
     /**
@@ -232,7 +230,7 @@ class BusinessRules {
     private final function setCPDelta() {
         // limit cpDelta to >= 0, to avoid showing negative int when student has passed more than required units for their course
         // also implies semRemaining >= 0
-        $this->cpDelta = max(0, $this->theValidator->getStudentDetails()[Student::CT] - $this->passedCPTotal);
+        $this->cpDelta = max(0, $this->theStudent->getStudentDetails()[Student::CT] - $this->passedCPTotal);
     }
 
     /**
@@ -242,7 +240,7 @@ class BusinessRules {
      * TODO: If there's time, remember to convert asp's implementation to this much simpler version as well.
      */
     private final function setIsComplete() {
-        if($this->passedCPTotal >= $this->theValidator->getStudentDetails()[Student::CT]) {
+        if($this->passedCPTotal >= $this->theStudent->getStudentDetails()[Student::CT]) {
             $this->isComplete = true;
         } else {
             $this->isComplete = false;
@@ -281,9 +279,9 @@ class BusinessRules {
      */
     private final function setSemRemaining() {
         if($this->failedUnitsTally == 0) {
-            $this->semRemaining = $this->cpDelta / $this->theValidator->getStudentDetails()[Student::ET];
+            $this->semRemaining = $this->cpDelta / $this->theStudent->getStudentDetails()[Student::ET];
         } else {
-            $this->semRemaining = ($this->cpDelta + $this->failedUnitsCP) / $this->theValidator->getStudentDetails()[Student::ET];
+            $this->semRemaining = ($this->cpDelta + $this->failedUnitsCP) / $this->theStudent->getStudentDetails()[Student::ET];
         }
     }
 
@@ -307,7 +305,7 @@ class BusinessRules {
     private final function setSupUnit() {
 
         // assuming user will enter their first sem FIRST!
-        $firstSem = $this->theValidator->getUnitDetails()[0][Units::YS];
+        $firstSem = $this->theUnits->getUnitDetails()[0][Units::YS];
         $lastSemStart = 0;
         $lastSem = "";
 
@@ -324,7 +322,7 @@ class BusinessRules {
 
         // work out what the lastSem and unitsPerSem values will be
         // this saves conditional code for fulltime/parttime students
-        if($this->theValidator->getStudentDetails()[Student::ET] == BusinessRules::CP_FULLTIME) {
+        if($this->theStudent->getStudentDetails()[Student::ET] == BusinessRules::CP_FULLTIME) {
             $lastSemStart = ($this->semTotal * $fullTimeUnits) - $fullTimeUnits;
             $unitsPerSem = $fullTimeUnits;
         } else {
@@ -341,21 +339,21 @@ class BusinessRules {
             // first loop sets the flags used for testing
             for($i = 0; $i < $unitsPerSem; $i++) {
                 // test for more than one units attempted during first semester
-                if($firstSem == $this->theValidator->getUnitDetails()[$i][Units::YS]) {
+                if($firstSem == $this->theUnits->getUnitDetails()[$i][Units::YS]) {
                     $isMultiFirstSem = true;
                 }
                 // test for more than one fails during first semester
-                if($this->theValidator->getUnitDetails()[$i][Units::UM] < $this::MARK_PASS) {
+                if($this->theUnits->getUnitDetails()[$i][Units::UM] < $this::MARK_PASS) {
                     $firstSemFails++;
                 }
             }
             // second loop uses flags to determine if eligible for "S?" grade
             for($i = 0; $i < $unitsPerSem; $i++) {
                 if($isMultiFirstSem && $firstSemFails < 2 &&
-                        $this->theValidator->getUnitDetails()[$i][Units::UM] >= $this::MARK_SUP_MIN &&
-                        $this->theValidator->getUnitDetails()[$i][Units::UM] <= $this::MARK_SUP_MAX) {
+                        $this->theUnits->getUnitDetails()[$i][Units::UM] >= $this::MARK_SUP_MIN &&
+                        $this->theUnits->getUnitDetails()[$i][Units::UM] <= $this::MARK_SUP_MAX) {
 
-                    $this->theValidator->setUnitGrade($i, "S?");
+                    $this->theUnits->setUnitDetailsAt($i, Units::GR, "S?");
                     $isSup = true;
                 }
             }
@@ -368,25 +366,25 @@ class BusinessRules {
         // if student has attempted a unit during last sem,
         if($this->unitAttemptTotal >= $lastSemStart) {
             // set the last sem as the last input from the user
-            $lastSem = $this->theValidator->getUnitDetails()[$this->unitAttemptTotal - 1][Units::YS];
+            $lastSem = $this->theUnits->getUnitDetails()[$this->unitAttemptTotal - 1][Units::YS];
             // first loop sets the flags used for testing
-            for($i = $lastSemStart + 1; $i < sizeof($this->theValidator->getUnitDetails()); $i++) {
+            for($i = $lastSemStart + 1; $i < sizeof($this->theUnits->getUnitDetails()); $i++) {
                 // test for more than one units attempted during last semester
-                if($lastSem == $this->theValidator->getUnitDetails()[$i - 1][Units::YS]) {
+                if($lastSem == $this->theUnits->getUnitDetails()[$i - 1][Units::YS]) {
                     $isMultiLastSem = true;
                 }
                 // test for more than one fails during last semester
-                if($this->theValidator->getUnitDetails()[$i][Units::UM] < $this::MARK_PASS) {
+                if($this->theUnits->getUnitDetails()[$i][Units::UM] < $this::MARK_PASS) {
                     $lastSemFails++;
                 }
             }
             // second loop uses flags to determine if eligible for "S?" grade
-            for($i = $lastSemStart; $i < sizeof($this->theValidator->getUnitDetails()); $i++) {
+            for($i = $lastSemStart; $i < sizeof($this->theUnits->getUnitDetails()); $i++) {
                 if($isMultiLastSem && $lastSemFails < 2 &&
-                        $this->theValidator->getUnitDetails()[$i][Units::UM] >= $this::MARK_SUP_MIN &&
-                        $this->theValidator->getUnitDetails()[$i][Units::UM] <= $this::MARK_SUP_MAX) {
+                        $this->theUnits->getUnitDetails()[$i][Units::UM] >= $this::MARK_SUP_MIN &&
+                        $this->theUnits->getUnitDetails()[$i][Units::UM] <= $this::MARK_SUP_MAX) {
 
-                    $this->theValidator->setUnitGrade($i, "S?");
+                    $this->theUnits->setUnitDetailsAt($i, Units::GR, "S?");
                     $isSup = true;
                 }
             }
