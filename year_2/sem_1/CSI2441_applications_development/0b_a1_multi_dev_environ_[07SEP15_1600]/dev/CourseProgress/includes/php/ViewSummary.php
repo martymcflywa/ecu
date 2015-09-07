@@ -33,7 +33,7 @@ class ViewSummary extends View {
 
     // only copies of these arrays stored here,
     // not the reference, so we have "read only" access
-    // note: don't shadow variable names here, otherwise may cause data loss
+    // note: don't shadow array names here, otherwise may cause data loss
     private $studentDetailsArray;
     private $unitDetailsArray;
     private $highestMarkArray;

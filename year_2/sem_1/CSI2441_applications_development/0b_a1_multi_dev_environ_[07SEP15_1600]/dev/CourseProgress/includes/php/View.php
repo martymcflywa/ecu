@@ -32,6 +32,7 @@ class View {
 
         $this->h1Header = $h1Header;
         $this->printTitle("h1", $this->h1Header, true);
+        // TODO: may have to move this, will appear right under the hr rule
         echo($this->backButton);
     }
 
@@ -76,15 +77,6 @@ class View {
                 $this->courseType = "Masters by research (" . $value . " CP)";
                 break;
         }
-    }
-
-    /**
-     * Override me! Would probably be more appropriate as an interface.
-     * @deprecated TODO: delete
-     */
-    protected function startView() {
-        // add what you want to do here,
-        // it is called at construction
     }
 
     /**

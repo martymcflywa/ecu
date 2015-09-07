@@ -26,26 +26,51 @@ class ViewError extends View {
     private $messageEmptyStudent = "<p>No student details were provided.</p>";
     private $messageEmptyUnits = "<p>No unit details were provided.</p>";
 
-    /**
-     * @Override
-     * This function initializes the error view.
-     * It initializes some states to test/decide what kind of message to print.
-     */
-    protected function startView() {
+    // only copies of these arrays stored here,
+    // not the reference, so we have "read only" access
+    // note: don't shadow array names here, otherwise may cause data loss
+    private $studentErrorMessageArray;
+    private $unitErrorMessageArray;
+    private $logicErrorMessageArray;
 
-        // init some states to test before printing
-        $this->isFormEmpty = !$this->theValidator->isStudentPopulated() && !$this->theValidator->isUnitsPopulated();
-        $this->isOnlyStudent = $this->theValidator->isStudentPopulated() && !$this->theValidator->isUnitsPopulated();
-        $this->isOnlyUnits = !$this->theValidator->isStudentPopulated() && $this->theValidator->isUnitsPopulated();
+    // import the tallies
+    private $studentErrorTally;
+    private $unitErrorTally;
+    private $logicErrorTally;
 
-        // test states to determine what to print
-        if($this->isFormEmpty) {
+    // get the error code array
+    private $errorCode;
+
+    function __construct(array $studentErrorMessage, array $unitErrorMessage,
+                         array $logicErrorMessage, $studentErrorTally,
+                         $unitErrorTally, $logicErrorTally,
+                         $isStudentPopulated, $isUnitPopulated,
+                         array $errorCode
+    ) {
+        // call super constructor
+        parent::__construct($this->h1Header);
+        // then set all the incoming params
+        $this->studentErrorMessageArray = $studentErrorMessage;
+        $this->unitErrorMessageArray = $unitErrorMessage;
+        $this->logicErrorMessageArray = $logicErrorMessage;
+        $this->studentErrorTally = $studentErrorTally;
+        $this->unitErrorTally = $unitErrorTally;
+        $this->logicErrorTally = $logicErrorTally;
+        $this->$errorCode = $errorCode;
+
+        // set some states to test before printing
+        $this->isFormEmpty = !$isStudentPopulated && !$isUnitPopulated;
+        $this->isOnlyStudent = $isStudentPopulated && !$isUnitPopulated;
+        $this->isOnlyUnits = !$isStudentPopulated && $isUnitPopulated;
+
+        // test the states to determine what to print
+        if ($this->isFormEmpty) {
             echo($this->messageEmptyForm);
             echo($this->br);
-        } else if($this->isOnlyStudent) {
+        } else if ($this->isOnlyStudent) {
             $this->printStudentErrors();
             $this->printEmptyUnits();
-        } else if($this->isOnlyUnits) {
+        } else if ($this->isOnlyUnits) {
             $this->printEmptyStudent();
             $this->printUnitErrors();
             $this->printLogicErrors();
@@ -65,20 +90,20 @@ class ViewError extends View {
      */
     private function printStudentErrors() {
 
-        if($this->theValidator->getStudentErrorTally() > 0) {
+        if($this->studentErrorTally > 0) {
             // print the title
             $this->printTitle("h2", $this->h2StudentErrors, false);
             // start an unordered list
             echo("<ul>");
 
             // loop through the student error message array
-            for($i = 0; $i < sizeof($this->theValidator->getStudentErrorMessage()); $i++) {
+            for($i = 0; $i < sizeof($this->studentErrorMessageArray); $i++) {
                 // print each as a list item
                 echo("<li>");
-                echo($this->bold($this->theValidator->getStudentErrorMessage()[$i][Validator::E_FIELD]));
+                echo($this->bold($this->studentErrorMessageArray[$i][Validator::E_FIELD]));
                 echo(" ");
                 // convert the code to a message string
-                echo($this->theValidator->getErrorCode($this->theValidator->getStudentErrorMessage()[$i][Validator::E_ECODE]));
+                echo($this->getErrorCode($this->studentErrorMessageArray[$i][Validator::E_ECODE]));
                 echo("</li>");
             }
             // close the list
@@ -95,31 +120,31 @@ class ViewError extends View {
         $currentRow = 0;
         $rowTitle = "Error/s on Row ";
 
-        if($this->theValidator->getUnitErrorTally() > 0) {
+        if($this->unitErrorTally > 0) {
             // print the title
             $this->printTitle("h2", $this->h2UnitErrors, false);
 
-            for($i = 0; $i < sizeof($this->theValidator->getUnitErrorMessage()); $i++) {
+            for($i = 0; $i < sizeof($this->unitErrorMessageArray); $i++) {
 
                 // if current rows match, just add to the existing list
-                if($currentRow == $this->theValidator->getUnitErrorMessage()[$i][Validator::E_ROW]) {
+                if($currentRow == $this->unitErrorMessageArray[$i][Validator::E_ROW]) {
                     echo("<li>");
-                    echo($this->bold($this->theValidator->getUnitErrorMessage()[$i][Validator::E_FIELD]));
+                    echo($this->bold($this->unitErrorMessageArray[$i][Validator::E_FIELD]));
                     echo(" ");
                     // this line converts the error code in the array, to a string
-                    echo($this->theValidator->getErrorCode($this->theValidator->getUnitErrorMessage()[$i][Validator::E_ECODE]));
+                    echo($this->getErrorCode($this->unitErrorMessageArray[$i][Validator::E_ECODE]));
                     echo("</li>");
                 // else they don't match, so start a new list for the new row
                 } else {
-                    $currentRow = $this->theValidator->getUnitErrorMessage()[$i][Validator::E_ROW];
+                    $currentRow = $this->unitErrorMessageArray[$i][Validator::E_ROW];
                     echo("</ul>");
                     // start new list
-                    echo($rowTitle . $this->bold($this->theValidator->getUnitErrorMessage()[$i][Validator::E_ROW] . ":"));
+                    echo($rowTitle . $this->bold($this->unitErrorMessageArray[$i][Validator::E_ROW] . ":"));
                     echo("<ul>");
                     echo("<li>");
-                    echo($this->bold($this->theValidator->getUnitErrorMessage()[$i][Validator::E_FIELD]));
+                    echo($this->bold($this->unitErrorMessageArray[$i][Validator::E_FIELD]));
                     echo(" ");
-                    echo($this->theValidator->getErrorCode($this->theValidator->getUnitErrorMessage()[$i][Validator::E_ECODE]));
+                    echo($this->getErrorCode($this->unitErrorMessageArray[$i][Validator::E_ECODE]));
                     echo("</li>");
                 }
             }
@@ -133,40 +158,50 @@ class ViewError extends View {
      */
     private function printLogicErrors() {
 
-        if($this->theValidator->getLogicErrorTally() > 0) {
+        if($this->logicErrorTally > 0) {
             // print the title
             $this->printTitle("h2", $this->h2LogicErrors, false);
             // start the list
             echo("<ul>");
 
-            for($i = 0; $i < sizeof($this->theValidator->getLogicErrorMessage()); $i++) {
+            for($i = 0; $i < sizeof($this->logicErrorMessageArray); $i++) {
 
                 echo("<li>");
                 // print the field
-                echo($this->bold($this->theValidator->getLogicErrorMessage()[$i][Validator::LE_FIELD]));
+                echo($this->bold($this->logicErrorMessageArray)[$i][Validator::LE_FIELD]);
                 echo(" ");
                 // convert code to message
-                echo($this->theValidator->getErrorCode($this->theValidator->getLogicErrorMessage()[$i][Validator::LE_ECODE]));
+                echo($this->getErrorCode($this->logicErrorMessageArray[$i][Validator::LE_ECODE]));
 
                 // decide whether to display semester or not
-                switch($this->theValidator->getLogicErrorMessage()[$i][Validator::LE_ECODE]) {
+                switch($this->logicErrorMessageArray[$i][Validator::LE_ECODE]) {
                     case 9:
-                        echo($this->theValidator->getLogicErrorMessage()[$i][Validator::LE_ROW_1]);
+                        echo($this->logicErrorMessageArray[$i][Validator::LE_ROW_1]);
                         echo(" and ");
-                        echo($this->theValidator->getLogicErrorMessage()[$i][Validator::LE_ROW_2]);
+                        echo($this->logicErrorMessageArray[$i][Validator::LE_ROW_2]);
                         break;
                     case 10:
-                        echo($this->theValidator->getLogicErrorMessage()[$i][Validator::LE_SEM]);
+                        echo($this->logicErrorMessageArray[$i][Validator::LE_SEM]);
                         echo(" at rows ");
-                        echo($this->theValidator->getLogicErrorMessage()[$i][Validator::LE_ROW_1]);
+                        echo($this->logicErrorMessageArray[$i][Validator::LE_ROW_1]);
                         echo(" and ");
-                        echo($this->theValidator->getLogicErrorMessage()[$i][Validator::LE_ROW_2]);
+                        echo($this->logicErrorMessageArray[$i][Validator::LE_ROW_2]);
                         break;
                 }
             }
             // close the list
             echo("</ul>");
         }
+    }
+
+    /**
+     * This function converts an error code to its string message.
+     *
+     * @param int $index - The error code.
+     * @return String - The error message.
+     */
+    public final function getErrorCode($index) {
+        return $this->errorCode[$index];
     }
 
     /**
