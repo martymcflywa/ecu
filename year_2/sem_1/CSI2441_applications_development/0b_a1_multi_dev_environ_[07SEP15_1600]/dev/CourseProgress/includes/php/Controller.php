@@ -24,8 +24,12 @@ class Controller {
         $this->theSummaryView = $theSummaryView;
         $this->theErrorView = $theErrorView;
 
-        // go get student details
+        // go get user input
         $this->retrieveStudentDetails();
+        $this->retrieveUnitDetails();
+
+        // validate the input
+
     }
 
     /**
@@ -89,9 +93,30 @@ class Controller {
         }
     }
 
-    // get unit data
-    private function startUnits() {
-        $this->theUnits->startUnits();
+    /**
+     * This function retrieves unit data from the form.
+     */
+    private function retrieveUnitDetails() {
+
+        for($i = 0; $i < Units::UNIT_ROWS; $i++) {
+
+            $j = $i + 1;
+
+            // if row is partially/fully populated, store it in unitDetails array.
+            if ($_POST["UnitCode_" . $j] != "" ||
+                $_POST["CP_" . $j] != "" ||
+                $_POST["YS_" . $j] != "" ||
+                $_POST["UM_" . $j] != ""
+            ) {
+                $this->theUnits->setUnitDetailsAt($i, Units::UC, $_POST["UnitCode_" . $j]);
+                $this->theUnits->setUnitDetailsAt($i, Units::CP, $_POST["CP_" . $j]);
+                $this->theUnits->setUnitDetailsAt($i, Units::YS, $_POST["YS_" . $j]);
+                $this->theUnits->setUnitDetailsAt($i, Units::UM, $_POST["UM_" . $j]);
+                // make grade blank for now
+                $this->theUnits->setUnitDetailsAt($i, Units::GR, "");
+                $this->theUnits->unitsIsPopulated();
+            }
+        }
     }
 }
 

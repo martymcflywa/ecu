@@ -24,15 +24,8 @@ class Units {
 
     private $isPopulated = false;
 
-    // $filledRows not working for me like in asp,
-    // getting NULL when referred statically,
-
-    // public static $filledRows;
-
-    // so using this instead: sizeof(unitDetailsArray)
-
-    private $unitDetails = array();
-    private $highestMark = array();
+    private $unitDetails;
+    private $highestMark;
 
     /**
      * The constructor for the Units class.
@@ -42,39 +35,20 @@ class Units {
         // init some default values
         $this->isPopulated = false;
         $this->setHighestMark( "", 0, "", 0, "");
+        $this->unitDetails = array();
+        $this->highestMark = array();
     }
 
     /**
-     * This function kicks off Units.
+     * This function stores a value at the specified
+     * row and column of unitDetails array.
+     *
+     * @param int $row - The row where to store the value.
+     * @param int $col - The column where to store the value.
+     * @param String $value - The value to store
      */
-    public function startUnits() {
-        $this->retrieveUnitDetails();
-    }
-
-    /**
-     * This function retrieves unit data from the form.
-     */
-    private function retrieveUnitDetails() {
-
-        for($i = 0; $i < $this::UNIT_ROWS; $i++) {
-
-            $j = $i + 1;
-
-            // if any unit form posts are not blank, store them in array
-            if ($_POST["UnitCode_" . $j] != "" ||
-                $_POST["CP_" . $j] != "" ||
-                $_POST["YS_" . $j] != "" ||
-                $_POST["UM_" . $j] != ""
-            ) {
-                $this->unitDetails[$i][$this::UC] = $_POST["UnitCode_" . $j];
-                $this->unitDetails[$i][$this::CP] = $_POST["CP_" . $j];
-                $this->unitDetails[$i][$this::YS] = $_POST["YS_" . $j];
-                $this->unitDetails[$i][$this::UM] = $_POST["UM_" . $j];
-                $this->unitDetails[$i][$this::GR] = "";
-
-                $this->isPopulated = true;
-            }
-        }
+    public function setUnitDetailsAt($row, $col, $value) {
+        $this->unitDetails[$row][$col] = $value;
     }
 
     /**
@@ -83,6 +57,7 @@ class Units {
      *
      * @param int $index - The array index, where to set the credit points.
      * @param int $cp - The credit points to set.
+     * @deprecated by setUnitDetailsAt(). TODO: delete
      */
     public function setCreditPoints($index, $cp) {
         $this->unitDetails[$index][$this::CP] = (int) $cp;
@@ -94,6 +69,7 @@ class Units {
      *
      * @param $index - The array index, where to set the credit points.
      * @param int $mark - The unit mark to set.
+     * @deprecated by setUnitDetailsAt(). TODO: delete
      */
     public function setUnitMark($index, $mark) {
         $this->unitDetails[$index][$this::UM] = (int) $mark;
@@ -104,6 +80,7 @@ class Units {
      *
      * @param int $index - The array index, where to set the grade.
      * @param String $grade - The grade to set.
+     * @deprecated by setUnitDetailsAt(). TODO: delete
      */
     public function setUnitGrade($index, $grade) {
         $this->unitDetails[$index][$this::GR] = $grade;
@@ -127,6 +104,13 @@ class Units {
             $mark,
             $grade
         );
+    }
+
+    /**
+     * This function sets the isPopulated boolean to true.
+     */
+    public function unitsIsPopulated() {
+        $this->isPopulated = true;
     }
 
     /**
