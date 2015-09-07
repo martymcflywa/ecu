@@ -8,21 +8,16 @@ class Controller {
     private $theUnits;
     private $theRules;
     private $theValidator;
-    private $theSummaryView;
-    private $theErrorView;
 
     function __construct(Student $theStudent, Units $theUnits,
                          BusinessRules $theRules,
-                         Validator $theValidator, View $theSummaryView,
-                         View $theErrorView)
+                         Validator $theValidator)
     {
         // import all the things
         $this->theStudent = $theStudent;
         $this->theUnits = $theUnits;
         $this->theRules = $theRules;
         $this->theValidator = $theValidator;
-        $this->theSummaryView = $theSummaryView;
-        $this->theErrorView = $theErrorView;
 
         // go get user input
         $this->retrieveStudentDetails();
@@ -40,8 +35,22 @@ class Controller {
         ) {
             // calculate the summary
             $this->theRules->calculateSummary();
-            // then show me the summary
-            $theSummaryView = new ViewSummary("Course Progression Summary");
+
+            // send the view everything it needs and show me the summary
+            $theSummaryView = new ViewSummary(
+                "Course Progression Summary",
+                $this->theRules->isComplete(),
+                $this->theRules->getPassedCP(),
+                $this->theRules->getCPDelta(),
+                $this->theRules->getUnitsAttempted(),
+                $this->theRules->getUnitsPassed(),
+                $this->theRules->getSemRemaining(),
+                $this->theRules->getMarkAverage(),
+                $this->theRules->getGradeAverage(),
+                $this->theStudent->getStudentDetails(),
+                $this->theUnits->getUnitDetails(),
+                $this->theUnits->getHighestMark()
+            );
 
         } else {
             // else there are errors, show me the error view instead

@@ -20,6 +20,7 @@ class ViewSummary extends View {
     private $h2HighestMark = "Highest mark";
     private $h2Transcript = "Transcript";
 
+    // store relevant details from theRules here
     private $progressionStatus;
     private $isComplete;
     private $passedCPTotal;
@@ -30,40 +31,23 @@ class ViewSummary extends View {
     private $markAverage;
     private $gradeAverage;
 
+    // only copies of these arrays stored here,
+    // not the reference, so we have "read only" access
+    // note: don't shadow variable names here, otherwise may cause data loss
+    private $studentDetailsArray;
+    private $unitDetailsArray;
+    private $highestMarkArray;
+
     private $tableConfig = "border=\"1\" cellpadding=\"10\" style=\"border-collapse:collapse;\"";
 
     /**
      * @Override
      * This function initiates the summary view.
-     * It retrieves values calculated by BusinessRule,
-     * and prints them to screen, along with a table
-     * of the highestMark, and the student transcript.
-     */
-    protected function startView() {
-
-        $this->setRuleValues(
-            $this->theValidator->getProgressionStatus(),
-            $this->theValidator->isComplete(),
-            $this->theValidator->getPassedCP(),
-            $this->theValidator->getCPDelta(),
-            $this->theValidator->getUnitsAttempted(),
-            $this->theValidator->getUnitsPassed(),
-            $this->theValidator->getSemRemaining(),
-            $this->theValidator->getMarkAverage(),
-            $this->theValidator->getGradeAverage()
-        );
-
-        $this->printStudentDetails();
-        $this->printProgressionSummary();
-        $this->printCreditPointSummary();
-        $this->printHighestMark();
-        $this->printTranscript();
-    }
-
-    /**
-     * This function retrieves all the data calculated from theRules,
-     * and sets them to the associated class field so they can be used
-     * for printing.
+     *
+     * It retrieves all the data calculated from theRules,
+     * copies of input data and prints them to screen,
+     * along with a table of the highestMark,
+     * and the student transcript.
      *
      * @param String $progressionStatus.
      * @param bool $isComplete.
@@ -74,17 +58,20 @@ class ViewSummary extends View {
      * @param float $semRemaining.
      * @param float $markAverage.
      * @param String $gradeAverage.
+     * @param array $studentDetails.
+     * @param array $unitDetails.
+     * @param array $highestMark.
      */
-    public final function setRuleValues($progressionStatus,
-                                           $isComplete,
-                                           $passedCPTotal,
-                                           $cpDelta,
-                                           $unitAttemptTotal,
-                                           $unitsPassed,
-                                           $semRemaining,
-                                           $markAverage,
-                                           $gradeAverage)
-    {
+    function __construct($progressionStatus, $isComplete,
+                         $passedCPTotal, $cpDelta,
+                         $unitAttemptTotal, $unitsPassed,
+                         $semRemaining, $markAverage,
+                         $gradeAverage, array $studentDetails,
+                         array $unitDetails, array $highestMark
+    ) {
+        // call super constructor
+        parent::__construct($this->h1Header);
+        // then set all the incoming params
         $this->progressionStatus = $progressionStatus;
         $this->isComplete = $isComplete;
         $this->passedCPTotal = $passedCPTotal;
@@ -94,6 +81,20 @@ class ViewSummary extends View {
         $this->semRemaining = $semRemaining;
         $this->markAverage = $markAverage;
         $this->gradeAverage = $gradeAverage;
+        $this->studentDetailsArray = $studentDetails;
+        $this->unitDetailsArray = $unitDetails;
+        $this->highestMarkArray = $highestMark;
+
+        // convert some student values to their meaning
+        $this->convertEnrolmentType($this->studentDetailsArray[Student::ET]);
+        $this->convertCourseType($this->studentDetailsArray[Student::CT]);
+
+        // time to print stuff to screen
+        $this->printStudentDetails();
+        $this->printProgressionSummary();
+        $this->printCreditPointSummary();
+        $this->printHighestMark();
+        $this->printTranscript();
     }
 
     /**
@@ -106,8 +107,8 @@ class ViewSummary extends View {
 
         // print student details
         echo("<p>");
-        echo($this->bold("Name: ") . $this->theValidator->getStudentDetails()[Student::FN] . " " . $this->theValidator->getStudentDetails()[Student::SN] . $this->br);
-        echo($this->bold("Student ID: ") . $this->theValidator->getStudentDetails()[Student::ID] . $this->br);
+        echo($this->bold("Name: ") . $this->studentDetailsArray[Student::FN] . " " . $this->studentDetailsArray[Student::SN] . $this->br);
+        echo($this->bold("Student ID: ") . $this->studentDetailsArray[Student::ID] . $this->br);
         echo($this->bold("Enrolment type: ") . $this->enrolmentType . $this->br);
         echo($this->bold("Course type: ") . $this->courseType . $this->br);
         echo("</p>");
@@ -122,6 +123,7 @@ class ViewSummary extends View {
 
         // print progression summary
         echo("<p>");
+
         // make the status red if anything other than good standing
         echo($this->bold("Progression status: "));
         if($this->progressionStatus != BusinessRules::GOOD_STANDING) {
@@ -178,19 +180,19 @@ class ViewSummary extends View {
 
         echo("<tr>");
         echo("<td>");
-        echo($this->theValidator->getHighestMark()[Units::UC]);
+        echo($this->highestMarkArray[Units::UC]);
         echo("</td>");
         echo("<td align=\"center\">");
-        echo($this->theValidator->getHighestMark()[Units::CP]);
+        echo($this->highestMarkArray[Units::CP]);
         echo("</td>");
         echo("<td align=\"center\">");
-        echo($this->theValidator->getHighestMark()[Units::YS]);
+        echo($this->highestMarkArray[Units::YS]);
         echo("</td>");
         echo("<td align=\"right\">");
-        echo($this->theValidator->getHighestMark()[Units::UM]);
+        echo($this->highestMarkArray[Units::UM]);
         echo("</td>");
         echo("<td>");
-        echo($this->theValidator->getHighestMark()[Units::GR]);
+        echo($this->highestMarkArray[Units::GR]);
         echo("</td>");
         echo("</tr>");
         echo("</table>");
@@ -208,30 +210,30 @@ class ViewSummary extends View {
         echo("<table $this->tableConfig>");
         $this->printTableHeaders();
 
-        for($i = 0; $i < sizeof($this->theValidator->getUnitDetails()); $i++) {
+        for($i = 0; $i < sizeof($this->unitDetailsArray); $i++) {
             echo("<tr>");
             echo("<td>");
-            echo($this->theValidator->getUnitDetails()[$i][Units::UC]);
+            echo($this->unitDetailsArray[$i][Units::UC]);
             echo("</td>");
             echo("<td align=\"center\">");
-            echo($this->theValidator->getUnitDetails()[$i][Units::CP]);
+            echo($this->unitDetailsArray[$i][Units::CP]);
             echo("</td>");
             echo("<td align=\"center\">");
-            echo($this->theValidator->getUnitDetails()[$i][Units::YS]);
+            echo($this->unitDetailsArray[$i][Units::YS]);
             echo("</td>");
             echo("<td align=\"right\">");
 
             // show any mark less than pass as red
-            if($this->theValidator->getUnitDetails()[$i][Units::UM] < BusinessRules::MARK_PASS) {
-                $this->printRed($this->theValidator->getUnitDetails()[$i][Units::UM]);
+            if($this->unitDetailsArray[$i][Units::UM] < BusinessRules::MARK_PASS) {
+                $this->printRed($this->unitDetailsArray[$i][Units::UM]);
                 echo("</td>");
                 echo("<td>");
-                $this->printRed($this->theValidator->getUnitDetails()[$i][Units::GR]);
+                $this->printRed($this->unitDetailsArray[$i][Units::GR]);
             } else {
-                echo($this->theValidator->getUnitDetails()[$i][Units::UM]);
+                echo($this->unitDetailsArray[$i][Units::UM]);
                 echo("</td>");
                 echo("<td>");
-                echo($this->theValidator->getUnitDetails()[$i][Units::GR]);
+                echo($this->unitDetailsArray[$i][Units::GR]);
             }
 
             echo("</td>");

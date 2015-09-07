@@ -17,11 +17,6 @@ require_once 'includes/php/BusinessRules.php';
 use includes\BusinessRules;
 require_once 'includes/php/Validator.php';
 use includes\Validator;
-require_once 'includes/php/View.php';
-require_once 'includes/php/ViewSummary.php';
-use includes\ViewSummary;
-require_once 'includes/php/ViewError.php';
-use includes\ViewError;
 require_once 'includes/php/Controller.php';
 use includes\Controller;
 
@@ -55,28 +50,14 @@ $theUnits = new Units();
 $theValidator = new Validator($theStudent, $theUnits);
 $theRules = new BusinessRules($theStudent, $theUnits);
 
-// create the views, TODO: maybe delete these, just have controller create them like below
-$theSummaryView = new ViewSummary("Course Progression Summary");
-$theErrorView = new ViewError("Course Progression Form Errors");
-
 // create the controller, pass all the objects to it
+// rest of mainline logic happens in theController constructor
 $theController = new Controller(
     $theStudent,
     $theUnits,
     $theRules,
-    $theValidator,
-    $theSummaryView,
-    $theErrorView
+    $theValidator
 );
-
-// import the controller, would do at construction, but having "chicken or the egg" issues
-$theRules->setController($theValidator);
-
-// start theStudent and theUnits, these calls initiate the retrieval and storage of user input into arrays
-$theUnits->startUnits();
-// start theValidator, only do this after theStudent/Unit has retrieved their data
-$theValidator->startValidator();
-
 
 
 /**

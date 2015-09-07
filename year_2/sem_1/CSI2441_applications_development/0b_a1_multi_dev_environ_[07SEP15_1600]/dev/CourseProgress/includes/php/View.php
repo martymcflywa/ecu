@@ -141,23 +141,24 @@ class View {
         echo($this->backButton);
     }
 
-    /**
-     * This function sets the enrolment type value.
-     *
-     * @param int $value - The enrolment type value.
-     */
-    public final function setEnrolmentType($value) {
-        $this->convertEnrolmentType($value);
-    }
-
-    /**
-     * This function sets the course type value.
-     *
-     * @param int $value - The course type value.
-     */
-    public final function setCourseType($value) {
-        $this->convertCourseType($value);
-    }
+    // TODO: delete
+//    /**
+//     * This function sets the enrolment type value.
+//     *
+//     * @param int $value - The enrolment type value.
+//     */
+//    public final function setEnrolmentType($value) {
+//        $this->convertEnrolmentType($value);
+//    }
+//
+//    /**
+//     * This function sets the course type value.
+//     *
+//     * @param int $value - The course type value.
+//     */
+//    public final function setCourseType($value) {
+//        $this->convertCourseType($value);
+//    }
 }
 
 ?>
