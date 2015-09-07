@@ -16,7 +16,6 @@ class Validator {
     // import reference to objects
     private $theStudent;
     private $theUnits;
-    private $theRules;
 
     // error tallies and arrays
     private $studentErrorTally;
@@ -57,13 +56,11 @@ class Validator {
      *
      * @param Student $theStudent
      * @param Units $theUnits
-     * @param BusinessRules $theRules
      */
-    function __construct(Student $theStudent, Units $theUnits, BusinessRules $theRules) {
+    function __construct(Student $theStudent, Units $theUnits) {
 
         $this->theStudent = $theStudent;
         $this->theUnits = $theUnits;
-        $this->theRules = $theRules;
 
         // build regex and error code definitions
         $this->buildRegExDict();
@@ -71,20 +68,10 @@ class Validator {
     }
 
     /**
-     * This function initiates the validation for
-     * student and unit input, as well as logical errors.
-     */
-    public final function startValidator() {
-        $this->validateStudentDetails();
-        $this->validateUnitDetails();
-        $this->validateLogic();
-    }
-
-    /**
      * This function validates student details.
      * Tests each array index for population before proceeding.
      */
-    private final function validateStudentDetails() {
+    public final function validateStudentDetails() {
 
         // validate names
         if(!empty($this->theStudent->getStudentDetails()[Student::FN])) {
@@ -111,7 +98,7 @@ class Validator {
      * This function validates unit details.
      * Tests each array index for population before proceeding.
      */
-    private final function validateUnitDetails() {
+    public final function validateUnitDetails() {
 
         // iterate each row
         for($i = 0; $i < sizeof($this->theUnits->getUnitDetails()); $i++) {
@@ -197,7 +184,7 @@ class Validator {
         // if credit points is valid
         if(preg_match($this->regExDict["creditPoints"], $this->theUnits->getUnitDetails()[$index][Units::CP])) {
             // cast to int so we can do math with it
-            $this->theUnits->setCreditPoints($index, $this->theUnits->getUnitDetails()[$index][Units::CP]);
+            $this->theUnits->setUnitDetailsAt($index, Units::CP, (int) $this->theUnits->getUnitDetails()[$index][Units::CP]);
         } else {
             $this->validateError("unit", $index + 1, "Credit Points", 5);
         }
@@ -230,13 +217,13 @@ class Validator {
         // if unit mark is valid
         if(preg_match($this->regExDict["mark"], $this->theUnits->getUnitDetails()[$index][Units::UM])) {
             // test unit mark against min/max range
-            if(intval($this->theUnits->getUnitDetails()[$index][Units::UM] < $minMark ||
-                intval($this->theUnits->getUnitDetails()[$index][Units::UM]) > $maxMark)) {
-
+            if ((int)$this->theUnits->getUnitDetails()[$index][Units::UM] < $minMark ||
+                (int)$this->theUnits->getUnitDetails()[$index][Units::UM] > $maxMark
+            ) {
                 $this->validateError("unit", $index + 1, "Unit Mark", 7);
             } else {
                 // cast to int so we can do math with it
-                $this->theUnits->setUnitMark($index, $this->theUnits->getUnitDetails()[$index][Units::UM]);
+                $this->theUnits->setUnitDetailsAt($index, Units::UM, $this->getUnitDetails()[$index][Units::UM]);
             }
         } else {
             $this->validateError("unit", $index + 1, "Unit Mark", 8);
@@ -246,7 +233,7 @@ class Validator {
     /**
      * This function initiates logic validation.
      */
-    private final function validateLogic() {
+    public final function validateLogic() {
         $this->getUnitMatches($this->theUnits->getUnitDetails());
     }
 
@@ -513,10 +500,6 @@ class Validator {
         $this->errorCode[10] = "appears more than once in semester "; // then state sem and rows
     }
 
-    /*******************
-     * OWN GET/SETTERS *
-     *******************/
-
     /**
      * This function converts an error code to its string message.
      *
@@ -579,191 +562,6 @@ class Validator {
      */
     public final function getUnitErrorMessage() {
         return $this->unitErrorMessage;
-    }
-
-    /***********************
-     * STUDENT GET/SETTERS *
-     ***********************/
-
-    /**
-     * This function returns isPopulated from Student.
-     *
-     * @return bool isStudentPopulated.
-     */
-    public final function isStudentPopulated() {
-        return $this->theStudent->isStudentPopulated();
-    }
-
-    /**
-     * This function returns studentDetails array from Student.
-     *
-     * @return array studentDetails.
-     */
-    public final function getStudentDetails() {
-        return $this->theStudent->getStudentDetails();
-    }
-
-    /********************
-     * UNIT GET/SETTERS *
-     ********************/
-
-    /**
-     * This function returns isPopulated from Units.
-     *
-     * @return bool isUnitsPopulated.
-     */
-    public final function isUnitsPopulated() {
-        return $this->theUnits->isUnitsPopulated();
-    }
-
-    /**
-     * This function returns the unitDetails array from Units.
-     *
-     * @return array $unitDetails - Unit details array.
-     */
-    public function getUnitDetails() {
-        return $this->theUnits->getUnitDetails();
-    }
-
-    /**
-     * This function returns the highestMark array at Units.
-     *
-     * @return int $highestMark - The highest mark array.
-     */
-    public function getHighestMark() {
-        return $this->theUnits->getHighestMark();
-    }
-
-    /**
-     * This function sets the credit point for an entry in the input array at Units.
-     * Casts credit points as int.
-     *
-     * @param int $index - The array index, where to set the credit points.
-     * @param int $cp - The credit points to set.
-     */
-    public function setCreditPoints($index, $cp) {
-        $this->theUnits->setCreditPoints($index, $cp);
-    }
-
-    /**
-     * This function sets the unit mark for an entry in the input array at Units.
-     * Casts unit mark as int.
-     *
-     * @param $index - The array index, where to set the credit points.
-     * @param int $mark - The unit mark to set.
-     */
-    public function setUnitMark($index, $mark) {
-        $this->theUnits->setUnitMark($index, $mark);
-    }
-
-    /**
-     * This function sets the unit grade for an entry in the input array at Units.
-     *
-     * @param int $index - The array index, where to set the grade.
-     * @param String $grade - The grade to set.
-     */
-    public function setUnitGrade($index, $grade) {
-        $this->theUnits->setUnitGrade($index, $grade);
-    }
-
-    /**
-     * This function sets the highestMark array at Units.
-     *
-     * @param String $unitCode.
-     * @param int $creditPoints.
-     * @param String $sem.
-     * @param int $mark.
-     * @param String $grade.
-     */
-    public function setHighestMark($unitCode, $creditPoints, $sem, $mark, $grade) {
-        $this->theUnits->setHighestMark($unitCode, $creditPoints, $sem, $mark, $grade);
-    }
-
-    /*********************
-     * RULES GET/SETTERS *
-     *********************/
-
-    /**
-     * This function returns progressionStatus from BusinessRules.
-     *
-     * @return string progressionStatus.
-     */
-    public final function getProgressionStatus() {
-        return $this->theRules->getProgressionStatus();
-    }
-
-    /**
-     * This function returns the completion status from BusinessRules.
-     * Finished course == true;
-     * Not finished course == false;
-     *
-     * @return bool isComplete.
-     */
-    public final function isComplete() {
-        return $this->theRules->isComplete();
-    }
-
-    /**
-     * This function returns passedCPTotal from BusinessRules.
-     *
-     * @return int passedCPTotal.
-     */
-    public final function getPassedCP() {
-        return $this->theRules->getPassedCP();
-    }
-
-    /**
-     * This function returns cpDelta from BusinessRules.
-     *
-     * @return int cpDelta.
-     */
-    public function getCPDelta() {
-        return $this->theRules->getCPDelta();
-    }
-
-    /**
-     * This function returns unitAttemptTotal from BusinessRules.
-     *
-     * @return int unitAttemptTotal.
-     */
-    public function getUnitsAttempted() {
-        return $this->theRules->getUnitsAttempted();
-    }
-
-    /**
-     * This function returns unitsPassed from BusinessRules.
-     *
-     * @return int unitsPassed.
-     */
-    public function getUnitsPassed() {
-        return $this->theRules->getUnitsPassed();
-    }
-
-    /**
-     * This function returns semRemaining from BusinessRules.
-     *
-     * @return int semRemaining.
-     */
-    public function getSemRemaining() {
-        return $this->theRules->getSemRemaining();
-    }
-
-    /**
-     * This function returns markAverage from BusinessRules.
-     *
-     * @return int markAverage.
-     */
-    public function getMarkAverage() {
-        return $this->theRules->getMarkAverage();
-    }
-
-    /**
-     * This function returns gradeAverage from BusinessRules.
-     *
-     * @return string gradeAverage.
-     */
-    public function getGradeAverage() {
-        return $this->theRules->getGradeAverage();
     }
 }
 

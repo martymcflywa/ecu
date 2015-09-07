@@ -45,7 +45,7 @@ class Units {
      *
      * @param int $row - The row where to store the value.
      * @param int $col - The column where to store the value.
-     * @param String $value - The value to store
+     * @param mixed $value - The value to store
      */
     public function setUnitDetailsAt($row, $col, $value) {
         $this->unitDetails[$row][$col] = $value;

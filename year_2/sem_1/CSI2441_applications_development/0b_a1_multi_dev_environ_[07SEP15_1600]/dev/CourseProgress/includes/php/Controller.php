@@ -29,7 +29,9 @@ class Controller {
         $this->retrieveUnitDetails();
 
         // validate the input
-
+        $this->theValidator->validateStudentDetails();
+        $this->theValidator->validateUnitDetails();
+        $this->theValidator->validateLogic();
     }
 
     /**
