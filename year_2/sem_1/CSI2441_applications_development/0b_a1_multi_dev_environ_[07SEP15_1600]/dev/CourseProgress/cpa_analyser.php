@@ -22,6 +22,8 @@ require_once 'includes/php/ViewSummary.php';
 use includes\ViewSummary;
 require_once 'includes/php/ViewError.php';
 use includes\ViewError;
+require_once 'includes/php/Controller.php';
+use includes\Controller;
 
 /**
  * This php script accepts student and unit input data and presents
@@ -50,17 +52,26 @@ error_reporting(E_ALL & ~E_NOTICE);
 $theStudent = new Student();
 $theUnits = new Units();
 $theRules = new BusinessRules();
-// create the controller
-$theValidator = new Validator($theStudent, $theUnits, $theRules);
+$theValidator = new Validator();
+
+// create the views, TODO: maybe delete these, just have controller create them like below
+$theSummaryView = new ViewSummary("Course Progression Summary");
+$theErrorView = new ViewError("Course Progression Form Errors");
+
+// create the controller, pass all the objects to it
+$theController = new Controller(
+    $theStudent,
+    $theUnits,
+    $theRules,
+    $theValidator,
+    $theSummaryView,
+    $theErrorView
+);
 
 // import the controller, would do at construction, but having "chicken or the egg" issues
-// theStudent also shouldn't refer the controller, but it needs Validator->missingInputError()
-// which proves that a separate controller class should be defined, but... running out of time
-$theStudent->setController($theValidator);
 $theRules->setController($theValidator);
 
 // start theStudent and theUnits, these calls initiate the retrieval and storage of user input into arrays
-$theStudent->startStudent();
 $theUnits->startUnits();
 // start theValidator, only do this after theStudent/Unit has retrieved their data
 $theValidator->startValidator();

@@ -13,15 +13,8 @@ namespace includes;
  */
 class Student {
 
-    // storing student details as individual variables
-    private $firstName;
-    private $surname;
-    private $enrolmentType;
-    private $studentID;
-    private $courseType;
-
     // and in an array to pass around easier
-    private $studentDetails = array();
+    private $studentDetails;
 
     // studentDetails array index
     const FN = 0;
@@ -36,110 +29,48 @@ class Student {
     // how many student details we are expecting
     const STUDENT_DETAILS_TALLY = 5;
 
-    // object ref to theValidator, created at main in cpa_analyser.php
-    // don't want to create a new Validator here, just pass the reference around
-    private $theValidator;
-
     /**
      * The constructor for the Student class.
      */
     function __construct() {
         $this->isPopulated = false;
+        $this->studentDetails = array();
     }
 
     /**
-     * This function imports theValidator object.
+     * This function stores a value at the specified index of
+     * the studentDetails array.
      *
-     * @param $theValidator Validator - An instance of the Validator class.
+     * @param int $index - Where to store the value.
+     * @param String $value - The value to store
      */
-    public final function setController(Validator $theValidator) {
-        $this->theValidator = $theValidator;
+    public final function setStudentDetailsAt($index, $value) {
+        $this->studentDetails[$index] = $value;
     }
 
     /**
-     * This function kicks off the Student.
-     * Can't call these functions until theValidator is imported, so rather
-     * than calling them from the constructor, call startStudent() AFTER
-     * theValidator has been imported.
+     * This function sets the student's enrolment type value.
+     *
+     * @param int $value - The enrolment type value, not the code.
      */
-    public final function startStudent() {
-        $this->retrieveStudentDetails();
-        $this->packStudentDetails();
+    public final function setEnrolmentType($value) {
+        $this->studentDetails[Student::ET] = $value;
     }
 
     /**
-     * This function retrieves student data from the form.
+     * This function sets the student's course type value.
+     *
+     * @param int $value - The course type value, not the code.
      */
-    private final function retrieveStudentDetails() {
-
-        global $theValidator;
-
-        /**
-         * Test the fields are populated before retrieving them.
-         * Requires Validator reference to call missingInputError().
-         */
-
-        if(strlen($_POST["Firstname"]) > 0) {
-            $this->firstName = $_POST["Firstname"];
-            $this->isPopulated = true;
-        } else {
-            $theValidator->missingInputError("student", -1, "Firstname");
-        }
-
-        if(strlen($_POST["Surname"]) > 0) {
-            $this->surname = $_POST["Surname"];
-            $this->isPopulated = true;
-        } else {
-            $theValidator->missingInputError("student", -1, "Surname");
-        }
-
-        // convert from code definition to actual value
-        switch(intval($_POST["EnrolmentType"])) {
-            case 1:
-                $this->enrolmentType = BusinessRules::CP_FULLTIME;
-                break;
-            case 2:
-                $this->enrolmentType = BusinessRules::CP_PARTTIME;
-                break;
-        }
-
-        if(strlen($_POST["StudentID"]) > 0) {
-            $this->studentID = $_POST["StudentID"];
-            $this->isPopulated = true;
-        } else {
-            $theValidator->missingInputError("student", -1, "StudentID");
-        }
-
-        // convert from code definition to actual value
-        switch(intval($_POST["CourseType"])) {
-            case 1:
-                $this->courseType = BusinessRules::CP_UNDERGRAD;
-                break;
-            case 2:
-                $this->courseType = BusinessRules::CP_UNDERGRAD_DOUBLE;
-                break;
-            case 3:
-                $this->courseType = BusinessRules::CP_GRAD_DIPLOMA;
-                break;
-            case 4:
-                $this->courseType = BusinessRules::CP_MASTERS_COURSE;
-                break;
-            case 5:
-                $this->courseType = BusinessRules::CP_MASTERS_RESEARCH;
-                break;
-        }
+    public final function setCourseType($value) {
+        $this->studentDetails[Student::CT] = $value;
     }
 
     /**
-     * This function packs student details into an array.
+     * This function sets the isPopulated boolean to true.
      */
-    private final function packStudentDetails() {
-        $this->studentDetails[Student::FN] = $this->firstName;
-        $this->studentDetails[Student::SN] = $this->surname;
-        $this->studentDetails[Student::ET] = $this->enrolmentType;
-        $this->studentDetails[Student::ID] = $this->studentID;
-        $this->studentDetails[Student::CT] = $this->courseType;
-
+    public final function studentIsPopulated() {
+        $this->isPopulated = true;
     }
 
     /**
