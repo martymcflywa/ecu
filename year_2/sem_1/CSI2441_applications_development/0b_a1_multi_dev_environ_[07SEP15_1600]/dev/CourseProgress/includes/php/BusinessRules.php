@@ -128,7 +128,7 @@ class BusinessRules {
             $this->incrementUnitAttemptTotal();
 
             // set the grade for this mark
-            $this->theUnits->setUnitDetailsAt($i, Units::GR, $this->theUnits->getUnitDetails()[$i][Units::UM]);
+            $this->theUnits->setUnitDetailsAt($i, Units::GR, $this->getGrade($this->theUnits->getUnitDetails()[$i][Units::UM]));
 
             // then store the highest mark found in theUnits->highestMark array
             if($this->theUnits->getUnitDetails()[$i][Units::UM] > $this->theUnits->getHighestMark()[Units::UM]) {
