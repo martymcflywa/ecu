@@ -41,6 +41,11 @@ use includes\ViewError;
  * @version 20150906
  */
 
+// comment this out to see notices too
+// notices are generated for Validator->validatePassMatchUnits() and Validator->validateSemMatchUnits(),
+// even though testing isset($theArray) before calling them
+error_reporting(E_ALL & ~E_NOTICE);
+
 // create the models
 $theStudent = new Student();
 $theUnits = new Units();
@@ -83,6 +88,10 @@ if ($theValidator->getStudentErrorTally() == 0 &&
 //echo(var_dump($theUnits->getUnitDetails()));
 //echo(var_dump(!isset($theUnits->getUnitDetails()[0][Units::UM])));
 //echo(var_dump(preg_match($this->regExDict["unitCodeSuffix"], $this->theUnits->getUnitDetails()[0][Units::UC]))) // >= 6000
+//echo("<br />");
+//echo(var_dump(array_key_exists(1, $theUnits->getUnitDetails())) . "<br />");
+//echo(var_dump(isset($theUnits->getUnitDetails()[1][Units::UC])) . "<br />");
+//echo(var_dump($theUnits->getUnitDetails()));
 /**
  * END DEBUG
  */
