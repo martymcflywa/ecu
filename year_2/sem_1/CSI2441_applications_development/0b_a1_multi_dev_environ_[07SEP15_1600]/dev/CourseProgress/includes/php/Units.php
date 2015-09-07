@@ -24,7 +24,12 @@ class Units {
 
     private $isPopulated = false;
 
-    private $filledRows;
+    // $filledRows not working for me like in asp,
+    // getting NULL when referred statically,
+
+    // public static $filledRows;
+
+    // so using this instead: sizeof(unitDetailsArray)
 
     private $unitDetails = array();
     private $highestMark = array();
@@ -36,7 +41,6 @@ class Units {
 
         // init some default values
         $this->isPopulated = false;
-        $this->filledRows = 0;
         $this->setHighestMark( "", 0, "", 0, "");
     }
 
@@ -51,69 +55,6 @@ class Units {
      * This function retrieves unit data from the form.
      */
     private function retrieveUnitDetails() {
-
-        // loop over post items
-        for($i = 0; $i < $this::UNIT_ROWS; $i++) {
-
-            $j = $i + 1;
-
-            // if any row is partially/fully populated, go get the value
-            if ($_POST["UnitCode_" . $j] != "" ||
-                $_POST["CP_" . $j] != "" ||
-                $_POST["YS_" . $j] != "" ||
-                $_POST["UM_" . $j] != ""
-            ) {
-                $this->retrieveField("UnitCode_", $this::UC, $i, $j);
-                $this->retrieveField("CP_", $this::CP, $i, $j);
-                $this->retrieveField("YS_", $this::YS, $i, $j);
-                $this->retrieveField("UM_", $this::UM, $i, $j);
-
-                $this->isPopulated = true;
-                $this->filledRows++;
-            }
-
-//            else {
-//                // else its completely empty,
-//                // store empty strings to create this row in the array,
-//                // otherwise will get errors when iterating the array again during validation
-//                $this->unitDetails[$i][Units::UC] = "";
-//                $this->unitDetails[$i][Units::CP] = "";
-//                $this->unitDetails[$i][Units::YS] = "";
-//                $this->unitDetails[$i][Units::UM] = "";
-//            }
-
-
-            // init grade, will be populated by BusinessRules
-            $this->unitDetails[$i][$this::GR] = "";
-        }
-    }
-
-    /**
-     * This function retrieves an individual unit field from the form.
-     * If the form field is empty, it will store an empty string in the array.
-     * Else it will store the data into the array, and update isPopulated.
-     *
-     * To be used inside a for loop, @see retrieveUnitDetails().
-     *
-     * @param String $postID - The ID 0of the post item to retrieve.
-     * @param int $col - The current array column.
-     * @param int $arrayRow - The current array row.
-     * @param int $formRow - The current form row.
-     */
-    private function retrieveField($postID, $col, $arrayRow, $formRow) {
-        if($_POST[$postID . $formRow] != "") {
-            $this->unitDetails[$arrayRow][$col] = $_POST[$postID . $formRow];
-            $this->isPopulated = true;
-        } else {
-            $this->unitDetails[$arrayRow][$col] = "";
-        }
-    }
-
-    /**
-     * This function retrieves unit data from the form.
-     * TODO: DELETE THIS FUNCTION AFTER REWRITE!
-     */
-    private function retrieveUnitDetailsDELETE() {
 
         for($i = 0; $i < $this::UNIT_ROWS; $i++) {
 
@@ -132,14 +73,6 @@ class Units {
                 $this->unitDetails[$i][$this::GR] = "";
 
                 $this->isPopulated = true;
-
-            } else {
-                // else make an empty row
-                $this->unitDetails[$i][$this::UC] = "";
-                $this->unitDetails[$i][$this::CP] = "";
-                $this->unitDetails[$i][$this::YS] = "";
-                $this->unitDetails[$i][$this::UM] = "";
-                $this->unitDetails[$i][$this::GR] = "";
             }
         }
     }
@@ -194,15 +127,6 @@ class Units {
             $mark,
             $grade
         );
-    }
-
-    /**
-     * This function returns filledRows.
-     *
-     * @return int filledRows - How many rows have been filled in the array.
-     */
-    public function getFilledRows() {
-        return $this->filledRows;
     }
 
     /**
