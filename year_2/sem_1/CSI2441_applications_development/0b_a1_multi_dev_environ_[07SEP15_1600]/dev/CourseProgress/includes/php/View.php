@@ -16,9 +16,6 @@ class View {
     protected $h1Header;
     protected $backButton = "<input type=\"button\" name=\"Back\" value=\"Back\" onClick=\"history.go(-1);return true;\">";
 
-    // import the objects
-    protected $theValidator;
-
     // time to convert enrolment/course types from value to meaning
     protected $enrolmentType;
     protected $courseType;
@@ -30,15 +27,11 @@ class View {
      * The View constructor.
      *
      * @param String $h1Header - The main title for this view.
-     * @param Validator $theValidator - The controller.
      */
-    function __construct($h1Header, Validator $theValidator) {
+    function __construct($h1Header) {
 
         $this->h1Header = $h1Header;
 
-        $this->theValidator = $theValidator;
-
-        $this->convertEnrolmentType();
         $this->convertCourseType();
 
         $this->printTitle("h1", $this->h1Header, true);
@@ -49,10 +42,12 @@ class View {
 
     /**
      * This function converts the enrolment type value to its actual meaning.
+     *
+     * @param int $value - The enrolment type value to convert.
      */
-    protected final function convertEnrolmentType() {
+    protected final function convertEnrolmentType($value) {
 
-        switch($this->theValidator->getStudentDetails()[Student::ET]) {
+        switch($value) {
             case BusinessRules::CP_FULLTIME:
                 $this->enrolmentType = "Full time";
                 break;
@@ -64,30 +59,33 @@ class View {
 
     /**
      * This function converts the course type value to its actual meaning.
+     *
+     * @param int $value - The course type value to convert.
      */
-    protected final function convertCourseType() {
+    protected final function convertCourseType($value) {
 
-        switch($this->theValidator->getStudentDetails()[Student::CT]) {
+        switch($value) {
             case BusinessRules::CP_UNDERGRAD:
-                $this->courseType = "Undergraduate degree (" . $this->theValidator->getStudentDetails()[Student::CT] . " CP)";
+                $this->courseType = "Undergraduate degree (" . $value . " CP)";
                 break;
             case BusinessRules::CP_UNDERGRAD_DOUBLE:
-                $this->courseType = "Undergraduate double degree (" . $this->theValidator->getStudentDetails()[Student::CT] . " CP)";
+                $this->courseType = "Undergraduate double degree (" . $value . " CP)";
                 break;
             case BusinessRules::CP_GRAD_DIPLOMA:
-                $this->courseType = "Graduate diploma (" . $this->theValidator->getStudentDetails()[Student::CT] . " CP)";
+                $this->courseType = "Graduate diploma (" . $value . " CP)";
                 break;
             case BusinessRules::CP_MASTERS_COURSE:
-                $this->courseType = "Masters by coursework (" . $this->theValidator->getStudentDetails()[Student::CT] . " CP)";
+                $this->courseType = "Masters by coursework (" . $value . " CP)";
                 break;
             case BusinessRules::CP_MASTERS_RESEARCH:
-                $this->courseType = "Masters by research (" . $this->theValidator->getStudentDetails()[Student::CT] . " CP)";
+                $this->courseType = "Masters by research (" . $value . " CP)";
                 break;
         }
     }
 
     /**
      * Override me! Would probably be more appropriate as an interface.
+     * @deprecated TODO: delete
      */
     protected function startView() {
         // add what you want to do here,
@@ -146,6 +144,24 @@ class View {
      */
     protected final function printBackButton() {
         echo($this->backButton);
+    }
+
+    /**
+     * This function sets the enrolment type value.
+     *
+     * @param int $value - The enrolment type value.
+     */
+    public final function setEnrolmentType($value) {
+        $this->convertEnrolmentType($value);
+    }
+
+    /**
+     * This function sets the course type value.
+     *
+     * @param int $value - The course type value.
+     */
+    public final function setCourseType($value) {
+        $this->convertCourseType($value);
     }
 }
 
