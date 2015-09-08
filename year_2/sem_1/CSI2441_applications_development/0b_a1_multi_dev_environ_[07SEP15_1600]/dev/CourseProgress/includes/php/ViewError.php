@@ -51,9 +51,8 @@ class ViewError extends View {
                          $logicErrorTally, $isStudentPopulated,
                          $isUnitsPopulated, array $errorCode
     ) {
-        // call super constructor
-        parent::__construct($this->h1Header);
-        // then set all the incoming params
+        // set all the incoming params
+        $this->h1Header = $h1Header;
         $this->studentErrorMessageArray = $studentErrorMessage;
         $this->unitErrorMessageArray = $unitErrorMessage;
         $this->logicErrorMessageArray = $logicErrorMessage;
@@ -68,6 +67,9 @@ class ViewError extends View {
         $this->isFormEmpty = !$this->isStudentPopulated && !$this->isUnitsPopulated;
         $this->isOnlyStudent = $this->isStudentPopulated && !$this->isUnitsPopulated;
         $this->isOnlyUnits = !$this->isStudentPopulated && $this->isUnitsPopulated;
+
+        // call super constructor
+        parent::__construct();
 
         // test the states to determine what to print
         if ($this->isFormEmpty) {
