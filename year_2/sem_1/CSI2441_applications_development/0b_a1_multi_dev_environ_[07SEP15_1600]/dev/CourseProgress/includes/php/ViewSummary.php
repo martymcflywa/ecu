@@ -4,12 +4,12 @@ namespace includes;
 
 /**
  * Class ViewSummary is a subclass of View.
- * This class prints a student's progression summary to screen,
- * when user input is validated, and a summary is calculated.
- * It also provides the user with a transcript of their marks.
+ * This class prints a student's progression summary to screen, when user input is validated, and a summary is calculated.
+ *
+ * It also provides the user with a table of their highest mark and transcript.
  *
  * @author Martin Ponce, 10371381
- * @version 20150906
+ * @version 20150908
  * @package includes
  */
 class ViewSummary extends View {
@@ -31,37 +31,31 @@ class ViewSummary extends View {
     private $markAverage;
     private $gradeAverage;
 
-    // only copies of these arrays stored here,
-    // not the reference, so we have "read only" access
+    // only copies of these arrays stored here, not reference to the objects, so we have "read only" access
     // note: don't shadow array names here, otherwise may cause data loss
     private $studentDetailsArray;
     private $unitDetailsArray;
     private $highestMarkArray;
 
+    // configure table design here
     private $tableConfig = "border=\"1\" cellpadding=\"10\" style=\"border-collapse:collapse;\"";
 
     /**
-     * @Override
-     * This function initiates the summary view.
+     * The ViewSummary constructor.
      *
-     * It retrieves all the data calculated from theRules,
-     * copies of input data and prints them to screen,
-     * along with a table of the highestMark,
-     * and the student transcript.
-     *
-     * @param String $h1Header.
-     * @param String $progressionStatus.
-     * @param bool $isComplete.
-     * @param int $passedCPTotal.
-     * @param int $cpDelta.
-     * @param int $unitAttemptTotal.
-     * @param int $unitsPassed.
-     * @param float $semRemaining.
-     * @param float $markAverage.
-     * @param String $gradeAverage.
-     * @param array $studentDetails.
-     * @param array $unitDetails.
-     * @param array $highestMark.
+     * @param String $h1Header - The main title of this view
+     * @param String $progressionStatus - The Student's progression status.
+     * @param bool $isComplete - Has Student completed course?
+     * @param int $passedCPTotal - Credit points Student has earned.
+     * @param int $cpDelta - Credit points Student has remaining to finish course.
+     * @param int $unitAttemptTotal - How many Units the Student has attempted.
+     * @param int $unitsPassed - How many Units the Student has passed.
+     * @param int $semRemaining - How many semesters the Student has remaining.
+     * @param int $markAverage - Student's average mark.
+     * @param int $gradeAverage - Student's average grade.
+     * @param array $studentDetails - studentDetails array.
+     * @param array $unitDetails - unitDetails array.
+     * @param array $highestMark - highestMark array.
      */
     function __construct($h1Header, $progressionStatus,
                          $isComplete, $passedCPTotal,

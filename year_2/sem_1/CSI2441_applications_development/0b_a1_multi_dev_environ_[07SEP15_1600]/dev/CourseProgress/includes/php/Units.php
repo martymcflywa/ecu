@@ -3,12 +3,11 @@
 namespace includes;
 
 /**
- * Class Units contains data and functions related to the units.
- * It retrieves unit data from the form. It does not perform any validation.
- * This class also knows about the highestMark.
+ * Class Units contains the unitDetails, highestMark arrays and defines the constant index for its elements.
+ * It also defines getters/setters to manipulate data from Units.
  *
  * @author Martin Ponce, 10371381
- * @version 20150904
+ * @version 20150908
  * @package includes
  */
 class Units {

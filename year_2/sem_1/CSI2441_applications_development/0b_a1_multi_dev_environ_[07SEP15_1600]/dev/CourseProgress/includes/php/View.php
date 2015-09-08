@@ -7,7 +7,7 @@ namespace includes;
  * It defines base fields and functions to display either the summary view or the error view.
  *
  * @author Martin Ponce, 10371381
- * @version 20150906
+ * @version 20150908
  * @package includes
  */
 class View {

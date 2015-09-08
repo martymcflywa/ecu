@@ -25,6 +25,8 @@ use includes\ViewError;
  * Else if there are errors, it passes data to ViewError,
  * then displays the error view.
  *
+ * @author Martin Ponce, 10371381
+ * @version 20150908
  * @package includes
  */
 class Controller {
@@ -44,9 +46,8 @@ class Controller {
      * @param Validator $theValidator.
      */
     function __construct(Student $theStudent, Units $theUnits,
-                         BusinessRules $theRules,
-                         Validator $theValidator)
-    {
+                         BusinessRules $theRules, Validator $theValidator
+    ) {
         // import all the things
         $this->theStudent = $theStudent;
         $this->theUnits = $theUnits;
@@ -131,12 +132,12 @@ class Controller {
         }
 
         // convert from code definition to actual value
-        switch(intval($_POST["EnrolmentType"])) {
+        switch((int)$_POST["EnrolmentType"]) {
             case 1:
-                $this->theStudent->setEnrolmentType(BusinessRules::CP_FULLTIME);
+                $this->theStudent->setStudentDetailsAt(Student::ET, BusinessRules::CP_FULLTIME);
                 break;
             case 2:
-                $this->theStudent->setEnrolmentType(BusinessRules::CP_PARTTIME);
+                $this->theStudent->setStudentDetailsAt(Student::ET, BusinessRules::CP_PARTTIME);
                 break;
         }
 
@@ -148,21 +149,21 @@ class Controller {
         }
 
         // convert from code definition to actual value
-        switch(intval($_POST["CourseType"])) {
+        switch((int)$_POST["CourseType"]) {
             case 1:
-                $this->theStudent->setCourseType(BusinessRules::CP_UNDERGRAD);
+                $this->theStudent->setStudentDetailsAt(Student::CT, BusinessRules::CP_UNDERGRAD);
                 break;
             case 2:
-                $this->theStudent->setCourseType(BusinessRules::CP_UNDERGRAD_DOUBLE);
+                $this->theStudent->setStudentDetailsAt(Student::CT, BusinessRules::CP_UNDERGRAD_DOUBLE);
                 break;
             case 3:
-                $this->theStudent->setCourseType(BusinessRules::CP_GRAD_DIPLOMA);
+                $this->theStudent->setStudentDetailsAt(Student::CT, BusinessRules::CP_GRAD_DIPLOMA);
                 break;
             case 4:
-                $this->theStudent->setCourseType(BusinessRules::CP_MASTERS_COURSE);
+                $this->theStudent->setStudentDetailsAt(Student::CT, BusinessRules::CP_MASTERS_COURSE);
                 break;
             case 5:
-                $this->theStudent->setCourseType(BusinessRules::CP_MASTERS_RESEARCH);
+                $this->theStudent->setStudentDetailsAt(Student::CT, BusinessRules::CP_MASTERS_RESEARCH);
                 break;
         }
     }

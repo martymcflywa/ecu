@@ -3,12 +3,21 @@
 namespace includes;
 
 /**
- * Class ValidateData contains data and functions to perform validation on Student and Unit data.
+ * Class Validator contains data and functions to validate user input and logic.
+ *
  * It also functions as a pseudo controller, although I now realise that it has too many responsibilities
  * and would prefer to create an actual controller and refactor everything. However, time is almost over.
  *
+ * Update: As of version 20150908, a Controller has now been implemented,
+ * leaving Validator to only performing validation duties.
+ *
+ * It stores separate arrays to log errors for Student, Unit, Logic errors and defines getters to
+ * provide access to the Controller.
+ *
+ * Regex strings and errorCode definitions are also defined here.
+ *
  * @author Martin Ponce, 10371381
- * @version 20150906
+ * @version 20150908
  * @package includes
  */
 class Validator {

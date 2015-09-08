@@ -4,11 +4,10 @@ namespace includes;
 
 /**
  * Class ViewError is a subclass of View.
- * This class prints error messages to screen,
- * when user input is invalidated.
+ * This class prints error messages to screen when validation errors have been detected.
  *
  * @author Martin Ponce, 10371381
- * @version 20150906
+ * @version 20150908
  * @package includes
  */
 class ViewError extends View {
@@ -28,7 +27,7 @@ class ViewError extends View {
 
     // only copies of these arrays stored here,
     // not the reference, so we have "read only" access
-    // note: don't shadow array names here, otherwise may cause data loss
+    // note: don't shadow array names here, otherwise will cause data loss
     private $studentErrorMessageArray;
     private $unitErrorMessageArray;
     private $logicErrorMessageArray;
@@ -42,9 +41,23 @@ class ViewError extends View {
     private $isStudentPopulated;
     private $isUnitsPopulated;
 
-    // get the error code array
+    // store the error code array from Validator here
     private $errorCode;
 
+    /**
+     * The ViewError constructor.
+     *
+     * @param String $h1Header - The main title of this view
+     * @param array $studentErrorMessage - Student errors.
+     * @param array $unitErrorMessage - Unit errors.
+     * @param array $logicErrorMessage - Logic errors.
+     * @param int $studentErrorTally - How many Student errors.
+     * @param int $unitErrorTally - How many Unit errors.
+     * @param int $logicErrorTally - How many Logic errors.
+     * @param bool $isStudentPopulated - Are Student details available?
+     * @param bool $isUnitsPopulated - Are Unit details available?
+     * @param array $errorCode - Array containing all the errorCode messages.
+     */
     function __construct($h1Header, array $studentErrorMessage,
                          array $unitErrorMessage, array $logicErrorMessage,
                          $studentErrorTally, $unitErrorTally,

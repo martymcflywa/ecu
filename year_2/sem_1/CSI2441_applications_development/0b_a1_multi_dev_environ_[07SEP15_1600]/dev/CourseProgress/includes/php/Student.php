@@ -3,12 +3,11 @@
 namespace includes;
 
 /**
- * Class Student contains data and functions related to a student.
- * It retrieves student data from the form, and performs light validation
- * on empty form fields.
+ * Class Student contains the studentDetails array and defines the constant index for its elements.
+ * It also defines getters/setters to manipulate data from Student.
  *
  * @author Martin Ponce, 10371381
- * @version 20150906
+ * @version 20150908
  * @package includes
  */
 class Student {
@@ -25,9 +24,6 @@ class Student {
 
     // is true if studentDetails populated
     private $isPopulated;
-
-    // how many student details we are expecting
-    const STUDENT_DETAILS_TALLY = 5;
 
     /**
      * The constructor for the Student class.
@@ -46,24 +42,6 @@ class Student {
      */
     public final function setStudentDetailsAt($index, $value) {
         $this->studentDetails[$index] = $value;
-    }
-
-    /**
-     * This function sets the student's enrolment type value.
-     *
-     * @param int $value - The enrolment type value, not the code.
-     */
-    public final function setEnrolmentType($value) {
-        $this->studentDetails[Student::ET] = $value;
-    }
-
-    /**
-     * This function sets the student's course type value.
-     *
-     * @param int $value - The course type value, not the code.
-     */
-    public final function setCourseType($value) {
-        $this->studentDetails[Student::CT] = $value;
     }
 
     /**
