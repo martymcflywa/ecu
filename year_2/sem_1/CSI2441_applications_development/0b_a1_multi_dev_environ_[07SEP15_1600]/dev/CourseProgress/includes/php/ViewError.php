@@ -189,7 +189,7 @@ class ViewError extends View {
 
                 echo("<li>");
                 // print the field
-                echo($this->bold($this->logicErrorMessageArray)[$i][Validator::LE_FIELD]);
+                echo($this->bold($this->logicErrorMessageArray[$i][Validator::LE_FIELD]));
                 echo(" ");
                 // convert code to message
                 echo($this->getErrorCode($this->logicErrorMessageArray[$i][Validator::LE_ECODE]));

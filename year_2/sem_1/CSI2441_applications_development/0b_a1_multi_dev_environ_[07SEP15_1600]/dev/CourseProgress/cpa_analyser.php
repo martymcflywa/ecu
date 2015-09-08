@@ -80,6 +80,7 @@ $theController = new Controller(
 //echo(var_dump(isset($theUnits->getUnitDetails()[1][Units::UC])) . "<br />");
 //echo(var_dump($theUnits->getUnitDetails()));
 //echo(var_dump($theValidator->getStudentErrorTally()) . " " . var_dump($theValidator->getUnitErrorTally()) . "<br/>");
+//echo(var_dump($theValidator->getLogicErrorMessage()));
 /**
  * END DEBUG
  */
