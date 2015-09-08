@@ -76,6 +76,7 @@ $theController = new Controller(
 //echo(var_dump(array_key_exists(1, $theUnits->getUnitDetails())) . "<br />");
 //echo(var_dump(isset($theUnits->getUnitDetails()[1][Units::UC])) . "<br />");
 //echo(var_dump($theUnits->getUnitDetails()));
+//echo(var_dump($theValidator->getStudentErrorTally()) . " " . var_dump($theValidator->getUnitErrorTally()) . "<br/>");
 /**
  * END DEBUG
  */

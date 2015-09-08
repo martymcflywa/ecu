@@ -38,6 +38,10 @@ class ViewError extends View {
     private $unitErrorTally;
     private $logicErrorTally;
 
+    // import the states
+    private $isStudentPopulated;
+    private $isUnitsPopulated;
+
     // get the error code array
     private $errorCode;
 
@@ -45,7 +49,7 @@ class ViewError extends View {
                          array $unitErrorMessage, array $logicErrorMessage,
                          $studentErrorTally, $unitErrorTally,
                          $logicErrorTally, $isStudentPopulated,
-                         $isUnitPopulated, array $errorCode
+                         $isUnitsPopulated, array $errorCode
     ) {
         // call super constructor
         parent::__construct($this->h1Header);
@@ -56,15 +60,14 @@ class ViewError extends View {
         $this->studentErrorTally = $studentErrorTally;
         $this->unitErrorTally = $unitErrorTally;
         $this->logicErrorTally = $logicErrorTally;
+        $this->isStudentPopulated = $isStudentPopulated;
+        $this->isUnitsPopulated = $isUnitsPopulated;
         $this->errorCode = $errorCode;
 
         // set some states to test before printing
-        $this->isFormEmpty = !$isStudentPopulated && !$isUnitPopulated;
-        $this->isOnlyStudent = $isStudentPopulated && !$isUnitPopulated;
-        $this->isOnlyUnits = !$isStudentPopulated && $isUnitPopulated;
-
-        // TODO: FIX THIS! NOT WORKING CORRECTLY
-        echo("BREAKPOINT: " . var_dump($this->isOnlyUnits));
+        $this->isFormEmpty = !$this->isStudentPopulated && !$this->isUnitsPopulated;
+        $this->isOnlyStudent = $this->isStudentPopulated && !$this->isUnitsPopulated;
+        $this->isOnlyUnits = !$this->isStudentPopulated && $this->isUnitsPopulated;
 
         // test the states to determine what to print
         if ($this->isFormEmpty) {

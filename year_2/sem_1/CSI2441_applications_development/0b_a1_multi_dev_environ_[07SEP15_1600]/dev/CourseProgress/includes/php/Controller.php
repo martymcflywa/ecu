@@ -62,10 +62,12 @@ class Controller {
         $this->theValidator->validateUnitDetails();
         $this->theValidator->validateLogic();
 
-        // if no errors,
+        // if no errors, and have both student and unit details,
         if ($this->theValidator->getStudentErrorTally() == 0 &&
             $this->theValidator->getUnitErrorTally() == 0 &&
-            $this->theValidator->getLogicErrorTally() == 0
+            $this->theValidator->getLogicErrorTally() == 0 &&
+            $this->theStudent->isStudentPopulated() &&
+            $this->theUnits->isUnitsPopulated()
         ) {
             // calculate the summary
             $this->theRules->calculateSummary();
