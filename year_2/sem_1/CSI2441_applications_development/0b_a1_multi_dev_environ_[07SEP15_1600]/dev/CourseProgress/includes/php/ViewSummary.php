@@ -71,8 +71,10 @@ class ViewSummary extends View {
                          array $studentDetails, array $unitDetails,
                          array $highestMark
     ) {
+        // call super constructor
+        parent::__construct($h1Header);
+
         // set all the incoming params
-        $this->h1Header = $h1Header;
         $this->progressionStatus = $progressionStatus;
         $this->isComplete = $isComplete;
         $this->passedCPTotal = $passedCPTotal;
@@ -91,16 +93,13 @@ class ViewSummary extends View {
         $this->convertCourseType($this->studentDetailsArray[Student::CT]);
 
         // time to print stuff to screen
-
-        // call super constructor
-        parent::__construct();
-
         $this->printStudentDetails();
         $this->printProgressionSummary();
         $this->printCreditPointSummary();
         $this->printHighestMark();
         $this->printTranscript();
 
+        // print the back button
         echo($this->backButton);
     }
 

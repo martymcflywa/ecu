@@ -28,9 +28,9 @@ class View {
      *
      * @param String $h1Header - The main title for this view.
      */
-    function __construct() {
+    function __construct($h1Header) {
 
-//        $this->h1Header = $h1Header;
+        $this->h1Header = $h1Header;
         $this->printTitle("h1", $this->h1Header, true);
     }
 
