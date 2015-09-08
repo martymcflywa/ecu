@@ -155,7 +155,7 @@ class ViewSummary extends View {
     }
 
     /**
-     * This function prints the progression summary.
+     * This function prints the credit point summary.
      */
     private final function printCreditPointSummary() {
         // print the title

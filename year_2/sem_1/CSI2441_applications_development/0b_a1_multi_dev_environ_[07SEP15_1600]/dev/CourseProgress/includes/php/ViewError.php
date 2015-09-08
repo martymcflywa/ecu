@@ -53,7 +53,7 @@ class ViewError extends View {
     ) {
         // call super constructor
         parent::__construct($h1Header);
-        
+
         // set all the incoming params
         $this->studentErrorMessageArray = $studentErrorMessage;
         $this->unitErrorMessageArray = $unitErrorMessage;
@@ -88,7 +88,7 @@ class ViewError extends View {
             $this->printLogicErrors();
         }
 
-        echo("<p> $this->footer </p>");
+        echo("<p>$this->footer</p>");
         echo($this->backButton);
     }
 
