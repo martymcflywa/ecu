@@ -33,6 +33,9 @@ public class StringSearchEvolvable extends Evolvable
         {
             solution += randomLetter();
         }
+
+        // breakpoint
+//        System.out.println("constructor: " + solution);
     }
     
     /**
@@ -106,6 +109,8 @@ public class StringSearchEvolvable extends Evolvable
         }
         
         solution = mutant;
+        // breakpoint
+//        System.out.println("mutate: " + solution);
     }
 
     /**
@@ -126,6 +131,10 @@ public class StringSearchEvolvable extends Evolvable
         
         solution = child1;
         other.solution = child2;
+
+        // breakpoint
+//        System.out.println("crossover 1: " + child1);
+//        System.out.println("crossover 2: " + child2);
     }
 
     /**
