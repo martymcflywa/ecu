@@ -19,11 +19,11 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private static final Color BASE = Color.yellow;
     private static final Color ARROW = Color.black;
 
-    private SensorData target;
+    private SensorData nearestTarget;
     private SensorData nearestBlast;
     private SensorData nearestPowerUp;
 
-    private double energy;
+    private double myEnergy;
     private boolean isPowerUp;
 
     /**
@@ -38,16 +38,16 @@ public class RoyalRumbleController implements SaucerController, Constants {
         // get nearest enemy
         if(data.size() > 0) {
             double closest = data.get(0).distance;
-            target = data.get(0);
+            nearestTarget = data.get(0);
 
             for(SensorData thisData : data) {
                 if(thisData.distance < closest) {
-                    target = thisData;
+                    nearestTarget = thisData;
                     closest = thisData.distance;
                 }
             }
         } else {
-            target = null;
+            nearestTarget = null;
         }
     }
 
@@ -92,7 +92,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
     @Override
     public void senseEnergy(double energy) throws Exception {
-        this.energy = energy;
+        this.myEnergy = energy;
     }
 
     @Override
