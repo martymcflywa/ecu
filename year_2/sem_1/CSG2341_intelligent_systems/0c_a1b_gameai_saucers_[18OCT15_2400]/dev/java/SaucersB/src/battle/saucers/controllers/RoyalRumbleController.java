@@ -19,24 +19,80 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private static final Color BASE = Color.yellow;
     private static final Color ARROW = Color.black;
 
+    private SensorData target;
+    private SensorData nearestBlast;
+    private SensorData nearestPowerUp;
+
+    private double energy;
+    private boolean isPowerUp;
+
+    /**
+     * Constructor.
+     */
+    public RoyalRumbleController() {
+        // fuzzy variables, rules here
+    }
+
     @Override
     public void senseSaucers(ArrayList<SensorData> data) throws Exception {
+        // get nearest enemy
+        if(data.size() > 0) {
+            double closest = data.get(0).distance;
+            target = data.get(0);
 
+            for(SensorData thisData : data) {
+                if(thisData.distance < closest) {
+                    target = thisData;
+                    closest = thisData.distance;
+                }
+            }
+        } else {
+            target = null;
+        }
     }
 
     @Override
     public void sensePowerUps(ArrayList<SensorData> data) throws Exception {
 
+        isPowerUp = data.size() > 0;
+
+        // if any powerUp's exist, get nearest
+        if(isPowerUp) {
+            double closest = data.get(0).distance;
+            nearestPowerUp = data.get(0);
+
+            for(SensorData thisData : data) {
+                if(thisData.distance < closest) {
+                    nearestPowerUp = thisData;
+                    closest = thisData.distance;
+                }
+            }
+        } else {
+            nearestPowerUp = null;
+        }
     }
 
     @Override
     public void senseBlasts(ArrayList<SensorData> data) throws Exception {
+        // get nearest blast
+        if(data.size() > 0) {
+            double closest = data.get(0).distance;
+            nearestBlast = data.get(0);
 
+            for(SensorData thisData : data) {
+                if(thisData.distance < closest) {
+                    nearestBlast = thisData;
+                    closest = thisData.distance;
+                }
+            }
+        } else {
+            nearestBlast = null;
+        }
     }
 
     @Override
     public void senseEnergy(double energy) throws Exception {
-
+        this.energy = energy;
     }
 
     @Override
