@@ -1,5 +1,6 @@
 package battle.saucers.controllers;
 
+import au.edu.ecu.is.fuzzy.FuzzyVariable;
 import battle.Constants;
 import battle.sensors.SensorData;
 
@@ -25,6 +26,17 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
     private double myEnergy;
     private boolean isPowerUp;
+
+    // linguistic input variables
+    private FuzzyVariable targetDistance;
+    private FuzzyVariable blastDistance;
+    private FuzzyVariable powerUpDistance;
+
+    // linguistic output variables
+    private FuzzyVariable turn;
+    private FuzzyVariable speed;
+    // this needs to be boolean
+    private FuzzyVariable shield;
 
     /**
      * Constructor.
