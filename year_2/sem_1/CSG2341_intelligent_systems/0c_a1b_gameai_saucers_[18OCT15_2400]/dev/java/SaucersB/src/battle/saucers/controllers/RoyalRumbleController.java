@@ -1,6 +1,8 @@
 package battle.saucers.controllers;
 
+import au.edu.ecu.is.fuzzy.FuzzyException;
 import au.edu.ecu.is.fuzzy.FuzzyVariable;
+import au.edu.ecu.is.fuzzy.SugenoRuleSet;
 import battle.Constants;
 import battle.sensors.SensorData;
 
@@ -28,22 +30,119 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private boolean isPowerUp;
 
     // linguistic input variables
-    private FuzzyVariable targetDistance;
-    private FuzzyVariable blastDistance;
-    private FuzzyVariable powerUpDistance;
+    private FuzzyVariable targetDist;
+    private FuzzyVariable targetDir;
+    private FuzzyVariable targetHead;
+    private FuzzyVariable targetSpeed;
+    private FuzzyVariable targetEnergy;
+
+    private FuzzyVariable blastDist;
+    private FuzzyVariable blastDir;
+    private FuzzyVariable blastHead;
+    private FuzzyVariable blastSpeed;
+
+    private FuzzyVariable powerUpDist;
+    private FuzzyVariable powerUpDir;
+
+    // TODO: create sets
 
     // linguistic output variables
     private FuzzyVariable turn;
     private FuzzyVariable speed;
+    private FuzzyVariable firePower;
     // this needs to be boolean
     private FuzzyVariable shield;
+
+    // the rules
+    private SugenoRuleSet rules;
 
     /**
      * Constructor.
      */
-    public RoyalRumbleController() {
+    public RoyalRumbleController() throws FuzzyException {
+
         // fuzzy variables, rules here
+        rules = new SugenoRuleSet();
+
+        // setup inputs
+        setupTarget();
+        setupBlast();
+        setupPowerUp();
+
+        // setup outputs
+        setupTurn();
+        setupSpeed();
+        setupFirePower();
+        setupShield();
     }
+
+    /*********
+     * INPUT *
+     *********/
+
+    /**
+     * This function sets up linguistic variables and fuzzy sets for target input.
+     * @throws FuzzyException
+     */
+    private void setupTarget() throws FuzzyException {
+        // TODO: define here
+    }
+
+    /**
+     * This function sets up linguistic variables and fuzzy sets for blast input.
+     * @throws FuzzyException
+     */
+    private void setupBlast() throws FuzzyException {
+        // TODO: define here
+    }
+
+    /**
+     * This function sets up linguistic variables and fuzzy sets for powerup input.
+     * @throws FuzzyException
+     */
+    private void setupPowerUp() throws FuzzyException {
+        // TODO: define here
+    }
+
+    /**********
+     * OUTPUT *
+     **********/
+
+    /**
+     * This function sets up turn output rules.
+     * @throws FuzzyException
+     */
+    private void setupTurn() throws FuzzyException {
+        // TODO: define here
+    }
+
+    /**
+     * This function sets up speed output rules.
+     * @throws FuzzyException
+     */
+    private void setupSpeed() throws FuzzyException {
+
+    }
+
+    /**
+     * This function sets up firepower output rules.
+     * @throws FuzzyException
+     */
+    private void setupFirePower() throws FuzzyException {
+        // TODO: define here
+    }
+
+    /**
+     * This function sets up shield output rules. MUST BE BOOLEAN!
+     * @throws FuzzyException
+     */
+    private void setupShield() throws FuzzyException {
+        // TODO: define here
+    }
+
+    /****************
+     * SENSOR INPUT *
+     ****************/
 
     @Override
     public void senseSaucers(ArrayList<SensorData> data) throws Exception {
