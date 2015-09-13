@@ -182,6 +182,54 @@ public class RoyalRumbleController implements SaucerController, Constants {
      */
     private void setupTurn() throws FuzzyException {
         // TODO: define here
+        turn = new FuzzyVariable("turn", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
+
+        double[][][] turnOutput = {
+
+                // x = blast aspect
+                // y = blast angle-off
+                // z = close near far
+
+                // close
+                {
+                        // right twelve, right nine, right six, right three, twelve, left nine, left six, left three, left twelve
+                        { , , , , , , , , }, // right zero
+                        { , , , , , , , , }, // right 270
+                        { , , , , , , , , }, // right merge
+                        { , , , , , , , , }, // right 90
+                        { , , , , , , , , }, // zero
+                        { , , , , , , , , }, // left 90
+                        { , , , , , , , , }, // left merge
+                        { , , , , , , , , }, // left 270
+                        { , , , , , , , , } // left zero
+                },
+                // near
+                {
+                        // right twelve, right nine, right six, right three, twelve, left nine, left six, left three, left twelve
+                        { , , , , , , , , }, // right zero
+                        { , , , , , , , , }, // right 270
+                        { , , , , , , , , }, // right merge
+                        { , , , , , , , , }, // right 90
+                        { , , , , , , , , }, // zero
+                        { , , , , , , , , }, // left 90
+                        { , , , , , , , , }, // left merge
+                        { , , , , , , , , }, // left 270
+                        { , , , , , , , , } // left zero
+                },
+                // far
+                {
+                        // right twelve, right nine, right six, right three, twelve, left nine, left six, left three, left twelve
+                        { , , , , , , , , }, // right zero
+                        { , , , , , , , , }, // right 270
+                        { , , , , , , , , }, // right merge
+                        { , , , , , , , , }, // right 90
+                        { , , , , , , , , }, // zero
+                        { , , , , , , , , }, // left 90
+                        { , , , , , , , , }, // left merge
+                        { , , , , , , , , }, // left 270
+                        { , , , , , , , , } // left zero
+                }
+        };
     }
 
     /**
