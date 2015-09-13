@@ -24,7 +24,7 @@ public class Main extends JFrame implements Runnable, Constants {
             controllers = new SaucerController[]
                     {
                             new DebugSimpleController(),
-                            new SimpleController(),
+                            new RoyalRumbleController(),
                             new SimpleController(),
                             new SimpleController(),
                             new SimpleController(),

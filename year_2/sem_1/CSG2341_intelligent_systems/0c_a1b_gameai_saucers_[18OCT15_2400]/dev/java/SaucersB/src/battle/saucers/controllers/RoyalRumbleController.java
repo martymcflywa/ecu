@@ -34,7 +34,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
     // me
     private FuzzyVariable myEnergy;
-    private FuzzySet[] myEnergySets;
+    private FuzzySet[] myEnergySets = new FuzzySet[3];
 
     // target
     private FuzzyVariable targetDist;
@@ -55,9 +55,9 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private FuzzyVariable blastAngleOff;
 
     // blast sets
-    private FuzzySet[] blastDistSets;
-    private FuzzySet[] blastAspectSets;
-    private FuzzySet[] blastAngleOffSets;
+    private FuzzySet[] blastDistSets = new FuzzySet[3];
+    private FuzzySet[] blastAspectSets = new FuzzySet[9];
+    private FuzzySet[] blastAngleOffSets = new FuzzySet[9];
 
     // powerup
     private FuzzyVariable powerUpDist;
@@ -119,11 +119,19 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
         final double maxEnergy = SAUCER_START_ENERGY;
 
+        final double ramp1 = maxEnergy * 0.70;
+        final double ramp2 = maxEnergy * 0.725;
+        final double ramp3 = maxEnergy * 0.75;
+        final double ramp4 = maxEnergy * 0.80;
+        final double ramp5 = maxEnergy * 0.85;
+        final double ramp6 = maxEnergy * 0.875;
+        final double ramp7 = maxEnergy * 0.90;
+
         myEnergy = new FuzzyVariable("my energy", "j", 0.0, maxEnergy, 2);
 
-        FuzzySet lowEnergy = new FuzzySet("low energy", 0.0, 0.0, 650.0, 700.0);
-        FuzzySet mediumEnergy = new FuzzySet("medium energy", 650.0, 750.0, 750.0, 850.0);
-        FuzzySet highEnergy = new FuzzySet("high energy", 800.0, 850.0, maxEnergy, maxEnergy);
+        FuzzySet lowEnergy = new FuzzySet("low energy", 0.0, 0.0, ramp1, ramp3);
+        FuzzySet mediumEnergy = new FuzzySet("medium energy", ramp2, ramp4, ramp4, ramp6);
+        FuzzySet highEnergy = new FuzzySet("high energy", ramp5, ramp7, maxEnergy, maxEnergy);
 
         myEnergy.add(lowEnergy);
         myEnergy.add(mediumEnergy);
@@ -304,6 +312,16 @@ public class RoyalRumbleController implements SaucerController, Constants {
         FuzzySet leftMerge = new FuzzySet("left merge", LEFT_NINE, LEFT_SIX, LEFT_SIX, LEFT_THREE);
         FuzzySet left270 = new FuzzySet("left 270", LEFT_SIX, LEFT_THREE, LEFT_THREE, LEFT_TWELVE);
         FuzzySet leftZero = new FuzzySet("left zero", LEFT_THREE, LEFT_TWELVE, LEFT_TWELVE, LEFT_TWELVE);
+
+        theVariable.add(rightZero);
+        theVariable.add(right270);
+        theVariable.add(rightMerge);
+        theVariable.add(right90);
+        theVariable.add(zero);
+        theVariable.add(left90);
+        theVariable.add(leftMerge);
+        theVariable.add(left270);
+        theVariable.add(leftZero);
 
         theVariable.checkGaps();
         theVariable.display();
