@@ -160,9 +160,109 @@ public class RoyalRumbleController implements SaucerController, Constants {
      */
     private void setupBlast() throws FuzzyException {
 
-        setDist(blastDist, "blast", blastDistSets);
-        setAspect(blastAspect, "blast", blastAspectSets);
-        setAngleOff(blastAngleOff, "blast", blastAngleOffSets);
+//        setDist(blastDist, "blast", blastDistSets);
+//        setAspect(blastAspect, "blast", blastAspectSets);
+//        setAngleOff(blastAngleOff, "blast", blastAngleOffSets);
+
+        // set up distance
+        final double maxDistance = Math.sqrt(
+                STARFIELD_WIDTH * STARFIELD_WIDTH +
+                        STARFIELD_HEIGHT * STARFIELD_HEIGHT
+        );
+
+        final double ramp1 = 0.05 * maxDistance;
+        final double ramp2 = 0.10 * maxDistance;
+        final double ramp3 = 0.15 * maxDistance;
+        final double ramp4 = 0.25 * maxDistance;
+
+        blastDist = new FuzzyVariable("dist to blast", "m", 0.0, maxDistance, 2);
+
+        FuzzySet close = new FuzzySet("close", 0.0, 0.0, 0.0, ramp2);
+        FuzzySet near = new FuzzySet("near", ramp1, ramp3, ramp3, ramp4);
+        FuzzySet far = new FuzzySet("far", ramp3, ramp4, maxDistance, maxDistance);
+
+        blastDist.add(close);
+        blastDist.add(near);
+        blastDist.add(far);
+
+        blastDist.checkGaps();
+        blastDist.display();
+
+        blastDistSets[0] = close;
+        blastDistSets[1] = near;
+        blastDistSets[2] = far;
+
+        // set up aspect
+        blastAspect = new FuzzyVariable("blast aspect", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
+
+        FuzzySet rightTwelve = new FuzzySet("right twelve", RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_NINE);
+        FuzzySet rightNine = new FuzzySet("right nine", RIGHT_TWELVE, RIGHT_NINE, RIGHT_NINE, RIGHT_SIX);
+        FuzzySet rightSix = new FuzzySet("right six", RIGHT_NINE, RIGHT_SIX, RIGHT_SIX, RIGHT_THREE);
+        FuzzySet rightThree = new FuzzySet("right three", RIGHT_SIX, RIGHT_THREE, RIGHT_THREE, TWELVE);
+        FuzzySet twelve = new FuzzySet("twelve", RIGHT_THREE, TWELVE, TWELVE, LEFT_NINE);
+        FuzzySet leftNine = new FuzzySet("left nine", TWELVE, LEFT_NINE, LEFT_NINE, LEFT_SIX);
+        FuzzySet leftSix = new FuzzySet("left six", LEFT_NINE, LEFT_SIX, LEFT_SIX, LEFT_THREE);
+        FuzzySet leftThree = new FuzzySet("left three", LEFT_SIX, LEFT_THREE, LEFT_THREE, LEFT_TWELVE);
+        FuzzySet leftTwelve = new FuzzySet("left twelve", LEFT_THREE, LEFT_TWELVE, LEFT_TWELVE, LEFT_TWELVE);
+
+        blastAspect.add(rightTwelve);
+        blastAspect.add(rightNine);
+        blastAspect.add(rightSix);
+        blastAspect.add(rightThree);
+        blastAspect.add(twelve);
+        blastAspect.add(leftNine);
+        blastAspect.add(leftSix);
+        blastAspect.add(leftThree);
+        blastAspect.add(leftTwelve);
+
+        blastAspect.checkGaps();
+        blastAspect.display();
+
+        blastAspectSets[0] = rightTwelve;
+        blastAspectSets[1] = rightNine;
+        blastAspectSets[2] = rightSix;
+        blastAspectSets[3] = rightThree;
+        blastAspectSets[4] = twelve;
+        blastAspectSets[5] = leftNine;
+        blastAspectSets[6] = leftSix;
+        blastAspectSets[7] = leftThree;
+        blastAspectSets[8] = leftTwelve;
+
+        // set up angle-off
+        blastAngleOff = new FuzzyVariable("blast angle-off", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
+
+        FuzzySet rightZero = new FuzzySet("right zero", RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_NINE);
+        FuzzySet right270 = new FuzzySet("right 270", RIGHT_TWELVE, RIGHT_NINE, RIGHT_NINE, RIGHT_SIX);
+        FuzzySet rightMerge = new FuzzySet("right merge", RIGHT_NINE, RIGHT_SIX, RIGHT_SIX, RIGHT_THREE);
+        FuzzySet right90 = new FuzzySet("right 90", RIGHT_SIX, RIGHT_THREE, RIGHT_THREE, TWELVE);
+        FuzzySet zero = new FuzzySet("zero", RIGHT_THREE, TWELVE, TWELVE, LEFT_NINE);
+        FuzzySet left90 = new FuzzySet("left 90", TWELVE, LEFT_NINE, LEFT_NINE, LEFT_SIX);
+        FuzzySet leftMerge = new FuzzySet("left merge", LEFT_NINE, LEFT_SIX, LEFT_SIX, LEFT_THREE);
+        FuzzySet left270 = new FuzzySet("left 270", LEFT_SIX, LEFT_THREE, LEFT_THREE, LEFT_TWELVE);
+        FuzzySet leftZero = new FuzzySet("left zero", LEFT_THREE, LEFT_TWELVE, LEFT_TWELVE, LEFT_TWELVE);
+
+        blastAngleOff.add(rightZero);
+        blastAngleOff.add(right270);
+        blastAngleOff.add(rightMerge);
+        blastAngleOff.add(right90);
+        blastAngleOff.add(zero);
+        blastAngleOff.add(left90);
+        blastAngleOff.add(leftMerge);
+        blastAngleOff.add(left270);
+        blastAngleOff.add(leftZero);
+
+        blastAngleOff.checkGaps();
+        blastAngleOff.display();
+
+        blastAngleOffSets[0] = rightZero;
+        blastAngleOffSets[1] = right270;
+        blastAngleOffSets[2] = rightMerge;
+        blastAngleOffSets[3] = right90;
+        blastAngleOffSets[4] = zero;
+        blastAngleOffSets[5] = left90;
+        blastAngleOffSets[6] = leftMerge;
+        blastAngleOffSets[7] = left270;
+        blastAngleOffSets[8] = leftZero;
     }
 
     /**
@@ -203,12 +303,12 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 blastAspect, blastAspectSets,
                 turn, turnOutput
         );
-//
-//        rules.displayRuleMatrix(
-//                blastAngleOff, blastAngleOffSets,
-//                blastAspect, blastAspectSets,
-//                turn
-//        );
+
+        rules.displayRuleMatrix(
+                blastAngleOff, blastAngleOffSets,
+                blastAspect, blastAspectSets,
+                turn
+        );
 
 //        double[][][] turnOutput = {
 //
@@ -467,14 +567,14 @@ public class RoyalRumbleController implements SaucerController, Constants {
                     closest = thisData.distance;
                 }
             }
+            rules.clearVariables();
+            blastAspect.setValue(nearestBlast.direction);
+            blastAngleOff.setValue(nearestBlast.heading);
+            rules.update();
         } else {
             nearestBlast = null;
+            turn.setValue(0.0);
         }
-
-        rules.clearVariables();
-        blastAspect.setValue(nearestBlast.direction);
-        blastAngleOff.setValue(nearestBlast.heading);
-        rules.update();
     }
 
     @Override
