@@ -27,23 +27,45 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private SensorData nearestBlast;
     private SensorData nearestPowerUp;
 
-    private double myEnergy;
+//    private double myEnergy;
     private boolean isPowerUp;
 
     // linguistic input variables
+
+    // me
+    private FuzzyVariable myEnergy;
+    private FuzzySet[] myEnergySets;
+
+    // target
     private FuzzyVariable targetDist;
-    private FuzzyVariable targetDir;
-    private FuzzyVariable targetHead;
+    private FuzzyVariable targetAspect;
+    private FuzzyVariable targetAngleOff;
     private FuzzyVariable targetSpeed;
     private FuzzyVariable targetEnergy;
 
-    private FuzzyVariable blastDist;
-    private FuzzyVariable blastDir;
-    private FuzzyVariable blastHead;
-//    private FuzzyVariable blastSpeed;
+    // target sets
+    private FuzzySet[] targetDistSets;
+    private FuzzySet[] targetAspectSets;
+    private FuzzySet[] targetAngleOffSets;
+    private FuzzySet[] targetSpeedSets;
 
+    // blast
+    private FuzzyVariable blastDist;
+    private FuzzyVariable blastAspect;
+    private FuzzyVariable blastAngleOff;
+
+    // blast sets
+    private FuzzySet[] blastDistSets;
+    private FuzzySet[] blastAspectSets;
+    private FuzzySet[] blastAngleOffSets;
+
+    // powerup
     private FuzzyVariable powerUpDist;
-    private FuzzyVariable powerUpDir;
+    private FuzzyVariable powerUpAspect;
+
+    // powerup sets
+    private FuzzySet[] powerUpDistSets;
+    private FuzzySet[] powerUpAspectSets;
 
     // TODO: create sets
 
@@ -77,6 +99,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
         rules = new SugenoRuleSet();
 
         // setup inputs
+        setupMyEnergy();
         setupTarget();
         setupBlast();
         setupPowerUp();
@@ -92,6 +115,28 @@ public class RoyalRumbleController implements SaucerController, Constants {
      * INPUT *
      *********/
 
+    private void setupMyEnergy() throws FuzzyException {
+
+        final double maxEnergy = SAUCER_START_ENERGY;
+
+        myEnergy = new FuzzyVariable("my energy", "j", 0.0, maxEnergy, 2);
+
+        FuzzySet lowEnergy = new FuzzySet("low energy", 0.0, 0.0, 650.0, 700.0);
+        FuzzySet mediumEnergy = new FuzzySet("medium energy", 650.0, 750.0, 750.0, 850.0);
+        FuzzySet highEnergy = new FuzzySet("high energy", 800.0, 850.0, maxEnergy, maxEnergy);
+
+        myEnergy.add(lowEnergy);
+        myEnergy.add(mediumEnergy);
+        myEnergy.add(highEnergy);
+
+        myEnergy.checkGaps();
+        myEnergy.display();
+
+        myEnergySets[0] = lowEnergy;
+        myEnergySets[1] = mediumEnergy;
+        myEnergySets[2] = highEnergy;
+    }
+
     /**
      * This method sets up linguistic variables and fuzzy sets for target input.
      * @throws FuzzyException
@@ -106,8 +151,9 @@ public class RoyalRumbleController implements SaucerController, Constants {
      */
     private void setupBlast() throws FuzzyException {
 
-        // use shared setDistance for now
-        setDist(blastDist, "blast");
+        setDist(blastDist, "blast", blastDistSets);
+        setAspect(blastAspect, "blast", blastAspectSets);
+        setAngleOff(blastAngleOff, "blast", blastAngleOffSets);
     }
 
     /**
@@ -165,7 +211,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
      * @param object String.
      * @throws FuzzyException
      */
-    private void setDist(FuzzyVariable theVariable, String object) throws FuzzyException {
+    private void setDist(FuzzyVariable theVariable, String object, FuzzySet[] theSet) throws FuzzyException {
 
         final double maxDistance = Math.sqrt(
                 STARFIELD_WIDTH * STARFIELD_WIDTH +
@@ -190,18 +236,20 @@ public class RoyalRumbleController implements SaucerController, Constants {
         theVariable.checkGaps();
         theVariable.display();
 
-        // TODO: add to set, will need set object as param
+        theSet[0] = close;
+        theSet[1] = near;
+        theSet[2] = far;
     }
 
     /**
-     * This method sets up a common direction variable/set
+     * This method sets up a common aspect variable/set
      * @param theVariable FuzzyVariable.
      * @param object String.
      * @throws FuzzyException
      */
-    private void setDir(FuzzyVariable theVariable, String object) throws FuzzyException {
+    private void setAspect(FuzzyVariable theVariable, String object, FuzzySet[] theSet) throws FuzzyException {
 
-        theVariable = new FuzzyVariable("dir to " + object, "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
+        theVariable = new FuzzyVariable(object + "'s aspect", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
 
         FuzzySet rightTwelve = new FuzzySet("right twelve", RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_NINE);
         FuzzySet rightNine = new FuzzySet("right nine", RIGHT_TWELVE, RIGHT_NINE, RIGHT_NINE, RIGHT_SIX);
@@ -226,14 +274,49 @@ public class RoyalRumbleController implements SaucerController, Constants {
         theVariable.checkGaps();
         theVariable.display();
 
-        // TODO: add to set, will need set object as param
+        theSet[0] = rightTwelve;
+        theSet[1] = rightNine;
+        theSet[2] = rightSix;
+        theSet[3] = rightThree;
+        theSet[4] = twelve;
+        theSet[5] = leftNine;
+        theSet[6] = leftSix;
+        theSet[7] = leftThree;
+        theSet[8] = leftTwelve;
     }
 
-    private void setHead(FuzzyVariable theVariable, String object) throws FuzzyException {
+    /**
+     * This method sets up a common angle-off variable/set.
+     * @param theVariable FuzzyVariable.
+     * @param object String.
+     * @throws FuzzyException
+     */
+    private void setAngleOff(FuzzyVariable theVariable, String object, FuzzySet[] theSet) throws FuzzyException {
 
-        theVariable = new FuzzyVariable(object + "'s heading", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
+        theVariable = new FuzzyVariable(object + "'s angle-off", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
 
+        FuzzySet rightZero = new FuzzySet("right zero", RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_NINE);
+        FuzzySet right270 = new FuzzySet("right 270", RIGHT_TWELVE, RIGHT_NINE, RIGHT_NINE, RIGHT_SIX);
+        FuzzySet rightMerge = new FuzzySet("right merge", RIGHT_NINE, RIGHT_SIX, RIGHT_SIX, RIGHT_THREE);
+        FuzzySet right90 = new FuzzySet("right 90", RIGHT_SIX, RIGHT_THREE, RIGHT_THREE, TWELVE);
+        FuzzySet zero = new FuzzySet("zero", RIGHT_THREE, TWELVE, TWELVE, LEFT_NINE);
+        FuzzySet left90 = new FuzzySet("left 90", TWELVE, LEFT_NINE, LEFT_NINE, LEFT_SIX);
+        FuzzySet leftMerge = new FuzzySet("left merge", LEFT_NINE, LEFT_SIX, LEFT_SIX, LEFT_THREE);
+        FuzzySet left270 = new FuzzySet("left 270", LEFT_SIX, LEFT_THREE, LEFT_THREE, LEFT_TWELVE);
+        FuzzySet leftZero = new FuzzySet("left zero", LEFT_THREE, LEFT_TWELVE, LEFT_TWELVE, LEFT_TWELVE);
 
+        theVariable.checkGaps();
+        theVariable.display();
+
+        theSet[0] = rightZero;
+        theSet[1] = right270;
+        theSet[2] = rightMerge;
+        theSet[3] = right90;
+        theSet[4] = zero;
+        theSet[5] = left90;
+        theSet[6] = leftMerge;
+        theSet[7] = left270;
+        theSet[8] = leftZero;
     }
 
     /****************
@@ -299,7 +382,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
     @Override
     public void senseEnergy(double energy) throws Exception {
-        this.myEnergy = energy;
+
     }
 
     @Override
