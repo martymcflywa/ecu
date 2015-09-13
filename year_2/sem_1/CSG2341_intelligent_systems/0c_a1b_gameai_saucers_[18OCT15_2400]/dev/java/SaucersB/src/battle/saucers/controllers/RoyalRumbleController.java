@@ -1,6 +1,7 @@
 package battle.saucers.controllers;
 
 import au.edu.ecu.is.fuzzy.FuzzyException;
+import au.edu.ecu.is.fuzzy.FuzzySet;
 import au.edu.ecu.is.fuzzy.FuzzyVariable;
 import au.edu.ecu.is.fuzzy.SugenoRuleSet;
 import battle.Constants;
@@ -39,7 +40,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private FuzzyVariable blastDist;
     private FuzzyVariable blastDir;
     private FuzzyVariable blastHead;
-    private FuzzyVariable blastSpeed;
+//    private FuzzyVariable blastSpeed;
 
     private FuzzyVariable powerUpDist;
     private FuzzyVariable powerUpDir;
@@ -55,6 +56,17 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
     // the rules
     private SugenoRuleSet rules;
+
+    // constant cardinal dir
+    private final double LEFT_TWELVE = 360.0;
+    private final double LEFT_THREE = 270.0;
+    private final double LEFT_SIX = 180.0;
+    private final double LEFT_NINE = 90.0;
+    private final double TWELVE = 0.0;
+    private final double RIGHT_THREE = -90.0;
+    private final double RIGHT_SIX = -180.0;
+    private final double RIGHT_NINE = -270.0;
+    private final double RIGHT_TWELVE = -360.0;
 
     /**
      * Constructor.
@@ -81,7 +93,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
      *********/
 
     /**
-     * This function sets up linguistic variables and fuzzy sets for target input.
+     * This method sets up linguistic variables and fuzzy sets for target input.
      * @throws FuzzyException
      */
     private void setupTarget() throws FuzzyException {
@@ -89,15 +101,17 @@ public class RoyalRumbleController implements SaucerController, Constants {
     }
 
     /**
-     * This function sets up linguistic variables and fuzzy sets for blast input.
+     * This method sets up linguistic variables and fuzzy sets for blast input.
      * @throws FuzzyException
      */
     private void setupBlast() throws FuzzyException {
-        // TODO: define here
+
+        // use shared setDistance for now
+        setDist(blastDist, "blast");
     }
 
     /**
-     * This function sets up linguistic variables and fuzzy sets for powerup input.
+     * This method sets up linguistic variables and fuzzy sets for powerup input.
      * @throws FuzzyException
      */
     private void setupPowerUp() throws FuzzyException {
@@ -109,7 +123,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
      **********/
 
     /**
-     * This function sets up turn output rules.
+     * This method sets up turn output rules.
      * @throws FuzzyException
      */
     private void setupTurn() throws FuzzyException {
@@ -117,15 +131,15 @@ public class RoyalRumbleController implements SaucerController, Constants {
     }
 
     /**
-     * This function sets up speed output rules.
+     * This method sets up speed output rules.
      * @throws FuzzyException
      */
     private void setupSpeed() throws FuzzyException {
-
+        // TODO: define here
     }
 
     /**
-     * This function sets up firepower output rules.
+     * This method sets up firepower output rules.
      * @throws FuzzyException
      */
     private void setupFirePower() throws FuzzyException {
@@ -133,11 +147,93 @@ public class RoyalRumbleController implements SaucerController, Constants {
     }
 
     /**
-     * This function sets up shield output rules. MUST BE BOOLEAN!
+     * This method sets up shield output rules. MUST BE BOOLEAN!
      * @throws FuzzyException
      */
     private void setupShield() throws FuzzyException {
         // TODO: define here
+    }
+
+    /**********
+     * COMMON *
+     **********/
+
+    /**
+     * This method sets up a common distance variable/set.
+     *
+     * @param theVariable FuzzyVariable.
+     * @param object String.
+     * @throws FuzzyException
+     */
+    private void setDist(FuzzyVariable theVariable, String object) throws FuzzyException {
+
+        final double maxDistance = Math.sqrt(
+                STARFIELD_WIDTH * STARFIELD_WIDTH +
+                        STARFIELD_HEIGHT * STARFIELD_HEIGHT
+        );
+
+        final double ramp1 = 0.05 * maxDistance;
+        final double ramp2 = 0.10 * maxDistance;
+        final double ramp3 = 0.15 * maxDistance;
+        final double ramp4 = 0.25 * maxDistance;
+
+        theVariable = new FuzzyVariable("dist to " + object, "m", 0.0, maxDistance, 2);
+
+        FuzzySet close = new FuzzySet("close", 0.0, 0.0, 0.0, ramp2);
+        FuzzySet near = new FuzzySet("near", ramp1, ramp3, ramp3, ramp4);
+        FuzzySet far = new FuzzySet("far", ramp3, ramp4, maxDistance, maxDistance);
+
+        theVariable.add(close);
+        theVariable.add(near);
+        theVariable.add(far);
+
+        theVariable.checkGaps();
+        theVariable.display();
+
+        // TODO: add to set, will need set object as param
+    }
+
+    /**
+     * This method sets up a common direction variable/set
+     * @param theVariable FuzzyVariable.
+     * @param object String.
+     * @throws FuzzyException
+     */
+    private void setDir(FuzzyVariable theVariable, String object) throws FuzzyException {
+
+        theVariable = new FuzzyVariable("dir to " + object, "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
+
+        FuzzySet rightTwelve = new FuzzySet("right twelve", RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_NINE);
+        FuzzySet rightNine = new FuzzySet("right nine", RIGHT_TWELVE, RIGHT_NINE, RIGHT_NINE, RIGHT_SIX);
+        FuzzySet rightSix = new FuzzySet("right six", RIGHT_NINE, RIGHT_SIX, RIGHT_SIX, RIGHT_THREE);
+        FuzzySet rightThree = new FuzzySet("right three", RIGHT_SIX, RIGHT_THREE, RIGHT_THREE, TWELVE);
+        FuzzySet twelve = new FuzzySet("twelve", RIGHT_THREE, TWELVE, TWELVE, LEFT_NINE);
+        FuzzySet leftNine = new FuzzySet("left nine", TWELVE, LEFT_NINE, LEFT_NINE, LEFT_SIX);
+        FuzzySet leftSix = new FuzzySet("left six", LEFT_NINE, LEFT_SIX, LEFT_SIX, LEFT_THREE);
+        FuzzySet leftThree = new FuzzySet("left three", LEFT_SIX, LEFT_THREE, LEFT_THREE, LEFT_TWELVE);
+        FuzzySet leftTwelve = new FuzzySet("left twelve", LEFT_THREE, LEFT_TWELVE, LEFT_TWELVE, LEFT_TWELVE);
+
+        theVariable.add(rightTwelve);
+        theVariable.add(rightNine);
+        theVariable.add(rightSix);
+        theVariable.add(rightThree);
+        theVariable.add(twelve);
+        theVariable.add(leftNine);
+        theVariable.add(leftSix);
+        theVariable.add(leftThree);
+        theVariable.add(leftTwelve);
+
+        theVariable.checkGaps();
+        theVariable.display();
+
+        // TODO: add to set, will need set object as param
+    }
+
+    private void setHead(FuzzyVariable theVariable, String object) throws FuzzyException {
+
+        theVariable = new FuzzyVariable(object + "'s heading", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
+
+
     }
 
     /****************
