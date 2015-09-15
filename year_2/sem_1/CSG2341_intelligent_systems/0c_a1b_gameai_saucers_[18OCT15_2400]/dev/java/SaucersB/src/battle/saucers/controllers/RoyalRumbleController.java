@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class RoyalRumbleController implements SaucerController, Constants {
 
     // saucer config
-    private static final String NAME = "RoyalRumble";
+    private static final String NAME = "royalRumble";
     private static final Color BASE = Color.yellow;
     private static final Color ARROW = Color.black;
 
@@ -343,7 +343,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
                 // x = blast aspect
                 // y = blast angle-off
-                // z = close near far
+                // z = blast distance
 
                 // close
                 {
@@ -358,19 +358,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
                         {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
                         {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
                 },
-                // near
-//                {
-//                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
-//                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
-//                        {LEFT_NINE,         TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         RIGHT_THREE,    LEFT_NINE},     // right 270
-//                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // right merge
-//                        {LEFT_NINE,         LEFT_SIX,       TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         LEFT_NINE},     // right 90
-//                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
-//                        {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE},   // left 90
-//                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // left merge
-//                        {RIGHT_THREE,       LEFT_SIX,       TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
-//                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
-//                },
                 // far
                 {
                         // right twelve, right nine, right six, right three, twelve, left nine, left six, left three, left twelve
