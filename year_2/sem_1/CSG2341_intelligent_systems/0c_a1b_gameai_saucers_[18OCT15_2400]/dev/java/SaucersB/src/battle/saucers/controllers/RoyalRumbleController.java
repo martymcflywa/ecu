@@ -55,7 +55,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private FuzzyVariable blastAngleOff;
 
     // blast sets
-    private FuzzySet[] blastDistSets = new FuzzySet[3];
+    private FuzzySet[] blastDistSets = new FuzzySet[2];
     private FuzzySet[] blastAspectSets = new FuzzySet[9];
     private FuzzySet[] blastAngleOffSets = new FuzzySet[9];
 
@@ -165,33 +165,23 @@ public class RoyalRumbleController implements SaucerController, Constants {
      */
     private void setupBlast() throws FuzzyException {
 
-//        setDist(blastDist, "blast", blastDistSets);
-//        setAspect(blastAspect, "blast", blastAspectSets);
-//        setAngleOff(blastAngleOff, "blast", blastAngleOffSets);
-
         // set up distance
-
         final double ramp1 = 0.05 * maxDistance;
-        final double ramp2 = 0.10 * maxDistance;
-        final double ramp3 = 0.15 * maxDistance;
-        final double ramp4 = 0.25 * maxDistance;
+        final double ramp2 = 0.15 * maxDistance;
 
         blastDist = new FuzzyVariable("dist to blast", "m", 0.0, maxDistance, 2);
 
-        FuzzySet close = new FuzzySet("close", 0.0, 0.0, 0.0, ramp2);
-        FuzzySet near = new FuzzySet("near", ramp1, ramp3, ramp3, ramp4);
-        FuzzySet far = new FuzzySet("far", ramp3, ramp4, maxDistance, maxDistance);
+        FuzzySet close = new FuzzySet("close", 0.0, 0.0, ramp1, ramp2);
+        FuzzySet far = new FuzzySet("far", ramp1, ramp2, maxDistance, maxDistance);
 
         blastDist.add(close);
-        blastDist.add(near);
         blastDist.add(far);
 
         blastDist.checkGaps();
         blastDist.display();
 
         blastDistSets[0] = close;
-        blastDistSets[1] = near;
-        blastDistSets[2] = far;
+        blastDistSets[1] = far;
 
         // set up aspect
         blastAspect = new FuzzyVariable("blast aspect", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
@@ -273,7 +263,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private void setupPowerUp() throws FuzzyException {
 
         // distance
-
         final double ramp1 = 0.05 * maxDistance;
         final double ramp2 = 0.10 * maxDistance;
         final double ramp3 = 0.15 * maxDistance;
@@ -360,28 +349,28 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 {
                         // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
                         {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
-                        {LEFT_NINE,         TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         RIGHT_THREE,    LEFT_NINE},     // right 270
+                        {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 270
                         {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // right merge
-                        {LEFT_NINE,         LEFT_SIX,       TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         LEFT_NINE},     // right 90
+                        {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 90
                         {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
-                        {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE},   // left 90
+                        {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 90
                         {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // left merge
-                        {RIGHT_THREE,       LEFT_SIX,       TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
+                        {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
                         {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
                 },
                 // near
-                {
-                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
-                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
-                        {LEFT_NINE,         TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         RIGHT_THREE,    LEFT_NINE},     // right 270
-                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // right merge
-                        {LEFT_NINE,         LEFT_SIX,       TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         LEFT_NINE},     // right 90
-                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
-                        {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE},   // left 90
-                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // left merge
-                        {RIGHT_THREE,       LEFT_SIX,       TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
-                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
-                },
+//                {
+//                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
+//                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
+//                        {LEFT_NINE,         TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         RIGHT_THREE,    LEFT_NINE},     // right 270
+//                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // right merge
+//                        {LEFT_NINE,         LEFT_SIX,       TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         LEFT_NINE},     // right 90
+//                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
+//                        {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE},   // left 90
+//                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // left merge
+//                        {RIGHT_THREE,       LEFT_SIX,       TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
+//                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
+//                },
                 // far
                 {
                         // right twelve, right nine, right six, right three, twelve, left nine, left six, left three, left twelve
