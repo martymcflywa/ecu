@@ -90,6 +90,11 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private final double RIGHT_NINE = -270.0;
     private final double RIGHT_TWELVE = -360.0;
 
+    private double maxDistance = Math.sqrt(
+            STARFIELD_WIDTH * STARFIELD_WIDTH +
+            STARFIELD_HEIGHT * STARFIELD_HEIGHT
+    );
+
     /**
      * Constructor.
      */
@@ -165,10 +170,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
 //        setAngleOff(blastAngleOff, "blast", blastAngleOffSets);
 
         // set up distance
-        final double maxDistance = Math.sqrt(
-                STARFIELD_WIDTH * STARFIELD_WIDTH +
-                        STARFIELD_HEIGHT * STARFIELD_HEIGHT
-        );
 
         final double ramp1 = 0.05 * maxDistance;
         final double ramp2 = 0.10 * maxDistance;
@@ -299,77 +300,91 @@ public class RoyalRumbleController implements SaucerController, Constants {
 //                {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
 //        };
 
-        double[][] turnOutput = {
-                // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
-                {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
-                {LEFT_NINE,         TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 270
-                {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // right merge
-                {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE,    TWELVE,         TWELVE,         LEFT_NINE},     // right 90
-                {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
-                {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 90
-                {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // left merge
-                {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE,    TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
-                {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
+//        double[][] turnOutput = {
+//                // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
+//                {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
+//                {LEFT_NINE,         TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 270
+//                {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // right merge
+//                {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE,    TWELVE,         TWELVE,         LEFT_NINE},     // right 90
+//                {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
+//                {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 90
+//                {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // left merge
+//                {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE,    TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
+//                {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
+//        };
+
+//        rules.addRuleMatrix(
+//                blastAngleOff, blastAngleOffSets,
+//                blastAspect, blastAspectSets,
+//                turn, turnOutput
+//        );
+//
+//        rules.displayRuleMatrix(
+//                blastAngleOff, blastAngleOffSets,
+//                blastAspect, blastAspectSets,
+//                turn
+//        );
+
+        double[][][] turnOutput = {
+
+                // x = blast aspect
+                // y = blast angle-off
+                // z = close near far
+
+                // close
+                {
+                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
+                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
+                        {LEFT_NINE,         TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 270
+                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // right merge
+                        {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE,    TWELVE,         TWELVE,         LEFT_NINE},     // right 90
+                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
+                        {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 90
+                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // left merge
+                        {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE,    TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
+                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
+                },
+                // near
+                {
+                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
+                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
+                        {LEFT_NINE,         TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 270
+                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // right merge
+                        {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE,    TWELVE,         TWELVE,         LEFT_NINE},     // right 90
+                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
+                        {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 90
+                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // left merge
+                        {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE,    TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
+                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
+                },
+                // far
+                {
+                        // right twelve, right nine, right six, right three, twelve, left nine, left six, left three, left twelve
+                        {TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE}, // right zero
+                        {TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE}, // right 270
+                        {TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE}, // right merge
+                        {TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE}, // right 90
+                        {TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE}, // zero
+                        {TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE}, // left 90
+                        {TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE}, // left merge
+                        {TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE}, // left 270
+                        {TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE, TWELVE} // left zero
+                }
         };
 
-        rules.addRuleMatrix(
+        rules.add3DRuleMatrix(
+                blastDist, blastDistSets,
                 blastAngleOff, blastAngleOffSets,
                 blastAspect, blastAspectSets,
                 turn, turnOutput
         );
 
-        rules.displayRuleMatrix(
+        rules.display3DRuleMatrix(
+                blastDist, blastDistSets,
                 blastAngleOff, blastAngleOffSets,
                 blastAspect, blastAspectSets,
                 turn
         );
-
-//        double[][][] turnOutput = {
-//
-//                // x = blast aspect
-//                // y = blast angle-off
-//                // z = close near far
-//
-//                // close
-//                {
-//                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
-//                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
-//                        {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 270
-//                        {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // right merge
-//                        {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 90
-//                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
-//                        {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 90
-//                        {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // left merge
-//                        {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
-//                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
-//                },
-//                // near
-//                {
-//                        // right twelve, right nine, right six, right three, twelve, left nine, left six, left three, left twelve
-//                        {, , , , , , , , }, // right zero
-//                        {, , , , , , , , }, // right 270
-//                        {, , , , , , , , }, // right merge
-//                        {, , , , , , , , }, // right 90
-//                        {, , , , , , , , }, // zero
-//                        {, , , , , , , , }, // left 90
-//                        {, , , , , , , , }, // left merge
-//                        {, , , , , , , , }, // left 270
-//                        {, , , , , , , , } // left zero
-//                },
-//                // far
-//                {
-//                        // right twelve, right nine, right six, right three, twelve, left nine, left six, left three, left twelve
-//                        {, , , , , , , , }, // right zero
-//                        {, , , , , , , , }, // right 270
-//                        {, , , , , , , , }, // right merge
-//                        {, , , , , , , , }, // right 90
-//                        {, , , , , , , , }, // zero
-//                        {, , , , , , , , }, // left 90
-//                        {, , , , , , , , }, // left merge
-//                        {, , , , , , , , }, // left 270
-//                        {, , , , , , , , } // left zero
-//                }
-//        };
     }
 
     /**
@@ -604,6 +619,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 }
             }
             rules.clearVariables();
+            blastDist.setValue(nearestBlast.distance);
             blastAspect.setValue(nearestBlast.direction);
             blastAngleOff.setValue(nearestBlast.heading);
             rules.update();
