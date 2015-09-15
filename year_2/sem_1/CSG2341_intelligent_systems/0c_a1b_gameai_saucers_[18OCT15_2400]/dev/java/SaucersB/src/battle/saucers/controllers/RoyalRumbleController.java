@@ -658,11 +658,8 @@ public class RoyalRumbleController implements SaucerController, Constants {
                     closest = thisData.distance;
                 }
             }
-//            rules.clearVariables();
-
             powerUpDist.setValue(nearestPowerUp.distance);
             powerUpAspect.setValue(nearestPowerUp.direction);
-
             rules.update();
         } else {
             nearestPowerUp = null;
@@ -686,7 +683,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
                     closest = thisData.distance;
                 }
             }
-//            rules.clearVariables();
 
             blastDist.setValue(nearestBlast.distance);
             blastAspect.setValue(nearestBlast.direction);
