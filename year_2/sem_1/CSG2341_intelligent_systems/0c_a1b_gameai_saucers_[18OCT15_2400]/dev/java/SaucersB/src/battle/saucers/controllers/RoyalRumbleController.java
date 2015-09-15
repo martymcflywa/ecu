@@ -286,7 +286,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
         powerUpDistSets[2] = far;
 
         // aspect
-
         powerUpAspect = new FuzzyVariable("powerup aspect", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
 
         FuzzySet rightTwelve = new FuzzySet("right twelve", RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_NINE);
@@ -431,24 +430,57 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
         speed = new FuzzyVariable("speed", "", SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, 2);
 
-        double[][] speedOutput = {
-                // right twelve,    right nine,         right six,          right three,        twelve,             left nine,          left six,           left three,         left twelve
-                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // right zero
-                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED}, // right 270
-                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // right merge
-                {SAUCER_MIN_SPEED,  SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // right 90
-                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // zero
-                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED}, // left 90
-                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // left merge
-                {SAUCER_MIN_SPEED,  SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // left 270
-                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}  // left zero
+        /***************
+         * DODGE BLAST *
+         ***************/
+
+        double[][][] dodgeSpeed = {
+
+                // x = aspect
+                // y = angle-off
+                // z = distance
+
+                // close
+                {
+                        // right twelve,   right nine,       right six,        right three,      twelve,           left nine,        left six,         left three,       left twelve
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}, // right zero
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED}, // right 270
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}, // right merge
+                        {SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}, // right 90
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}, // zero
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED}, // left 90
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}, // left merge
+                        {SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}, // left 270
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}  // left zero
+                },
+
+                // far
+                {
+                        // right twelve,   right nine,       right six,        right three,      twelve,           left nine,        left six,         left three,       left twelve
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}, // right zero
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED}, // right 270
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}, // right merge
+                        {SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}, // right 90
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}, // zero
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED}, // left 90
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}, // left merge
+                        {SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}, // left 270
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}  // left zero
+                },
+
         };
 
-        rules.addRuleMatrix(
+        rules.add3DRuleMatrix(
+                blastDist, blastDistSets,
                 blastAngleOff, blastAngleOffSets,
                 blastAspect, blastAspectSets,
-                speed, speedOutput
+                speed, dodgeSpeed
         );
+
+        /***************
+         * GET POWERUP *
+         ***************/
+        
     }
 
     /**
