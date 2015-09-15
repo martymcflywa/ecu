@@ -27,9 +27,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private SensorData nearestBlast;
     private SensorData nearestPowerUp;
 
-//    private double myEnergy;
-    private boolean isPowerUp;
-
     // linguistic input variables
 
     // me
@@ -396,6 +393,10 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
         turn = new FuzzyVariable("turn", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
 
+        /**************
+         * TARGETTING *
+         **************/
+
         /***************
          * DODGE BLAST *
          ***************/
@@ -584,6 +585,10 @@ public class RoyalRumbleController implements SaucerController, Constants {
                     closest = thisData.distance;
                 }
             }
+            targetDist.setValue(nearestTarget.distance);
+            targetAspect.setValue(nearestTarget.direction);
+            targetAngleOff.setValue(nearestTarget.heading);
+//            rules.update();
         } else {
             nearestTarget = null;
         }
@@ -592,7 +597,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
     @Override
     public void sensePowerUps(ArrayList<SensorData> data) throws Exception {
 
-        isPowerUp = data.size() > 0;
+        boolean isPowerUp = data.size() > 0;
 
         // if any powerUp's exist, get nearest
         if(isPowerUp) {
@@ -634,7 +639,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
             blastDist.setValue(nearestBlast.distance);
             blastAspect.setValue(nearestBlast.direction);
             blastAngleOff.setValue(nearestBlast.heading);
-
             rules.update();
 
         } else {
