@@ -335,26 +335,26 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 {
                         // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
                         {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
-                        {LEFT_NINE,         TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 270
+                        {LEFT_NINE,         TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         RIGHT_THREE,    LEFT_NINE},     // right 270
                         {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // right merge
-                        {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE,    TWELVE,         TWELVE,         LEFT_NINE},     // right 90
+                        {LEFT_NINE,         LEFT_SIX,       TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         LEFT_NINE},     // right 90
                         {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
-                        {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 90
+                        {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE},   // left 90
                         {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // left merge
-                        {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE,    TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
+                        {RIGHT_THREE,       LEFT_SIX,       TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
                         {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
                 },
                 // near
                 {
                         // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
                         {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
-                        {LEFT_NINE,         TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 270
+                        {LEFT_NINE,         TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         RIGHT_THREE,    LEFT_NINE},     // right 270
                         {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // right merge
-                        {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE,    TWELVE,         TWELVE,         LEFT_NINE},     // right 90
+                        {LEFT_NINE,         LEFT_SIX,       TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         LEFT_NINE},     // right 90
                         {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
-                        {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 90
+                        {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE},   // left 90
                         {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // left merge
-                        {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE,    TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
+                        {RIGHT_THREE,       LEFT_SIX,       TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
                         {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
                 },
                 // far
@@ -399,15 +399,15 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
         double[][] speedOutput = {
                 // right twelve,    right nine,         right six,          right three,        twelve,             left nine,          left six,           left three,         left twelve
-                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // right zero
+                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // right zero
                 {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED}, // right 270
                 {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // right merge
                 {SAUCER_MIN_SPEED,  SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // right 90
-                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // zero
+                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // zero
                 {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED}, // left 90
                 {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // left merge
                 {SAUCER_MIN_SPEED,  SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // left 270
-                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}  // left zero
+                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}  // left zero
         };
 
         rules.addRuleMatrix(
