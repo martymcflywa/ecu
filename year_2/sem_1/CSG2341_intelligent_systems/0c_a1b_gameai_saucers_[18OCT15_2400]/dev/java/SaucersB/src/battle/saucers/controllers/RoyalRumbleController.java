@@ -44,9 +44,9 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private FuzzyVariable targetEnergy;
 
     // target sets
-    private FuzzySet[] targetDistSets;
-    private FuzzySet[] targetAspectSets;
-    private FuzzySet[] targetAngleOffSets;
+    private FuzzySet[] targetDistSets = new FuzzySet[3];
+    private FuzzySet[] targetAspectSets = new FuzzySet[9];
+    private FuzzySet[] targetAngleOffSets = new FuzzySet[9];
     private FuzzySet[] targetSpeedSets;
 
     // blast
@@ -66,8 +66,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
     // powerup sets
     private FuzzySet[] powerUpDistSets = new FuzzySet[3];
     private FuzzySet[] powerUpAspectSets = new FuzzySet[9];
-
-    // TODO: create sets
 
     // linguistic output variables
     private FuzzyVariable turn;
@@ -90,6 +88,28 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private final double RIGHT_NINE = -270.0;
     private final double RIGHT_TWELVE = -360.0;
 
+    // aspect fuzzy sets
+    private FuzzySet rightTwelve;
+    private FuzzySet rightNine;
+    private FuzzySet rightSix;
+    private FuzzySet rightThree;
+    private FuzzySet twelve;
+    private FuzzySet leftNine;
+    private FuzzySet leftSix;
+    private FuzzySet leftThree;
+    private FuzzySet leftTwelve;
+
+    // angle-off fuzzy sets
+    private FuzzySet rightZero;
+    private FuzzySet right270;
+    private FuzzySet rightMerge;
+    private FuzzySet right90;
+    private FuzzySet zero;
+    private FuzzySet left90;
+    private FuzzySet leftMerge;
+    private FuzzySet left270;
+    private FuzzySet leftZero;
+
     private double maxDistance = Math.sqrt(
             STARFIELD_WIDTH * STARFIELD_WIDTH +
             STARFIELD_HEIGHT * STARFIELD_HEIGHT
@@ -102,7 +122,28 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
         // fuzzy variables, rules here
         rules = new SugenoRuleSet();
-        System.out.println(rules);
+
+        // aspect
+        rightTwelve = new FuzzySet("right twelve", RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_NINE);
+        rightNine = new FuzzySet("right nine", RIGHT_TWELVE, RIGHT_NINE, RIGHT_NINE, RIGHT_SIX);
+        rightSix = new FuzzySet("right six", RIGHT_NINE, RIGHT_SIX, RIGHT_SIX, RIGHT_THREE);
+        rightThree = new FuzzySet("right three", RIGHT_SIX, RIGHT_THREE, RIGHT_THREE, TWELVE);
+        twelve = new FuzzySet("twelve", RIGHT_THREE, TWELVE, TWELVE, LEFT_NINE);
+        leftNine = new FuzzySet("left nine", TWELVE, LEFT_NINE, LEFT_NINE, LEFT_SIX);
+        leftSix = new FuzzySet("left six", LEFT_NINE, LEFT_SIX, LEFT_SIX, LEFT_THREE);
+        leftThree = new FuzzySet("left three", LEFT_SIX, LEFT_THREE, LEFT_THREE, LEFT_TWELVE);
+        leftTwelve = new FuzzySet("left twelve", LEFT_THREE, LEFT_TWELVE, LEFT_TWELVE, LEFT_TWELVE);
+
+        // angle-off
+        rightZero = new FuzzySet("right zero", RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_NINE);
+        right270 = new FuzzySet("right 270", RIGHT_TWELVE, RIGHT_NINE, RIGHT_NINE, RIGHT_SIX);
+        rightMerge = new FuzzySet("right merge", RIGHT_NINE, RIGHT_SIX, RIGHT_SIX, RIGHT_THREE);
+        right90 = new FuzzySet("right 90", RIGHT_SIX, RIGHT_THREE, RIGHT_THREE, TWELVE);
+        zero = new FuzzySet("zero", RIGHT_THREE, TWELVE, TWELVE, LEFT_NINE);
+        left90 = new FuzzySet("left 90", TWELVE, LEFT_NINE, LEFT_NINE, LEFT_SIX);
+        leftMerge = new FuzzySet("left merge", LEFT_NINE, LEFT_SIX, LEFT_SIX, LEFT_THREE);
+        left270 = new FuzzySet("left 270", LEFT_SIX, LEFT_THREE, LEFT_THREE, LEFT_TWELVE);
+        leftZero = new FuzzySet("left zero", LEFT_THREE, LEFT_TWELVE, LEFT_TWELVE, LEFT_TWELVE);
 
         // setup inputs
         setupMyEnergy();
@@ -156,7 +197,70 @@ public class RoyalRumbleController implements SaucerController, Constants {
      * @throws FuzzyException
      */
     private void setupTarget() throws FuzzyException {
-        // TODO: define here
+
+        // distance
+        final double ramp1 = 0.05 * maxDistance;
+        final double ramp2 = 0.10 * maxDistance;
+        final double ramp3 = 0.15 * maxDistance;
+        final double ramp4 = 0.25 * maxDistance;
+
+        targetDist = new FuzzyVariable("dist to target", "m", 0.0, maxDistance, 2);
+
+        FuzzySet close = new FuzzySet("close", 0.0, 0.0, 0.0, ramp2);
+        FuzzySet near = new FuzzySet("near", ramp1, ramp3, ramp3, ramp4);
+        FuzzySet far = new FuzzySet("far", ramp3, ramp4, maxDistance, maxDistance);
+
+        targetDist.add(close);
+        targetDist.add(near);
+        targetDist.add(far);
+
+        targetDistSets[0] = close;
+        targetDistSets[1] = near;
+        targetDistSets[2] = far;
+
+        // aspect
+        targetAspect = new FuzzyVariable("target aspect", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
+        targetAspect.add(rightTwelve);
+        targetAspect.add(rightNine);
+        targetAspect.add(rightSix);
+        targetAspect.add(rightThree);
+        targetAspect.add(twelve);
+        targetAspect.add(leftNine);
+        targetAspect.add(leftSix);
+        targetAspect.add(leftThree);
+        targetAspect.add(leftTwelve);
+
+        targetAspectSets[0] = rightTwelve;
+        targetAspectSets[1] = rightNine;
+        targetAspectSets[2] = rightSix;
+        targetAspectSets[3] = rightThree;
+        targetAspectSets[4] = twelve;
+        targetAspectSets[5] = leftNine;
+        targetAspectSets[6] = leftSix;
+        targetAspectSets[7] = leftThree;
+        targetAspectSets[8] = leftTwelve;
+
+        // angle-off
+        targetAngleOff = new FuzzyVariable("target angle-off", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
+        targetAngleOff.add(rightZero);
+        targetAngleOff.add(right270);
+        targetAngleOff.add(rightMerge);
+        targetAngleOff.add(right90);
+        targetAngleOff.add(zero);
+        targetAngleOff.add(left90);
+        targetAngleOff.add(leftMerge);
+        targetAngleOff.add(left270);
+        targetAngleOff.add(leftZero);
+
+        targetAngleOffSets[0] = rightZero;
+        targetAngleOffSets[1] = right270;
+        targetAngleOffSets[2] = rightMerge;
+        targetAngleOffSets[3] = right90;
+        targetAngleOffSets[4] = zero;
+        targetAngleOffSets[5] = left90;
+        targetAngleOffSets[6] = leftMerge;
+        targetAngleOffSets[7] = left270;
+        targetAngleOffSets[8] = leftZero;
     }
 
     /**
@@ -165,7 +269,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
      */
     private void setupBlast() throws FuzzyException {
 
-        // set up distance
+        // distance
         final double ramp1 = 0.05 * maxDistance;
         final double ramp2 = 0.15 * maxDistance;
 
@@ -183,19 +287,8 @@ public class RoyalRumbleController implements SaucerController, Constants {
         blastDistSets[0] = close;
         blastDistSets[1] = far;
 
-        // set up aspect
+        // aspect
         blastAspect = new FuzzyVariable("blast aspect", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
-
-        FuzzySet rightTwelve = new FuzzySet("right twelve", RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_NINE);
-        FuzzySet rightNine = new FuzzySet("right nine", RIGHT_TWELVE, RIGHT_NINE, RIGHT_NINE, RIGHT_SIX);
-        FuzzySet rightSix = new FuzzySet("right six", RIGHT_NINE, RIGHT_SIX, RIGHT_SIX, RIGHT_THREE);
-        FuzzySet rightThree = new FuzzySet("right three", RIGHT_SIX, RIGHT_THREE, RIGHT_THREE, TWELVE);
-        FuzzySet twelve = new FuzzySet("twelve", RIGHT_THREE, TWELVE, TWELVE, LEFT_NINE);
-        FuzzySet leftNine = new FuzzySet("left nine", TWELVE, LEFT_NINE, LEFT_NINE, LEFT_SIX);
-        FuzzySet leftSix = new FuzzySet("left six", LEFT_NINE, LEFT_SIX, LEFT_SIX, LEFT_THREE);
-        FuzzySet leftThree = new FuzzySet("left three", LEFT_SIX, LEFT_THREE, LEFT_THREE, LEFT_TWELVE);
-        FuzzySet leftTwelve = new FuzzySet("left twelve", LEFT_THREE, LEFT_TWELVE, LEFT_TWELVE, LEFT_TWELVE);
-
         blastAspect.add(rightTwelve);
         blastAspect.add(rightNine);
         blastAspect.add(rightSix);
@@ -205,9 +298,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
         blastAspect.add(leftSix);
         blastAspect.add(leftThree);
         blastAspect.add(leftTwelve);
-
-        blastAspect.checkGaps();
-        blastAspect.display();
 
         blastAspectSets[0] = rightTwelve;
         blastAspectSets[1] = rightNine;
@@ -221,17 +311,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
         // set up angle-off
         blastAngleOff = new FuzzyVariable("blast angle-off", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
-
-        FuzzySet rightZero = new FuzzySet("right zero", RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_NINE);
-        FuzzySet right270 = new FuzzySet("right 270", RIGHT_TWELVE, RIGHT_NINE, RIGHT_NINE, RIGHT_SIX);
-        FuzzySet rightMerge = new FuzzySet("right merge", RIGHT_NINE, RIGHT_SIX, RIGHT_SIX, RIGHT_THREE);
-        FuzzySet right90 = new FuzzySet("right 90", RIGHT_SIX, RIGHT_THREE, RIGHT_THREE, TWELVE);
-        FuzzySet zero = new FuzzySet("zero", RIGHT_THREE, TWELVE, TWELVE, LEFT_NINE);
-        FuzzySet left90 = new FuzzySet("left 90", TWELVE, LEFT_NINE, LEFT_NINE, LEFT_SIX);
-        FuzzySet leftMerge = new FuzzySet("left merge", LEFT_NINE, LEFT_SIX, LEFT_SIX, LEFT_THREE);
-        FuzzySet left270 = new FuzzySet("left 270", LEFT_SIX, LEFT_THREE, LEFT_THREE, LEFT_TWELVE);
-        FuzzySet leftZero = new FuzzySet("left zero", LEFT_THREE, LEFT_TWELVE, LEFT_TWELVE, LEFT_TWELVE);
-
         blastAngleOff.add(rightZero);
         blastAngleOff.add(right270);
         blastAngleOff.add(rightMerge);
@@ -241,9 +320,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
         blastAngleOff.add(leftMerge);
         blastAngleOff.add(left270);
         blastAngleOff.add(leftZero);
-
-        blastAngleOff.checkGaps();
-        blastAngleOff.display();
 
         blastAngleOffSets[0] = rightZero;
         blastAngleOffSets[1] = right270;
@@ -287,17 +363,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
         // aspect
         powerUpAspect = new FuzzyVariable("powerup aspect", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
-
-        FuzzySet rightTwelve = new FuzzySet("right twelve", RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_NINE);
-        FuzzySet rightNine = new FuzzySet("right nine", RIGHT_TWELVE, RIGHT_NINE, RIGHT_NINE, RIGHT_SIX);
-        FuzzySet rightSix = new FuzzySet("right six", RIGHT_NINE, RIGHT_SIX, RIGHT_SIX, RIGHT_THREE);
-        FuzzySet rightThree = new FuzzySet("right three", RIGHT_SIX, RIGHT_THREE, RIGHT_THREE, TWELVE);
-        FuzzySet twelve = new FuzzySet("twelve", RIGHT_THREE, TWELVE, TWELVE, LEFT_NINE);
-        FuzzySet leftNine = new FuzzySet("left nine", TWELVE, LEFT_NINE, LEFT_NINE, LEFT_SIX);
-        FuzzySet leftSix = new FuzzySet("left six", LEFT_NINE, LEFT_SIX, LEFT_SIX, LEFT_THREE);
-        FuzzySet leftThree = new FuzzySet("left three", LEFT_SIX, LEFT_THREE, LEFT_THREE, LEFT_TWELVE);
-        FuzzySet leftTwelve = new FuzzySet("left twelve", LEFT_THREE, LEFT_TWELVE, LEFT_TWELVE, LEFT_TWELVE);
-
         powerUpAspect.add(rightTwelve);
         powerUpAspect.add(rightNine);
         powerUpAspect.add(rightSix);
@@ -307,9 +372,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
         powerUpAspect.add(leftSix);
         powerUpAspect.add(leftThree);
         powerUpAspect.add(leftTwelve);
-
-        powerUpAspect.checkGaps();
-        powerUpAspect.display();
 
         powerUpAspectSets[0] = rightTwelve;
         powerUpAspectSets[1] = rightNine;
@@ -503,135 +565,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
      */
     private void setupShield() throws FuzzyException {
         // TODO: define here
-    }
-
-    /**********
-     * COMMON *
-     **********/
-
-    /**
-     * This method sets up a common distance variable/set.
-     *
-     * @param theVariable FuzzyVariable.
-     * @param object String.
-     * @throws FuzzyException
-     */
-    private void setDist(FuzzyVariable theVariable, String object, FuzzySet[] theSet) throws FuzzyException {
-
-        final double maxDistance = Math.sqrt(
-                STARFIELD_WIDTH * STARFIELD_WIDTH +
-                        STARFIELD_HEIGHT * STARFIELD_HEIGHT
-        );
-
-        final double ramp1 = 0.05 * maxDistance;
-        final double ramp2 = 0.10 * maxDistance;
-        final double ramp3 = 0.15 * maxDistance;
-        final double ramp4 = 0.25 * maxDistance;
-
-        theVariable = new FuzzyVariable("dist to " + object, "m", 0.0, maxDistance, 2);
-
-        FuzzySet close = new FuzzySet("close", 0.0, 0.0, 0.0, ramp2);
-        FuzzySet near = new FuzzySet("near", ramp1, ramp3, ramp3, ramp4);
-        FuzzySet far = new FuzzySet("far", ramp3, ramp4, maxDistance, maxDistance);
-
-        theVariable.add(close);
-        theVariable.add(near);
-        theVariable.add(far);
-
-        theVariable.checkGaps();
-        theVariable.display();
-
-        theSet[0] = close;
-        theSet[1] = near;
-        theSet[2] = far;
-    }
-
-    /**
-     * This method sets up a common aspect variable/set
-     * @param theVariable FuzzyVariable.
-     * @param object String.
-     * @throws FuzzyException
-     */
-    private void setAspect(FuzzyVariable theVariable, String object, FuzzySet[] theSet) throws FuzzyException {
-
-        theVariable = new FuzzyVariable(object + "'s aspect", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
-
-        FuzzySet rightTwelve = new FuzzySet("right twelve", RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_NINE);
-        FuzzySet rightNine = new FuzzySet("right nine", RIGHT_TWELVE, RIGHT_NINE, RIGHT_NINE, RIGHT_SIX);
-        FuzzySet rightSix = new FuzzySet("right six", RIGHT_NINE, RIGHT_SIX, RIGHT_SIX, RIGHT_THREE);
-        FuzzySet rightThree = new FuzzySet("right three", RIGHT_SIX, RIGHT_THREE, RIGHT_THREE, TWELVE);
-        FuzzySet twelve = new FuzzySet("twelve", RIGHT_THREE, TWELVE, TWELVE, LEFT_NINE);
-        FuzzySet leftNine = new FuzzySet("left nine", TWELVE, LEFT_NINE, LEFT_NINE, LEFT_SIX);
-        FuzzySet leftSix = new FuzzySet("left six", LEFT_NINE, LEFT_SIX, LEFT_SIX, LEFT_THREE);
-        FuzzySet leftThree = new FuzzySet("left three", LEFT_SIX, LEFT_THREE, LEFT_THREE, LEFT_TWELVE);
-        FuzzySet leftTwelve = new FuzzySet("left twelve", LEFT_THREE, LEFT_TWELVE, LEFT_TWELVE, LEFT_TWELVE);
-
-        theVariable.add(rightTwelve);
-        theVariable.add(rightNine);
-        theVariable.add(rightSix);
-        theVariable.add(rightThree);
-        theVariable.add(twelve);
-        theVariable.add(leftNine);
-        theVariable.add(leftSix);
-        theVariable.add(leftThree);
-        theVariable.add(leftTwelve);
-
-        theVariable.checkGaps();
-        theVariable.display();
-
-        theSet[0] = rightTwelve;
-        theSet[1] = rightNine;
-        theSet[2] = rightSix;
-        theSet[3] = rightThree;
-        theSet[4] = twelve;
-        theSet[5] = leftNine;
-        theSet[6] = leftSix;
-        theSet[7] = leftThree;
-        theSet[8] = leftTwelve;
-    }
-
-    /**
-     * This method sets up a common angle-off variable/set.
-     * @param theVariable FuzzyVariable.
-     * @param object String.
-     * @throws FuzzyException
-     */
-    private void setAngleOff(FuzzyVariable theVariable, String object, FuzzySet[] theSet) throws FuzzyException {
-
-        theVariable = new FuzzyVariable(object + "'s angle-off", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
-
-        FuzzySet rightZero = new FuzzySet("right zero", RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_NINE);
-        FuzzySet right270 = new FuzzySet("right 270", RIGHT_TWELVE, RIGHT_NINE, RIGHT_NINE, RIGHT_SIX);
-        FuzzySet rightMerge = new FuzzySet("right merge", RIGHT_NINE, RIGHT_SIX, RIGHT_SIX, RIGHT_THREE);
-        FuzzySet right90 = new FuzzySet("right 90", RIGHT_SIX, RIGHT_THREE, RIGHT_THREE, TWELVE);
-        FuzzySet zero = new FuzzySet("zero", RIGHT_THREE, TWELVE, TWELVE, LEFT_NINE);
-        FuzzySet left90 = new FuzzySet("left 90", TWELVE, LEFT_NINE, LEFT_NINE, LEFT_SIX);
-        FuzzySet leftMerge = new FuzzySet("left merge", LEFT_NINE, LEFT_SIX, LEFT_SIX, LEFT_THREE);
-        FuzzySet left270 = new FuzzySet("left 270", LEFT_SIX, LEFT_THREE, LEFT_THREE, LEFT_TWELVE);
-        FuzzySet leftZero = new FuzzySet("left zero", LEFT_THREE, LEFT_TWELVE, LEFT_TWELVE, LEFT_TWELVE);
-
-        theVariable.add(rightZero);
-        theVariable.add(right270);
-        theVariable.add(rightMerge);
-        theVariable.add(right90);
-        theVariable.add(zero);
-        theVariable.add(left90);
-        theVariable.add(leftMerge);
-        theVariable.add(left270);
-        theVariable.add(leftZero);
-
-        theVariable.checkGaps();
-        theVariable.display();
-
-        theSet[0] = rightZero;
-        theSet[1] = right270;
-        theSet[2] = rightMerge;
-        theSet[3] = right90;
-        theSet[4] = zero;
-        theSet[5] = left90;
-        theSet[6] = leftMerge;
-        theSet[7] = left270;
-        theSet[8] = leftZero;
     }
 
     /****************
