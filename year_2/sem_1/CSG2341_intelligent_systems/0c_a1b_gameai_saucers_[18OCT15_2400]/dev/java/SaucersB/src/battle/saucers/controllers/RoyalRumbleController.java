@@ -285,16 +285,30 @@ public class RoyalRumbleController implements SaucerController, Constants {
         // TODO: define here
         turn = new FuzzyVariable("turn", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
 
+        // ORIGINAL
+//        double[][] turnOutput = {
+//                // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
+//                {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
+//                {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 270
+//                {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // right merge
+//                {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 90
+//                {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
+//                {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 90
+//                {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // left merge
+//                {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
+//                {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
+//        };
+
         double[][] turnOutput = {
                 // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
                 {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
-                {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 270
-                {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // right merge
-                {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 90
+                {LEFT_NINE,         TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 270
+                {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // right merge
+                {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE,    TWELVE,         TWELVE,         LEFT_NINE},     // right 90
                 {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
-                {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 90
-                {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // left merge
-                {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
+                {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 90
+                {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // left merge
+                {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE,    TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
                 {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
         };
 
@@ -363,7 +377,29 @@ public class RoyalRumbleController implements SaucerController, Constants {
      * @throws FuzzyException
      */
     private void setupSpeed() throws FuzzyException {
-        // TODO: define here
+
+        final double midSpeed = 75.0;
+
+        speed = new FuzzyVariable("speed", "", SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, 2);
+
+        double[][] speedOutput = {
+                // right twelve,    right nine,         right six,          right three,        twelve,             left nine,          left six,           left three,         left twelve
+                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // right zero
+                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED}, // right 270
+                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // right merge
+                {SAUCER_MIN_SPEED,  SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // right 90
+                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // zero
+                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED}, // left 90
+                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // left merge
+                {SAUCER_MIN_SPEED,  SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MAX_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}, // left 270
+                {SAUCER_MIN_SPEED,  SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED,   SAUCER_MIN_SPEED}  // left zero
+        };
+
+        rules.addRuleMatrix(
+                blastAngleOff, blastAngleOffSets,
+                blastAspect, blastAspectSets,
+                speed, speedOutput
+        );
     }
 
     /**
@@ -574,6 +610,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
         } else {
             nearestBlast = null;
             turn.setValue(0.0);
+            speed.setValue(50.0);
         }
     }
 
@@ -594,7 +631,8 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
     @Override
     public double getSpeed() throws Exception {
-        return 0;
+//        return 0;
+        return speed.getValue();
     }
 
     @Override

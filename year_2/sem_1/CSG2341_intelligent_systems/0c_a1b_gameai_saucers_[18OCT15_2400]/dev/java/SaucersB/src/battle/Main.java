@@ -24,17 +24,17 @@ public class Main extends JFrame implements Runnable, Constants {
             controllers = new SaucerController[]
                     {
                             new DebugSimpleController(),
-                            new RoyalRumbleController()
-//                            new SimpleController(),
-//                            new SimpleController(),
-//                            new SimpleController(),
-//                            new SimpleController(),
-//                            new SittingDuckController(),
-//                            new SittingDuckController(),
-//                            new SittingDuckController(),
-//                            new SittingDuckController(),
-//                            new SittingDuckController(),
-//                            new SittingDuckController()
+                            new RoyalRumbleController(),
+                            new SimpleController(),
+                            new SimpleController(),
+                            new SimpleController(),
+                            new SimpleController(),
+                            new SittingDuckController(),
+                            new SittingDuckController(),
+                            new SittingDuckController(),
+                            new SittingDuckController(),
+                            new SittingDuckController(),
+                            new SittingDuckController()
                     };
         } catch (Exception e) {
             System.err.println("Unable to create controllers");
