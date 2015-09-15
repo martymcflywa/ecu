@@ -390,7 +390,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
          * GET POWERUP *
          ***************/
 
-        double[][] getPowerUp = {
+        double[][] headToPowerUp = {
 
                 // x = powerup distance
                 // y = powerup aspect
@@ -410,7 +410,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
         rules.addRuleMatrix(
                 powerUpAspect, powerUpAspectSets,
                 powerUpDist, powerUpDistSets,
-                turn, getPowerUp
+                turn, headToPowerUp
         );
 
         rules.displayRuleMatrix(
@@ -480,7 +480,13 @@ public class RoyalRumbleController implements SaucerController, Constants {
         /***************
          * GET POWERUP *
          ***************/
-        
+
+        // if close then mid speed
+        rules.addRule(powerUpDist, powerUpDistSets[0], speed, midSpeed);
+        // if near then max speed
+        rules.addRule(powerUpDist, powerUpDistSets[1], speed, SAUCER_MAX_SPEED);
+        // if far then min speed
+        rules.addRule(powerUpDist, powerUpDistSets[2], speed, SAUCER_MIN_SPEED);
     }
 
     /**
