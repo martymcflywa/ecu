@@ -64,8 +64,8 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private FuzzyVariable powerUpAspect;
 
     // powerup sets
-    private FuzzySet[] powerUpDistSets;
-    private FuzzySet[] powerUpAspectSets;
+    private FuzzySet[] powerUpDistSets = new FuzzySet[3];
+    private FuzzySet[] powerUpAspectSets = new FuzzySet[9];
 
     // TODO: create sets
 
@@ -271,7 +271,67 @@ public class RoyalRumbleController implements SaucerController, Constants {
      * @throws FuzzyException
      */
     private void setupPowerUp() throws FuzzyException {
-        // TODO: define here
+
+        // distance
+
+        final double ramp1 = 0.05 * maxDistance;
+        final double ramp2 = 0.10 * maxDistance;
+        final double ramp3 = 0.15 * maxDistance;
+        final double ramp4 = 0.25 * maxDistance;
+
+        powerUpDist = new FuzzyVariable("dist to powerup", "m", 0.0, maxDistance, 2);
+
+        FuzzySet close = new FuzzySet("close", 0.0, 0.0, 0.0, ramp2);
+        FuzzySet near = new FuzzySet("near", ramp1, ramp3, ramp3, ramp4);
+        FuzzySet far = new FuzzySet("far", ramp3, ramp4, maxDistance, maxDistance);
+
+        powerUpDist.add(close);
+        powerUpDist.add(near);
+        powerUpDist.add(far);
+
+        powerUpDist.checkGaps();
+        powerUpDist.display();
+
+        powerUpDistSets[0] = close;
+        powerUpDistSets[1] = near;
+        powerUpDistSets[2] = far;
+
+        // aspect
+
+        powerUpAspect = new FuzzyVariable("powerup aspect", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
+
+        FuzzySet rightTwelve = new FuzzySet("right twelve", RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_NINE);
+        FuzzySet rightNine = new FuzzySet("right nine", RIGHT_TWELVE, RIGHT_NINE, RIGHT_NINE, RIGHT_SIX);
+        FuzzySet rightSix = new FuzzySet("right six", RIGHT_NINE, RIGHT_SIX, RIGHT_SIX, RIGHT_THREE);
+        FuzzySet rightThree = new FuzzySet("right three", RIGHT_SIX, RIGHT_THREE, RIGHT_THREE, TWELVE);
+        FuzzySet twelve = new FuzzySet("twelve", RIGHT_THREE, TWELVE, TWELVE, LEFT_NINE);
+        FuzzySet leftNine = new FuzzySet("left nine", TWELVE, LEFT_NINE, LEFT_NINE, LEFT_SIX);
+        FuzzySet leftSix = new FuzzySet("left six", LEFT_NINE, LEFT_SIX, LEFT_SIX, LEFT_THREE);
+        FuzzySet leftThree = new FuzzySet("left three", LEFT_SIX, LEFT_THREE, LEFT_THREE, LEFT_TWELVE);
+        FuzzySet leftTwelve = new FuzzySet("left twelve", LEFT_THREE, LEFT_TWELVE, LEFT_TWELVE, LEFT_TWELVE);
+
+        powerUpAspect.add(rightTwelve);
+        powerUpAspect.add(rightNine);
+        powerUpAspect.add(rightSix);
+        powerUpAspect.add(rightThree);
+        powerUpAspect.add(twelve);
+        powerUpAspect.add(leftNine);
+        powerUpAspect.add(leftSix);
+        powerUpAspect.add(leftThree);
+        powerUpAspect.add(leftTwelve);
+
+        powerUpAspect.checkGaps();
+        powerUpAspect.display();
+
+        powerUpAspectSets[0] = rightTwelve;
+        powerUpAspectSets[1] = rightNine;
+        powerUpAspectSets[2] = rightSix;
+        powerUpAspectSets[3] = rightThree;
+        powerUpAspectSets[4] = twelve;
+        powerUpAspectSets[5] = leftNine;
+        powerUpAspectSets[6] = leftSix;
+        powerUpAspectSets[7] = leftThree;
+        powerUpAspectSets[8] = leftTwelve;
     }
 
     /**********
@@ -283,49 +343,14 @@ public class RoyalRumbleController implements SaucerController, Constants {
      * @throws FuzzyException
      */
     private void setupTurn() throws FuzzyException {
-        // TODO: define here
+
         turn = new FuzzyVariable("turn", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
 
-        // ORIGINAL
-//        double[][] turnOutput = {
-//                // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
-//                {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
-//                {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 270
-//                {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // right merge
-//                {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 90
-//                {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
-//                {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 90
-//                {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // left merge
-//                {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
-//                {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
-//        };
+        /***************
+         * DODGE BLAST *
+         ***************/
 
-//        double[][] turnOutput = {
-//                // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
-//                {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
-//                {LEFT_NINE,         TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 270
-//                {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // right merge
-//                {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE,    TWELVE,         TWELVE,         LEFT_NINE},     // right 90
-//                {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
-//                {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_NINE,      LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 90
-//                {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // left merge
-//                {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_THREE,    TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
-//                {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
-//        };
-
-//        rules.addRuleMatrix(
-//                blastAngleOff, blastAngleOffSets,
-//                blastAspect, blastAspectSets,
-//                turn, turnOutput
-//        );
-//
-//        rules.displayRuleMatrix(
-//                blastAngleOff, blastAngleOffSets,
-//                blastAspect, blastAspectSets,
-//                turn
-//        );
-
-        double[][][] turnOutput = {
+        double[][][] blastDodge = {
 
                 // x = blast aspect
                 // y = blast angle-off
@@ -376,13 +401,46 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 blastDist, blastDistSets,
                 blastAngleOff, blastAngleOffSets,
                 blastAspect, blastAspectSets,
-                turn, turnOutput
+                turn, blastDodge
         );
 
         rules.display3DRuleMatrix(
                 blastDist, blastDistSets,
                 blastAngleOff, blastAngleOffSets,
                 blastAspect, blastAspectSets,
+                turn
+        );
+
+        /***************
+         * GET POWERUP *
+         ***************/
+
+        double[][] getPowerUp = {
+
+                // x = powerup distance
+                // y = powerup aspect
+
+                // close near far
+                {TWELVE, TWELVE, TWELVE},           // right twelve
+                {LEFT_NINE, LEFT_NINE, TWELVE},     // right nine
+                {RIGHT_SIX, RIGHT_SIX, TWELVE},     // right six
+                {RIGHT_THREE, RIGHT_THREE, TWELVE}, // right three
+                {TWELVE, TWELVE, TWELVE},           // twelve
+                {LEFT_NINE, LEFT_NINE, TWELVE},     // left nine
+                {LEFT_SIX, LEFT_SIX, TWELVE},       // left six
+                {RIGHT_SIX, RIGHT_THREE, TWELVE},   // left three
+                {TWELVE, TWELVE, TWELVE}            // left twelve
+        };
+
+        rules.addRuleMatrix(
+                powerUpAspect, powerUpAspectSets,
+                powerUpDist, powerUpDistSets,
+                turn, getPowerUp
+        );
+
+        rules.displayRuleMatrix(
+                powerUpAspect, powerUpAspectSets,
+                powerUpDist, powerUpDistSets,
                 turn
         );
     }
@@ -600,8 +658,18 @@ public class RoyalRumbleController implements SaucerController, Constants {
                     closest = thisData.distance;
                 }
             }
+//            rules.clearVariables();
+
+            powerUpDist.setValue(nearestPowerUp.distance);
+            powerUpAspect.setValue(nearestPowerUp.direction);
+
+            rules.update();
         } else {
             nearestPowerUp = null;
+            powerUpDist.setValue(maxDistance);
+            powerUpAspect.setValue(TWELVE);
+            turn.setValue(TWELVE);
+            speed.setValue(SAUCER_MIN_SPEED);
         }
     }
 
@@ -618,15 +686,18 @@ public class RoyalRumbleController implements SaucerController, Constants {
                     closest = thisData.distance;
                 }
             }
-            rules.clearVariables();
+//            rules.clearVariables();
+
             blastDist.setValue(nearestBlast.distance);
             blastAspect.setValue(nearestBlast.direction);
             blastAngleOff.setValue(nearestBlast.heading);
+
             rules.update();
+
         } else {
             nearestBlast = null;
-            turn.setValue(0.0);
-            speed.setValue(50.0);
+            turn.setValue(TWELVE);
+            speed.setValue(SAUCER_MIN_SPEED);
         }
     }
 
