@@ -557,7 +557,13 @@ public class RoyalRumbleController implements SaucerController, Constants {
      * @throws FuzzyException
      */
     private void setupFirePower() throws FuzzyException {
-        // TODO: define here
+
+        final double lowPower = SAUCER_MAX_POWER * 0.25;
+        final double midPower = SAUCER_MAX_POWER * 0.5;
+
+        firePower = new FuzzyVariable("firepower", "j", 0.0, SAUCER_MAX_POWER, 2);
+
+        
     }
 
     /**
