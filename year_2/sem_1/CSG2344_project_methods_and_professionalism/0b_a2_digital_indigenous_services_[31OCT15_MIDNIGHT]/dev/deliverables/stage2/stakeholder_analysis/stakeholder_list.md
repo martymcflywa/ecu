@@ -6,7 +6,7 @@
 	- Project role
 	- Contact info
 
-## Internal
+# Internal
 
 - David Cook
 	- Tutor/lecturer
@@ -34,9 +34,9 @@
 	- Procurement and communications manager
 	- lydiak@our.ecu.edu.au
 
-## External
+# External
 
-### Client
+## Client
 
 - James Curtis
 	- Acting Executive Director - Community Development
@@ -46,14 +46,14 @@
 	- 1300 651 077
 	- info2@daa.wa.gov.au
 
-### Suppliers
+## Suppliers
 
-#### Tablet
+### Tablet
 
 - Tablet device wholesaler
 	- TBC
 
-#### Internet/Wifi
+### Internet/Wifi
 
 - Telstra Country Wide
 	- http://www.telstra.com.au/telstracountrywide/contact-us/
@@ -82,7 +82,7 @@
 	- 151 Victoria St, Bunbury WA 6230
 	- southwatcw@team.telstra.com
 
-#### Indigenous workforce development
+### Indigenous workforce development
 
 - Aboriginal Workforce Development Centre
 	- External
@@ -95,7 +95,44 @@
 	- 1800 441 043
 	- awdc@dtwd.wa.gov.au
 
-#### Developers
+### Ebooks
+
+- [Indigenous Literacy Foundation](http://www.indigenousliteracyfoundation.org.au/)
+	- External
+	- Ebook and publisher contracts
+	- Karen Williams
+		- Executive Director
+		- 02 9280 0644
+		- info@ilf.org.au
+
+### Interpreter service
+
+- [Kimberley Interpreting Service](http://www.kimberleyinterpreting.org.au/)
+	- External
+	- Interpreters to assist with development of Indigenous language apps
+	- Dee Lightfoot
+		- Booking Officer
+		- 08 9192 3981
+		- kis@wn.com.au
+
+### Research/resource providers
+
+- [Australian Institute of Aboriginal and Torres Strait Islander Studies](http://aiatsis.gov.au/)
+	- External
+	- Resources to assist with
+		- Development of stolen generations app
+			- Family history research
+		- Development of translator and language teaching apps
+	- Marie Ferris
+		- Director - Communication and Engagement
+		- commsmedia@aiatsis.gov.au
+	- Dr. Lisa Strelein
+		- Director - Research Strategy
+		- research@aiatsis.gov.au
+
+# App development
+
+## Contract developers
 
 - applabs.com.au
 	- External
@@ -104,3 +141,36 @@
 		- Develop iOS and Android apps
 	- hello@applabs.com.au
 	- 1300 277 522
+
+## Existing apps
+
+- Diabetes Australia
+	- External
+	- Existing app developer/owner
+		- Diabetes Australia app
+			- [iOS](https://itunes.apple.com/au/app/diabetes-australia-app/id933023200?mt=8)
+			- [Android](https://play.google.com/store/apps/details?id=au.com.diabetesaustralia.app&hl=en)
+	- 02 6232 3800
+	- admin@diabetesaustralia.com.au
+- SBS
+	- External
+	- Existing app developer/owner
+		- SBS On Demand
+			- [iOS](https://itunes.apple.com/au/app/sbs-on-demand/id542090992?mt=8)
+			- [Android](https://play.google.com/store/apps/details?id=com.sbs.ondemand.android&hl=en)
+	- Contact
+		- [Tanya Denning](https://au.linkedin.com/pub/tanya-denning/12/8ba/331)
+		- NITV Channel Manager
+
+## Websites to be adapted to app
+
+- http://www.lookafterkidsears.com.au/
+	- Damien Howard
+	- External
+	- Site owner
+	- 08 8948 4444
+- http://stolengenerationstestimonies.com/
+	- Melanie Hogan
+	- External
+	- CEO, Documentary Filmmaker
+	- info@stolengenerationstestimonies.com
