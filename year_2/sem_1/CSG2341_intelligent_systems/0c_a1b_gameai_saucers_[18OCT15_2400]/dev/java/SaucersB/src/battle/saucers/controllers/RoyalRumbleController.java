@@ -431,46 +431,86 @@ public class RoyalRumbleController implements SaucerController, Constants {
          * TARGET *
          **********/
 
+//        double[][][] turnTarget = {
+//
+//                // x = target aspect
+//                // y = target angle-off
+//                // z = target energy difference
+//
+//                // losing
+//                {
+//                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
+//                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
+//                        {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 270
+//                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // right merge
+//                        {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 90
+//                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
+//                        {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 90
+//                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // left merge
+//                        {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
+//                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
+//                },
+//
+//                // winning
+//                {
+//                        // right twelve,    right nine,     right six,      right three,    twelve,     left nine,      left six,   left three,     left twelve
+//                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // right zero
+//                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // right 270
+//                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // right merge
+//                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // right 90
+//                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // zero
+//                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // left 90
+//                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // left merge
+//                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // left 270
+//                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE}      // left zero
+//                }
+//        };
+//
+//        rules.add3DRuleMatrix(
+//                targetEnergyDiff, targetEnergyDiffSets,
+//                targetAngleOff, targetAngleOffSets,
+//                targetAspect, targetAspectSets,
+//                turn, turnTarget
+//        );
+
         double[][][] turnTarget = {
 
                 // x = target aspect
-                // y = target angle-off
-                // z = target energy difference
+                // y = target energy difference
+                // z = target distance
 
-                // losing
+                // close
                 {
-                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
-                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
-                        {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 270
-                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // right merge
-                        {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 90
-                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
-                        {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 90
-                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // left merge
-                        {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
-                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
+                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,   left three,     left twelve
+                        {RIGHT_THREE,       RIGHT_THREE,    TWELVE,         LEFT_THREE,     RIGHT_THREE,    RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_THREE},  // losing
+                        {TWELVE,            LEFT_THREE,     RIGHT_THREE,    RIGHT_THREE,    TWELVE,         LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE}       // winning
                 },
-
-                // winning
+                // near
+                {
+                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,   left three,     left twelve
+                        {RIGHT_THREE,       RIGHT_THREE,    TWELVE,         LEFT_THREE,     RIGHT_THREE,    RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_THREE},  // losing
+                        {TWELVE,            LEFT_THREE,     RIGHT_THREE,    RIGHT_THREE,    TWELVE,         LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE}       // winning
+                },
+                // far
                 {
                         // right twelve,    right nine,     right six,      right three,    twelve,     left nine,      left six,   left three,     left twelve
-                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // right zero
-                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // right 270
-                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // right merge
-                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // right 90
-                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // zero
-                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // left 90
-                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // left merge
-                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // left 270
-                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE}      // left zero
+                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,     TWELVE,         TWELVE,     TWELVE,         TWELVE},  // losing
+                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,     TWELVE,         TWELVE,     TWELVE,         TWELVE}     // winning
                 }
         };
 
         rules.add3DRuleMatrix(
+                targetDist, targetDistSets,
                 targetEnergyDiff, targetEnergyDiffSets,
-                targetAngleOff, targetAngleOffSets,
                 targetAspect, targetAspectSets,
                 turn, turnTarget
+        );
+
+        rules.display3DRuleMatrix(
+                targetDist, targetDistSets,
+                targetEnergyDiff, targetEnergyDiffSets,
+                targetAspect, targetAspectSets,
+                turn
         );
 
         /***************
