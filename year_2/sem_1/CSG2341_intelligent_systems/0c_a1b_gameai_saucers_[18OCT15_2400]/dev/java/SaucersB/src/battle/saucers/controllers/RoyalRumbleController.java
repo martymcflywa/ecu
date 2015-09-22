@@ -851,7 +851,8 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
     @Override
     public boolean getShields() throws Exception {
-        return shield.getValue() > 0.5;
+//        return shield.getValue() > 0.5;
+        return false;
     }
 
     @Override
