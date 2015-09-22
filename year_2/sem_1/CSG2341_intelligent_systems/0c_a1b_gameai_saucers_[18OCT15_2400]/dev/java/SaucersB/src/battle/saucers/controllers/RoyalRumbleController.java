@@ -717,6 +717,9 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
     @Override
     public void senseSaucers(ArrayList<SensorData> data) throws Exception {
+
+        isLastTarget = false;
+
         // get nearest enemy
         if(data.size() > 0) {
             double closest = data.get(0).distance;
