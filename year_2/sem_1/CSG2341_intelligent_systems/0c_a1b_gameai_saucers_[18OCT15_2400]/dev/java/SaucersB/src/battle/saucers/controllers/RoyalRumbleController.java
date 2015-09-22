@@ -68,8 +68,10 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private FuzzySet[] powerUpAspectSets = new FuzzySet[9];
 
     // linguistic output variables
-    private FuzzyVariable turn;
-    private FuzzyVariable speed;
+    private FuzzyVariable defensiveTurn;
+    private FuzzyVariable offensiveTurn;
+    private FuzzyVariable defensiveSpeed;
+    private FuzzyVariable offensiveSpeed;
     private FuzzyVariable firePower;
     // this needs to be boolean
     private FuzzyVariable shield;
@@ -156,8 +158,10 @@ public class RoyalRumbleController implements SaucerController, Constants {
         setupPowerUp();
 
         // setup outputs
-        setupTurn();
-        setupSpeed();
+        setupDefensiveTurn();
+        setupOffensiveTurn();
+        setupDefensiveSpeed();
+        setupOffensiveSpeed();
         setupFirePower();
         setupShield();
     }
@@ -411,19 +415,147 @@ public class RoyalRumbleController implements SaucerController, Constants {
      **********/
 
     /**
-     * This method sets up turn output rules.
+     * This method sets up defensiveTurn output rules.
      * @throws FuzzyException
      */
-    private void setupTurn() throws FuzzyException {
+    private void setupDefensiveTurn() throws FuzzyException {
 
-        turn = new FuzzyVariable("turn", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
+        defensiveTurn = new FuzzyVariable("defensive turn", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
 
         /**********
          * TARGET *
          **********/
 
-        double[][][] turnTarget = {
+//        double[][][] turnTarget = {
+//
+//                // x = target aspect
+//                // y = target energy difference
+//                // z = target distance
+//
+//                // close
+//                {
+//                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,   left three,     left twelve
+//                        {RIGHT_THREE,       RIGHT_THREE,    TWELVE,         LEFT_NINE,      RIGHT_THREE,    RIGHT_THREE,    TWELVE,     LEFT_NINE,      LEFT_NINE},   // losing
+//                        {TWELVE,            LEFT_NINE,      RIGHT_SIX,      RIGHT_THREE,    TWELVE,         LEFT_NINE,      LEFT_SIX,   RIGHT_THREE,    TWELVE}       // winning
+//                },
+//                // near
+//                {
+//                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,   left three,     left twelve
+//                        {RIGHT_THREE,       RIGHT_THREE,    TWELVE,         LEFT_NINE,      RIGHT_THREE,    RIGHT_THREE,    TWELVE,     LEFT_NINE,      LEFT_NINE},   // losing
+//                        {TWELVE,            LEFT_NINE,      RIGHT_SIX,      RIGHT_THREE,    TWELVE,         LEFT_NINE,      LEFT_SIX,   RIGHT_THREE,    TWELVE}       // winning
+//                },
+//                // far
+//                {
+//                        // right twelve,    right nine,     right six,      right three,    twelve,     left nine,      left six,   left three,     left twelve
+//                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,     TWELVE,         TWELVE,     TWELVE,         TWELVE},  // losing
+//                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,     TWELVE,         TWELVE,     TWELVE,         TWELVE}     // winning
+//                }
+//        };
+//
+//        rules.add3DRuleMatrix(
+//                targetDist, targetDistSets,
+//                targetEnergyDiff, targetEnergyDiffSets,
+//                targetAspect, targetAspectSets,
+//                defensiveTurn, turnTarget
+//        );
+//
+//        rules.display3DRuleMatrix(
+//                targetDist, targetDistSets,
+//                targetEnergyDiff, targetEnergyDiffSets,
+//                targetAspect, targetAspectSets,
+//                defensiveTurn
+//        );
 
+        /***************
+         * DODGE BLAST *
+         ***************/
+
+        double[][][] blastDodge = {
+
+                // x = blast aspect
+                // y = blast angle-off
+                // z = blast distance
+
+                // close
+                {
+                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
+                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
+                        {LEFT_NINE,         TWELVE,         TWELVE,         LEFT_SIX,       LEFT_NINE,      TWELVE,         TWELVE,         LEFT_SIX,       LEFT_NINE},     // right 270
+                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // right merge
+                        {LEFT_NINE,         RIGHT_SIX,      TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         LEFT_NINE},     // right 90
+                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
+                        {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_SIX,       LEFT_NINE,      TWELVE,         TWELVE,         LEFT_SIX,       RIGHT_THREE},   // left 90
+                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // left merge
+                        {RIGHT_THREE,       RIGHT_SIX,      TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
+                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
+                },
+                // far
+                {
+                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
+                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}, // right zero
+                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         TWELVE}, // right 270
+                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // right merge
+                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         TWELVE}, // right 90
+                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}, // zero
+                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         TWELVE}, // left 90
+                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // left merge
+                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         TWELVE}, // left 270
+                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE} // left zero
+                }
+        };
+
+        rules.add3DRuleMatrix(
+                blastDist, blastDistSets,
+                blastAngleOff, blastAngleOffSets,
+                blastAspect, blastAspectSets,
+                defensiveTurn, blastDodge
+        );
+
+        rules.display3DRuleMatrix(
+                blastDist, blastDistSets,
+                blastAngleOff, blastAngleOffSets,
+                blastAspect, blastAspectSets,
+                defensiveTurn
+        );
+
+        /***************
+         * GET POWERUP *
+         ***************/
+
+        double[][] headToPowerUp = {
+
+                // x = powerup distance
+                // y = powerup aspect
+
+                // close,       near,           far
+                {TWELVE,        TWELVE,         TWELVE},           // right twelve
+                {LEFT_NINE,     LEFT_NINE,      TWELVE},     // right nine
+                {RIGHT_SIX,     RIGHT_SIX,      TWELVE},     // right six
+                {RIGHT_THREE,   RIGHT_THREE,    TWELVE}, // right three
+                {TWELVE,        TWELVE,         TWELVE},           // twelve
+                {LEFT_NINE,     LEFT_NINE,      TWELVE},     // left nine
+                {LEFT_SIX,      LEFT_SIX,       TWELVE},       // left six
+                {RIGHT_THREE,   RIGHT_THREE,    TWELVE},   // left three
+                {TWELVE,        TWELVE,         TWELVE}            // left twelve
+        };
+
+        rules.addRuleMatrix(
+                powerUpAspect, powerUpAspectSets,
+                powerUpDist, powerUpDistSets,
+                defensiveTurn, headToPowerUp
+        );
+
+        rules.displayRuleMatrix(
+                powerUpAspect, powerUpAspectSets,
+                powerUpDist, powerUpDistSets,
+                defensiveTurn
+        );
+    }
+
+    private void setupOffensiveTurn() throws FuzzyException {
+        offensiveTurn = new FuzzyVariable("offensive turn", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
+
+        double[][][] turnTarget = {
                 // x = target aspect
                 // y = target energy difference
                 // z = target distance
@@ -431,20 +563,20 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 // close
                 {
                         // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,   left three,     left twelve
-                        {RIGHT_THREE,       RIGHT_THREE,    TWELVE,         LEFT_NINE,      RIGHT_THREE,    RIGHT_THREE,    TWELVE,     LEFT_NINE,      LEFT_NINE},   // losing
+                        {TWELVE,            LEFT_NINE,      RIGHT_SIX,      RIGHT_THREE,    TWELVE,         LEFT_NINE,      LEFT_SIX,   RIGHT_THREE,    TWELVE},   // losing
                         {TWELVE,            LEFT_NINE,      RIGHT_SIX,      RIGHT_THREE,    TWELVE,         LEFT_NINE,      LEFT_SIX,   RIGHT_THREE,    TWELVE}       // winning
                 },
                 // near
                 {
                         // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,   left three,     left twelve
-                        {RIGHT_THREE,       RIGHT_THREE,    TWELVE,         LEFT_NINE,      RIGHT_THREE,    RIGHT_THREE,    TWELVE,     LEFT_NINE,      LEFT_NINE},   // losing
+                        {TWELVE,            LEFT_NINE,      RIGHT_SIX,      RIGHT_THREE,    TWELVE,         LEFT_NINE,      LEFT_SIX,   RIGHT_THREE,    TWELVE},   // losing
                         {TWELVE,            LEFT_NINE,      RIGHT_SIX,      RIGHT_THREE,    TWELVE,         LEFT_NINE,      LEFT_SIX,   RIGHT_THREE,    TWELVE}       // winning
                 },
                 // far
                 {
-                        // right twelve,    right nine,     right six,      right three,    twelve,     left nine,      left six,   left three,     left twelve
-                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,     TWELVE,         TWELVE,     TWELVE,         TWELVE},  // losing
-                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,     TWELVE,         TWELVE,     TWELVE,         TWELVE}     // winning
+                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,   left three,     left twelve
+                        {TWELVE,            LEFT_NINE,      RIGHT_SIX,      RIGHT_THREE,    TWELVE,         LEFT_NINE,      LEFT_SIX,   RIGHT_THREE,    TWELVE},   // losing
+                        {TWELVE,            LEFT_NINE,      RIGHT_SIX,      RIGHT_THREE,    TWELVE,         LEFT_NINE,      LEFT_SIX,   RIGHT_THREE,    TWELVE}       // winning
                 }
         };
 
@@ -452,19 +584,8 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 targetDist, targetDistSets,
                 targetEnergyDiff, targetEnergyDiffSets,
                 targetAspect, targetAspectSets,
-                turn, turnTarget
+                offensiveTurn, turnTarget
         );
-
-        rules.display3DRuleMatrix(
-                targetDist, targetDistSets,
-                targetEnergyDiff, targetEnergyDiffSets,
-                targetAspect, targetAspectSets,
-                turn
-        );
-
-        /***************
-         * DODGE BLAST *
-         ***************/
 
         double[][][] blastDodge = {
 
@@ -504,19 +625,8 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 blastDist, blastDistSets,
                 blastAngleOff, blastAngleOffSets,
                 blastAspect, blastAspectSets,
-                turn, blastDodge
+                offensiveTurn, blastDodge
         );
-
-        rules.display3DRuleMatrix(
-                blastDist, blastDistSets,
-                blastAngleOff, blastAngleOffSets,
-                blastAspect, blastAspectSets,
-                turn
-        );
-
-        /***************
-         * GET POWERUP *
-         ***************/
 
         double[][] headToPowerUp = {
 
@@ -538,29 +648,99 @@ public class RoyalRumbleController implements SaucerController, Constants {
         rules.addRuleMatrix(
                 powerUpAspect, powerUpAspectSets,
                 powerUpDist, powerUpDistSets,
-                turn, headToPowerUp
-        );
-
-        rules.displayRuleMatrix(
-                powerUpAspect, powerUpAspectSets,
-                powerUpDist, powerUpDistSets,
-                turn
+                offensiveTurn, headToPowerUp
         );
     }
 
     /**
-     * This method sets up speed output rules.
+     * This method sets up defensiveSpeed output rules.
      * @throws FuzzyException
      */
-    private void setupSpeed() throws FuzzyException {
+    private void setupDefensiveSpeed() throws FuzzyException {
 
         final double midSpeed = 75.0;
 
-        speed = new FuzzyVariable("speed", "", SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, 2);
+        defensiveSpeed = new FuzzyVariable("defensive speed", "", SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, 2);
 
         /***************
          * DODGE BLAST *
          ***************/
+
+        double[][][] dodgeSpeed = {
+
+                // x = aspect
+                // y = angle-off
+                // z = distance
+
+                // close
+                {
+                        // right twelve,   right nine,       right six,        right three,      twelve,           left nine,        left six,         left three,       left twelve
+                        {SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED}, // right zero
+                        {SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED}, // right 270
+                        {SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED}, // right merge
+                        {SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED}, // right 90
+                        {SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED}, // zero
+                        {SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED}, // left 90
+                        {SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED}, // left merge
+                        {SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED}, // left 270
+                        {SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MAX_SPEED, SAUCER_MIN_SPEED}  // left zero
+                },
+
+                // far
+                {
+                        // right twelve,   right nine,       right six,        right three,      twelve,           left nine,        left six,         left three,       left twelve
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}, // right zero
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED}, // right 270
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}, // right merge
+                        {SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}, // right 90
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}, // zero
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED}, // left 90
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}, // left merge
+                        {SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}, // left 270
+                        {SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, SAUCER_MIN_SPEED, midSpeed,         SAUCER_MIN_SPEED, SAUCER_MIN_SPEED}  // left zero
+                },
+
+        };
+
+        rules.add3DRuleMatrix(
+                blastDist, blastDistSets,
+                blastAngleOff, blastAngleOffSets,
+                blastAspect, blastAspectSets,
+                defensiveSpeed, dodgeSpeed
+        );
+
+        /***************
+         * GET POWERUP *
+         ***************/
+
+        // if close then mid defensiveSpeed
+        rules.addRule(powerUpDist, powerUpDistSets[0], defensiveSpeed, SAUCER_MAX_SPEED);
+        // if near then max defensiveSpeed
+        rules.addRule(powerUpDist, powerUpDistSets[1], defensiveSpeed, SAUCER_MAX_SPEED);
+        // if far then min defensiveSpeed
+        rules.addRule(powerUpDist, powerUpDistSets[2], defensiveSpeed, SAUCER_MIN_SPEED);
+    }
+
+    private void setupOffensiveSpeed() throws FuzzyException {
+        final double midSpeed = 75.0;
+        offensiveSpeed = new FuzzyVariable("offensive speed", "", SAUCER_MIN_SPEED, SAUCER_MAX_SPEED, 2);
+
+        double[][] chaseSpeed = {
+
+                // x = target energy difference
+                // y = target distance
+
+                // losing, winning
+                {SAUCER_MAX_SPEED, SAUCER_MIN_SPEED}, // close
+                {midSpeed, midSpeed}, // near
+                {SAUCER_MIN_SPEED, SAUCER_MAX_SPEED} // far
+        };
+
+        rules.addRuleMatrix(
+                targetDist, targetDistSets,
+                targetEnergyDiff, targetEnergyDiffSets,
+                offensiveSpeed, chaseSpeed
+        );
 
         double[][][] dodgeSpeed = {
 
@@ -602,19 +782,17 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 blastDist, blastDistSets,
                 blastAngleOff, blastAngleOffSets,
                 blastAspect, blastAspectSets,
-                speed, dodgeSpeed
+                offensiveSpeed, dodgeSpeed
         );
 
-        /***************
-         * GET POWERUP *
-         ***************/
+        // if close then mid defensiveSpeed
+        rules.addRule(powerUpDist, powerUpDistSets[0], offensiveSpeed, SAUCER_MAX_SPEED);
+        // if near then max defensiveSpeed
+        rules.addRule(powerUpDist, powerUpDistSets[1], offensiveSpeed, SAUCER_MAX_SPEED);
+        // if far then min defensiveSpeed
+        rules.addRule(powerUpDist, powerUpDistSets[2], offensiveSpeed, SAUCER_MAX_SPEED);
 
-        // if close then mid speed
-        rules.addRule(powerUpDist, powerUpDistSets[0], speed, SAUCER_MAX_SPEED);
-        // if near then max speed
-        rules.addRule(powerUpDist, powerUpDistSets[1], speed, SAUCER_MAX_SPEED);
-        // if far then min speed
-        rules.addRule(powerUpDist, powerUpDistSets[2], speed, SAUCER_MIN_SPEED);
+
     }
 
     /**
@@ -730,7 +908,8 @@ public class RoyalRumbleController implements SaucerController, Constants {
             nearestTarget = null;
         }
 
-        if(data.size() < 3) {
+        // be aggressive when there are 1-2 enemies left
+        if(data.size() > 0 && data.size() < 2) {
             targetEnergyDiff.setValue(energy - nearestTarget.energy);
             isLastTarget = true;
         } else {
@@ -820,14 +999,20 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
     @Override
     public double getSpeed() throws Exception {
-//        return 0;
-        return speed.getValue();
+        if(isLastTarget) {
+            return offensiveSpeed.getValue();
+        } else  {
+            return defensiveSpeed.getValue();
+        }
     }
 
     @Override
     public double getTurn() throws Exception {
-//        return 0;
-        return turn.getValue();
+        if(isLastTarget) {
+            return offensiveTurn.getValue();
+        } else {
+            return defensiveTurn.getValue();
+        }
     }
 
     @Override
