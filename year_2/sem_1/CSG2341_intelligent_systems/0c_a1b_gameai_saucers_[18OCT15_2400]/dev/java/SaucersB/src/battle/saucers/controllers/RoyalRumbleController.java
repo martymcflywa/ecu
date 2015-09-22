@@ -31,6 +31,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
     // linguistic input variables
 
     // me
+    private double energy;
     private FuzzyVariable myEnergy;
     private FuzzySet[] myEnergySets = new FuzzySet[3];
 
@@ -119,6 +120,8 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
         // fuzzy variables, rules here
         rules = new SugenoRuleSet();
+
+        this.energy = 0.0;
 
         // aspect
         rightTwelve = new FuzzySet("right twelve", RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_NINE);
@@ -276,6 +279,8 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
         targetEnergyDiffSets[0] = losing;
         targetEnergyDiffSets[1] = winning;
+
+        targetEnergyDiff.display();
     }
 
     /**
@@ -424,54 +429,47 @@ public class RoyalRumbleController implements SaucerController, Constants {
          * TARGET *
          **********/
 
-//        double[][][] turnTarget = {
-//
-//                // x = target aspect
-//                // y = target angle-off
-//                // z = myEnergy
-//
-//                // lowEnergy
-//                {
-//                        // right twelve,    right nine,     right six,      right three,    twelve,     left nine,      left six,   left three,     left twelve
-//                        {, , , , , , , , },     // right zero
-//                        {, , , , , , , , },     // right 270
-//                        {, , , , , , , , },     // right merge
-//                        {, , , , , , , , },     // right 90
-//                        {, , , , , , , , },     // zero
-//                        {, , , , , , , , },     // left 90
-//                        {, , , , , , , , },     // left merge
-//                        {, , , , , , , , },     // left 270
-//                        {, , , , , , , , }     // left zero
-//                },
-//
-//                // mediumEnergy
-//                {
-//                        // right twelve,    right nine,     right six,      right three,    twelve,     left nine,      left six,   left three,     left twelve
-//                        {, , , , , , , , },     // right zero
-//                        {, , , , , , , , },     // right 270
-//                        {, , , , , , , , },     // right merge
-//                        {, , , , , , , , },     // right 90
-//                        {, , , , , , , , },     // zero
-//                        {, , , , , , , , },     // left 90
-//                        {, , , , , , , , },     // left merge
-//                        {, , , , , , , , },     // left 270
-//                        {, , , , , , , , }     // left zero
-//                },
-//
-//                // highEnergy
-//                {
-//                        // right twelve,    right nine,     right six,      right three,    twelve,     left nine,      left six,   left three,     left twelve
-//                        {, , , , , , , , },     // right zero
-//                        {, , , , , , , , },     // right 270
-//                        {, , , , , , , , },     // right merge
-//                        {, , , , , , , , },     // right 90
-//                        {, , , , , , , , },     // zero
-//                        {, , , , , , , , },     // left 90
-//                        {, , , , , , , , },     // left merge
-//                        {, , , , , , , , },     // left 270
-//                        {, , , , , , , , }     // left zero
-//                }
-//        };
+        double[][][] turnTarget = {
+
+                // x = target aspect
+                // y = target angle-off
+                // z = target energy difference
+
+                // losing
+                {
+                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
+                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
+                        {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 270
+                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // right merge
+                        {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 90
+                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
+                        {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 90
+                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // left merge
+                        {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
+                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
+                },
+
+                // winning
+                {
+                        // right twelve,    right nine,     right six,      right three,    twelve,     left nine,      left six,   left three,     left twelve
+                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // right zero
+                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // right 270
+                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // right merge
+                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // right 90
+                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // zero
+                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // left 90
+                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // left merge
+                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // left 270
+                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE}      // left zero
+                }
+        };
+
+        rules.add3DRuleMatrix(
+                targetEnergyDiff, targetEnergyDiffSets,
+                targetAngleOff, targetAngleOffSets,
+                targetAspect, targetAspectSets,
+                turn, turnTarget
+        );
 
         /***************
          * DODGE BLAST *
@@ -694,6 +692,13 @@ public class RoyalRumbleController implements SaucerController, Constants {
         } else {
             nearestTarget = null;
         }
+
+        if(data.size() == 1) {
+            targetEnergyDiff.setValue(energy - nearestTarget.energy);
+        } else {
+            targetEnergyDiff.setValue(-SAUCER_START_ENERGY);
+        }
+
         rules.update();
     }
 
@@ -747,6 +752,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
     @Override
     public void senseEnergy(double energy) throws Exception {
         myEnergy.setValue(energy);
+        this.energy = energy;
         rules.update();
     }
 
