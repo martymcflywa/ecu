@@ -22,7 +22,8 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private static final String NAME = "royalRumble";
     private static final Color BASE = Color.yellow;
     private static final Color ARROW = Color.black;
-    private static final double FIRE_PROB = 0.02;
+    private static final double FIRE_PROB = 0.01;
+    private static boolean isLastTarget = false;
 
     private SensorData nearestTarget;
     private SensorData nearestBlast;
@@ -122,6 +123,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
         rules = new SugenoRuleSet();
 
         this.energy = 0.0;
+        isLastTarget = false;
 
         // aspect
         rightTwelve = new FuzzySet("right twelve", RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_NINE);
@@ -619,7 +621,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
          ***************/
 
         // if close then mid speed
-        rules.addRule(powerUpDist, powerUpDistSets[0], speed, midSpeed);
+        rules.addRule(powerUpDist, powerUpDistSets[0], speed, SAUCER_MAX_SPEED);
         // if near then max speed
         rules.addRule(powerUpDist, powerUpDistSets[1], speed, SAUCER_MAX_SPEED);
         // if far then min speed
@@ -643,7 +645,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 // y = myEnergy
 
                 // close,          near,             far
-                {SAUCER_MAX_POWER, 0.0,              0.0},  // low
+                {SAUCER_MAX_POWER, SAUCER_MAX_POWER, 0.0},  // low
                 {SAUCER_MAX_POWER, SAUCER_MAX_POWER, 0.0},  // medium
                 {SAUCER_MAX_POWER, SAUCER_MAX_POWER, 0.0}   // high
         };
@@ -695,6 +697,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
         if(data.size() == 1) {
             targetEnergyDiff.setValue(energy - nearestTarget.energy);
+            isLastTarget = true;
         } else {
             targetEnergyDiff.setValue(-SAUCER_START_ENERGY);
         }
@@ -764,10 +767,15 @@ public class RoyalRumbleController implements SaucerController, Constants {
     @Override
     public double getFirePower() throws Exception {
 
-        if(Math.random() < FIRE_PROB) {
+        if(isLastTarget) {
             return firePower.getValue();
         } else {
-            return 0.0;
+            if(Math.random() < FIRE_PROB) {
+                return firePower.getValue();
+            } else {
+                return 0.0;
+            }
+//            return 0.0;
         }
     }
 
