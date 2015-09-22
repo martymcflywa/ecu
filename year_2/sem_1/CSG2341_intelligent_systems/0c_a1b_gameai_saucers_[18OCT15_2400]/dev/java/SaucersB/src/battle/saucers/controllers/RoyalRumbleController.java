@@ -23,7 +23,8 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private static final Color BASE = Color.yellow;
     private static final Color ARROW = Color.black;
     private static final double FIRE_PROB = 0.01;
-    private static boolean isLastTarget = false;
+    private static boolean isLastTarget;
+    private static boolean isPowerUpNear;
 
     private SensorData nearestTarget;
     private SensorData nearestBlast;
@@ -122,8 +123,9 @@ public class RoyalRumbleController implements SaucerController, Constants {
         // fuzzy variables, rules here
         rules = new SugenoRuleSet();
 
-        this.energy = 0.0;
+        this.energy = SAUCER_START_ENERGY;
         isLastTarget = false;
+        isPowerUpNear = false;
 
         // aspect
         rightTwelve = new FuzzySet("right twelve", RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_TWELVE, RIGHT_NINE);
@@ -164,47 +166,14 @@ public class RoyalRumbleController implements SaucerController, Constants {
      * INPUT *
      *********/
 
-    private void setupMyEnergyTemp() throws FuzzyException {
-
-        final double maxEnergy = SAUCER_START_ENERGY;
-
-        final double ramp1 = maxEnergy * 0.70;
-        final double ramp2 = maxEnergy * 0.725;
-        final double ramp3 = maxEnergy * 0.75;
-        final double ramp4 = maxEnergy * 0.80;
-        final double ramp5 = maxEnergy * 0.85;
-        final double ramp6 = maxEnergy * 0.875;
-        final double ramp7 = maxEnergy * 0.90;
-
-        myEnergy = new FuzzyVariable("my energy", "j", 0.0, maxEnergy, 2);
-
-        FuzzySet lowEnergy = new FuzzySet("low energy", 0.0, 0.0, ramp1, ramp3);
-        FuzzySet mediumEnergy = new FuzzySet("medium energy", ramp2, ramp4, ramp4, ramp6);
-        FuzzySet highEnergy = new FuzzySet("high energy", ramp5, ramp7, maxEnergy, maxEnergy);
-
-        myEnergy.add(lowEnergy);
-        myEnergy.add(mediumEnergy);
-        myEnergy.add(highEnergy);
-
-        myEnergy.checkGaps();
-        myEnergy.display();
-
-        myEnergySets[0] = lowEnergy;
-        myEnergySets[1] = mediumEnergy;
-        myEnergySets[2] = highEnergy;
-
-        // set default value
-        myEnergy.setValue(SAUCER_START_ENERGY);
-    }
-
     private void setupMyEnergy() throws FuzzyException {
         final double maxEnergy = SAUCER_START_ENERGY;
         final double mid = maxEnergy * 0.5;
 
         myEnergy = new FuzzyVariable("my energy", "j", 0.0, maxEnergy, 2);
 
-        FuzzySet lowEnergy = new FuzzySet("low energy", 0.0, 0.0, mid - maxEnergy * 0.1, mid + maxEnergy * 0.1);
-        FuzzySet highEnergy = new FuzzySet("high energy", mid - maxEnergy * 0.1, mid + maxEnergy * 0.1, maxEnergy, maxEnergy);
+        FuzzySet lowEnergy = new FuzzySet("low energy", 0.0, 0.0, mid - maxEnergy * 0.05, mid + maxEnergy * 0.05);
+        FuzzySet highEnergy = new FuzzySet("high energy", mid - maxEnergy * 0.05, mid + maxEnergy * 0.05, maxEnergy, maxEnergy);
 
         myEnergy.add(lowEnergy);
         myEnergy.add(highEnergy);
@@ -725,7 +694,31 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 blastDist, blastDistSets,
                 shield, shieldUp
         );
+
+        rules.display3DRuleMatrix(
+                powerUpDist, powerUpDistSets,
+                myEnergy, myEnergySets,
+                blastDist, blastDistSets,
+                shield
+        );
     }
+
+//    private void setupShield() throws FuzzyException {
+//        final double maxShield = 1.0;
+//        shield = new FuzzyVariable("shield", "", 0.0, maxShield, 2);
+//
+//        double[][] shieldUp = {
+//                // close, near, far
+//                {maxShield, maxShield, 0.0}, // low
+//                {maxShield, 0.0, 0.0}  // high
+//        };
+//
+//        rules.addRuleMatrix(
+//                myEnergy, myEnergySets,
+//                blastDist, blastDistSets,
+//                shield, shieldUp
+//        );
+//    }
 
     /****************
      * SENSOR INPUT *
@@ -754,7 +747,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
             nearestTarget = null;
         }
 
-        if(data.size() < 2) {
+        if(data.size() < 3) {
             targetEnergyDiff.setValue(energy - nearestTarget.energy);
             isLastTarget = true;
         } else {
@@ -766,6 +759,8 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
     @Override
     public void sensePowerUps(ArrayList<SensorData> data) throws Exception {
+
+        isPowerUpNear = false;
 
         boolean isPowerUp = data.size() > 0;
 
@@ -782,6 +777,10 @@ public class RoyalRumbleController implements SaucerController, Constants {
             }
             powerUpDist.setValue(nearestPowerUp.distance);
             powerUpAspect.setValue(nearestPowerUp.direction);
+
+            if(nearestPowerUp.distance < maxDistance * 0.25) {
+                isPowerUpNear = true;
+            }
         } else {
             nearestPowerUp = null;
         }
@@ -801,10 +800,16 @@ public class RoyalRumbleController implements SaucerController, Constants {
                     closest = thisData.distance;
                 }
             }
-            blastDist.setValue(nearestBlast.distance);
-            blastAspect.setValue(nearestBlast.direction);
-            blastAngleOff.setValue(nearestBlast.heading);
 
+//            if(isPowerUpNear) {
+//                blastDist.setValue(maxDistance);
+//                blastAspect.setValue(TWELVE);
+//                blastAngleOff.setValue(TWELVE);
+//            } else {
+                blastDist.setValue(nearestBlast.distance);
+                blastAspect.setValue(nearestBlast.direction);
+                blastAngleOff.setValue(nearestBlast.heading);
+//            }
         } else {
             nearestBlast = null;
         }
@@ -851,8 +856,11 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
     @Override
     public boolean getShields() throws Exception {
-//        return shield.getValue() > 0.5;
-        return false;
+        if(isPowerUpNear) {
+            return shield.getValue() > 0.5;
+        } else {
+            return false;
+        }
     }
 
     @Override
