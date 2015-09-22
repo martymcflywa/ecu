@@ -34,7 +34,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
     // me
     private double energy;
     private FuzzyVariable myEnergy;
-    private FuzzySet[] myEnergySets = new FuzzySet[3];
+    private FuzzySet[] myEnergySets = new FuzzySet[2];
 
     // target
     private FuzzyVariable targetDist;
@@ -164,7 +164,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
      * INPUT *
      *********/
 
-    private void setupMyEnergy() throws FuzzyException {
+    private void setupMyEnergyTemp() throws FuzzyException {
 
         final double maxEnergy = SAUCER_START_ENERGY;
 
@@ -192,6 +192,28 @@ public class RoyalRumbleController implements SaucerController, Constants {
         myEnergySets[0] = lowEnergy;
         myEnergySets[1] = mediumEnergy;
         myEnergySets[2] = highEnergy;
+
+        // set default value
+        myEnergy.setValue(SAUCER_START_ENERGY);
+    }
+
+    private void setupMyEnergy() throws FuzzyException {
+        final double maxEnergy = SAUCER_START_ENERGY;
+        final double mid = maxEnergy * 0.5;
+
+        myEnergy = new FuzzyVariable("my energy", "j", 0.0, maxEnergy, 2);
+
+        FuzzySet lowEnergy = new FuzzySet("low energy", 0.0, 0.0, mid - maxEnergy * 0.1, mid + maxEnergy * 0.1);
+        FuzzySet highEnergy = new FuzzySet("high energy", mid - maxEnergy * 0.1, mid + maxEnergy * 0.1, maxEnergy, maxEnergy);
+
+        myEnergy.add(lowEnergy);
+        myEnergy.add(highEnergy);
+
+        myEnergySets[0] = lowEnergy;
+        myEnergySets[1] = highEnergy;
+
+        myEnergy.checkGaps();
+        myEnergy.display();
 
         // set default value
         myEnergy.setValue(SAUCER_START_ENERGY);
@@ -431,48 +453,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
          * TARGET *
          **********/
 
-//        double[][][] turnTarget = {
-//
-//                // x = target aspect
-//                // y = target angle-off
-//                // z = target energy difference
-//
-//                // losing
-//                {
-//                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
-//                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
-//                        {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 270
-//                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // right merge
-//                        {LEFT_NINE,         TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE},     // right 90
-//                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
-//                        {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 90
-//                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE},        // left merge
-//                        {RIGHT_THREE,       TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
-//                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
-//                },
-//
-//                // winning
-//                {
-//                        // right twelve,    right nine,     right six,      right three,    twelve,     left nine,      left six,   left three,     left twelve
-//                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // right zero
-//                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // right 270
-//                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // right merge
-//                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // right 90
-//                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // zero
-//                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // left 90
-//                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // left merge
-//                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE},     // left 270
-//                        {TWELVE,            LEFT_THREE,     LEFT_SIX,       RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE}      // left zero
-//                }
-//        };
-//
-//        rules.add3DRuleMatrix(
-//                targetEnergyDiff, targetEnergyDiffSets,
-//                targetAngleOff, targetAngleOffSets,
-//                targetAspect, targetAspectSets,
-//                turn, turnTarget
-//        );
-
         double[][][] turnTarget = {
 
                 // x = target aspect
@@ -482,14 +462,14 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 // close
                 {
                         // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,   left three,     left twelve
-                        {RIGHT_THREE,       RIGHT_THREE,    TWELVE,         LEFT_THREE,     RIGHT_THREE,    RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_THREE},  // losing
-                        {TWELVE,            LEFT_THREE,     RIGHT_THREE,    RIGHT_THREE,    TWELVE,         LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE}       // winning
+                        {RIGHT_THREE,       RIGHT_THREE,    TWELVE,         LEFT_NINE,      RIGHT_THREE,    RIGHT_THREE,    TWELVE,     LEFT_NINE,      LEFT_NINE},   // losing
+                        {TWELVE,            LEFT_NINE,      RIGHT_SIX,      RIGHT_THREE,    TWELVE,         LEFT_NINE,      LEFT_SIX,   RIGHT_THREE,    TWELVE}       // winning
                 },
                 // near
                 {
                         // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,   left three,     left twelve
-                        {RIGHT_THREE,       RIGHT_THREE,    TWELVE,         LEFT_THREE,     RIGHT_THREE,    RIGHT_THREE,    TWELVE,     LEFT_THREE,     LEFT_THREE},  // losing
-                        {TWELVE,            LEFT_THREE,     RIGHT_THREE,    RIGHT_THREE,    TWELVE,         LEFT_THREE,     LEFT_SIX,   RIGHT_THREE,    TWELVE}       // winning
+                        {RIGHT_THREE,       RIGHT_THREE,    TWELVE,         LEFT_NINE,      RIGHT_THREE,    RIGHT_THREE,    TWELVE,     LEFT_NINE,      LEFT_NINE},   // losing
+                        {TWELVE,            LEFT_NINE,      RIGHT_SIX,      RIGHT_THREE,    TWELVE,         LEFT_NINE,      LEFT_SIX,   RIGHT_THREE,    TWELVE}       // winning
                 },
                 // far
                 {
@@ -685,8 +665,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 // y = myEnergy
 
                 // close,          near,             far
-                {SAUCER_MAX_POWER, SAUCER_MAX_POWER, 0.0},  // low
-                {SAUCER_MAX_POWER, SAUCER_MAX_POWER, 0.0},  // medium
+                {SAUCER_MAX_POWER, midPower, 0.0},  // low
                 {SAUCER_MAX_POWER, SAUCER_MAX_POWER, 0.0}   // high
         };
 
