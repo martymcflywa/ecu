@@ -717,7 +717,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
             nearestTarget = null;
         }
 
-        if(data.size() == 1) {
+        if(data.size() < 3) {
             targetEnergyDiff.setValue(energy - nearestTarget.energy);
             isLastTarget = true;
         } else {
