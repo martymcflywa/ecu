@@ -687,7 +687,44 @@ public class RoyalRumbleController implements SaucerController, Constants {
      * @throws FuzzyException
      */
     private void setupShield() throws FuzzyException {
-        // TODO: define here
+
+        final double maxShield = 1.0;
+
+        shield = new FuzzyVariable("shield", "", 0.0, maxShield, 2);
+
+        double[][][] shieldUp = {
+
+                // x = blast distance
+                // y = my energy
+                // z = powerup distance
+
+                // close
+                {
+                        // close, far
+                        {maxShield, 0.0}, // low
+                        {maxShield, 0.0}  // high
+                },
+                // near
+                {
+                        // close, far
+                        {0.0, 0.0}, // low
+                        {maxShield, 0.0} // high
+                },
+                // far
+                {
+                        // close, far
+                        {0.0, 0.0}, // low
+                        {0.0, 0.0} // high
+                }
+
+        };
+
+        rules.add3DRuleMatrix(
+                powerUpDist, powerUpDistSets,
+                myEnergy, myEnergySets,
+                blastDist, blastDistSets,
+                shield, shieldUp
+        );
     }
 
     /****************
@@ -717,7 +754,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
             nearestTarget = null;
         }
 
-        if(data.size() < 3) {
+        if(data.size() < 2) {
             targetEnergyDiff.setValue(energy - nearestTarget.energy);
             isLastTarget = true;
         } else {
@@ -797,7 +834,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
             } else {
                 return 0.0;
             }
-//            return 0.0;
         }
     }
 
@@ -815,7 +851,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
     @Override
     public boolean getShields() throws Exception {
-        return false;
+        return shield.getValue() > 0.5;
     }
 
     @Override
