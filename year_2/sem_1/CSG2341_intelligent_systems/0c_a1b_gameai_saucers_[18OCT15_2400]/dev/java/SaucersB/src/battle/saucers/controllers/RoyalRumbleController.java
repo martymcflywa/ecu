@@ -327,6 +327,11 @@ public class RoyalRumbleController implements SaucerController, Constants {
         blastAngleOffSets[6] = leftMerge;
         blastAngleOffSets[7] = left270;
         blastAngleOffSets[8] = leftZero;
+
+        // set default value while there isn't any blasts yet
+        blastDist.setValue(maxDistance);
+        blastAspect.setValue(TWELVE);
+        blastAngleOff.setValue(TWELVE);
     }
 
     /**
@@ -379,6 +384,10 @@ public class RoyalRumbleController implements SaucerController, Constants {
         powerUpAspectSets[6] = leftSix;
         powerUpAspectSets[7] = leftThree;
         powerUpAspectSets[8] = leftTwelve;
+
+        // set default value while there isn't any power ups yet
+        powerUpDist.setValue(maxDistance);
+        powerUpAspect.setValue(TWELVE);
     }
 
     /**********
@@ -393,9 +402,58 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
         turn = new FuzzyVariable("turn", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
 
-        /**************
-         * TARGETTING *
-         **************/
+        /**********
+         * TARGET *
+         **********/
+
+//        double[][][] turnTarget = {
+//
+//                // x = target aspect
+//                // y = target angle-off
+//                // z = myEnergy
+//
+//                // lowEnergy
+//                {
+//                        // right twelve,    right nine,     right six,      right three,    twelve,     left nine,      left six,   left three,     left twelve
+//                        {, , , , , , , , },     // right zero
+//                        {, , , , , , , , },     // right 270
+//                        {, , , , , , , , },     // right merge
+//                        {, , , , , , , , },     // right 90
+//                        {, , , , , , , , },     // zero
+//                        {, , , , , , , , },     // left 90
+//                        {, , , , , , , , },     // left merge
+//                        {, , , , , , , , },     // left 270
+//                        {, , , , , , , , }     // left zero
+//                },
+//
+//                // mediumEnergy
+//                {
+//                        // right twelve,    right nine,     right six,      right three,    twelve,     left nine,      left six,   left three,     left twelve
+//                        {, , , , , , , , },     // right zero
+//                        {, , , , , , , , },     // right 270
+//                        {, , , , , , , , },     // right merge
+//                        {, , , , , , , , },     // right 90
+//                        {, , , , , , , , },     // zero
+//                        {, , , , , , , , },     // left 90
+//                        {, , , , , , , , },     // left merge
+//                        {, , , , , , , , },     // left 270
+//                        {, , , , , , , , }     // left zero
+//                },
+//
+//                // highEnergy
+//                {
+//                        // right twelve,    right nine,     right six,      right three,    twelve,     left nine,      left six,   left three,     left twelve
+//                        {, , , , , , , , },     // right zero
+//                        {, , , , , , , , },     // right 270
+//                        {, , , , , , , , },     // right merge
+//                        {, , , , , , , , },     // right 90
+//                        {, , , , , , , , },     // zero
+//                        {, , , , , , , , },     // left 90
+//                        {, , , , , , , , },     // left merge
+//                        {, , , , , , , , },     // left 270
+//                        {, , , , , , , , }     // left zero
+//                }
+//        };
 
         /***************
          * DODGE BLAST *
@@ -563,7 +621,16 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
         firePower = new FuzzyVariable("firepower", "j", 0.0, SAUCER_MAX_POWER, 2);
 
-        
+        double[][] shots = {
+
+                // x = distance
+                // y = myEnergy
+
+                // close,          near,             far
+                {0.0,              0.0,              0.0},  // low
+                {SAUCER_MAX_POWER, midPower,         0.0},  // medium
+                {SAUCER_MAX_POWER, SAUCER_MAX_POWER, 0.0}   // high
+        };
     }
 
     /**
@@ -594,10 +661,10 @@ public class RoyalRumbleController implements SaucerController, Constants {
             targetDist.setValue(nearestTarget.distance);
             targetAspect.setValue(nearestTarget.direction);
             targetAngleOff.setValue(nearestTarget.heading);
-//            rules.update();
         } else {
             nearestTarget = null;
         }
+        rules.update();
     }
 
     @Override
@@ -618,14 +685,10 @@ public class RoyalRumbleController implements SaucerController, Constants {
             }
             powerUpDist.setValue(nearestPowerUp.distance);
             powerUpAspect.setValue(nearestPowerUp.direction);
-            rules.update();
         } else {
             nearestPowerUp = null;
-            powerUpDist.setValue(maxDistance);
-            powerUpAspect.setValue(TWELVE);
-            turn.setValue(TWELVE);
-            speed.setValue(SAUCER_MIN_SPEED);
         }
+        rules.update();
     }
 
     @Override
@@ -641,22 +704,19 @@ public class RoyalRumbleController implements SaucerController, Constants {
                     closest = thisData.distance;
                 }
             }
-
             blastDist.setValue(nearestBlast.distance);
             blastAspect.setValue(nearestBlast.direction);
             blastAngleOff.setValue(nearestBlast.heading);
-            rules.update();
 
         } else {
             nearestBlast = null;
-            turn.setValue(TWELVE);
-            speed.setValue(SAUCER_MIN_SPEED);
         }
+        rules.update();
     }
 
     @Override
     public void senseEnergy(double energy) throws Exception {
-
+        myEnergy.setValue(energy);
     }
 
     @Override
