@@ -38,14 +38,13 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private FuzzyVariable targetDist;
     private FuzzyVariable targetAspect;
     private FuzzyVariable targetAngleOff;
-    private FuzzyVariable targetSpeed;
-    private FuzzyVariable targetEnergy;
+    private FuzzyVariable targetEnergyDiff;
 
     // target sets
     private FuzzySet[] targetDistSets = new FuzzySet[3];
     private FuzzySet[] targetAspectSets = new FuzzySet[9];
     private FuzzySet[] targetAngleOffSets = new FuzzySet[9];
-    private FuzzySet[] targetSpeedSets;
+    private FuzzySet[] targetEnergyDiffSets = new FuzzySet[2];
 
     // blast
     private FuzzyVariable blastDist;
@@ -200,16 +199,16 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private void setupTarget() throws FuzzyException {
 
         // distance
-        final double ramp1 = 0.05 * maxDistance;
-        final double ramp2 = 0.10 * maxDistance;
-        final double ramp3 = 0.15 * maxDistance;
-        final double ramp4 = 0.25 * maxDistance;
+        final double distR1 = 0.05 * maxDistance;
+        final double distR2 = 0.10 * maxDistance;
+        final double distR3 = 0.15 * maxDistance;
+        final double distR4 = 0.25 * maxDistance;
 
         targetDist = new FuzzyVariable("dist to target", "m", 0.0, maxDistance, 2);
 
-        FuzzySet close = new FuzzySet("close", 0.0, 0.0, 0.0, ramp2);
-        FuzzySet near = new FuzzySet("near", ramp1, ramp3, ramp3, ramp4);
-        FuzzySet far = new FuzzySet("far", ramp3, ramp4, maxDistance, maxDistance);
+        FuzzySet close = new FuzzySet("close", 0.0, 0.0, 0.0, distR2);
+        FuzzySet near = new FuzzySet("near", distR1, distR3, distR3, distR4);
+        FuzzySet far = new FuzzySet("far", distR3, distR4, maxDistance, maxDistance);
 
         targetDist.add(close);
         targetDist.add(near);
@@ -262,6 +261,21 @@ public class RoyalRumbleController implements SaucerController, Constants {
         targetAngleOffSets[6] = leftMerge;
         targetAngleOffSets[7] = left270;
         targetAngleOffSets[8] = leftZero;
+
+        // energy difference
+        final double maxDiff = SAUCER_START_ENERGY;
+        final double minDiff = -maxDiff;
+        final double diffR1 = maxDiff * 0.02;
+
+        targetEnergyDiff = new FuzzyVariable("target energy difference", "j", minDiff, maxDiff, 2);
+        FuzzySet losing = new FuzzySet("losing", minDiff, minDiff, -diffR1, diffR1);
+        FuzzySet winning = new FuzzySet("winning", -diffR1, diffR1, maxDiff, maxDiff);
+
+        targetEnergyDiff.add(losing);
+        targetEnergyDiff.add(winning);
+
+        targetEnergyDiffSets[0] = losing;
+        targetEnergyDiffSets[1] = winning;
     }
 
     /**
@@ -332,7 +346,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
         blastAngleOffSets[7] = left270;
         blastAngleOffSets[8] = leftZero;
 
-        // set default value while there isn't any blasts yet
+        // set default value since there aren't any blasts yet
         blastDist.setValue(maxDistance);
         blastAspect.setValue(TWELVE);
         blastAngleOff.setValue(TWELVE);
@@ -520,16 +534,16 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 // x = powerup distance
                 // y = powerup aspect
 
-                // close near far
-                {TWELVE, TWELVE, TWELVE},           // right twelve
-                {LEFT_NINE, LEFT_NINE, TWELVE},     // right nine
-                {RIGHT_SIX, RIGHT_SIX, TWELVE},     // right six
-                {RIGHT_THREE, RIGHT_THREE, TWELVE}, // right three
-                {TWELVE, TWELVE, TWELVE},           // twelve
-                {LEFT_NINE, LEFT_NINE, TWELVE},     // left nine
-                {LEFT_SIX, LEFT_SIX, TWELVE},       // left six
-                {RIGHT_SIX, RIGHT_THREE, TWELVE},   // left three
-                {TWELVE, TWELVE, TWELVE}            // left twelve
+                // close,       near,           far
+                {TWELVE,        TWELVE,         TWELVE},           // right twelve
+                {LEFT_NINE,     LEFT_NINE,      TWELVE},     // right nine
+                {RIGHT_SIX,     RIGHT_SIX,      TWELVE},     // right six
+                {RIGHT_THREE,   RIGHT_THREE,    TWELVE}, // right three
+                {TWELVE,        TWELVE,         TWELVE},           // twelve
+                {LEFT_NINE,     LEFT_NINE,      TWELVE},     // left nine
+                {LEFT_SIX,      LEFT_SIX,       TWELVE},       // left six
+                {RIGHT_SIX,     RIGHT_THREE,    TWELVE},   // left three
+                {TWELVE,        TWELVE,         TWELVE}            // left twelve
         };
 
         rules.addRuleMatrix(
