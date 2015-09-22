@@ -531,7 +531,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 {TWELVE,        TWELVE,         TWELVE},           // twelve
                 {LEFT_NINE,     LEFT_NINE,      TWELVE},     // left nine
                 {LEFT_SIX,      LEFT_SIX,       TWELVE},       // left six
-                {RIGHT_SIX,     RIGHT_THREE,    TWELVE},   // left three
+                {RIGHT_THREE,   RIGHT_THREE,    TWELVE},   // left three
                 {TWELVE,        TWELVE,         TWELVE}            // left twelve
         };
 
@@ -703,23 +703,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
         );
     }
 
-//    private void setupShield() throws FuzzyException {
-//        final double maxShield = 1.0;
-//        shield = new FuzzyVariable("shield", "", 0.0, maxShield, 2);
-//
-//        double[][] shieldUp = {
-//                // close, near, far
-//                {maxShield, maxShield, 0.0}, // low
-//                {maxShield, 0.0, 0.0}  // high
-//        };
-//
-//        rules.addRuleMatrix(
-//                myEnergy, myEnergySets,
-//                blastDist, blastDistSets,
-//                shield, shieldUp
-//        );
-//    }
-
     /****************
      * SENSOR INPUT *
      ****************/
@@ -800,16 +783,9 @@ public class RoyalRumbleController implements SaucerController, Constants {
                     closest = thisData.distance;
                 }
             }
-
-//            if(isPowerUpNear) {
-//                blastDist.setValue(maxDistance);
-//                blastAspect.setValue(TWELVE);
-//                blastAngleOff.setValue(TWELVE);
-//            } else {
-                blastDist.setValue(nearestBlast.distance);
-                blastAspect.setValue(nearestBlast.direction);
-                blastAngleOff.setValue(nearestBlast.heading);
-//            }
+            blastDist.setValue(nearestBlast.distance);
+            blastAspect.setValue(nearestBlast.direction);
+            blastAngleOff.setValue(nearestBlast.heading);
         } else {
             nearestBlast = null;
         }
@@ -831,7 +807,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
     @Override
     public double getFirePower() throws Exception {
 
-        if(isLastTarget) {
+        if(isLastTarget || isPowerUpNear) {
             return firePower.getValue();
         } else {
             if(Math.random() < FIRE_PROB) {
