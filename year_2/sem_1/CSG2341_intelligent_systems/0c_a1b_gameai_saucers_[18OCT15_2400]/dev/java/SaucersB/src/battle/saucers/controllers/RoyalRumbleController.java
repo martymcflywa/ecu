@@ -22,6 +22,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private static final String NAME = "royalRumble";
     private static final Color BASE = Color.yellow;
     private static final Color ARROW = Color.black;
+    private static final double FIRE_PROB = 0.02;
 
     private SensorData nearestTarget;
     private SensorData nearestBlast;
@@ -187,6 +188,9 @@ public class RoyalRumbleController implements SaucerController, Constants {
         myEnergySets[0] = lowEnergy;
         myEnergySets[1] = mediumEnergy;
         myEnergySets[2] = highEnergy;
+
+        // set default value
+        myEnergy.setValue(SAUCER_START_ENERGY);
     }
 
     /**
@@ -627,10 +631,22 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 // y = myEnergy
 
                 // close,          near,             far
-                {0.0,              0.0,              0.0},  // low
-                {SAUCER_MAX_POWER, midPower,         0.0},  // medium
+                {SAUCER_MAX_POWER, 0.0,              0.0},  // low
+                {SAUCER_MAX_POWER, SAUCER_MAX_POWER, 0.0},  // medium
                 {SAUCER_MAX_POWER, SAUCER_MAX_POWER, 0.0}   // high
         };
+
+        rules.addRuleMatrix(
+                myEnergy, myEnergySets,
+                targetDist, targetDistSets,
+                firePower, shots
+        );
+
+        rules.displayRuleMatrix(
+                myEnergy, myEnergySets,
+                targetDist, targetDistSets,
+                firePower
+        );
     }
 
     /**
@@ -717,16 +733,22 @@ public class RoyalRumbleController implements SaucerController, Constants {
     @Override
     public void senseEnergy(double energy) throws Exception {
         myEnergy.setValue(energy);
+        rules.update();
     }
 
     @Override
     public SensorData getTarget() throws Exception {
-        return null;
+        return nearestTarget;
     }
 
     @Override
     public double getFirePower() throws Exception {
-        return 0;
+
+        if(Math.random() < FIRE_PROB) {
+            return firePower.getValue();
+        } else {
+            return 0.0;
+        }
     }
 
     @Override
