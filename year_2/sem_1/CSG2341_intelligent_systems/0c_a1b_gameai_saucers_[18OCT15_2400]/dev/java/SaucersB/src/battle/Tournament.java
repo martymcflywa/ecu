@@ -31,7 +31,7 @@ public class Tournament implements Constants
         {
             controllers = new SaucerController[]
             {
-                new SimpleController(),
+                new RoyalRumbleController(),
                 new SimpleController(),
                 new SimpleController(),
                 new SimpleController(),
