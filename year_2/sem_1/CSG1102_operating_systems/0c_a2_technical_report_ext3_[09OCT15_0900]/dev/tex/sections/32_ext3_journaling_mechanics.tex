@@ -1,0 +1,11 @@
+\subsection{Journaling mechanics in ext3}
+
+The ext3 journal is stored in an inode \citep{Robbins2001, Tweedie2000}. An inode is an area on the disk where all the information about a file is stored. The actual file itself is not stored in an inode. \citet[p. 2]{Best2002} uses the analogy of a ``bookkeeping file for a file'', and asserts that an inode is in fact a file itself. The decision to store the journal in an inode contributes to the goal of backwards/forwards compatibility with ext2, and avoids the use of incompatible extensions to the ext2 metadata \citep{Robbins2001}. It is common for the journal to be stored within the filesystem itself, however it is possible to store the journal on a separate device or partition \citep{Prabhakaran2005a, Tweedie2000}.
+
+\subsubsection{Journaling Block Device (JBD)}
+
+Journaling in ext3 is implemented by ``hooking in'' to the JBD API, which allows ext3 to communicate the modifications the filesystem will perform to the JBD as transactions. Ext3 also requests permissions from the JBD before modifying certain data on the disk, providing the JBD the opportunity to manage the journal on behalf of the ext3 filesystem driver \citep{Robbins2001}.
+
+\subsubsection{Transactions}
+
+Transactions are the main concept in journaled filesystems, which ``corresponds to a single update of the filesystem'' \citep[p. 4]{Tweedie1998}. Similar to database transactions, a journaled filesystem transaction deals with a sequence of changes to the filesystem as a ``single, atomic operation'' \citep[p. 4]{Best2002}. In other words, the entire sequence of a transaction must be completed, or none at all.
