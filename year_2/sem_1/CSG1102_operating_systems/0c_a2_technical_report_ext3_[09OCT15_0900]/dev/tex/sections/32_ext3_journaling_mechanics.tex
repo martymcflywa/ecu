@@ -38,4 +38,4 @@ Similar to writeback mode, ordered mode only journals metadata. However, order b
 
 \subsubsection{Data journaling mode}
 
-Data journaling mode offers the guarantee of data and metadata consistency, due to the journaling of both metadata and data. However, there are performance trade-offs with this mode since data is being written twice: once to the journal, and again to the fixed ex2 location. Data journaling mode is generally considered the slowest of all ext3 journaling modes, however \citet[p. 3]{Robbins2001b} references an experiment which shows otherwise.
+Data journaling mode offers the guarantee of data and metadata consistency, due to the journaling of both metadata and data. However, there are performance trade-offs with this mode since data is being written twice: once to the journal, and again to the fixed ex2 location. Data journaling mode is generally considered the slowest of all ext3 journaling modes, however \citet[p. 3]{Robbins2001b} references an experiment which shows it can perform well where ``interactive performance IO needs to be maximized''.
