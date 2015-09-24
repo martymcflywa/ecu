@@ -523,7 +523,7 @@ Session.Clear()
 	- Can only admins see all logs
 	- Do they need a specific reason to review user event logs
 	- Is privacy an issue
-- Auditing polcy
+- Auditing policy
 	- Should staff know what is being audited
 	- How long are audit records kept
 	- Do audit records provide absolute proof of the events that took place
