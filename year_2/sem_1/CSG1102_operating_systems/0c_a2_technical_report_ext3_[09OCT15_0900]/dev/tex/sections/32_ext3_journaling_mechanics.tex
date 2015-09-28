@@ -1,32 +1,50 @@
 \section{Ext3 journal mechanics}
 
-With backwards/fowards compatibility in mind, journaling functionality has been added to ext2 to create the ext3 filesystem by implementing two main concepts, the Journaling Block Device, and transactions.
+\citet[p. 5]{Tweedie1998} explains that a journal has two concurrent responsibilities: ``record the new content of filesystem metadata blocks while [it is] in the process of committing transactions''. This sentiment is also echoed by \citet[p. 55]{Galli2001}. With backwards/fowards compatibility in mind, journaling functionality has been added to ext2 to create the ext3 filesystem by implementing two main concepts, the Journaling Block Device, and transactions, providing functionality to satisfy the two responsibilities of the journal.
 
-The ext3 journal itself is stored in an inode using a circular buffer data structure \citep{Robbins2001a, Tweedie2000, Jones2008, Prabhakaran2005a}. An inode is an area on the disk where all the information about a file is stored, however, the actual file itself is not stored in an inode. \citet[p. 2]{Best2002} uses the analogy of a ``bookkeeping file for a file'', and asserts that an inode is in fact a file itself. The decision to store the journal in an inode contributes to the goal of backwards/forwards compatibility with ext2, and avoids the use of incompatible extensions to the ext2 metadata \citep{Robbins2001a}. It is common for the journal to be stored within the filesystem itself, however it is also possible to store the journal on a separate device or partition \citep{Prabhakaran2005a, Tweedie2000}.
+The ext3 journal itself is stored in an inode using a circular buffer data structure \citep{Robbins2001a, Tweedie2000, Jones2008, Prabhakaran2005a}. An inode is an area on the disk where all the information about a file is stored, however, the actual file itself is not stored in an inode. \citet[p. 2]{Best2002} uses the analogy of a ``bookkeeping file for a file'', and identifies that an inode is in fact a file itself. The decision to store the journal in an inode contributes to the goal of backwards/forwards compatibility with ext2, and avoids the use of incompatible extensions to the ext2 metadata \citep{Robbins2001a}. It is common for the journal to be stored within the filesystem itself, however it is also possible to store the journal on a separate device or partition, and even have multiple filesystems sharing the same journal \citep{Prabhakaran2005a, Tweedie2000, Galli2001}.
 
-Once the process of journaling is complete, data and metadata are eventually placed into an ext2 structured fixed location on the disk \citep{Prabhakaran2005a}.
+Additionally, the circular buffer could be described as a temporary holding area for the journal. Space is cleared and reclaimed in the buffer for the journal, once data and metadata are placed into their fixed locations on disk \citep{Prabhakaran2005a}. The sections to follow describe the various implemented mechanics which make it possible for ext3 to function as a journaled filesystem.
 
 \subsection{Journaling Block Device (JBD)}
 
-In order to implement journaling in ext3, an API external to the filesystem was developed, called the \emph{Journaling Block Device} (JBD). Its main purpose is to implement ``a journal on any kind of block device'' \citep[p. 8]{Robbins2001a}. \citet{Tweedie2000} asserts that the JBD is completely encapsulated from ext3. It does not know anything about how the filesystem works, and conversely, the filesystem does not know anything about journaling. The extent of ext3's knowledge of journaling is through \emph{transactions}.
+In order to enable journaling in ext3, an API external to the filesystem was developed, called the \emph{Journaling Block Device} (JBD). Its main purpose is to implement ``a journal on any kind of block device'', acting as an external layer to provide ext3 with journaling capabilities \citep[p. 8]{Robbins2001a, Mauerer2008}. \citet{Tweedie2000} asserts that the JBD is completely encapsulated from ext3. It does not know anything about how the filesystem works, and conversely, the filesystem does not know anything about journaling. The extent of ext3's knowledge of journaling is through \emph{transactions}.
 
-The JBD API allows the filesystem to communicate the modifications to be performed to the JBD as transactions, which in turn is recorded to the journal by the JBD. Ext3 also requests permissions from the JBD before modifying certain data on the disk, providing the JBD the opportunity to manage the journal on behalf of the ext3 filesystem driver \citep{Robbins2001a}.
+The JBD API allows the filesystem to communicate the modifications to be performed to the JBD as transactions, which in turn is recorded to the journal by the JBD. In order for the JBD to have an opportunity to manage the journal on the ext3 filesystem driver's behalf, ext3 requests permissions from the JBD before modifying certain data on the disk \citep{Robbins2001a}.
 
-\subsection{Transactions}
+\subsection{Journal hierarchy}
 
-Transactions are the main concept in journaled filesystems, which ``corresponds to a single update of the filesystem'' \citep[p. 4]{Tweedie1998}. This concept has been implemented into ext2 to create the ext3 filesystem and provides a format for the filesystem to communicate with the JBD API \citep{Tweedie2000}.
+\subsubsection{Log records}
 
-Similar to database transactions, a journaled filesystem transaction deals with a sequence of changes to the filesystem as a ``single, atomic operation'' \citep[p. 4]{Best2002}. In other words, the entire sequence of a transaction must be completed, or none at all. As \citet[p. 4]{Tweedie2000} explains, ``exactly one transaction results from any single filesystem request made by an application, and contains all of the changed metadata resulting from that request''.
+A log record is an individual update to a data block and is the smallest unit of data that can be logged in the journal \citep{Mauerer2008}.
+
+\subsubsection{Handles}
+
+A handle is a group of log records that represent an atomic operation at the system level. \citet[p. 639]{Mauerer2008} explains that if a \mintinline{console}{write} system call is invoked, any log records associated with that particular call would be grouped together to form a handle.
+
+\subsubsection{Transactions}
+
+Transactions are the main concept in journaled filesystems, which ``corresponds to a single update of the filesystem'' \citep[p. 4]{Tweedie1998}, and are formed by groups of handles \citep{Mauerer2008}. This concept has been implemented into ext2 to create the ext3 filesystem and provides a format for the filesystem to communicate with the JBD API \citep{Tweedie2000}.
+
+Similar to database transactions, a journaled filesystem groups together ``collections of atomic sequence of events'' and is executed as a single operation, rather than taking each individual filesystem into account \citep[p. 2]{Katiyar2011}. In other words, the entire sequence of a transaction must be completed, or none at all. As \citet[p. 4]{Tweedie2000} explains, ``exactly one transaction results from any single filesystem request made by an application, and contains all of the changed metadata resulting from that request''.
 
 \subsection{Journal approach}
 
 \citet[p. 3]{Robbins2001a} describes two methods of journaling, \emph{logical journaling} and \emph{physical journaling}. Logical journaling refers to the method where the journal stores ``spans of bytes that need to be modified on the host filesystem'' and is found to be used in other journaled filesystems such as XFS. In other words, this approach only records individual bytes that require modification, and is efficient at storing many, smaller modifications to a filesystem \citep{Robbins2001a}.
 
-On the other hand, physical journaling is where entire blocks of modified filesystem are recorded in the journal, and is the journaling approach used by ext3. This means that an unmodified piece of data may also be recorded in the journal, if it resides in a modified block. Although the journal will require more space, it requires less CPU overhead compared to logical journaling, since there is less complexity transferring a literal block from memory to disk \citep{Robbins2001a}.
+On the other hand, physical journaling is where entire blocks of modified filesystem are recorded in the journal, and is the journaling approach used by ext3. This means that when a small change is made, the entire journal block must be written \citep{Bovet2006, Robbins2001a}. Although the journal will require more space, it requires less CPU overhead compared to logical journaling, since there is less complexity transferring a literal block from memory to disk \citep{Robbins2001a}, and ``journal operations can be batched into large clusters'' \citep[p. 55]{Galli2001}.
+
+\subsection{Journal structure}
+
+As each ext3 transaction is recorded into the journal, they are organized and described by the following metadata blocks: \emph{journal superblock}, \emph{descriptor block}, and \emph{journal commit block} \citep{Prabhakaran2005a}. Summary information such as block size and head/tail pointers are recorded by the journal superblock. As discussed previously, ext3 logs an entire block to journal if it has even the smallest update required, and summary information about these blocks are stored in the journal superblock \citep{Prabhakaran2005a, Galli2001}
+
+The start of a transaction is marked by the descriptor block, containing information about the subsequent journaled blocks as well as their fixed locations on disk \citep{Prabhakaran2005a}. The role of descriptor blocks is to describe other metadata journal blocks, supporting journaled recovery functions \citep{Galli2001, Tweedie1998}. What is stored after the descriptor block in a journal depends on the selected ext3 mode of operation, as described in more detail below. In data journaling mode, data and metadata blocks are stored after the descriptor block. In writeback and ordered modes, metadata blocks are stored after the descriptor block \citep{Prabhakaran2005a}.
+
+The journal commit block signals the end of a transaction, and is stored after the metadata and data blocks marked for update in that particular transaction. ``Once the commit block is written, the journaled data can be recovered without loss'' \citep[p. 109]{Prabhakaran2005a}.
 
 \subsection{Ext3 journal modes}
 
-Ext3 offers three modes of journal operation, which can be selected during the mounting of the filesystem. These modes are \emph{writeback mode}, \emph{ordered mode}, and \emph{data journaling mode} \citep{Prabhakaran2005a, Jones2008}. Each mode offers varying levels of data consistency guarantees and are interchangeable.
+Ext3 offers three modes of journal operation, which can be selected during the mounting of the filesystem. These modes are \emph{writeback mode}, \emph{ordered mode}, and \emph{data journaling mode} \citep{Prabhakaran2005a, Jones2008, Mauerer2008}. Each mode offers varying levels of data consistency guarantees and are interchangeable.
 
 \subsubsection{Writeback mode}
 
@@ -34,8 +52,17 @@ In writeback mode, only metadata is journaled and data blocks are written direct
 
 \subsubsection{Ordered mode}
 
-Similar to writeback mode, ordered mode only journals metadata. However, order between journal and fixed location data writes are enforced. This is the default mode, if a user does not select one during the mounting of the ext3 filesystem. Metadata and data block writes are grouped logically as transactions, as mentioned in Section 4.2. When the time comes to \emph{flush} the transaction (write metadata) to disk, data blocks must be written first before metadata is journaled \citep{Robbins2001b}. This ordering of writes effectively guarantees both metadata and data recovery consistency \citep{Jones2008, Prabhakaran2005a}.
+Similar to writeback mode, ordered mode only journals metadata. However, order between journal and fixed location data writes are enforced. This is the default mode, if a user does not select one during the mounting of the ext3 filesystem. Metadata and data block writes are grouped logically as transactions, as mentioned in Section 4.2. When the time comes to \emph{commit} the transaction (write metadata) to disk, data blocks must be written first before metadata is journaled \citep{Robbins2001b}. This ordering of writes effectively guarantees both metadata and data recovery consistency \citep{Jones2008, Prabhakaran2005a}.
 
 \subsubsection{Data journaling mode}
 
 Data journaling mode offers the guarantee of data and metadata consistency, due to the journaling of both metadata and data. However, there are performance trade-offs with this mode since data is being written twice: once to the journal, and again to the fixed ex2 location. Data journaling mode is generally considered the slowest of all ext3 journaling modes, however \citet[p. 3]{Robbins2001b} references an experiment which shows it can perform well where ``interactive performance IO needs to be maximized''.
+
+\subsection{Checkpointing}
+
+After a transaction has been committed, the data at the corresponding fixed location on disk is yet to be updated. Therefore, the corresponding data in the journal must remain in the journal until the data at the fixed locations have been synced to the corresponding transactions in the journal \citep{Tweedie1998}. This syncing process is called checkpointing.
+
+A task handled by the JBD, checkpointing involves writing all the contents of the journal to their respective fixed locations on disk as a compound transaction. Once data is copied to the fixed location on disk, the compound transaction is completed and the space taken up by the compound transaction on the journal can be reclaimed by a subsequent transaction \citep{Tweedie2000, Tweedie1998, Prabhakaran2005a, Katiyar2011, Devlisden2011}. Various events can trigger the checkpointing process, such as low space in either the filesystem buffer or journal itself, or when a time-out expires \citep{Prabhakaran2005a}.
+
+
+
