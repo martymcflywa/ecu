@@ -12,27 +12,55 @@ In order to enable journaling in ext3, an API external to the filesystem was dev
 
 The JBD API allows the filesystem to communicate the modifications to be performed to the JBD as transactions, which in turn is recorded to the journal by the JBD. In order for the JBD to have an opportunity to manage the journal on the ext3 filesystem driver's behalf, ext3 requests permissions from the JBD before modifying certain data on the disk \citep{Robbins2001a}.
 
-\subsection{Journal hierarchy}
-
-\subsubsection{Log records}
-
-A log record is an individual update to a data block and is the smallest unit of data that can be logged in the journal \citep{Mauerer2008}.
-
-\subsubsection{Handles}
-
-A handle is a group of log records that represent an atomic operation at the system level. \citet[p. 639]{Mauerer2008} explains that if a \mintinline{console}{write} system call is invoked, any log records associated with that particular call would be grouped together to form a handle.
-
-\subsubsection{Transactions}
-
-Transactions are the main concept in journaled filesystems, which ``corresponds to a single update of the filesystem'' \citep[p. 4]{Tweedie1998}, and are formed by groups of handles \citep{Mauerer2008}. This concept has been implemented into ext2 to create the ext3 filesystem and provides a format for the filesystem to communicate with the JBD API \citep{Tweedie2000}.
-
-Similar to database transactions, a journaled filesystem groups together ``collections of atomic sequence of events'' and is executed as a single operation, rather than taking each individual filesystem into account \citep[p. 2]{Katiyar2011}. In other words, the entire sequence of a transaction must be completed, or none at all. As \citet[p. 4]{Tweedie2000} explains, ``exactly one transaction results from any single filesystem request made by an application, and contains all of the changed metadata resulting from that request''.
-
 \subsection{Journal approach}
 
 \citet[p. 3]{Robbins2001a} describes two methods of journaling, \emph{logical journaling} and \emph{physical journaling}. Logical journaling refers to the method where the journal stores ``spans of bytes that need to be modified on the host filesystem'' and is found to be used in other journaled filesystems such as XFS. In other words, this approach only records individual bytes that require modification, and is efficient at storing many, smaller modifications to a filesystem \citep{Robbins2001a}.
 
 On the other hand, physical journaling is where entire blocks of modified filesystem are recorded in the journal, and is the journaling approach used by ext3. This means that when a small change is made, the entire journal block must be written \citep{Bovet2006, Robbins2001a}. Although the journal will require more space, it requires less CPU overhead compared to logical journaling, since there is less complexity transferring a literal block from memory to disk \citep{Robbins2001a}, and ``journal operations can be batched into large clusters'' \citep[p. 55]{Galli2001}.
+
+\subsection{Journal hierarchy}
+
+The contents of the journal form a hierarchy of information, starting with log records which record the lowest level of filesystem operation. Log records are then grouped by handles, which represent operations at high level system calls. Finally, transactions group handles together and represent a single, atomic update to the filesystem.
+
+\subsubsection{Log records}
+
+A log record is an individual low level operation to update a block and is the smallest unit of data that can be logged in the journal \citep{Mauerer2008}. As discussed previously, ext3's journal approach is physical journaling, where entire blocks of modified filesystem are recorded in the log. Therefore, an ext3 log record consists of ``the whole buffer modified by the low level operation'' \citep[p. 770]{Bovet2006}. Each log record contains a \mintinline{console}{journal_block_tag_t}, storing the associated logical block number within the filesystem as well as status flags \citep{Bovet2006}.
+
+\subsubsection{Handles}
+
+A handle is a group of low level log records that represent a high level atomic operation at the system level. \citet[p. 639]{Mauerer2008} explains that if a \mintinline{console}{write} system call is invoked, any log records associated with that particular call would be grouped together to form a handle. Therefore, each system call must be dealt with in an atomic manner to prevent data corruption, and is assisted by recording handles in the journal. In other words, similar to transactions, a handle must perform the entire sequence of log record changes to disk, or none at all. Each handle is ``represented by a descriptor of type \mintinline{console}{handle_t} \citep[p. 770]{Bovet2006}.
+
+\subsubsection{Transactions}
+
+Transactions are the main concept in journaled filesystems, which ``corresponds to a single update of the filesystem'' \citep[p. 4]{Tweedie1998}. Transactions are formed by groups of handles \citep{Mauerer2008, Bovet2006}, and log records that related to a particular handle must reside in a single transaction. This concept has been implemented into ext2 to create the ext3 filesystem and provides a format for the filesystem to communicate with the JBD API \citep{Tweedie2000}, and as a means of efficiency for the filesystem \citep{Bovet2006}.
+
+Similar to database transactions, a journaled filesystem groups together ``collections of atomic sequence of events'' and is executed as a single operation, rather than taking each individual filesystem into account \citep[p. 2]{Katiyar2011}. In other words, the entire sequence of a transaction must be completed, or none at all. As \citet[p. 4]{Tweedie2000} explains, ``exactly one transaction results from any single filesystem request made by an application, and contains all of the changed metadata resulting from that request''.
+
+Each transaction contains a descriptor \mintinline{console}{transaction_t}, which in turn contains field \mintinline{console}{t_state}, describing the status of the transaction \citep{Bovet2006}. The state of a transaction determines whether or not it is considered during recovery after an improper shutdown. \citet[p. 771]{Bovet2006} describes each of the possible states of a transaction:
+
+\paragraph{Complete}
+
+A transaction is marked complete when all associated log records have been physically written to the journal and are considered to assist in recovery after an improper shutdown. The \mintinline{console}{t_state} field contains value \mintinline{console}{T_FINISHED} when a transaction is completed.
+
+\paragraph{Incomplete}
+
+A transaction is considered incomplete when not all associated log records have been physically written to the journal, or subsequent log records are still being added to the transaction. Incomplete transactions are discarded during recovery after an improper shutdown. Incomplete transactions have four possible values stored in the \mintinline{console}{t_state} field:
+
+\begin{table}[H]
+\centering
+\caption{Incomplete \mintinline{console}{t_state} values \citep[p. 771-772]{Bovet2006}.}
+\begin{tabular}{l|l}
+Value							& Desciption\\ \hline
+\mintinline{console}{T_RUNNING}	& Transaction is still accepting new handles \\
+\mintinline{console}{T_LOCKED}	& Transaction no longer accepting new handles, but some are unfinished \\
+\mintinline{console}{T_FLUSH}	& Transaction has recorded all handles, but is still in the process of \\ & recording remaining log records \\
+\mintinline{console}{T_COMMIT}	& Transaction has finished writing all associated log records of \\ & handles to disk, but transaction is yet to be marked completed \\ & on the journal
+\end{tabular}
+\end{table}
+
+The journal may contain multiple transactions, but only one transaction may be active at any given time, with state \mintinline{console}{T_RUNNING}. The other transactions contained in the journal may be incomplete, waiting for buffers to write the associated log records to the journal \citep{Bovet2006}.
+
+A transaction is marked complete when all associated log records have been written to the journal, but updates to the fixed location on disk may still not have occurred. A complete transaction is only removed from the journal after verification that a complete transaction has been written to the fixed location on disk \citep{Bovet2006}. This process is handled through checkpointing, discussed in a later section.
 
 \subsection{Journal structure}
 
@@ -52,7 +80,7 @@ In writeback mode, only metadata is journaled and data blocks are written direct
 
 \subsubsection{Ordered mode}
 
-Similar to writeback mode, ordered mode only journals metadata. However, order between journal and fixed location data writes are enforced. This is the default mode, if a user does not select one during the mounting of the ext3 filesystem. Metadata and data block writes are grouped logically as transactions, as mentioned in Section 4.2. When the time comes to \emph{commit} the transaction (write metadata) to disk, data blocks must be written first before metadata is journaled \citep{Robbins2001b}. This ordering of writes effectively guarantees both metadata and data recovery consistency \citep{Jones2008, Prabhakaran2005a}.
+Similar to writeback mode, ordered mode only journals metadata. However, order between journal and fixed location data writes are enforced. This is the default mode, if a user does not select one during the mounting of the ext3 filesystem. Metadata and data block writes are grouped logically as transactions, as mentioned previously. When the time comes to \emph{commit} the transaction (write metadata) to disk, data blocks must be written first before metadata is journaled \citep{Robbins2001b}. This ordering of writes effectively guarantees both metadata and data recovery consistency \citep{Jones2008, Prabhakaran2005a}.
 
 \subsubsection{Data journaling mode}
 
@@ -62,7 +90,7 @@ Data journaling mode offers the guarantee of data and metadata consistency, due 
 
 After a transaction has been committed, the data at the corresponding fixed location on disk is yet to be updated. Therefore, the corresponding data in the journal must remain in the journal until the data at the fixed locations have been synced to the corresponding transactions in the journal \citep{Tweedie1998}. This syncing process is called checkpointing.
 
-A task handled by the JBD, checkpointing involves writing all the contents of the journal to their respective fixed locations on disk as a compound transaction. Once data is copied to the fixed location on disk, the compound transaction is completed and the space taken up by the compound transaction on the journal can be reclaimed by a subsequent transaction \citep{Tweedie2000, Tweedie1998, Prabhakaran2005a, Katiyar2011, Devlisden2011}. Various events can trigger the checkpointing process, such as low space in either the filesystem buffer or journal itself, or when a time-out expires \citep{Prabhakaran2005a}.
+A task handled by the JBD, checkpointing involves writing all the contents of the journal to their respective fixed locations on disk as a compound transaction. Once data is copied to the fixed location on disk, the compound transaction is completed and the space taken up by the checkpointed compound transaction on the journal can be reclaimed by subsequent transactions \citep{Tweedie2000, Tweedie1998, Prabhakaran2005a, Katiyar2011, Devlisden2011}. Various events can trigger the checkpointing process, such as low space in either the filesystem buffer or journal itself, or when a time-out expires \citep{Prabhakaran2005a}.
 
 
 
