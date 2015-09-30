@@ -1,1 +1,13 @@
 \section{Conclusion}
+
+This report has examined the implementation and operation of the ext3 filesystem. To place the report in context, an introduction to journaled filesystems is discussed to identify the advantages that a journaled filesystem has over traditional, non-journaled filesystems. A brief look at similarities between ext2 and ext3 has been explored, providing a background for the reasons behind ext3's development and design decisions.
+
+The mechanics of journaling in ext3 have been identified. Journaling capabilities are implemented on an external layer, called the Journaling Block Device (JBD), allowing for greater compatibility between ext2 and ext3. Ext3 implements physical journaling, where entire blocks of modified filesystem are recorded in the journal. Although this method requires more space, it requires less CPU overhead.
+
+The hierarchy of information stored in the journal is examined. The smallest unit of information is a log record, a low level operation to update a block. A handle is a collection of log records, representing a high level operation at the system level. Finally, a transaction is a collection of handles, and in the case of ext3, represent a single, atomic change in the filesystem. A transaction must complete all of its related handles and log records, or none at all.
+
+The logical structure of an ext3 journal is discussed, describing how each transaction is organized in the journal. The roles of the journal superblock, descriptor block, and journal commit block are identified.
+
+The ext3 filesystem allows the user to select the level of journaling and provides three different modes: writeback mode, ordered mode and data journal mode. Each mode's functionality is examined and compared to identify differences in performance and levels of data consistency guarantees.
+
+Finally, ext3 operations of writing a data block of a regular file, as well as recovery have been examined. Each operation is described in a step-by-step manner.
