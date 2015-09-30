@@ -189,7 +189,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
         myEnergySets[1] = highEnergy;
 
         myEnergy.checkGaps();
-        myEnergy.display();
 
         // set default value
         myEnergy.setValue(SAUCER_START_ENERGY);
@@ -279,8 +278,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
         targetEnergyDiffSets[0] = losing;
         targetEnergyDiffSets[1] = winning;
-
-        targetEnergyDiff.display();
     }
 
     /**
@@ -302,7 +299,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
         blastDist.add(far);
 
         blastDist.checkGaps();
-        blastDist.display();
 
         blastDistSets[0] = close;
         blastDistSets[1] = far;
@@ -380,7 +376,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
         powerUpDist.add(far);
 
         powerUpDist.checkGaps();
-        powerUpDist.display();
 
         powerUpDistSets[0] = close;
         powerUpDistSets[1] = near;
@@ -469,13 +464,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 blastAspect, blastAspectSets,
                 defensiveTurn, blastDodge
         );
-
-        rules.display3DRuleMatrix(
-                blastDist, blastDistSets,
-                blastAngleOff, blastAngleOffSets,
-                blastAspect, blastAspectSets,
-                defensiveTurn
-        );
     }
 
     private void setupOffensiveTurn() throws FuzzyException {
@@ -511,6 +499,13 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 targetEnergyDiff, targetEnergyDiffSets,
                 targetAspect, targetAspectSets,
                 offensiveTurn, turnTarget
+        );
+
+        rules.display3DRuleMatrix(
+                targetDist, targetDistSets,
+                targetEnergyDiff, targetEnergyDiffSets,
+                targetAspect, targetAspectSets,
+                offensiveTurn
         );
 
         double[][][] blastDodge = {
@@ -783,13 +778,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 myEnergy, myEnergySets,
                 blastDist, blastDistSets,
                 shield, shieldUp
-        );
-
-        rules.display3DRuleMatrix(
-                powerUpDist, powerUpDistSets,
-                myEnergy, myEnergySets,
-                blastDist, blastDistSets,
-                shield
         );
     }
 
