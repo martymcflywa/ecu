@@ -1,0 +1,182 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{float}
+
+% sets margin
+\usepackage[hmargin=3cm,vmargin=2.5cm]{geometry}
+
+% creates landscape pages
+\usepackage{pdflscape}
+\usepackage{pdfpages}
+
+%\renewcommand{\rmdefault}{phv} % Arial
+\renewcommand{\sfdefault}{phv} % Arial
+
+% defining settings for textpos
+\usepackage[absolute]{textpos}
+\setlength{\TPHorizModule}{\paperwidth}
+\setlength{\TPVertModule}{\paperheight}
+
+% headers / footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Assignment 1B}
+\lhead{CSG2341: Intelligent Systems}
+\rfoot{\thepage}
+\lfoot{Martin Ponce, ID: 10371381}
+\renewcommand{\footrulewidth}{0.5pt}
+
+% defining landscape headers / footers
+\fancypagestyle{fancylscape}{
+	\fancyhf{}
+	\renewcommand{\footrulewidth}{0pt}
+	\renewcommand{\headrulewidth}{0pt}
+	% header
+	\begin{textblock}{0.05}[-0.5,-2](0,0)
+		{\rotatebox{90}{CSG2341: Intelligent Systems}}
+	\end{textblock}
+		\begin{textblock}{0.05}[-0.5,-1](0,0)
+		{\rotatebox{90}{Assignment 1B}}
+	\end{textblock}
+	\begin{textblock}{0.05}[-1,-0.109](0,0)
+		{\rotatebox{90}{\rule{24.2cm}{0.5pt}}}
+	\end{textblock}
+	% footer
+	\begin{textblock}{0.05}[-19,-4.28](0,0)
+		{\rotatebox{90}{Martin Ponce, ID: 10371381}}
+	\end{textblock}
+		\begin{textblock}{0.05}[-19,-12.8](0,0)
+		{\rotatebox{90}{\thepage}}
+	\end{textblock}
+		\begin{textblock}{0.05}[-18.7,-0.109](0,0)
+		{\rotatebox{90}{\rule{24.2cm}{0.5pt}}}
+	\end{textblock}
+}
+
+% adjusts padding between caption and figure
+\setlength{\belowcaptionskip}{10pt}
+
+% adds links to references and colors them blue
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+			linkcolor=blue,
+			citecolor=black,
+			urlcolor=blue}
+
+% apa style referencing
+\usepackage[sectionbib, natbibapa]{apacite}
+\usepackage{chbibref}
+
+% underlining text
+\usepackage[normalem]{ulem}
+
+% \citetapos for possesive citations
+\newcommand{\citetapos}[1]{\citeauthor{#1}{\textcolor{black}{'s}} \citeyearpar{#1}}
+
+% add multiline comments \begin{comment} \end{comment}
+\usepackage{verbatim}
+
+% add minted package for code highlighting, number per section
+\usepackage[section]{minted}
+
+% add tcolorbox package to style code
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,skins}
+
+% javacode style config
+\newtcblisting{javacode}{
+  listing engine=minted,
+  colback=bg,
+  colframe=black!80,
+  listing only,
+  minted style=monokai,
+  minted language=java,
+  minted options={linenos=true,texcl=true,fontsize=\scriptsize},
+  left=1mm,
+}
+
+% consolecode style config
+\newtcblisting{consolecode}{
+  listing engine=minted,
+  colback=bg,
+  colframe=black!80,
+  listing only,
+  minted style=vim,
+  minted language=console,
+  minted options={texcl=true,fontsize=\scriptsize},
+  left=1mm,
+}
+
+% define bg color for code highlighting
+\definecolor{bg}{rgb}{0.20,0.20,0.20}
+
+% listings package
+\usepackage{listings}
+% change label to code
+\renewcommand\listingscaption{Java code}
+
+% modify enumerate sub list
+\renewcommand{\labelenumii}{\theenumii}
+\renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
+\renewcommand{\theenumiii}{\theenumii\arabic{enumiii}}
+\renewcommand{\theenumiv}{\theenumiii.\arabic{enumiv}}
+
+% number each equation per section
+\numberwithin{equation}{section}
+
+% tikz graphics package
+\usepackage{tikz}
+\usetikzlibrary{arrows,positioning, calc}
+\tikzstyle{vertex}=[draw,fill=black!15,circle,minimum size=18pt,inner sep=0pt]
+
+% environ package, used for larger equations
+\usepackage{environ}
+\NewEnviron{lequation}{%
+    \begin{equation}
+    \scalebox{2}{$\BODY$}
+    \end{equation}
+}
+
+% front matter
+\title{Edith Cowan University
+\\\leavevmode\\CSG2341\\Intelligent Systems
+\\\leavevmode\\Assignment 1B
+\\\leavevmode\\Saucers Part 2}
+\author{Martin Ponce\\Student 10371381\\\\Tutor: Philip Hingston}
+\date{\today}
+
+\begin{document}
+
+% title page
+\newpage
+\null  % Empty line
+\nointerlineskip  % No skip for prev line
+\vfill
+\let\snewpage \newpage
+\let\newpage \relax
+\maketitle
+\thispagestyle{empty}
+\let \newpage \snewpage
+\vfill
+
+% toc
+\newpage
+\tableofcontents
+\thispagestyle{fancy}
+
+\newpage
+%\input{./sections/01_introduction}
+
+%\newpage
+%\urlstyle{rm}
+%\bibliographystyle{apacite}
+%\addcontentsline{toc}{section}{References}
+%\bibliography{./bib/Year_2-Sem_1-CSG2341-0b_A1}
+
+
+\end{document}
