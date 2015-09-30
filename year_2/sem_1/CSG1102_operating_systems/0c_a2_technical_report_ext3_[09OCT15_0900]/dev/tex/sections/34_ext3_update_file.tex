@@ -1,6 +1,6 @@
 \subsection{Writing data block of regular file in ext3}
 
-\citet[p. 772-774]{Bovet2006} describe the processes involved when the ext3 filesystem is requested to write data blocks of a regular file in a stepwise fashion.
+\citet[p. 772-774]{Bovet2006} describe the processes involved when the ext3 filesystem is requested to write data blocks of a regular file in stepwise fashion:
 
 \begin{enumerate}
 	\item A call to system function \mintinline{console}{write()} triggers \mintinline{console}{generic_file_write()} for the file object associated with the ext3 file

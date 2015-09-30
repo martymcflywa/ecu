@@ -1,1 +1,49 @@
 \subsection{Recovery in ext3}
+
+Until a system failure occurs, the contents of the journal are not used \citep{Bovet2006}. However, when the filesystem is uncleanly unmounted during a disk operation, the next mount of the filesystem will highlight transactions in the journal that have yet to be checkpointed to their fixed locations on disk \citep{Katiyar2011}. In such cases, \mintinline{console}{e2fsck} is triggered, scanning the journal and replaying completed transactions required to make the filesystem consistent again \citep{Bovet2006}. \citet[p. 8-9]{Katiyar2011} describes the recovery process in stepwise fashion:
+
+\begin{enumerate}
+\item \mintinline{console}{journal_recover()} called
+	\begin{itemize}
+	\item Readahead journal blocks in memory
+	\end{itemize}
+\item \mintinline{console}{do_one_pass(PASS_SCAN)} called
+	\begin{itemize}
+	\item This is the first scan of the journal, determines if recovery is required
+	\item If recovery is required, sanity checks are performed to determine which transactions need to be replayed and confirms if the journal is valid
+		\begin{itemize}
+		\item Only completed transactions are considered, incomplete transactions are discarded \citep{Bovet2006}
+		\item Data structure \mintinline{console}{recovery_info} is populated with information required for the recovery
+			\begin{itemize}
+			\item Such as \mintinline{console}{s_start}, defining which block number to begin recovery
+			\end{itemize}
+		\end{itemize}
+	\item If recovery is not required, \mintinline{console}{s_start = 0}
+	\end{itemize}
+\item \mintinline{console}{do_one_pass(PASS_REVOKE)} called
+	\begin{itemize}
+	\item Builds a list of revoked blocks which is referred to during recovery process, ensuring that old data in a block is not overwritten by new data which would cause corruption
+	\end{itemize}
+\item \mintinline{console}{do_one_pass(PASS_REPLAY)} called
+	\begin{itemize}
+	\item Replays transactions from the journal and copies data from the journal to fixed locations on disk
+		\begin{itemize}
+			\item Read the corresponding block number from the filesystem
+			\item Copy contents of journal to buffer
+			\item Mark the buffer dirty
+			\item Buffer written to fixed location on disk
+		\end{itemize}
+	\end{itemize}
+\item \mintinline{console}{journal_clear_revoke()} called
+	\begin{itemize}
+		\item List of revoked blocks destroyed once replay is completed, space can be reclaimed
+	\end{itemize}
+\item \mintinline{console}{sync_blockdev()} called
+	\begin{itemize}
+	\item Sync block device
+	\end{itemize}
+\item \mintinline{console}{journal_reset()} called
+	\begin{itemize}
+	\item Resets in-memory fields of the journal, allowing it to operate as normal again when the filesystem is remounted
+	\end{itemize}
+\end{enumerate}
