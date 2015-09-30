@@ -949,10 +949,13 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
     @Override
     public double getTurn() throws Exception {
+
+        if(isPowerUpNear) {
+            return getPowerUpTurn.getValue();
+        }
+
         if(isLastTarget || isLastTwoTargets) {
             return offensiveTurn.getValue();
-        } else if(isPowerUpNear) {
-            return getPowerUpTurn.getValue();
         } else {
             return defensiveTurn.getValue();
         }
