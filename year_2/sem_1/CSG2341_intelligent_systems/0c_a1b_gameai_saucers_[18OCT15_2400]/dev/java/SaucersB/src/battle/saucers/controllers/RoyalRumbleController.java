@@ -731,32 +731,14 @@ public class RoyalRumbleController implements SaucerController, Constants {
      */
     private void setupFirePower() throws FuzzyException {
 
-        final double lowPower = SAUCER_MAX_POWER * 0.25;
-        final double midPower = SAUCER_MAX_POWER * 0.5;
-
         firePower = new FuzzyVariable("firepower", "j", 0.0, SAUCER_MAX_POWER, 2);
 
-        double[][] shots = {
-
-                // x = distance
-                // y = myEnergy
-
-                // close,          near,             far
-                {SAUCER_MAX_POWER, SAUCER_MAX_POWER, 0.0},  // low
-                {SAUCER_MAX_POWER, SAUCER_MAX_POWER, 0.0}   // high
-        };
-
-        rules.addRuleMatrix(
-                myEnergy, myEnergySets,
-                targetDist, targetDistSets,
-                firePower, shots
-        );
-
-        rules.displayRuleMatrix(
-                myEnergy, myEnergySets,
-                targetDist, targetDistSets,
-                firePower
-        );
+        // if close then max power
+        rules.addRule(targetDist, targetDistSets[0], firePower, SAUCER_MAX_POWER);
+        // if near then max power
+        rules.addRule(targetDist, targetDistSets[1], firePower, SAUCER_MAX_POWER);
+        // if far then no power
+        rules.addRule(targetDist, targetDistSets[2], firePower, 0.0);
     }
 
     /**
