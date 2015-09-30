@@ -82,15 +82,15 @@ In writeback mode, only metadata is journaled and data blocks are written direct
 
 Similar to writeback mode, ordered mode only journals metadata. However, order between journal and fixed location data writes are enforced. This is the default mode, if a user does not select one during the mounting of the ext3 filesystem. Metadata and data block writes are grouped logically as transactions, as mentioned previously. When the time comes to \emph{commit} the transaction (write metadata) to disk, data blocks must be written first before metadata is journaled \citep{Robbins2001b}. This ordering of writes effectively guarantees both metadata and data recovery consistency \citep{Jones2008, Prabhakaran2005a}.
 
-\subsubsection{Data journaling mode}
+\subsubsection{Data journal mode}
 
-Data journaling mode offers the guarantee of data and metadata consistency, due to the journaling of both metadata and data. However, there are performance trade-offs with this mode since data is being written twice: once to the journal, and again to the fixed ex2 location. Data journaling mode is generally considered the slowest of all ext3 journaling modes, however \citet[p. 3]{Robbins2001b} references an experiment which shows it can perform well where ``interactive performance IO needs to be maximized''.
+Data journal mode offers the guarantee of data and metadata consistency, due to the journaling of both metadata and data. However, there are performance trade-offs with this mode since data is being written twice: once to the journal, and again to the fixed ex2 location. Data journal mode is generally considered the slowest of all ext3 journaling modes, however \citet[p. 3]{Robbins2001b} references an experiment which shows it can perform well where ``interactive performance IO needs to be maximized''.
 
 \subsection{Checkpointing}
 
-After a transaction has been committed, the data at the corresponding fixed location on disk is yet to be updated. Therefore, the corresponding data in the journal must remain in the journal until the data at the fixed locations have been synced to the corresponding transactions in the journal \citep{Tweedie1998}. This syncing process is called checkpointing.
+After a transaction has been committed, the data at the corresponding fixed location on disk may still be waiting to be updated. Therefore, the corresponding data for a particular transaction must remain in the journal until associated updates to fixed locations on disk have been made \citep{Tweedie1998}.
 
-A task handled by the JBD, checkpointing involves writing all the contents of the journal to their respective fixed locations on disk as a compound transaction. Once data is copied to the fixed location on disk, the compound transaction is completed and the space taken up by the checkpointed compound transaction on the journal can be reclaimed by subsequent transactions \citep{Tweedie2000, Tweedie1998, Prabhakaran2005a, Katiyar2011, Devlisden2011}. Various events can trigger the checkpointing process, such as low space in either the filesystem buffer or journal itself, or when a time-out expires \citep{Prabhakaran2005a}.
+A task handled by the JBD, the checkpointing process verifies each completed transaction that all the related data transfers relating to that particular transaction have occurred. Once a transaction in complete status has been verified by checkpointing, the space taken up by the checkpointed compound transaction on the journal can be reclaimed for future transactions \citep{Tweedie2000, Tweedie1998, Prabhakaran2005a, Devlisden2011, Bovet2006}. Various events can trigger the checkpointing process, such as low space in either the filesystem buffer or journal itself, or when a time-out expires, ensuring that it occurs periodically \citep{Prabhakaran2005a}.
 
 
 

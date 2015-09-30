@@ -1,1 +1,63 @@
-\subsection{Updating a file in ext3}
+\subsection{Writing data block of regular file in ext3}
+
+\citet[p. 772-774]{Bovet2006} describe the processes involved when the ext3 filesystem is requested to write data blocks of a regular file in a stepwise fashion.
+
+\begin{enumerate}
+	\item A call to system function \mintinline{console}{write()} triggers \mintinline{console}{generic_file_write()} for the file object associated with the ext3 file
+	\item \mintinline{console}{ext3_prepare_write()} is called for the \mintinline{console}{address_space} object for each page of data relating to the write operation
+	\item A new atomic operation is initiated from \mintinline{console}{ext3_prepare_write()} by calling the JBD API function \mintinline{console}{journal_start()}, creating a new handle
+		\begin{itemize}
+			\item First call to \mintinline{console}{journal_start()} will result in newly created handle to be added to active transaction
+			\item Subsequent calls to \mintinline{console}{journal_start()} for the same handle verifies that the \mintinline{console}{journal_info} field of the process descriptor is set and uses the referenced handle
+		\end{itemize}
+	\item \mintinline{console}{ext3_prepare_write()} calls \mintinline{console}{block_prepare_write()}, passing the address of \mintinline{console}{ext3_get_block()} function
+		\begin{itemize}
+		\item \mintinline{console}{block_prepare_write()} prepares the buffers and buffer heads of the file's page
+		\end{itemize}
+	\item Kernel calls \mintinline{console}{ext3_get_block()} to determine the logical number of a block from the ext3 filesystem
+		\begin{itemize}
+		\item \mintinline{console}{journal_get_write_access()} is called before issuing a low level write operation on a metadata block of the filesystem, to add the metadata buffer to a list of the active transaction
+			\begin{itemize}
+			\item If the metadata is already included in an existing and incomplete transaction, the buffer is duplicated, ensuring that older transactions are committed with the old content
+			\end{itemize}
+		\item \mintinline{console}{journal_dirty_metadata()} is called after updating the buffer containing the metadata block, moving the metadata buffer to the dirty list of the active transaction and logging the operation in the journal
+		\end{itemize}
+	\item If using data journal mode, \mintinline{console}{ext3_prepare_write()} calls \\ \mintinline{console}{journal_get_write_access()} on every buffer affected by the write operation, recalling that in data journal mode, metadata as well as data is recorded to the journal
+	\item \mintinline{console}{generic_file_write()} receives control again, updating the page page with the data stored in the User Mode address space, then calls \mintinline{console}{commit_write()} for the \mintinline{console}{address_space} object, depending on the ext3 mode:
+		\begin{itemize}
+		\item In data journal mode, \mintinline{console}{commit_write()} is implemented by \\ \mintinline{console}{ext3_journalled_commit_write()}, calling \mintinline{console}{journal_dirty_metadata()} on every buffer of data in the page
+			\begin{itemize}
+			\item This ensures that data is also included in the proper dirty list of the active transaction and not in the dirty list of the owner inode
+			\item Also ensures that the corresponding log records are written to the journal
+			\item Again, recall that data journal mode writes both data and metadata to the journal
+			\item \mintinline{console}{ext3_journalled_commit_write()} then calls \mintinline{console}{journal_stop()} so that the JBD closes the handle for that particular operation
+			\end{itemize}
+		\item In ordered mode, \mintinline{console}{commit_write()} is implemented by \\ \mintinline{console}{ext3_ordered_commit_write()}, calling \mintinline{console}{journal_dirty_data()} on every buffer of data in the page
+			\begin{itemize}
+			\item This inserts the buffer in a proper list of the active transactions
+			\item The JBD then ensures that all data buffers in this list are written to disk before the metadata buffers of the transaction
+			\item The JBD does not include log records to the journal at this stage in ordered mode mode
+			\item \mintinline{console}{ext3_ordered_commit_write()} then calls \\ \mintinline{console}{generic_commit_write()}, to insert the data buffers in the list of the dirty buffers of the owner inode
+			\item \mintinline{console}{ext3_ordered_commit_write()} then calls \mintinline{console}{journal_stop()} so that the JBD closes the handle for that particular operation
+			\end{itemize}
+		\item In writeback mode, \mintinline{console}{commit_write()} is implemented by \\ \mintinline{console}{ext3_writeback_commit_write()}, calling \mintinline{console}{generic_commit_write()}
+			\begin{itemize}
+			\item This inserts the data buffers in the list of the dirty buffers of the owner inode
+			\item \mintinline{console}{ext3_writeback_commit_write()} then calls \mintinline{console}{journal_stop()} so that the JBD closes the handle for that particular operation
+			\end{itemize}
+		\end{itemize}
+	\item \mintinline{console}{write()} system call finishes here, but the JBD continues processing
+		\begin{itemize}
+		\item When all log records have been physically written to the journal, the transaction status will be changed to complete
+		\item When complete, \mintinline{console}{journal_commit_transaction()} is called
+		\end{itemize}
+	\item While in ordered mode, \mintinline{console}{journal_commit_transaction()} ensures I/O data transfers for all data buffers included in the list of the transaction first, and waits until all data transfers are completed
+	\item While in writeback or data journal mode, \mintinline{console}{journal_commit_transaction()} initiates I/O data transfers for associated metadata buffers for the transaction
+		\begin{itemize}
+		\item Additionally for data journal mode, I/O data transfers are also initiated for data buffers
+		\end{itemize}
+	\item The kernel periodically initiates checkpointing of all complete transactions residing in the journal, verifying that I/O transfers have successfully completed
+		\begin{itemize}
+		\item If so, the transaction is removed from the journal to make room for new transactions
+		\end{itemize}
+\end{enumerate}
