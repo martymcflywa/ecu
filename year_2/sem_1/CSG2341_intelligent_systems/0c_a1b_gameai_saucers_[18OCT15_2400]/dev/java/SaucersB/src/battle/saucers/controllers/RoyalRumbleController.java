@@ -924,7 +924,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
         if(isLastTarget || isPowerUpNear) {
             return firePower.getValue();
         } else if(isLastTwoTargets) {
-            if(Math.random() < 0.5) {
+            if(Math.random() < 0.05) {
                 return firePower.getValue();
             } else {
                 return 0.0;
