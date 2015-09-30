@@ -742,7 +742,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 // y = myEnergy
 
                 // close,          near,             far
-                {SAUCER_MAX_POWER, midPower, 0.0},  // low
+                {SAUCER_MAX_POWER, SAUCER_MAX_POWER, 0.0},  // low
                 {SAUCER_MAX_POWER, SAUCER_MAX_POWER, 0.0}   // high
         };
 
