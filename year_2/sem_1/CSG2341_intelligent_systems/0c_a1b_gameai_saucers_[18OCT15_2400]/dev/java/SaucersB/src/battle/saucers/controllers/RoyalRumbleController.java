@@ -24,6 +24,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private static final Color ARROW = Color.black;
     private static final double DEFENCE_ROF = 0.01;
     private static final double OFFENCE_ROF = 0.05;
+    private static final double MAX_ROF = 1.0;
     private static boolean isLastTarget;
     private static boolean isLastTwoTargets;
     private static boolean isPowerUpNear;
@@ -72,7 +73,8 @@ public class RoyalRumbleController implements SaucerController, Constants {
     // linguistic output variables
     private FuzzyVariable defensiveTurn;
     private FuzzyVariable offensiveTurn;
-    private FuzzyVariable getPowerUpTurn;
+    private FuzzyVariable nearPowerUpTurn;
+    private FuzzyVariable allPowerUpTurn;
     private FuzzyVariable defensiveSpeed;
     private FuzzyVariable offensiveSpeed;
     private FuzzyVariable firePower;
@@ -197,7 +199,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
         // setup outputs
         setupDefensiveTurn();
         setupOffensiveTurn();
-        setupGetPowerUpTurn();
+        setupNearPowerUpTurn();
         setupDefensiveSpeed();
         setupOffensiveSpeed();
         setupFirePower();
@@ -512,8 +514,8 @@ public class RoyalRumbleController implements SaucerController, Constants {
         );
     }
 
-    private void setupGetPowerUpTurn() throws FuzzyException {
-        getPowerUpTurn =  new FuzzyVariable("get powerup turn", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
+    private void setupNearPowerUpTurn() throws FuzzyException {
+        nearPowerUpTurn =  new FuzzyVariable("get powerup turn", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
 
         double[][] headToPowerUp = {
 
@@ -535,8 +537,22 @@ public class RoyalRumbleController implements SaucerController, Constants {
         rules.addRuleMatrix(
                 powerUpAspect, powerUpAspectSets,
                 powerUpDist, powerUpDistSets,
-                getPowerUpTurn, headToPowerUp
+                nearPowerUpTurn, headToPowerUp
         );
+    }
+
+    private void setupAllPowerUpTurn() throws FuzzyException {
+        allPowerUpTurn = new FuzzyVariable("get powerup turn", "*", RIGHT_TWELVE, LEFT_TWELVE, 2);
+
+        rules.addRule(powerUpAspect, powerUpAspectSets[0], allPowerUpTurn, TWELVE);
+        rules.addRule(powerUpAspect, powerUpAspectSets[1], allPowerUpTurn, LEFT_NINE);
+        rules.addRule(powerUpAspect, powerUpAspectSets[2], allPowerUpTurn, RIGHT_SIX);
+        rules.addRule(powerUpAspect, powerUpAspectSets[3], allPowerUpTurn, RIGHT_THREE);
+        rules.addRule(powerUpAspect, powerUpAspectSets[4], allPowerUpTurn, TWELVE);
+        rules.addRule(powerUpAspect, powerUpAspectSets[5], allPowerUpTurn, LEFT_NINE);
+        rules.addRule(powerUpAspect, powerUpAspectSets[6], allPowerUpTurn, LEFT_SIX);
+        rules.addRule(powerUpAspect, powerUpAspectSets[7], allPowerUpTurn, RIGHT_THREE);
+        rules.addRule(powerUpAspect, powerUpAspectSets[8], allPowerUpTurn, TWELVE);
     }
 
     /**
@@ -771,6 +787,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
 
         // be aggressive when there are 1-2 enemies left
         if(data.size() > 0 && data.size() < 3) {
+            targetEnergyDiff.setValue(energy - nearestTarget.energy);
             isLastTwoTargets = true;
         }
         if(data.size() > 0 && data.size() < 2) {
@@ -852,20 +869,20 @@ public class RoyalRumbleController implements SaucerController, Constants {
     public double getFirePower() throws Exception {
 
         if(isLastTarget || isPowerUpNear) {
-            return firePower.getValue();
+            if(Math.random() < MAX_ROF) {
+                return firePower.getValue();
+            }
         } else if(isLastTwoTargets) {
             if(Math.random() < OFFENCE_ROF) {
                 return firePower.getValue();
-            } else {
-                return 0.0;
             }
         } else {
             if(Math.random() < DEFENCE_ROF) {
                 return firePower.getValue();
-            } else {
-                return 0.0;
             }
         }
+
+        return 0.0;
     }
 
     @Override
@@ -881,10 +898,13 @@ public class RoyalRumbleController implements SaucerController, Constants {
     public double getTurn() throws Exception {
 
         if(isPowerUpNear) {
-            return getPowerUpTurn.getValue();
+            return nearPowerUpTurn.getValue();
         }
 
         if(isLastTarget || isLastTwoTargets) {
+            if(isPowerUpNear) {
+                return allPowerUpTurn.getValue();
+            }
             return offensiveTurn.getValue();
         } else {
             return defensiveTurn.getValue();
