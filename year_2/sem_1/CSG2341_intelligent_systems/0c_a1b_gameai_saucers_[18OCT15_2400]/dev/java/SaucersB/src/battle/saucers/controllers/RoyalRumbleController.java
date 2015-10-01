@@ -28,6 +28,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private static boolean isLastTarget;
     private static boolean isLastTwoTargets;
     private static boolean isPowerUpNear;
+    private static boolean isPowerUpAny;
 
     private SensorData nearestTarget;
     private SensorData nearestBlast;
@@ -200,6 +201,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
         setupDefensiveTurn();
         setupOffensiveTurn();
         setupNearPowerUpTurn();
+        setupAllPowerUpTurn();
         setupDefensiveSpeed();
         setupOffensiveSpeed();
         setupFirePower();
@@ -553,6 +555,8 @@ public class RoyalRumbleController implements SaucerController, Constants {
         rules.addRule(powerUpAspect, powerUpAspectSets[6], allPowerUpTurn, LEFT_SIX);
         rules.addRule(powerUpAspect, powerUpAspectSets[7], allPowerUpTurn, RIGHT_THREE);
         rules.addRule(powerUpAspect, powerUpAspectSets[8], allPowerUpTurn, TWELVE);
+
+        rules.displayRulesFor(allPowerUpTurn);
     }
 
     /**
@@ -804,6 +808,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
     public void sensePowerUps(ArrayList<SensorData> data) throws Exception {
 
         isPowerUpNear = false;
+        isPowerUpAny = false;
 
         boolean isPowerUp = data.size() > 0;
 
@@ -821,6 +826,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
             powerUpDist.setValue(nearestPowerUp.distance);
             powerUpAspect.setValue(nearestPowerUp.direction);
 
+            isPowerUpAny = true;
             if(nearestPowerUp.distance < maxDistance * 0.25) {
                 isPowerUpNear = true;
             }
@@ -897,16 +903,15 @@ public class RoyalRumbleController implements SaucerController, Constants {
     @Override
     public double getTurn() throws Exception {
 
-        if(isPowerUpNear) {
-            return nearPowerUpTurn.getValue();
-        }
-
         if(isLastTarget || isLastTwoTargets) {
-            if(isPowerUpNear) {
+            if(isPowerUpAny) {
                 return allPowerUpTurn.getValue();
             }
             return offensiveTurn.getValue();
         } else {
+            if(isPowerUpNear) {
+                return nearPowerUpTurn.getValue();
+            }
             return defensiveTurn.getValue();
         }
     }
