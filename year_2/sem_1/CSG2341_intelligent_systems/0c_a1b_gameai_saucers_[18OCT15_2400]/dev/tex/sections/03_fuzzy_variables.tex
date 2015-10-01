@@ -130,41 +130,39 @@ In other words, IF the energy blast is close, AND it is behind the player, AND i
 
 \begin{table}[H]
 \centering
-\caption{\emph{defensiveTurn} \emph{close}}
+\caption{\emph{defensiveTurn} \emph{blastDist close}}
 \label{Turn rule table}
 \begin{tabular}{r|r|r|r|r|r|r|r|r|r}
  		& rTwelve 	& rNine 	& rSix 		& rThree 		& twelve 	& lNine 	& lSix 		& lThree	& lTwelve		\\ \hline
-rZero	& 0			& 0			& -90		& 0 		 	& 0			& 0			& +90	 	& 0			& 0				\\
-r270	& +90		& 0			& 0			& +180			& +90		& 0			& 0			& +180		& +90			\\
-rMerge	& 0			& 0			& -90	 	& 0				& 0			& 0			& +90		& 0			& 0				\\
-r90		& +90		& -180		& 0 		& 0				& -90		& -180		& 0			& 0			& +90			\\
-zero 	& 0			& 0 		& -90 		& 0				& 0			& 0			& +90		& 0			& 0				\\
-l90 	& -90		& 0 		& 0			& +180			& +90		& 0			& 0			& +180		& -90			\\
-lMerge	& 0			& 0 		& -90 		& 0				& 0			& 0			& +90		& 0			& 0				\\
-l270 	& -90		& -180 		& 0			& 0				& -90		& -180		& 0			& 0			& -90			\\
-lZero 	& 0			& 0 		& -90	 	& 0				& 0			& 0  		& +90		& 0			& 0				\\
+rZero	& 0			& 0			& -90		& 0 		 	& 0			& 0			& -90	 	& 0			& 0				\\
+r270	& -90		& 0			& -90		& +180			& +90		& 0			& -90		& +180		& +90			\\
+rMerge	& 0			& 0			& -90	 	& 0				& 0			& 0			& -90		& 0			& 0				\\
+r90		& -90		& -180		& -90 		& 0				& -90		& -180		& -90		& 0			& +90			\\
+zero 	& 0			& 0 		& -90 		& 0				& 0			& 0			& -90		& 0			& 0				\\
+l90 	& -90		& 0 		& -90		& +180			& +90		& 0			& -90		& +180		& +90			\\
+lMerge	& 0			& 0 		& -90 		& 0				& 0			& 0			& -90		& 0			& 0				\\
+l270 	& -90		& -180 		& -90		& 0				& -90		& -180		& -90		& 0			& +90			\\
+lZero 	& 0			& 0 		& -90	 	& 0				& 0			& 0  		& -90		& 0			& 0				
 \end{tabular}
 \end{table}
 
 \begin{table}[H]
 \centering
-\caption{\emph{defensiveTurn} \emph{far}}
+\caption{\emph{defensiveTurn} \emph{blastDist far}}
 \label{Turn rule table}
 \begin{tabular}{r|r|r|r|r|r|r|r|r|r}
  		& rTwelve 	& rNine 	& rSix 		& rThree 	& twelve 	& lNine 	& lSix 		& lThree	& lTwelve	\\ \hline
-rZero	& 0			& 0			& 0			& 0 	 	& 0			& 0			& 0	 		& 0			& 0			\\
+rZero	& -180		& 0			& -90		& 0 	 	& 0			& 0			& +90		& 0			& +180		\\
 r270	& 0			& 0			& 0			& 0			& 0			& 0			& 0			& 0			& 0			\\
 rMerge	& 0			& 0			& 0	 		& 0			& 0			& 0			& 0			& 0			& 0			\\
 r90		& 0			& 0			& 0 		& 0			& 0			& 0			& 0			& 0			& 0			\\
-zero 	& 0			& 0 		& 0	 		& 0			& 0			& 0			& 0			& 0			& 0			\\
+zero 	& -180		& 0 		& -90 		& 0			& 0			& 0			& +90		& 0			& +180		\\
 l90 	& 0			& 0 		& 0			& 0			& 0			& 0			& 0			& 0			& 0			\\
 lMerge	& 0			& 0 		& 0	 		& 0			& 0			& 0			& 0			& 0			& 0			\\
 l270 	& 0			& 0	 		& 0 		& 0			& 0			& 0			& 0			& 0			& 0			\\
-lZero 	& 0			& 0 		& 0	 		& 0			& 0			& 0  		& 0			& 0			& 0			\\
+lZero 	& -180		& 0 		& -90 		& 0			& 0			& 0  		& +90		& 0			& +180		
 \end{tabular}
 \end{table}
-
-The far rules have zero values so that the player does not react and maintains current heading when the energy blast is far, and is not a threat.
 
 \subsubsection{defensiveSpeed}
 
@@ -176,7 +174,7 @@ In other words, IF the energy blast is close, AND it is behind the player, AND i
 
 \begin{table}[H]
 \centering
-\caption{\emph{defensiveSpeed} \emph{close}}
+\caption{\emph{defensiveSpeed} \emph{blastDist close}}
 \label{Turn rule table}
 \begin{tabular}{r|r|r|r|r|r|r|r|r|r}
  		& rTwelve 	& rNine 	& rSix 		& rThree 		& twelve 	& lNine 	& lSix 		& lThree	& lTwelve		\\ \hline
@@ -188,13 +186,13 @@ zero 	& 50		& 125 		& 125 		& 125			& 50		& 125		& 125		& 125		& 50			\\
 l90 	& 50		& 125 		& 50		& 125			& 125		& 125		& 50		& 125		& 50			\\
 lMerge	& 50		& 125 		& 50	 	& 125			& 125		& 125		& 50		& 125		& 50			\\
 l270 	& 50		& 125	 	& 50 		& 125			& 50		& 125		& 50		& 125		& 50			\\
-lZero 	& 50		& 125 		& 125	 	& 125			& 50		& 125  		& 125		& 125		& 50			\\
+lZero 	& 50		& 125 		& 125	 	& 125			& 50		& 125  		& 125		& 125		& 50			
 \end{tabular}
 \end{table}
 
 \begin{table}[H]
 \centering
-\caption{\emph{defensiveSpeed} \emph{far}}
+\caption{\emph{defensiveSpeed} \emph{blastDist far}}
 \label{Turn rule table}
 \begin{tabular}{r|r|r|r|r|r|r|r|r|r}
  		& rTwelve 	& rNine 	& rSix 		& rThree 		& twelve 	& lNine 	& lSix 		& lThree	& lTwelve		\\ \hline
@@ -206,13 +204,314 @@ zero 	& 50		& 50 		& 75 		& 50			& 50		& 50		& 75		& 50		& 50			\\
 l90 	& 50		& 50 		& 50		& 75			& 75		& 50		& 50		& 75		& 50			\\
 lMerge	& 50		& 50 		& 50	 	& 50			& 75		& 50		& 50		& 50		& 50			\\
 l270 	& 50		& 75	 	& 50 		& 50			& 50		& 75		& 50		& 50		& 50			\\
-lZero 	& 50		& 50 		& 75	 	& 50			& 50		& 50  		& 75		& 50		& 50			\\
+lZero 	& 50		& 50 		& 75	 	& 50			& 50		& 50  		& 75		& 50		& 50			
 \end{tabular}
 \end{table}
 
+\noindent
+Singleton rules have also been added to \emph{defensiveSpeed}, using \emph{powerUpDist} as input:
+
+\begin{itemize}
+\item IF (powerUpDist IS far) THEN (defensiveSpeed IS 50)
+\item IF (powerUpDist IS near) THEN (defensiveSpeed IS 125)
+\item IF (powerUpDist IS close) THEN (defensiveSpeed IS 125)
+\end{itemize}
+
 \subsection{Offensive rules}
 
-\subsection{Neutral}
+\subsubsection{offensiveTurn}
 
-\subsubsection{getPowerTurn}
+The \emph{offensiveTurn} linguistic variable defines which heading the saucer will take, in degrees, according to the rules that govern defensive turning. Two sets of linguistic variables are combined, target variables and blast variables, creating two 3D rule matrices. 
 
+The target linguistic variables used as input for \emph{offensiveTurn} are: \\ \mintinline{console}{layerVar = targetDist}, \mintinline{console}{rowVar = targetEnergyDiff}, and \\ \mintinline{console}{colVar = targetAspect}, creating the 3D rule matrix below.
+\begin{table}[H]
+\centering
+\caption{\emph{offensiveTurn} \emph{targetDist close}}
+\label{Turn rule table}
+\begin{tabular}{r|r|r|r|r|r|r|r|r|r}
+ 		& rTwelve 	& rNine 	& rSix 		& rThree 		& twelve 	& lNine 	& lSix 		& lThree	& lTwelve		\\ \hline
+losing	& +180		& -90		& 0			& +90 		 	& -180		& -90		& 0 		& +90		& -180			\\
+winning	& 0			& +90		& -180		& -90			& 0			& +90		& +180		& -90		& 0			
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{\emph{offensiveTurn} \emph{targetDist near}}
+\label{Turn rule table}
+\begin{tabular}{r|r|r|r|r|r|r|r|r|r}
+ 		& rTwelve 	& rNine 	& rSix 		& rThree 		& twelve 	& lNine 	& lSix 		& lThree	& lTwelve		\\ \hline
+losing	& +180		& 0			& 0			& 0 		 	& -180		& 0			& 0 		& 0			& -180			\\
+winning	& 0			& +90		& -180		& -90			& 0			& +90		& +180		& -90		& 0			
+\end{tabular}
+\end{table}
+
+The blast linguistic variables used as input for \emph{offensiveTurn} are: \\ \mintinline{console}{layerVar = blastDist}, \mintinline{console}{colVar = blastAngleOff}, and \mintinline{console}{rowVar = blastAspect}, creating another 3D rule matrix.
+
+\begin{table}[H]
+\centering
+\caption{\emph{offensiveTurn} \emph{blastDist close}}
+\label{Turn rule table}
+\begin{tabular}{r|r|r|r|r|r|r|r|r|r}
+ 		& rTwelve 	& rNine 	& rSix 		& rThree 		& twelve 	& lNine 	& lSix 		& lThree	& lTwelve		\\ \hline
+rZero	& 0			& 0			& -90		& 0 		 	& 0			& 0			& -90	 	& 0			& 0				\\
+r270	& -90		& 0			& -90		& +180			& +90		& 0			& -90		& +180		& +90			\\
+rMerge	& 0			& 0			& -90	 	& 0				& 0			& 0			& -90		& 0			& 0				\\
+r90		& -90		& -180		& -90 		& 0				& -90		& -180		& -90		& 0			& +90			\\
+zero 	& 0			& 0 		& -90 		& 0				& 0			& 0			& -90		& 0			& 0				\\
+l90 	& -90		& 0 		& -90		& +180			& +90		& 0			& -90		& +180		& +90			\\
+lMerge	& 0			& 0 		& -90 		& 0				& 0			& 0			& -90		& 0			& 0				\\
+l270 	& -90		& -180 		& -90		& 0				& -90		& -180		& -90		& 0			& +90			\\
+lZero 	& 0			& 0 		& -90	 	& 0				& 0			& 0  		& -90		& 0			& 0				
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{\emph{offensiveTurn} \emph{blastDist far}}
+\label{Turn rule table}
+\begin{tabular}{r|r|r|r|r|r|r|r|r|r}
+ 		& rTwelve 	& rNine 	& rSix 		& rThree 	& twelve 	& lNine 	& lSix 		& lThree	& lTwelve	\\ \hline
+rZero	& -180		& 0			& -90		& 0 	 	& 0			& 0			& +90		& 0			& +180		\\
+r270	& 0			& 0			& 0			& 0			& 0			& 0			& 0			& 0			& 0			\\
+rMerge	& 0			& 0			& 0	 		& 0			& 0			& 0			& 0			& 0			& 0			\\
+r90		& 0			& 0			& 0 		& 0			& 0			& 0			& 0			& 0			& 0			\\
+zero 	& -180		& 0 		& -90 		& 0			& 0			& 0			& +90		& 0			& +180		\\
+l90 	& 0			& 0 		& 0			& 0			& 0			& 0			& 0			& 0			& 0			\\
+lMerge	& 0			& 0 		& 0	 		& 0			& 0			& 0			& 0			& 0			& 0			\\
+l270 	& 0			& 0	 		& 0 		& 0			& 0			& 0			& 0			& 0			& 0			\\
+lZero 	& -180		& 0 		& -90 		& 0			& 0			& 0  		& +90		& 0			& +180		
+\end{tabular}
+\end{table}
+
+\subsubsection{offensiveSpeed}
+
+The \emph{offensiveSpeed} linguistic variable defines how fast the saucer will travel, according to the rules that govern offensive speed. Two sets of linguistic variables are used as input, target variables and blast variables.
+
+The target linguistic variables used as input for \emph{offensiveSpeed} are: \\ \mintinline{console}{rowVar = targetDist}, and \mintinline{console}{colVar = targetEnergyDiff}
+
+\begin{table}[H]
+\centering
+\caption{\emph{offensiveSpeed} target variables}
+\label{Turn rule table}
+\begin{tabular}{r|r|r}
+ 		& losing 	& winning	\\ \hline
+close	& 125		& 50		\\
+near	& 75		& 75		\\
+far		& 50		& 125			
+\end{tabular}
+\end{table}
+
+The blast linguistic variables used as input for \emph{offensiveSpeed} are: \\ \mintinline{console}{layerVar = blastDist}, \mintinline{console}{colVar = blastAngleOff}, and \mintinline{console}{rowVar = blastAspect}
+
+\begin{table}[H]
+\centering
+\caption{\emph{offensiveSpeed} \emph{blastDist close}}
+\label{Turn rule table}
+\begin{tabular}{r|r|r|r|r|r|r|r|r|r}
+ 		& rTwelve 	& rNine 	& rSix 		& rThree 		& twelve 	& lNine 	& lSix 		& lThree	& lTwelve		\\ \hline
+rZero	& 50		& 50		& 125		& 50 		 	& 50		& 50		& 125 		& 50		& 50			\\
+r270	& 50		& 50		& 50		& 125			& 50		& 50		& 50		& 125		& 50			\\
+rMerge	& 50		& 50		& 50	 	& 50			& 125		& 50		& 50		& 50		& 50			\\
+r90		& 50		& 125		& 50 		& 50			& 125		& 125		& 50		& 50		& 50			\\
+zero 	& 50		& 50 		& 125 		& 50			& 50		& 50		& 125		& 50		& 50			\\
+l90 	& 50		& 50 		& 50		& 125			& 125		& 50		& 50		& 125		& 50			\\
+lMerge	& 50		& 50 		& 50	 	& 50			& 125		& 50		& 50		& 50		& 50			\\
+l270 	& 50		& 125	 	& 50 		& 50			& 50		& 125		& 50		& 50		& 50			\\
+lZero 	& 50		& 50 		& 125	 	& 50			& 50		& 50  		& 125		& 50		& 50			
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{\emph{offensiveSpeed} \emph{blastDist far}}
+\label{Turn rule table}
+\begin{tabular}{r|r|r|r|r|r|r|r|r|r}
+ 		& rTwelve 	& rNine 	& rSix 		& rThree 		& twelve 	& lNine 	& lSix 		& lThree	& lTwelve		\\ \hline
+rZero	& 50		& 50		& 75		& 50 		 	& 50		& 50		& 75 		& 50		& 50			\\
+r270	& 50		& 50		& 50		& 75			& 50		& 50		& 50		& 75		& 50			\\
+rMerge	& 50		& 50		& 50	 	& 50			& 75		& 50		& 50		& 50		& 50			\\
+r90		& 50		& 75		& 50 		& 50			& 75		& 75		& 50		& 50		& 50			\\
+zero 	& 50		& 50 		& 75 		& 50			& 50		& 50		& 75		& 50		& 50			\\
+l90 	& 50		& 50 		& 50		& 75			& 75		& 50		& 50		& 75		& 50			\\
+lMerge	& 50		& 50 		& 50	 	& 50			& 75		& 50		& 50		& 50		& 50			\\
+l270 	& 50		& 75	 	& 50 		& 50			& 50		& 75		& 50		& 50		& 50			\\
+lZero 	& 50		& 50 		& 75	 	& 50			& 50		& 50  		& 75		& 50		& 50			
+\end{tabular}
+\end{table}
+
+\subsection{Overrides}
+
+The following output linguistic variables do not have offensive or defensive versions, but are controlled by testing boolean variables which determine when to fire these rules. For example, \emph{firepower}'s rate of fire is controlled by a boolean variable, which becomes \mintinline{console}{true} when there are only a certain number of enemies left in the battle space.
+
+\subsubsection{firepower}
+
+The \emph{firepower} linguistic variable defines how much energy to commit to firing the cannon, according to the rules that govern firepower. \emph{targetDist} is used as input. Additionally, the number of remaining enemy saucers and whether or not there is a nearby powerup determines the rate of fire, and the implementation of decision making will be shown as Java code.
+
+The strategy is to be conservative with firepower unless there is a powerup nearby. If so, increase to maximum rate of fire to deter any enemy saucers that may be near the powerup from retrieving it, while the player moves directly to the powerup. If there are only two enemies left, increase rate of fire to medium, and if there is one enemy left, increase rate of fire to maximum. The strategy is to become more aggressive towards the end of the battle, since the result could be a tie if other saucers remain at the end of the battle.
+\\
+\\
+The \emph{firepower} rules relating to \emph{targetDist} are:
+
+\begin{itemize}
+\item IF (targetDist IS far) THEN (firepower IS 0)
+\item IF (targetDist IS near) THEN (firepower IS 100)
+\item IF (targetDist IS close) THEN (firepower IS 100)
+\end{itemize}
+
+\noindent
+The following variables determine the rate of fire:
+
+\begin{listing}[H]
+\caption{\emph{firepower} variables}
+\begin{javacode}
+private static final double DEFENCE_ROF = 0.01;
+private static final double OFFENCE_ROF = 0.05;
+private static boolean isLastTwoTargets; // true when only two enemy saucers remain
+private static boolean isLastTarget; // true when only one enemy saucer remains
+private static boolean isPowerUpNear; // true when powerup within 1200.575m
+\end{javacode}
+\end{listing}
+
+\noindent
+Rate of fire is controlled by the \mintinline{console}{getFirePower()} method:
+
+\begin{listing}[H]
+\caption{\mintinline{console}{getFirePower()}}
+\begin{javacode}
+public double getFirePower() throws Exception {
+
+    // max rate of fire
+    if(isLastTarget || isPowerUpNear) {
+        return firePower.getValue();
+    // medium rate of fire
+    } else if(isLastTwoTargets) {
+        if(Math.random() < OFFENCE_ROF) {
+            return firePower.getValue();
+        } else {
+            return 0.0;
+        }
+    // min rate of fire
+    } else {
+        if(Math.random() < DEFENCE_ROF) {
+            return firePower.getValue();
+        } else {
+            return 0.0;
+        }
+    }
+}
+\end{javacode}
+\end{listing}
+
+\subsubsection{getPowerUpTurn}
+
+The \emph{getPowerUpTurn} linguistic variable defines which heading the saucer will take, in degrees, according to the rules that govern turning towards a nearby powerup. This linguistic variable is used to override the player's current turning regime, and ensure that it heads straight for a powerup without dodging any energy blasts. This rule is fired in conjunction with an increased rate of fire, as well as deploying the shield to protect itself as it attempts to retrieve a powerup.
+
+\emph{powerUpDist} and \emph{powerUpAspect} are used as inputs, as well as a boolean variable which determines when this rule overrides all other turn rules.
+
+\begin{table}[H]
+\centering
+\caption{\emph{getPowerUpTurn}}
+\label{Turn rule table}
+\begin{tabular}{r|r|r|r}
+ 		& close 	& near	 	& far 		\\ \hline
+rTwelve	& 0			& 0			& 0			\\
+rNine	& +90		& +90		& 0			\\
+rSix	& -180		& -180		& 0		 	\\
+rThree	& -90		& -90		& 0	 		\\
+twelve 	& 0			& 0 		& 0 		\\
+lNine 	& +90		& +90 		& 0			\\
+lSix	& +180		& +180 		& 0 		\\
+lThree 	& -90		& -90 		& 0			\\
+lTwelve	& 0			& 0 		& 0	 	
+\end{tabular}
+\end{table}
+
+\noindent
+The boolean variable determines when \emph{getPowerUpTurn} overrides other turn rules:
+
+\begin{listing}[H]
+\caption{\emph{getPowerUpTurn} variable}
+\begin{javacode}
+private static boolean isPowerUpNear; // true when powerup within 1200.575m
+\end{javacode}
+\end{listing}
+
+\noindent
+\emph{getPowerUpTurn} overrides other turn rules in the \mintinline{console}{getTurn()} method:
+
+\begin{listing}[H]
+\caption{\mintinline{console}{getTurn()}}
+\begin{javacode}
+public double getTurn() throws Exception {
+
+    // override turn rules if powerup is nearby
+    if(isPowerUpNear) {
+        return getPowerUpTurn.getValue();
+    }
+	
+    // use offensiveTurn if last two, or last target
+    if(isLastTarget || isLastTwoTargets) {
+        return offensiveTurn.getValue();
+    } else {
+        return defensiveTurn.getValue();
+    }
+}
+\end{javacode}
+\end{listing}
+
+\subsubsection{shield}
+
+The \emph{shield} linguistic variable defines when to deploy the shield, according to the rules that govern shield deployment. The universe of disclosure is between 0 and 1. This linguistic variable uses powerup, blast and \emph{myEnergy} variables as input, and uses the following sets: \mintinline{console}{layerVar = powerUpDist}, \mintinline{console}{rowVar = myEnergy}, and \mintinline{console}{colVar = blastDist}, creating a 3D rule matrix. 
+
+\begin{table}[H]
+\centering
+\caption{\emph{shield} \emph{powerUpDist close}}
+\label{Turn rule table}
+\begin{tabular}{r|r|r}
+ 			& close 	& far	 	\\ \hline
+lowEnergy	& 1			& 0			\\
+highEnergy	& 1			& 0		
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{\emph{shield} \emph{powerUpDist near}}
+\label{Turn rule table}
+\begin{tabular}{r|r|r}
+ 			& close 	& far	 	\\ \hline
+lowEnergy	& 0			& 0			\\
+highEnergy	& 1			& 0		
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{\emph{shield} \emph{powerUpDist near}}
+\label{Turn rule table}
+\begin{tabular}{r|r|r}
+ 			& close 	& far	 	\\ \hline
+lowEnergy	& 0			& 0			\\
+highEnergy	& 0			& 0		
+\end{tabular}
+\end{table}
+
+\noindent
+Boolean variable \mintinline{console}{isPowerUpNear} is tested to determine when to deploy the shield, and the crisp output is converted to a boolean value in \mintinline{console}{getShields()} in order to function:
+
+\begin{listing}[H]
+\caption{\mintinline{console}{getShields()}}
+\begin{javacode}
+public boolean getShields() throws Exception {
+
+    // only deploy shield if powerup is nearby
+    if(isPowerUpNear) {
+        // convert output to boolean
+        return shield.getValue() > 0.5;
+    } else {
+        return false;
+    }
+}
+\end{javacode}
+\end{listing}
