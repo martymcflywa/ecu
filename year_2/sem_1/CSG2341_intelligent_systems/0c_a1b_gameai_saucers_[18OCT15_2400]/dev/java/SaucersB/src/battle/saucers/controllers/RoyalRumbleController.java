@@ -434,13 +434,13 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 {
                         // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
                         {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
-                        {LEFT_NINE,         TWELVE,         TWELVE,         LEFT_SIX,       LEFT_NINE,      TWELVE,         TWELVE,         LEFT_SIX,       LEFT_NINE},     // right 270
+                        {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_SIX,       LEFT_NINE,      TWELVE,         TWELVE,         LEFT_SIX,       LEFT_NINE},     // right 270
                         {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right merge
-                        {LEFT_NINE,         RIGHT_SIX,      TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         LEFT_NINE},     // right 90
+                        {RIGHT_THREE,       RIGHT_SIX,      TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         LEFT_NINE},     // right 90
                         {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
-                        {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_SIX,       LEFT_NINE,      TWELVE,         TWELVE,         LEFT_SIX,       RIGHT_THREE},   // left 90
+                        {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_SIX,       LEFT_NINE,      TWELVE,         TWELVE,         LEFT_SIX,       LEFT_NINE},     // left 90
                         {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // left merge
-                        {RIGHT_THREE,       RIGHT_SIX,      TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         RIGHT_THREE},   // left 270
+                        {RIGHT_THREE,       RIGHT_SIX,      TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         LEFT_NINE},     // left 270
                         {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
                 },
                 // far
