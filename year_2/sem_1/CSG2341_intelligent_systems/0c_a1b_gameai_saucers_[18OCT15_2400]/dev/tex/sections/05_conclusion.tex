@@ -1,1 +1,75 @@
 \section{Conclusion}
+
+This report examined the application of fuzzy logic using Sugeno style inference in a video game. The video game involved developing a fuzzy logic controller, which controls an armed flying saucer with a goal of surviving the battle as the last one standing by the end of the battle.
+
+The linguistic input variables and their fuzzy sets were explored, as well as the output variables and associated rules. Rule overrides were also explained. These rules governed the behaviour of the saucer and attempted to implement the overall strategy developed for this assignment:
+
+\begin{itemize}
+\item Fly defensively
+	\begin{itemize}
+	\item Try to stay away from the ``furball'', let the other saucers destroy each other
+	\item Conserve energy
+	\item Keep rate of fire to a minimum
+	\item Focus movement on dodging energy blasts
+	\end{itemize}
+\item If a powerup spawns nearby
+	\begin{itemize}
+	\item Stop dodging energy blasts
+	\item Move straight to the powerup at high speed
+	\item If there are no close, incoming energy blasts, fire at maximum rate of fire to deter others from reaching the powerup
+	\item If there are close, incoming energy blasts, deploy shield
+	\end{itemize}
+\item If there are only two enemies left
+	\begin{itemize}
+	\item React to any powerup, even those that are far, to starve the remaining enemies of extra power
+	\item Fly aggressively
+	\item Increase rate of fire
+	\item Attempt to destroy remaining enemies before timer runs out
+	\end{itemize}
+\end{itemize}
+
+\subsection{Results}
+
+The following tables display the results of tournaments between \emph{royalRumble} vs. \emph{simple} and \emph{sitting duck} controllers, as well as \emph{royalRumble} vs. all \emph{simple} controller opponents.
+
+\begin{table}[H]
+\centering
+\caption{\emph{royalRumble} vs. \emph{simple} and \emph{sitting ducks}}
+\label{checkSix vs. simple}
+\begin{tabular}{r|r|r|r|r|r|r|r|r|r|r|r}
+Controller	& 1	 & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & Avg \\ \hline
+royalRumble & 2	 & 2  &	1  & 1  & 1  & 1  & 1  & 1  & 2  & 1  & 1.3 \\
+simple		& 4	 & 11 &	7  & 2  & 6  & 6  & 2  & 10 & 10 & 9  & 6.2 \\
+simple		& 5	 & 1  &	3  & 5  & 2  & 3  & 3  & 11 & 11 & 2  & 3.7 \\
+simple		& 3	 & 6  &	9  & 3  & 3  & 5  & 6  & 1  & 1  & 5  & 4.4 \\
+simple		& 10 & 4  & 2  & 10 & 4  & 2  & 8  & 9  & 9  & 7  & 6.0 \\
+simple		& 6  & 5  & 4  & 6  & 5  & 4  & 10 & 4  & 4  & 4  & 5.9 \\
+duck		& 9  & 9  & 8  & 4  & 11 & 9  & 5  & 8  & 5  & 12 & 8.0 \\
+duck		& 11 & 8  & 5  & 9  & 12 & 11 & 11 & 12 & 8  & 6  & 9.3 \\
+duck		& 8  & 10 & 10 & 8  & 9  & 12 & 4  & 7  & 3  & 8  & 7.9 \\
+duck		& 12 & 3  & 6  & 12 & 8  & 10 & 12 & 6  & 12 & 3  & 8.4 \\
+duck		& 7  & 12 & 11 & 11 & 7  & 7  & 9  & 9  & 7  & 10 & 9.0 \\
+duck		& 2  & 7  & 12 & 7  & 10 & 8  & 7  & 10 & 6  & 11 & 8.0
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{\emph{royalRumble} vs. \emph{simple}}
+\label{checkSix vs. simple}
+\begin{tabular}{r|r|r|r|r|r|r|r|r|r|r|r}
+Controller	& 1	 & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & Avg \\ \hline
+royalRumble & 2	 & 2  &	1  & 1  & 2  & 1  & 1  & 2  & 2  & 1  & 1.5 \\
+simple		& 7	 & 2  &	3  & 4  & 4  & 12 & 9  & 3  & 12 & 2  & 5.8 \\
+simple		& 4	 & 3  &	2  & 5  & 12 & 9  & 8  & 9  & 1  & 10 & 6.3 \\
+simple		& 3	 & 4  &	4  & 3  & 9  & 7  & 10 & 4  & 8  & 8  & 6.0 \\
+simple		& 10 & 8  & 10 & 7  & 7  & 2  & 4  & 5  & 3  & 5  & 6.1 \\
+simple		& 11 & 6  & 7  & 10 & 11 & 5  & 7  & 12 & 11 & 12 & 9.2 \\
+simple		& 1  & 12 & 11 & 2  & 5  & 8  & 11 & 8  & 7  & 3  & 6.8 \\
+simple		& 9  & 10 & 12 & 11 & 8  & 10 & 6  & 7  & 6  & 11 & 9.0 \\
+simple		& 8  & 5  & 5  & 9  & 10 & 3  & 3  & 1  & 5  & 6  & 5.5 \\
+simple		& 5  & 9  & 9  & 8  & 6  & 6  & 2  & 11 & 10 & 7  & 7.3 \\
+simple		& 6  & 7  & 8  & 12 & 3  & 11 & 12 & 10 & 4  & 9  & 8.2 \\
+simple		& 12 & 11 & 6  & 6  & 1  & 4  & 5  & 6  & 9  & 4  & 6.4
+\end{tabular}
+\end{table}

@@ -7,3 +7,30 @@ However, when any power ups spawn nearby, the goal is to move straight to the po
 Speed will also be kept at the minimum for most situations, only increasing speed when necessary for dodging, or when a power up spawns nearby, to try and get to it first. Speed will also be increased when there are only two remaining enemy saucers left, attempting to destroy them before the timer runs out.
 
 This controller attempts to implement these strategies with turning, speed, shield deployment and firepower, with the primary goal of flying defensively by dodging energy blasts and retrieving nearby power ups. When there are only two enemies left, the saucer will begin to fly offensively, increasing speed and firepower, and attempt to destroy the enemies before the timer runs out.
+\\
+\\
+The following strategy will be implemented:
+
+\begin{itemize}
+\item Fly defensively
+	\begin{itemize}
+	\item Try to stay away from the ``furball'', let the other saucers destroy each other
+	\item Conserve energy
+	\item Keep rate of fire to a minimum
+	\item Focus movement on dodging energy blasts
+	\end{itemize}
+\item If a powerup spawns nearby
+	\begin{itemize}
+	\item Stop dodging energy blasts
+	\item Move straight to the powerup at high speed
+	\item If there are no close, incoming energy blasts, fire at maximum rate of fire to deter others from reaching the powerup
+	\item If there are close, incoming energy blasts, deploy shield
+	\end{itemize}
+\item If there are only two enemies left
+	\begin{itemize}
+	\item React to any powerup, even those that are far, to starve the remaining enemies of extra power
+	\item Fly aggressively
+	\item Increase rate of fire
+	\item Attempt to destroy remaining enemies before timer runs out
+	\end{itemize}
+\end{itemize}
