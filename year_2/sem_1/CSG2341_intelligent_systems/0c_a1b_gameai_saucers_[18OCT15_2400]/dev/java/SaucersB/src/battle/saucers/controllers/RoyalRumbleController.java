@@ -477,19 +477,19 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 // close
                 {
                         // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,   left three,     left twelve
-                        {TWELVE,            LEFT_NINE,      RIGHT_SIX,      RIGHT_THREE,    TWELVE,         LEFT_NINE,      LEFT_SIX,   RIGHT_THREE,    TWELVE},   // losing
+                        {LEFT_SIX,          RIGHT_THREE,    TWELVE,         LEFT_NINE,      RIGHT_SIX,      RIGHT_THREE,    TWELVE,     LEFT_NINE,      RIGHT_SIX},   // losing
                         {TWELVE,            LEFT_NINE,      RIGHT_SIX,      RIGHT_THREE,    TWELVE,         LEFT_NINE,      LEFT_SIX,   RIGHT_THREE,    TWELVE}       // winning
                 },
                 // near
                 {
                         // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,   left three,     left twelve
-                        {TWELVE,            LEFT_NINE,      RIGHT_SIX,      RIGHT_THREE,    TWELVE,         LEFT_NINE,      LEFT_SIX,   RIGHT_THREE,    TWELVE},   // losing
+                        {LEFT_SIX,          TWELVE,         TWELVE,         TWELVE,         RIGHT_SIX,      TWELVE,         TWELVE,     TWELVE,         RIGHT_SIX},   // losing
                         {TWELVE,            LEFT_NINE,      RIGHT_SIX,      RIGHT_THREE,    TWELVE,         LEFT_NINE,      LEFT_SIX,   RIGHT_THREE,    TWELVE}       // winning
                 },
                 // far
                 {
                         // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,   left three,     left twelve
-                        {TWELVE,            LEFT_NINE,      RIGHT_SIX,      RIGHT_THREE,    TWELVE,         LEFT_NINE,      LEFT_SIX,   RIGHT_THREE,    TWELVE},   // losing
+                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,     TWELVE,         TWELVE},   // losing
                         {TWELVE,            LEFT_NINE,      RIGHT_SIX,      RIGHT_THREE,    TWELVE,         LEFT_NINE,      LEFT_SIX,   RIGHT_THREE,    TWELVE}       // winning
                 }
         };
@@ -547,6 +547,13 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 blastAngleOff, blastAngleOffSets,
                 blastAspect, blastAspectSets,
                 offensiveTurn, blastDodge
+        );
+
+        rules.display3DRuleMatrix(
+                blastDist, blastDistSets,
+                blastAngleOff, blastAngleOffSets,
+                blastAspect, blastAspectSets,
+                offensiveTurn
         );
     }
 
