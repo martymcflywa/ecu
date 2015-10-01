@@ -555,8 +555,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
         rules.addRule(powerUpAspect, powerUpAspectSets[6], allPowerUpTurn, LEFT_SIX);
         rules.addRule(powerUpAspect, powerUpAspectSets[7], allPowerUpTurn, RIGHT_THREE);
         rules.addRule(powerUpAspect, powerUpAspectSets[8], allPowerUpTurn, TWELVE);
-
-        rules.displayRulesFor(allPowerUpTurn);
     }
 
     /**
