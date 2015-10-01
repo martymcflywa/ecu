@@ -22,7 +22,8 @@ public class RoyalRumbleController implements SaucerController, Constants {
     private static final String NAME = "royalRumble";
     private static final Color BASE = Color.yellow;
     private static final Color ARROW = Color.black;
-    private static final double FIRE_PROB = 0.01;
+    private static final double DEFENCE_ROF = 0.01;
+    private static final double OFFENCE_ROF = 0.05;
     private static boolean isLastTarget;
     private static boolean isLastTwoTargets;
     private static boolean isPowerUpNear;
@@ -465,12 +466,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 blastAspect, blastAspectSets,
                 defensiveTurn, blastDodge
         );
-        rules.display3DRuleMatrix(
-                blastDist, blastDistSets,
-                blastAngleOff, blastAngleOffSets,
-                blastAspect, blastAspectSets,
-                defensiveTurn
-        );
     }
 
     private void setupOffensiveTurn() throws FuzzyException {
@@ -508,26 +503,12 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 offensiveTurn, turnTarget
         );
 
-        rules.display3DRuleMatrix(
-                targetDist, targetDistSets,
-                targetEnergyDiff, targetEnergyDiffSets,
-                targetAspect, targetAspectSets,
-                offensiveTurn
-        );
-
         // see blastDodge
         rules.add3DRuleMatrix(
                 blastDist, blastDistSets,
                 blastAngleOff, blastAngleOffSets,
                 blastAspect, blastAspectSets,
                 offensiveTurn, blastDodge
-        );
-
-        rules.display3DRuleMatrix(
-                blastDist, blastDistSets,
-                blastAngleOff, blastAngleOffSets,
-                blastAspect, blastAspectSets,
-                offensiveTurn
         );
     }
 
@@ -697,8 +678,6 @@ public class RoyalRumbleController implements SaucerController, Constants {
         rules.addRule(powerUpDist, powerUpDistSets[1], offensiveSpeed, SAUCER_MAX_SPEED);
         // if far then min defensiveSpeed
         rules.addRule(powerUpDist, powerUpDistSets[2], offensiveSpeed, SAUCER_MAX_SPEED);
-
-
     }
 
     /**
@@ -875,13 +854,13 @@ public class RoyalRumbleController implements SaucerController, Constants {
         if(isLastTarget || isPowerUpNear) {
             return firePower.getValue();
         } else if(isLastTwoTargets) {
-            if(Math.random() < 0.05) {
+            if(Math.random() < OFFENCE_ROF) {
                 return firePower.getValue();
             } else {
                 return 0.0;
             }
         } else {
-            if(Math.random() < FIRE_PROB) {
+            if(Math.random() < DEFENCE_ROF) {
                 return firePower.getValue();
             } else {
                 return 0.0;
