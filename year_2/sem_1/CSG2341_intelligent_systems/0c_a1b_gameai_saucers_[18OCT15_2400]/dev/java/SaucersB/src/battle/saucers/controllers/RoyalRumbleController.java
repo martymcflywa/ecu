@@ -119,6 +119,40 @@ public class RoyalRumbleController implements SaucerController, Constants {
             STARFIELD_HEIGHT * STARFIELD_HEIGHT
     );
 
+    double[][][] blastDodge = {
+
+            // x = blast aspect
+            // y = blast angle-off
+            // z = blast distance
+
+            // close
+            {
+                    // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
+                    {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,      TWELVE,         TWELVE},        // right zero
+                    {RIGHT_THREE,       TWELVE,         RIGHT_THREE,    LEFT_SIX,       LEFT_NINE,      TWELVE,         RIGHT_THREE,      LEFT_SIX,       LEFT_NINE},     // right 270
+                    {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,      TWELVE,         TWELVE},        // right merge
+                    {RIGHT_THREE,       RIGHT_SIX,      RIGHT_THREE,    TWELVE,         RIGHT_THREE,    RIGHT_SIX,      RIGHT_THREE,      TWELVE,         LEFT_NINE},     // right 90
+                    {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,      TWELVE,         TWELVE},        // zero
+                    {RIGHT_THREE,       TWELVE,         RIGHT_THREE,    LEFT_SIX,       LEFT_NINE,      TWELVE,         RIGHT_THREE,      LEFT_SIX,       LEFT_NINE},     // left 90
+                    {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,      TWELVE,         TWELVE},        // left merge
+                    {RIGHT_THREE,       RIGHT_SIX,      RIGHT_THREE,    TWELVE,         RIGHT_THREE,    RIGHT_SIX,      RIGHT_THREE,      TWELVE,         LEFT_NINE},     // left 270
+                    {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,      TWELVE,         TWELVE}         // left zero
+            },
+            // far
+            {
+                    // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
+                    {RIGHT_SIX,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         LEFT_SIX}, // right zero
+                    {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // right 270
+                    {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // right merge
+                    {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // right 90
+                    {RIGHT_SIX,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         LEFT_SIX}, // zero
+                    {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // left 90
+                    {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // left merge
+                    {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // left 270
+                    {RIGHT_SIX,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         LEFT_SIX} // left zero
+            }
+    };
+
     /**
      * Constructor.
      */
@@ -424,40 +458,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
          * DODGE BLAST *
          ***************/
 
-        double[][][] blastDodge = {
-
-                // x = blast aspect
-                // y = blast angle-off
-                // z = blast distance
-
-                // close
-                {
-                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
-                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,      TWELVE,         TWELVE},        // right zero
-                        {RIGHT_THREE,       TWELVE,         RIGHT_THREE,    LEFT_SIX,       LEFT_NINE,      TWELVE,         RIGHT_THREE,      LEFT_SIX,       LEFT_NINE},     // right 270
-                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,      TWELVE,         TWELVE},        // right merge
-                        {RIGHT_THREE,       RIGHT_SIX,      RIGHT_THREE,    TWELVE,         RIGHT_THREE,    RIGHT_SIX,      RIGHT_THREE,      TWELVE,         LEFT_NINE},     // right 90
-                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,      TWELVE,         TWELVE},        // zero
-                        {RIGHT_THREE,       TWELVE,         RIGHT_THREE,    LEFT_SIX,       LEFT_NINE,      TWELVE,         RIGHT_THREE,      LEFT_SIX,       LEFT_NINE},     // left 90
-                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,      TWELVE,         TWELVE},        // left merge
-                        {RIGHT_THREE,       RIGHT_SIX,      RIGHT_THREE,    TWELVE,         RIGHT_THREE,    RIGHT_SIX,      RIGHT_THREE,      TWELVE,         LEFT_NINE},     // left 270
-                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         RIGHT_THREE,      TWELVE,         TWELVE}         // left zero
-                },
-                // far
-                {
-                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
-                        {RIGHT_SIX,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         LEFT_SIX}, // right zero
-                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // right 270
-                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // right merge
-                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // right 90
-                        {RIGHT_SIX,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         LEFT_SIX}, // zero
-                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // left 90
-                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // left merge
-                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // left 270
-                        {RIGHT_SIX,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         LEFT_SIX} // left zero
-                }
-        };
-
+        // see blastDodge
         rules.add3DRuleMatrix(
                 blastDist, blastDistSets,
                 blastAngleOff, blastAngleOffSets,
@@ -514,40 +515,7 @@ public class RoyalRumbleController implements SaucerController, Constants {
                 offensiveTurn
         );
 
-        double[][][] blastDodge = {
-
-                // x = blast aspect
-                // y = blast angle-off
-                // z = blast distance
-
-                // close
-                {
-                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
-                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right zero
-                        {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_SIX,       LEFT_NINE,      TWELVE,         TWELVE,         LEFT_SIX,       LEFT_NINE},     // right 270
-                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // right merge
-                        {RIGHT_THREE,       RIGHT_SIX,      TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         LEFT_NINE},     // right 90
-                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // zero
-                        {RIGHT_THREE,       TWELVE,         TWELVE,         LEFT_SIX,       LEFT_NINE,      TWELVE,         TWELVE,         LEFT_SIX,       LEFT_NINE},     // left 90
-                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE},        // left merge
-                        {RIGHT_THREE,       RIGHT_SIX,      TWELVE,         TWELVE,         RIGHT_THREE,    RIGHT_SIX,      TWELVE,         TWELVE,         LEFT_NINE},     // left 270
-                        {TWELVE,            TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         TWELVE}         // left zero
-                },
-                // far
-                {
-                        // right twelve,    right nine,     right six,      right three,    twelve,         left nine,      left six,       left three,     left twelve
-                        {RIGHT_SIX,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         LEFT_SIX}, // right zero
-                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // right 270
-                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // right merge
-                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // right 90
-                        {RIGHT_SIX,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         LEFT_SIX}, // zero
-                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // left 90
-                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // left merge
-                        {TWELVE,            TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE,         TWELVE}, // left 270
-                        {RIGHT_SIX,         TWELVE,         RIGHT_THREE,    TWELVE,         TWELVE,         TWELVE,         LEFT_NINE,      TWELVE,         LEFT_SIX} // left zero
-                }
-        };
-
+        // see blastDodge
         rules.add3DRuleMatrix(
                 blastDist, blastDistSets,
                 blastAngleOff, blastAngleOffSets,
