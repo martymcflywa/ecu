@@ -28,7 +28,7 @@ A log record is an individual low level operation to update a block and is the s
 
 \subsubsection{Handles}
 
-A handle is a group of low level log records that represent a high level atomic operation at the system level. \citet[p. 639]{Mauerer2008} explains that if a \mintinline{console}{write} system call is invoked, any log records associated with that particular call would be grouped together to form a handle. Therefore, each system call must be dealt with in an atomic manner to prevent data corruption, and is assisted by recording handles in the journal. In other words, similar to transactions, a handle must perform the entire sequence of log record changes to disk, or none at all. Each handle is ``represented by a descriptor of type \mintinline{console}{handle_t} \citep[p. 770]{Bovet2006}.
+A handle is a group of low level log records that represent a high level atomic operation at the system level. \citet[p. 639]{Mauerer2008} explains that if a \mintinline{console}{write} system call is invoked, any log records associated with that particular call would be grouped together to form a handle. Therefore, each system call must be dealt with in an atomic manner to prevent data corruption, and is assisted by recording handles in the journal. In other words, similar to transactions, a handle must perform the entire sequence of log record changes to disk, or none at all. Each handle is ``represented by a descriptor of type \mintinline{console}{handle_t}'' \citep[p. 770]{Bovet2006}.
 
 \subsubsection{Transactions}
 
