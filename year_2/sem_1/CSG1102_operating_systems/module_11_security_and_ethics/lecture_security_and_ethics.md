@@ -448,7 +448,7 @@
 - Disadvantages
 	- Predictable input
 
-![figure 11.9]()
+![figure 11.9](http://i.imgur.com/EHy10YF.png)
 
 ## Social engineering
 
