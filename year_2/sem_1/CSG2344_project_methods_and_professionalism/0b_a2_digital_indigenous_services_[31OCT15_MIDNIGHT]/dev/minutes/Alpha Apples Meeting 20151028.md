@@ -1,0 +1,110 @@
+# Alpha Apples meeting
+
+- Gantt chart
+	- Source of truth
+	- Has to match other documents
+	- Needs to show dependencies
+	- Key milestones
+		- Monitoring and control
+		- Review at 3 year period
+		- Dependencies of redistribution of replacement tablets
+	- Choice of key products
+	- In document
+		- Summary version
+		- One single shot
+	- Reward oriented
+		- Regular users
+			- Got better tablet
+- HR table
+	- Resource histogram is ok
+- Procurement
+	- Needs assumptions
+		- Make sense of big ticket items
+		- Can drop of all smaller items
+	- Tell what big procurement items are
+		- How we came to that
+- Communication
+	- Need important people
+	- Need to explain what level of communication
+		- Face to face
+		- Emails
+		- Three monthly face to face
+		- etc.
+	- Notion of
+		- Indigenous
+		- Elderly
+		- How to make communications take place
+- Stakeholders
+	- Highlight which are Indigenous
+- Out of scope
+	- Needs reasoning
+- Marking key
+	- Explain why making certain decisions
+- Assumptions
+	- Correct tablet would be...
+	- Correct way to deliver product...
+	- Tablet replacement...
+- References
+	- Standards
+		- WACAG
+	- Tablet
+		- Spec sheet
+	- Wifi hotspot
+		- Spec sheet
+- Summary
+	- Support does not end after 10 years
+		- Change wording
+	- Go or change upwards/spec decision
+	- What about Indigenous employment program
+- Success criteria
+	- Success based bonuses
+		- Tablets replaced
+			- Bonuses based on two year roll over
+	- Bonus at the end
+	- Other criteria
+		- Earlier objectives
+			- Applications for jobs
+			- Based on email addresses
+- 5 person team payment
+	- Paid by the bonus
+	- How much for first year
+		- $100,000?
+		- Based on
+			- Success criteria
+			- Bonus payments
+- Example exams
+	- Will post newer samples tomorrow
+
+## Action items
+
+- Liberty
+	- Standards
+	- Project success criteria
+	- Final polish
+	- Helping out with summary
+- Nomin
+	- Work on summary
+	- Cost management procurement salaries
+		- Will edit Lydia's documents
+		- Project manager
+			- First year
+				- $500,000
+	- References
+		- Apps
+		- Payscale
+	- Add cost management
+- Marty
+	- Add bonuses to Gantt
+		- Let Nomin know
+		- http://www.payscale.com
+	- References
+		- Tablets
+		- Wifi
+		- Spec sheets
+- Lydia
+	- Resource historgram is ok
+	- Reduce procurement table to big ticket items
+		- Justify each big ticket item
+	- Add references
+		- ISO
+		- Telstra map
