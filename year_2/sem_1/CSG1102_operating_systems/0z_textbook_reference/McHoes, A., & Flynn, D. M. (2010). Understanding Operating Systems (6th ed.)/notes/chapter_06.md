@@ -900,4 +900,74 @@ for(j = 1; j <= 3; j++)
 - Syntax is familiar
 	- Looks/feels like C++
 	- Object oriented
-- 
+- Memory allocation done at runtime
+	- C/C++ allocates memory at compilation
+	- References memory via symbolic **handles**
+		- Translated to real memory addresses by Java interpreter
+	- Not visible to programmers
+	- Controlled by underlying runtime platform
+- Supports multithreading at language level
+	- `Thread` class
+		- Collection of methods used to manage threads
+			- Start
+			- Run
+			- Stop
+			- Check status
+	- Runtime system provides monitor and condition lock primitives
+	- Threads are preemptive
+		- Can be time-sliced
+			- Depending on platform
+- When method declared to be synchronized
+	- They are not run concurrently
+	- Are under control of monitors that ensure variables remain in consistent state
+	- When synchronized method begins to run
+		- It is given a monitor for the current object
+			- Does not allow any other synchronized method in that object to execute
+	- When synchronized method exits
+		- Monitor is released
+		- Allows other synchronized methods within same object to run
+- Java popularity
+	- Capable of running single program on various platforms
+		- Without change to source code
+	- Robust set of features
+		- Runtime memory allocation
+		- Security
+		- Multithreading
+	- Web/Internet applications
+		- Integrates with browser
+			- Java applets
+
+## Conclusion
+
+- Multiprocessing
+	- Can occur in several configurations
+		- Single processor system
+			- Interacting processes obtain control of the processor at different times
+		- Multiprocessor system
+			- Work of each processor communicates/cooperates with others
+			- Synchronized by processor manager
+	- Configurations
+		- Master/slave
+		- Loosely coupled
+		- Symmetric
+- Synchronizing processes
+	- Mutual exclusion
+		- Prevents deadlock
+		- Maintained by techniques
+			- Test-and-set
+			- WAIT and SIGNAL
+			- Semaphores
+				- `test(P)`
+				- `increment(V)`
+				- `mutex`
+- Hardware/software mechanisms
+	- Used to synchronize processes
+	- Must ensure
+		- Waiting customers not missed
+		- Synchronization of producers/consumers
+		- Mutual exclusion of readers/writers
+- Innovations
+	- Threads
+	- Multicore CPUs
+	- Fundamental changes to OS to take advantage of new tech
+		- Require retooling of applications and OS
