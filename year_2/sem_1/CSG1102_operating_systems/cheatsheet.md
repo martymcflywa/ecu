@@ -238,3 +238,17 @@ while(1) {
 	signal(emptyBuffer);
 }
 ```
+
+# Module 7: Device management
+
+## RAID
+
+### RAID Levels
+
+![figure 7.19](http://snag.gy/qSFYi.jpg)
+
+### Nested RAID
+
+![figure 7.27](http://snag.gy/0NSHq.jpg)
+
+![table 7.8](http://snag.gy/BqpmP.jpg)
