@@ -646,3 +646,656 @@
 	- Net reserve of power system must be greater than or equal to zero at any interval
 
 ### Step 2: Represent the problem domain as a chromosome
+
+- Scheduling problem is an ordering problem
+	- Requires tasks to be listed in particular order
+	- Complete schedule may consist of overlapping tasks
+		- But not all ordering tasks are legal
+			- May violate constraints
+	- Job
+		- Represent a complete schedule as a chromosome of fixed length
+- Possible coding scheme
+	- Assign each unit a binary number
+	- Let chromosomes be a sequence of these binary numbers
+	- However
+		- An ordering of the units in a sequence is not yet a schedule
+	- Some units can be maintained simultaneously
+		- Must also incorporate the time required for unit maintenance into the schedule
+- Rather than ordering units in a sequence
+	- Can build a sequence of maintenance schedules of individual units
+	- Unit schedule can be represented as a 4bit string
+		- Each bit is a maintenance interval
+	- If unit is to be maintained
+		- Bit = 1
+		- Else bit = 0
+	- Example
+		- `0100`
+			- Unit will be maintained during second interval
+		- Also shows that unit will only be maintained once
+		- Therefore
+			- Complete maintenance schedule for problem can be represented as a 28 bit chromosome
+- Problems with operators
+	- Crossover and mutation could easily create binary strings that call for maintaining some units
+		- More than once
+		- None at all
+	- Could call for maintenance periods that would exceed number of intervals actually required for a unit
+- Better approach
+	- Change chromosome syntax
+	- Chromosome
+		- Collection of elementary parts called genes
+		- Gene
+			- Represented by a single bit
+			- Cannot be broken into smaller segments
+	- Represent each gene as a 4 bit string
+		- Allows crossover/mutation to work correctly
+- Produce a pool of genes for each unit
+	- Each gene is 4bit
+	- All represent possible/legal scheduling combinations
+
+![unit 4bit genes](http://snag.gy/yYQ8U.jpg)
+
+- GA can now create a population of chromosomes by filling 7-gene chromosomes with genes randomly selected for the corresponding pools
+	- Figure 7.9
+
+![figure 7.9](http://snag.gy/ADzr2.jpg)
+
+### Step 3: Define fitness function to evaluate performance
+
+- Evaluation
+	- Cruial part of GA
+	- Chromosomes selected for mating based on fitness
+	- Fitness function
+		- Must capture what makes the maintenance schedule either good or bad for user
+	- For problem
+		- Can apply simple function concerned with
+			- Constraint violations
+			- Net reserve at each interval
+- Start with sum of capacities of the units scheduled for maintenance at each interval
+	- For figure 7.9 example:
+
+![sum of capacity](http://snag.gy/7vu01.jpg)
+
+- Then values are subtracted from total installed capacity of power system (150MW)
+	- Interval 1: 150 - 50 = 100
+	- Interval 2: 150 - 35 = 115
+	- Interval 3: 150 - 50 = 100
+	- Interval 4: 150 - 50 = 100
+- To calculate net reserves, subtract max loads expected at each interval
+	- Interval 1: 100 - 80 = 20
+	- Interval 2: 115 - 90 = 25
+	- Interval 3: 100 - 65 = 35
+	- Interval 4: 100 - 70 = 30
+- Since all results are positive
+	- This chromosome does not violate any constraint
+	- Represents a legal schedule
+	- Fitness determined as
+		- Lowest of net reserves
+			- Interval 1 = 20
+			- Fitness function returns 20
+- If net reserve is negative
+	- Schedule is illegal
+	- Fitness function returns 0
+- At start of run
+	- Randomly built initial population might consist of all illegal schedules
+		- In this case, chromosome fitness values remain unchanged
+		- Selection takes place in accordance with actual fitness values
+
+### Step 4: Construct genetic operators
+
+- Chromosome has to be broken up in a way that is legal for the problem
+	- Modified 4bit syntax accommodates this
+- Can use GA operators in classical form
+	- Each gene in a chromosome is 4bit indivisible string
+	- Consists of possible maintenance schedule for a unit
+	- Any random mutation/crossover can only result in changes of maintenance schedules for a unit
+		- Cannot create unnatural chromosomes
+- Figure 7.10(a)
+	- Crossover example
+	- Children are made by
+		- Cutting the parents at randomly selected point
+			- Vertical line
+		- Exchanging parental genes after the cut
+- Figure 7.10(b)
+	- Mutation example
+	- Randomly selected 4 bit gene in chromosome
+	- Replaced by randomly selected gene in pool
+
+![figure 7.10]()
+
+### Step 5: Run GA and tune parameters
+
+- Choose
+	- Population size
+	- Number of generations
+- Issue
+	- Large population can achieve better solutions than smaller one
+		- But slower to run
+- Most effective population size
+	- Depends on
+		- Problem being solved
+		- Problem coding scheme
+	- Options
+		- Large population
+			- Run once
+		- Small population
+			- Run multiple times
+	- Must experiment
+- Figure 7.11(a)
+	- 50 generations
+	- 20 chromosomes
+	- Min net reserves for best schedule = 15MW
+- Figure 7.11(b)
+	- 100 generations
+	- 20 chromosomes
+	- Min net reserves for best schedule = 20MW
+- In both cases
+	- Best schedule appeared in initial generation
+	- Increased number of generations did not affect final solution
+	- This indicates that
+		- Population size should be increased
+
+![figure 7.11](http://snag.gy/PtoRg.jpg)
+
+- Figure 7.12(a)
+	- 100 generations
+	- 100 chromosomes
+	- Min net reserves for best schedule = 25MW
+	- To confirm best schedule
+		- Compare results obtained under different rates of mutation
+		- Increase
+			- Mutation rate = 0.01
+- Figure 7.12(b)
+	- 100 generations
+	- 100 genes
+	- Mutation 0.01
+	- Min net reserves for best schedule = 25MW
+	- Confirms results from 7.12(a)
+
+![figure 7.12](http://snag.gy/xI5FJ.jpg)
+
+## 7.6 Evolution strategies
+
+- Designed to solve technical optimization problems
+- Alternative to engineer's intuition
+- Was used in technical optimization problems
+	- When no analytical objective function was available
+	- No conventional optimization method existed
+	- Engineers had to rely on intuition
+- Only use mutation operator
+	- Unlike GAs
+- See 7.13
+
+![figure 7.13](http://snag.gy/CgUoe.jpg)
+
+### How to implement evolution strategy
+
+- (1 + 1)-evolution strategy
+- One parent generates one offspring per generation
+	- Applies **normally distributed** mutation
+
+### Step 1:
+
+- Choose number of parameters N to represent the problem
+	- Determine feasible range for each parameter
+
+![step 1](http://snag.gy/zlxQl.jpg)
+
+- Define a standard deviation for each parameter and the function to be optimized
+
+### Step 2:
+
+- Randomly select an initial value for each parameter from the perspective feasible range
+- This set of parameters will make up the initial population of parent parameters
+
+![step 2](http://snag.gy/fwbx7.jpg)
+
+### Step 3:
+
+- Calculate the solution associated with the parent parameters
+
+![step 3](http://snag.gy/SQpAa.jpg)
+
+### Step 4:
+
+- Create a new offspring parameter by adding a normally distributed random variable, a, with
+	- Mean zero
+	- Preselected deviation &delta; to each parent parameter
+
+![step 4](http://snag.gy/7q7gP.jpg)
+
+- Normally distributed mutations with mean zero reflect natural process of evolution
+	- Smaller changes occur more frequently than larger ones
+
+### Step 5:
+
+- Calculate the solution associated with the offspring parameters
+
+![step 5](http://snag.gy/wnJJ7.jpg)
+
+### Step 6:
+
+- Compare the solution associated with the offspring parameters with the one associated with the parent parameters
+	- If solution for offspring is better than parents
+		- Replace parent population with offspring
+	- Else keep parent parameters
+
+### Step 7:
+
+- Go to step 4
+- Repeat process until either
+	- Satisfactory solution found
+	- Specified number of generations considered
+
+### Why are all parameters varied simultaneously when generating a new solution
+
+- Reflects nature of a chromosome
+	- A single gene may simultaneously affect several characteristics of living organism
+	- Or single characteristic of individual may be determined by simultaneous interactions of several genes
+	- Natural selection acts on a collection of genes
+		- Not a single gene in isolation
+- Evolution strategies can solve wide range of constrained/unconstrained non linear optimization problems
+	- And produce better results than conventional, highly complex non linear optimization techniques
+	- Experiments suggest that
+		- Simple evolution strategies
+		- Single parent, single offspring search
+		- Works best
+
+### Genetic algorithms vs. evolution strategies
+
+- Genetic algorithms
+	- Use crossover and mutation
+- Evolution strategies
+	- Use mutation only
+	- Do not need to represent problem in coded form
+
+### Which method works best
+
+- Evolution strategy
+	- Purely numerical optimization procedure
+	- Similar to monte carlo search
+- Genetic algorithms
+	- For general applications
+	- Hardest part
+		- Coding problem
+- Selection is application dependent
+
+## 7.7 Genetic programming
+
+- Extension of genetic algorithm
+- Goal
+	- Evolves computer code to solve problem
+	- Creates computer program as solution
+		- Instead of binary numbers
+
+### How genetic programming works
+
+- Searches space of possible computer programs for program that is highly fit for solving problem
+- Any computer program is a sequence of operations/functions applied to values/arguments
+	- Different programming languages have different syntax
+- Programming language for genetic programming
+	- Should permit
+		- Program to be manipulated as data
+		- Execute manipulated data as program
+	- LISP
+
+### LISP
+
+- List Processor (LISP)
+	- One of oldest high level programming languages
+	- One of standard programming languages for AI
+- Highly symbol oriented structure
+	- Basic data structures
+		- Atoms
+		- Lists
+- Atom
+	- Smallest indivisible element of LISP syntax
+		- `21`
+		- `X`
+		- `This is a string`
+- List
+	- Object made of atoms and/or other lists
+	- Written as an ordered collection of items inside `()`
+		- `(-(*AB)C)`
+			- Calls subtraction function `(-)` to two arguments
+				- `(*AB)`
+				- `C`
+			- Order of operation
+				- `(A * B)`
+				- `(A * B) - C`
+- S-expressions
+	- Both atoms and lists
+	- All data and all programs are S-expressions
+	- Gives LISP ability to operate on programs as if they were data
+		- Can
+			- Modify themselves
+			- Write other LISP programs
+- Any LISP S-expression can be depicted as a rooted point-labelled tree with ordered branches
+	- Figure 7.14 shows tree corresponding to `(-(*AB)C)`
+
+![figure 7.14](http://snag.gy/t4KRi.jpg)
+
+- Tree has five points
+	- Each represents either a
+		- Function
+		- Terminal
+- The two internal points are
+	- `-`
+	- `*`
+- Root of tree
+	- The function appearing in leftmost opening parenthesis
+- Three external points
+	- Leaves
+	- Terminals
+		- `A`
+		- `B`
+		- `C`
+- Branches are ordered
+	- Because the order of arguments in many functions directly affects results
+
+### How to apply genetic programming to a problem
+
+- Steps
+	1. Determine set of terminals
+	2. Select set of primitive functions
+	3. Define fitness function
+	4. Decide on parameters for controlling run
+	5. Choose method for designating result of run
+
+### Pythagorean theorem example
+
+- Theorem
+	- Hypotenuse, c, of right angle with short sides a and b:
+
+![Pythagorean](http://snag.gy/efn2a.jpg)
+
+- Aim
+	- Discover program that matches this function
+- Fitness cases
+	- Measures performance of undiscovered program
+	- Table 7.3
+	- Chosen at random over range of values of variables a and b
+
+![table 7.3](http://snag.gy/KWWU7.jpg)
+
+#### Step 1:
+
+- Determine set of terminals
+- Set of inputs of to be discovered
+	- Inputs
+		- a
+		- b
+
+#### Step 2:
+
+- Select set of primitive functions
+- Can be represented by
+	- Standard arithmetic operations
+	- Standard programming functions
+	- Standard mathematical functions
+	- Logical functions
+	- Domain specific functions
+- Will use
+	- Four standard arithmetic operations
+		- `+`
+		- `-`
+		- `*`
+		- `/`
+	- One mathematical function
+		- `sqrt`
+- Terminal and primitive functions make up the building blocks which genetic programming uses to create the program to solve the problem
+
+#### Step 3:
+
+- Define fitness function
+- Evaluates how well program can solve the problem
+- Choice of fitness function depends on problem
+	- May vary from one problem to another
+- For Pythagorean problem
+	- Fitness can be measured by error between
+		- Result produced by program
+		- Correct result in fitness case
+- Typically
+	- Error is not measured over just one fitness case
+	- But calculated as a sum of absolute errors over a number of fitness cases
+	- Closer the sum is to zero
+		- The better the computer program
+
+#### Step 4:
+
+- Decide on parameters to control the run
+- Uses same primary parameters for GA
+	- Population size
+	- Max number of generations
+
+#### Step 5:
+
+- Choose method for designating a result of the run
+- Common practice to designate the best so far generated program as the result of the run
+
+#### Run
+
+- Once five steps are complete
+	- Run can be made
+- Starts with random generation of initial population of programs
+- Each program is composed of functions and terminals
+- Initial population usually have poor fitness
+	- Some individuals may be fitter than others
+	- More likely to survive by copying itself into next generation
+
+### Crossover operator in genetic programming
+
+- Crossover operator operates on two programs which are selected for fitness
+	- Programs can have different shapes/sizes
+- Two offspring programs are composed by recombining randomly chosen parts of parents
+- Example LISP S-expressions
+
+![example s-expressions](http://snag.gy/aNkUo.jpg)
+
+- These two S-expressions can be represented as rooted point labeled trees with ordered branches
+	- Figure 7.15(a)
+
+![figure 7.15](http://snag.gy/MEr6w.jpg)
+
+- Internal points
+	- Functions
+- External points
+	- Terminals
+- Any point, external or internal can be chosen as crossover point
+	- Suppose
+		- Crossover point for first parent is `*`
+		- Crossover point for second parent is `sqrt`
+		- We obtain the two **crossover fragments** rooted at chosen crossover points
+			- Figure 7.15(a)
+		- Crossover operator creates two offspring by exchanging the crossover fragments of two parents
+			- Figure 7.15(b)
+- Offspring in Figure 7.15(b) are equivalent to
+
+![figure 7.15b offspring](http://snag.gy/5kalr.jpg)
+
+- Crossover procedure produces valid offspring regardless of choice of crossover point
+
+### Mutation in genetic programming
+
+- Can randomly change any function or terminal in S-expression
+	- Function can only be replaced by function
+	- Terminal can only be replaced by terminal
+- Figure 7.16 shows concept of mutation
+
+![figure 7.16](http://snag.gy/oZJzu.jpg)
+
+### Genetic programming steps
+
+![figure 7.17](http://snag.gy/FiiEL.jpg)
+
+#### Step 1:
+
+- Assign
+	- Max number of generations
+	- Probability for
+		- Cloning
+		- Crossover
+		- Mutation
+- Sum of probabilities must be equal to 1
+
+#### Step 2:
+
+- Generate initial population of computer programs of size N
+	- Combine randomly selected functions/terminals
+
+#### Step 3:
+
+- Execute each program in population
+- Calculate fitness with fitness function
+- Designate best so far individual as result of run
+
+#### Step 4:
+
+- Use genetic operator to perform
+	- Cloning
+	- Crossover
+	- Mutation
+- Based on assigned probabilities
+
+#### Step 5:
+
+- If cloning
+	- Select one program from population
+	- Copy it to new population
+- If crossover
+	- Select pair of programs from population
+	- Create pair of offspring program
+	- Place offspring in new population
+- If mutation
+	- Select one program from population
+	- Perform mutation
+	- Place mutant in new population
+- Programs are selected based on fitness
+	- Higher the fitness
+	- More likely program is selected
+
+#### Step 6:
+
+- Repeat step 4 until size of new population is equal to initial population N
+
+#### Step 7:
+
+- Replace parent population with offspring population
+
+#### Step 8:
+
+- Go to step 3
+- Repeat until termination criteria is satisfied
+
+### Pythagorean problem results
+
+- Figure 7.18 shows fitness history of best S-expression
+	- Population = 500
+- Initial population
+	- Very poor fitness
+- Fourth generation
+	- Fitness improves rapidly
+	- Correct S-expression is reproduced
+
+![figure 9.18](http://snag.gy/zDliE.jpg)
+
+### Genetic programming advantages over genetic algorithm
+
+- Genetic programming
+	- Not breeding bit strings representing coded solutions
+	- Breeds complete computer programs to solve particular problem
+	- Uses high level building blocks of variable length
+	- Size/complexity can change during breeding
+	- Works well in large number of cases
+	- Has many potential applications
+- GA
+	- Problems of representation
+		- Fixed length coding
+	- Poor representation limits power of GA
+		- May lead to false solution
+	- Fixed length coding
+		- Artificial
+		- Cannot provide dynamic variability in length
+		- Causes redundancy
+		- Reduces efficiency of genetic search
+
+### Genetic programming difficulties
+
+- No proof that genetic programming will scale to more complex problems
+	- Require larger programs
+- If it can scale
+	- Extensive computer runtimes may be needed
+
+## 7.8 Summary
+
+- Considered
+	- Genetic algorithms
+		- Main steps
+		- Why they work
+		- Theory through application
+	- Evolution strategies
+		- Basic concept
+		- Differences between evolutionary strategies and genetic algorithms
+	- Genetic programming
+		- Applications to real problems
+- Evolutionary computation
+	- Evolutionary approach to AI is based on computational models of natural selection and genetics
+	- Combines
+		- Genetic algorithms
+		- Evolutionary strategies
+		- Genetic programming
+- All methods of evolutionary computation follow similar steps
+	- Create population of individuals
+	- Evaluate their fitness
+	- Generate a new population by applying genetic operators
+	- Repeat process a number of times
+- Genetic algorithms
+	- Sequence of procedural steps for moving from one generation of artificial chromosomes to another
+	- Uses
+		- Natural selection
+		- Crossover
+		- Mutation
+	- Each chromosome consists of a number of genes
+		- Each gene is either `0` or `1`
+	- Use fitness values of chromosomes to reproduce
+		- Crossover operator
+			- Exchanges parts of two single chromosomes
+		- Mutation operator
+			- Changes gene value in some randomly chosen location in chromosome
+		- After number of reproductions
+			- Less fit chromosomes become extinct
+			- Best fit chromosomes gradually dominate population
+	- Work by discovering/recombining schemata
+		- Schemata
+			- Good building blocks of candidate solutions
+		- Genetic algorithm does not need knowledge of problem domain
+			- But requires fitness function to evaluate fitness
+	- Solving problem using genetic algorithm involves
+		- Defining constrains/optimum criteria
+		- Encoding problem solutions as chromosomes
+		- Defining fitness function
+		- Creating appropriate crossover/mutation operators
+	- Coding problem as bit string may change nature of problem being investigated
+		- Danger that coded representation represents different problem than trying to solve
+- Evolution strategies
+	- Alternative to engineer's intuition
+		- Used in technical optimization problems
+			- Where no analytical objective function is available
+			- No conventional method exists
+			- Can only use engineer's intuition
+	- Purely a numerical optimization procedure
+		- Similar to Monte Carlo search
+	- Only uses mutation operator
+	- Representation of a problem in a coded form is not required
+- Genetic programming
+	- Applies same evolutionary approach as GAs
+	- Breeds complete programs to solve problem instead of bit strings
+	- Steps involved
+		- Determine set of arguments
+		- Select set of functions
+		- Define fitness function
+		- Choose method for designating result of a run
+	- Manipulates programs by applying genetic operators
+		- Programming language should allow
+			- Program to be manipulated as data
+			- Newly created date to be executed as program
+		- LISP
