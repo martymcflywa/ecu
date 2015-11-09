@@ -358,3 +358,6 @@ https://targetjobs.co.uk/employer-hubs/ibm/343024-how-to-answer-ibm-interview-qu
 - Would a software engineer intern be involved with ADL?
 - Which programming languages are used in IBM software that i would be involved in as an intern?
 	- I would like to prepare myself in event that i am successful
+- Any comments on how i went in the interview?
+	- It's been awhile since i had to go through one
+	- Any suggestions where i could improve?
