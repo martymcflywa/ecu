@@ -172,16 +172,31 @@ https://targetjobs.co.uk/employer-hubs/ibm/343024-how-to-answer-ibm-interview-qu
 				- Contribute to open source where possible
 		- Web content management
 			- Interest in CMS/web development
+
+## Why are you interested in IBM's graduate program?
+
 - IBM isn't the company it is today without expecting employees to perform at their highest potential
 	- I want to prove to myself that i can perform at that level as well
 	- I'm looking for an internship/work experience where
 		- I will be challenged
 			- Not just to get someones coffee
+			- Use Thien's experience as example
+				- Engineer graduate
+				- Ended up just cleaning the gutters at the office rather than doing real engineering work
+					- He hated the experience
+					- Couldn't wait for it to be over
+				- I would like to avoid an experience like this
 		- My input matters and will be valued by my peers
 			- Found a video of IBM interns (US) explaining their experiences
 				- Emphasized that they were as important to the business as every other employee
 		- I can develop my skills
 			- I believe i would benefit from a mentor/mentee relationship
+- The prestige that comes with the brand IBM
+	- When i think of IBM
+		- I think the best of the best at their field
+		- If accepted it would also mean being recognized as someone that has potential to work at a high level
+	- I feel it would be a great advantage having experience at IBM
+	- Opportunity to work full time at IBM
 
 ## What do you know about IBM?
 
@@ -213,7 +228,6 @@ https://targetjobs.co.uk/employer-hubs/ibm/343024-how-to-answer-ibm-interview-qu
 			- Talking to someone who was about to or had their power disconnected was tough
 				- Someone in this situation is at a pretty low point in their life
 				- Some stories were pretty heartbreaking
-	- Developed negotiation and assertive skills
 	- High pressure environment
 		- Each credit management officer was assigned to a specific area
 		- Each area had KPI targets to reach
@@ -221,6 +235,11 @@ https://targetjobs.co.uk/employer-hubs/ibm/343024-how-to-answer-ibm-interview-qu
 	- This role really wore me down
 		- Really felt for some customers
 		- Spoke to manager about how I felt
+			- Suggested and enrolled me to a negotiation skills course
+				- Completed it
+				- Developed negotiation and assertive skills
+				- Unfortunately it still did not improve my outlook
+					- It was just my personality to care about others even if i knew i was just doing my job
 			- He understood that the role was not for everybody
 			- Was helpful in securing another role in company
 - Retail bridge taskforce 2007
@@ -320,6 +339,13 @@ https://targetjobs.co.uk/employer-hubs/ibm/343024-how-to-answer-ibm-interview-qu
 				- Computer science
 				- Dedicated to excellence
 					- To give myself an advantage due to my age
+
+## Programming skills
+
+- Confident in object oriented programming
+	- Java
+	- C#
+	- Enjoy classing objects and putting the pieces together to build a program
 
 # Questions to ask
 
