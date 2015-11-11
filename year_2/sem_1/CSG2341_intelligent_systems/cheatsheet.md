@@ -1,3 +1,58 @@
+# Fuzzy systems
+
+## Sugeno
+
+### Rule aggregation
+
+#### Rules
+
+- Rule 1
+	- IF (heading angle IS front) AND (energy difference IS winning) THEN (turn is 0)
+- Rule 2
+	- IF (heading angle IS left front) AND (energy difference IS winning) THEN (turn is 90)
+
+#### Energy difference
+
+- Energy difference sets
+	- Figure 5
+	- Input = +3675.97j
+	- &mu; = 1
+
+![figure 5](http://snag.gy/x51Yi.jpg)
+
+#### Heading angle
+
+- Heading angle sets
+	- Figure 6
+	- Input = 0.31&deg;
+	- Fires rule 1 and 2 simultaneously
+
+![figure 6](http://snag.gy/n2Z9x.jpg)
+
+- Input belongs to two sets
+	- Front
+		- &mu; = 1
+	- leftFront
+		- &mu; = 0.31
+- Calculate weighted average of each &mu; value
+	- Equation 4.1
+	- Equation 4.2
+
+![equation 4.1](http://snag.gy/dEiOm.jpg)
+
+![equation 4.2](http://snag.gy/edYQM.jpg)
+
+- Then consider &mu; value for energy difference
+	- Energy difference
+		- Winning
+			- &mu; = 1
+- Rule using conjunction
+	- IF (set) AND (set) THEN ...
+	- Intersection operation
+		- MIN function
+
+![equation 4.4](http://snag.gy/fdBJq.jpg)
+
 # Genetic algorithms
 
 ## Crossover operations
@@ -225,11 +280,96 @@ MUTATION RESULT:
 ### Sample exam fitness function
 
 - See Q2 part g
+- L = sum of weights on left side of truck
+- R = sum of weights on right side of truck
+- f(x) = abs(L - R)
+- Closest to 0 = higher fitness
 
-![fitness function](http://snag.gy/KY8mq.jpg)
+# Artificial neural networks
 
-- Where
-	- L = left side of truck
-	- R = right side of truck
-	- W = weight of box
-	- Closest to 0 is fittest
+## Converting data
+
+### Continuous
+
+- Can be decimal
+- Varies between
+	- Min
+	- Max
+
+![equation 9.2](http://snag.gy/UUJEs.jpg)
+
+##### Example
+
+- Living area
+	- Between 59 m<sup>2</sup> and 231 m<sup>2</sup>
+		- Min = 50
+		- Max = 250
+	- Any value lower than min is mapped to min
+	- Any value higher than max is mapped to max
+- Converting 121 m<sup>2</sup>:
+
+![continuous](http://snag.gy/M8t9a.jpg)
+
+### Discrete
+
+- Must be integer
+- Varies between
+	- Max
+	- Min
+- Assign equal space to each possible value on interval 0 to 1
+
+![figure 9.23](http://snag.gy/pI1pr.jpg)
+
+### Categorical
+
+- Example
+	- Gender
+	- Marital status
+- Use 1 of N coding
+	- Each categorical value is handled as a separate input
+- Marital status
+	- Four inputs
+		- Single
+		- Divorced
+		- Married
+		- Widowed
+	- Value either 0 or 1
+	- Married person
+		- `0010`
+
+## Prevent overfitting
+
+- Overfitting
+	- When number of hidden neurons too big
+	- Network memorizes all training examples
+	- Prevents network from
+		- Generalizing
+		- Producing correct outputs when presented with data not used in training
+- Avoiding overfitting
+	- Training
+		- Choose smallest number of hidden neurons that yield good generalization
+		- Start training for each instance with small number of hidden neurons, incrementally increasing number of neurons
+			- 2
+			- 5
+			- 10
+			- 20
+		- Compare training results
+			- Graph performance of each instance to evaluate
+				- If network can converge to solution
+					- Eliminate instance where it cannot converge
+				- Number of epochs required to converge to solution
+					- These instances will be tested
+	- Test
+		- Present test data
+			- Must be independent of training data
+			- Must include noise
+				- Distortion of input data
+				- Add small random values chosen from normal distribution
+		- Compare test results
+			- Graph performance data of each instance to evaluate
+				- Most efficient number of hidden neurons that can adapt to noise
+					- Difference in recognition error must be high to justify selection of higher number of neurons
+
+### Overtraining graph
+
+![overtraining](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Overfitting_svg.svg/1220px-Overfitting_svg.svg.png)
