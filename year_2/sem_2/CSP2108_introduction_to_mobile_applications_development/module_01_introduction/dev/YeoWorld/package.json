@@ -1,0 +1,12 @@
+{
+	"name": "yeoworld",
+	"private": true,
+	"devDependencies": {
+		"grunt": "~0.4.5",
+		"bower": "~0.9.2",
+		"grunt-multiresize": "~0.3.1"
+	},
+	"engines": {
+		"node": ">=0.8.0"
+	}
+}

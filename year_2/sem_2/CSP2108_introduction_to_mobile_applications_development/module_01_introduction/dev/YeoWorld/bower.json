@@ -1,0 +1,16 @@
+{
+	"name": "yeoworld",
+	"version": "0.0.0",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	],
+	"dependencies": {
+		"cacharro": "jeduan/corona-cacharro#~0.1.0",
+		"inspect.lua": "kikito/inspect.lua#~3.0.0",
+		"middleclass": "kikito/middleclass#~3.0.1"
+	}
+}
