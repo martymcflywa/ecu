@@ -83,7 +83,7 @@ display.newImageRect(filename, width, height);
             - Or include relative path to file
     - `[, x, y]`
         - Optional `x, y` coordinates where anchor is placed
-        - Defailt `0, 0`, middle of the image
+        - Default `0, 0`, middle of the image
     - Default size is actual pixel size
 - `display.newImageRect()` parameters
     - `filename`
