@@ -108,19 +108,19 @@ local sheet1 = graphics.newImageSheet(
 	});
 
 -- play 8 frames every 1000 ms
-local instance1 = display.newSprite(
+local actorCat = display.newSprite(
 	sheet1, 
 	{
 		name = "cat",
 		start = 1,
 		count = 8,
-		time=1000
+		time = 1000
 	});
-instance1.x = display.contentWidth / 4 + 40;
-instance1.y = baseline - 75;
-instance1.xScale = 0.5;
-instance1.yScale = 0.5;
-instance1:play();
+actorCat.x = display.contentWidth / 4 + 40;
+actorCat.y = baseline - 75;
+actorCat.xScale = 0.5;
+actorCat.yScale = 0.5;
+actorCat:play();
 
 -- A sprite sheet with a green dude
 local sheet2 = graphics.newImageSheet(
@@ -132,17 +132,27 @@ local sheet2 = graphics.newImageSheet(
 	});
 
 -- play 15 frames every 500 ms
-local instance2 = display.newSprite(
+local actorMan = display.newSprite(
 	sheet2,
+	-- has to be an array here
 	{
-		name = "man", 
-		start = 1,
-		count = 15,
-		time = 500
+		{
+			name = "slow", 
+			start = 1,
+			count = 15,
+			time = 500			
+		},
+		{
+			name = "fast",
+			start = 1,
+			count = 15,
+			time = 250		
+		}
 	});
-instance2.x = 3 * display.contentWidth / 4 + 30;
-instance2.y = baseline - 55;
-instance2:play();
+
+actorMan.x = 3 * display.contentWidth / 4 + 30;
+actorMan.y = baseline - 55;
+actorMan:play();
 
 
 -- Grass
@@ -189,6 +199,21 @@ local function move(event)
 			tree[i]:translate(480 + tree[i].contentWidth * 2, 0);
 		end
 	end
+
+	-- drama integrated here
+	if (actorMan.sequence == "slow") then
+		actorMan:translate(xOffset / -10, 0);
+	end
+	if(actorMan.sequence == "fast") then
+		actorMan:translate(xOffset / 10, 0);
+	end
+	if(actorMan.x - actorCat.x > 250) then
+		actorMan:setSequence("slow");
+	end
+	if(actorMan.x - actorCat.x < 150) then
+		actorMan:setSequence("fast");
+	end
+	actorMan:play();
 end
 
 -- Start everything moving
