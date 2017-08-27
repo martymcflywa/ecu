@@ -5,7 +5,7 @@
 -----------------------------------------------------------------------------------------
 
 -- Your code here
-d = display;
+local d = display;
 w20 = d.contentWidth * 0.2;
 h20 = d.contentHeight * 0.2;
 w40 = d.contentWidth * 0.4;
@@ -14,6 +14,11 @@ w60 = d.contentWidth * 0.6;
 h60 = d.contentHeight * 0.6;
 w80 = d.contentWidth * 0.8;
 h80 = d.contentHeight * 0.8;
+
+local EMPTY = 0;
+local X = 1;
+local O = 2;
+local whichTurn = X -- X is starting game
 
 ----DRAW LINES FOR BOARD
 local lline = d.newLine(w40, h20, w40, h80);
@@ -39,16 +44,20 @@ board = {
 }
 
 --FILL COMPARTMENT W/ COLOUR WHEN TOUCHED
-local function fill (event)
+local function fill(event)
     if event.phase == "began" then
-        tap = 0;
+        -- tap = 0;
         for t = 1, 9 do
             if event.x > board[t][3] and event.x < board [t][5] then
                 if event.y < board[t][4] and event.y > board[t][6] then
-                    r = d.newRect(board[t][3], board[t][6], w20, h20);
-                    r:setFillColor(1, 1, 0);
-                    r.anchorX = 0;
-                    r.anchorY = 0;
+                    -- r = d.newRect(board[t][3], board[t][6], w20, h20);
+                    -- r:setFillColor(1, 1, 0);
+                    -- r.anchorX = 0;
+                    -- r.anchorY = 0;
+                    if board[t][7] == EMPTY then
+                        board[t][7] = whichTurn;
+                        whichTurn = whichTurn == X and O or X;
+                    end
                 end
             end
         end
