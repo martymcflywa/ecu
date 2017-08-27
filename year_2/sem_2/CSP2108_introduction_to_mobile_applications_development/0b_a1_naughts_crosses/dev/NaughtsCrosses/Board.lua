@@ -2,7 +2,14 @@ local Board = class("Board");
 
 -- defines dimensions of play area
 function Board:init()
+    self.chars = {
+        empty = 0,
+        cross = 1,
+        naught = 2
+    }
+
     self.d = display;
+
     self.w20 = self.d.contentWidth * 0.2;
     self.h20 = self.d.contentHeight * 0.2;
     self.w40 = self.d.contentWidth * 0.4;
@@ -13,15 +20,32 @@ function Board:init()
     self.h80 = self.d.contentHeight * 0.8;
 
     self.compartments = {
-        {"tl", 1, self.w20, self.h40, self.w40, self.h20, 0},
-        {"tm", 2, self.w40, self.h40, self.w60, self.h20, 0},
-        {"tr", 3, self.w60, self.h40, self.w80, self.h20, 0},
-        {"ml", 4, self.w20, self.h60, self.w40, self.h40, 0},
-        {"mm", 5, self.w40, self.h60, self.w60, self.h40, 0},
-        {"mr", 6, self.w60, self.h60, self.w80, self.h40, 0},
-        {"bl", 7, self.w20, self.h80, self.w40, self.h60, 0},
-        {"bm", 8, self.w40, self.h80, self.w60, self.h60, 0},
-        {"br", 9, self.w60, self.h80, self.w80, self.h60, 0}
+        tl = {1, self.w20, self.h40, self.w40, self.h20, 0},
+        tm = {2, self.w40, self.h40, self.w60, self.h20, 0},
+        tr = {3, self.w60, self.h40, self.w80, self.h20, 0},
+        ml = {4, self.w20, self.h60, self.w40, self.h40, 0},
+        mm = {5, self.w40, self.h60, self.w60, self.h40, 0},
+        mr = {6, self.w60, self.h60, self.w80, self.h40, 0},
+        bl = {7, self.w20, self.h80, self.w40, self.h60, 0},
+        bm = {8, self.w40, self.h80, self.w60, self.h60, 0},
+        br = {9, self.w60, self.h80, self.w80, self.h60, 0}
+    }
+
+    self.threeInARow = {
+        horizontals = {
+            top = {"tl", "tm", "tr"},
+            middle = {"ml", "mm", "mr"},
+            bottom = {"bl", "bm", "br"}
+        },
+        verticals = {
+            left = {"tl", "ml", "bl"},
+            middle = {"tm", "mm", "bm"},
+            right = {"tr", "mr", "br"}
+        },
+        diagonals = {
+            leftRightUp = {"bl", "mm", "tr"},
+            leftRightDown = {"tl", "mm", "br"}
+        }
     }
     return self;
 end
@@ -36,6 +60,46 @@ function Board:draw()
     horTop.strokeWidth = 5;
     local horBottom = self.d.newLine(self.w20, self.h40, self.w80, self.h40);
     horBottom.strokeWidth = 5;
+end
+
+function Board:isWinner()
+    for key, value in pairs(self.chars) do
+        if(checkForWinner(value)) then
+            return key
+        end
+    end
+end
+
+local function check(charInt)
+    local maxMatch = 3;
+    local isWinner = false;
+
+    -- iterate each k,v in threeInARow
+    for oKey, oValue in pairs(self.threeInARow) do
+        local matchTally = 0;
+        -- iterate over each k,v in threeInARow value
+        for iKey, iValue in pairs(oValue) do
+            matchTally = 0;
+            -- iterate each element in threeInARow value, value
+            for i = 1, #iValue, 1 do
+                -- look up compartments using iValue[i] as key 
+                if self.compartments[iValue[i]][6] == charInt then
+                    matchTally = matchTally + 1;
+                end
+            end
+            if matchTally >= maxMatch then
+                isWinner = true;
+            end
+            -- exit nested loop if we found a winner
+            if isWinner then
+                break;
+            end
+        end
+        -- exit nested loop if we found a winner
+        if isWinner then
+            break;
+        end
+    end
 end
 
 return Board;
