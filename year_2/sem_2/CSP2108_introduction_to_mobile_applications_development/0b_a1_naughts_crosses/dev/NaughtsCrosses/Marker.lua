@@ -1,16 +1,18 @@
-local Filler = class("Filler");
+local Marker = class("Marker");
 
-function Filler:init(board, char)
+function Marker:init(board, char)
     self.board = board;
     self.char = char;
     self.phase = "began";
+    self.shiftX = 5;
+    self.shiftY = 15;
     return self;
 end
 
-function Filler:mark(char, x, y)
+function Marker:mark(char, x, y)
     local mark = display.newText(char, x, y);
     mark.anchorX = 0;
     mark.anchorY = 0;
 end
 
-return Filler;
+return Marker;

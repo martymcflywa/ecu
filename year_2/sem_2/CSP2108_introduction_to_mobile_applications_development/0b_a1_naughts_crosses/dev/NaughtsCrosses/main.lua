@@ -24,11 +24,13 @@ local whichTurn = X -- X is starting game
 local board = Board();
 board:draw();
 
--- set up the player
+-- set up the player, TODO: player char should be selectable
 local player = Player(board, "X");
 
 local function fill(event)
     player:fill(event);
+    --ai:fill(event);
+    -- if player marks > 3, check score
 end
 
 --FILL COMPARTMENT W/ COLOUR WHEN TOUCHED
