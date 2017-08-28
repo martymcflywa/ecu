@@ -19,7 +19,7 @@ function Board:init()
     self.w80 = self.d.contentWidth * 0.8;
     self.h80 = self.d.contentHeight * 0.8;
 
-    self.compartments = {
+    self.spaces = {
         tl = {1, self.w20, self.h40, self.w40, self.h20, 0},
         tm = {2, self.w40, self.h40, self.w60, self.h20, 0},
         tr = {3, self.w60, self.h40, self.w80, self.h20, 0},
@@ -62,7 +62,13 @@ function Board:draw()
     horBottom.strokeWidth = 5;
 end
 
-function Board:isWinner()
+-- check if space is empty
+function Board:isSpaceEmpty(key)
+    return self.spaces[key][6] == self.chars["empty"];
+end
+
+-- check for winner
+function Board:isGameOver()
     for key, value in pairs(self.chars) do
         if(checkForWinner(value)) then
             return key
@@ -70,7 +76,7 @@ function Board:isWinner()
     end
 end
 
-local function check(charInt)
+local function checkForWinner(charInt)
     local maxMatch = 3;
     local isWinner = false;
 
@@ -82,21 +88,21 @@ local function check(charInt)
             matchTally = 0;
             -- iterate each element in threeInARow value, value
             for i = 1, #iValue, 1 do
-                -- look up compartments using iValue[i] as key 
-                if self.compartments[iValue[i]][6] == charInt then
+                -- look up spaces using iValue[i] as key 
+                if(self.spaces[iValue[i]][6] == charInt) then
                     matchTally = matchTally + 1;
                 end
             end
-            if matchTally >= maxMatch then
+            if(matchTally >= maxMatch) then
                 isWinner = true;
             end
             -- exit nested loop if we found a winner
-            if isWinner then
+            if(isWinner) then
                 break;
             end
         end
         -- exit nested loop if we found a winner
-        if isWinner then
+        if(isWinner) then
             break;
         end
     end

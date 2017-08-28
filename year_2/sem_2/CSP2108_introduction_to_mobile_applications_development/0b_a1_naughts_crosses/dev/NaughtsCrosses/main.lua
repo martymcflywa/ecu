@@ -25,7 +25,7 @@ local board = Board();
 board:draw();
 
 -- set up the player, TODO: player char should be selectable
-local player = Player(board, "X");
+local player = Player(board, "O");
 
 local function fill(event)
     player:fill(event);
