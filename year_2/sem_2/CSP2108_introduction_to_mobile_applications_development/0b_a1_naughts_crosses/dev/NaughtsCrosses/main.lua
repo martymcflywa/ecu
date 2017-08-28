@@ -12,7 +12,7 @@ require("modules.mobdebug").start(); -- enable zerobranestudio debug
 class = require("modules.30log.30log-global"); -- require object oriented library, global scope
 local Board = require("Board");
 local Player = require("Player");
---local Ai = require("Ai");
+local Ai = require("Ai");
 --local Scoreboard = require("Scoreboard")
 
 local EMPTY = 0;
@@ -25,11 +25,12 @@ local board = Board();
 board:draw();
 
 -- set up the player, TODO: player char should be selectable
-local player = Player(board, "O");
+local player = Player(board, "X");
+local ai = Ai(board, "O");
 
 local function fill(event)
     player:fill(event);
-    --ai:fill(event);
+    ai:fill(event);
     -- if player marks > 3, check score
 end
 

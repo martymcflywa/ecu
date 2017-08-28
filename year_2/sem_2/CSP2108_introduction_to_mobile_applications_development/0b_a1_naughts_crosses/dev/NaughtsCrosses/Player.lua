@@ -1,7 +1,6 @@
 -- import the base class
 local Marker = require("Marker");
-
--- Player extends Marker, TODO: Rename Marker.
+-- extend Marker
 local Player = Marker:extend("Player");
 
 function Player:init(board, char)
