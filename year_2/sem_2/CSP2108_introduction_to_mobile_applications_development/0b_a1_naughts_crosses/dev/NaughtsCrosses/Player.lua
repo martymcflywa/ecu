@@ -12,8 +12,11 @@ function Player:fill(event)
         for key, value in pairs(self.board.spaces) do
             if(event.x > value[2] and event.x < value[4]) then
                 if(event.y < value[3] and event.y > value[5]) then
-                    Player.super.mark(self, key, self.char);
-                    Player.super.updateSpace(self, key, self.char);
+                    if(Player.super.mark(self, key, self.char)) then
+                        Player.super.updateSpace(self, key, self.char);
+                        return true; -- bust out the loop if we mark the space
+                    end
+                    return false;
                 end
             end
         end

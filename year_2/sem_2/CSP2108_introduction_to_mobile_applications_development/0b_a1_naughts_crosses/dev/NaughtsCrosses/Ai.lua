@@ -10,13 +10,18 @@ end
 
 function Ai:fill(event)
     if(event.phase == self.phase) then
-        -- rather than iterate for touch x/y, select random key from board.spaces
-        -- local space = nil;
-        -- repeat
-        local random = math.random(9);
-        print(random);
-        local space = self.board.spaces[1];
-        -- while
+        -- TODO: try to implement a smarter ai...
+        -- in the meantime, just find a random empty space
+        local key;
+        repeat
+            key = self.spacesKeyset[math.random(#self.spacesKeyset)];
+        until(self.board:isSpaceEmpty(key))
+
+        if(Ai.super.mark(self, key, self.char)) then
+            Ai.super.updateSpace(self, key, self.char);
+            return true;
+        end
+        return false;
     end
 end
 

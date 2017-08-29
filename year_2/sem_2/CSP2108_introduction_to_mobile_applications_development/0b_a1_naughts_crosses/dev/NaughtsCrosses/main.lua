@@ -23,10 +23,17 @@ board:draw();
 local player = Player(board, "X");
 local ai = Ai(board, "O");
 
+local playerMarks = 0;
+
 local function fill(event)
-    player:fill(event);
-    ai:fill(event);
-    -- if player marks > 3, check score
+    if(player:fill(event)) then
+        ai:fill(event);
+        playerMarks = playerMarks + 1;
+    end
+    -- start checking score when we have at least 3 marks 
+    if(playerMarks >= 3)
+
+    end
 end
 
 --FILL COMPARTMENT W/ COLOUR WHEN TOUCHED
