@@ -5,7 +5,7 @@ local Ai = Marker:extend("Ai");
 
 function Ai:init(board, char)
     Ai.super:init(board, char);
-    self.spacesKeyset = self:getSpacesKeyset();
+    self.spacesKeyset = self:getKeyset(self.board.spaces);
     return self;
 end
 
@@ -21,14 +21,14 @@ function Ai:fill(event)
     end
 end
 
-function Ai:getSpacesKeyset()
-    local index = {};
+function Ai:getKeyset(table)
+    local keys = {};
     local i = 1;
-    for key, value in pairs(self.board.spaces) do
-        index[i] = key;
+    for key, value in pselfrs(table) do
+        keys[i] = key;
         i = i + 1;
     end
-    return index;
+    return keys;
 end
 
 return Ai
