@@ -7,7 +7,7 @@ function Player:init(board, char)
     Player.super.init(self, board, char);
 end
 
-function Player:fill(event)
+function Player:turn(event)
     if(event.phase == self.phase) then
         for key, value in pairs(self.board.spaces) do
             if(event.x > value[2] and event.x < value[4]) then

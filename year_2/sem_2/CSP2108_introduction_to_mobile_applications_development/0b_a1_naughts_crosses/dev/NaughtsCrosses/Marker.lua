@@ -5,7 +5,7 @@ function Marker:init(board, char)
     self.char = char;
     self.font = "Arial";
     self.fontSize = 70;
-    self.phase = "began";
+    self.phase = "ended"; -- ended triggers listener only once
     self.centerX = self.board.w20 / 2;
     self.centerY = self.board.h20 / 2;
 end
@@ -34,6 +34,7 @@ function Marker:markCenter(char, xPos, yPos)
     local mark = display.newText(options);
     mark.anchorX = 0;
     mark.anchorY = 0;
+
     if(char == "X") then
         mark.x = mark.x + (mark.contentWidth / 4);
         mark.y = mark.y - (mark.contentHeight / 16);
@@ -46,15 +47,7 @@ function Marker:markCenter(char, xPos, yPos)
 end
 
 function Marker:updateSpace(key, char)
-    self.board.spaces[key][6] = self:charToInt(char);
-end
-
-function Marker:charToInt(char)
-    if(char == "X") then
-        return self.board.chars["cross"];
-    elseif(char == "O") then
-        return self.board.chars["naught"];
-    end
+    self.board.spaces[key][6] = self.board:charToInt(char);
 end
 
 return Marker;

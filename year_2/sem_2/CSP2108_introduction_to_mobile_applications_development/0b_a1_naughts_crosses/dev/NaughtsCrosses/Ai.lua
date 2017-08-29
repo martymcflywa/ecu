@@ -8,7 +8,7 @@ function Ai:init(board, char)
     self.spacesKeyset = self:getKeyset(self.board.spaces);
 end
 
-function Ai:fill(event)
+function Ai:turn(event)
     if(event.phase == self.phase) then
         -- TODO: try to implement a smarter ai...
         -- in the meantime, just find a random empty space

@@ -4,8 +4,8 @@ local Board = class("Board");
 function Board:init()
     self.chars = {
         empty = 0,
-        cross = 1,
-        naught = 2
+        X = 1,
+        O = 2
     }
 
     self.d = display;
@@ -47,6 +47,8 @@ function Board:init()
             leftRightDown = {"tl", "mm", "br"}
         }
     }
+
+    self.winner = nil;
 end
 
 -- draws naughts and crosses board
@@ -66,16 +68,22 @@ function Board:isSpaceEmpty(key)
     return self.spaces[key][6] == self.chars["empty"];
 end
 
--- check for winner
+-- detect if game is over
 function Board:isGameOver()
     for key, value in pairs(self.chars) do
-        if(checkForWinner(value)) then
-            return key
+        -- ignore empty
+        if(key ~= "empty") then
+            if(self.checkForWinner(self, value)) then
+                self.winner = key;
+                return true;
+            end
         end
     end
+    return false;
 end
 
-local function checkForWinner(charInt)
+-- look up winning combinations for winner
+function Board:checkForWinner(charInt)
     local maxMatch = 3;
     local isWinner = false;
 
@@ -104,6 +112,15 @@ local function checkForWinner(charInt)
         if(isWinner) then
             break;
         end
+    end
+    return isWinner;
+end
+
+function Board:charToInt(char)
+    if(char == "X") then
+        return self.chars["X"];
+    elseif(char == "O") then
+        return self.chars["O"];
     end
 end
 
