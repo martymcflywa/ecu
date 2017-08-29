@@ -4,9 +4,8 @@ local Marker = require("Marker");
 local Ai = Marker:extend("Ai");
 
 function Ai:init(board, char)
-    Ai.super:init(board, char);
+    Ai.super.init(self, board, char);
     self.spacesKeyset = self:getKeyset(self.board.spaces);
-    return self;
 end
 
 function Ai:fill(event)
@@ -24,7 +23,7 @@ end
 function Ai:getKeyset(table)
     local keys = {};
     local i = 1;
-    for key, value in pselfrs(table) do
+    for key, value in pairs(table) do
         keys[i] = key;
         i = i + 1;
     end

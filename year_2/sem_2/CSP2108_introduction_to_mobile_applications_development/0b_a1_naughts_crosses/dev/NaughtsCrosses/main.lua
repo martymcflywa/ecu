@@ -8,17 +8,12 @@
 package.path = package.path .. "./modules;";
 
 -- imports
-require("modules.mobdebug").start(); -- enable zerobranestudio debug
-class = require("modules.30log.30log-global"); -- require object oriented library, global scope
+require("modules.mobdebug").start(); -- enables zerobranestudio debugging
+require("modules.30log.30log-global"); -- oop framework
+
 local Board = require("Board");
 local Player = require("Player");
 local Ai = require("Ai");
---local Scoreboard = require("Scoreboard")
-
-local EMPTY = 0;
-local X = 1;
-local O = 2;
-local whichTurn = X -- X is starting game
 
 -- set up the board
 local board = Board();

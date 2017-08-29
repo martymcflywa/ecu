@@ -8,7 +8,6 @@ function Marker:init(board, char)
     self.phase = "began";
     self.centerX = self.board.w20 / 2;
     self.centerY = self.board.h20 / 2;
-    return self;
 end
 
 function Marker:mark(key, char)

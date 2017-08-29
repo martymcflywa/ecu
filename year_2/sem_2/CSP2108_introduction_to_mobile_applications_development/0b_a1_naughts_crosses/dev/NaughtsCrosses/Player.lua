@@ -4,8 +4,7 @@ local Marker = require("Marker");
 local Player = Marker:extend("Player");
 
 function Player:init(board, char)
-    Player.super:init(board, char);
-    return self;
+    Player.super.init(self, board, char);
 end
 
 function Player:fill(event)
@@ -13,8 +12,8 @@ function Player:fill(event)
         for key, value in pairs(self.board.spaces) do
             if(event.x > value[2] and event.x < value[4]) then
                 if(event.y < value[3] and event.y > value[5]) then
-                    Player.super:mark(key, self.char);
-                    Player.super:updateSpace(key, self.char);
+                    Player.super.mark(self, key, self.char);
+                    Player.super.updateSpace(self, key, self.char);
                 end
             end
         end

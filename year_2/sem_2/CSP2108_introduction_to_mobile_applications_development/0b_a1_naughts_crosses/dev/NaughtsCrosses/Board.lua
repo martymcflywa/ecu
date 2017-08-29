@@ -47,7 +47,6 @@ function Board:init()
             leftRightDown = {"tl", "mm", "br"}
         }
     }
-    return self;
 end
 
 -- draws naughts and crosses board
