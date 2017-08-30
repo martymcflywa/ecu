@@ -15,6 +15,8 @@ require("modules.30log.30log-global"); -- oop framework
 local Board = require("Board");
 local Player = require("Player");
 local Ai = require("Ai");
+-- listen to this events
+local event = "touch";
 
 -- set up the board
 local board = Board();
@@ -24,14 +26,30 @@ board:draw();
 local player = Player(board, "X");
 local ai = Ai(board, "O");
 
-local playerMarks = 0;
+local playerTurns = 0;
+
+local function printWinner(winner)
+    local options = {
+        text = winner .. " has won!\nGAME OVER!",
+        x = board.d.contentWidth * 0.5,
+        y = board.d.contentHeight * 0.5,
+        font = "Arial",
+        fontSize = 25,
+        align = "center"
+    };
+    local gameOver = display.newText(options);
+    gameOver.anchorX = 0;
+    gameOver.anchorY = 0;
+end
 
 -- start checking score when we have at least 3 marks 
 local function checkScore()
-    if(playerMarks >= 3) then
+    if(playerTurns >= 3) then
         -- if isGameOver, do something to stop program
         if(board:isGameOver()) then
-            print("Winner is " .. board.winner .. "!");
+            printWinner(board.winner);
+            -- kill touch
+            Runtime:removeEventListener(event, play);
         else
             print("No winner yet.");
         end
@@ -40,10 +58,11 @@ end
 
 local function play(event)
     if(player:turn(event)) then
+        -- TODO: check score before ai turn
         ai:turn(event);
-        playerMarks = playerMarks + 1;
+        playerTurns = playerTurns + 1;
     end
     checkScore();
 end
 
-Runtime:addEventListener("touch", play)
+Runtime:addEventListener(event, play)
