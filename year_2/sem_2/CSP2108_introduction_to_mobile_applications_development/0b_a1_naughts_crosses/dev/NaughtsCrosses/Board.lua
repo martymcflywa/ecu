@@ -153,9 +153,10 @@ function Board:putMark(row, col, char, color, textOptions)
         textOptions.y = y;
         mark = self.d.newText(textOptions);
         mark:setFillColor(unpack(color));
-    else
-        print("INFO: Grid at row=" .. row .. ", col=" .. col .. ", x=" .. x .. ", y=" .. y .. " is already occupied.");
+        return true;
     end
+    print("INFO: Grid at row=" .. row .. ", col=" .. col .. ", x=" .. x .. ", y=" .. y .. " is already occupied.");
+    return false
 end
 
 function Board:isGameOver()

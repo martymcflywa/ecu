@@ -3,36 +3,66 @@ local Marker = require("Marker");
 -- extend Marker
 local Ai = Marker:extend("Ai");
 
-function Ai:init(board, char)
-    Ai.super.init(self, board, char);
-    self.spacesKeyset = self:getKeyset(self.board.spaces);
+function Ai:init(board, char, color)
+    Ai.super.init(self, board, char, color);
 end
 
 function Ai:turn(event)
     if(event.phase == self.phase) then
-        -- TODO: try to implement a smarter ai...
-        -- in the meantime, just find a random empty space
-        local key;
-        repeat
-            key = self.spacesKeyset[math.random(#self.spacesKeyset)];
-        until(self.board:isSpaceEmpty(key))
-
-        if(Ai.super.mark(self, key, self.char)) then
-            Ai.super.updateSpace(self, key, self.char);
-            return true;
+        if(self:tryToWin()) then
+            return;
+        elseif(self:tryToBlock()) then
+            return;
+        else
+            self:lastResort();
         end
-        return false;
     end
 end
 
-function Ai:getKeyset(table)
-    local keys = {};
-    local i = 1;
-    for key, value in pairs(table) do
-        keys[i] = key;
-        i = i + 1;
+function Ai:tryToWin()
+    local me = self.board.chars[self.char];
+    for index in pairs(self.board.winCombos) do
+        local meWinning = self.board.checkWinInCombo(self.board, index);
+        if(meWinning < (self.board.rowsCols - 1) * me) then
+            for key, value in pairs(self.board.getWinCombo(self.board, index)) do
+                row = value["x"];
+                col = value["y"];
+                if(self.board.isEmpty(self.board, row, col)) then
+                    Ai.super.mark(self, row, col);
+                    return true;
+                end
+            end
+        end
     end
-    return keys;
+    return false;
+end
+
+function Ai:tryToBlock()
+    local me = self.board.chars[self.char];
+    for index in pairs(self.board.winCombos) do
+        local playerWinning = self.board.checkWinInCombo(self.board, index);
+        if(playerWinning > (self.board.rowsCols * me) - 1) then
+            for key, value in pairs(self.board.getWinCombo(self.board, index)) do
+                row = value["x"];
+                col = value["y"];
+                if(self.board.isEmpty(self.board, row, col)) then
+                    Ai.super.mark(self, row, col);
+                    return true;
+                end
+            end
+        end
+    end
+    return false;
+end
+
+function Ai:lastResort()
+    for row = 1, self.board.rowsCols, 1 do
+        for col = 1, self.board.rowsCols, 1 do
+            if(Ai.super.mark(self, row, col)) then
+                return;
+            end
+        end
+    end
 end
 
 return Ai

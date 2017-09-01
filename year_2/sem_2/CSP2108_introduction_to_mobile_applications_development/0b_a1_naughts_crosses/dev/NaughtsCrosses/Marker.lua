@@ -14,7 +14,7 @@ function Marker:init(board, char, color)
 end
 
 function Marker:mark(row, col)
-    self.board.putMark(self.board, row, col, self.char, self.color, self.textOptions);
+    return self.board.putMark(self.board, row, col, self.char, self.color, self.textOptions);
 end
 
 return Marker;
