@@ -14,17 +14,18 @@ require("modules.30log.30log-global"); -- oop framework
 -- import game classes
 local Board = require("Board");
 local Player = require("Player");
-local Ai = require("Ai");
+-- local Ai = require("Ai");
 -- listen to this events
 local event = "touch";
 
 -- set up the board
 local board = Board();
-board:draw();
+board:setup();
 
--- set up the players, TODO: player char should be selectable
-local player = Player(board, "X");
-local ai = Ai(board, "O");
+-- set up the players, TODO: player char/color should be selectable
+local red = {1, 0, 0};
+local player = Player(board, "x", red);
+-- local ai = Ai(board, "o");
 
 local playerTurns = 0;
 
@@ -62,7 +63,6 @@ local function play(event)
         ai:turn(event);
         playerTurns = playerTurns + 1;
     end
-    checkScore();
 end
 
 Runtime:addEventListener(event, play)

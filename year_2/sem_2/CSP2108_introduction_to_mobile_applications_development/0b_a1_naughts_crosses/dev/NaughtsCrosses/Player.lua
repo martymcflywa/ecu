@@ -3,22 +3,17 @@ local Marker = require("Marker");
 -- extend Marker
 local Player = Marker:extend("Player");
 
-function Player:init(board, char)
-    Player.super.init(self, board, char);
+function Player:init(board, char, color)
+    Player.super.init(self, board, char, color);
 end
 
 function Player:turn(event)
     if(event.phase == self.phase) then
-        for key, value in pairs(self.board.spaces) do
-            if(event.x > value[2] and event.x < value[4]) then
-                if(event.y < value[3] and event.y > value[5]) then
-                    if(Player.super.mark(self, key, self.char)) then
-                        Player.super.updateSpace(self, key, self.char);
-                        return true; -- bust out the loop if we mark the space
-                    end
-                    return false;
-                end
-            end
+        local row, col = self.board.getGridFromTouch(self.board, event);
+        if(row ~= nil and col ~= nil) then
+            Player.super.mark(self, row, col);
+        else
+            print("INFO: Touch at x=" .. event.x .. " y=" .. event.y .. " is the outside board.");
         end
     end
 end

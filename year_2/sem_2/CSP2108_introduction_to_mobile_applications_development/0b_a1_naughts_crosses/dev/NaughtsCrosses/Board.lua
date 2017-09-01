@@ -1,18 +1,42 @@
+--[[
+
+Representation of the board as tables:
+
+ 1,1 | 1,2 | 1,3
+-----|-----|-----
+ 2,1 | 2,2 | 2,3
+-----|-----|-----
+ 3,1 | 3,2 | 3,3
+
+Each space is referenced by its column and row number, ie. 1,1 = top left.
+Three tables represent the board: centers, scores and grid.
+
+centers:
+Converts col,row to pixel coordinate, where marker is placed.
+
+scores:
+col,row holds value for marker placed. If "x" is placed, col,row's value = 1.
+If "o" is placed, col,row's value = -1. scores table is summed by winCombos table. 
+"x" wins if sum == 3. "o" wins if sum == 3. Tie if scores full but no winning sum.
+
+grid:
+Converts touch event pixel coordinates to col,row.
+
+@author Martin Ponce, 10371381 for CSP2108
+@version 20170901
+
+--]]
+
 local Board = class("Board");
 
 -- defines dimensions of play area
-function Board:init(playerChar, aiChar)
-    self.rank = 3;
+function Board:init()
 
-    self.players = {
-        player = playerChar,
-        ai = aiChar
-    };
-
+    self.rowsCols = 3;
     self.chars = {
         empty = 0,
-        X = 1,
-        O = 2
+        x = 1,
+        o = -1
     };
 
     self.d = display;
@@ -25,39 +49,17 @@ function Board:init(playerChar, aiChar)
     self.w80 = self.d.contentWidth * 0.8;
     self.h80 = self.d.contentHeight * 0.8;
 
-    self.spaces = {
-        tl = {1, self.w20, self.h40, self.w40, self.h20, 0},
-        tm = {2, self.w40, self.h40, self.w60, self.h20, 0},
-        tr = {3, self.w60, self.h40, self.w80, self.h20, 0},
-        ml = {4, self.w20, self.h60, self.w40, self.h40, 0},
-        mm = {5, self.w40, self.h60, self.w60, self.h40, 0},
-        mr = {6, self.w60, self.h60, self.w80, self.h40, 0},
-        bl = {7, self.w20, self.h80, self.w40, self.h60, 0},
-        bm = {8, self.w40, self.h80, self.w60, self.h60, 0},
-        br = {9, self.w60, self.h80, self.w80, self.h60, 0}
-    }
-
-    self.scoreboard = self.newScoreBoard(self);
-    self.winCombos = self.newWinCombos(self);
-
-    self.threeInARow = {
-        horizontals = {
-            top = {"tl", "tm", "tr"},
-            middle = {"ml", "mm", "mr"},
-            bottom = {"bl", "bm", "br"}
-        },
-        verticals = {
-            left = {"tl", "ml", "bl"},
-            middle = {"tm", "mm", "bm"},
-            right = {"tr", "mr", "br"}
-        },
-        diagonals = {
-            leftRightUp = {"bl", "mm", "tr"},
-            leftRightDown = {"tl", "mm", "br"}
-        }
-    }
-
+    self.centers = {};
+    self.scores = {};
+    self.grid = {};
+    self.winCombos = {};
     self.winner = nil;
+end
+
+function Board:setup()
+    self.newBoard(self);
+    self.newWinCombos(self);
+    self.draw(self);
 end
 
 -- draws naughts and crosses board
@@ -72,105 +74,147 @@ function Board:draw()
     horBottom.strokeWidth = 5;
 end
 
--- this table keeps track of chars put on board
--- when player/ai puts piece on board, this table gets updated too
--- empty = 0, player = increment, ai = decrement
--- when checking for winner, iterate winCombos to find result
--- if player has three in a row, expected return = 3
--- if ai has three in a row, expected return = -3
-function Board:newScoreBoard()
-    local scoreboard = {};
-    for row = 1, self.rank, 1 do
-        scoreboard[row] = {};
-        for col = 1, self.rank, 1 do
-            scoreboard[row][col] = self.chars["empty"];
+-- void, sets up three tables in single On^2 loop:
+-- scores: tracks marked grids,
+-- centers: contains x,y coord for mark placement
+-- grid: detects touch, returns col,row of board
+function Board:newBoard()
+    local xPc = 0.2;
+    local yPc = 0.2;
+    local xLeftPc = 0.2;
+    local yBottomPc = 0.4;
+    local xRightPc = 0.4;
+    local yTopPc = 0.2;
+    for row = 1, self.rowsCols, 1 do
+        self.scores[row] = {};
+        self.centers[row] = {};
+        self.grid[row] = {};
+        for col = 1, self.rowsCols, 1 do
+            self.scores[row][col] = self.chars["empty"];
+            self.centers[row][col] = {};
+            self.centers[row][col]["x"] = self.xCenter(self, xPc * self.d.contentWidth);
+            self.centers[row][col]["y"] = self.yCenter(self, yPc * self.d.contentHeight);
+            xPc = xPc + 0.2;
+            self.grid[row][col] = {};
+            self.grid[row][col]["xLeft"] = self.d.contentWidth * xLeftPc;
+            self.grid[row][col]["yBottom"] = self.d.contentHeight * yBottomPc;
+            self.grid[row][col]["xRight"] = self.d.contentWidth * xRightPc;
+            self.grid[row][col]["yTop"] = self.d.contentWidth * yTopPc;
+            xLeftPc = xLeftPc + 0.2;
+            xRightPc = xRightPc + 0.2;
         end
+        xPc = 0.2;
+        yPc = yPc + 0.2;
+        xLeftPc = 0.2;
+        yBottomPc = yBottomPc + 0.2;
+        xRightPc = 0.4;
+        yTopPc = yTopPc + 0.2;
     end
-    return scoreboard;
+end
+
+function Board:xCenter(left)
+    local xShift = self.w20 / 2;
+    local xCenter = left + xShift;
+    return xCenter;
+end
+
+function Board:yCenter(top)
+    local yShift = self.h20 / 2;
+    local yCenter = top + yShift;
+    return yCenter;
+end
+
+function Board:getCenter(row, col)
+    local x = self.centers[row][col]["x"];
+    local y = self.centers[row][col]["y"];
+    return x, y;
 end
 
 -- gets score at row, col
-function Board:getMarkAt(row, col)
-    return self.scoreboard[row][col];
+function Board:getScoreAt(row, col)
+    return self.scores[row][col];
 end
 
 -- check if score at row, col is empty
 function Board:isEmpty(row, col)
-    if(self.getMarkAt(self, row, col) == self.chars["empty"]) then
+    if(self.getScoreAt(self, row, col) == self.chars["empty"]) then
         return true;
     end
     return false;
 end
 
--- puts score at row, col
-function Board:putScore(score, row, col)
-    if(self.isEmpty(self, row, col) == true) then
-        self.scoreboard[row][col] = score;
-        return true;
+-- put marker on board, update scores
+function Board:putMark(row, col, char, color, textOptions)
+    local score = self.chars[char];
+    local x, y = self.getCenter(self, row, col);
+    if(self.isEmpty(self, row, col)) then
+        self.scores[row][col] = score;
+        textOptions.x = x;
+        textOptions.y = y;
+        mark = self.d.newText(textOptions);
+        mark:setFillColor(unpack(color));
+    else
+        print("INFO: Grid at row=" .. row .. ", col=" .. col .. ", x=" .. x .. ", y=" .. y .. " is already occupied.");
     end
-    return false;
 end
 
 function Board:isGameOver()
-    if(not isWin()) then
-        for row = 1, self.rank, 1 do
-            for col = 1, self.rank, 1 do
+    if(not self.isWin(self)) then
+        for row = 1, self.rowsCols, 1 do
+            for col = 1, self.rowsCols, 1 do
                 if(self.isEmpty(self, row, col)) then
                     return false;
                 end
             end
         end
-        -- end on draw
+        -- gameover on draw
         return true;
     end
-    -- end on win
+    -- gameover on win
     return true;
 end
 
 function Board:newWinCombos()
-    local winCombos = {};
     comboCount = 1;
 
     -- define vertical combos
-    for i = 1, self.rank, 1 do
-        winCombos[comboCount] = {};
-        for j = 1, self.rank, 1 do
-            winCombos[comboCount][j] = {};
-            winCombos[comboCount][j]["x"] = i;
-            winCombos[comboCount][j]["y"] = j;
+    for i = 1, self.rowsCols, 1 do
+        self.winCombos[comboCount] = {};
+        for j = 1, self.rowsCols, 1 do
+            self.winCombos[comboCount][j] = {};
+            self.winCombos[comboCount][j]["x"] = i;
+            self.winCombos[comboCount][j]["y"] = j;
         end
         comboCount = comboCount + 1;
     end
 
     -- define horizontal combos
-    for i = 1, self.rank, 1 do
-        winCombos[comboCount] = {};
-        for j = 1, self.rank, 1 do
-            winCombos[comboCount][j] = {};
-            winCombos[comboCount][j]["x"] = j;
-            winCombos[comboCount][j]["y"] = i;
+    for i = 1, self.rowsCols, 1 do
+        self.winCombos[comboCount] = {};
+        for j = 1, self.rowsCols, 1 do
+            self.winCombos[comboCount][j] = {};
+            self.winCombos[comboCount][j]["x"] = j;
+            self.winCombos[comboCount][j]["y"] = i;
         end
         comboCount = comboCount + 1;
     end
 
     -- define diagonal combos
     -- left-right-up
-    winCombos[comboCount] = {};
-    for i = 0, self.rank, 1 do
-        winCombos[comboCount][i] = {};
-        winCombos[comboCount][i]["x"] = i;
-        winCombos[comboCount][i]["y"] = i;
+    self.winCombos[comboCount] = {};
+    for i = 0, self.rowsCols, 1 do
+        self.winCombos[comboCount][i] = {};
+        self.winCombos[comboCount][i]["x"] = i;
+        self.winCombos[comboCount][i]["y"] = i;
     end
     comboCount = comboCount + 1;
-
     -- left-right-down
-    winCombos[comboCount] = {};
-    for i = self.rank, 1, -1 do
-        winCombos[comboCount][i] = {};
-        winCombos[comboCount][i]["x"] = self.rank - i - 1;
-        winCombos[comboCount][i]["y"] = i;
+    self.winCombos[comboCount] = {};
+    for i = self.rowsCols, 1, -1 do
+        self.winCombos[comboCount][i] = {};
+        self.winCombos[comboCount][i]["x"] = self.rowsCols - i - 1;
+        self.winCombos[comboCount][i]["y"] = i;
     end
-    return winCombos;
 end
 
 function Board:getWinCombo(id)
@@ -180,11 +224,11 @@ end
 function Board:checkWinInCombo(id)
     local output = 0;
     for index, value in pairs(self.getWinCombo(self, id)) do
-        local mark = self.getMarkAt(self, value["x"], value["y"]);
-        if mark = self.players["player"] then
+        local mark = self.getScoreAt(self, value["x"], value["y"]);
+        if mark == self.players["player"] then
             output = output + 1;
         end
-        if mark = self.players["ai"] then
+        if mark == self.players["ai"] then
             output = output - 1;
         end
     end
@@ -192,77 +236,32 @@ function Board:checkWinInCombo(id)
 end
 
 function Board:isWin()
-    for index in pairs(self.winCombos) down
+    for index in pairs(self.winCombos) do
         local score = self.checkWinInCombo(self, index);
-        if(math.abs(score)) == self.rank then
+        if(math.abs(score)) == self.rowsCols then
             if(score == math.abs(score)) then 
-                return self.players["player"];
+                self.winner = self.players["player"];
+                return true;
             else
-                return self.players["ai"]
+                self.winner = self.players["ai"];
+                return true;
             end
         end
     end
     return false;
 end
 
--- check if space is empty
-function Board:isSpaceEmpty(key)
-    return self.spaces[key][6] == self.chars["empty"];
-end
-
--- detect if game is over
--- function Board:isGameOver()
---     for key, value in pairs(self.chars) do
---         -- ignore empty
---         if(key ~= "empty") then
---             if(self.checkForWinner(self, value)) then
---                 self.winner = key;
---                 return true;
---             end
---         end
---     end
---     return false;
--- end
-
--- look up winning combinations for winner
-function Board:checkForWinner(charInt)
-    local maxMatch = 3;
-    local isWinner = false;
-
-    -- iterate each k,v in threeInARow
-    for oKey, oValue in pairs(self.threeInARow) do
-        local matchTally = 0;
-        -- iterate over each k,v in threeInARow value
-        for iKey, iValue in pairs(oValue) do
-            matchTally = 0;
-            -- iterate each element in threeInARow value, value
-            for i = 1, #iValue, 1 do
-                -- look up spaces using iValue[i] as key 
-                if(self.spaces[iValue[i]][6] == charInt) then
-                    matchTally = matchTally + 1;
+function Board:getGridFromTouch(event)
+    for row = 1, self.rowsCols, 1 do
+        for col = 1, self.rowsCols, 1 do
+            -- if touch coord is between xleft and xright
+            if(event.x > self.grid[row][col]["xLeft"] and event.x < self.grid[row][col]["xRight"]) then
+                -- if touch coord is between ytop and ybottom
+                if(event.y > self.grid[row][col]["yTop"] and event.y < self.grid[row][col]["yBottom"]) then
+                    return row, col;
                 end
             end
-            if(matchTally >= maxMatch) then
-                isWinner = true;
-            end
-            -- exit nested loop if we found a winner
-            if(isWinner) then
-                break;
-            end
         end
-        -- exit nested loop if we found a winner
-        if(isWinner) then
-            break;
-        end
-    end
-    return isWinner;
-end
-
-function Board:charToInt(char)
-    if(char == "X") then
-        return self.chars["X"];
-    elseif(char == "O") then
-        return self.chars["O"];
     end
 end
 

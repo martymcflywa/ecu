@@ -1,53 +1,20 @@
 local Marker = class("Marker");
 
-function Marker:init(board, char)
+function Marker:init(board, char, color)
     self.board = board;
     self.char = char;
-    self.font = "Arial";
-    self.fontSize = 70;
     self.phase = "ended"; -- ended triggers listener only once
-    self.centerX = self.board.w20 / 2;
-    self.centerY = self.board.h20 / 2;
-end
-
-function Marker:mark(key, char)
-    if(self.board:isSpaceEmpty(key)) then
-        local x = self.board.spaces[key][2] + self.centerX;
-        local y = self.board.spaces[key][3] - self.centerY;
-        self:markCenter(char, x, y);
-        return true;
-    else
-        print("INFO: space " .. key .. " already marked.");
-        return false;
-    end
-end
-
-function Marker:markCenter(char, xPos, yPos)
-    local options = {
-        text = char,
-        x = xPos - (self.fontSize / 2),
-        y = yPos - (self.fontSize / 2),
-        font = self.font,
-        fontSize = self.fontSize,
+    self.color = color;
+    self.textOptions = {
+        text = self.char,
+        font = "Arial",
+        fontSize = 70,
         align = "center"
     };
-    local mark = display.newText(options);
-    mark.anchorX = 0;
-    mark.anchorY = 0;
-
-    if(char == "X") then
-        mark.x = mark.x + (mark.contentWidth / 4);
-        mark.y = mark.y - (mark.contentHeight / 16);
-        mark:setFillColor(1, 0, 0);
-    else
-        mark.x = mark.x + (mark.contentWidth / 7.3);
-        mark.y = mark.y - (mark.contentHeight / 13);
-        mark:setFillColor(0, 1, 0);
-    end
 end
 
-function Marker:updateSpace(key, char)
-    self.board.spaces[key][6] = self.board:charToInt(char);
+function Marker:mark(row, col)
+    self.board.putMark(self.board, row, col, self.char, self.color, self.textOptions);
 end
 
 return Marker;
