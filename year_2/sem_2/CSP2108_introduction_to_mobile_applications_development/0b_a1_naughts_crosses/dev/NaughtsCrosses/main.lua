@@ -27,41 +27,10 @@ local red = {1, 0, 0};
 local player = Player(board, "x", red);
 -- local ai = Ai(board, "o");
 
-local playerTurns = 0;
-
-local function printWinner(winner)
-    local options = {
-        text = winner .. " has won!\nGAME OVER!",
-        x = board.d.contentWidth * 0.5,
-        y = board.d.contentHeight * 0.5,
-        font = "Arial",
-        fontSize = 25,
-        align = "center"
-    };
-    local gameOver = display.newText(options);
-    gameOver.anchorX = 0;
-    gameOver.anchorY = 0;
-end
-
--- start checking score when we have at least 3 marks 
-local function checkScore()
-    if(playerTurns >= 3) then
-        -- if isGameOver, do something to stop program
-        if(board:isGameOver()) then
-            printWinner(board.winner);
-            -- kill touch
-            Runtime:removeEventListener(event, play);
-        else
-            print("No winner yet.");
-        end
-    end
-end
-
 local function play(event)
-    if(player:turn(event)) then
-        -- TODO: check score before ai turn
-        ai:turn(event);
-        playerTurns = playerTurns + 1;
+    player:turn(event);
+    if(board:isGameOver()) then
+        print("WINNER!")
     end
 end
 

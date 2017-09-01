@@ -200,19 +200,19 @@ function Board:newWinCombos()
     end
 
     -- define diagonal combos
-    -- left-right-up
+    -- left-right-down
     self.winCombos[comboCount] = {};
-    for i = 0, self.rowsCols, 1 do
+    for i = 1, self.rowsCols, 1 do
         self.winCombos[comboCount][i] = {};
         self.winCombos[comboCount][i]["x"] = i;
         self.winCombos[comboCount][i]["y"] = i;
     end
     comboCount = comboCount + 1;
-    -- left-right-down
+    -- right-left-down
     self.winCombos[comboCount] = {};
     for i = self.rowsCols, 1, -1 do
         self.winCombos[comboCount][i] = {};
-        self.winCombos[comboCount][i]["x"] = self.rowsCols - i - 1;
+        self.winCombos[comboCount][i]["x"] = self.rowsCols - i + 1;
         self.winCombos[comboCount][i]["y"] = i;
     end
 end
@@ -222,17 +222,11 @@ function Board:getWinCombo(id)
 end
 
 function Board:checkWinInCombo(id)
-    local output = 0;
+    local score = 0;
     for index, value in pairs(self.getWinCombo(self, id)) do
-        local mark = self.getScoreAt(self, value["x"], value["y"]);
-        if mark == self.players["player"] then
-            output = output + 1;
-        end
-        if mark == self.players["ai"] then
-            output = output - 1;
-        end
+        score = score + self.getScoreAt(self, value["x"], value["y"]);
     end
-    return output;
+    return score;
 end
 
 function Board:isWin()
@@ -240,10 +234,10 @@ function Board:isWin()
         local score = self.checkWinInCombo(self, index);
         if(math.abs(score)) == self.rowsCols then
             if(score == math.abs(score)) then 
-                self.winner = self.players["player"];
+                self.winner = self.chars["x"];
                 return true;
             else
-                self.winner = self.players["ai"];
+                self.winner = self.chars["o"];
                 return true;
             end
         end
