@@ -3,8 +3,8 @@ local Marker = require("Marker");
 -- extend Marker
 local Ai = Marker:extend("Ai");
 
-function Ai:init(board, char, color)
-    Ai.super.init(self, board, char, color);
+function Ai:init(logger, board, char, color)
+    Ai.super.init(self, logger, board, char, color);
 end
 
 function Ai:turn(event)
@@ -20,19 +20,17 @@ function Ai:turn(event)
 end
 
 function Ai:tryToWin()
-    print("DEBUG: entering tryToWin()");
     local me = self.board.chars[self.char];
     local winHere = (self.board.rowsCols - 1) * me;
     for index in pairs(self.board.winCombos) do
         local scoreHere = self.board.checkWinInCombo(self.board, index);
-        print("DEBUG: " .. scoreHere .. " vs " .. winHere);
         if(scoreHere == winHere) then
             for key, value in pairs(self.board.getWinCombo(self.board, index)) do
                 row = value["x"];
                 col = value["y"];
                 if(self.board.isEmpty(self.board, row, col)) then
                     Ai.super.mark(self, row, col);
-                    print("DEBUG: executed tryToWin() strategy");
+                    self.logger:debug(Ai.name, "tryToWin()", "executed strategy.")
                     return true;
                 end
             end
@@ -42,19 +40,17 @@ function Ai:tryToWin()
 end
 
 function Ai:tryToBlock()
-    print("DEBUG: entering tryToBlock()");
     local me = self.board.chars[self.char];
     local blockHere = (self.board.rowsCols * (me * -1)) - 1;
     for index in pairs(self.board.winCombos) do
         local scoreHere = self.board.checkWinInCombo(self.board, index);
-        print("DEBUG: " .. scoreHere .. " vs " .. blockHere);
         if(scoreHere == blockHere) then
             for key, value in pairs(self.board.getWinCombo(self.board, index)) do
                 row = value["x"];
                 col = value["y"];
                 if(self.board.isEmpty(self.board, row, col)) then
                     Ai.super.mark(self, row, col);
-                    print("DEBUG: executed tryToBlock() strategy");
+                    self.logger:debug(Ai.name, "tryToBlock()", "executed strategy.")
                     return true;
                 end
             end
@@ -64,19 +60,19 @@ function Ai:tryToBlock()
 end
 
 function Ai:lastResort()
-    print("DEBUG: entering lastResort()");
     -- go for center first
     local cRow = 2;
     local cCol = 2;
     if(self.board.isEmpty(self.board, cRow, cCol)) then
         Ai.super.mark(self, cRow, cCol);
+        self.logger:debug(Ai.name, "lastResort()", "executed strategy.")
         return;
     end
 
     for row = 1, self.board.rowsCols, 1 do
         for col = 1, self.board.rowsCols, 1 do
             if(Ai.super.mark(self, row, col)) then
-                print("DEBUG: executed lastResort() strategy");
+                self.logger:debug(Ai.name, "lastResort()", "executed strategy.")
                 return;
             end
         end

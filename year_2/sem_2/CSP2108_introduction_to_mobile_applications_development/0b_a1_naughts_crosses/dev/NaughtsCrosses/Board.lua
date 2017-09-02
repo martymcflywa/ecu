@@ -30,8 +30,8 @@ Converts touch event pixel coordinates to col,row.
 local Board = class("Board");
 
 -- defines dimensions of play area
-function Board:init()
-
+function Board:init(logger)
+    self.logger = logger;
     self.rowsCols = 3;
     self.chars = {
         empty = 0,
@@ -153,7 +153,7 @@ function Board:putMark(row, col, char, color, textOptions)
         mark:setFillColor(unpack(color));
         return true;
     end
-    print("INFO: Grid at row=" .. row .. ", col=" .. col .. ", x=" .. x .. ", y=" .. y .. " is already occupied.");
+    self.logger:debug(self.name, "putMark()", string.format("Grid at row=%d, col=%d, x=%d, y=%d is already occupied.", row, col, x, y));
     return false
 end
 
@@ -185,8 +185,6 @@ function Board:newWinCombos()
             self.winCombos[comboCount][j]["x"] = i;
             self.winCombos[comboCount][j]["y"] = j;
         end
-        print("DEBUG: comboId=" .. comboCount);
-        print(self.winCombos[comboCount]);
         comboCount = comboCount + 1;
     end
 
@@ -198,8 +196,6 @@ function Board:newWinCombos()
             self.winCombos[comboCount][j]["x"] = j;
             self.winCombos[comboCount][j]["y"] = i;
         end
-        print("DEBUG: comboId=" .. comboCount);
-        print(self.winCombos[comboCount]);
         comboCount = comboCount + 1;
     end
 
@@ -211,8 +207,6 @@ function Board:newWinCombos()
         self.winCombos[comboCount][i]["x"] = i;
         self.winCombos[comboCount][i]["y"] = i;
     end
-    print("DEBUG: comboId=" .. comboCount);
-    print(self.winCombos[comboCount]);
     comboCount = comboCount + 1;
     -- right-left-down
     self.winCombos[comboCount] = {};
@@ -221,8 +215,6 @@ function Board:newWinCombos()
         self.winCombos[comboCount][i]["x"] = self.rowsCols - i + 1;
         self.winCombos[comboCount][i]["y"] = i;
     end
-    print("DEBUG: comboId=" .. comboCount);
-    print(self.winCombos[comboCount]);
 end
 
 function Board:getWinCombo(id)

@@ -3,8 +3,8 @@ local Marker = require("Marker");
 -- extend Marker
 local Player = Marker:extend("Player");
 
-function Player:init(board, char, color)
-    Player.super.init(self, board, char, color);
+function Player:init(logger, board, char, color)
+    Player.super.init(self, logger, board, char, color);
 end
 
 function Player:turn(event)
@@ -14,7 +14,7 @@ function Player:turn(event)
             Player.super.mark(self, row, col);
             return true;
         else
-            print("INFO: Touch at x=" .. event.x .. " y=" .. event.y .. " is the outside board.");
+            self.logger:info(Player.name, "turn()", string.formamt("Touch at x=%d, y=%d is outside the board.", event.x, event.y));
             return false;
         end
     end

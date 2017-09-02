@@ -1,6 +1,7 @@
 local Marker = class("Marker");
 
-function Marker:init(board, char, color)
+function Marker:init(logger, board, char, color)
+    self.logger = logger;
     self.board = board;
     self.char = char;
     self.phase = "ended"; -- ended triggers listener only once
