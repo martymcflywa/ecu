@@ -40,14 +40,14 @@ function Board:init(logger)
     };
 
     self.d = display;
-    self.w20 = self.d.contentWidth * 0.2;
-    self.h20 = self.d.contentHeight * 0.2;
-    self.w40 = self.d.contentWidth * 0.4;
-    self.h40 = self.d.contentHeight * 0.4;
-    self.w60 = self.d.contentWidth * 0.6;
-    self.h60 = self.d.contentHeight * 0.6;
-    self.w80 = self.d.contentWidth * 0.8;
-    self.h80 = self.d.contentHeight * 0.8;
+    self.w20 = _w * 0.2;
+    self.h20 = _h * 0.2;
+    self.w40 = _w * 0.4;
+    self.h40 = _h * 0.4;
+    self.w60 = _w * 0.6;
+    self.h60 = _h * 0.6;
+    self.w80 = _w * 0.8;
+    self.h80 = _h * 0.8;
 
     self.centers = {};
     self.scores = {};
@@ -92,14 +92,14 @@ function Board:newBoard()
         for col = 1, self.rowsCols, 1 do
             self.scores[row][col] = self.chars["empty"];
             self.centers[row][col] = {};
-            self.centers[row][col]["x"] = self.xCenter(self, xPc * self.d.contentWidth);
-            self.centers[row][col]["y"] = self.yCenter(self, yPc * self.d.contentHeight);
+            self.centers[row][col]["x"] = self.xCenter(self, xPc * _w);
+            self.centers[row][col]["y"] = self.yCenter(self, yPc * _h);
             xPc = xPc + 0.2;
             self.grid[row][col] = {};
-            self.grid[row][col]["xLeft"] = self.d.contentWidth * xLeftPc;
-            self.grid[row][col]["yBottom"] = self.d.contentHeight * yBottomPc;
-            self.grid[row][col]["xRight"] = self.d.contentWidth * xRightPc;
-            self.grid[row][col]["yTop"] = self.d.contentWidth * yTopPc;
+            self.grid[row][col]["xLeft"] = _w * xLeftPc;
+            self.grid[row][col]["yBottom"] = _h * yBottomPc;
+            self.grid[row][col]["xRight"] = _w * xRightPc;
+            self.grid[row][col]["yTop"] = _w * yTopPc;
             xLeftPc = xLeftPc + 0.2;
             xRightPc = xRightPc + 0.2;
         end

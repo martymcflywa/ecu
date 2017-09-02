@@ -17,6 +17,10 @@ local Player = require("Player");
 local Ai = require("Ai");
 local Logger = require("Logger");
 
+-- helpful globals
+_w = display.contentWidth;
+_h = display.contentHeight;
+
 -- listen to this event
 local event = "touch";
 -- set up the logger
