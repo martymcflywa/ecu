@@ -17,7 +17,7 @@ Converts col,row to pixel coordinate, where marker is placed.
 scores:
 col,row holds value for marker placed. If "x" is placed, col,row's value = 1.
 If "o" is placed, col,row's value = -1. scores table is summed by winCombos table. 
-"x" wins if sum == 3. "o" wins if sum == 3. Tie if scores full but no winning sum.
+"x" wins if sum == 3. "o" wins if sum == -3. Tie if scores full but no winning sum.
 
 grid:
 Converts touch event pixel coordinates to col,row.
@@ -53,7 +53,7 @@ function Board:init()
     self.scores = {};
     self.grid = {};
     self.winCombos = {};
-    self.winner = nil;
+    self.winner = self.chars["empty"];
 end
 
 function Board:setup()
@@ -114,14 +114,12 @@ end
 
 function Board:xCenter(left)
     local xShift = self.w20 / 2;
-    local xCenter = left + xShift;
-    return xCenter;
+    return left + xShift;
 end
 
 function Board:yCenter(top)
     local yShift = self.h20 / 2;
-    local yCenter = top + yShift;
-    return yCenter;
+    return top + yShift;
 end
 
 function Board:getCenter(row, col)
@@ -160,7 +158,10 @@ function Board:putMark(row, col, char, color, textOptions)
 end
 
 function Board:isGameOver()
-    if(not self.isWin(self)) then
+    if(self.isWin(self)) then
+        return true;
+    else
+        -- check if board fully populated
         for row = 1, self.rowsCols, 1 do
             for col = 1, self.rowsCols, 1 do
                 if(self.isEmpty(self, row, col)) then
@@ -171,13 +172,11 @@ function Board:isGameOver()
         -- gameover on draw
         return true;
     end
-    -- gameover on win
-    return true;
 end
 
 function Board:newWinCombos()
     comboCount = 1;
-
+    
     -- define vertical combos
     for i = 1, self.rowsCols, 1 do
         self.winCombos[comboCount] = {};
@@ -186,6 +185,8 @@ function Board:newWinCombos()
             self.winCombos[comboCount][j]["x"] = i;
             self.winCombos[comboCount][j]["y"] = j;
         end
+        print("DEBUG: comboId=" .. comboCount);
+        print(self.winCombos[comboCount]);
         comboCount = comboCount + 1;
     end
 
@@ -197,6 +198,8 @@ function Board:newWinCombos()
             self.winCombos[comboCount][j]["x"] = j;
             self.winCombos[comboCount][j]["y"] = i;
         end
+        print("DEBUG: comboId=" .. comboCount);
+        print(self.winCombos[comboCount]);
         comboCount = comboCount + 1;
     end
 
@@ -208,6 +211,8 @@ function Board:newWinCombos()
         self.winCombos[comboCount][i]["x"] = i;
         self.winCombos[comboCount][i]["y"] = i;
     end
+    print("DEBUG: comboId=" .. comboCount);
+    print(self.winCombos[comboCount]);
     comboCount = comboCount + 1;
     -- right-left-down
     self.winCombos[comboCount] = {};
@@ -216,6 +221,8 @@ function Board:newWinCombos()
         self.winCombos[comboCount][i]["x"] = self.rowsCols - i + 1;
         self.winCombos[comboCount][i]["y"] = i;
     end
+    print("DEBUG: comboId=" .. comboCount);
+    print(self.winCombos[comboCount]);
 end
 
 function Board:getWinCombo(id)

@@ -31,11 +31,15 @@ local green = {0, 1, 0};
 local ai = Ai(board, "o", green);
 
 local function play(event)
-    player:turn(event);
     if(board:isGameOver()) then
         print("WINNER IS " .. board.winner .. "!");
     else
-        ai:turn(event);
+        if(player:turn(event)) then
+            ai:turn(event);
+        end
+    end
+    if(board:isGameOver()) then
+        print("WINNER IS " .. board.winner .. "!");
     end
 end
 

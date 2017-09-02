@@ -12,8 +12,10 @@ function Player:turn(event)
         local row, col = self.board.getGridFromTouch(self.board, event);
         if(row ~= nil and col ~= nil) then
             Player.super.mark(self, row, col);
+            return true;
         else
             print("INFO: Touch at x=" .. event.x .. " y=" .. event.y .. " is the outside board.");
+            return false;
         end
     end
 end
