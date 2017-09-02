@@ -152,9 +152,10 @@ function Board:putMark(row, col, char, color, textOptions)
         mark = self.d.newText(textOptions);
         mark:setFillColor(unpack(color));
         return true;
+    else
+        self.logger:debug(self.name, "putMark()", string.format("Grid at row=%d, col=%d, x=%d, y=%d is already occupied.", row, col, x, y));
+        return false
     end
-    self.logger:debug(self.name, "putMark()", string.format("Grid at row=%d, col=%d, x=%d, y=%d is already occupied.", row, col, x, y));
-    return false
 end
 
 function Board:isGameOver()
