@@ -2,13 +2,35 @@
 
 local composer = require("composer");
 local scene = composer.newScene();
+local Logger = require("Logger");
+local Board = require("Board");
+local Game = require("Game");
 
 --[[
     Code outside scene event functions are only executed once,
     unless the scene is removed by composer.RemoveScene().
 ]]--
 
-local title;
+local bg;
+local logger;
+local board;
+local game;
+local playerChar;
+local playArea;
+
+--[[
+    Defining initializers first.
+]]
+local function initBg(sceneGroup)
+    local bg = _d.newRect(_cx, _cy, _w, _h);
+    bg:setFillColor(unpack(_colors["white"]));
+    sceneGroup:insert(bg);
+    return bg;
+end
+
+local function play(event)
+    game:play(event);
+end
 
 --[[
     Code in create() runs when the scene is first created,
@@ -18,6 +40,14 @@ local title;
 ]]--
 function scene:create(event)
     local sceneGroup = self.view;
+    
+    playerChar = event.params.char;
+    bg = initBg(sceneGroup);
+    logger = Logger(_logMode);
+    board = Board(logger);
+    game = Game(logger, board, playerChar);
+    playArea = board:draw();
+    sceneGroup:insert(playArea);
 end
 
 function scene:show(event)
@@ -31,7 +61,8 @@ function scene:show(event)
     ]]--
     if(phase == "will") then
         -- do stuff just before shown
-
+        -- add listeners to board
+        bg:addEventListener("touch", play);
     --[[
         "did" code executed when scene is completely on screen. Has become the active screen.
         Start transitions, timers, start music for the scene or physics etc.

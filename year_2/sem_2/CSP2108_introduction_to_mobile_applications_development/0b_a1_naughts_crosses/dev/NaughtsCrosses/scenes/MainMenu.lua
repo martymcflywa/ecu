@@ -17,17 +17,13 @@ local buttonO;
 
 -- scene object parameters
 local yOffset = _h * 0.2;
+local buttonW = _w * 0.43;
+local buttonH = _h * 0.23;
 local font = "Arial";
 local titleGameText = "x|o|x";
 local titleMenuText = "choose your weapon";
-local colors = {
-    black = {0, 0, 0},
-    white = {1, 1, 1},
-    red = {1, 0, 0},
-    green = {0, 1, 0}
-};
-local gameSceneOptions = {
-    time = 1000,
+local gameScreenOptions = {
+    time = 300,
     params = {}
 };
 
@@ -36,7 +32,7 @@ local gameSceneOptions = {
 ]]
 local function initBg(sceneGroup)
     local bg = _d.newRect(_cx, _cy, _w, _h);
-    bg:setFillColor(unpack(colors["white"]));
+    bg:setFillColor(unpack(_colors["white"]));
     sceneGroup:insert(bg);
     return bg;
 end
@@ -52,7 +48,7 @@ local function initTitleGame(sceneGroup)
         y = yOffset
     };
     local titleGame = _d.newText(titleGameOptions);
-    titleGame:setFillColor(unpack(colors["black"]));
+    titleGame:setFillColor(unpack(_colors["black"]));
     sceneGroup:insert(titleGame);
     return titleGame;
 end
@@ -67,7 +63,7 @@ local function initTitleMenu(sceneGroup)
         y = _cy
     };
     local titleMenu = _d.newText(titleMenuOptions);
-    titleMenu:setFillColor(unpack(colors["black"]));
+    titleMenu:setFillColor(unpack(_colors["black"]));
     sceneGroup:insert(titleMenu);
     return titleMenu;
 end
@@ -79,8 +75,8 @@ local function initButton(sceneGroup, xPos, color, char)
         buttonGroup,
         xPos,
         _cy + yOffset,
-        _w * 0.43,
-        _h * 0.23
+        buttonW,
+        buttonH
     );
     button:setFillColor(unpack(color));
 
@@ -94,28 +90,31 @@ local function initButton(sceneGroup, xPos, color, char)
         y = _cy + yOffset
     };
     local buttonText = _d.newText(buttonTextOptions);
-    buttonText:setFillColor(unpack(colors["white"]));
+    buttonText:setFillColor(unpack(_colors["white"]));
 
     sceneGroup:insert(buttonGroup);
     return buttonGroup;
 end
 
 --[[
-    Dispatch to these functions when either x or o button is clicked.
+    These listeners are dispatched when x or o button is clicked,
+    allows player to select x or o char with these buttons.
 ]]--
-local function playerIsX(event)
+local function playerX(event)
     if(event.phase == "ended") then
-        gameSceneOptions.effect = "fromLeft";
-        gameSceneOptions.params.char = "x";
-        composer.gotoScene("scenes.Game", gameSceneOptions);
+        gameScreenOptions.effect = "fromLeft";
+        -- pass char to next scene
+        gameScreenOptions.params.char = _chars["x"];
+        composer.gotoScene("scenes.GameScreen", gameScreenOptions);
     end
 end
 
-local function playerIsO(event)
+local function playerO(event)
     if(event.phase == "ended") then
-        gameSceneOptions.effect = "fromRight";
-        gameSceneOptions.params.char = "o";
-        composer.gotoScene("scenes.Game", gameSceneOptions);
+        gameScreenOptions.effect = "fromRight";
+        -- pass char to next scene
+        gameScreenOptions.params.char = _chars["o"];
+        composer.gotoScene("scenes.GameScreen", gameScreenOptions);
     end
 end
 
@@ -133,11 +132,9 @@ function scene:create(event)
     titleGame = initTitleGame(sceneGroup);
     titleMenu = initTitleMenu(sceneGroup);
     -- setup buttons
-    buttonX = initButton(sceneGroup, _cx - (_cx * 0.43), colors["red"], "x");
-    buttonO = initButton(sceneGroup, _cx + (_cx * 0.43), colors["green"], "o");
-    -- add listeners to the buttons
-    buttonX:addEventListener("touch", playerIsX);
-    buttonO:addEventListener("touch", playerIsO);
+    local buttonXPosOffset = _cx * 0.43;
+    buttonX = initButton(sceneGroup, _cx - buttonXPosOffset, _colors["red"], "x");
+    buttonO = initButton(sceneGroup, _cx + buttonXPosOffset, _colors["green"], "o");
 end
 
 function scene:show(event)
@@ -151,7 +148,9 @@ function scene:show(event)
     ]]--
     if(phase == "will") then
         -- do stuff just before shown
-
+        -- add listeners to the buttons
+        buttonX:addEventListener(_event, playerX);
+        buttonO:addEventListener(_event, playerO);
     --[[
         "did" code executed when scene is completely on screen. Has become the active screen.
         Start transitions, timers, start music for the scene or physics etc.
@@ -195,7 +194,7 @@ function scene:destroy(event)
 end
 
 --[[
-    These events will be dispatched when transitioning to the scene.
+    These listeners will be dispatched when transitioning to the scene.
 ]]--
 scene:addEventListener("create", scene);
 scene:addEventListener("show", scene);
@@ -208,6 +207,6 @@ scene:addEventListener("destroy", scene);
         - Cancel transitions/timers
         - Dispose audio
         - Close IO (files/db etc.)
-]]
+]]--
 
 return scene;

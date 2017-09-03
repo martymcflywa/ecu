@@ -35,12 +35,6 @@ local Board = class("Board");
 function Board:init(logger)
     self.logger = logger;
     self.rowsCols = 3;
-    self.chars = {
-        empty = 0,
-        x = 1,
-        o = -1
-    };
-
     self.w20 = _w * 0.2;
     self.h20 = _h * 0.2;
     self.w40 = _w * 0.4;
@@ -49,30 +43,36 @@ function Board:init(logger)
     self.h60 = _h * 0.6;
     self.w80 = _w * 0.8;
     self.h80 = _h * 0.8;
-
     self.centers = {};
     self.scores = {};
     self.grid = {};
     self.winCombos = {};
-    self.winner = self.chars["empty"];
+    self.winner = _chars["empty"];
+    self:setup();
 end
 
 function Board:setup()
     self:newBoard();
     self:newWinCombos();
-    self:draw();
+    -- self:draw();
 end
 
 -- draws naughts and crosses board
 function Board:draw()
-    local vertLeft = _d.newLine(self.w40, self.h20, self.w40, self.h80);
+    local boardGroup = _d.newGroup();
+    local vertLeft = _d.newLine(boardGroup, self.w40, self.h20, self.w40, self.h80);
     vertLeft.strokeWidth = 5;
-    local vertRight = _d.newLine(self.w60, self.h20, self.w60, self.h80);
+    vertLeft:setStrokeColor(unpack(_colors["black"]));
+    local vertRight = _d.newLine(boardGroup, self.w60, self.h20, self.w60, self.h80);
     vertRight.strokeWidth = 5;
-    local horTop = _d.newLine(self.w20, self.h60, self.w80, self.h60);
+    vertRight:setStrokeColor(unpack(_colors["black"]));
+    local horTop = _d.newLine(boardGroup, self.w20, self.h60, self.w80, self.h60);
     horTop.strokeWidth = 5;
-    local horBottom = _d.newLine(self.w20, self.h40, self.w80, self.h40);
+    horTop:setStrokeColor(unpack(_colors["black"]));
+    local horBottom = _d.newLine(boardGroup, self.w20, self.h40, self.w80, self.h40);
     horBottom.strokeWidth = 5;
+    horBottom:setStrokeColor(unpack(_colors["black"]));
+    return boardGroup;
 end
 
 -- void, sets up three tables in single On^2 loop:
@@ -83,33 +83,33 @@ function Board:newBoard()
     local xPc = 0.2;
     local yPc = 0.2;
     local xLeftPc = 0.2;
-    local yBottomPc = 0.4;
     local xRightPc = 0.4;
     local yTopPc = 0.2;
+    local yBottomPc = 0.4;
     for row = 1, self.rowsCols, 1 do
         self.scores[row] = {};
         self.centers[row] = {};
         self.grid[row] = {};
         for col = 1, self.rowsCols, 1 do
-            self.scores[row][col] = self.chars["empty"];
+            self.scores[row][col] = _chars["empty"];
             self.centers[row][col] = {};
             self.centers[row][col]["x"] = self:xCenter(xPc * _w);
             self.centers[row][col]["y"] = self:yCenter(yPc * _h);
             xPc = xPc + 0.2;
             self.grid[row][col] = {};
             self.grid[row][col]["xLeft"] = _w * xLeftPc;
-            self.grid[row][col]["yBottom"] = _h * yBottomPc;
             self.grid[row][col]["xRight"] = _w * xRightPc;
             self.grid[row][col]["yTop"] = _w * yTopPc;
+            self.grid[row][col]["yBottom"] = _h * yBottomPc;
             xLeftPc = xLeftPc + 0.2;
             xRightPc = xRightPc + 0.2;
         end
         xPc = 0.2;
         yPc = yPc + 0.2;
         xLeftPc = 0.2;
-        yBottomPc = yBottomPc + 0.2;
         xRightPc = 0.4;
         yTopPc = yTopPc + 0.2;
+        yBottomPc = yBottomPc + 0.2;
     end
 end
 
@@ -136,7 +136,7 @@ end
 
 -- check if score at row, col is empty
 function Board:isEmpty(row, col)
-    if(self:getScoreAt(row, col) == self.chars["empty"]) then
+    if(self:getScoreAt(row, col) == _chars["empty"]) then
         return true;
     end
     return false;
@@ -144,7 +144,7 @@ end
 
 -- put marker on board, update scores
 function Board:putMark(row, col, char, color, textOptions)
-    local score = self.chars[char];
+    local score = _chars[char];
     local x, y = self:getCenter(row, col);
     if(self:isEmpty(row, col)) then
         self.scores[row][col] = score;
@@ -178,7 +178,6 @@ end
 
 function Board:newWinCombos()
     comboCount = 1;
-    
     -- define vertical combos
     for i = 1, self.rowsCols, 1 do
         self.winCombos[comboCount] = {};
@@ -236,10 +235,10 @@ function Board:isWin()
         local score = self:checkWinInCombo(index);
         if(math.abs(score)) == self.rowsCols then
             if(score == math.abs(score)) then 
-                self.winner = self.chars["x"];
+                self.winner = _chars["x"];
                 return true;
             else
-                self.winner = self.chars["o"];
+                self.winner = _chars["o"];
                 return true;
             end
         end

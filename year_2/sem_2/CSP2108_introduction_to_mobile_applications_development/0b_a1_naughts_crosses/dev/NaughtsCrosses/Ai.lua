@@ -20,7 +20,7 @@ function Ai:turn(event)
 end
 
 function Ai:tryToWin()
-    local me = self.board.chars[self.char];
+    local me = _chars[self.char];
     local winHere = (self.board.rowsCols - 1) * me;
     for index in pairs(self.board.winCombos) do
         local scoreHere = self.board.checkWinInCombo(self.board, index);
@@ -40,7 +40,7 @@ function Ai:tryToWin()
 end
 
 function Ai:tryToBlock()
-    local me = self.board.chars[self.char];
+    local me = _chars[self.char];
     local blockHere = (self.board.rowsCols * (me * -1)) - 1;
     for index in pairs(self.board.winCombos) do
         local scoreHere = self.board.checkWinInCombo(self.board, index);
