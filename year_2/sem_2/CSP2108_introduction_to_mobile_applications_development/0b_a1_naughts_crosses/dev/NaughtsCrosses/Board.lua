@@ -41,7 +41,6 @@ function Board:init(logger)
         o = -1
     };
 
-    self.d = display;
     self.w20 = _w * 0.2;
     self.h20 = _h * 0.2;
     self.w40 = _w * 0.4;
@@ -66,13 +65,13 @@ end
 
 -- draws naughts and crosses board
 function Board:draw()
-    local vertLeft = self.d.newLine(self.w40, self.h20, self.w40, self.h80);
+    local vertLeft = _d.newLine(self.w40, self.h20, self.w40, self.h80);
     vertLeft.strokeWidth = 5;
-    local vertRight = self.d.newLine(self.w60, self.h20, self.w60, self.h80);
+    local vertRight = _d.newLine(self.w60, self.h20, self.w60, self.h80);
     vertRight.strokeWidth = 5;
-    local horTop = self.d.newLine(self.w20, self.h60, self.w80, self.h60);
+    local horTop = _d.newLine(self.w20, self.h60, self.w80, self.h60);
     horTop.strokeWidth = 5;
-    local horBottom = self.d.newLine(self.w20, self.h40, self.w80, self.h40);
+    local horBottom = _d.newLine(self.w20, self.h40, self.w80, self.h40);
     horBottom.strokeWidth = 5;
 end
 
@@ -151,7 +150,7 @@ function Board:putMark(row, col, char, color, textOptions)
         self.scores[row][col] = score;
         textOptions.x = x;
         textOptions.y = y;
-        mark = self.d.newText(textOptions);
+        mark = _d.newText(textOptions);
         mark:setFillColor(unpack(color));
         return true;
     else
