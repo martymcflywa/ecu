@@ -57,9 +57,9 @@ function Board:init(logger)
 end
 
 function Board:setup()
-    self.newBoard(self);
-    self.newWinCombos(self);
-    self.draw(self);
+    self:newBoard();
+    self:newWinCombos();
+    self:draw();
 end
 
 -- draws naughts and crosses board
@@ -92,8 +92,8 @@ function Board:newBoard()
         for col = 1, self.rowsCols, 1 do
             self.scores[row][col] = self.chars["empty"];
             self.centers[row][col] = {};
-            self.centers[row][col]["x"] = self.xCenter(self, xPc * _w);
-            self.centers[row][col]["y"] = self.yCenter(self, yPc * _h);
+            self.centers[row][col]["x"] = self:xCenter(xPc * _w);
+            self.centers[row][col]["y"] = self:yCenter(yPc * _h);
             xPc = xPc + 0.2;
             self.grid[row][col] = {};
             self.grid[row][col]["xLeft"] = _w * xLeftPc;
@@ -135,7 +135,7 @@ end
 
 -- check if score at row, col is empty
 function Board:isEmpty(row, col)
-    if(self.getScoreAt(self, row, col) == self.chars["empty"]) then
+    if(self:getScoreAt(row, col) == self.chars["empty"]) then
         return true;
     end
     return false;
@@ -144,8 +144,8 @@ end
 -- put marker on board, update scores
 function Board:putMark(row, col, char, color, textOptions)
     local score = self.chars[char];
-    local x, y = self.getCenter(self, row, col);
-    if(self.isEmpty(self, row, col)) then
+    local x, y = self:getCenter(row, col);
+    if(self:isEmpty(row, col)) then
         self.scores[row][col] = score;
         textOptions.x = x;
         textOptions.y = y;
@@ -153,19 +153,19 @@ function Board:putMark(row, col, char, color, textOptions)
         mark:setFillColor(unpack(color));
         return true;
     else
-        self.logger:debug(self.name, "putMark()", string.format("Grid at row=%d, col=%d, x=%d, y=%d is already occupied.", row, col, x, y));
+        self.logger:debug(self.name, "putMark()", string.format("row=%d, col=%d, x=%03d, y=%03d already occupied.", row, col, x, y));
         return false
     end
 end
 
 function Board:isGameOver()
-    if(self.isWin(self)) then
+    if(self:isWin()) then
         return true;
     else
         -- check if board fully populated
         for row = 1, self.rowsCols, 1 do
             for col = 1, self.rowsCols, 1 do
-                if(self.isEmpty(self, row, col)) then
+                if(self:isEmpty(row, col)) then
                     return false;
                 end
             end
@@ -224,15 +224,15 @@ end
 
 function Board:checkWinInCombo(id)
     local score = 0;
-    for index, value in pairs(self.getWinCombo(self, id)) do
-        score = score + self.getScoreAt(self, value["x"], value["y"]);
+    for index, value in pairs(self:getWinCombo(id)) do
+        score = score + self:getScoreAt(value["x"], value["y"]);
     end
     return score;
 end
 
 function Board:isWin()
     for index in pairs(self.winCombos) do
-        local score = self.checkWinInCombo(self, index);
+        local score = self:checkWinInCombo(index);
         if(math.abs(score)) == self.rowsCols then
             if(score == math.abs(score)) then 
                 self.winner = self.chars["x"];

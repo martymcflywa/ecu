@@ -41,9 +41,9 @@ local function play(event)
     end
     if(board:isGameOver()) then
         if(board.winner == board.chars["empty"]) then
-            logger:log("main", "play()", "Game over, tie game!");
+            logger:log("main", "play()", "game over, tie game!");
         else
-            logger:log("main", "play()", string.format("Game over, winner is %s!", board.winner));
+            logger:log("main", "play()", string.format("game over, winner is %s!", board.winner));
         end
     end
 end
