@@ -1,29 +1,31 @@
 --[[
 
-Representation of the board as tables:
+    Representation of the board as tables:
 
- 1,1 | 1,2 | 1,3
------|-----|-----
- 2,1 | 2,2 | 2,3
------|-----|-----
- 3,1 | 3,2 | 3,3
+     1,1 | 1,2 | 1,3
+    -----|-----|-----
+     2,1 | 2,2 | 2,3
+    -----|-----|-----
+     3,1 | 3,2 | 3,3
 
-Each space is referenced by its column and row number, ie. 1,1 = top left.
-Three tables represent the board: centers, scores and grid.
+    Each space is referenced by its column and row number, ie. 1,1 = top left.
+    See https://coronalabs.com/blog/2015/04/07/tutorial-working-with-a-grid-layout/
 
-centers:
-Converts col,row to pixel coordinate, where marker is placed.
+    Three tables represent the board: centers, scores and grid.
 
-scores:
-col,row holds value for marker placed. If "x" is placed, col,row's value = 1.
-If "o" is placed, col,row's value = -1. scores table is summed by winCombos table. 
-"x" wins if sum == 3. "o" wins if sum == -3. Tie if scores full but no winning sum.
+    centers:
+    Converts col,row to pixel coordinate, where marker is placed.
 
-grid:
-Converts touch event pixel coordinates to col,row.
+    scores:
+    col,row holds value for marker placed. If "x" is placed, col,row's value = 1.
+    If "o" is placed, col,row's value = -1. scores table is summed by winCombos table. 
+    "x" wins if sum == 3. "o" wins if sum == -3. Tie if scores full but no winning sum.
 
-@author Martin Ponce, 10371381 for CSP2108
-@version 20170901
+    grid:
+    Converts touch event pixel coordinates to col,row.
+
+    @author Martin Ponce, 10371381 for CSP2108
+    @version 20170901
 
 --]]
 

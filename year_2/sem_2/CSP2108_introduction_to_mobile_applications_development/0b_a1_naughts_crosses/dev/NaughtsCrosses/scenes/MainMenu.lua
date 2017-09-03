@@ -3,7 +3,7 @@ local scene = composer.newScene();
 
 --[[
     Code outside scene event functions are only executed once,
-    unless the scene is removed by commposer.RemoveScene().
+    unless the scene is removed by composer.RemoveScene().
 ]]--
 
 function scene:create(event)
