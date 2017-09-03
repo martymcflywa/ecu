@@ -30,6 +30,11 @@ end
 
 local function play(event)
     game:play(event);
+    -- if(playerChar == _chars["x"]) then
+    --     game:playerFirst(event);
+    -- else
+    --     game:aiFirst(event);
+    -- end
 end
 
 --[[
@@ -62,13 +67,23 @@ function scene:show(event)
     if(phase == "will") then
         -- do stuff just before shown
         -- add listeners to board
-        bg:addEventListener("touch", play);
+        bg:addEventListener(_event, play);
     --[[
         "did" code executed when scene is completely on screen. Has become the active screen.
         Start transitions, timers, start music for the scene or physics etc.
     ]]--
     elseif(phase == "did") then
         -- do stuff when shown
+
+        -- if ai goes first, dispatch a proxy event to trigger gameplay
+        if(playerChar == _chars["o"]) then
+            local proxyEvent = {
+                name = "touch",
+                phase = "ended",
+                target = bg
+            };
+            bg:dispatchEvent(proxyEvent);
+        end
     end
 end
 
