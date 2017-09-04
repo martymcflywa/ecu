@@ -35,11 +35,11 @@ local function isGameOver()
     if(game.board:isGameOver()) then
         if(game.board.winner == _chars["empty"]) then
             -- TODO: goto tie scene
-            game.logger:log("GameScreen", "isGameOver()", "game over, tie game!");
+            game.logger:log("PlayScreen", "isGameOver()", "game over, tie game!");
             return true;
         else
             -- TODO: goto winner scene
-            game.logger:log("GameScreen", "isGameOver()", string.format("game over, winner is %s!", game.board.winner));
+            game.logger:log("PlayScreen", "isGameOver()", string.format("game over, winner is %s!", game.board.winner));
             return true;
         end
     end

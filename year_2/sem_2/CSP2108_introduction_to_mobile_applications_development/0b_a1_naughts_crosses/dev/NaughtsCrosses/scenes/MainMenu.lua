@@ -22,7 +22,7 @@ local buttonH = _h * 0.23;
 local font = "Arial";
 local titleGameText = "xvso";
 local titleMenuText = "choose your weapon";
-local gameScreenOptions = {
+local playScreenOptions = {
     time = 300,
     params = {}
 };
@@ -102,19 +102,19 @@ end
 ]]
 local function playerX(event)
     if(event.phase == "ended") then
-        gameScreenOptions.effect = "fromLeft";
+        playScreenOptions.effect = "fromLeft";
         -- pass char to next scene
-        gameScreenOptions.params.char = _chars[_x];
-        composer.gotoScene("scenes.GameScreen", gameScreenOptions);
+        playScreenOptions.params.char = _chars[_x];
+        composer.gotoScene("scenes.PlayScreen", playScreenOptions);
     end
 end
 
 local function playerO(event)
     if(event.phase == "ended") then
-        gameScreenOptions.effect = "fromRight";
+        playScreenOptions.effect = "fromRight";
         -- pass char to next scene
-        gameScreenOptions.params.char = _chars[_o];
-        composer.gotoScene("scenes.GameScreen", gameScreenOptions);
+        playScreenOptions.params.char = _chars[_o];
+        composer.gotoScene("scenes.PlayScreen", playScreenOptions);
     end
 end
 
