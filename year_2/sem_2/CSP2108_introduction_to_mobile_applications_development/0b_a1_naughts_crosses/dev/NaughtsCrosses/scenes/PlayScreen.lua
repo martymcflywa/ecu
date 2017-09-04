@@ -93,6 +93,39 @@ local function play(event)
     end
 end
 
+local function resetObjects()
+    if(bg ~= nil) then
+        bg:removeEventListener(_event, play);
+        bg:removSelf();
+    end
+    if(board ~= nil) then
+        if(board.sceneGroup ~= nil) then
+            board.sceneGroup:removeSelf();
+        end
+    end
+    playerChar = nil;
+end
+
+local function restartGame(sceneGroup, playerChar)
+    playerChar = playerChar;
+    bg = initBg(sceneGroup);
+    logger = Logger(_logMode);
+    board = Board(logger, sceneGroup);
+    game = Game(logger, board, playerChar);
+    board:draw();
+    bg:addEventListener(_event, play);
+
+    -- if ai goes first, dispatch a proxy event to trigger gameplay
+    if(playerChar == _chars[_o]) then
+        local proxyEvent = {
+            name = "touch",
+            phase = "ended",
+            target = bg
+        };
+        bg:dispatchEvent(proxyEvent);
+    end
+end
+
 --[[
     Code in create() runs when the scene is first created,
     before appearing on the screen.
@@ -101,6 +134,7 @@ end
 --]]
 function scene:create(event)
     local sceneGroup = self.view;
+    resetObjects();
 end
 
 function scene:show(event)
@@ -114,29 +148,13 @@ function scene:show(event)
     --]]
     if(phase == "will") then
         -- do stuff just before shown
-        playerChar = event.params.char;
-        bg = initBg(sceneGroup);
-        logger = Logger(_logMode);
-        board = Board(logger, sceneGroup);
-        game = Game(logger, board, playerChar);
-        board:draw();
-        bg:addEventListener(_event, play);
+        restartGame(sceneGroup, event.params.char);
     --[[
         "did" code executed when scene is completely on screen. Has become the active screen.
         Start transitions, timers, start music for the scene or physics etc.
     --]]
     elseif(phase == "did") then
         -- do stuff when shown
-
-        -- if ai goes first, dispatch a proxy event to trigger gameplay
-        if(playerChar == _chars[_o]) then
-            local proxyEvent = {
-                name = "touch",
-                phase = "ended",
-                target = bg
-            };
-            bg:dispatchEvent(proxyEvent);
-        end
     end
 end
 
@@ -171,14 +189,6 @@ end
 --]]
 function scene:destroy(event)
     local sceneGroup = self.view;
-    -- clean the board
-    while board.sceneGroup.numChildren > 0 do
-        local child = board.sceneGroup[1];
-        if(child) then
-            child:removeSelf();
-        end
-    end
-    bg:removeEventListener(_event, play);
 end
 
 --[[
