@@ -22,37 +22,17 @@ function Game:playerSelect(playerChar)
 end
 
 function Game:play(event)
-    -- when player goes first
-    if(self.playerChar == _chars["x"]) then
-        if(self.player:turn(event)) then
-            if(not self:isGameOver()) then
-                self.ai:turn(event);
-            end
-        end
-    -- else ai goes first
+    -- ai first turn, proxy event.x will be nil
+    if(event.x == nil) then
+        self.ai:turn(event);
     else
-        -- ai first turn
-        if(event.x == nil) then
-            self.ai:turn(event);
-        else
-            if(not self:isGameOver()) then
-                if(self.player:turn(event)) then
-                    if(not self:isGameOver()) then
-                        self.ai:turn(event);
-                    end
+        if(not self:isGameOver()) then
+            if(self.player:turn(event)) then
+                if(not self:isGameOver()) then
+                    self.ai:turn(event);
+                    self:isGameOver();
                 end
             end
-        end
-    end
-    self:isGameOver();
-end
-
-function Game:aiFirst(event)
-    self.ai:turn(event);
-    self:isGameOver();
-    if(event.x ~= nil) then
-        if(self.player:turn(event)) then
-            self:isGameOver();
         end
     end
 end
