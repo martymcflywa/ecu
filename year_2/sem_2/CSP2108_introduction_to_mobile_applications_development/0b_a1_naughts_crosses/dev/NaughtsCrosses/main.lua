@@ -39,7 +39,6 @@ _event = "touch";
 _logMode = "debug";
 
 --[[
-    start at main menu
-]]--
-
+    It all starts at MainMenu.
+]]
 composer.gotoScene("scenes.MainMenu", {effect = "fade", time = 500});

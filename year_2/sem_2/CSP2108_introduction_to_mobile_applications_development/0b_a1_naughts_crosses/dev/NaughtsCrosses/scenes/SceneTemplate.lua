@@ -6,7 +6,7 @@ local scene = composer.newScene();
 --[[
     Code outside scene event functions are only executed once,
     unless the scene is removed by composer.RemoveScene().
-]]--
+]]
 
 local title;
 
@@ -15,7 +15,7 @@ local title;
     before appearing on the screen.
     Create ui/display objects here, ie. buttons, text, graphics etc
     so it's ready when show() is dispatched.
-]]--
+]]
 function scene:create(event)
     local sceneGroup = self.view;
 end
@@ -28,14 +28,14 @@ function scene:show(event)
         "will" code executed when scene is still off screen, but about to be shown.
         Reset variable values or reposition objects to start points,
         ie. restarting the level etc.
-    ]]--
+    ]]
     if(phase == "will") then
         -- do stuff just before shown
 
     --[[
         "did" code executed when scene is completely on screen. Has become the active screen.
         Start transitions, timers, start music for the scene or physics etc.
-    ]]--
+    ]]
     elseif(phase == "did") then
         -- do stuff when shown
     end
@@ -48,7 +48,7 @@ function scene:hide(event)
     --[[
         "will" code executed when scene is still on screen, but about to be hidden.
         Pause/stop physics, cancel timers/transitions, stop music etc.
-    ]]--
+    ]]
     if(phase == "will") then
         -- do stuff just before hidden
 
@@ -56,7 +56,7 @@ function scene:hide(event)
         "did" code executed when scene is completely hidden.
         Scene view remains initialized and stays in memory,
         could be reused without initializing.
-    ]]--
+    ]]
     elseif(phase == "did") then
         -- do stuff when hidden
     end
@@ -69,14 +69,14 @@ end
     To remove a scene, call composer.removeScene(name);
     Can also pass shouldRecycle bool: composer.removeScene(name, true);
     Recycled scenes stay in mem.
-]]--
+]]
 function scene:destroy(event)
     local sceneGroup = self.view;
 end
 
 --[[
     These events will be dispatched when transitioning to the scene.
-]]--
+]]
 scene:addEventListener("create", scene);
 scene:addEventListener("show", scene);
 scene:addEventListener("hide", scene);
