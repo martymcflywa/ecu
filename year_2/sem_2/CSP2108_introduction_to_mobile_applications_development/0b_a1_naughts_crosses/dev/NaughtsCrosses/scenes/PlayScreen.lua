@@ -16,7 +16,11 @@ local logger;
 local board;
 local game;
 local playerChar;
-local playArea;
+local gameOverScreenOptions = {
+    effect = "flip",
+    time = 300,
+    params = {}
+};
 
 --[[
     Defining initializers first.
@@ -28,18 +32,41 @@ local function initBg(sceneGroup)
     return bg;
 end
 
+local function handleTie()
+    gameOverScreenOptions.params.message = "tie game\nyou both lose";
+    timer.performWithDelay(500, function() composer.gotoScene("scenes.GameOver", gameOverScreenOptions); end);
+end
+
+local function handleWin()
+    local message;
+    local winChar;
+    local isPlayerWinner = false;
+    if(game.board.winner == _chars[_x]) then
+        winChar = _x;
+    else
+        winChar = _o;
+    end
+    if(playerChar == _chars[winChar]) then
+        message = string.format("you won with '%s'\nwell done", winChar);
+    else
+        message = string.format("you lose\nai beat you with '%s'", winChar);
+    end
+    gameOverScreenOptions.params.message = message;
+    timer.performWithDelay(500, function() composer.gotoScene("scenes.GameOver", gameOverScreenOptions); end);
+end
+
 --[[
     Checks if game is over. If so, goto appropriate scene.
 --]]
 local function isGameOver()
     if(game.board:isGameOver()) then
         if(game.board.winner == _chars["empty"]) then
-            -- TODO: goto tie scene
             game.logger:log("PlayScreen", "isGameOver()", "game over, tie game!");
+            handleTie();
             return true;
         else
-            -- TODO: goto winner scene
             game.logger:log("PlayScreen", "isGameOver()", string.format("game over, winner is %s!", game.board.winner));
+            handleWin();
             return true;
         end
     end
@@ -74,14 +101,6 @@ end
 --]]
 function scene:create(event)
     local sceneGroup = self.view;
-    
-    playerChar = event.params.char;
-    bg = initBg(sceneGroup);
-    logger = Logger(_logMode);
-    board = Board(logger);
-    game = Game(logger, board, playerChar);
-    playArea = board:draw();
-    sceneGroup:insert(playArea);
 end
 
 function scene:show(event)
@@ -95,7 +114,12 @@ function scene:show(event)
     --]]
     if(phase == "will") then
         -- do stuff just before shown
-        -- add listeners to board
+        playerChar = event.params.char;
+        bg = initBg(sceneGroup);
+        logger = Logger(_logMode);
+        board = Board(logger, sceneGroup);
+        game = Game(logger, board, playerChar);
+        board:draw();
         bg:addEventListener(_event, play);
     --[[
         "did" code executed when scene is completely on screen. Has become the active screen.
@@ -147,6 +171,14 @@ end
 --]]
 function scene:destroy(event)
     local sceneGroup = self.view;
+    -- clean the board
+    while board.sceneGroup.numChildren > 0 do
+        local child = board.sceneGroup[1];
+        if(child) then
+            child:removeSelf();
+        end
+    end
+    bg:removeEventListener(_event, play);
 end
 
 --[[

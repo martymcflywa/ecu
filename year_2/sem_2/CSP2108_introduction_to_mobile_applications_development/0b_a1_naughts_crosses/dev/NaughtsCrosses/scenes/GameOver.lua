@@ -9,23 +9,19 @@ local scene = composer.newScene();
 --]]
 
 -- scene objects
-local bg;
-local titleGame;
-local titleMenu;
-local buttonX;
-local buttonO;
+local titleGameOver;
+local titleMessage;
+local buttonPlayAgain;
+local buttonExit;
 
 -- scene object parameters
 local yOffset = _h * 0.2;
 local buttonW = _w * 0.5;
 local buttonH = _h * 0.25;
 local font = "Arial";
-local titleGameText = "xvso";
-local titleMenuText = "choose your weapon";
-local playScreenOptions = {
-    time = 300,
-    params = {}
-};
+local gameOverText = "GAME\nOVER";
+local playAgainText = "AGAIN";
+local exitText = "EXIT";
 
 --[[
     Defining initializers first.
@@ -37,41 +33,40 @@ local function initBg(sceneGroup)
     return bg;
 end
 
-local function initTitleGame(sceneGroup)
+local function initTitleGameOver(sceneGroup)
     local yOffset = _cy - yOffset;
-    local titleGameOptions = {
-        text = titleGameText,
+    local titleGameOverOptions = {
+        text = gameOverText,
         font = font,
-        fontSize = 125,
+        fontSize = 70,
         align = "center",
         x = _cx,
         y = yOffset
     };
-    local titleGame = _d.newText(titleGameOptions);
-    titleGame:setFillColor(unpack(_colors["orange"]));
-    sceneGroup:insert(titleGame);
-    return titleGame;
+    local label = _d.newText(titleGameOverOptions);
+    label:setFillColor(unpack(_colors["orange"]));
+    sceneGroup:insert(label);
+    return label;
 end
 
-local function initTitleMenu(sceneGroup)
-    local titleMenuOptions = {
-        text = titleMenuText,
+local function initTitleMessage(sceneGroup, message)
+    local titleMessageOptions = {
+        text = message,
         font = font,
         fontSize = 25,
         align = "center",
         x = _cx,
-        y = _cy
+        y = _cy + (yOffset * 0.3)
     };
-    local titleMenu = _d.newText(titleMenuOptions);
-    titleMenu:setFillColor(unpack(_colors["orange"]));
-    sceneGroup:insert(titleMenu);
-    return titleMenu;
+    local label = _d.newText(titleMessageOptions);
+    label:setFillColor(unpack(_colors["orange"]));
+    sceneGroup:insert(label);
+    return label;
 end
 
-local function initButton(sceneGroup, xPos, color, char)
-    local buttonGroup = _d.newGroup();
+local function initButton(sceneGroup, xPos, color, label)
     local yOffset = _cy + yOffset + 50;
-    buttonGroup.char = char;
+    local buttonGroup = _d.newGroup();
     local button = _d.newRect(
         buttonGroup,
         xPos,
@@ -80,43 +75,34 @@ local function initButton(sceneGroup, xPos, color, char)
         buttonH
     );
     button:setFillColor(unpack(color));
-
-    local buttonTextOptions = {
+    local buttonLabelOptions = {
         parent = buttonGroup,
-        text = char,
+        text = label,
         font = font,
-        fontSize = 300,
+        fontSize = 40,
         align = "center",
         x = xPos,
-        y = yOffset - 22
+        y = yOffset
     };
-    local buttonText = _d.newText(buttonTextOptions);
-    buttonText:setFillColor(unpack(_colors["white"]));
-
+    local buttonLabel = _d.newText(buttonLabelOptions);
+    buttonLabel:setFillColor(unpack(_colors["white"]));
     sceneGroup:insert(buttonGroup);
     return buttonGroup;
 end
 
 --[[
-    These listeners are dispatched when x or o button is clicked,
-    allows player to select x or o char with these buttons.
+    Define the listeners for the buttons.
 --]]
-local function playerX(event)
-    if(event.phase == "ended") then
-        playScreenOptions.effect = "fromLeft";
-        -- pass char to next scene
-        playScreenOptions.params.char = _chars[_x];
-        composer.gotoScene("scenes.PlayScreen", playScreenOptions);
-    end
+
+-- start all over again
+local function playAgain(event)
+    composer.gotoScene("scenes.MainMenu", {effect = "fade", time = 500});
 end
 
-local function playerO(event)
-    if(event.phase == "ended") then
-        playScreenOptions.effect = "fromRight";
-        -- pass char to next scene
-        playScreenOptions.params.char = _chars[_o];
-        composer.gotoScene("scenes.PlayScreen", playScreenOptions);
-    end
+-- kill the game
+local function exit(event)
+    -- TODO: add "are you sure" screen
+    native.requestExit();
 end
 
 --[[
@@ -127,15 +113,26 @@ end
 --]]
 function scene:create(event)
     local sceneGroup = self.view;
+    local message = event.params.message;
     -- setup background
     bg = initBg(sceneGroup);
-    -- setup title objects
-    titleGame = initTitleGame(sceneGroup);
-    titleMenu = initTitleMenu(sceneGroup);
+    -- setup title
+    titleGameOver = initTitleGameOver(sceneGroup);
+    titleMessage = initTitleMessage(sceneGroup, message);
     -- setup buttons
-    local buttonXPosOffset = _cx * 0.5;
-    buttonX = initButton(sceneGroup, _cx - buttonXPosOffset, _colors["red"], _x);
-    buttonO = initButton(sceneGroup, _cx + buttonXPosOffset, _colors["green"], _o);
+    local xOffset = _cx * 0.5;
+    buttonPlayAgain = initButton(
+        sceneGroup, 
+        _cx - xOffset, 
+        _colors["green"], 
+        playAgainText
+    );
+    buttonExit = initButton(
+        sceneGroup,
+        _cx + xOffset,
+        _colors["red"],
+        exitText
+    );
 end
 
 function scene:show(event)
@@ -149,15 +146,18 @@ function scene:show(event)
     --]]
     if(phase == "will") then
         -- do stuff just before shown
+
         -- add listeners to the buttons
-        buttonX:addEventListener(_event, playerX);
-        buttonO:addEventListener(_event, playerO);
+        buttonPlayAgain:addEventListener(_event, playAgain);
+        buttonExit:addEventListener(_event, exit);
     --[[
         "did" code executed when scene is completely on screen. Has become the active screen.
         Start transitions, timers, start music for the scene or physics etc.
     --]]
     elseif(phase == "did") then
         -- do stuff when shown
+        -- destroy play screen so it starts over again
+        composer.removeScene("scenes.PlayScreen");
     end
 end
 
@@ -195,7 +195,7 @@ function scene:destroy(event)
 end
 
 --[[
-    These listeners will be dispatched when transitioning to the scene.
+    These events will be dispatched when transitioning to the scene.
 --]]
 scene:addEventListener("create", scene);
 scene:addEventListener("show", scene);

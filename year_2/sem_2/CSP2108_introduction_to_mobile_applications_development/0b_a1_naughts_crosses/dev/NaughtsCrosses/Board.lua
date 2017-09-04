@@ -32,8 +32,11 @@
 local Board = class("Board");
 
 -- defines dimensions of play area
-function Board:init(logger)
+function Board:init(logger, sceneGroup)
     self.logger = logger;
+    -- injecting scenegroup here so board and chars are added to it
+    -- TODO: would prefer to keep this responsibility to scene but running out of time
+    self.sceneGroup = sceneGroup;
     self.rowsCols = 3;
     self.w20 = _w * 0.2;
     self.h20 = _h * 0.2;
@@ -71,7 +74,7 @@ function Board:draw()
     local horBottom = _d.newLine(boardGroup, self.w20, self.h40, self.w80, self.h40);
     horBottom.strokeWidth = 5;
     horBottom:setStrokeColor(unpack(_colors["black"]));
-    return boardGroup;
+    self.sceneGroup:insert(boardGroup);
 end
 
 -- void, sets up three tables in single On^2 loop:
@@ -149,8 +152,9 @@ function Board:putMark(row, col, char, color, textOptions)
         self.scores[row][col] = score;
         textOptions.x = x;
         textOptions.y = y;
-        mark = _d.newText(textOptions);
+        local mark = _d.newText(textOptions);
         mark:setFillColor(unpack(color));
+        self.sceneGroup:insert(mark);
         return true;
     else
         self.logger:debug(self.name, "putMark()", string.format("row=%d, col=%d, x=%03d, y=%03d already occupied.", row, col, x, y));

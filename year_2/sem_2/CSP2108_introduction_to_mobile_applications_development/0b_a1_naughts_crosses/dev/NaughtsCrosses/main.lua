@@ -26,7 +26,7 @@ _colors = {
     white = {1, 1, 1},
     red = {1, 0, 0},
     green = {0, 1, 0},
-    transparent = {0, 0, 0, 0}
+    orange = {1, 0.5, 0, 1}
 };
 _chars = {
     empty = 0,
