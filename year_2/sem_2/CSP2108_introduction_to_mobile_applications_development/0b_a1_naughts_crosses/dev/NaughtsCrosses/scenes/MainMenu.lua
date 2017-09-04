@@ -20,7 +20,7 @@ local yOffset = _h * 0.2;
 local buttonW = _w * 0.43;
 local buttonH = _h * 0.23;
 local font = "Arial";
-local titleGameText = "x|o|x";
+local titleGameText = "xvso";
 local titleMenuText = "choose your weapon";
 local gameScreenOptions = {
     time = 300,
@@ -104,7 +104,7 @@ local function playerX(event)
     if(event.phase == "ended") then
         gameScreenOptions.effect = "fromLeft";
         -- pass char to next scene
-        gameScreenOptions.params.char = _chars["x"];
+        gameScreenOptions.params.char = _chars[_x];
         composer.gotoScene("scenes.GameScreen", gameScreenOptions);
     end
 end
@@ -113,7 +113,7 @@ local function playerO(event)
     if(event.phase == "ended") then
         gameScreenOptions.effect = "fromRight";
         -- pass char to next scene
-        gameScreenOptions.params.char = _chars["o"];
+        gameScreenOptions.params.char = _chars[_o];
         composer.gotoScene("scenes.GameScreen", gameScreenOptions);
     end
 end
@@ -133,8 +133,8 @@ function scene:create(event)
     titleMenu = initTitleMenu(sceneGroup);
     -- setup buttons
     local buttonXPosOffset = _cx * 0.43;
-    buttonX = initButton(sceneGroup, _cx - buttonXPosOffset, _colors["red"], "x");
-    buttonO = initButton(sceneGroup, _cx + buttonXPosOffset, _colors["green"], "o");
+    buttonX = initButton(sceneGroup, _cx - buttonXPosOffset, _colors["red"], _x);
+    buttonO = initButton(sceneGroup, _cx + buttonXPosOffset, _colors["green"], _o);
 end
 
 function scene:show(event)

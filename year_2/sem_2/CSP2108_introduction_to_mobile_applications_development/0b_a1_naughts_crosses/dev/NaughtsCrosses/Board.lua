@@ -54,7 +54,6 @@ end
 function Board:setup()
     self:newBoard();
     self:newWinCombos();
-    -- self:draw();
 end
 
 -- draws naughts and crosses board
@@ -235,10 +234,10 @@ function Board:isWin()
         local score = self:checkWinInCombo(index);
         if(math.abs(score)) == self.rowsCols then
             if(score == math.abs(score)) then 
-                self.winner = _chars["x"];
+                self.winner = _chars[_x];
                 return true;
             else
-                self.winner = _chars["o"];
+                self.winner = _chars[_o];
                 return true;
             end
         end

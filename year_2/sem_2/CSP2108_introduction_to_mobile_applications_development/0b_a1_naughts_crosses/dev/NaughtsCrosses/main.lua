@@ -33,6 +33,8 @@ _chars = {
     x = 1,
     o = -1
 };
+_x = "x";
+_o = "o";
 _event = "touch";
 _logMode = "debug";
 

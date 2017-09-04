@@ -30,7 +30,7 @@ end
 
 local function play(event)
     game:play(event);
-    -- if(playerChar == _chars["x"]) then
+    -- if(playerChar == _chars[_x]) then
     --     game:playerFirst(event);
     -- else
     --     game:aiFirst(event);
@@ -76,7 +76,7 @@ function scene:show(event)
         -- do stuff when shown
 
         -- if ai goes first, dispatch a proxy event to trigger gameplay
-        if(playerChar == _chars["o"]) then
+        if(playerChar == _chars[_o]) then
             local proxyEvent = {
                 name = "touch",
                 phase = "ended",
