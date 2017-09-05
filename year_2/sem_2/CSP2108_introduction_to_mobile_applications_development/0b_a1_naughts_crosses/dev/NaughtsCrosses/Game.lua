@@ -16,7 +16,7 @@ function Game:dispose()
         self.player = nil;
     end
     if(self.ai ~= nil) then
-        self.player:dispose();
+        self.ai:dispose();
         self.ai = nil;
     end
     if(self.playerChar ~= nil) then

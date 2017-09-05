@@ -60,12 +60,10 @@ function Board:setup()
 end
 
 function Board:dispose()
+    self.winner = _chars["empty"];
     if(self.sceneGroup ~= nil) then
         self.sceneGroup:removeSelf();
         self.sceneGroup = nil;
-    end
-    if(self.winner ~= _chars["empty"]) then
-        self.winner = _chars["empty"];
     end
     if(self.centers ~= nil) then
         self.centers = nil;
