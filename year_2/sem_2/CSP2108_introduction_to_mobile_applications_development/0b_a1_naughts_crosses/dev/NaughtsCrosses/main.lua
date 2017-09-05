@@ -41,4 +41,4 @@ _logMode = "debug";
 --[[
     It all starts at MainMenu.
 --]]
-composer.gotoScene("scenes.MainMenu", {effect = "fade", time = 500});
+composer.gotoScene("scenes.MainMenu");

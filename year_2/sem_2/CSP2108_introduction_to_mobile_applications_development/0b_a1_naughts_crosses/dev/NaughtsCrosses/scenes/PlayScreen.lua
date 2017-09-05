@@ -33,8 +33,8 @@ end
 
 function scene:init(sceneGroup, playerChar)
     self.gameOverScreenOptions = {
-        effect = "flip",
-        time = 300,
+        effect = "zoomInOutFade",
+        time = 1000,
         params = {}
     };
     self.playerChar = playerChar;
@@ -64,11 +64,6 @@ function scene:initBg(sceneGroup)
 end
 
 function scene:dispose(sceneGroup)
-    -- if(bg ~= nil) then
-    --     -- bg:removeEventListener(_event, play);
-    --     _d.remove(bg);
-    --     bg = nil;
-    -- end
     if(self.board ~= nil) then
         self.board:dispose();
         self.board = nil;
@@ -83,9 +78,6 @@ function scene:dispose(sceneGroup)
     if(self.logger ~= nil) then
         self.logger = nil;
     end
-    -- if(sceneGroup.numChildren > 0) then
-    --     sceneGroup:removeSelf();
-    -- end
     collectgarbage();
 end
 
@@ -109,7 +101,7 @@ end
 
 function scene:handleTie()
     self.gameOverScreenOptions.params.message = "tie game\nyou both lose";
-    timer.performWithDelay(500, function() composer.gotoScene("scenes.GameOver", self.gameOverScreenOptions); end);
+    timer.performWithDelay(800, function() composer.gotoScene("scenes.GameOver", self.gameOverScreenOptions); end);
 end
 
 function scene:handleWin()

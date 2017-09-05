@@ -38,7 +38,7 @@ function scene:init(sceneGroup)
     self.titleGameText = "xvso";
     self.titleMenuText = "choose your weapon";
     self.playScreenOptions = {
-        time = 300,
+        time = 200,
         params = {}
     };
     -- setup background
