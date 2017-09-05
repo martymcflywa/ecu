@@ -59,6 +59,31 @@ function Board:setup()
     self:newWinCombos();
 end
 
+function Board:dispose()
+    if(self.sceneGroup ~= nil) then
+        self.sceneGroup:removeSelf();
+        self.sceneGroup = nil;
+    end
+    if(self.winner ~= _chars["empty"]) then
+        self.winner = _chars["empty"];
+    end
+    if(self.centers ~= nil) then
+        self.centers = nil;
+    end
+    if(self.scores ~= nil) then
+        self.scores = nil;
+    end
+    if(self.grid ~= nil) then
+        self.grid = nil;
+    end
+    if(self.winCombos ~= nil) then
+        self.winCombos = nil;
+    end
+    if(self.logger ~= nil) then
+        self.logger = nil;
+    end
+end
+
 -- draws naughts and crosses board
 function Board:draw()
     local boardGroup = _d.newGroup();

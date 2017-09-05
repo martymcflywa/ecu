@@ -93,20 +93,32 @@ local function play(event)
     end
 end
 
-local function resetObjects()
-    if(bg ~= nil) then
-        bg:removeEventListener(_event, play);
-        bg:removSelf();
-    end
+local function dispose(sceneGroup)
+    -- if(bg ~= nil) then
+    --     -- bg:removeEventListener(_event, play);
+    --     _d.remove(bg);
+    --     bg = nil;
+    -- end
     if(board ~= nil) then
-        if(board.sceneGroup ~= nil) then
-            board.sceneGroup:removeSelf();
-        end
+        board:dispose();
+        board = nil;
     end
-    playerChar = nil;
+    if(game ~= nil) then
+        game:dispose();
+        game = nil;
+    end
+    if(playerChar ~= nil) then
+        playerChar = nil;
+    end
+    if(logger ~= nil) then
+        logger = nil;
+    end
+    -- if(sceneGroup.numChildren > 0) then
+    --     sceneGroup:removeSelf();
+    -- end
 end
 
-local function restartGame(sceneGroup, playerChar)
+local function setupGame(sceneGroup, playerChar)
     playerChar = playerChar;
     bg = initBg(sceneGroup);
     logger = Logger(_logMode);
@@ -134,7 +146,8 @@ end
 --]]
 function scene:create(event)
     local sceneGroup = self.view;
-    resetObjects();
+    -- clear everything when restarting scene
+    dispose(sceneGroup);
 end
 
 function scene:show(event)
@@ -148,7 +161,7 @@ function scene:show(event)
     --]]
     if(phase == "will") then
         -- do stuff just before shown
-        restartGame(sceneGroup, event.params.char);
+        setupGame(sceneGroup, event.params.char);
     --[[
         "did" code executed when scene is completely on screen. Has become the active screen.
         Start transitions, timers, start music for the scene or physics etc.
@@ -176,6 +189,8 @@ function scene:hide(event)
     --]]
     elseif(phase == "did") then
         -- do stuff when hidden
+        -- clear the board
+        -- dispose(sceneGroup);
     end
 end
 
@@ -189,6 +204,7 @@ end
 --]]
 function scene:destroy(event)
     local sceneGroup = self.view;
+    -- dispose(sceneGroup);
 end
 
 --[[

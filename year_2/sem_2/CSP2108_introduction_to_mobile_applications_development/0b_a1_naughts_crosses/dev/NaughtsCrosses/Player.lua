@@ -7,6 +7,10 @@ function Player:init(logger, board, char, color)
     Player.super.init(self, logger, board, char, color);
 end
 
+function Player:dispose()
+    Player.super.dispose(self);
+end
+
 function Player:turn(event)
     if(event.phase == self.phase) then
         local row, col = self.board.getGridFromTouch(self.board, event);

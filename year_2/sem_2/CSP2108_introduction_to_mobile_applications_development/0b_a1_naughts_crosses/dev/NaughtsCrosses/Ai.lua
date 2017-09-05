@@ -7,6 +7,10 @@ function Ai:init(logger, board, char, color)
     Ai.super.init(self, logger, board, char, color);
 end
 
+function Ai:dispose()
+    Ai.super.dispose(self);
+end
+
 function Ai:turn(event)
     if(event.phase == self.phase) then
         if(self:tryToWin()) then

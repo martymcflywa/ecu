@@ -14,6 +14,22 @@ function Marker:init(logger, board, char, color)
     };
 end
 
+function Marker:dispose()
+    if(self.logger ~= nil) then
+        logger = nil;
+    end
+    if(self.char ~= nil) then
+        self.char = nil;
+    end
+    if(self.color ~= nil) then
+        self.color = nil;
+    end
+    if(self.board ~= nil) then
+        self.board:dispose();
+        self.board = nil;
+    end
+end
+
 function Marker:mark(row, col)
     return self.board.putMark(self.board, row, col, self.char, self.color, self.textOptions);
 end
