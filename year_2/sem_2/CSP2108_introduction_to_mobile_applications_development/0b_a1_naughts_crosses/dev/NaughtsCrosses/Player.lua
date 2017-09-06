@@ -16,6 +16,7 @@ function Player:turn(event)
         local row, col = self.board.getGridFromTouch(self.board, event);
         if(row ~= nil and col ~= nil) then
             if(Player.super.mark(self, row, col)) then
+                self.logger:debug(Player.name, "turn()", string.format("put '%s' at row=%d, col=%d", self.char, row, col))
                 return true;
             end
         else

@@ -34,7 +34,7 @@ function Ai:tryToWin()
                 col = value["y"];
                 if(self.board.isEmpty(self.board, row, col)) then
                     Ai.super.mark(self, row, col);
-                    self.logger:debug(Ai.name, "tryToWin()", string.format("put mark at row=%d, col=%d", row, col))
+                    self.logger:debug(Ai.name, "tryToWin()", string.format("put '%s' at row=%d, col=%d", self.char, row, col))
                     return true;
                 end
             end
@@ -54,7 +54,7 @@ function Ai:tryToBlock()
                 col = value["y"];
                 if(self.board.isEmpty(self.board, row, col)) then
                     Ai.super.mark(self, row, col);
-                    self.logger:debug(Ai.name, "tryToBlock()", string.format("put mark at row=%d, col=%d", row, col))
+                    self.logger:debug(Ai.name, "tryToBlock()", string.format("put '%s' at row=%d, col=%d", self.char, row, col))
                     return true;
                 end
             end
@@ -69,14 +69,14 @@ function Ai:lastResort()
     local cCol = 2;
     if(self.board.isEmpty(self.board, cRow, cCol)) then
         Ai.super.mark(self, cRow, cCol);
-        self.logger:debug(Ai.name, "lastResort()", string.format("put mark at row=%d, col=%d", cRow, cCol))
+        self.logger:debug(Ai.name, "lastResort()", string.format("put '%s' at row=%d, col=%d", self.char, cRow, cCol))
         return;
     end
 
     for row = 1, self.board.rowsCols, 1 do
         for col = 1, self.board.rowsCols, 1 do
             if(Ai.super.mark(self, row, col)) then
-                self.logger:debug(Ai.name, "lastResort()", string.format("put mark at row=%d, col=%d", row, col))
+                self.logger:debug(Ai.name, "lastResort()", string.format("put '%s' at row=%d, col=%d", self.char, row, col))
                 return;
             end
         end
