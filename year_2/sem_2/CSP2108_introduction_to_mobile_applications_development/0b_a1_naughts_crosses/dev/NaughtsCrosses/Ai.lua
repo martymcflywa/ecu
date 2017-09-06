@@ -25,7 +25,7 @@ end
 
 function Ai:tryToWin()
     local me = _chars[self.char];
-    local winHere = (self.board.rowsCols - 1) * me;
+    local winHere = (self.board.rowsCols - 1) * me; -- maintain ai's sign, ai about to win here
     for index in pairs(self.board.winCombos) do
         local scoreHere = self.board.checkWinInCombo(self.board, index);
         if(scoreHere == winHere) then
@@ -45,7 +45,7 @@ end
 
 function Ai:tryToBlock()
     local me = _chars[self.char];
-    local blockHere = (self.board.rowsCols * (me * -1)) - 1;
+    local blockHere =  (self.board.rowsCols - 1) * (me * -1); -- reverse ai's sign, ai about to lose here
     for index in pairs(self.board.winCombos) do
         local scoreHere = self.board.checkWinInCombo(self.board, index);
         if(scoreHere == blockHere) then
