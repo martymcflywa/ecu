@@ -8,17 +8,84 @@
 
 ### Prerequisite
 
-In order to invoke unit tests in `./tests`, install [`busted`](https://olivinelabs.com/busted/).
+In order to invoke unit tests defined in `./tests`, [`busted`](https://olivinelabs.com/busted/), an open source lua unit testing framework is required.
 
-The easiest method is to use [`luarocks`](https://luarocks.org/) package manager.
+The easiest way to install `busted` is to use [`luarocks`](https://luarocks.org/) package manager.
 
 ```
-luarocks install busted
+$ sudo luarocks install busted
+```
+
+### Running unit tests
+
+Unit tests must be invoked from the root directory. A handy shell script is included, which runs all unit tests in the `./tests` directory.
+
+``` sh
+$ ./runUnitTests.sh
+```
+
+Alternatively, each unit test can be run individually with `lua`:
+
+```
+$ lua tests/BoardTests.lua -v -o TAP
+```
+
+Or with `busted`:
+
+```
+$ busted tests/BoardTests.lua -v -o TAP
 ```
 
 ### Test suite
 
-Add unit tests here.
+This is the output of unit tests passing:
+
+```
+$ ./runUnitTests.sh
+ok 1 - BoardTests. Detect win for x. Expects win for top horizontal.
+ok 2 - BoardTests. Detect win for x. Expects win for mid horizontal.
+ok 3 - BoardTests. Detect win for x. Expects win for bottom horizontal.
+ok 4 - BoardTests. Detect win for x. Expects win for left vertical.
+ok 5 - BoardTests. Detect win for x. Expects win for mid vertical.
+ok 6 - BoardTests. Detect win for x. Expects win for right vertical.
+ok 7 - BoardTests. Detect win for x. Expects win for left-right-down diagonal.
+ok 8 - BoardTests. Detect win for x. Expects win for left-right-up diagonal.
+ok 9 - BoardTests. Detect win for o. Expects win for top horizontal.
+ok 10 - BoardTests. Detect win for o. Expects win for mid horizontal.
+ok 11 - BoardTests. Detect win for o. Expects win for bottom horizontal.
+ok 12 - BoardTests. Detect win for o. Expects win for left vertical.
+ok 13 - BoardTests. Detect win for o. Expects win for mid vertical.
+ok 14 - BoardTests. Detect win for o. Expects win for right vertical.
+ok 15 - BoardTests. Detect win for o. Expects win for left-right-down diagonal.
+ok 16 - BoardTests. Detect win for o. Expects win for left-right-up diagonal.
+ok 17 - BoardTests. Detect tie game. Expects tie game.
+ok 18 - BoardTests. Convert touch coords to Board row,col. Expects touch at row=1, col=1.
+ok 19 - BoardTests. Convert touch coords to Board row,col. Expects touch at row=1, col=2.
+ok 20 - BoardTests. Convert touch coords to Board row,col. Expects touch at row=1, col=3.
+ok 21 - BoardTests. Convert touch coords to Board row,col. Expects touch at row=2, col=1.
+ok 22 - BoardTests. Convert touch coords to Board row,col. Expects touch at row=2, col=2.
+ok 23 - BoardTests. Convert touch coords to Board row,col. Expects touch at row=2, col=3.
+ok 24 - BoardTests. Convert touch coords to Board row,col. Expects touch at row=3, col=1.
+ok 25 - BoardTests. Convert touch coords to Board row,col. Expects touch at row=3, col=2.
+ok 26 - BoardTests. Convert touch coords to Board row,col. Expects touch at row=3, col=3.
+1..26
+ok 1 - AiTests. When Ai is x. Ai goes for win. Expects Ai puts x where it can win.
+ok 2 - AiTests. When Ai is x. Ai goes for block. Expects Ai puts x where it needs to block.
+ok 3 - AiTests. When Ai is x. Ai goes for center. Expects Ai puts x in center first when can't win or block.
+ok 4 - AiTests. When Ai is x. Ai goes for corner. Expects Ai puts x in corner when can't win, block or put in center.
+ok 5 - AiTests. When Ai is o. Ai goes for win. Expects Ai puts o where it can win.
+ok 6 - AiTests. When Ai is o. Ai goes for block. Expects Ai puts o where it needs to block.
+ok 7 - AiTests. When Ai is o. Ai goes for center. Expects Ai puts o in center first when can't win or block.
+ok 8 - AiTests. When Ai is o. Ai goes for corner. Expects Ai puts o in corner when can't win, block or put in center.
+1..8
+ok 1 - GameTests. When Player is x. Expects Game will select Player as x.
+ok 2 - GameTests. When Player is o. Expects Game will select Player as o.
+1..2
+```
+
+### Unit test notes
+
+Because the game is tightly coupled with Corona SDK's libraries, and these unit tests run independently of Corona SDK, I decided to use [Cluain's Corona mocking library](https://github.com/Cluain/corona-busted) which provides stubs for `display` and other Corona SDK objects. These files are included in `./mocks` and licences remain intact.
 
 ## Black box tests
 
@@ -147,6 +214,7 @@ According to the assignment brief, the success criteria for this assignment are:
 Out of scope:
 
 - Win strategy for ai opponent
+    - I did however include a basic ai strategy, see notes below
 
 ## Approach
 
