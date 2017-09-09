@@ -1,0 +1,29 @@
+1896, Athens, Greece 
+1900, Paris, France 
+1904, St Louis, USA
+1908, London, UK 
+1912, Stockholm, Sweden 
+1920, Antwerp, Netherlands
+1924, Paris, France
+1928, Amsterdam, Netherlands
+1932, Los Angeles, USA
+1936, Berlin, Germany
+1948, London, England
+1952, Helsinki, Finland
+1956, Melbourne, Australia
+1960, Rome, Italy
+1964, Tokyo, Japan
+1968, Mexico City, Mexico
+1972, Munich, Germany
+1976, Montreal, Canada
+1980, Moscow, USSR
+1984, Los Angeles, USA
+1988, Seoul, South Korea 
+1992, Barcelona, Spain
+1996, Atlanta, USA
+2000, Sydney, Australia
+2004, Athens, Greece
+2008, Beijing, China
+2012, London, UK
+2016, Rio de Janeiro, Brasil
+2020, Tokyo, Japan
