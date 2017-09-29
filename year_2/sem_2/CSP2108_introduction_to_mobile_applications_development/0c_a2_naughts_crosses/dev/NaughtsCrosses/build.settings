@@ -1,0 +1,68 @@
+--
+-- For more information on build.settings, see the Project Build Settings guide at:
+-- https://docs.coronalabs.com/guide/distribution/buildSettings
+--
+
+settings =
+{
+	orientation =
+	{
+		-- Supported values for orientation:
+		-- portrait, portraitUpsideDown, landscapeLeft, landscapeRight
+		default = "portrait",
+		supported = { "portrait", },
+	},
+
+	--
+	-- Android section
+	--
+	android =
+	{
+		usesPermissions =
+		{
+			"android.permission.INTERNET",
+		},
+	},
+
+	--
+	-- iOS section
+	--
+	iphone =
+	{
+		plist =
+		{
+			UIStatusBarHidden = false,
+			UILaunchStoryboardName = "LaunchScreen",
+			CFBundleIconFiles =
+			{
+				"assets/Icon-40.png",
+				"assets/Icon-58.png",
+				"assets/Icon-76.png",
+				"assets/Icon-80.png",
+				"assets/Icon-87.png",
+				"assets/Icon-120.png",
+				"assets/Icon-152.png",
+				"assets/Icon-167.png",
+				"assets/Icon-180.png",
+			},
+		},
+	},
+
+	--
+	-- Plugins section
+	--
+	plugins =
+	{
+
+	},
+
+	--
+	-- Project section
+	--
+	excludeFiles =
+	{
+		-- Exclude unnecessary files for each platform
+		ios = { "assets/Icon.png", "/assetsIcon-*dpi.png", },
+		android = { "assets/Icon.png", "assets/Icon-??.png", "assets/Icon-???.png", "LaunchScreen.storyboardc", },
+	},
+}
