@@ -10,6 +10,7 @@ package.path = package.path .. "./modules;" .. "./scenes;";
 -- import modules
 require("modules.mobdebug").start(); -- enable zerobranestudio debugging
 require("modules.30log.30log-global"); -- oop framework
+_json = require("modules.json"); -- json de/serializer
 
 -- import game classes
 local composer = require("composer");
