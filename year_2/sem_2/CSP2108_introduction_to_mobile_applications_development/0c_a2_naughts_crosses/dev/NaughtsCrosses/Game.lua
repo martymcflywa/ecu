@@ -3,10 +3,13 @@ local Game = class("Game");
 local Board = require("Board");
 local Player = require("Player");
 local Ai = require("Ai");
+local Persist = require("Persist");
 
-function Game:init(logger, board, playerChar)
+function Game:init(logger, playerChar, sceneGroup)
     self.logger = logger;
-    self.board = board;
+    self.board = Board(logger, sceneGroup);
+    self.persist = Persist(logger);
+    self.scores = self.persist:loadScores();
     self.playerChar = self:playerSelect(playerChar);
 end
 

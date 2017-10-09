@@ -15,9 +15,15 @@
 -- Time: 9:02 AM
 --
 
-local socket = require("socket")
+-- local socket = require("socket")
 
 local system = {}
+
+system.ResourceDirectory = "/mock/path";
+
+system.pathForFile = function(filename, path)
+    return path .. "/" .. filename;
+end
 
 system.getInfo = function(name)
     if name == "platformName" then

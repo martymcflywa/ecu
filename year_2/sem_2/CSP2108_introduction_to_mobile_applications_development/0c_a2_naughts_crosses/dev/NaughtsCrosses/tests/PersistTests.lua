@@ -1,35 +1,48 @@
 require "busted.runner"();
 require("tests.TestGlobals");
 
+mock = require("mocks.mockagne");
+when = mock.when;
+any = mock.any;
+verify = mock.verify;
+
+local resourceDirectory = "/mock/path";
+local filename = "scores.json";
+
 describe("PersistTests.", function()
     local logger;
     local persist;
 
     before_each(function()
+        -- setup mocks
+        io = mock.getMock();
+        system = mock.getMock();
+        system.ResourceDirectory = resourceDirectory;
+        when(system.pathForFile(filename, system.ResourceDirectory))
+            .thenAnswer(system.ResourceDirectory .. "/" .. filename);
+        
         logger = Logger(_logMode);
         persist = Persist(logger);
-
-        system.ResourceDirectory = "/mocked/path";
-        when(system.fileForPath(persist.filename, system.ResourceDirectory))
-            .thenAnswer(system.ResourceDirectory .. "/" .. persist.filename);
     end)
 
     describe("Loading scores.", function()
         describe("When scores.json exists.", function()
             it("Expects Persist.scores to be deserialized with expected score values.", function()
+                
                 local expectedJson = '{"win" : 1, "loss" : 1, "draw" : 1}';
                 local expectedScores = {
                     win = 1,
                     loss = 1,
                     draw = 1
                 };
-
-                -- setup mocks
-                when(io.open(system.ResourceDirectory, "r")).thenAnswer(io);
-                when(io.read("*a")).thenAnswer(expectedJson);
                 
+                -- setup mocks
+                when(io.open(resourceDirectory, "r")).thenAnswer(io);
+                when(io.read(io, "*a")).thenAnswer(expectedJson);
+
                 persist:loadScores();
-                assert.same("/mocked/path/scores.json", persist.filepath);
+
+                assert.same("/mock/path/scores.json", persist.filepath);
                 local actualScores = persist.scores;
                 assert.same(expectedScores, actualScores);
             end)

@@ -40,9 +40,8 @@ function scene:init(sceneGroup, playerChar)
     self.playerChar = playerChar;
     self.bg = self:initBg(sceneGroup);
     self.logger = Logger(_logMode);
-    self.board = Board(self.logger, sceneGroup);
-    self.game = Game(self.logger, self.board, playerChar);
-    self.board:draw();
+    self.game = Game(self.logger, playerChar, sceneGroup);
+    self.game.board:draw();
     self.bg:addEventListener(_event, scene);
 
     -- if ai goes first, dispatch a proxy event to trigger gameplay
@@ -64,19 +63,19 @@ function scene:initBg(sceneGroup)
 end
 
 function scene:dispose(sceneGroup)
-    if(self.board ~= nil) then
-        self.board:dispose();
-        self.board = nil;
-    end
     if(self.game ~= nil) then
         self.game:dispose();
         self.game = nil;
-    end
-    if(self.playerChar ~= nil) then
-        self.playerChar = nil;
-    end
-    if(self.logger ~= nil) then
-        self.logger = nil;
+        if(self.game.board ~= nil) then
+            self.game.board:dispose();
+            self.game.board = nil;
+        end
+        if(self.playerChar ~= nil) then
+            self.playerChar = nil;
+        end
+        if(self.logger ~= nil) then
+            self.logger = nil;
+        end
     end
     collectgarbage();
 end
@@ -85,13 +84,13 @@ end
     Checks if game is over. If so, goto appropriate scene.
 --]]
 function scene:isGameOver()
-    if(self.board:isGameOver()) then
-        if(self.board.winner == _chars["empty"]) then
+    if(self.game.board:isGameOver()) then
+        if(self.game.board.winner == _chars["empty"]) then
             self.logger:log("PlayScreen", "isGameOver()", "game over, tie game!");
             self:handleTie();
             return true;
         else
-            self.logger:log("PlayScreen", "isGameOver()", string.format("game over, winner is %s!", self.board.winner));
+            self.logger:log("PlayScreen", "isGameOver()", string.format("game over, winner is %s!", self.game.board.winner));
             self:handleWin();
             return true;
         end
@@ -108,7 +107,7 @@ function scene:handleWin()
     local message;
     local winChar;
     local isPlayerWinner = false;
-    if(self.board.winner == _chars[_x]) then
+    if(self.game.board.winner == _chars[_x]) then
         winChar = _x;
     else
         winChar = _o;

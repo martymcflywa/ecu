@@ -1,11 +1,15 @@
 require("modules.30log.30log-global");
 
--- stub display since unit tests run independent of corona sdk
+-- mocked corona sdk objects
 display = require("mocks.mockDisplay");
+system = require("mocks.mockSystem");
+io = require("mocks.mockIo");
+
 Logger = require("Logger");
 Board = require("Board");
 Game = require("Game");
 Ai = require("Ai");
+Persist = require("Persist");
 event = {
     phase = "ended"
 };

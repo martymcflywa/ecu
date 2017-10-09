@@ -1,19 +1,23 @@
 local Persist = class("Persist");
 
-local filename = "scores.json";
-local path = system.ResourceDirectory;
-
 function Persist:init(logger)
     self.logger = logger;
-    self.filepath = system.pathForFile(filename, path);
+    self.filename = "scores.json";
+    self.path = system.ResourceDirectory;
+    self.filepath = system.pathForFile(self.filename, self.path);
+
+    if(not self.filepath) then
+        self:newFile(self.filepath);
+        self.filepath = system.pathForFile(self.filename, self.path);
+    end
 end
 
 function Persist:loadScores()
     local scores = self:read(self.filepath);
     if(scores) then
-        self.scores = scores;
+        return scores;
     else
-        self:resetScores();
+        return self:resetScores();
     end
 end
 
@@ -25,12 +29,13 @@ function Persist:saveScores(win, loss, draw)
 end
 
 function Persist:resetScores()
-    self.scores = {
+    local scores = {
         win = 0;
         loss = 0;
         draw = 0;
     };
-    self:write(self.filepath, self.scores);
+    self:write(self.filepath, scores);
+    return scores;
 end
 
 function Persist:read(filepath)
@@ -38,13 +43,26 @@ function Persist:read(filepath)
     local object = nil;
     if(file) then
         self.logger:debug(self.name, "read()", string.format("Reading file %s", filepath));
-        local deserialized = file.read("*a");
+        local deserialized = file:read("*a");
         object = _json.decode(deserialized);
     else
         self.logger:debug(self.name, "read()", string.format("Error reading file %s: %s", filepath, error));
     end
     io.close(file);
+    file = nil;
     return object;
+end
+
+function Persist:newFile(filepath)
+    local file, error = io.open(filepath, "w");
+    if(file) then
+        self.logger:debug(self.name, "newFile()", string.format("Creating new file %s", filepath));
+        file:write("");
+    else
+        self.logger:debug(self.name, "newFile()", string.format("Error creating new file %s: %s", filepath, error));
+    end
+    io.close(file);
+    file = nil;
 end
 
 function Persist:write(filepath, object)
@@ -59,6 +77,7 @@ function Persist:write(filepath, object)
         -- TODO: figure out a way to handle this case gracefully, will need to write file at some point
     end
     io.close(file);
+    file = nil;
     return isWrite;
 end
 
