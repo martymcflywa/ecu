@@ -3,53 +3,52 @@
 local composer = require("composer");
 local scene = composer.newScene();
 
-local Logger = require("Logger");
-local Persist = require("Persist");
-
 --[[
     Code outside scene event functions are only executed once,
     unless the scene is removed by composer.RemoveScene().
 --]]
 
-local function scores(self, event)
+local function clear(self, event)
     if(event.phase == "ended") then
         self.nextSceneParams.effect = "fromLeft";
+        self.persist:resetScores();
         composer.gotoScene("scenes.ScoreScreen", self.nextSceneParams);
     end
 end
 
-local function play(self, event)
+local function back(self, event)
     if(event.phase == "ended") then
         self.nextSceneParams.effect = "fromRight";
-        composer.gotoScene("scenes.PlayMenu", self.nextSceneParams);
+        composer.gotoScene("scenes.MainMenu", self.nextSceneParams);
     end
 end
 
 function scene:init(sceneGroup, params)
+    self.logger = params.logger;
+    self.persist = params.persist;
     self.yOffset = _h * 0.2;
     self.buttonW = _w * 0.5;
     self.buttonH = _h * 0.25;
     self.font = "Arial";
-    self.titleGameText = "xvso";
-    self.titleMenuText = "main menu";
+    self.titleGameText = "scores";
     self.nextSceneParams = {
         time = 200,
         params = {
-            logger = params.logger,
-            persist = params.persist
+            logger = self.logger,
+            persist = self.persist
         }
     };
     -- setup background
     self.bg = self:initBg(sceneGroup);
     -- setup title objects
     self.titleGame = self:initTitleGame(sceneGroup);
-    self.titleMenu = self:initTitleMenu(sceneGroup);
+    self.titleScores = self:initTitleScores(sceneGroup);
     -- setup buttons
     local buttonScoresXPosOffset = _cx * 0.5;
-    self.buttonScores = self:initButton(sceneGroup, _cx - buttonScoresXPosOffset, _colors["red"], "score");
-    self.buttonScores.touch = scores;
-    self.buttonPlay = self:initButton(sceneGroup, _cx + buttonScoresXPosOffset, _colors["green"], "play");
-    self.buttonPlay.touch = play;
+    self.buttonScores = self:initButton(sceneGroup, _cx - buttonScoresXPosOffset, _colors["red"], "clear");
+    self.buttonScores.touch = clear;
+    self.buttonPlay = self:initButton(sceneGroup, _cx + buttonScoresXPosOffset, _colors["green"], "back");
+    self.buttonPlay.touch = back;
     self.buttonScores:addEventListener(_event, touch);
     self.buttonPlay:addEventListener(_event, touch);
 end
@@ -78,7 +77,7 @@ function scene:initTitleGame(sceneGroup)
     local titleGameOptions = {
         text = self.titleGameText,
         font = self.font,
-        fontSize = 125,
+        fontSize = 100,
         align = "center",
         x = _cx,
         y = yOffset
@@ -89,25 +88,26 @@ function scene:initTitleGame(sceneGroup)
     return titleGame;
 end
 
-function scene:initTitleMenu(sceneGroup)
-    local titleMenuOptions = {
-        text = self.titleMenuText,
+function scene:initTitleScores(sceneGroup)
+    local scores = self.persist:loadScores();
+    local scoresText = string.format("Win: %s\nLoss: %s\n Draw: %s", scores.win, scores.loss, scores.draw);
+    local titleScoresOptions = {
+        text = scoresText,
         font = self.font,
         fontSize = 25,
         align = "center",
         x = _cx,
         y = _cy
     };
-    local titleMenu = _d.newText(titleMenuOptions);
-    titleMenu:setFillColor(unpack(_colors["orange"]));
-    sceneGroup:insert(titleMenu);
-    return titleMenu;
+    local titleScores = _d.newText(titleScoresOptions);
+    titleScores:setFillColor(unpack(_colors["orange"]));
+    sceneGroup:insert(titleScores);
+    return titleScores;
 end
 
-function scene:initButton(sceneGroup, xPos, color, char)
+function scene:initButton(sceneGroup, xPos, color, label)
     local buttonGroup = _d.newGroup();
     local yOffset = _cy + self.yOffset + 50;
-    buttonGroup.char = char;
     local button = _d.newRect(
         buttonGroup,
         xPos,
@@ -119,7 +119,7 @@ function scene:initButton(sceneGroup, xPos, color, char)
 
     local buttonTextOptions = {
         parent = buttonGroup,
-        text = char,
+        text = label,
         font = self.font,
         fontSize = 50,
         align = "center",
@@ -129,6 +129,8 @@ function scene:initButton(sceneGroup, xPos, color, char)
     local buttonText = _d.newText(buttonTextOptions);
     buttonText:setFillColor(unpack(_colors["white"]));
     buttonGroup.nextSceneParams = self.nextSceneParams;
+    buttonGroup.logger = self.logger;
+    buttonGroup.persist = self.persist;
     sceneGroup:insert(buttonGroup);
     return buttonGroup;
 end

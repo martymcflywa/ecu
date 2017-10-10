@@ -15,6 +15,7 @@ _json = require("modules.json"); -- json de/serializer
 -- import game classes
 local composer = require("composer");
 local Logger = require("Logger");
+local Persist = require("Persist");
 
 -- helpful globals, TODO: maybe move these to a constants class
 _d = display;
@@ -42,4 +43,12 @@ _logMode = "debug";
 --[[
     It all starts at MainMenu.
 --]]
-composer.gotoScene("scenes.MainMenu");
+local logger = Logger(_logMode);
+local persist = Persist(logger);
+local nextSceneParams = {
+    params = {
+        logger = logger,
+        persist = persist
+    }
+}
+composer.gotoScene("scenes.MainMenu", nextSceneParams);
