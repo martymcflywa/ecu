@@ -3,9 +3,6 @@
 local composer = require("composer");
 local scene = composer.newScene();
 
-local Logger = require("Logger");
-local Persist = require("Persist");
-
 --[[
     Code outside scene event functions are only executed once,
     unless the scene is removed by composer.RemoveScene().
@@ -13,31 +10,28 @@ local Persist = require("Persist");
 
 local function scores(self, event)
     if(event.phase == "ended") then
-        self.nextSceneParams.effect = "fromLeft";
-        composer.gotoScene("scenes.ScoreScreen", self.nextSceneParams);
+        self.options.effect = "fromLeft";
+        composer.gotoScene("scenes.ScoreScreen", self.options);
     end
 end
 
 local function play(self, event)
     if(event.phase == "ended") then
-        self.nextSceneParams.effect = "fromRight";
-        composer.gotoScene("scenes.PlayMenu", self.nextSceneParams);
+        self.options.effect = "fromRight";
+        composer.gotoScene("scenes.PlayMenu", self.options);
     end
 end
 
-function scene:init(sceneGroup, params)
+function scene:init(sceneGroup)
     self.yOffset = _h * 0.2;
     self.buttonW = _w * 0.5;
     self.buttonH = _h * 0.25;
     self.font = "Arial";
     self.titleGameText = "xvso";
     self.titleMenuText = "main menu";
-    self.nextSceneParams = {
+    self.options = {
         time = 200,
-        params = {
-            logger = params.logger,
-            persist = params.persist
-        }
+        params = {}
     };
     -- setup background
     self.bg = self:initBg(sceneGroup);
@@ -128,7 +122,7 @@ function scene:initButton(sceneGroup, xPos, color, char)
     };
     local buttonText = _d.newText(buttonTextOptions);
     buttonText:setFillColor(unpack(_colors["white"]));
-    buttonGroup.nextSceneParams = self.nextSceneParams;
+    buttonGroup.options = self.options;
     sceneGroup:insert(buttonGroup);
     return buttonGroup;
 end
@@ -141,7 +135,7 @@ end
 --]]
 function scene:create(event)
     local sceneGroup = self.view;
-    self:init(sceneGroup, event.params);
+    self:init(sceneGroup);
 end
 
 function scene:show(event)

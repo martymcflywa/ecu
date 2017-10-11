@@ -2,9 +2,9 @@
 
 local composer = require("composer");
 local scene = composer.newScene();
-local Logger = require("Logger");
 local Board = require("Board");
 local Game = require("Game");
+local Persist = require("Persist");
 
 --[[
     Code outside scene event functions are only executed once,
@@ -32,15 +32,14 @@ function scene:touch(event)
 end
 
 function scene:init(sceneGroup, playerChar)
-    self.gameOverScreenOptions = {
+    self.options = {
         effect = "zoomInOutFade",
         time = 1000,
         params = {}
     };
     self.playerChar = playerChar;
     self.bg = self:initBg(sceneGroup);
-    self.logger = Logger(_logMode);
-    self.game = Game(self.logger, playerChar, sceneGroup);
+    self.game = Game(playerChar, sceneGroup);
     self.game.board:draw();
     self.bg:addEventListener(_event, scene);
 
@@ -73,9 +72,6 @@ function scene:dispose(sceneGroup)
         if(self.playerChar ~= nil) then
             self.playerChar = nil;
         end
-        if(self.logger ~= nil) then
-            self.logger = nil;
-        end
     end
     collectgarbage();
 end
@@ -86,11 +82,11 @@ end
 function scene:isGameOver()
     if(self.game.board:isGameOver()) then
         if(self.game.board.winner == _chars["empty"]) then
-            self.logger:log("PlayScreen", "isGameOver()", "game over, tie game!");
-            self:handleTie();
+            logger:log("PlayScreen", "isGameOver()", "game over, tie game!");
+            self:handleDraw();
             return true;
         else
-            self.logger:log("PlayScreen", "isGameOver()", string.format("game over, winner is %s!", self.game.board.winner));
+            logger:log("PlayScreen", "isGameOver()", string.format("game over, winner is %s!", self.game.board.winner));
             self:handleWin();
             return true;
         end
@@ -98,9 +94,23 @@ function scene:isGameOver()
     return false;
 end
 
-function scene:handleTie()
-    self.gameOverScreenOptions.params.message = "tie game\nyou both lose";
-    timer.performWithDelay(800, function() composer.gotoScene("scenes.GameOver", self.gameOverScreenOptions); end);
+local function updateScores(result)
+    local persist = Persist();
+    local scores = persist:loadScores();
+    if(result == "d") then
+        scores.draw = scores.draw + 1;
+    elseif(result == "w") then
+        scores.win = scores.win + 1;
+    elseif(result == "l") then
+        scores.loss = scores.loss + 1;
+    end
+    persist:saveScores(scores);
+end
+
+function scene:handleDraw()
+    updateScores("d");
+    self.options.params.message = "tie game\nyou both lose";
+    timer.performWithDelay(800, function() composer.gotoScene("scenes.GameOver", self.options); end);
 end
 
 function scene:handleWin()
@@ -113,12 +123,14 @@ function scene:handleWin()
         winChar = _o;
     end
     if(self.playerChar == _chars[winChar]) then
+        updateScores("w");
         message = string.format("you won with '%s'\nwell done", winChar);
     else
+        updateScores("l");
         message = string.format("you lose\nai beat you with '%s'", winChar);
     end
-    self.gameOverScreenOptions.params.message = message;
-    timer.performWithDelay(500, function() composer.gotoScene("scenes.GameOver", self.gameOverScreenOptions); end);
+    self.options.params.message = message;
+    timer.performWithDelay(500, function() composer.gotoScene("scenes.GameOver", self.options); end);
 end
 
 --[[

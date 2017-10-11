@@ -3,6 +3,8 @@
 local composer = require("composer");
 local scene = composer.newScene();
 
+local Persist = require("Persist");
+
 --[[
     Code outside scene event functions are only executed once,
     unless the scene is removed by composer.RemoveScene().
@@ -10,33 +12,29 @@ local scene = composer.newScene();
 
 local function clear(self, event)
     if(event.phase == "ended") then
-        self.nextSceneParams.effect = "fromLeft";
-        self.persist:resetScores();
-        composer.gotoScene("scenes.ScoreScreen", self.nextSceneParams);
+        local persist = Persist(logger);
+        persist:resetScores();
+        self.options.effect = "fromLeft";
+        composer.gotoScene("scenes.MainMenu", self.options);
     end
 end
 
 local function back(self, event)
     if(event.phase == "ended") then
-        self.nextSceneParams.effect = "fromRight";
-        composer.gotoScene("scenes.MainMenu", self.nextSceneParams);
+        self.options.effect = "fromRight";
+        composer.gotoScene("scenes.MainMenu", self.options);
     end
 end
 
-function scene:init(sceneGroup, params)
-    self.logger = params.logger;
-    self.persist = params.persist;
+function scene:init(sceneGroup)
     self.yOffset = _h * 0.2;
     self.buttonW = _w * 0.5;
     self.buttonH = _h * 0.25;
     self.font = "Arial";
     self.titleGameText = "scores";
-    self.nextSceneParams = {
+    self.options = {
         time = 200,
-        params = {
-            logger = self.logger,
-            persist = self.persist
-        }
+        params = {}
     };
     -- setup background
     self.bg = self:initBg(sceneGroup);
@@ -89,8 +87,13 @@ function scene:initTitleGame(sceneGroup)
 end
 
 function scene:initTitleScores(sceneGroup)
-    local scores = self.persist:loadScores();
-    local scoresText = string.format("Win: %s\nLoss: %s\n Draw: %s", scores.win, scores.loss, scores.draw);
+    local persist = Persist(logger);
+    local scores = persist:loadScores();
+    local scoresText = string.format(
+        "Win: %s\nLoss: %s\n Draw: %s", 
+        scores.win, 
+        scores.loss, 
+        scores.draw);
     local titleScoresOptions = {
         text = scoresText,
         font = self.font,
@@ -128,7 +131,7 @@ function scene:initButton(sceneGroup, xPos, color, label)
     };
     local buttonText = _d.newText(buttonTextOptions);
     buttonText:setFillColor(unpack(_colors["white"]));
-    buttonGroup.nextSceneParams = self.nextSceneParams;
+    buttonGroup.options = self.options;
     buttonGroup.logger = self.logger;
     buttonGroup.persist = self.persist;
     sceneGroup:insert(buttonGroup);

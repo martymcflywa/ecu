@@ -3,8 +3,8 @@ local Marker = require("Marker");
 -- extend Marker
 local Ai = Marker:extend("Ai");
 
-function Ai:init(logger, board, char, color)
-    Ai.super.init(self, logger, board, char, color);
+function Ai:init(board, char, color)
+    Ai.super.init(self, board, char, color);
 end
 
 function Ai:dispose()
@@ -109,7 +109,7 @@ function Ai:lastResort()
 end
 
 function Ai:logTurn(strategy, row, col)
-    self.logger:debug(Ai.name, strategy, string.format("put '%s' at row=%d, col=%d", self.char, row, col));
+    logger:debug(Ai.name, strategy, string.format("put '%s' at row=%d, col=%d", self.char, row, col));
 end
 
 return Ai

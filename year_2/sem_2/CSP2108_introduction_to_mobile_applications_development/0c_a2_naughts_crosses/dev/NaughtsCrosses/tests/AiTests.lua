@@ -2,13 +2,11 @@ require "busted.runner"();
 require("tests.TestGlobals");
 
 describe("AiTests.", function()
-    local logger;
     local board;
     local ai;
 
     setup(function()
-        logger = Logger(_logMode);
-        board = Board(logger, _d.newGroup());
+        board = Board(_d.newGroup());
     end)
 
     after_each(function()
@@ -18,7 +16,7 @@ describe("AiTests.", function()
 
     describe("When Ai is x.", function()
         setup(function()
-            ai = Ai(logger, board, _x, _colors["red"]);
+            ai = Ai(board, _x, _colors["red"]);
         end)
 
         describe("Ai goes for win.", function()
@@ -92,7 +90,7 @@ describe("AiTests.", function()
 
     describe("When Ai is o.", function()
         setup(function()
-            ai = Ai(logger, board, _o, _colors["green"]);
+            ai = Ai(board, _o, _colors["green"]);
         end)
 
         describe("Ai goes for win.", function()

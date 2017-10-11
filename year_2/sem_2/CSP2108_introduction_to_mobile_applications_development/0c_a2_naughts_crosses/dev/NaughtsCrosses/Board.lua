@@ -32,8 +32,7 @@
 local Board = class("Board");
 
 -- defines dimensions of play area
-function Board:init(logger, sceneGroup)
-    self.logger = logger;
+function Board:init(sceneGroup)
     -- injecting scenegroup here so board and chars are added to it
     -- TODO: would prefer to keep this responsibility to scene but running out of time
     self.sceneGroup = sceneGroup;
@@ -76,9 +75,6 @@ function Board:dispose()
     end
     if(self.winCombos ~= nil) then
         self.winCombos = nil;
-    end
-    if(self.logger ~= nil) then
-        self.logger = nil;
     end
 end
 
@@ -180,7 +176,7 @@ function Board:putMark(row, col, char, color, textOptions)
         self.sceneGroup:insert(mark);
         return true;
     else
-        self.logger:debug(self.name, "putMark()", string.format("row=%d, col=%d, x=%03d, y=%03d already occupied.", row, col, x, y));
+        logger:debug(self.name, "putMark()", string.format("row=%d, col=%d, x=%03d, y=%03d already occupied.", row, col, x, y));
         return false
     end
 end

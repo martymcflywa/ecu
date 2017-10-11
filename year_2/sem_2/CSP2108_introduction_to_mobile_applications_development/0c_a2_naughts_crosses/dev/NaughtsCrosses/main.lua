@@ -12,10 +12,8 @@ require("modules.mobdebug").start(); -- enable zerobranestudio debugging
 require("modules.30log.30log-global"); -- oop framework
 _json = require("modules.json"); -- json de/serializer
 
--- import game classes
 local composer = require("composer");
 local Logger = require("Logger");
-local Persist = require("Persist");
 
 -- helpful globals, TODO: maybe move these to a constants class
 _d = display;
@@ -39,16 +37,6 @@ _x = "x";
 _o = "o";
 _event = "touch";
 _logMode = "debug";
+logger = Logger(_logMode);
 
---[[
-    It all starts at MainMenu.
---]]
-local logger = Logger(_logMode);
-local persist = Persist(logger);
-local nextSceneParams = {
-    params = {
-        logger = logger,
-        persist = persist
-    }
-}
-composer.gotoScene("scenes.MainMenu", nextSceneParams);
+composer.gotoScene("scenes.MainMenu");

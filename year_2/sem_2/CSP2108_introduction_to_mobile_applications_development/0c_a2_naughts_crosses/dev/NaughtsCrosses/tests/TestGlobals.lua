@@ -36,3 +36,4 @@ _x = "x";
 _o = "o";
 _event = "touch";
 _logMode = "info";
+logger = Logger(_logMode);
