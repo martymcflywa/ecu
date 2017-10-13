@@ -2,7 +2,7 @@ local Persist = class("Persist");
 
 function Persist:init()
     self.filename = "scores.json";
-    self.path = system.ResourceDirectory;
+    self.path = system.DocumentsDirectory;
     self.filepath = system.pathForFile(self.filename, self.path);
 
     if(not self.filepath) then

@@ -15,7 +15,7 @@ local function clear(self, event)
         local persist = Persist(logger);
         persist:resetScores();
         self.options.effect = "fromLeft";
-        composer.gotoScene("scenes.MainMenu", self.options);
+        composer.gotoScene("scenes.ScoreScreen", self.options);
     end
 end
 
@@ -188,6 +188,7 @@ function scene:hide(event)
     --]]
     elseif(phase == "did") then
         -- do stuff when hidden
+        composer.removeScene("scenes.ScoreScreen");
     end
 end
 
