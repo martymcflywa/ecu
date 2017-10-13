@@ -4,7 +4,7 @@ local Marker = require("Marker");
 local Ai = Marker:extend("Ai");
 
 function Ai:init(board, char, color)
-    Ai.super.init(self, board, char, color);
+    Ai.super.init(self, board, char, color, false);
 end
 
 function Ai:dispose()

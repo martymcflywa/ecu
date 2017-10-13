@@ -1,10 +1,11 @@
 local Marker = class("Marker");
 
-function Marker:init(board, char, color)
+function Marker:init(board, char, color, isPlayer)
     self.board = board;
     self.char = char;
     self.phase = "ended"; -- ended triggers listener only once
     self.color = color;
+    self.isPlayer = isPlayer;
     self.textOptions = {
         text = self.char,
         font = "Arial",
@@ -27,7 +28,11 @@ function Marker:dispose()
 end
 
 function Marker:mark(row, col)
-    return self.board.putMark(self.board, row, col, self.char, self.color, self.textOptions);
+    local isMarked = self.board:putMark(row, col, self.char, self.color, self.textOptions);
+    if(isMarked) then
+        self.board:pushTurn(row, col, self.char, self.color, self.textOptions, self.isPlayer);
+        return true;
+    end
 end
 
 return Marker;

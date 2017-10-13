@@ -28,7 +28,7 @@
     @version 20170901
 
 --]]
-
+local TurnLog = require("TurnLog");
 local Board = class("Board");
 
 -- defines dimensions of play area
@@ -50,6 +50,7 @@ function Board:init(sceneGroup)
     self.grid = {};
     self.winCombos = {};
     self.winner = _chars["empty"];
+    self.turnLog = TurnLog();
     self:setup();
 end
 
@@ -99,7 +100,7 @@ end
 -- void, sets up three tables in single On^2 loop:
 -- scores: tracks marked grids,
 -- centers: contains x,y coord for mark placement
--- grid: detects touch, returns col,row of board
+-- grid: detects touch, returnLogtack col,row of board
 function Board:newBoard()
     local xPc = 0.2;
     local yPc = 0.2;
@@ -179,6 +180,30 @@ function Board:putMark(row, col, char, color, textOptions)
         logger:debug(self.name, "putMark()", string.format("row=%d, col=%d, x=%03d, y=%03d already occupied.", row, col, x, y));
         return false
     end
+end
+
+function Board:pushTurn(row, col, char, color, textOptions, isPlayer)
+    local turn = {
+        row = row,
+        col = col,
+        char = char,
+        color = color,
+        textOptions = textOptions,
+        isPlayer = isPlayer
+    };
+    self.turnLog:push(turn);
+end
+
+function Board:popTurn()
+    local turn = self.turnLog:pop();
+    if(turn) then
+        -- remove mark from board
+    end
+    return turn;
+end
+
+function Board:replayTurns()
+
 end
 
 function Board:isGameOver()

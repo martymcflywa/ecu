@@ -16,7 +16,7 @@ local Persist = require("Persist");
 --]]
 function scene:touch(event)
     -- ai first turn, proxy event.x will be nil
-    if(event.x == nil) then
+    if(not event.x) then
         self.game.ai:turn(event);
     else
         if(not self:isGameOver()) then
