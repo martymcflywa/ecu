@@ -40,12 +40,12 @@ function scene:init(sceneGroup)
     self.titleMenu = self:initTitleMenu(sceneGroup);
     -- setup buttons
     local buttonScoresXPosOffset = _cx * 0.5;
-    self.buttonScores = self:initButton(sceneGroup, _cx - buttonScoresXPosOffset, _colors["red"], "SCORE");
-    self.buttonScores.touch = scores;
-    self.buttonPlay = self:initButton(sceneGroup, _cx + buttonScoresXPosOffset, _colors["green"], "PLAY");
+    self.buttonPlay = self:initButton(sceneGroup, _cx - buttonScoresXPosOffset, _colors["green"], "PLAY");
     self.buttonPlay.touch = play;
-    self.buttonScores:addEventListener(_event, touch);
     self.buttonPlay:addEventListener(_event, touch);
+    self.buttonScores = self:initButton(sceneGroup, _cx + buttonScoresXPosOffset, _colors["red"], "SCORE");
+    self.buttonScores.touch = scores;
+    self.buttonScores:addEventListener(_event, touch);
 end
 
 function scene:dispose(sceneGroup)

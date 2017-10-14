@@ -11,6 +11,15 @@ local Persist = require("Persist");
     unless the scene is removed by composer.RemoveScene().
 --]]
 
+local delay = 5000;
+local canUndo;
+
+local function stopUndo()
+    canUndo = false;
+end
+
+local undoTimer = timer.performWithDelay(delay, stopUndo);
+
 --[[
     Using table listener here, method name == event name. 
 --]]
@@ -21,6 +30,9 @@ function scene:touch(event)
     else
         if(not self:isGameOver()) then
             if(self.game.player:turn(event)) then
+                canUndo = true;
+                timer.cancel(undoTimer);
+                timer.performWithDelay(delay, stopUndo);
                 if(not self:isGameOver()) then
                     self.game.ai:turn(event);
                     -- do one last check if game over, ai might take a winning turn
@@ -31,7 +43,31 @@ function scene:touch(event)
     end
 end
 
+local function undo(self, event)
+    if(event.phase == "ended") then
+        if(canUndo) then
+            self.board:popTurn();            
+        else
+            logger:debug(composer.getSceneName("current"), "undo()", string.format("Undo timer expired: %ds", delay / 1000));
+        end
+    end
+end
+
+local function back(self, event)
+    if(event.phase == "ended") then
+        self.options.effect = "fromRight";
+        self.options.time = 200;
+        composer.gotoScene("scenes.MainMenu", self.options);
+    end
+end
+
 function scene:init(sceneGroup, playerChar)
+    self.yOffset = _h * 0.45;
+    self.buttonW = _w * 0.5;
+    self.buttonH = _h * 0.1;
+    self.font = "Arial";
+    self.buttonUndoLabel = "UNDO";
+    self.buttonBackLabel = "BACK";
     self.options = {
         effect = "zoomInOutFade",
         time = 1000,
@@ -39,9 +75,19 @@ function scene:init(sceneGroup, playerChar)
     };
     self.playerChar = playerChar;
     self.bg = self:initBg(sceneGroup);
+    self.bg:addEventListener(_event, scene);
     self.game = Game(playerChar, sceneGroup);
     self.game.board:draw();
-    self.bg:addEventListener(_event, scene);
+
+    -- setup buttons
+    local buttonXPosOffset = _cx * 0.5;    
+    self.buttonUndo = self:initButton(sceneGroup, _cx - buttonXPosOffset, _colors["red"], self.buttonUndoLabel);
+    self.buttonUndo.touch = undo;
+    self.buttonUndo.board = self.game.board;
+    self.buttonUndo:addEventListener(_event, touch);
+    self.buttonBack = self:initButton(sceneGroup, _cx + buttonXPosOffset, _colors["green"], self.buttonBackLabel);
+    self.buttonBack.touch = back;
+    self.buttonBack:addEventListener(_event, touch);
 
     -- if ai goes first, dispatch a proxy event to trigger gameplay
     if(self.playerChar == _chars[_o]) then
@@ -59,6 +105,34 @@ function scene:initBg(sceneGroup)
     bg:setFillColor(unpack(_colors["white"]));
     sceneGroup:insert(bg);
     return bg;
+end
+
+function scene:initButton(sceneGroup, xPos, color, label)
+    local buttonGroup = _d.newGroup();
+    local yOffset = _cy + self.yOffset;
+    local button = _d.newRect(
+        buttonGroup,
+        xPos,
+        yOffset,
+        self.buttonW,
+        self.buttonH
+    );
+    button:setFillColor(unpack(color));
+
+    local buttonTextOptions = {
+        parent = buttonGroup,
+        text = label,
+        font = self.font,
+        fontSize = 38,
+        align = "center",
+        x = xPos,
+        y = yOffset
+    };
+    local buttonText = _d.newText(buttonTextOptions);
+    buttonText:setFillColor(unpack(_colors["white"]));
+    buttonGroup.options = self.options;
+    sceneGroup:insert(buttonGroup);
+    return buttonGroup;
 end
 
 function scene:dispose(sceneGroup)
@@ -185,8 +259,7 @@ function scene:hide(event)
     --]]
     elseif(phase == "did") then
         -- do stuff when hidden
-        -- clear the board
-        -- dispose(sceneGroup);
+        composer.removeScene("scenes.PlayScreen");
     end
 end
 

@@ -208,12 +208,14 @@ function Board:pushTurn(row, col, char, color, textOptions, isPlayer)
 end
 
 function Board:popTurn()
-    local zeroScore = 0;
+    local zero = 0;
     local turn = self.turnLog:pop();
     if(turn) then
         self:popMark(turn.col, turn.row);
-        self.scores[turn.col][turn.row] = zeroScore;
-        return turn;        
+        self.scores[turn.col][turn.row] = zero;
+        if(not turn.isPlayer) then
+            self:popTurn();
+        end
     end
 end
 
