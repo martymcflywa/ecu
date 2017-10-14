@@ -144,11 +144,11 @@ end
 function scene:isGameOver()
     if(self.game.board:isGameOver()) then
         if(self.game.board.winner == _chars["empty"]) then
-            logger:log("PlayScreen", "isGameOver()", "game over, tie game!");
+            logger:debug("PlayScreen", "isGameOver()", "game over, tie game!");
             self:handleDraw();
             return true;
         else
-            logger:log("PlayScreen", "isGameOver()", string.format("game over, winner is %s!", self.game.board.winner));
+            logger:debug("PlayScreen", "isGameOver()", string.format("game over, winner is %s!", self.game.board.winner));
             self:handleWin();
             return true;
         end

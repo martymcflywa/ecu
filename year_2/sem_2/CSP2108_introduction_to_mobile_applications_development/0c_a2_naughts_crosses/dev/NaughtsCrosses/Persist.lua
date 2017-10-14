@@ -47,12 +47,12 @@ function Persist:read(filepath)
     local file, errorMessage = io.open(filepath, "r");
     local object = nil;
     if(file) then
-        logger:debug(self.name, "read()", string.format("Read file: %s", filepath));
+        logger:debug(self.name, "read()", string.format("read %s", filepath));
         local deserialized = file:read("*a");
-        logger:debug(self.name, "read()", string.format("Deserialize json to object: '%s'", deserialized));
+        logger:debug(self.name, "read()", string.format("deserialize json '%s'", deserialized));
         object = _json.decode(deserialized);
     else
-        logger:debug(self.name, "read()", string.format("Error reading file: %s", errorMessage));
+        logger:debug(self.name, "read()", string.format("error reading %s", errorMessage));
     end
     io.close(file);
     file = nil;
@@ -62,10 +62,10 @@ end
 function Persist:newFile(filepath)
     local file, errorMessage = io.open(filepath, "w");
     if(file) then
-        logger:debug(self.name, "newFile()", string.format("Create new file: %s", filepath));
+        logger:debug(self.name, "newFile()", string.format("create %s", filepath));
         file:write("");
     else
-        logger:debug(self.name, "newFile()", string.format("Error creating new file: %s", errorMessage));
+        logger:debug(self.name, "newFile()", string.format("error creating %s", errorMessage));
     end
     io.close(file);
     file = nil;
@@ -76,12 +76,12 @@ function Persist:write(filepath, object)
     local isWrite = false;
     if(file) then
         local serialized = _json.encode(object);
-        logger:debug(self.name, "write()", string.format("Serialize object to json: '%s'", serialized));
+        logger:debug(self.name, "write()", string.format("serialize json '%s'", serialized));
         file:write(serialized);
-        logger:debug(self.name, "write()", string.format("Write file: %s", filepath));
+        logger:debug(self.name, "write()", string.format("write %s", filepath));
         isWrite = true;
     else
-        logger:debug(self.name, "write()", string.format("Error writing file: %s", errorMessage));
+        logger:debug(self.name, "write()", string.format("error writing %s", errorMessage));
     end
     io.close(file);
     file = nil;

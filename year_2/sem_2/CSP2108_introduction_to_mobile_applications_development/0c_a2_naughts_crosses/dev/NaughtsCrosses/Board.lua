@@ -108,6 +108,7 @@ function Board:newBoard()
     local xRightPc = 0.4;
     local yTopPc = 0.2;
     local yBottomPc = 0.4;
+
     for row = 1, self.rowsCols, 1 do
         self.scores[row] = {};
         self.centers[row] = {};
@@ -140,6 +141,14 @@ function Board:clearScores()
     for row = 1, self.rowsCols, 1 do
         for col = 1, self.rowsCols, 1 do
             self.scores[row][col] = _chars["empty"];
+        end
+    end
+end
+
+function Board:clearMarks()
+    for row = 1, self.rowsCols, 1 do
+        for col = 1, self.rowsCols, 1 do
+            self:popMark(row, col);
         end
     end
 end
@@ -195,10 +204,13 @@ end
 
 function Board:popMark(row, col)
     local dGroup = self.grid[row][col]["dGroup"];
-    while(dGroup.numChildren > 0) do
-        local child = dGroup[1];
-        if(child) then
-            child:removeSelf();
+    if(dGroup.numChildren) then
+        while(dGroup.numChildren > 0) do
+            local child = dGroup[1];
+            if(child) then
+                child:removeSelf();
+                logger:debug(self.name, "popMark()", string.format("remove mark at row=%d, col=%d", row, col));
+            end
         end
     end
 end

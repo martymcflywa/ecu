@@ -20,7 +20,7 @@ local function pushTurn(event)
     logger:debug(
         composer.getSceneName("current"), 
         "pushTurn()", 
-        string.format("Replaying turn %d: isPlayer=%s, row=%d, col=%d, char=%s",
+        string.format("replay turn %d, isPlayer=%s, row=%d, col=%d, char=%s",
             event.count,
             tostring(turn.isPlayer),
             turn.row,
@@ -30,6 +30,7 @@ end
 
 local function replay(self, event)
     if(event.phase == "ended") then
+        self.board:clearMarks();
         self.board:newBoard();
         self.board.sceneGroup = self.sceneGroup;
         local turns = {};
@@ -68,7 +69,7 @@ function scene:init(sceneGroup, game)
     self.buttonW = _w * 0.5;
     self.buttonH = _h * 0.1;
     self.font = "Arial";
-    self.buttonReplayLabel = "REPLAY";
+    self.buttonReplayLabel = "PLAY";
     self.buttonBackLabel = "BACK";
     self.options = {
         effect = "zoomInOutFade",
@@ -83,12 +84,12 @@ function scene:init(sceneGroup, game)
 
     -- setup buttons
     local buttonXPosOffset = _cx * 0.5;    
-    self.buttonReplay = self:initButton(sceneGroup, _cx - buttonXPosOffset, _colors["green"], self.buttonReplayLabel);
+    self.buttonReplay = self:initButton(sceneGroup, _cx - buttonXPosOffset, _colors["red"], self.buttonReplayLabel);
     self.buttonReplay.touch = replay;
     self.buttonReplay.board = self.game.board;
     self.buttonReplay.sceneGroup = sceneGroup;
     self.buttonReplay:addEventListener(_event, touch);
-    self.buttonBack = self:initButton(sceneGroup, _cx + buttonXPosOffset, _colors["red"], self.buttonBackLabel);
+    self.buttonBack = self:initButton(sceneGroup, _cx + buttonXPosOffset, _colors["green"], self.buttonBackLabel);
     self.buttonBack.touch = back;
     self.buttonBack:addEventListener(_event, touch);
 end
