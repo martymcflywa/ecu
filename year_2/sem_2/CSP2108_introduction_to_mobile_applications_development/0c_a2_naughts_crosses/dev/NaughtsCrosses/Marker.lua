@@ -28,7 +28,7 @@ function Marker:dispose()
 end
 
 function Marker:mark(row, col)
-    local isMarked = self.board:putMark(row, col, self.char, self.color, self.textOptions);
+    local isMarked = self.board:pushMark(row, col, self.char, self.color, self.textOptions);
     if(isMarked) then
         self.board:pushTurn(row, col, self.char, self.color, self.textOptions, self.isPlayer);
         return true;

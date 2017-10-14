@@ -123,6 +123,7 @@ function Board:newBoard()
             self.grid[row][col]["xRight"] = _w * xRightPc;
             self.grid[row][col]["yTop"] = _w * yTopPc;
             self.grid[row][col]["yBottom"] = _h * yBottomPc;
+            self.grid[row][col]["dGroup"] = _d.newGroup();
             xLeftPc = xLeftPc + 0.2;
             xRightPc = xRightPc + 0.2;
         end
@@ -165,7 +166,7 @@ function Board:isEmpty(row, col)
 end
 
 -- put marker on board, update scores
-function Board:putMark(row, col, char, color, textOptions)
+function Board:pushMark(row, col, char, color, textOptions)
     local score = _chars[char];
     local x, y = self:getCenter(row, col);
     if(self:isEmpty(row, col)) then
@@ -174,11 +175,23 @@ function Board:putMark(row, col, char, color, textOptions)
         textOptions.y = y;
         local mark = _d.newText(textOptions);
         mark:setFillColor(unpack(color));
-        self.sceneGroup:insert(mark);
+        local dGroup = self.grid[col][row]["dGroup"];
+        dGroup:insert(mark);
+        self.sceneGroup:insert(dGroup);
         return true;
     else
-        logger:debug(self.name, "putMark()", string.format("row=%d, col=%d, x=%03d, y=%03d already occupied.", row, col, x, y));
+        logger:debug(self.name, "pushMark()", string.format("row=%d, col=%d, x=%03d, y=%03d already occupied.", row, col, x, y));
         return false
+    end
+end
+
+function Board:popMark(row, col)
+    local dGroup = self.grid[row][col]["dGroup"];
+    while(dGroup.numChildren > 0) do
+        local child = dGroup[1];
+        if(child) then
+            child:removeSelf();
+        end
     end
 end
 
@@ -195,11 +208,13 @@ function Board:pushTurn(row, col, char, color, textOptions, isPlayer)
 end
 
 function Board:popTurn()
+    local zeroScore = 0;
     local turn = self.turnLog:pop();
     if(turn) then
-        -- remove mark from board
+        self:popMark(turn.col, turn.row);
+        self.scores[turn.col][turn.row] = zeroScore;
+        return turn;        
     end
-    return turn;
 end
 
 function Board:replayTurns()
