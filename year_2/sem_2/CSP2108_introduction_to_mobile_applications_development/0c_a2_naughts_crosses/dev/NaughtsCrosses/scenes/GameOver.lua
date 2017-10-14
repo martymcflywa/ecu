@@ -13,63 +13,59 @@ local scene = composer.newScene();
 --]]
 
 -- start all over again
-local function playAgain(event)
-    composer.gotoScene("scenes.MainMenu", {effect = "flipFadeOutIn", time = 100});
+local function replay(self, event)
+    composer.gotoScene("scenes.ReplayScreen", self.options);
 end
 
 -- kill the game
-local function exit(event)
+local function back(self, event)
     -- TODO: add "are you sure" screen/overlay
     -- This does nothing on iOS
-    -- could use os.exit() to kill but not advised
-    native.requestExit();
+    -- could use os.back() to kill but not advised
+    composer.gotoScene("scenes.MainMenu", self.options);
 end
 
-function scene:init(sceneGroup, message)
+function scene:init(sceneGroup, params)
     self.yOffset = _h * 0.2;
     self.buttonW = _w * 0.5;
     self.buttonH = _h * 0.25;
     self.font = "Arial";
     self.gameOverText = "GAME\nOVER";
-    self.playAgainText = "AGAIN";
-    self.exitText = "EXIT";
+    self.replayText = "REPLAY";
+    self.backText = "BACK";
     -- setup background
     self.bg = self:initBg(sceneGroup);
     -- setup title
     self.titleGameOver = self:initTitleGameOver(sceneGroup);
-    self.titleMessage = self:initTitleMessage(sceneGroup, message);
+    self.titleMessage = self:initTitleMessage(sceneGroup, params.message);
     -- setup buttons
     local xOffset = _cx * 0.5;
-    self.buttonPlayAgain = self:initButton(
+    self.buttonReplay = self:initButton(
         sceneGroup, 
         _cx - xOffset, 
-        _colors["green"], 
-        self.playAgainText
+        _colors["red"], 
+        self.replayText
     );
-    self.buttonExit = self:initButton(
+    self.buttonBack = self:initButton(
         sceneGroup,
         _cx + xOffset,
-        _colors["red"],
-        self.exitText
+        _colors["green"],
+        self.backText
     );
+    self.options = {
+        effect = "flipFadeOutIn",
+        time = 100,
+        params = {
+            game = params.game
+        }
+    };
     -- add listeners to the buttons
-    self.buttonPlayAgain:addEventListener(_event, playAgain);
-    self.buttonExit:addEventListener(_event, exit);
-end
-
-function scene:dispose(sceneGroup)
-    if(sceneGroup ~= nil) then
-        sceneGroup:removeSelf();
-    end
-    if(self.buttonPlayAgain ~= nil) then
-        self.buttonPlayAgain:removeEventListener(_event, playAgain);
-    end
-    if(self.buttonExit ~= nil) then
-        self.buttonExit:removeEventListener(_event, buttonExit);
-    end
-    if(self.titleMessage ~= nil) then
-        self.titleMessage:removeSelf();
-    end
+    self.buttonReplay.options = self.options;
+    self.buttonReplay.touch = replay;
+    self.buttonReplay:addEventListener(_event, touch);
+    self.buttonBack.options = self.options;
+    self.buttonBack.touch = back;
+    self.buttonBack:addEventListener(_event, touch);
 end
 
 function scene:initBg(sceneGroup)
@@ -125,7 +121,7 @@ function scene:initButton(sceneGroup, xPos, color, label)
         parent = buttonGroup,
         text = label,
         font = self.font,
-        fontSize = 40,
+        fontSize = 38,
         align = "center",
         x = xPos,
         y = yOffset
@@ -144,9 +140,7 @@ end
 --]]
 function scene:create(event)
     local sceneGroup = self.view;
-    local message = event.params.message;
-    self:dispose(sceneGroup);
-    self:init(sceneGroup, message);
+    self:init(sceneGroup, event.params);
 end
 
 function scene:show(event)

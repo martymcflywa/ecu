@@ -80,7 +80,7 @@ function Board:dispose()
 end
 
 -- draws naughts and crosses board
-function Board:draw()
+function Board:draw(sceneGroup)
     local boardGroup = _d.newGroup();
     local vertLeft = _d.newLine(boardGroup, self.w40, self.h20, self.w40, self.h80);
     vertLeft.strokeWidth = 5;
@@ -94,7 +94,7 @@ function Board:draw()
     local horBottom = _d.newLine(boardGroup, self.w20, self.h40, self.w80, self.h40);
     horBottom.strokeWidth = 5;
     horBottom:setStrokeColor(unpack(_colors["black"]));
-    self.sceneGroup:insert(boardGroup);
+    sceneGroup:insert(boardGroup);
 end
 
 -- void, sets up three tables in single On^2 loop:
@@ -133,6 +133,14 @@ function Board:newBoard()
         xRightPc = 0.4;
         yTopPc = yTopPc + 0.2;
         yBottomPc = yBottomPc + 0.2;
+    end
+end
+
+function Board:clearScores()
+    for row = 1, self.rowsCols, 1 do
+        for col = 1, self.rowsCols, 1 do
+            self.scores[row][col] = _chars["empty"];
+        end
     end
 end
 
@@ -217,10 +225,6 @@ function Board:popTurn()
             self:popTurn();
         end
     end
-end
-
-function Board:replayTurns()
-
 end
 
 function Board:isGameOver()
