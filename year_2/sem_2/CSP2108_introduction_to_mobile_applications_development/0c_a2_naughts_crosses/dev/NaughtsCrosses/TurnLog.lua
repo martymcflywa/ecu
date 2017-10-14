@@ -1,3 +1,10 @@
+--[[
+    TurnLog uses doubly linked list structure to record turns.
+    It has stack style push/pop methods so that the last turn can be undone,
+    and uses the previous pointer to achieve this.
+    It also has a forward iterator to replay turns.
+]]
+
 local TurnLog = class("TurnLog");
 
 function TurnLog:init()
@@ -42,7 +49,7 @@ function TurnLog:peek()
     return self.tail;
 end
 
-local function play(self, current)
+local function replay(self, current)
     if(not current) then
         current = self.head;
     elseif(current) then
@@ -51,8 +58,8 @@ local function play(self, current)
     return current;
 end
 
-function TurnLog:play()
-    return play, self, nil;
+function TurnLog:replay()
+    return replay, self, nil;
 end
 
 local function rewind(self, current)

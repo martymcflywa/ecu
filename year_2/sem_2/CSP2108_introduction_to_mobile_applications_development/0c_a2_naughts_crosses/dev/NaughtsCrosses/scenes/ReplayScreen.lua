@@ -12,35 +12,46 @@ local scene = composer.newScene();
     Using table listener here, method name == event name. 
 --]]
 
-local function pushMark(params)
-    local board = params.board;
-    local turn = params.turn;
+local function pushTurn(event)
+    local board = event.source.params.board;
+    local turns = event.source.params.turns;
+    local turn = turns[event.count];
     board:pushMark(turn.row, turn.col, turn.char, turn.color, turn.textOptions);
+    logger:debug(
+        composer.getSceneName("current"), 
+        "pushTurn()", 
+        string.format("Replaying turn %d: isPlayer=%s, row=%d, col=%d, char=%s",
+            event.count,
+            tostring(turn.isPlayer),
+            turn.row,
+            turn.col,
+            turn.char));
 end
 
 local function replay(self, event)
     if(event.phase == "ended") then
         self.board:newBoard();
         self.board.sceneGroup = self.sceneGroup;
-        local turnNumber = 1;
-        for turn in self.board.turnLog:play() do
-            local params = {
-                board = self.board,
-                turn = turn
+        local turns = {};
+        -- copy each turn to turns table, use turns with timer.performWithDelay
+        for turn in self.board.turnLog:replay() do
+            local t = {
+                isPlayer = turn.isPlayer,
+                row = turn.row,
+                col = turn.col,
+                char = turn.char,
+                color = turn.color,
+                textOptions = turn.textOptions
             };
-            -- TODO: figure out how to delay each iteration
-            pushMark(params);
-            logger:debug(
-                composer.getSceneName("current"), 
-                "replay()", 
-                string.format("Replaying turn %d isPlayer=%s, row=%d, col=%d, char=%s",
-                    turnNumber,
-                    tostring(turn.isPlayer),
-                    turn.row,
-                    turn.col,
-                    turn.char));
-            turnNumber = turnNumber + 1;
+            table.insert(turns, t);
         end
+        local params = {
+            turns = turns,
+            board = self.board;
+        };
+        -- tm passes count to handle, use it to determine which turn to push
+        local tm = timer.performWithDelay(1000, pushTurn, #turns);
+        tm.params = params;
     end
 end
 
