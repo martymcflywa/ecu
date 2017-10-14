@@ -40,9 +40,9 @@ function scene:init(sceneGroup)
     self.titleMenu = self:initTitleMenu(sceneGroup);
     -- setup buttons
     local buttonScoresXPosOffset = _cx * 0.5;
-    self.buttonScores = self:initButton(sceneGroup, _cx - buttonScoresXPosOffset, _colors["red"], "score");
+    self.buttonScores = self:initButton(sceneGroup, _cx - buttonScoresXPosOffset, _colors["red"], "SCORE");
     self.buttonScores.touch = scores;
-    self.buttonPlay = self:initButton(sceneGroup, _cx + buttonScoresXPosOffset, _colors["green"], "play");
+    self.buttonPlay = self:initButton(sceneGroup, _cx + buttonScoresXPosOffset, _colors["green"], "PLAY");
     self.buttonPlay.touch = play;
     self.buttonScores:addEventListener(_event, touch);
     self.buttonPlay:addEventListener(_event, touch);
@@ -87,7 +87,7 @@ function scene:initTitleMenu(sceneGroup)
     local titleMenuOptions = {
         text = self.titleMenuText,
         font = self.font,
-        fontSize = 25,
+        fontSize = 40,
         align = "center",
         x = _cx,
         y = _cy
@@ -115,7 +115,7 @@ function scene:initButton(sceneGroup, xPos, color, char)
         parent = buttonGroup,
         text = char,
         font = self.font,
-        fontSize = 50,
+        fontSize = 38,
         align = "center",
         x = xPos,
         y = yOffset
