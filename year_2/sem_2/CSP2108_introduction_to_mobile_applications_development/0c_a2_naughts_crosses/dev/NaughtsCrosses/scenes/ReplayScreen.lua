@@ -28,8 +28,19 @@ local function pushTurn(event)
             turn.char));
 end
 
+local function cancelPlaybackTimer(tm)
+    if(tm) then
+        timer.cancel(tm);
+        logger:debug(
+            composer.getSceneName("current"),
+            "back()",
+            "cancel playback timer");
+    end
+end
+
 local function replay(self, event)
     if(event.phase == "ended") then
+        cancelPlaybackTimer(self.sceneGroup.timer);
         self.board:clearMarks();
         self.board:newBoard();
         self.board.sceneGroup = self.sceneGroup;
@@ -51,13 +62,14 @@ local function replay(self, event)
             board = self.board;
         };
         -- tm passes count to handle, use it to determine which turn to push
-        local tm = timer.performWithDelay(1000, pushTurn, #turns);
-        tm.params = params;
+        self.sceneGroup.timer = timer.performWithDelay(1000, pushTurn, #turns);
+        self.sceneGroup.timer.params = params;
     end
 end
 
 local function back(self, event)
     if(event.phase == "ended") then
+        cancelPlaybackTimer(self.sceneGroup.timer);
         self.options.effect = "fromRight";
         self.options.time = 200;
         composer.gotoScene("scenes.MainMenu", self.options);
@@ -91,6 +103,7 @@ function scene:init(sceneGroup, game)
     self.buttonReplay:addEventListener(_event, touch);
     self.buttonBack = self:initButton(sceneGroup, _cx + buttonXPosOffset, _colors["green"], self.buttonBackLabel);
     self.buttonBack.touch = back;
+    self.buttonBack.sceneGroup = sceneGroup;
     self.buttonBack:addEventListener(_event, touch);
 end
 
