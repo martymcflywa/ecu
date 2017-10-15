@@ -71,7 +71,22 @@ describe("AiTests.", function()
         end)
 
         describe("Ai goes for corner.", function()
-            it("Expects Ai puts x in corner when can't win, block or put in center.", function()
+            it("Expects Ai puts x in opposite corner.", function()
+                board.scores = {
+                    {-1, 0, 0},
+                    { 0, 1, 0},
+                    { 0, 0, 0}
+                };
+                expected = {
+                    {-1, 0, 0},
+                    { 0, 1, 0},
+                    { 0, 0, 1}
+                };
+                ai:turn(event);
+                assert.same(expected, board.scores);
+            end)
+
+            it("Expects Ai puts x in corner when can't win, block, put in center, or put in opposite corner", function()
                 board.scores = {
                     {-1,  0,  0},
                     { 0, -1,  0},
@@ -145,7 +160,22 @@ describe("AiTests.", function()
         end)
 
         describe("Ai goes for corner.", function()
-            it("Expects Ai puts o in corner when can't win, block or put in center.", function()
+            it("Expects Ai puts o in opposite corner.", function()
+                board.scores = {
+                    {1,  0, 0},
+                    {0, -1, 0},
+                    {0,  0, 0}
+                };
+                expected = {
+                    {1,  0,  0},
+                    {0, -1,  0},
+                    {0,  0, -1}
+                };
+                ai:turn(event);
+                assert.same(expected, board.scores);
+            end)
+
+            it("Expects Ai puts o in corner when can't win, block, put in center, or put in opposite corner.", function()
                 board.scores = {
                     {1, 0, 0},
                     {0, 1, 0},

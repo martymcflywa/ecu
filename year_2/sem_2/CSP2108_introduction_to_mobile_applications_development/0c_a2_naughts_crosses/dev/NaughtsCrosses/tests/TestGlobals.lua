@@ -2,8 +2,8 @@ require("modules.30log.30log-global");
 
 -- mocked corona sdk objects
 display = require("mocks.mockDisplay");
-system = require("mocks.mockSystem");
-io = require("mocks.mockIo");
+-- system = require("mocks.mockSystem");
+-- io = require("mocks.mockIo");
 
 Logger = require("Logger");
 Board = require("Board");

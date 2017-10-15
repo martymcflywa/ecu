@@ -5,6 +5,7 @@ mock = require("mocks.mockagne");
 when = mock.when;
 any = mock.any;
 verify = mock.verify;
+verifyNoCall = mock.verify_no_call
 
 local documentsDirectory = "/mock/path";
 local filename = "score.json";
@@ -14,58 +15,61 @@ describe("PersistTests.", function()
     local persist;
 
     before_each(function()
-        -- setup mocks
-        io = mock.getMock();
-        system = mock.getMock();
-        system.DocumentsDirectory = documentsDirectory;
-        when(system.pathForFile(filename, system.DocumentsDirectory))
+        -- global mocks
+        _G.io = mock.getMock();
+        _G.system = mock.getMock();
+        _G._json = mock.getMock();
+        _G.system.DocumentsDirectory = documentsDirectory;
+        when(_G.system.pathForFile(filename, _G.system.DocumentsDirectory))
             .thenAnswer(system.DocumentsDirectory .. "/" .. filename);
-        
+        -- reset logger and persist for every test
         logger = Logger(_logMode);
         persist = Persist(logger);
     end)
 
     describe("Loading scores.", function()
-        describe("When scores.json exists.", function()
-            it("Expects Persist.scores to be deserialized with expected score values.", function()
-                
-                local expectedJson = '{"win":1,"loss":1,"draw":1}';
-                local expectedScores = {
-                    win = 1,
-                    loss = 1,
-                    draw = 1
-                };
-                
-                -- setup mocks
-                when(io.open(documentsDirectory, "r")).thenAnswer(io);
-                when(io.read(io, "*a")).thenAnswer(expectedJson);
-
-                persist:loadScores();
-
-                assert.same("/mock/path/score.json", persist.filepath);
-                local actualScores = persist.scores;
-                assert.same(expectedScores, actualScores);
-            end)
+        it("Expects Persist.scores to be deserialized with expected score values scores.json exists.", function()
+            -- setup expected
+            local expectedJson = '{"win":1,"loss":1,"draw":1}';
+            local expectedScores = {
+                win = 1,
+                loss = 1,
+                draw = 1
+            };
+            -- setup mock responses
+            when(_G.io.open(_G.system.pathForFile(filename, _G.system.DocumentsDirectory), "r")).thenAnswer(_G.io);
+            when(_G.io.read(_G.io, "*a")).thenAnswer(expectedJson);
+            when(_G._json.decode(expectedJson)).thenAnswer(expectedScores);
+            -- assert
+            local actualScores = persist:loadScores();
+            assert.same(expectedScores, actualScores);
         end)
 
-        describe("When scores.json does not exist.", function()
-            it("Expects Persist.scores to be initialized with zeros.", function()
-                -- add test here
-            end)
+        it("Expects Persist.scores to be initialized with zeros when scores.json doesn't exist.", function()
+            -- setup expected
+            local expectedJson = '{"win":0,"loss":0,"draw":0}';
+            local expectedScores = {
+                win = 0,
+                loss = 0,
+                draw = 0
+            };
+            -- setup mock responses
+            when(_G.io.open(_G.system.pathForFile(filename, _G.system.DocumentsDirectory), "r")).thenAnswer(_G.io);
+            when(_G.io.read(_G.io, "*a")).thenAnswer(expectedJson);
+            when(_G._json.decode(expectedJson)).thenAnswer(expectedScores);
+            -- assert
+            local actualScores = persist:loadScores();
+            assert.same(expectedScores, actualScores);
         end)
     end)
 
     describe("Saving scores.", function()
-        describe("When scores.json is saved successfully.", function()
-            it("Expects scores.json to contain expected score values.", function()
-                -- add test here
-            end)
+        it("Expects scores.json to contain expected score values when scores.json is saved.", function()
+            -- add test here
         end)
 
-        describe("When scores.json is not saved successfully.", function()
-            it("Expects scores.json to not exist.", function()
-                -- add test here
-            end)
+        it("Expects scores.json to be initialized with zeros when scores.json is not saved.", function()
+            -- add test here
         end)
     end)
 
