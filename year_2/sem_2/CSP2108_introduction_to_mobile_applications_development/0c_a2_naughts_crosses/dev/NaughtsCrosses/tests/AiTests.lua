@@ -16,7 +16,7 @@ describe("AiTests.", function()
 
     describe("When Ai is x.", function()
         setup(function()
-            ai = Ai(board, _x, _colors["red"]);
+            ai = Ai(board, _x, _colors["red"], _difficulty["h"]);
         end)
 
         describe("Ai goes for win.", function()
@@ -90,7 +90,7 @@ describe("AiTests.", function()
 
     describe("When Ai is o.", function()
         setup(function()
-            ai = Ai(board, _o, _colors["green"]);
+            ai = Ai(board, _o, _colors["green"], _difficulty["h"]);
         end)
 
         describe("Ai goes for win.", function()
