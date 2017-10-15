@@ -19,7 +19,7 @@
 
 local system = {}
 
-system.ResourceDirectory = "/mock/path";
+system.DocumentsDirectory = "/mock/path";
 
 system.pathForFile = function(filename, path)
     return path .. "/" .. filename;
