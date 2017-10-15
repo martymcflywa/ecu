@@ -3,8 +3,10 @@ local Marker = require("Marker");
 -- extend Marker
 local Ai = Marker:extend("Ai");
 
-function Ai:init(board, char, color)
+function Ai:init(board, char, color, difficulty)
     Ai.super.init(self, board, char, color, false);
+    Ai.difficulty = difficulty;
+    Ai.turns = 0;
 end
 
 function Ai:dispose()
@@ -13,6 +15,23 @@ end
 
 function Ai:turn(event)
     if(event.phase == self.phase) then
+        if(self.difficulty == _difficulty["e"]) then
+            self:easy();
+        elseif(self.difficulty == _difficulty["m"]) then
+            self:medium();
+        elseif(self.difficulty == _difficulty["h"]) then
+            self:hard();
+        end
+        self.turns = self.turns + 1;
+    end
+end
+
+function Ai:easy()
+    self:random();
+end
+
+function Ai:medium()
+    if(self.turns % 2 == 0) then
         if(self:goForWin()) then
             return;
         elseif(self:goForBlock()) then
@@ -24,6 +43,22 @@ function Ai:turn(event)
         else
             self:lastResort();
         end
+    else
+        self:random();
+    end
+end
+
+function Ai:hard()
+    if(self:goForWin()) then
+        return;
+    elseif(self:goForBlock()) then
+        return;
+    elseif(self:goForCenter()) then
+        return;
+    elseif(self:goForCorner()) then
+        return;
+    else
+        self:lastResort();
     end
 end
 

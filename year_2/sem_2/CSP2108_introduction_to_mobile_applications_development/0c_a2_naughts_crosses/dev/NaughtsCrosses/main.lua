@@ -33,6 +33,11 @@ _chars = {
     x = 1,
     o = -1
 };
+_difficulty = {
+    e = "easy",
+    m = "medium",
+    h = "hard"
+};
 _x = "x";
 _o = "o";
 _event = "touch";

@@ -61,7 +61,7 @@ local function back(self, event)
     end
 end
 
-function scene:init(sceneGroup, playerChar)
+function scene:init(sceneGroup, playerChar, difficulty)
     self.yOffset = _h * 0.45;
     self.buttonW = _w * 0.5;
     self.buttonH = _h * 0.1;
@@ -74,9 +74,10 @@ function scene:init(sceneGroup, playerChar)
         params = {}
     };
     self.playerChar = playerChar;
+    self.difficulty = difficulty;
     self.bg = self:initBg(sceneGroup);
     self.bg:addEventListener(_event, scene);
-    self.game = Game(playerChar, sceneGroup);
+    self.game = Game(playerChar, difficulty, sceneGroup);
     self.game.board:draw(sceneGroup);
 
     -- setup buttons
@@ -203,7 +204,7 @@ end
 --]]
 function scene:create(event)
     local sceneGroup = self.view;
-    self:init(sceneGroup, event.params.char);
+    self:init(sceneGroup, event.params.char, event.params.difficulty);
 end
 
 function scene:show(event)

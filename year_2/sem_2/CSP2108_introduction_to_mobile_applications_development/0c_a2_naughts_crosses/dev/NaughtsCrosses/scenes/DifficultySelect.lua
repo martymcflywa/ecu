@@ -9,37 +9,51 @@ local scene = composer.newScene();
 --]]
 
 --[[
-    Using table listeners to make it possible to pass playScreenOptions to it.
+    Using table listeners to make it possible to pass options to it.
     See https://stackoverflow.com/questions/30262822/how-to-use-table-listeners-in-corona-sdk-and-how-it-works
 --]]
-local function playerX(self, event)
+local function easy(self, event)
     if(event.phase == "ended") then
-        self.playScreenOptions.effect = "fromLeft";
-        self.playScreenOptions.params.char = _chars[_x];
-        logger:debug(composer.getSceneName("current"), "playerX()", string.format("player is '%s'", _x));
-        composer.gotoScene("scenes.DifficultySelect", self.playScreenOptions);
+        self.options.effect = "fromTop";
+        self.options.params.difficulty = _difficulty["e"];
+        logger:debug(composer.getSceneName("current"), "easy()", string.format("difficulty is %s", _difficulty["e"]));
+        composer.gotoScene("scenes.PlayScreen", self.options);
     end
 end
 
-local function playerO(self, event)
+local function medium(self, event)
     if(event.phase == "ended") then
-        self.playScreenOptions.effect = "fromRight";
-        self.playScreenOptions.params.char = _chars[_o];
-        logger:debug(composer.getSceneName("current"), "playerO()", string.format("player is '%s'", _o));
-        composer.gotoScene("scenes.DifficultySelect", self.playScreenOptions);
+        self.options.effect = "fromTop";
+        self.options.params.difficulty = _difficulty["m"];
+        logger:debug(composer.getSceneName("current"), "medium()", string.format("difficulty is %s", _difficulty["m"]));
+        composer.gotoScene("scenes.PlayScreen", self.options);
     end
 end
 
-function scene:init(sceneGroup)
+local function hard(self, event)
+    if(event.phase == "ended") then
+        self.options.effect = "fromTop";
+        self.options.params.difficulty = _difficulty["h"];
+        logger:debug(composer.getSceneName("current"), "hard()", string.format("difficulty is %s", _difficulty["h"]));
+        composer.gotoScene("scenes.PlayScreen", self.options);
+    end
+end
+
+function scene:init(event, sceneGroup)
     self.yOffset = _h * 0.2;
     self.buttonW = _w * 0.5;
-    self.buttonH = _h * 0.25;
+    self.buttonH = _h * 0.1;
     self.font = "Arial";
     self.titleGameText = "xvso";
-    self.titleMenuText = "choose your weapon";
-    self.playScreenOptions = {
+    self.titleMenuText = "choose difficulty";
+    self.buttonEasyText = "EASY";
+    self.buttonMediumText = "MEDIUM";
+    self.buttonHardText = "HARD";
+    self.options = {
         time = 200,
-        params = {}
+        params = {
+            char = event.params.char
+        }
     };
     -- setup background
     self.bg = self:initBg(sceneGroup);
@@ -47,13 +61,18 @@ function scene:init(sceneGroup)
     self.titleGame = self:initTitleGame(sceneGroup);
     self.titleMenu = self:initTitleMenu(sceneGroup);
     -- setup buttons
-    local buttonXPosOffset = _cx * 0.5;
-    self.buttonX = self:initButton(sceneGroup, _cx - buttonXPosOffset, _colors["red"], _x);
-    self.buttonX.touch = playerX;
-    self.buttonO = self:initButton(sceneGroup, _cx + buttonXPosOffset, _colors["green"], _o);
-    self.buttonO.touch = playerO;
-    self.buttonX:addEventListener(_event, touch);
-    self.buttonO:addEventListener(_event, touch);
+    local yOffset = _cy + self.yOffset - (self.buttonH * 0.5);
+    self.easy = self:initButton(sceneGroup, yOffset, _colors["green"], self.buttonEasyText);
+    self.easy.touch = easy;
+    self.easy:addEventListener(_event, touch); 
+    yOffset = yOffset + self.buttonH + (self.buttonH * 0.25);   
+    self.medium = self:initButton(sceneGroup, yOffset, _colors["orange"], self.buttonMediumText);
+    self.medium.touch = medium;
+    self.medium:addEventListener(_event, touch);
+    yOffset = yOffset + self.buttonH + (self.buttonH * 0.25);
+    self.hard = self:initButton(sceneGroup, yOffset, _colors["red"], self.buttonHardText);
+    self.hard.touch = hard;
+    self.hard:addEventListener(_event, touch);
 end
 
 function scene:dispose(sceneGroup)
@@ -106,14 +125,13 @@ function scene:initTitleMenu(sceneGroup)
     return titleMenu;
 end
 
-function scene:initButton(sceneGroup, xPos, color, char)
+function scene:initButton(sceneGroup, yPos, color, char)
     local buttonGroup = _d.newGroup();
-    local yOffset = _cy + self.yOffset + 50;
     buttonGroup.char = char;
     local button = _d.newRect(
         buttonGroup,
-        xPos,
-        yOffset,
+        _cx,
+        yPos,
         self.buttonW,
         self.buttonH
     );
@@ -123,14 +141,14 @@ function scene:initButton(sceneGroup, xPos, color, char)
         parent = buttonGroup,
         text = char,
         font = self.font,
-        fontSize = 300,
+        fontSize = 35,
         align = "center",
-        x = xPos,
-        y = yOffset - 22
+        x = _cx,
+        y = yPos
     };
     local buttonText = _d.newText(buttonTextOptions);
     buttonText:setFillColor(unpack(_colors["white"]));
-    buttonGroup.playScreenOptions = self.playScreenOptions;
+    buttonGroup.options = self.options;
     sceneGroup:insert(buttonGroup);
     return buttonGroup;
 end
@@ -143,8 +161,7 @@ end
 --]]
 function scene:create(event)
     local sceneGroup = self.view;
-    self:dispose(sceneGroup);
-    self:init(sceneGroup);
+    self:init(event, sceneGroup);
 end
 
 function scene:show(event)
@@ -185,6 +202,7 @@ function scene:hide(event)
     --]]
     elseif(phase == "did") then
         -- do stuff when hidden
+        composer.removeScene("scenes.DifficultySelect");
     end
 end
 
