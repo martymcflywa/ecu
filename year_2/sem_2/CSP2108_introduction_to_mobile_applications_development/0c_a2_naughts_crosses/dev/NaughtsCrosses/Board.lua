@@ -169,6 +169,18 @@ function Board:getCenter(row, col)
     return x, y;
 end
 
+function Board:getEmpty()
+    local empty = {};
+    for row = 1, self.rowsCols, 1 do
+        for col = 1, self.rowsCols, 1 do
+            if(self:isEmpty(row, col)) then
+                table.insert(empty, {row = row, col = col});
+            end
+        end
+    end
+    return empty;
+end
+
 -- gets score at row, col
 function Board:getScoreAt(row, col)
     return self.scores[row][col];

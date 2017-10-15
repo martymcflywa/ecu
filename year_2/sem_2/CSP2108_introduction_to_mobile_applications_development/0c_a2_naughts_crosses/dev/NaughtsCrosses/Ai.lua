@@ -38,17 +38,7 @@ end
 
 function Ai:medium()
     if(self.turns % 2 == 0) then
-        if(self:goForWin()) then
-            return;
-        elseif(self:goForBlock()) then
-            return;
-        elseif(self:goForCenter()) then
-            return;
-        elseif(self:goForCorner()) then
-            return;
-        else
-            self:lastResort();
-        end
+        self:hard();
     else
         self:goForRandom();
     end
@@ -162,6 +152,16 @@ function Ai:lastResort()
             end
         end
     end
+end
+
+function Ai:goForRandom()
+    local empty = self.board:getEmpty();
+    local random = math.random(1, #empty);
+    local row = empty[random]["row"];
+    local col = empty[random]["col"];
+    Ai.super.mark(self, row, col);
+    self:logTurn("goForRandom()", row, col);
+    return true;
 end
 
 function Ai:logTurn(strategy, row, col)
