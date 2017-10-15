@@ -33,7 +33,7 @@ local function cancelPlaybackTimer(tm)
         timer.cancel(tm);
         logger:debug(
             composer.getSceneName("current"),
-            "back()",
+            "cancelPlaybackTimer()",
             "cancel playback timer");
     end
 end

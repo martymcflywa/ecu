@@ -204,7 +204,7 @@ function Board:pushMark(row, col, char, color, textOptions)
         textOptions.y = y;
         local mark = _d.newText(textOptions);
         mark:setFillColor(unpack(color));
-        local dGroup = self.grid[col][row]["dGroup"];
+        local dGroup = self.grid[row][col]["dGroup"];
         dGroup:insert(mark);
         self.sceneGroup:insert(dGroup);
         return true;
@@ -243,8 +243,8 @@ function Board:popTurn()
     local zero = 0;
     local turn = self.turnLog:pop();
     if(turn) then
-        self:popMark(turn.col, turn.row);
-        self.scores[turn.col][turn.row] = zero;
+        self:popMark(turn.row, turn.col);
+        self.scores[turn.row][turn.col] = zero;
         if(not turn.isPlayer) then
             self:popTurn();
         end

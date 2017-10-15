@@ -18,6 +18,16 @@ local function stopUndo()
     canUndo = false;
 end
 
+local function cancelUndoTimer(tm)
+    if(tm) then
+        timer.cancel(tm);
+        logger:debug(
+            composer.getSceneName("current"),
+            "cancelUndoTimer()",
+            "cancel undo timer");
+    end
+end
+
 local undoTimer = timer.performWithDelay(delay, stopUndo);
 
 --[[
@@ -31,8 +41,8 @@ function scene:touch(event)
         if(not self:isGameOver()) then
             if(self.game.player:turn(event)) then
                 canUndo = true;
-                timer.cancel(undoTimer);
-                timer.performWithDelay(delay, stopUndo);
+                cancelUndoTimer(self.undoTimer);
+                self.undoTimer = timer.performWithDelay(delay, stopUndo);
                 if(not self:isGameOver()) then
                     self.game.ai:turn(event);
                     -- do one last check if game over, ai might take a winning turn
@@ -46,7 +56,8 @@ end
 local function undo(self, event)
     if(event.phase == "ended") then
         if(canUndo) then
-            self.board:popTurn();            
+            self.board:popTurn();
+            cancelUndoTimer(self.undoTimer);        
         else
             logger:debug(composer.getSceneName("current"), "undo()", string.format("Undo timer expired: %ds", delay / 1000));
         end
