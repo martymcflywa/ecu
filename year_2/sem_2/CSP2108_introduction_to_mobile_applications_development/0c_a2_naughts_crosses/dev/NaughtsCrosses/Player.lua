@@ -16,7 +16,7 @@ function Player:turn(event)
         local row, col = self.board.getGridFromTouch(self.board, event);
         if(row ~= nil and col ~= nil) then
             if(Player.super.mark(self, row, col)) then
-                logger:debug(Player.name, "turn()", string.format("put '%s' at row=%d, col=%d", self.char, row, col));
+                logger:debug(Player.name, "turn()", string.format("char=%s row=%d col=%d", self.char, row, col));
                 return true;
             end
         end
@@ -28,7 +28,7 @@ function Player:undo(event)
     if(event.phase == self.phase) then
         local turn = self.board:popTurn();
         if(turn) then
-            logger:debug(Player.name, "undo()", string.format("Undo turn at row=%, col=%.", turn.row, turn.col));
+            logger:debug(Player.name, "undo()", string.format("char=%s row=% col=%", turn.char, turn.row, turn.col));
         end
     end
 end

@@ -22,10 +22,6 @@ end
 local function cancelTimer(tm)
     if(tm) then
         timer.cancel(tm);
-        logger:debug(
-            composer.getSceneName("current"),
-            "cancelTimer()",
-            "cancel timer");
     end
 end
 

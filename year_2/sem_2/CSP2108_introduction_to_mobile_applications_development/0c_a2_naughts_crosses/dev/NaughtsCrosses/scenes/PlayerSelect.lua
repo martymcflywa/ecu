@@ -16,7 +16,7 @@ local function playerX(self, event)
     if(event.phase == "ended") then
         self.playScreenOptions.effect = "fromLeft";
         self.playScreenOptions.params.char = _chars[_x];
-        logger:debug(composer.getSceneName("current"), "playerX()", string.format("player is '%s'", _x));
+        logger:debug(composer.getSceneName("current"), "playerX()", string.format("player is %s", _x));
         composer.gotoScene("scenes.DifficultySelect", self.playScreenOptions);
     end
 end
@@ -25,7 +25,7 @@ local function playerO(self, event)
     if(event.phase == "ended") then
         self.playScreenOptions.effect = "fromRight";
         self.playScreenOptions.params.char = _chars[_o];
-        logger:debug(composer.getSceneName("current"), "playerO()", string.format("player is '%s'", _o));
+        logger:debug(composer.getSceneName("current"), "playerO()", string.format("player is %s", _o));
         composer.gotoScene("scenes.DifficultySelect", self.playScreenOptions);
     end
 end

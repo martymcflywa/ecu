@@ -1,8 +1,8 @@
 --[[
     TurnLog uses doubly linked list structure to record turns.
-    It has stack style push/pop methods so that the last turn can be undone,
-    and uses the previous pointer to achieve this.
-    It also has a forward iterator to replay turns.
+    This data structure is used for both replaying turns and undoing turns.
+    pop() uses tail and _prev pointer to remove turns at tail for undoing turns.
+    replay() uses head and _next pointer to iterate forward for replaying turns.
 ]]
 
 local TurnLog = class("TurnLog");

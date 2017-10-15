@@ -209,7 +209,7 @@ function Board:pushMark(row, col, char, color, textOptions)
         self.sceneGroup:insert(dGroup);
         return true;
     else
-        logger:debug(self.name, "pushMark()", string.format("row=%d, col=%d, x=%03d, y=%03d already occupied.", row, col, x, y));
+        logger:debug(self.name, "pushMark()", string.format("row=%d col=%d already occupied", row, col));
         return false
     end
 end
@@ -221,7 +221,7 @@ function Board:popMark(row, col)
             local child = dGroup[1];
             if(child) then
                 child:removeSelf();
-                logger:debug(self.name, "popMark()", string.format("remove mark at row=%d, col=%d", row, col));
+                logger:debug(self.name, "popMark()", string.format("row=%d col=%d", row, col));
             end
         end
     end

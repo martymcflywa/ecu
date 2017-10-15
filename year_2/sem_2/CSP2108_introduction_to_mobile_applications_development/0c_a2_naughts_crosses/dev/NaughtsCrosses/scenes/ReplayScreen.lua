@@ -20,12 +20,12 @@ local function pushTurn(event)
     logger:debug(
         composer.getSceneName("current"), 
         "pushTurn()", 
-        string.format("replay turn %d, isPlayer=%s, row=%d, col=%d, char=%s",
+        string.format("turn=%d row=%d col=%d char=%s isPlayer=%s",
             event.count,
-            tostring(turn.isPlayer),
             turn.row,
             turn.col,
-            turn.char));
+            turn.char,
+            tostring(turn.isPlayer)));
 end
 
 local function cancelPlaybackTimer(tm)

@@ -165,7 +165,7 @@ function Ai:goForRandom()
 end
 
 function Ai:logTurn(strategy, row, col)
-    logger:debug(Ai.name, strategy, string.format("put '%s' at row=%d, col=%d", self.char, row, col));
+    logger:debug(self.name, "turn()", string.format("char=%s row=%d col=%d strategy=%s", self.char, row, col, strategy));
 end
 
 return Ai;
