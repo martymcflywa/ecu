@@ -11,24 +11,23 @@ local Persist = require("Persist");
     unless the scene is removed by composer.RemoveScene().
 --]]
 
-local delay = 5000;
+local turnDelay = 500;
+local undoDelay = 5000;
 local canUndo;
 
 local function stopUndo()
     canUndo = false;
 end
 
-local function cancelUndoTimer(tm)
+local function cancelTimer(tm)
     if(tm) then
         timer.cancel(tm);
         logger:debug(
             composer.getSceneName("current"),
-            "cancelUndoTimer()",
-            "cancel undo timer");
+            "cancelTimer()",
+            "cancel timer");
     end
 end
-
-local undoTimer = timer.performWithDelay(delay, stopUndo);
 
 --[[
     Using table listener here, method name == event name. 
@@ -41,12 +40,13 @@ function scene:touch(event)
         if(not self:isGameOver()) then
             if(self.game.player:turn(event)) then
                 canUndo = true;
-                cancelUndoTimer(self.undoTimer);
-                self.undoTimer = timer.performWithDelay(delay, stopUndo);
+                cancelTimer(self.undoTimer);
+                self.undoTimer = timer.performWithDelay(undoDelay, stopUndo);
                 if(not self:isGameOver()) then
-                    self.game.ai:turn(event);
-                    -- do one last check if game over, ai might take a winning turn
-                    self:isGameOver();
+                    self.turnTimer = timer.performWithDelay(turnDelay, function()
+                        self.game.ai:turn(event);
+                        self:isGameOver();
+                    end)
                 end
             end
         end
@@ -57,9 +57,10 @@ local function undo(self, event)
     if(event.phase == "ended") then
         if(canUndo) then
             self.board:popTurn();
-            cancelUndoTimer(self.undoTimer);        
+            cancelTimer(self.undoTimer);
+            stopUndo();      
         else
-            logger:debug(composer.getSceneName("current"), "undo()", string.format("Undo timer expired: %ds", delay / 1000));
+            logger:debug(composer.getSceneName("current"), "undo()", string.format("Undo timer expired (%ds) or already called undo", undoDelay / 1000));
         end
     end
 end
@@ -155,6 +156,8 @@ end
 --]]
 function scene:isGameOver()
     if(self.game.board:isGameOver()) then
+        cancelTimer(self.turnTimer);
+        cancelTimer(self.undoTimer); 
         if(self.game.board.winner == _chars["empty"]) then
             logger:debug("PlayScreen", "isGameOver()", "game over, tie game!");
             self:handleDraw();
@@ -163,7 +166,7 @@ function scene:isGameOver()
             logger:debug("PlayScreen", "isGameOver()", string.format("game over, winner is %s!", self.game.board.winner));
             self:handleWin();
             return true;
-        end
+        end       
     end
     return false;
 end
