@@ -5,8 +5,14 @@ local Ai = Marker:extend("Ai");
 
 function Ai:init(board, char, color, difficulty)
     Ai.super.init(self, board, char, color, false);
-    Ai.difficulty = difficulty;
-    Ai.turns = 0;
+    self.difficulty = difficulty;
+    self.turns = 0;
+    self.corners = {
+        {row = 1, col = 1, oppRow = 3, oppCol = 3},
+        {row = 3, col = 1, oppRow = 1, oppCol = 3},
+        {row = 1, col = 3, oppRow = 3, oppCol = 1},
+        {row = 3, col = 3, oppRow = 1, oppCol = 1}
+    };
 end
 
 function Ai:dispose()
@@ -27,7 +33,7 @@ function Ai:turn(event)
 end
 
 function Ai:easy()
-    self:random();
+    self:goForRandom();
 end
 
 function Ai:medium()
@@ -44,7 +50,7 @@ function Ai:medium()
             self:lastResort();
         end
     else
-        self:random();
+        self:goForRandom();
     end
 end
 
@@ -54,6 +60,8 @@ function Ai:hard()
     elseif(self:goForBlock()) then
         return;
     elseif(self:goForCenter()) then
+        return;
+    elseif(self:goForOppCorner()) then
         return;
     elseif(self:goForCorner()) then
         return;
@@ -113,18 +121,31 @@ function Ai:goForCenter()
     return false;
 end
 
+function Ai:goForOppCorner()
+    local me = _chars[self.char];
+    local player = me * -1;
+    for index in pairs(self.corners) do
+        local row = self.corners[index]["row"];
+        local col = self.corners[index]["col"];
+        if(self.board:getScoreAt(row, col) == player) then
+            local oppRow = self.corners[index]["oppRow"];
+            local oppCol = self.corners[index]["oppCol"];
+            if(self.board:isEmpty(oppRow, oppCol)) then
+                Ai.super.mark(self, oppRow, oppCol);
+                self:logTurn("goForOppCorner()", oppRow, oppCol);
+                return true;
+            end
+        end
+    end
+    return false;
+end
+
 function Ai:goForCorner()
-    local corners = {
-        {x = 1, y = 1},
-        {x = 3, y = 1},
-        {x = 1, y = 3},
-        {x = 3, y = 3}
-    };
-    for index in pairs(corners) do
-        local col = corners[index]["x"];
-        local row = corners[index]["y"];
-        if(self.board.isEmpty(self.board, col, row)) then
-            Ai.super.mark(self, col, row);
+    for index in pairs(self.corners) do
+        local row = self.corners[index]["row"];
+        local col = self.corners[index]["col"];
+        if(self.board.isEmpty(self.board, row, col)) then
+            Ai.super.mark(self, row, col);
             self:logTurn("goForCorner()", row, col);
             return true;
         end
@@ -147,4 +168,4 @@ function Ai:logTurn(strategy, row, col)
     logger:debug(Ai.name, strategy, string.format("put '%s' at row=%d, col=%d", self.char, row, col));
 end
 
-return Ai
+return Ai;
