@@ -18,7 +18,7 @@ end
 local function play(self, event)
     if(event.phase == "ended") then
         self.options.effect = "fromRight";
-        composer.gotoScene("scenes.PlayMenu", self.options);
+        composer.gotoScene("scenes.PlayerSelect", self.options);
     end
 end
 
