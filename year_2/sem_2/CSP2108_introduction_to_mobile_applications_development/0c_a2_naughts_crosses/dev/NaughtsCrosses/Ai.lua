@@ -33,34 +33,34 @@ function Ai:turn(event)
 end
 
 function Ai:easy()
-    self:goForRandom();
+    self:random();
 end
 
 function Ai:medium()
     if(self.turns % 2 == 0) then
         self:hard();
     else
-        self:goForRandom();
+        self:random();
     end
 end
 
 function Ai:hard()
-    if(self:goForWin()) then
+    if(self:win()) then
         return;
-    elseif(self:goForBlock()) then
+    elseif(self:block()) then
         return;
-    elseif(self:goForCenter()) then
+    elseif(self:center()) then
         return;
-    elseif(self:goForOppCorner()) then
+    elseif(self:oppositeCorner()) then
         return;
-    elseif(self:goForCorner()) then
+    elseif(self:emptyCorner()) then
         return;
     else
         self:lastResort();
     end
 end
 
-function Ai:goForWin()
+function Ai:win()
     local me = _chars[self.char];
     local winHere = (self.board.rowsCols - 1) * me; -- maintain ai's sign, ai can win here
     for index in pairs(self.board.winCombos) do
@@ -71,7 +71,7 @@ function Ai:goForWin()
                 col = value["y"];
                 if(self.board.isEmpty(self.board, row, col)) then
                     Ai.super.mark(self, row, col);
-                    self:logTurn("goForWin()", row, col);
+                    self:logTurn("win()", row, col);
                     return true;
                 end
             end
@@ -80,7 +80,7 @@ function Ai:goForWin()
     return false;
 end
 
-function Ai:goForBlock()
+function Ai:block()
     local me = _chars[self.char];
     local blockHere =  (self.board.rowsCols - 1) * (me * -1); -- reverse ai's sign, ai will lose here
     for index in pairs(self.board.winCombos) do
@@ -91,7 +91,7 @@ function Ai:goForBlock()
                 col = value["y"];
                 if(self.board.isEmpty(self.board, row, col)) then
                     Ai.super.mark(self, row, col);
-                    self:logTurn("goForBlock()", row, col);
+                    self:logTurn("block()", row, col);
                     return true;
                 end
             end
@@ -100,18 +100,18 @@ function Ai:goForBlock()
     return false;
 end
 
-function Ai:goForCenter()
+function Ai:center()
     local row = math.ceil(self.board.rowsCols * 0.5);
     local col = row;
     if(self.board.isEmpty(self.board, row, col)) then
         Ai.super.mark(self, row, col);
-        self:logTurn("goForCenter()", row, col);
+        self:logTurn("center()", row, col);
         return true;
     end
     return false;
 end
 
-function Ai:goForOppCorner()
+function Ai:oppositeCorner()
     local me = _chars[self.char];
     local player = me * -1;
     for index in pairs(self.corners) do
@@ -122,7 +122,7 @@ function Ai:goForOppCorner()
             local oppCol = self.corners[index]["oppCol"];
             if(self.board:isEmpty(oppRow, oppCol)) then
                 Ai.super.mark(self, oppRow, oppCol);
-                self:logTurn("goForOppCorner()", oppRow, oppCol);
+                self:logTurn("oppositeCorner()", oppRow, oppCol);
                 return true;
             end
         end
@@ -130,13 +130,13 @@ function Ai:goForOppCorner()
     return false;
 end
 
-function Ai:goForCorner()
+function Ai:emptyCorner()
     for index in pairs(self.corners) do
         local row = self.corners[index]["row"];
         local col = self.corners[index]["col"];
         if(self.board.isEmpty(self.board, row, col)) then
             Ai.super.mark(self, row, col);
-            self:logTurn("goForCorner()", row, col);
+            self:logTurn("emptyCorner()", row, col);
             return true;
         end
     end
@@ -154,13 +154,13 @@ function Ai:lastResort()
     end
 end
 
-function Ai:goForRandom()
+function Ai:random()
     local empty = self.board:getEmpty();
     local random = math.random(1, #empty);
     local row = empty[random]["row"];
     local col = empty[random]["col"];
     Ai.super.mark(self, row, col);
-    self:logTurn("goForRandom()", row, col);
+    self:logTurn("random()", row, col);
     return true;
 end
 

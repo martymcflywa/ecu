@@ -1,10 +1,44 @@
-# CSP2108: Assignment 1
+# CSP2108: Assignment 2
 
 ### Martin Ponce, 10371381
 
-Submission number: `f2655390-858e-4100-9955-cc79fcb8e8cf`
+- Submission number: `insert hash here`
+- `CSP2108_172_A2_MartinPonce_10371381.zip` = `insert md5 here`
+- This README, source code and full history of commits can be found on [github.com](https://github.com/martymcflywa/ecu/tree/master/year_2/sem_2/CSP2108_introduction_to_mobile_applications_development/0c_a2_naughts_crosses/dev/NaughtsCrosses)
 
 ![mainmenu](https://snag.gy/Ci1DSd.jpg)
+
+## New features in assignment 2
+
+- `Ai` winning strategy
+    - Already implemented in assignment 1
+    - Minor tweaks to match requirements in brief
+- Score persistence
+    - App keeps track of wins, losses and draws, persistent across separate invocations
+    - Score serialized to `.json` and written to file in `system.DocumentsDirectory`
+    - Score deserialized from `.json` and read from file in `system.DocumentsDirectory`
+    - `Player` able to reset persistent score
+- Turn undo
+    - `Player` able to undo last turn within 5 seconds
+    - Can only undo once per turn
+    - Also removes `Ai`s last turn if made after `Player` turn
+- Turn replay
+    - `Player` able to replay turns at end of current game
+- Difficulty select
+    - `Player` selects one of three difficulty settings before starting game
+        - Easy
+            - `Ai` uses random strategy
+        - Medium
+            - `Ai` uses hard strategy on even turns
+            - `Ai` uses random strategy on odd turns
+        - Hard
+            - Play block or win, else
+            - Play two x two in a row, else
+                - **Not yet implemented**
+            - Play middle, else
+            - Play opposite corner, else
+            - Play empty corner, else
+            - Play empty square
 
 ## Unit tests
 
@@ -40,232 +74,339 @@ $ busted tests/BoardTests.lua -v -o TAP
 
 ### Test suite
 
-This is the output of unit tests passing:
+Along with unit tests from assignment 1, additional unit tests have been added to the test suite:
 
 ```
 $ ./runUnitTests.sh
-ok 1 - BoardTests. Detect win for x. Expects win for top horizontal.
-ok 2 - BoardTests. Detect win for x. Expects win for mid horizontal.
-ok 3 - BoardTests. Detect win for x. Expects win for bottom horizontal.
-ok 4 - BoardTests. Detect win for x. Expects win for left vertical.
-ok 5 - BoardTests. Detect win for x. Expects win for mid vertical.
-ok 6 - BoardTests. Detect win for x. Expects win for right vertical.
-ok 7 - BoardTests. Detect win for x. Expects win for left-right-down diagonal.
-ok 8 - BoardTests. Detect win for x. Expects win for left-right-up diagonal.
-ok 9 - BoardTests. Detect win for o. Expects win for top horizontal.
-ok 10 - BoardTests. Detect win for o. Expects win for mid horizontal.
-ok 11 - BoardTests. Detect win for o. Expects win for bottom horizontal.
-ok 12 - BoardTests. Detect win for o. Expects win for left vertical.
-ok 13 - BoardTests. Detect win for o. Expects win for mid vertical.
-ok 14 - BoardTests. Detect win for o. Expects win for right vertical.
-ok 15 - BoardTests. Detect win for o. Expects win for left-right-down diagonal.
-ok 16 - BoardTests. Detect win for o. Expects win for left-right-up diagonal.
-ok 17 - BoardTests. Detect tie game. Expects tie game.
-ok 18 - BoardTests. Convert touch coords to Board row,col. Expects touch at row=1, col=1.
-ok 19 - BoardTests. Convert touch coords to Board row,col. Expects touch at row=1, col=2.
-ok 20 - BoardTests. Convert touch coords to Board row,col. Expects touch at row=1, col=3.
-ok 21 - BoardTests. Convert touch coords to Board row,col. Expects touch at row=2, col=1.
-ok 22 - BoardTests. Convert touch coords to Board row,col. Expects touch at row=2, col=2.
-ok 23 - BoardTests. Convert touch coords to Board row,col. Expects touch at row=2, col=3.
-ok 24 - BoardTests. Convert touch coords to Board row,col. Expects touch at row=3, col=1.
-ok 25 - BoardTests. Convert touch coords to Board row,col. Expects touch at row=3, col=2.
-ok 26 - BoardTests. Convert touch coords to Board row,col. Expects touch at row=3, col=3.
-1..26
-ok 1 - AiTests. When Ai is x. Ai goes for win. Expects Ai puts x where it can win.
-ok 2 - AiTests. When Ai is x. Ai goes for block. Expects Ai puts x where it needs to block.
-ok 3 - AiTests. When Ai is x. Ai goes for center. Expects Ai puts x in center first when can't win or block.
-ok 4 - AiTests. When Ai is x. Ai goes for corner. Expects Ai puts x in corner when can't win, block or put in center.
-ok 5 - AiTests. When Ai is o. Ai goes for win. Expects Ai puts o where it can win.
-ok 6 - AiTests. When Ai is o. Ai goes for block. Expects Ai puts o where it needs to block.
-ok 7 - AiTests. When Ai is o. Ai goes for center. Expects Ai puts o in center first when can't win or block.
-ok 8 - AiTests. When Ai is o. Ai goes for corner. Expects Ai puts o in corner when can't win, block or put in center.
-1..8
-ok 1 - GameTests. When Player is x. Expects Game will select Player as x.
-ok 2 - GameTests. When Player is o. Expects Game will select Player as o.
-1..2
+...
+ok 27 - BoardTests. Turn log. Expects turn to be pushed to TurnLog.
+ok 28 - BoardTests. Turn log. Expects last player turn to be popped from TurnLog.
+ok 29 - BoardTests. Turn log. Expects last ai and player turn to be popped from TurnLog.
+1..29
+...
+ok 4 - AiTests. When Ai is x. Ai goes for corner. Expects Ai puts x in opposite corner.
+...
+ok 9 - AiTests. When Ai is o. Ai goes for corner. Expects Ai puts o in opposite corner.
+1..10
+...
+ok 1 - PersistTests. Loading scores. Expects Persist.scores to be deserialized with expected score values scores.json exists.
+ok 2 - PersistTests. Loading scores. Expects Persist.scores to be initialized with zeros when scores.json doesn't exist.
+ok 3 - PersistTests. Saving scores. Expects scores.json to contain expected score values when scores.json is saved.
+ok 4 - PersistTests. Saving scores. Expects scores.json to be initialized with zeros when scores.json is not saved.
+ok 5 - PersistTests. Resetting scores. When scores are reset, scores.json exists and contains zero for all values.
+1..5
 ```
 
 ### Unit test notes
 
-Because the game is tightly coupled with Corona SDK's libraries, and these unit tests run independently of Corona SDK, I decided to use [Cluain's Corona mocking library](https://github.com/Cluain/corona-busted) which provides stubs for `display` and other Corona SDK objects. These files are included in `./mocks` and licences remain intact.
+Because the game is tightly coupled with Corona SDK's libraries, and these unit tests run independently of Corona SDK, new features that are largely driven by `composer` were not unit tested. These features include:
 
-## Black box tests
+- Difficulty select
+- Turn undo
+- Turn replay
 
-### Player is x and wins
+These features are tested via black box below.
 
-```
-"[DEBUG] Player#turn(): put 'x' at row=2, col=2"
-"[DEBUG] Ai#lastResort(): put 'o' at row=1, col=1"
-"[DEBUG] Player#turn(): put 'x' at row=3, col=3"
-"[DEBUG] Board#putMark(): row=1, col=1, x=096, y=144 already occupied."
-"[DEBUG] Ai#lastResort(): put 'o' at row=1, col=2"
-"[DEBUG] Player#turn(): put 'x' at row=1, col=3"
-"[DEBUG] Ai#goForBlock(): put 'o' at row=2, col=3"
-"[DEBUG] Player#turn(): put 'x' at row=3, col=1"
-"[LOG] PlayScreen#isGameOver(): game over, winner is 1!"
-```
+# Black box tests
 
-![playerxwin](https://snag.gy/NBqJHe.jpg)
-![gameoverplayerxwin](https://snag.gy/2JYbs8.jpg)
+## Difficulty select
 
-### Player is x and loses
+![difficultyselect](https://snag.gy/dq1TMx.jpg)
+
+### `Player` is x and selects easy
 
 ```
-"[DEBUG] Player#turn(): put 'x' at row=2, col=1"
-"[DEBUG] Ai#goForCenter(): put 'o' at row=2, col=2"
-"[DEBUG] Player#turn(): put 'x' at row=3, col=1"
-"[DEBUG] Ai#goForBlock(): put 'o' at row=1, col=1"
-"[DEBUG] Player#turn(): put 'x' at row=3, col=2"
-"[DEBUG] Ai#goForWin(): put 'o' at row=3, col=3"
-"[LOG] PlayScreen#isGameOver(): game over, winner is -1!"
+"[DEBUG] scenes.PlayerSelect#playerX(): player is x"
+"[DEBUG] scenes.DifficultySelect#easy(): difficulty is easy"
 ```
 
-![playerxlose](https://snag.gy/PFaUDR.jpg)
-![gameoverplayerxlose](https://snag.gy/q4PosY.jpg)
-
-### Player is o and wins
+### `Player` is x and selects medium
 
 ```
-"[DEBUG] Ai#goForCenter(): put 'x' at row=2, col=2"
-"[DEBUG] Player#turn(): put 'o' at row=1, col=1"
-"[DEBUG] Board#putMark(): row=1, col=1, x=096, y=144 already occupied."
-"[DEBUG] Ai#lastResort(): put 'x' at row=1, col=2"
-"[DEBUG] Player#turn(): put 'o' at row=3, col=2"
-"[DEBUG] Board#putMark(): row=1, col=1, x=096, y=144 already occupied."
-"[DEBUG] Board#putMark(): row=1, col=2, x=160, y=144 already occupied."
-"[DEBUG] Ai#lastResort(): put 'x' at row=1, col=3"
-"[DEBUG] Player#turn(): put 'o' at row=3, col=1"
-"[DEBUG] Ai#goForBlock(): put 'x' at row=3, col=3"
-"[DEBUG] Player#turn(): put 'o' at row=2, col=1"
-"[LOG] PlayScreen#isGameOver(): game over, winner is -1!"
+"[DEBUG] scenes.PlayerSelect#playerX(): player is x"
+"[DEBUG] scenes.DifficultySelect#medium(): difficulty is medium"
 ```
 
-![playerowin](https://snag.gy/JYEDXs.jpg)
-![gameoverplayerowin](https://snag.gy/dE4Shy.jpg)
-
-### Player is o and loses
+### `Player` is x and selects hard
 
 ```
-"[DEBUG] Ai#goForCenter(): put 'x' at row=2, col=2"
-"[DEBUG] Player#turn(): put 'o' at row=2, col=3"
-"[DEBUG] Ai#goForCorner(): put 'x' at row=1, col=1"
-"[DEBUG] Player#turn(): put 'o' at row=3, col=1"
-"[DEBUG] Ai#goForWin(): put 'x' at row=3, col=3"
-"[LOG] PlayScreen#isGameOver(): game over, winner is 1!"
+"[DEBUG] scenes.PlayerSelect#playerX(): player is x"
+"[DEBUG] scenes.DifficultySelect#hard(): difficulty is hard"
 ```
 
-![playerolose](https://snag.gy/8Nfur2.jpg)
-![gameoverplayerolose](https://snag.gy/0Tj92J.jpg)
-
-### Player is x and game tied
+### `Player` is o and selects easy
 
 ```
-"[DEBUG] Player#turn(): put 'x' at row=2, col=2"
-"[DEBUG] Ai#goForCorner(): put 'o' at row=1, col=1"
-"[DEBUG] Player#turn(): put 'x' at row=3, col=3"
-"[DEBUG] Ai#goForCorner(): put 'o' at row=1, col=3"
-"[DEBUG] Player#turn(): put 'x' at row=2, col=1"
-"[DEBUG] Ai#goForBlock(): put 'o' at row=2, col=3"
-"[DEBUG] Player#turn(): put 'x' at row=1, col=2"
-"[DEBUG] Ai#goForBlock(): put 'o' at row=3, col=2"
-"[DEBUG] Player#turn(): put 'x' at row=1, col=3"
-"[LOG] PlayScreen#isGameOver(): game over, tie game!"
+"[DEBUG] scenes.PlayerSelect#playerO(): player is o"
+"[DEBUG] scenes.DifficultySelect#easy(): difficulty is easy"
 ```
 
-![playerxtie](https://snag.gy/KsBXGh.jpg)
-![gameoverplayerxtie](https://snag.gy/tqE7Pb.jpg)
-
-### Player is o and game tied
+### `Player` is o and selects medium
 
 ```
-"[DEBUG] Ai#goForCenter(): put 'x' at row=2, col=2"
-"[DEBUG] Player#turn(): put 'o' at row=3, col=3"
-"[DEBUG] Ai#goForCorner(): put 'x' at row=1, col=1"
-"[DEBUG] Player#turn(): put 'o' at row=3, col=1"
-"[DEBUG] Ai#goForBlock(): put 'x' at row=3, col=2"
-"[DEBUG] Player#turn(): put 'o' at row=1, col=2"
-"[DEBUG] Ai#goForCorner(): put 'x' at row=3, col=1"
-"[DEBUG] Player#turn(): put 'o' at row=2, col=1"
-"[DEBUG] Board#putMark(): row=1, col=1, x=096, y=144 already occupied."
-"[DEBUG] Board#putMark(): row=1, col=2, x=160, y=144 already occupied."
-"[DEBUG] Board#putMark(): row=1, col=3, x=224, y=144 already occupied."
-"[DEBUG] Board#putMark(): row=2, col=1, x=096, y=240 already occupied."
-"[DEBUG] Board#putMark(): row=2, col=2, x=160, y=240 already occupied."
-"[DEBUG] Ai#lastResort(): put 'x' at row=2, col=3"
-"[LOG] PlayScreen#isGameOver(): game over, tie game!"
+"[DEBUG] scenes.PlayerSelect#playerO(): player is o"
+"[DEBUG] scenes.DifficultySelect#medium(): difficulty is medium"
 ```
 
-![playerotie](https://snag.gy/Fr7Qa6.jpg)
-![gameoverplayerotie](https://snag.gy/tqE7Pb.jpg)
+### `Player` is o and selects hard
 
-## Assignment notes
+```
+"[DEBUG] scenes.PlayerSelect#playerO(): player is o"
+"[DEBUG] scenes.DifficultySelect#hard(): difficulty is hard"
+```
 
-According to the assignment brief, the success criteria for this assignment are:
+### `Ai` strategy while `Player` is x and difficulty is easy
 
-- Modify existing code to improve event handling of noughts and crosses game
-- Allow human player to play against the *computer*
-- Allow player to choose who goes first
-- Keep track of moves made and show the winner
-- Use consistent coding standard
-    - Open source or self defined
-- Provide documentation of black box and unit tests to verify application functionality
-- Provide zip containing assignment
-    - Includes code and other ancillary files required to execute code in Corona Simulator
-- Provide MD5 hash of zip
+- Expect `Ai` to only use `random()`
 
-Out of scope:
+```
+"[DEBUG] scenes.PlayerSelect#playerX(): player is x"
+"[DEBUG] scenes.DifficultySelect#easy(): difficulty is easy"
+"[DEBUG] Player#turn(): char=x row=2 col=2"
+"[DEBUG] Ai#turn(): char=o row=1 col=1 strategy=random()"
+"[DEBUG] Player#turn(): char=x row=3 col=1"
+"[DEBUG] Ai#turn(): char=o row=2 col=1 strategy=random()"
+"[DEBUG] Player#turn(): char=x row=1 col=2"
+"[DEBUG] Ai#turn(): char=o row=1 col=3 strategy=random()"
+"[DEBUG] Player#turn(): char=x row=3 col=2"
+```
 
-- Win strategy for ai opponent
-    - I did however include a basic ai strategy, see notes below
+### `Ai` strategy while `Player` is x and difficulty is medium
 
-## Approach
+- Expect `Ai` to use hard difficulty algorithm for even turns
+- Expect `Ai` to use `random()` for odd turns
 
-### Classes
+```
+"[DEBUG] scenes.PlayerSelect#playerX(): player is x"
+"[DEBUG] scenes.DifficultySelect#medium(): difficulty is medium"
+"[DEBUG] Player#turn(): char=x row=2 col=2"
+"[DEBUG] Ai#turn(): char=o row=1 col=1 strategy=emptyCorner()"
+"[DEBUG] Player#turn(): char=x row=2 col=3"
+"[DEBUG] Ai#turn(): char=o row=2 col=1 strategy=random()"
+"[DEBUG] Player#turn(): char=x row=3 col=1"
+"[DEBUG] Ai#turn(): char=o row=1 col=3 strategy=block()"
+"[DEBUG] Player#turn(): char=x row=1 col=2"
+"[DEBUG] Ai#turn(): char=o row=3 col=2 strategy=random()"
+"[DEBUG] Player#turn(): char=x row=3 col=3"
+```
 
-The existing code used a procedural style to create the game. I decided to use an object oriented approach, using [`30log`](https://github.com/Yonaba/30log), an open source, object oriented framework for lua.
+### `Ai` strategy while `Player` is x and difficulty is hard
 
-The game is represented by the following classes:
+- Expect `Ai` to only use hard difficulty algorithm
+- Expect `random()` is never used
 
-- `Marker`
-    - Super class of `Player` and `Ai`
-    - Defines logic to mark the game board
-    - Avoids code duplication between `Player` and `Ai`
-- `Player`
-    - Represents the human player of the game
-    - Defines logic to start detecting `touch` events when the player taps the screen to place either `x` or `o` on the game board
-- `Ai`
-    - Represents the *computer* opponent
-    - Defines logic to place either `x` or `o` on the game board using different strategies
-        - Go for a win
-        - Go for a block
-        - Place mark in the center cell
-        - Place mark on a corner cell
-        - Last resort strategy which places mark on first empty cell
-- `Board`
-    - Represents the play area and contains most of the logic
-    - The board is represented as a 2d array each cell is represented by its row and column number
-        - Row 1, Column 1 is the top left corner
-        - Row 3, Column 3 is the bottom right corner
-    - Knows what the winning combinations are
-        - ie. Horizontal three in a row, vertical three in a row, diagonal three in a row
-    - Keeps track of the score and markers placed on the board
-        - `x` is represented by `1`
-        - `o` is represented by `-1`
-        - empty cells are represented by `0`
-    - The winner is detected by iterating over the winning combinations and summing the values
-        - If the sum is equal to `3`, `x` has won
-        - If the sum is equal to `-3`, `o` has won
-        - If all cells have values other than `0` but does not sum to either `3` or `-3` then it is a tie game
-    - Has logic to convert touch event x,y coordinates to column,row cell positions
-    - Knows about the pixel coordinates for the center of each cell
-- `Logger`
-    - An auxillary class used to print debugging type messages to Corona Simulator's console
-    - Used for black box testing
+```
+"[DEBUG] scenes.PlayerSelect#playerX(): player is x"
+"[DEBUG] scenes.DifficultySelect#hard(): difficulty is hard"
+"[DEBUG] Player#turn(): char=x row=2 col=2"
+"[DEBUG] Ai#turn(): char=o row=1 col=1 strategy=emptyCorner()"
+"[DEBUG] Player#turn(): char=x row=3 col=1"
+"[DEBUG] Ai#turn(): char=o row=1 col=3 strategy=block()"
+"[DEBUG] Player#turn(): char=x row=1 col=2"
+"[DEBUG] Ai#turn(): char=o row=3 col=2 strategy=block()"
+"[DEBUG] Player#turn(): char=x row=2 col=3"
+"[DEBUG] Ai#turn(): char=o row=2 col=1 strategy=block()"
+"[DEBUG] Player#turn(): char=x row=3 col=3"
+```
 
-### User interface
+### `Ai` strategy while `Player` is o and difficulty is easy
 
-Using Corona SDK's [Composer](https://docs.coronalabs.com/api/library/composer/index.html) scene management library. All scenes reside in the `./scenes` directory, and starts with `MainMenu` which allows the player to select their character, either `x` or `o`.
+- Expect `Ai` to only use `random()`
 
-Once the marker is selected, the game moves to the `PlayScreen` which displays the naughts and crosses board. The player and ai opponent take turns at placing markers until either, the game ends in a tie, or either `x` or `o` wins.
+```
+"[DEBUG] scenes.PlayerSelect#playerO(): player is o"
+"[DEBUG] scenes.DifficultySelect#easy(): difficulty is easy"
+"[DEBUG] Ai#turn(): char=x row=2 col=1 strategy=random()"
+"[DEBUG] Player#turn(): char=o row=1 col=3"
+"[DEBUG] Ai#turn(): char=x row=1 col=1 strategy=random()"
+"[DEBUG] Player#turn(): char=o row=3 col=1"
+"[DEBUG] Ai#turn(): char=x row=3 col=3 strategy=random()"
+"[DEBUG] Player#turn(): char=o row=2 col=2"
+```
 
-The game then moves to the `GameOver` scene, which indicates who won, with what marker, or if the game ended in a tie. There is a restart and exit button. If the player taps the `AGAIN` button, the game returns to `MainMenu`.
+### `Ai` strategy while `Player` is o and difficulty is medium
+
+- Expect `Ai` to use hard difficulty algorithm for even turns
+- Expect `Ai` to use `random()` for odd turns
+
+```
+"[DEBUG] scenes.PlayerSelect#playerO(): player is o"
+"[DEBUG] scenes.DifficultySelect#medium(): difficulty is medium"
+"[DEBUG] Ai#turn(): char=x row=2 col=2 strategy=center()"
+"[DEBUG] Player#turn(): char=o row=3 col=1"
+"[DEBUG] Ai#turn(): char=x row=1 col=3 strategy=random()"
+"[DEBUG] Player#turn(): char=o row=1 col=1"
+"[DEBUG] Ai#turn(): char=x row=2 col=1 strategy=block()"
+"[DEBUG] Player#turn(): char=o row=2 col=3"
+"[DEBUG] Ai#turn(): char=x row=3 col=2 strategy=random()"
+"[DEBUG] Player#turn(): char=o row=1 col=2"
+"[DEBUG] Ai#turn(): char=x row=3 col=3 strategy=oppositeCorner()"
+```
+
+### `Ai` strategy while `Player` is o and difficulty is hard
+
+- Expect `Ai` to only use hard difficulty algorithm
+- Expect `random()` is never used
+
+```
+"[DEBUG] scenes.PlayerSelect#playerO(): player is o"
+"[DEBUG] scenes.DifficultySelect#hard(): difficulty is hard"
+"[DEBUG] Ai#turn(): char=x row=2 col=2 strategy=center()"
+"[DEBUG] Player#turn(): char=o row=3 col=1"
+"[DEBUG] Ai#turn(): char=x row=1 col=3 strategy=oppositeCorner()"
+"[DEBUG] Player#turn(): char=o row=1 col=1"
+"[DEBUG] Ai#turn(): char=x row=2 col=1 strategy=block()"
+"[DEBUG] Player#turn(): char=o row=1 col=2"
+"[DEBUG] Ai#turn(): char=x row=2 col=3 strategy=win()"
+```
+
+## Turn undo
+
+![turnundo](https://snag.gy/XuqfPZ.jpg)
+
+### Undo turn while `Player` is x
+
+- `Player` turn then `Ai` turn
+- Expect `Ai` turn to be removed, then `Player` turn to be removed
+
+![currentturn](https://snag.gy/B76ZGI.jpg)
+
+```
+"[DEBUG] Player#turn(): char=x row=2 col=2"
+"[DEBUG] Ai#turn(): char=o row=1 col=1 strategy=emptyCorner()"
+"[DEBUG] Board#popMark(): row=1 col=1"
+"[DEBUG] Board#popMark(): row=2 col=2"
+```
+
+### Undo turn while `Player` is o
+
+- `Ai` turn then `Player` turn then `Ai` turn
+- Expect `Ai`s last turn to be removed, then `Player` turn to be removed
+
+![currentturn](https://snag.gy/Nmqu6K.jpg)
+
+```
+"[DEBUG] Ai#turn(): char=x row=2 col=2 strategy=center()"
+"[DEBUG] Player#turn(): char=o row=1 col=3"
+"[DEBUG] Ai#turn(): char=x row=3 col=1 strategy=oppositeCorner()"
+"[DEBUG] scenes.PlayerSelect#playerO(): player is o"
+"[DEBUG] scenes.DifficultySelect#hard(): difficulty is hard"
+"[DEBUG] Ai#turn(): char=x row=2 col=2 strategy=center()"
+"[DEBUG] Player#turn(): char=o row=1 col=3"
+"[DEBUG] Ai#turn(): char=x row=3 col=1 strategy=oppositeCorner()"
+"[DEBUG] Board#popMark(): row=3 col=1"
+"[DEBUG] Board#popMark(): row=1 col=3"
+```
+
+![afterundo](https://snag.gy/0XZrzf.jpg)
+
+### Undo attempt after 5 seconds
+
+- Expect undo unavailable for current turn
+
+```
+"[DEBUG] Player#turn(): char=x row=2 col=2"
+"[DEBUG] Ai#turn(): char=o row=1 col=1 strategy=emptyCorner()"
+"[DEBUG] scenes.PlayScreen#undo(): Undo timer expired (5s) or already called undo"
+```
+
+### Undo attempt after already undoing current turn
+
+- `Player` undoes current turn, then attempts undo again
+- Expect undo unavailable for previous turn
+
+```
+"[DEBUG] Player#turn(): char=x row=2 col=2"
+"[DEBUG] Ai#turn(): char=o row=1 col=1 strategy=emptyCorner()"
+"[DEBUG] Player#turn(): char=x row=3 col=1"
+"[DEBUG] Ai#turn(): char=o row=1 col=3 strategy=block()"
+"[DEBUG] Board#popMark(): row=1 col=3"
+"[DEBUG] Board#popMark(): row=3 col=1"
+"[DEBUG] scenes.PlayScreen#undo(): Undo timer expired (5s) or already called undo"
+```
+
+## Turn replay
+
+- Expect replay to play back turns in correct order
+
+```
+// Real-time turns:
+"[DEBUG] Player#turn(): char=x row=2 col=2"
+"[DEBUG] Ai#turn(): char=o row=1 col=1 strategy=emptyCorner()"
+"[DEBUG] Player#turn(): char=x row=3 col=1"
+"[DEBUG] Ai#turn(): char=o row=1 col=3 strategy=block()"
+"[DEBUG] Player#turn(): char=x row=1 col=2"
+"[DEBUG] Ai#turn(): char=o row=3 col=2 strategy=block()"
+"[DEBUG] Player#turn(): char=x row=2 col=3"
+"[DEBUG] Ai#turn(): char=o row=2 col=1 strategy=block()"
+"[DEBUG] Player#turn(): char=x row=3 col=3"
+```
+
+```
+// Replay turns:
+"[DEBUG] scenes.ReplayScreen#pushTurn(): turn=1 row=2 col=2 char=x isPlayer=true"
+"[DEBUG] scenes.ReplayScreen#pushTurn(): turn=2 row=1 col=1 char=o isPlayer=false"
+"[DEBUG] scenes.ReplayScreen#pushTurn(): turn=3 row=3 col=1 char=x isPlayer=true"
+"[DEBUG] scenes.ReplayScreen#pushTurn(): turn=4 row=1 col=3 char=o isPlayer=false"
+"[DEBUG] scenes.ReplayScreen#pushTurn(): turn=5 row=1 col=2 char=x isPlayer=true"
+"[DEBUG] scenes.ReplayScreen#pushTurn(): turn=6 row=3 col=2 char=o isPlayer=false"
+"[DEBUG] scenes.ReplayScreen#pushTurn(): turn=7 row=2 col=3 char=x isPlayer=true"
+"[DEBUG] scenes.ReplayScreen#pushTurn(): turn=8 row=2 col=1 char=o isPlayer=false"
+"[DEBUG] scenes.ReplayScreen#pushTurn(): turn=9 row=3 col=3 char=x isPlayer=true"
+```
+
+## Persistence
+
+### `scores.json` does not exist
+
+- Expect `scores.json` file is created
+- Expect score values to all be zero
+
+```
+"[DEBUG] Persist#newFile(): create /path/to/Documents/score.json"
+"[DEBUG] Persist#read(): read /path/to/Documents/score.json"
+"[DEBUG] Persist#read(): deserialize json ''"
+"[DEBUG] Persist#write(): serialize json '{\"draw\":0,\"win\":0,\"loss\":0}'"
+"[DEBUG] Persist#write(): write /path/to/Documents/score.json"
+```
+
+### `scores.json` exists and contains values
+
+- Expect `scores.json` to be read and deserialized
+- Expect correct values to be shown on `ScoreScreen`
+
+``` json
+// Contents of scores.json:
+{"draw":8,"win":4,"loss":6}
+```
+
+```
+"[DEBUG] Persist#read(): read /path/to/Documents/score.json"
+"[DEBUG] Persist#read(): deserialize json '{\"draw\":8,\"win\":4,\"loss\":6}'"
+```
+
+![scorescreen](https://snag.gy/XOvQJG.jpg)
+
+## `scores.json` cleared while containing values
+
+- Expect `scores.json` values to be reset to zero
+- Expect `scores.json` to be serialized and written with zero values
+- Expect `scores.json` to be read and deserialized with zero values
+- Expect `ScoreScreen` to display zero values
+
+``` json
+// Contents of scores.json before clearing
+{"draw":8,"win":4,"loss":6}
+```
+
+```
+// After CLEAR button is pressed
+"[DEBUG] Persist#write(): serialize json '{\"draw\":0,\"win\":0,\"loss\":0}'"
+"[DEBUG] Persist#write(): write /path/to/Documents/score.json"
+"[DEBUG] Persist#read(): read /path/to/Documents/score.json"
+"[DEBUG] Persist#read(): deserialize json '{\"draw\":0,\"win\":0,\"loss\":0}'"
+```
+
+- Values shown on `ScoreScreen` after score is cleared
+
+![scorecleared](https://snag.gy/3QBA17.jpg)
