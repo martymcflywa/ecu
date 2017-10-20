@@ -2,8 +2,8 @@
 
 ### Martin Ponce, 10371381
 
-- Submission number: `insert hash here`
-- `CSP2108_172_A2_MartinPonce_10371381.zip` = `insert md5 here`
+- Submission number: `4a16fbf4-a095-4a88-8492-9df698d42c57`
+- `CSP2108_172_A2_MartinPonce_10371381.zip = 6e23e563a565e958fdf9421f115023f8`
 - This README, source code and full history of commits can be found on [github.com](https://github.com/martymcflywa/ecu/tree/master/year_2/sem_2/CSP2108_introduction_to_mobile_applications_development/0c_a2_naughts_crosses/dev/NaughtsCrosses)
 
 ![mainmenu](https://snag.gy/Ci1DSd.jpg)
