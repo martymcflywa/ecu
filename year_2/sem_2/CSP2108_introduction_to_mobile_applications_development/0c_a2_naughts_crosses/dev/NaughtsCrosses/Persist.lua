@@ -50,7 +50,11 @@ function Persist:read(filepath)
         logger:debug(self.name, "read()", string.format("read %s", filepath));
         local deserialized = file:read("*a");
         logger:debug(self.name, "read()", string.format("deserialize json '%s'", deserialized));
-        object = _json.decode(deserialized);
+        local pos, msg;
+        object, pos, msg = _json.decode(deserialized);
+        if(not object) then
+            logger:debug(self.name, "read()", string.format("deserialize error pos=%s, msg=%s", tostring(pos), tostring(msg)));
+        end
     else
         logger:debug(self.name, "read()", string.format("error reading %s", errorMessage));
     end
