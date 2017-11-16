@@ -36,3 +36,11 @@ local ipairArray = {1, 2, 3, 4, 5, 6};
 for i, v in ipairs(ipairArray) do
     print(string.format("index=%d value=%d", i, v));
 end
+
+-- if
+local testMe = true;
+if(testMe) then
+    print(string.format("testMe=%s", tostring(testMe)));
+else
+    print(string.format("testMe=%s", "not even close"));
+end
