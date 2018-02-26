@@ -1,0 +1,4 @@
+struct Person
+{
+    int dateOfBirth;
+};
