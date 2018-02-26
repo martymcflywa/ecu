@@ -5,10 +5,9 @@ using namespace std;
 
 int main()
 {
-    int dateOfBirth;
+    auto person = Person();
     cout << "What is your date of birth? " << endl;
-    cin >> dateOfBirth;
-    cout << "You are born on " << dateOfBirth << endl;
-    getchar();
+    cin >> person.dateOfBirth;
+    cout << "You are born on " << person.dateOfBirth << endl;
     return 0;
 }
