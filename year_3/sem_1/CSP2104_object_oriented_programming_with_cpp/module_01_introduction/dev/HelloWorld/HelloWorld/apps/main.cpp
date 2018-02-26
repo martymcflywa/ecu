@@ -5,9 +5,10 @@ using namespace std;
 
 int main()
 {
-    Person person;
-    cout << "Hello, world. " << endl;
-    // system("pause"); Windows specific, don't do this!
+    int dateOfBirth;
+    cout << "What is your date of birth? " << endl;
+    cin >> dateOfBirth;
+    cout << "You are born on " << dateOfBirth << endl;
     getchar();
     return 0;
 }
