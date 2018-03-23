@@ -1,0 +1,20 @@
+1
+Tom Collins
+manager
+65.95
+2
+Shirley Temple
+worker
+28.23
+3
+John Walker
+worker
+28.23
+4
+Jack Daniels
+worker
+32.32
+5
+Jim Beam
+manager
+65.95
