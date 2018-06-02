@@ -1,0 +1,38 @@
+cmake_minimum_required(VERSION 3.11)
+project(util VERSION 0.1.0 LANGUAGES CXX)
+
+add_library(${PROJECT_NAME} SHARED
+    src/Cli.cpp
+)
+
+add_library(${PROJECT_NAME}::${PROJECT_NAME}
+    ALIAS ${PROJECT_NAME}
+)
+
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
+
+target_include_directories(${PROJECT_NAME}
+  PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/include>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>
+    $<INSTALL_INTERFACE:include>)
+
+include(GenerateExportHeader)
+generate_export_header(${PROJECT_NAME}
+    EXPORT_FILE_NAME  ${CMAKE_BINARY_DIR}/include/${PROJECT_NAME}/export.h
+    EXPORT_MACRO_NAME UTIL_API)
+
+include(GNUInstallDirs)
+
+install(
+    TARGETS  ${PROJECT_NAME}
+    EXPORT   ${PROJECT_NAME}Config
+    ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY  DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+
+install(DIRECTORY include/${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(DIRECTORY ${CMAKE_BINARY_DIR}/include/${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(EXPORT    ${PROJECT_NAME}Config DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake)
+
+add_subdirectory(doc)
