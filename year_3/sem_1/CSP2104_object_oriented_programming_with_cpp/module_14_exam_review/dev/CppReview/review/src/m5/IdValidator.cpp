@@ -1,6 +1,7 @@
 #include <review/m5/IdValidator.h>
 
 using namespace m5;
+using namespace util;
 using namespace std;
 
 IdValidator::IdValidator(Cli& cli) : _cli(cli)

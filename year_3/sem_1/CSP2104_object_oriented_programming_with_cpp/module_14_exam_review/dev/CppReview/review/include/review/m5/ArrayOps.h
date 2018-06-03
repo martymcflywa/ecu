@@ -7,10 +7,10 @@ namespace m5
 {
     class ArrayOps
     {
-        Cli _cli;
+        util::Cli _cli;
         std::array<unsigned, 7> _a = {1, 2, 3, 4, 3, 2, 1};
     public:
-        ArrayOps(Cli& cli);
+        ArrayOps(util::Cli& cli);
         void run();
     private:
         void print();

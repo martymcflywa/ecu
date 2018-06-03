@@ -22,9 +22,9 @@ namespace m7
 
     class Functions
     {
-        Cli _cli;
+        util::Cli _cli;
     public:
-        Functions(Cli& cli);
+        Functions(util::Cli& cli);
         void compute();
         void setVector();
         void initFileIo();
@@ -32,7 +32,7 @@ namespace m7
         float compute(float a, float* b, float& c);
         void setVector(Vector3& v, double x, double y, double z);
         std::string read(const std::string& filename);
-        int write(const std::string& filename);
+        void write(const std::string& filename);
         int menuSelect();
         std::string getFilename();
     };

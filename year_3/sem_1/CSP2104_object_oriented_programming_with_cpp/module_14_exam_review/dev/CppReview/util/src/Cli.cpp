@@ -1,6 +1,7 @@
 #include <util/Cli.h>
 #include <iostream>
 
+using namespace util;
 using namespace std;
 
 std::string Cli::get(const string& message)

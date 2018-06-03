@@ -3,6 +3,7 @@ project(util VERSION 0.1.0 LANGUAGES CXX)
 
 add_library(${PROJECT_NAME} SHARED
     src/Cli.cpp
+    src/Reader.cpp
 )
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME}

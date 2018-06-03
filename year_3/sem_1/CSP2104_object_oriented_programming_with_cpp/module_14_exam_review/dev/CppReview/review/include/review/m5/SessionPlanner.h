@@ -38,7 +38,7 @@ namespace m5
      */
     class SessionPlanner
     {
-        Cli _cli;
+        util::Cli _cli;
         Client _client;
         const unsigned MIN_ID = 1000;
         const unsigned MAX_ID = 9999;
@@ -47,7 +47,7 @@ namespace m5
         const unsigned MAX_MONTHS = 12;
         const unsigned CURRENT_YEAR = 2018;
     public:
-        SessionPlanner(Cli& cli);
+        SessionPlanner(util::Cli& cli);
         void get();
     private:
         void setId(Client& client);

@@ -1,6 +1,7 @@
 #include <review/m5/SessionPlanner.h>
 
 using namespace m5;
+using namespace util;
 using namespace std;
 
 SessionPlanner::SessionPlanner(Cli& cli) : 

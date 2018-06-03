@@ -2,6 +2,7 @@
 #include <fstream>
 
 using namespace m7;
+using namespace util;
 using namespace std;
 
 Functions::Functions(Cli& cli) : _cli(cli)
@@ -86,7 +87,7 @@ string Functions::read(const string& filename)
     return record;
 }
 
-int Functions::write(const string& filename)
+void Functions::write(const string& filename)
 {
     _cli.print("Write mode");
     auto file = ofstream(filename, ios::app);
@@ -94,14 +95,13 @@ int Functions::write(const string& filename)
     if (!file.is_open())
     {
         _cli.print("Unable to open file");
-        return 1;
+        exit(1);
     }
 
     file << "Write 1\n";
     file << "Write 2\n";
     file << "Write 3\n";
     file.close();
-    return 0;
 }
 
 int Functions::menuSelect()

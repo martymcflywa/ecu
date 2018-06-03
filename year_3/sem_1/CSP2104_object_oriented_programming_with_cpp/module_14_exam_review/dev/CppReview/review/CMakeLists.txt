@@ -9,6 +9,10 @@ add_library(${PROJECT_NAME}
   src/m5/Nested.cpp
   src/m5/ArrayOps.cpp
   src/m7/Functions.cpp
+  src/m8/CollegeCourse.cpp
+  src/m8/Letter.cpp
+  src/m8/Employee.cpp
+  src/m8/HrSystem.cpp
 )
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})

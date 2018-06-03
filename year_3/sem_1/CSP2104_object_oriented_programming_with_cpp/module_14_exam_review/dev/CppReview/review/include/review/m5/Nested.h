@@ -12,9 +12,9 @@ namespace m5
 
     class Nested
     {
-        Cli _cli;
+        util::Cli _cli;
     public:
-        Nested(Cli& cli);
+        Nested(util::Cli& cli);
         void getMatrix();
     };
 }

@@ -28,11 +28,11 @@ namespace m5
      */
     class IdValidator
     {
-        Cli _cli;
+        util::Cli _cli;
         const unsigned MIN_ID = 111;
         const unsigned MAX_ID = 999;
     public:
-        IdValidator(Cli& cli);
+        IdValidator(util::Cli& cli);
         void validate();
     };
 }

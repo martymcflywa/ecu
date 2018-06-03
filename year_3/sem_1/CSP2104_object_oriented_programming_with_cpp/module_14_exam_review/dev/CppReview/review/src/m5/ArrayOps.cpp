@@ -1,6 +1,7 @@
 #include <review/m5/ArrayOps.h>
 
 using namespace m5;
+using namespace util;
 using namespace std;
 
 ArrayOps::ArrayOps(Cli& cli) : _cli(cli)
