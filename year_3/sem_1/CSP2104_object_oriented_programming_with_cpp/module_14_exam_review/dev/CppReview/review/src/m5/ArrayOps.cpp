@@ -39,7 +39,7 @@ void ArrayOps::print()
 
 unsigned ArrayOps::sum()
 {
-    unsigned sum;
+    auto sum = 0;
 
     for (const auto& i : _a)
         sum += i;

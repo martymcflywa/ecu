@@ -6,9 +6,11 @@
 #include <review/m5/SessionPlanner.h>
 #include <review/m5/Nested.h>
 #include <review/m5/ArrayOps.h>
+#include <review/m7/Functions.h>
 
 using namespace std;
 using namespace m5;
+using namespace m7;
 
 int main()
 {
@@ -33,5 +35,18 @@ int main()
     auto ops = ArrayOps(cli);
     ops.run();
 
+    // 7.0
+    cli.beginModule(7, "Functions");
+    // 7.1
+    cli.beginExercise(1);
+    auto functions = Functions(cli);
+    functions.compute();
+    // 7.2
+    cli.beginExercise(2);
+    functions.setVector();
+    // 7.3
+    cli.beginExercise(3);
+    functions.initFileIo();
+    
     return 0;
 }
