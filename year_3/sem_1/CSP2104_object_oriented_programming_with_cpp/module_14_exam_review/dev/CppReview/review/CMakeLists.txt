@@ -13,6 +13,10 @@ add_library(${PROJECT_NAME}
   src/m8/Letter.cpp
   src/m8/Employee.cpp
   src/m8/HrSystem.cpp
+  src/m9/Pizza.cpp
+  src/m9/Name.cpp
+  src/m9/Credit.cpp
+  src/m9/Customer.cpp
 )
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})

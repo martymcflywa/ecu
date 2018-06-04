@@ -11,12 +11,15 @@
 #include <review/m8/CollegeCourse.h>
 #include <review/m8/Letter.h>
 #include <review/m8/HrSystem.h>
+#include <review/m9/Pizza.h>
+#include <review/m9/Customer.h>
 
 using namespace std;
 using namespace util;
 using namespace m5;
 using namespace m7;
 using namespace m8;
+using namespace m9;
 
 int main()
 {
@@ -84,6 +87,35 @@ int main()
     cli.beginExercise(3);
     auto hrSystem = HrSystem(cli, reader);
     hrSystem.run();
+
+    // 9.0
+    cli.beginModule(9, "Class features and design issues");
+    // 9.1
+    cli.beginExercise(1);
+    auto standard = Pizza();
+    cli.print(standard.toString());
+    auto special = Pizza("special", "pineapple");
+    cli.print(special.toString());
+    auto deluxe = Pizza("deluxe", "sausage", 16.00);
+    cli.print(deluxe.toString());
+    auto superDeluxe = Pizza("super deluxe", "lobster", 20, 17.99);
+    cli.print(superDeluxe.toString());
+    // 9.2
+    cli.beginExercise(2);
+    auto first = cli.get("Enter first name");
+    auto middle = cli.get("Enter middle name");
+    auto last = cli.get("Enter last name");
+    auto current = stod(cli.get("Enter balance"));
+    auto limit = stod(cli.get("Enter limit"));
+    auto phone = cli.get("Enter phone number");
+    auto customer = Customer(
+        first,
+        middle,
+        last,
+        current,
+        limit,
+        phone);
+    cli.print(customer.toString());
 
     return 0;
 }
