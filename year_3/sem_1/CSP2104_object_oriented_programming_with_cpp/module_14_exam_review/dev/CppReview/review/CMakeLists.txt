@@ -17,6 +17,14 @@ add_library(${PROJECT_NAME}
   src/m9/Name.cpp
   src/m9/Credit.cpp
   src/m9/Customer.cpp
+  src/m10/Employee.cpp
+  src/m10/Worker.cpp
+  src/m10/Manager.cpp
+  src/m10/HrSystem.cpp
+  src/m10/Mammal.cpp
+  src/m10/Lion.cpp
+  src/m10/Tiger.cpp
+  src/m10/Liger.cpp
 )
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})

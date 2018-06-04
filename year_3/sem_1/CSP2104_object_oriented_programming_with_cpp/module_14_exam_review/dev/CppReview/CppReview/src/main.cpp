@@ -13,6 +13,11 @@
 #include <review/m8/HrSystem.h>
 #include <review/m9/Pizza.h>
 #include <review/m9/Customer.h>
+#include <review/m10/HrSystem.h>
+#include <review/m10/Mammal.h>
+#include <review/m10/Lion.h>
+#include <review/m10/Tiger.h>
+#include <review/m10/Liger.h>
 
 using namespace std;
 using namespace util;
@@ -20,6 +25,7 @@ using namespace m5;
 using namespace m7;
 using namespace m8;
 using namespace m9;
+using namespace m10;
 
 int main()
 {
@@ -85,7 +91,7 @@ int main()
     cli.print("letterCount=" + to_string(secondLetter.getCount()));
     // 8.3
     cli.beginExercise(3);
-    auto hrSystem = HrSystem(cli, reader);
+    auto hrSystem = m8::HrSystem(cli, reader);
     hrSystem.run();
 
     // 9.0
@@ -116,6 +122,31 @@ int main()
         limit,
         phone);
     cli.print(customer.toString());
+
+    // 10.0
+    cli.beginModule(10, "Inheritance");
+    // 10.1
+    cli.beginExercise(1);
+    auto newHrSystem = m10::HrSystem(cli, reader);
+    newHrSystem.run();
+    // 10.2
+    cli.beginExercise(2);
+    auto mammalOne = Mammal(4, true, true, "brown", "brown");
+    auto mammalTwo = Mammal(2, false, false, "black", "blue");
+    cli.print(mammalOne.toString());
+    cli.print(mammalTwo.toString());
+    auto lionOne = Lion(4, true, true, "golden", "brown");
+    auto lionTwo = Lion(4, true, false, "white", "blue");
+    cli.print(lionOne.toString());
+    cli.print(lionTwo.toString());
+    auto tigerOne = Tiger(4, true, false, "orange", "brown");
+    auto tigerTwo = Tiger(4, true, true, "white", "blue");
+    cli.print(tigerOne.toString());
+    cli.print(tigerTwo.toString());
+    auto ligerOne = Liger(4, true, true, "white", "brown");
+    auto ligerTwo = Liger(4, true, false, "tan", "blue");
+    cli.print(ligerOne.toString());
+    cli.print(ligerTwo.toString());
 
     return 0;
 }
