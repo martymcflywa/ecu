@@ -3,7 +3,7 @@ project(review LANGUAGES CXX)
 
 find_package(util REQUIRED)
 
-add_library(${PROJECT_NAME} 
+add_library(${PROJECT_NAME} SHARED
   src/m5/IdValidator.cpp
   src/m5/SessionPlanner.cpp
   src/m5/Nested.cpp
@@ -25,6 +25,9 @@ add_library(${PROJECT_NAME}
   src/m10/Lion.cpp
   src/m10/Tiger.cpp
   src/m10/Liger.cpp
+  src/m11/MyVector.cpp
+  src/m11/RequestedException.cpp
+  src/m11/Async.cpp
 )
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})

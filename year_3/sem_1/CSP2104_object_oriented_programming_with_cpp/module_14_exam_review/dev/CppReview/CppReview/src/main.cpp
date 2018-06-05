@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <thread>
 
 #include <util/Cli.h>
 #include <util/Reader.h>
@@ -18,6 +19,9 @@
 #include <review/m10/Lion.h>
 #include <review/m10/Tiger.h>
 #include <review/m10/Liger.h>
+#include <review/m11/MyVector.h>
+#include <review/m11/RequestedException.h>
+#include <review/m11/Async.h>
 
 using namespace std;
 using namespace util;
@@ -26,6 +30,7 @@ using namespace m7;
 using namespace m8;
 using namespace m9;
 using namespace m10;
+using namespace m11;
 
 int main()
 {
@@ -147,6 +152,51 @@ int main()
     auto ligerTwo = Liger(4, true, false, "tan", "blue");
     cli.print(ligerOne.toString());
     cli.print(ligerTwo.toString());
+
+    // 11.0
+    cli.beginModule(11, "Exceptions");
+    // 11.1
+    cli.beginExercise(1);
+    auto vecOne = MyVector(1, 2, 3, false);
+    cli.print("vecOne: " + vecOne.toString());
+    auto vecTwo = MyVector(3, 2, 1, true);
+    cli.print("vecTwo: " + vecTwo.toString());
+    auto vecThree = vecOne + vecTwo;
+    cli.print("vecThree (vecOne + vecTwo): " + vecThree.toString());
+    try
+    {
+        cli.print("vecOne doThrow=" + to_string(vecOne.throwMe()));
+    }
+    catch (RequestedException& e)
+    {
+        cli.print(string("vecOne throws: ") + e.what());
+    }
+    try
+    {
+        cli.print("vecTwo doThrow=" + to_string(vecTwo.throwMe()));
+    }
+    catch (RequestedException& e)
+    {
+        cli.print(string("vecTwo throws: ") + e.what());
+    }
+    try
+    {
+        cli.print("vecThree doThrow=" + to_string(vecThree.throwMe()));
+    }
+    catch (RequestedException& e)
+    {
+        cli.print(string("vecThree throws: ") + e.what());
+    }
+    // 11.2
+    cli.beginExercise(2);
+    cli.print("Experiment with mutex");
+    auto asyncCounter = 0;
+    auto countLimit = 5000;
+    auto threadZero = thread(Async::increment, ref(cli), 0, ref(asyncCounter), countLimit);
+    auto threadOne = thread(Async::increment, ref(cli), 1, ref(asyncCounter), countLimit);
+    threadZero.join();
+    threadOne.join();
+    cli.print("asyncCounter=" + to_string(asyncCounter));
 
     return 0;
 }
