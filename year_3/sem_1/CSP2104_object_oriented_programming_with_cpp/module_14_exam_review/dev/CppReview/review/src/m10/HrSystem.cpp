@@ -77,6 +77,7 @@ vector<Employee*> HrSystem::load()
 
         cursor = 0;
     }
+    file.close();
     return employees;
 }
 

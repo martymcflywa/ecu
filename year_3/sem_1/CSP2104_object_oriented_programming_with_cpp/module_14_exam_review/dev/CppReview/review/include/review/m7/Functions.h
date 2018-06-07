@@ -1,6 +1,7 @@
 #pragma once
 
 #include <util/Cli.h>
+#include <util/Reader.h>
 #include <string>
 
 namespace m7
@@ -23,17 +24,17 @@ namespace m7
     class Functions
     {
         util::Cli _cli;
+        util::Reader _reader;
     public:
-        Functions(util::Cli& cli);
+        Functions(util::Cli& cli, util::Reader& reader);
         void compute();
         void setVector();
         void initFileIo();
     private:
         float compute(float a, float* b, float& c);
         void setVector(Vector3& v, double x, double y, double z);
-        std::string read(const std::string& filename);
-        void write(const std::string& filename);
+        std::string read();
+        void write();
         int menuSelect();
-        std::string getFilename();
     };
 }

@@ -11,9 +11,10 @@ namespace util
         Cli _cli;
     public:
         Reader(Cli& cli);
+        std::string getFilepath();
         void read(std::ifstream& file);
     private:
-        std::string getFilepath();
         void read(const std::string& filepath, std::ifstream& file);
+        std::string trim(const std::string& str);
     };
 }

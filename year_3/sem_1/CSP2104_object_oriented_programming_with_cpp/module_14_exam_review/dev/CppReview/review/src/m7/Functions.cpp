@@ -5,7 +5,7 @@ using namespace m7;
 using namespace util;
 using namespace std;
 
-Functions::Functions(Cli& cli) : _cli(cli)
+Functions::Functions(Cli& cli, Reader& reader) : _cli(cli), _reader(reader)
 {
 }
 
@@ -47,31 +47,25 @@ void Functions::setVector(Vector3& v, double x, double y, double z)
 void Functions::initFileIo()
 {
     auto selection = menuSelect();
-    auto filename = getFilename();
 
     if (selection == 1)
     {
-        read(filename);
+        read();
         return;
     }
     
     if (selection == 2)
     {
-        write(filename);
+        write();
         return;
     }
 }
 
-string Functions::read(const string& filename)
+string Functions::read()
 {
     _cli.print("Read mode");
-    auto file = ifstream(filename);
-
-    if (!file.is_open())
-    {
-        _cli.print("Unable to open file");
-        exit(1);
-    }
+    auto file = ifstream();
+    _reader.read(file);
 
     string record;
     auto line = 0L;
@@ -87,10 +81,11 @@ string Functions::read(const string& filename)
     return record;
 }
 
-void Functions::write(const string& filename)
+void Functions::write()
 {
     _cli.print("Write mode");
-    auto file = ofstream(filename, ios::app);
+    auto filepath = _reader.getFilepath();
+    auto file = ofstream(filepath, ios::app);
 
     if (!file.is_open())
     {
@@ -118,9 +113,4 @@ int Functions::menuSelect()
         selection = stoi(_cli.get(menu));
     }
     return selection;
-}
-
-string Functions::getFilename()
-{
-    return _cli.get("Enter fully qualified path to file");
 }

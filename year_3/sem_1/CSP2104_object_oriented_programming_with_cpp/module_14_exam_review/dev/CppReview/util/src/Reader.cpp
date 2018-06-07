@@ -16,7 +16,7 @@ void Reader::read(ifstream& file)
 
 string Reader::getFilepath()
 {
-    return _cli.get("Enter path to file");
+    return trim(_cli.get("Enter path to file"));
 }
 
 void Reader::read(const string& filepath, ifstream& file)
@@ -29,4 +29,11 @@ void Reader::read(const string& filepath, ifstream& file)
         _cli.print("Unable to open " + filepath);
         exit(1);
     }
+}
+
+string Reader::trim(const string& str)
+{
+    unsigned first = str.find_first_not_of(' ');
+    unsigned last = str.find_last_not_of(' ');
+    return str.substr(first, (last - first + 1));
 }
