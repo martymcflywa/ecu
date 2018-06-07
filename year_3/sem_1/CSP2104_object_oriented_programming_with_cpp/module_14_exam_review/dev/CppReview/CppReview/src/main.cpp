@@ -25,6 +25,7 @@
 #include <review/m12/Customer.h>
 #include <review/m12/Transaction.h>
 #include <review/m12/SalesOffice.h>
+#include <review/m13/Calculator.h>
 
 using namespace std;
 using namespace util;
@@ -35,6 +36,7 @@ using namespace m9;
 using namespace m10;
 using namespace m11;
 using namespace m12;
+using namespace m13;
 
 int main()
 {
@@ -64,7 +66,7 @@ int main()
     cli.beginModule(7, "Functions");
     // 7.1
     cli.beginExercise(1);
-    auto functions = Functions(cli);
+    auto functions = Functions(cli, reader);
     functions.compute();
     // 7.2
     cli.beginExercise(2);
@@ -224,6 +226,20 @@ int main()
     cli.print(southSide.compare(northSide));
     cout << northSide;
     cout << southSide;
+
+    // 13.0
+    cli.beginModule(13, "Templates");
+    // 13.1
+    cli.beginExercise(1);
+    auto calculator = Calculator();
+    auto sumInt = calculator.add(1, 2);
+    cli.print(to_string(sumInt));
+    auto productFloat = calculator.multiply(1.67f, 2.75f);
+    cli.print(to_string(productFloat));
+    auto sumDouble = calculator.add(5.48, 3.38);
+    cli.print(to_string(sumDouble));
+    auto productChar = calculator.multiply('A', 'Z');
+    cli.print(to_string(productChar));
 
     return 0;
 }
