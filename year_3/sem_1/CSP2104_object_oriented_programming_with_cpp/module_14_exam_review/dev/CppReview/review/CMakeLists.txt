@@ -28,6 +28,9 @@ add_library(${PROJECT_NAME} SHARED
   src/m11/MyVector.cpp
   src/m11/RequestedException.cpp
   src/m11/Async.cpp
+  src/m12/Transaction.cpp
+  src/m12/Customer.cpp
+  src/m12/SalesOffice.cpp
 )
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})

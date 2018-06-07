@@ -22,6 +22,9 @@
 #include <review/m11/MyVector.h>
 #include <review/m11/RequestedException.h>
 #include <review/m11/Async.h>
+#include <review/m12/Customer.h>
+#include <review/m12/Transaction.h>
+#include <review/m12/SalesOffice.h>
 
 using namespace std;
 using namespace util;
@@ -31,6 +34,7 @@ using namespace m8;
 using namespace m9;
 using namespace m10;
 using namespace m11;
+using namespace m12;
 
 int main()
 {
@@ -119,7 +123,7 @@ int main()
     auto current = stod(cli.get("Enter balance"));
     auto limit = stod(cli.get("Enter limit"));
     auto phone = cli.get("Enter phone number");
-    auto customer = Customer(
+    auto customer = m9::Customer(
         first,
         middle,
         last,
@@ -157,9 +161,9 @@ int main()
     cli.beginModule(11, "Exceptions");
     // 11.1
     cli.beginExercise(1);
-    auto vecOne = MyVector(1, 2, 3, false);
+    auto vecOne = MyVector<int>(1, 2, 3, false);
     cli.print("vecOne: " + vecOne.toString());
-    auto vecTwo = MyVector(3, 2, 1, true);
+    auto vecTwo = MyVector<int>(3, 2, 1, true);
     cli.print("vecTwo: " + vecTwo.toString());
     auto vecThree = vecOne + vecTwo;
     cli.print("vecThree (vecOne + vecTwo): " + vecThree.toString());
@@ -197,6 +201,29 @@ int main()
     threadZero.join();
     threadOne.join();
     cli.print("asyncCounter=" + to_string(asyncCounter));
+
+    // 12.0
+    cli.beginModule(12, "Friends and overloading operators");
+    // Testing friend functions
+    cli.beginExercise(0);
+    auto fredKruger = m12::Customer(0, "fred", "kruger");
+    cli.print(fredKruger.toString());
+    auto deposit = Transaction(0, 100.f);
+    cli.print(deposit.toString());
+    fredKruger.apply(deposit);
+    cli.print(fredKruger.toString());
+    auto withdrawal = Transaction(1, -50.f);
+    cli.print(withdrawal.toString());
+    fredKruger.apply(withdrawal);
+    cli.print(fredKruger.toString());
+    // 12.1
+    cli.beginExercise(1);
+    auto northSide = SalesOffice("North", 86.f);
+    auto southSide = SalesOffice("South", 100.f);
+    cli.print(northSide.compare(southSide));
+    cli.print(southSide.compare(northSide));
+    cout << northSide;
+    cout << southSide;
 
     return 0;
 }
