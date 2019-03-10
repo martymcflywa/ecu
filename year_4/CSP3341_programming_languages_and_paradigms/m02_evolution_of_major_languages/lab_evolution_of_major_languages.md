@@ -1,0 +1,62 @@
+# Timeline
+
+- 1945
+  - In the beginning there was machine code
+  - Plankalkul designed
+- 1949
+  - Short code
+- 1954
+  - IBM 704
+    - First mass produced computer with hardware support for floating point operations
+- 1957
+  - Fortran I
+    - Emergence and popularisation of compiled languages
+- 1958
+  - ALGOL 58
+    - First universal and machine independent language designed
+- 1959
+  - Lisp
+    - Emergence of functional programming
+    - First implementation of garbage collection
+- 1960
+  - COBOL
+    - First implementation of hierarchical data structures
+      - Records
+  - ALGOL 60
+- 1964
+  - BASIC
+    - First major implementation of time-sharing via terminals in a programming language
+  - PL/I
+    - Support for concurrently executing sub programs within a program
+    - Support for run time exception handling
+- 1972
+  - Plankalkul published
+  - C
+- 1975
+  - Scheme
+- 1980
+  - Smalltalk
+    - First full implementation of object oriented language
+- 1983
+  - Ada
+- 1985
+  - C++
+- 1990
+  - Fortran 90
+    - Concept of deprecation introduced
+      - Removal of obsolete/inappropriate features in a language
+- 1994
+  - PHP
+- 1995
+  - Java
+- 2001
+  - C3
+
+# Focus
+
+- 1940s to mid 1950s
+  - Making code more writeable compared to machine code
+- Mid 1950s to current
+  - Making code efficient
+    - Translated/compiled code not as efficient as hand written machine code
+  - Making code more readable
