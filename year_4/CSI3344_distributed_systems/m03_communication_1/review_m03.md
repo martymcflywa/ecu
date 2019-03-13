@@ -1,0 +1,69 @@
+# Review questions: Communications 1
+
+1. Protocols are often constructed in the form of layers
+  - True
+2. Why is OSI referred as a reference model
+  - It identifies various levels involved
+  - Standardised names
+  - Points out which level should do which job
+  - Describes how something should be implemented
+  - Not the implementation itself
+3. Name the seven layers of the OSI model
+  - Application
+    - Meet the communication requirements of specific applications
+    - Often defining the interface to a service
+  - Presentation
+    - Transmit data in a network representation that is independent of the representations used in individual computers
+    - Encryption also performed in this layer if required
+  - Session
+    - Reliability and adaptation measures performed
+      - Detect failures
+      - Auto recovery
+  - Transport
+    - Lowest level where messages (not packets) are handled
+    - Messages are addressed to ports attached to processes
+    - Protocols in this layer may be connection oriented or connectionless
+  - Network
+    - Transfer data packets between computers in a specific network
+    - In WAN or internetwork, this involves generation of a route passing through routers
+    - In LAN, no routing is required
+  - Data link
+    - Responsible for transmission of packets between nodes that are directly connected by a physical link
+    - In WAN, transmission is between
+      - Pairs of routers
+      - Routers and hosts
+    - In LAN, transmission is between
+      - Any pair of hosts
+  - Physical
+    - The circuits and hardware that drive the network
+    - Transmits sequences of binary data by analogue signalling
+      - On cable circuits with electric signals
+        - Amplitude
+        - Frequency modulation
+      - On fire optic circuits
+        - Light signals
+      - Other electromagnetic signals
+        - Radio
+        - Microwave circuits
+- What does the data link layer do
+  - Responsible for transmission of packets between nodes that are directly connected by a physical link
+  - In WAN, transmission is between
+    - Pairs of routers
+    - Routers and hosts
+  - In LAN, transmission is between
+    - Any pair of hosts
+- What does the physical layer do
+  - The circuits and hardware that drive the network
+  - Transmits sequences of binary data by analogue signalling
+  - On cable circuits with electric signals
+    - Amplitude
+    - Frequency modulation
+  - On fire optic circuits
+    - Light signals
+  - Other electromagnetic signals
+    - Radio
+    - Microwave circuits
+- By adopting standards what can we achieve in networked communication
+  - Heterogeneity
+- The internet communication model is a de facto standard
+  - False
