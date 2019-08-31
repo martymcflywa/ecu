@@ -69,7 +69,7 @@
     - `C_j <- max{C_j, ts(m)}`
   - It then executes the first step and delivers the message to the application
 
-## Happened before / casual ordering expression
+## Happened before / causal ordering expression
 
 1. If `a` and `b` are events in the same process
   - And `a` occurs before `b`
